@@ -3,8 +3,7 @@ import { getAllPosts } from '../../services/wordpress';
 import NewsGrid from '../../components/news/NewsGrid';
 import { Zap } from 'lucide-react';
 
-export const revalidate = 3600; // ISR cache for 1 hour
-
+export const revalidate = 1; // ISR cache for 1 second temporarily to flush empty payload
 
 export const metadata: Metadata = {
     title: 'Insights Hub | Berita & Artikel Teknis | PT Dimensi Quantum Wahyudi',
