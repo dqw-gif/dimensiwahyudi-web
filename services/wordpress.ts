@@ -28,14 +28,10 @@ export async function getHomeData() {
   }
   `;
 
-  // Fail gracefully if API URL is not set (e.g. during build)
-  if (!process.env.WORDPRESS_API_URL) {
-    console.warn('WORDPRESS_API_URL is not defined');
-    return null;
-  }
+  const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
 
   try {
-    const res = await fetch(process.env.WORDPRESS_API_URL as string, {
+    const res = await fetch(wpUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),
@@ -80,13 +76,10 @@ export async function getAllPosts() {
     }
     `;
 
-  if (!process.env.WORDPRESS_API_URL) {
-    console.warn('WORDPRESS_API_URL is not defined in environment variables.');
-    return [];
-  }
+  const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
 
   try {
-    const res = await fetch(process.env.WORDPRESS_API_URL as string, {
+    const res = await fetch(wpUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),
@@ -135,8 +128,10 @@ export async function getPostBySlug(slug: string) {
     }
     `;
 
+  const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
+
   try {
-    const res = await fetch(process.env.WORDPRESS_API_URL as string, {
+    const res = await fetch(wpUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -180,8 +175,10 @@ export async function getRelatedPosts(categorySlug: string, excludeId: string) {
     }
     `;
 
+  const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
+
   try {
-    const res = await fetch(process.env.WORDPRESS_API_URL as string, {
+    const res = await fetch(wpUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
