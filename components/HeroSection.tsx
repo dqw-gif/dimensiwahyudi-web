@@ -92,15 +92,15 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mb-12 h-20" // Fixed height agar tidak lompat
+            className="mb-12 min-h-[5rem] flex flex-col items-center justify-center gap-2" // Menggunakan flex-col dan items-center
           >
-            <p className="text-xl md:text-4xl lg:text-5xl text-slate-300 font-light">
-              Solusi Untuk{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-semibold inline-block min-w-[300px] text-left">
-                {currentText}
-                <span className="animate-pulse text-cyan-400">|</span>
-              </span>
-            </p>
+            <span className="text-xl md:text-3xl lg:text-4xl text-slate-300 font-light text-center">
+              Solusi Untuk
+            </span>
+            <span className="text-2xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-center h-12">
+              {currentText}
+              <span className="animate-pulse text-cyan-400">|</span>
+            </span>
           </motion.div>
 
           {/* Buttons */}
