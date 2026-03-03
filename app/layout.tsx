@@ -1,6 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
@@ -128,6 +129,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFloat />
         <Analytics />
+        <SpeedInsights />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
