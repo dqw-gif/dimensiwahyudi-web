@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
         const waLink = `https://wa.me/6281119168752?text=${waMessage}`;
 
         // ── Kirim via Formspree (jika FORMSPREE_ID dikonfigurasi) ─────────────
-        const formspreeId = process.env.FORMSPREE_ID;
+        const formspreeId = process.env.FORMSPREE_ID || 'xrearydw';
         if (formspreeId) {
             const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
                 method: 'POST',
