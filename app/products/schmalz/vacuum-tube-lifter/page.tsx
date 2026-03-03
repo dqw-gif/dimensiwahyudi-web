@@ -104,7 +104,7 @@ export default function VacuumTubeLifterIndexPage() {
                                     </div>
 
                                     {/* Capacity */}
-                                    <div className="absolute top-3 right-3 bg-white/10 backdrop-blur-sm rounded-lg px-2 py-1 text-white text-xs font-mono font-bold border border-white/20">
+                                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 text-blue-600 text-[10px] font-mono font-bold border border-white/20 shadow-sm">
                                         {variant.capacity}
                                     </div>
 
