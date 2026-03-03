@@ -83,7 +83,7 @@ export async function getAllPosts() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),
-      next: { revalidate: 1 },
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -138,7 +138,7 @@ export async function getPostBySlug(slug: string) {
         query,
         variables: { slug },
       }),
-      next: { revalidate: 1 },
+      next: { revalidate: 60 },
     });
 
     const json = await res.json();
@@ -185,7 +185,7 @@ export async function getRelatedPosts(categorySlug: string, excludeId: string) {
         query,
         variables: { categorySlug, excludeId: [excludeId] },
       }),
-      next: { revalidate: 1 },
+      next: { revalidate: 60 },
     });
 
     const json = await res.json();
