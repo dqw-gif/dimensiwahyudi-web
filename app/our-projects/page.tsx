@@ -334,7 +334,7 @@ export const projects = [
         client: 'PT Industrial Robotic Automation',
         industry: 'Industri Berat & Otomasi',
         image: '/projects/PT Industrial Robotic Automation.jpg',
-        logo: 'https://irarobotics.com/images/logo.png',
+        logo: 'https://i.imgur.com/7Jpv5Qg.jpeg',
         size: 'standard',
         desc: 'Integrasi lifting pintar tersertifikasi yang sesuai dengan line perakitan otomasi 4.0 tingkat lanjut.',
         color: 'slate'
