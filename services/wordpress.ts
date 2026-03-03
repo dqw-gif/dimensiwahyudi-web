@@ -80,6 +80,11 @@ export async function getAllPosts() {
     }
     `;
 
+  if (!process.env.WORDPRESS_API_URL) {
+    console.warn('WORDPRESS_API_URL is not defined in environment variables.');
+    return [];
+  }
+
   try {
     const res = await fetch(process.env.WORDPRESS_API_URL as string, {
       method: 'POST',
@@ -88,10 +93,15 @@ export async function getAllPosts() {
       next: { revalidate: 60 },
     });
 
+    if (!res.ok) {
+      console.error(`WP API Error: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
     const json = await res.json();
     return json.data?.posts?.nodes || [];
   } catch (error) {
-    console.error('Error fetching posts:', error);
+    console.error('Error fetching posts from WordPress API:', error);
     return [];
   }
 }
