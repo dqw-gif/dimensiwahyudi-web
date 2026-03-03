@@ -1,0 +1,425 @@
+export interface SuctionCupVariant {
+    slug: string;
+    name: string;
+    tagline: string;
+    description: string;
+    shape: string; // Flat, Bellows, Special
+    application: string; // main application domain
+    heroColor: string;
+    badges: string[];
+    specs: { label: string; value: string }[];
+    features: string[];
+    applications: string[];
+    imageUrl: string; // 📷 TODO: replace with actual image URL
+}
+
+export const suctionCupVariants: SuctionCupVariant[] = [
+    {
+        slug: 'flat-round',
+        name: 'Flat Suction Cups (Round)',
+        tagline: 'Fast and precise gripping of flat workpieces',
+        description:
+            'Round flat suction cups are ideal for handling smooth, flat workpieces where a low internal volume is needed for fast and secure gripping. Their simple design offers maximum reliability in high-cycle automation.',
+        shape: 'Flat',
+        application: 'General Automation',
+        heroColor: 'from-cyan-500 to-blue-600',
+        badges: [],
+        specs: [
+            { label: 'Shape', value: 'Flat (Round)' },
+            { label: 'Diameter', value: '10 mm – 250 mm' },
+            { label: 'Materials', value: 'NBR, Silicone, Viton, PU' },
+            { label: 'Temperature', value: '-10°C to +180°C (material dependent)' },
+            { label: 'Connection', value: 'G1/8 to G1/2 BSP' },
+            { label: 'Standard', value: 'ISO 9283' },
+        ],
+        features: [
+            'Handling of flat workpieces',
+            'Low internal volume for fast evacuation',
+            'Fast and precise gripping',
+            'Wide range of diameters and materials',
+            'Standard fittings for easy integration',
+        ],
+        applications: [
+            'Sheet metal handling',
+            'Cardboard & packaging',
+            'General flat-part automation',
+            'Printing & CNC machining',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00191/f03704cb51f0_PUG_PGE-00191_000.jpg?size=m',
+        // 📷 TODO: replace with dedicated flat round cup image
+    },
+    {
+        slug: 'bellows-round',
+        name: 'Bellows Suction Cups (Round)',
+        tagline: 'Height compensation for uneven and curved surfaces',
+        description:
+            'Round bellows suction cups feature a convoluted bellows body that provides automatic height compensation, making them perfect for handling workpieces with uneven, curved, or slightly inclined surfaces. The damping effect protects sensitive parts.',
+        shape: 'Bellows',
+        application: 'Uneven Surfaces',
+        heroColor: 'from-blue-500 to-indigo-600',
+        badges: [],
+        specs: [
+            { label: 'Shape', value: 'Bellows (Round)' },
+            { label: 'Diameter', value: '10 mm – 150 mm' },
+            { label: 'Bellows Folds', value: '1.5 or 2.5 fold' },
+            { label: 'Materials', value: 'NBR, Silicone, Viton, PU' },
+            { label: 'Temperature', value: '-10°C to +200°C (material dependent)' },
+            { label: 'Connection', value: 'G1/8 to G3/8 BSP' },
+        ],
+        features: [
+            'Handling of uneven and curved workpieces',
+            'Suction bellows for automatic height compensation',
+            'Damping effect for sensitive workpieces',
+            'Prevents workpiece slippage on inclined surfaces',
+            'Available in 1.5 and 2.5 fold variants',
+        ],
+        applications: [
+            'Curved plastic parts',
+            'Electronics & semiconductor handling',
+            'Food industry (with silicone grade)',
+            'Automotive body panels',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00188/b1b20d090412_PUG_PGE-00188_000.jpg?size=m',
+        // 📷 TODO: replace with dedicated bellows round cup image
+    },
+    {
+        slug: 'flat-oval',
+        name: 'Flat Suction Cups (Oval)',
+        tagline: 'Ideal for long and narrow workpieces',
+        description:
+            'Oval flat suction cups are designed specifically for handling long, narrow, or elongated workpieces where a round cup would leave insufficient contact area. The oval geometry maximizes grip on profiles, bars, and narrow panels.',
+        shape: 'Flat',
+        application: 'Narrow Workpieces',
+        heroColor: 'from-teal-500 to-cyan-600',
+        badges: [],
+        specs: [
+            { label: 'Shape', value: 'Flat (Oval)' },
+            { label: 'Dimensions', value: '20×10 mm – 120×60 mm' },
+            { label: 'Materials', value: 'NBR, Silicone, Viton' },
+            { label: 'Temperature', value: '-10°C to +200°C (material dependent)' },
+            { label: 'Connection', value: 'G1/8 to G1/4 BSP' },
+            { label: 'Standard', value: 'ISO 9283' },
+        ],
+        features: [
+            'Optimized for long and narrow workpieces',
+            'Higher coverage area on elongated parts',
+            'Low internal volume for quick seal',
+            'Multiple material options',
+            'Standard BSP fittings',
+        ],
+        applications: [
+            'Aluminum profile handling',
+            'Narrow panel boards',
+            'Strip and bar stock automation',
+            'Solar panel manufacturing',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00190/3d41a69d8700_PUG_PGE-00190_000.jpg?size=m',
+        // 📷 TODO: replace with dedicated flat oval cup image
+    },
+    {
+        slug: 'bellows-oval',
+        name: 'Bellows Suction Cups (Oval)',
+        tagline: 'Height-compensating grip for narrow, uneven workpieces',
+        description:
+            'Oval bellows suction cups combine the advantages of oval geometry with convoluted bellows height compensation. They are the go-to solution for narrow, elongated workpieces that also have surface irregularities or require a damping effect.',
+        shape: 'Bellows',
+        application: 'Narrow + Uneven',
+        heroColor: 'from-indigo-500 to-purple-600',
+        badges: [],
+        specs: [
+            { label: 'Shape', value: 'Bellows (Oval)' },
+            { label: 'Dimensions', value: '20×10 mm – 100×50 mm' },
+            { label: 'Bellows Folds', value: '1.5 fold' },
+            { label: 'Materials', value: 'NBR, Silicone, Viton' },
+            { label: 'Temperature', value: '-10°C to +200°C (material dependent)' },
+            { label: 'Connection', value: 'G1/8 to G1/4 BSP' },
+        ],
+        features: [
+            'Handling of long and narrow workpieces',
+            'Bellows for height compensation',
+            'Damping effect for sensitive workpieces',
+            'Oval footprint maximizes narrow-surface coverage',
+            'Ideal where both shape and surface variation exist',
+        ],
+        applications: [
+            'Narrow curved panels',
+            'Elongated plastic extrusions',
+            'Profiles and structural members',
+            'Delicate narrow-part automation',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00187/a4df48d0b713_PUG_PGE-00187_000.jpg?size=m',
+        // 📷 TODO: replace with dedicated bellows oval cup image
+    },
+    {
+        slug: 'sheet-metal',
+        name: 'Suction Cups for Sheet Metal',
+        tagline: 'High lateral and holding forces for metal sheet handling',
+        description:
+            'These suction cups are engineered specifically for sheet metal handling, capable of gripping both convex and concave metal surfaces with very high lateral and vertical holding forces. Available in oil-resistant NBR as standard.',
+        shape: 'Special',
+        application: 'Metal',
+        heroColor: 'from-slate-500 to-gray-600',
+        badges: ['Heavy Duty'],
+        specs: [
+            { label: 'Shape', value: 'Flat & Bellows (Round)' },
+            { label: 'Diameter', value: '30 mm – 250 mm' },
+            { label: 'Materials', value: 'NBR (oil-resistant), Viton' },
+            { label: 'Workpiece', value: 'Flat, convex, concave metal sheets' },
+            { label: 'Temperature', value: '-10°C to +120°C' },
+            { label: 'Connection', value: 'G1/4 to G1/2 BSP' },
+        ],
+        features: [
+            'Engineered for handling metal sheets',
+            'Works on convex and concave metal surfaces',
+            'High lateral and holding forces',
+            'Oil-resistant NBR material as standard',
+            'Reinforced body for industrial durability',
+        ],
+        applications: [
+            'Press shop automation',
+            'Sheet metal stamping & punching',
+            'Laser cutting feed systems',
+            'Steel service center automation',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/002/00218/3e55526969e8_PUG_PGE-00218_000.jpg?size=m',
+        // 📷 TODO: replace with sheet metal cup image
+    },
+    {
+        slug: 'packaging',
+        name: 'Suction Cups for Packaging',
+        tagline: 'Handling cardboards, bags, plastic films and blister packs',
+        description:
+            'Purpose-built for the packaging industry, these suction cups handle cardboards, plastic bags, film, and blister packs efficiently and without damage. FDA-compliant material options make them safe for primary food packaging applications.',
+        shape: 'Special',
+        application: 'Packaging',
+        heroColor: 'from-green-500 to-emerald-600',
+        badges: ['Food Grade'],
+        specs: [
+            { label: 'Workpiece Types', value: 'Cardboard, Bags, Film, Blisters' },
+            { label: 'Diameter', value: '20 mm – 150 mm' },
+            { label: 'Materials', value: 'NBR, Silicone (FDA), PU' },
+            { label: 'Certification', value: 'FDA compliant (silicone grade)' },
+            { label: 'Temperature', value: '-10°C to +200°C' },
+            { label: 'Sector', value: 'Primary & secondary packaging' },
+        ],
+        features: [
+            'Handles cardboards, plastic bags, film, and blister packs',
+            'Suitable for primary and secondary packaging sectors',
+            'FDA-compliant materials for food contact',
+            'Minimal marking on sensitive packaging surfaces',
+            'Available in high-cycle automation grades',
+        ],
+        applications: [
+            'E-commerce packing lines',
+            'Food primary packaging',
+            'Blister pack palletizing',
+            'Film and bag pick & place',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/038/03884/c0e2bf725db7_PUG_PGE-03884_000.jpg?size=m',
+        // 📷 TODO: replace with packaging cup image
+    },
+    {
+        slug: 'electronics',
+        name: 'Suction Cups for Electronics',
+        tagline: 'Mark-free handling with ESD protection for sensitive components',
+        description:
+            'Designed for the electronics and semiconductor industry, these suction cups minimize surface marks and are available in ESD-compliant materials to prevent electrostatic discharge. The latest HT1-ESD material sets new standards for sensitive component handling.',
+        shape: 'Special',
+        application: 'Electronics',
+        heroColor: 'from-violet-500 to-purple-700',
+        badges: ['ESD Safe'],
+        specs: [
+            { label: 'Workpiece Types', value: 'PCBs, blanks, electronic components' },
+            { label: 'Diameter', value: '4 mm – 40 mm' },
+            { label: 'Materials', value: 'Silicone, HT1-ESD, PU-ESD' },
+            { label: 'ESD', value: 'Compliant variants available' },
+            { label: 'Temperature', value: '-10°C to +150°C' },
+            { label: 'Connection', value: 'G1/8 BSP, M5' },
+        ],
+        features: [
+            'Very few marks on sensitive electronic components',
+            'Partly and fully ESD-compliant versions',
+            'New HT1-ESD material for maximum ESD protection',
+            'Tiny diameters (from 4 mm) for small SMD parts',
+            'Handles blank wafers, PCBs and assemblies',
+        ],
+        applications: [
+            'PCB assembly automation',
+            'Wafer handling (semiconductor)',
+            'SMD component placement',
+            'Display and glass substrate handling',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/0_/056/05664/dd65cffc2b0d_PUG_PGE-05664_001.jpg?size=m',
+        // 📷 TODO: replace with electronics cup image
+    },
+    {
+        slug: 'bag-handling',
+        name: 'Grippers for Bag Handling',
+        tagline: 'Porous and low-fill bag handling made reliable',
+        description:
+            'Purpose-built grippers for paper, plastic, and fabric bags — including porous and bag-like workpieces and bags with low fill levels. The specialized sealing geometry and internal channels create reliable grip even on difficult porous surfaces.',
+        shape: 'Special',
+        application: 'Bags',
+        heroColor: 'from-amber-500 to-orange-600',
+        badges: [],
+        specs: [
+            { label: 'Workpiece Types', value: 'Paper, plastic, fabric bags' },
+            { label: 'Diameter', value: '60 mm – 200 mm' },
+            { label: 'Materials', value: 'NBR, Silicone' },
+            { label: 'Special Feature', value: 'Porous workpiece handling' },
+            { label: 'Temperature', value: '-10°C to +150°C' },
+            { label: 'Connection', value: 'G1/4 to G1/2 BSP' },
+        ],
+        features: [
+            'Handles porous and bag-like workpieces',
+            'Works with low-fill level bags',
+            'Special sealing geometry for irregular surfaces',
+            'Paper, plastic, and fabric bag compatible',
+            'Suitable for palletizing and depalletizing',
+        ],
+        applications: [
+            'Bag palletizing systems',
+            'Grain and flour bag handling',
+            'Paper sack automation',
+            'Fertilizer and cement bag lines',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/0_/062/06281/bdeed794c67c_PUG_PGE-06281.jpg?size=m',
+        // 📷 TODO: replace with bag gripper image
+    },
+    {
+        slug: 'plastic-film-paper',
+        name: 'Suction Cups for Plastic Films & Paper',
+        tagline: 'Mark-free and FDA-compliant for film and paper handling',
+        description:
+            'These suction cups feature a flat sealing lip and a special inner structure that grips plastic film and paper without leaving marks or causing damage. Available in FDA-compliant, heat-resistant, and chemical-resistant materials.',
+        shape: 'Special',
+        application: 'Films & Paper',
+        heroColor: 'from-sky-500 to-blue-600',
+        badges: ['Food Grade'],
+        specs: [
+            { label: 'Workpiece Types', value: 'Plastic film, paper sheets' },
+            { label: 'Diameter', value: '20 mm – 100 mm' },
+            { label: 'Materials', value: 'Silicone (FDA), PU, PTFE-coated' },
+            { label: 'Certification', value: 'FDA compliant' },
+            { label: 'Temperature', value: '-10°C to +200°C' },
+            { label: 'Special', value: 'Flat sealing lip, special inner structure' },
+        ],
+        features: [
+            'Flat sealing lip for film-friendly contact',
+            'Special inner structure for film grip',
+            'Mark-free handling of delicate surfaces',
+            'FDA-compliant for food-contact applications',
+            'Heat-resistant and chemical-resistant options',
+        ],
+        applications: [
+            'Packaging film handling',
+            'Printing paper sheet feeding',
+            'Plastic film palletizing',
+            'Label and foil automation',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00192/75d35cbc5f99_PUG_PGE-00192_002.jpg?size=m',
+        // 📷 TODO: replace with film/paper cup image
+    },
+    {
+        slug: 'wood',
+        name: 'Suction Cups for Handling Wood',
+        tagline: 'Special sealing edge and sensing valve for wooden workpieces',
+        description:
+            'Engineered for woodworking industry applications, these suction cups feature a special sealing edge to handle porous wood surfaces effectively, along with an optional sensing valve that confirms workpiece detection before committing to a lift.',
+        shape: 'Special',
+        application: 'Wood',
+        heroColor: 'from-amber-600 to-yellow-700',
+        badges: ['Wood'],
+        specs: [
+            { label: 'Workpiece Types', value: 'Wood, wooden boards, MDF, particle board' },
+            { label: 'Diameter', value: '50 mm – 200 mm' },
+            { label: 'Materials', value: 'NBR, Silicone, PU' },
+            { label: 'Special Feature', value: 'Special sealing edge, sensing valve' },
+            { label: 'Temperature', value: '-10°C to +80°C' },
+            { label: 'Connection', value: 'G1/4 to G3/8 BSP' },
+        ],
+        features: [
+            'Special sealing edge for porous wood surfaces',
+            'Optional sensing valve for workpiece detection',
+            'Handles solid wood, MDF, and particle board',
+            'High holding force on rough surfaces',
+            'Used in CNC routing and cabinet manufacturing',
+        ],
+        applications: [
+            'CNC routing & woodworking machines',
+            'Cabinet and furniture manufacturing',
+            'MDF board handling',
+            'Veneer and panel pressing',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/037/03730/2c3587935e1f_PUG_PGE-03730_000.jpg?size=m',
+        // 📷 TODO: replace with wood handling cup image
+    },
+    {
+        slug: 'glass',
+        name: 'Suction Cups for Handling Glass',
+        tagline: 'High holding forces and mark-free handling of flat glass',
+        description:
+            'Designed for the glass processing industry, these suction cups deliver exceptionally high holding and lateral forces on flat glass surfaces without leaving marks. Their specialized materials ensure glass surfaces remain pristine.',
+        shape: 'Special',
+        application: 'Glass',
+        heroColor: 'from-cyan-400 to-teal-600',
+        badges: ['Glass'],
+        specs: [
+            { label: 'Workpiece Types', value: 'Flat glass, tempered glass, coated glass' },
+            { label: 'Diameter', value: '40 mm – 250 mm' },
+            { label: 'Materials', value: 'Silicone, soft PU, special NBR' },
+            { label: 'Special Feature', value: 'Mark-free, high lateral force' },
+            { label: 'Temperature', value: '-10°C to +200°C' },
+            { label: 'Connection', value: 'G1/4 to G1/2 BSP' },
+        ],
+        features: [
+            'Handling of flat glass sections',
+            'Very high holding and lateral forces',
+            'Materials designed to leave no marks',
+            'Suitable for coated and tempered glass',
+            'Available in large diameters for heavy panels',
+        ],
+        applications: [
+            'Glass fabrication & processing',
+            'Architectural glass handling',
+            'Automotive windshield automation',
+            'Solar panel glass handling',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/042/04293/afeae7504d21_PUG_PGE-04293_000.jpg?size=m',
+        // 📷 TODO: replace with glass cup image
+    },
+    {
+        slug: 'high-temperature',
+        name: 'Suction Cups for High-Temperature Applications',
+        tagline: 'Withstands temperatures up to 600°C',
+        description:
+            'Engineered for extreme thermal environments, these suction cups can operate at temperatures up to 600°C, making them ideal for handling parts directly from ovens, forges, and high-temp manufacturing processes.',
+        shape: 'Special',
+        application: 'High Temperature',
+        heroColor: 'from-red-500 to-orange-600',
+        badges: ['High Temp'],
+        specs: [
+            { label: 'Max Temperature', value: 'Up to 600°C' },
+            { label: 'Diameter', value: '20 mm – 100 mm' },
+            { label: 'Materials', value: 'Silicone HT, PTFE, Ceramic fiber' },
+            { label: 'Special Feature', value: 'Rated to 600°C continuous' },
+            { label: 'Connection', value: 'G1/8 to G1/4 BSP' },
+            { label: 'Application', value: 'Oven, forge, painting line exit' },
+        ],
+        features: [
+            'Operates at workpiece temperatures up to 600°C',
+            'Special high-temp materials (Silicone HT, PTFE, Ceramic fiber)',
+            'No performance degradation in extreme heat',
+            'Compatible with standard vacuum systems',
+            'Available in multiple diameters for various load sizes',
+        ],
+        applications: [
+            'Hot forging & stamping',
+            'Glass annealing oven exit',
+            'Paint shop oven loading/unloading',
+            'Ceramic kiln automation',
+        ],
+        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00198/d6d46a8525c3_PUG_PGE-00198_000.jpg?size=m',
+        // 📷 TODO: replace with high-temp cup image
+    },
+];
