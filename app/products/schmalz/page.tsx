@@ -117,7 +117,7 @@ export default function SchmalzCatalogPage() {
                                             {product.category}
                                         </span>
                                     </div>
-                                    <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm rounded-lg px-2 py-1 text-white text-xs font-mono font-bold border border-white/20">
+                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 text-blue-600 text-xs font-mono font-bold border border-white/20 shadow-sm">
                                         {product.capacity}
                                     </div>
                                 </div>

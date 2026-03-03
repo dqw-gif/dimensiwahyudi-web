@@ -124,7 +124,7 @@ export default function BinarCatalogPage() {
                                             {product.category}
                                         </span>
                                     </div>
-                                    <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm rounded-lg px-2 py-1 text-white text-xs font-mono font-bold border border-white/20">
+                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 text-red-600 text-xs font-mono font-bold border border-red-100 shadow-sm">
                                         {product.capacity}
                                     </div>
                                     <div className="absolute top-4 left-4 bg-black/30 backdrop-blur-sm rounded-md px-2 py-1 text-white/80 text-[10px] font-mono border border-white/10">
@@ -193,7 +193,7 @@ export default function BinarCatalogPage() {
                                             {product.category}
                                         </span>
                                     </div>
-                                    <div className="absolute top-3 right-3 bg-white/10 backdrop-blur-sm rounded-md px-2 py-1 text-white text-[10px] font-mono font-bold border border-white/20">
+                                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-md px-2 py-1 text-red-600 text-[10px] font-mono font-bold border border-red-100 shadow-sm">
                                         {product.capacity}
                                     </div>
                                 </div>
