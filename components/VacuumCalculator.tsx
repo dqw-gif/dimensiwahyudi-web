@@ -370,6 +370,103 @@ const VacuumCalculator = () => {
         </ModuleWrapper>
       );
 
+      case 'air_flow': return (
+        <ModuleWrapper title="Calculations" subtitle="Air flow rate through flow resistors">
+          <div className="flex flex-col gap-6 md:gap-12">
+            <GlassCard className="p-6 md:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <TechInput label="Ambient pressure or absolute inlet pressure" value={state.inletPressure} onValueChange={setters.setInletPressure} unit={state.inletPressureUnit} onUnitChange={setters.setInletPressureUnit} unitType="pressure" />
+                <TechInput label="Temperature [°C]" value={state.temperature} onValueChange={setters.setTemperature} unit="" />
+                <TechInput label="Number of flow resistors" value={state.numResistors} onValueChange={setters.setNumResistors} unit="" />
+                <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto] items-end gap-2">
+                  <TechInput label="Occupancy rate [%]" value={state.occupancyRate} onValueChange={setters.setOccupancyRate} unit="" step={1} max={100} />
+                  <div className="hidden sm:flex text-blue-600 mb-4 px-2 cursor-pointer hover:text-blue-800 transition-colors" title="Persentase jumlah lubang suction cup yang kebetulan tertutup oleh benda kerja"><Info size={24} /></div>
+                </div>
+                <TechInput label="Drill diameter of flow resistors" value={state.resistorDia} onValueChange={setters.setResistorDia} unit={state.resistorDiaUnit} onUnitChange={setters.setResistorDiaUnit} unitType="length" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 sm:mt-0 items-end">
+                  <div className="col-span-full text-[10px] md:text-sm font-black text-slate-400 uppercase tracking-widest sm:mb-2">Vacuum drop through flow resistors</div>
+                  <div className="col-span-full"><TechInput label="" value={state.vacuumDrop} onValueChange={setters.setVacuumDrop} unit={state.vacuumDropUnit} onUnitChange={setters.setVacuumDropUnit} unitType="pressure" /></div>
+                </div>
+              </div>
+            </GlassCard>
+
+            <div className="flex items-center justify-center -my-2 md:-my-6 text-slate-300">
+              <ChevronDown size={32} />
+            </div>
+
+            <GlassCard className="p-6 md:p-12 relative overflow-hidden">
+              <div className="flex items-center gap-4 mb-10 border-b border-slate-100 pb-4">
+                <div className="text-slate-600"><Wind size={32} /></div>
+                <h3 className="text-lg md:text-xl font-black text-slate-700 tracking-tighter">Air flow rate through flow resistors</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 text-center">
+                <div className="space-y-2">
+                  <div className="flex justify-center items-center gap-2">
+                    <span className="text-3xl md:text-4xl font-black text-blue-600 tracking-tighter">{calculations.calcAirFlowResistor().open_resistors}</span>
+                    <span className="text-lg md:text-xl font-black text-blue-600">pcs.</span>
+                  </div>
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Number open flow resistors</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-center items-center gap-2">
+                    <span className="text-3xl md:text-4xl font-black text-blue-600 tracking-tighter">{calculations.calcAirFlowResistor().area_per_resistor.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    <span className="text-lg md:text-xl font-black text-blue-600">mm²</span>
+                  </div>
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bore cross-sectional area per flow resistors</p>
+                </div>
+                <div className="col-span-1 sm:col-span-2 mt-4 space-y-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-4 text-blue-600 font-black">
+                      <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_lmin.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
+                      <span className="text-xl">l/min</span>
+                    </div>
+                    <div className="flex items-center gap-4 text-blue-600 font-black">
+                      <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_m3h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-xl">m³/h</span>
+                      <span className="text-3xl tracking-tighter text-slate-300 px-4">=</span>
+                      <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_gs.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-xl">g/s</span>
+                    </div>
+                  </div>
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Air flow rate open flow resistors</p>
+                </div>
+              </div>
+            </GlassCard>
+
+            <h3 className="text-lg md:text-xl font-black text-slate-700 tracking-tighter -mb-4 md:-mb-8 mt-4">Required Vacuum Generation (linear characteristic curve)</h3>
+
+            <GlassCard className="p-6 md:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <TechInput label="Safety factor for e.g. pressure drop in hoses, ..." value={state.genSafetyFactor} onValueChange={setters.setGenSafetyFactor} unit="" step={0.01} />
+                <TechInput label="Nominal evacuation level of vacuum generator [%]" value={state.nominalEvacuation} onValueChange={setters.setNominalEvacuation} unit="" />
+              </div>
+            </GlassCard>
+
+            <div className="flex items-center justify-center -my-2 md:-my-6 text-slate-300">
+              <ChevronDown size={32} />
+            </div>
+
+            <GlassCard className="p-6 md:p-12 relative overflow-hidden">
+              <div className="flex flex-col items-center justify-center gap-4">
+                <div className="flex items-center gap-4 text-blue-600 font-black">
+                  <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_lmin.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
+                  <span className="text-xl">l/min</span>
+                </div>
+                <div className="flex items-center gap-4 text-blue-600 font-black">
+                  <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_m3h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span className="text-xl">m³/h</span>
+                  <span className="text-3xl tracking-tighter text-slate-300 px-4">=</span>
+                  <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_gs.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span className="text-xl">g/s</span>
+                </div>
+                <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mt-2">Calculated required nominal suction volume flow</p>
+              </div>
+            </GlassCard>
+
+          </div>
+        </ModuleWrapper>
+      );
+
       default: return renderDashboard();
     }
   };

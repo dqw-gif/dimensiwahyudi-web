@@ -12,9 +12,11 @@ interface TechInputProps {
     step?: number;
     disabled?: boolean;
     info?: boolean;
+    max?: number;
+    min?: number;
 }
 
-export const TechInput = ({ label, value, unit, onValueChange, onUnitChange, unitType, step = 1, disabled = false, info = false }: TechInputProps) => {
+export const TechInput = ({ label, value, unit, onValueChange, onUnitChange, unitType, step = 1, disabled = false, info = false, max, min }: TechInputProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -42,6 +44,8 @@ export const TechInput = ({ label, value, unit, onValueChange, onUnitChange, uni
                     type="number"
                     step={step}
                     value={value}
+                    min={min}
+                    max={max}
                     disabled={disabled}
                     onChange={(e) => onValueChange(parseFloat(e.target.value) || 0)}
                     className="flex-grow w-full bg-transparent px-4 py-2 md:px-5 font-black text-slate-800 text-base md:text-lg outline-none"

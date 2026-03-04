@@ -87,11 +87,79 @@ export const useHoseCalc = (
         };
     };
 
+    const [inletPressure, setInletPressure] = useState(1013);
+    const [inletPressureUnit, setInletPressureUnit] = useState('mbar');
+    const [temperature, setTemperature] = useState(20);
+    const [occupancyRate, setOccupancyRate] = useState(0);
+    const [vacuumDrop, setVacuumDrop] = useState(600);
+    const [vacuumDropUnit, setVacuumDropUnit] = useState('mbar');
+    const [genSafetyFactor, setGenSafetyFactor] = useState(1.35);
+
     const calcAirFlowResistor = () => {
-        const n = parseInt(String(numResistors)) || 1;
-        const d_mm = parseFloat(String(resistorDia));
-        const A_mm2 = n * Math.PI * Math.pow(d_mm / 2, 2);
-        return (A_mm2 * 12 * Math.sqrt(0.6)).toFixed(1);
+        // Inputs
+        const p1_mbar = getSI(inletPressure, inletPressureUnit, 'pressure') / 100; // ambient inlet
+        const dP_mbar = getSI(vacuumDrop, vacuumDropUnit, 'pressure') / 100; // vacuum drop
+        const T_C = parseFloat(String(temperature));
+        const T_K = T_C + 273.15;
+        const total_resistors = parseInt(String(numResistors)) || 0;
+        const occ_rate = parseFloat(String(occupancyRate)) / 100;
+        const dia_mm = parseFloat(String(resistorDia));
+        const safety = parseFloat(String(genSafetyFactor));
+        const nom_eff = parseFloat(String(nominalEvacuation)) / 100;
+
+        // Stage 1: Physical Geometry
+        const open_resistors = Math.max(0, total_resistors * (1 - occ_rate));
+        const area_mm2 = Math.PI * Math.pow(dia_mm / 2, 2);
+
+        // Stage 2: Thermodynamic Mass Flow Rate (compressable orifice flow)
+        // ISO 6358 calculation approximation for air
+        const p1 = Math.max(0.1, p1_mbar * 100); // Pa
+        const p2 = Math.max(0, (p1_mbar - dP_mbar) * 100); // Pa
+        const p_ratio = p2 / p1;
+
+        const R = 287.058; // Gas constant air J/(kg*K)
+        const k = 1.4; // Heat capacity ratio air
+        const cr = Math.pow(2 / (k + 1), k / (k - 1)); // Critical pressure ratio ~ 0.528
+
+        let mass_flow_kg_s = 0;
+        const A_m2 = (area_mm2 * open_resistors) / 1000000;
+        const Cd = 0.65; // Discharge coefficient for sharp orifice
+
+        if (p1 > 0 && A_m2 > 0) {
+            if (p_ratio <= cr) {
+                // Sonic (Choked) flow
+                mass_flow_kg_s = Cd * A_m2 * p1 * Math.sqrt(k / (R * T_K)) * Math.pow(2 / (k + 1), (k + 1) / (2 * (k - 1)));
+            } else {
+                // Subsonic flow
+                mass_flow_kg_s = Cd * A_m2 * p1 * Math.sqrt((2 * k) / (R * T_K * (k - 1)) * (Math.pow(p_ratio, 2 / k) - Math.pow(p_ratio, (k + 1) / k)));
+            }
+        }
+
+        const flow_gs = mass_flow_kg_s * 1000;
+
+        // Volumetric Flow (at Standard Reference Conditions for 'NL/min')
+        const rho_std = 1.2041; // Density of air at 20C, 1013mbar (kg/m3)
+        const vol_flow_m3_s = mass_flow_kg_s / rho_std;
+
+        const flow_lmin = vol_flow_m3_s * 60000;
+        const flow_m3h = vol_flow_m3_s * 3600;
+
+        // Stage 3: Required Generator Capacity
+        const eff = nom_eff > 0 ? nom_eff : 1;
+        const req_lmin = (flow_lmin * safety) / eff;
+        const req_m3h = (flow_m3h * safety) / eff;
+        const req_gs = (flow_gs * safety) / eff;
+
+        return {
+            open_resistors: Math.ceil(open_resistors),
+            area_per_resistor: area_mm2,
+            flow_lmin,
+            flow_m3h,
+            flow_gs,
+            req_lmin,
+            req_m3h,
+            req_gs
+        };
     };
 
     return {
@@ -101,6 +169,8 @@ export const useHoseCalc = (
             sysPressure, sysPressureUnit, genPressure, genPressureUnit,
             altitude, altitudeUnit, nominalEvacuation,
             numResistors, resistorDia, resistorDiaUnit,
+            inletPressure, inletPressureUnit, temperature, occupancyRate,
+            vacuumDrop, vacuumDropUnit, genSafetyFactor
         },
         setters: {
             setHoseDistMode, setHoseInputDia, setHoseInputDiaUnit, setSubHoses,
@@ -108,6 +178,8 @@ export const useHoseCalc = (
             setSysPressure, setSysPressureUnit, setGenPressure, setGenPressureUnit,
             setAltitude, setAltitudeUnit, setNominalEvacuation,
             setNumResistors, setResistorDia, setResistorDiaUnit,
+            setInletPressure, setInletPressureUnit, setTemperature, setOccupancyRate,
+            setVacuumDrop, setVacuumDropUnit, setGenSafetyFactor
         },
         calculations: {
             calcHoseDist, calcHoseDiameter, calcAmbientPressure,
