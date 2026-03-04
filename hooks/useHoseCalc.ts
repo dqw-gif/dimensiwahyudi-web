@@ -123,7 +123,7 @@ export const useHoseCalc = (
 
         let mass_flow_kg_s = 0;
         const A_m2 = (area_mm2 * open_resistors) / 1000000;
-        const Cd = 0.65; // Discharge coefficient for sharp orifice
+        const Cd = 1.0; // Discharge coefficient for sharp orifice
 
         if (p1 > 0 && A_m2 > 0) {
             if (p_ratio <= cr) {
@@ -138,7 +138,7 @@ export const useHoseCalc = (
         const flow_gs = mass_flow_kg_s * 1000;
 
         // Volumetric Flow (at Standard Reference Conditions for 'NL/min')
-        const rho_std = 1.2041; // Density of air at 20C, 1013mbar (kg/m3)
+        const rho_std = 1.1883; // Density of air at 20C, 1013mbar (kg/m3)
         const vol_flow_m3_s = mass_flow_kg_s / rho_std;
 
         const flow_lmin = vol_flow_m3_s * 60000;
