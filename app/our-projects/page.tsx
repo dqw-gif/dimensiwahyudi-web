@@ -38,6 +38,26 @@ export const projects = [
         color: 'red'
     },
     {
+        id: 'auto-gt-1',
+        client: 'PT Gajah Tunggal (Area Mixing)',
+        industry: 'Otomotif & Kendaraan',
+        image: '/projects/PT Gajah Tunggal (1).jpg',
+        logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',
+        size: 'standard',
+        desc: 'Penanganan raw material karet mentah pada tahap mixing. Aplikasi hoist khusus untuk lingkungan dengan partikel debu karbon yang pekat.',
+        color: 'red'
+    },
+    {
+        id: 'auto-gt-2',
+        client: 'PT Gajah Tunggal (Area Curing)',
+        industry: 'Otomotif & Kendaraan',
+        image: '/projects/PT Gajah Tunggal (2).jpg',
+        logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',
+        size: 'standard',
+        desc: 'Sistem pengangkat ban dalam proses pematangan (curing pres). Menjaga integritas bentuk ban saat suhu operasional sedang tinggi.',
+        color: 'red'
+    },
+    {
         id: 'aviasi-ap2',
         client: 'PT Angkasa Pura II',
         industry: 'Logistik Udara',
@@ -488,34 +508,66 @@ export const projects = [
         size: 'standard',
         desc: 'Kesinambungan pada lini perakitan ban roda dua, memungkinkan operator melakukan sorting repetitif dengan aman.',
         color: 'red'
+    },
+    // ---- 3 PROYEK BARU DARI PENGGUNA ----
+    {
+        id: 'auto-astra',
+        client: 'PT Astra Daihatsu Motor',
+        industry: 'Otomotif & Kendaraan',
+        image: '/projects/PT Astra Daihatsu Motor.jpg',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Daihatsu_Logo.svg/1200px-Daihatsu_Logo.svg.png',
+        size: 'large',
+        desc: 'Pengangkatan plat bodi kendaraan berdimensi masif untuk kelancaran assembly line pabrikan mobil global tanpa cacat.',
+        color: 'red'
+    },
+    {
+        id: 'fmcg-garuda',
+        client: 'PT Garuda Food',
+        industry: 'FMCG & F&B',
+        image: '/projects/PT Garuda Food.jpg',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Logo_Garudafood.svg/2560px-Logo_Garudafood.svg.png',
+        size: 'standard',
+        desc: 'Akselerasi ritme akhir pengemasan karton makanan ringan pada area paletizing yang menekan resiko cidera kerja.',
+        color: 'blue'
+    },
+    {
+        id: 'konstruksi-ykk',
+        client: 'PT YKK AP Indonesia',
+        industry: 'Bahan Bangunan & Infrastruktur',
+        image: '/projects/PT YKK AP.jpg',
+        logo: 'https://www.ykkap.co.id/wp-content/uploads/2021/07/ykkap_logo.png',
+        size: 'tall',
+        desc: 'Sistem handling profil arsitektur aluminium (ekstrusi) berukuran presisi, meminimalisir baret pada permukaan material.',
+        color: 'slate'
     }
 ];
 
 export default function OurProjectsPage() {
     return (
-        <main className="min-h-screen bg-[#030712] selection:bg-cyan-500/30">
+        <main className="min-h-screen bg-slate-50 selection:bg-blue-500/30">
 
-            {/* HERO SECTION - DARK/FUTURISTIC */}
+            {/* HERO SECTION - LIGHT/GRID */}
             <section className="relative pt-32 pb-20 overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-sky-100/50 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
                 <div className="relative max-w-5xl mx-auto px-6 text-center z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/50 border border-slate-700/50 backdrop-blur-md rounded-full text-slate-300 text-xs font-bold uppercase tracking-[0.2em] mb-8 shadow-2xl">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-slate-200 backdrop-blur-md rounded-full text-blue-700 text-xs font-bold uppercase tracking-[0.2em] mb-8 shadow-sm">
+                        <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
                         Portofolio Solusi
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight">
+                    <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight drop-shadow-sm">
                         Solusi Material Handling <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600">
                             Kelas Dunia di Indonesia.
                         </span>
                     </h1>
 
-                    <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                        Dipercaya oleh ratusan manufaktur terkemuka untuk mengintegrasikan teknologi alat angkat ergonomis Eropa demi <strong className="text-slate-200 font-semibold">produktivitas dan keselamatan kerja</strong> yang maksimal.
+                    <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
+                        Dipercaya oleh ratusan manufaktur terkemuka untuk mengintegrasikan teknologi alat angkat ergonomis Eropa demi <strong className="text-slate-900 font-semibold">produktivitas dan keselamatan kerja</strong> yang maksimal.
                     </p>
                 </div>
             </section>
@@ -524,16 +576,16 @@ export default function OurProjectsPage() {
             <BentoGallery projects={projects} />
 
             {/* CTA SECTION - GRADIENT */}
-            <section className="py-24 relative overflow-hidden bg-slate-950 border-t border-slate-900">
+            <section className="py-24 relative overflow-hidden bg-slate-100 border-t border-slate-200">
                 <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-                    <div className="bg-slate-900/50 border border-slate-800 p-4 inline-block rounded-3xl mb-8 shadow-2xl">
-                        <CheckCircle size={40} className="text-cyan-400" />
+                    <div className="bg-white border border-slate-200 p-4 inline-block rounded-3xl mb-8 shadow-sm">
+                        <CheckCircle size={40} className="text-blue-500" />
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white mb-6">Tingkatkan Efisiensi Produksi Anda</h2>
-                    <p className="text-slate-400 text-lg mb-10 leading-relaxed font-light">
+                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 drop-shadow-sm">Tingkatkan Efisiensi Produksi Anda</h2>
+                    <p className="text-slate-600 text-lg mb-10 leading-relaxed font-light">
                         Setiap industri memiliki rintangan penanganan material yang spesifik. Hubungi tim <i>engineer</i> kami hari ini untuk merancang solusi presisi yang disesuaikan khusus dengan kebutuhan lini fasilitas Anda.
                     </p>
-                    <Link href="/contact" className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-slate-200 text-slate-950 font-bold rounded-2xl transition-all hover:scale-105 active:scale-95">
+                    <Link href="/contact" className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-md shadow-blue-600/20">
                         Konsultasi Kebutuhan Anda <ArrowRight size={18} />
                     </Link>
                 </div>

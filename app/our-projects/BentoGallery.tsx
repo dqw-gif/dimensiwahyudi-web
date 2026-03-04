@@ -42,10 +42,10 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
     };
 
     return (
-        <section className="py-8 bg-[#030712] relative z-20">
+        <section className="py-8 bg-transparent relative z-20">
             <div className="max-w-7xl mx-auto px-6">
 
-                {/* ISOMETRIC/FUTURISTIC FILTER CHIPS */}
+                {/* LIGHT MODE FILTER CHIPS */}
                 <div className="flex flex-wrap justify-center gap-3 mb-16">
                     {industries.map(ind => (
                         <button
@@ -53,13 +53,13 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                             onClick={() => setFilter(ind)}
                             className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border backdrop-blur-md relative overflow-hidden group
                                 ${filter === ind
-                                    ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.3)]'
-                                    : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-600 hover:text-slate-200'
+                                    ? 'bg-blue-600 border-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]'
+                                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900 hover:bg-slate-50 shadow-sm'
                                 }`}
                         >
                             <span className="relative z-10">{ind}</span>
                             {filter === ind && (
-                                <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 translate-x-[-100%] animate-[shimmer_2s_infinite]"></span>
+                                <span className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0 translate-x-[-100%] animate-[shimmer_2s_infinite]"></span>
                             )}
                         </button>
                     ))}
@@ -86,7 +86,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                     transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 14 }}
                                     key={p.id}
                                     onClick={() => setSelectedProject(p)}
-                                    className={`relative rounded-3xl overflow-hidden group border border-slate-800/60 bg-slate-900 cursor-zoom-in ${spanClass}`}
+                                    className={`relative rounded-3xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-xl cursor-zoom-in ${spanClass}`}
                                 >
                                     {/* Image Background */}
                                     <div className="absolute inset-0 w-full h-full">
@@ -94,10 +94,10 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                             src={p.image}
                                             alt={p.client}
                                             fill
-                                            className="object-cover opacity-60 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
+                                            className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/50 to-transparent"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
                                     </div>
 
                                     {/* Glassmorphism Hover Content */}
@@ -137,7 +137,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                     </div>
 
                                     {/* Futuristic Glow Border Effect on Hover */}
-                                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-500/30 rounded-3xl transition-colors duration-500 pointer-events-none z-10"></div>
+                                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 rounded-3xl transition-colors duration-500 pointer-events-none z-10"></div>
                                 </motion.div>
                             );
                         })}
@@ -161,11 +161,11 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.95, opacity: 0, y: 20 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="relative w-full max-w-6xl max-h-[90vh] rounded-3xl overflow-hidden cursor-default flex flex-col bg-slate-950 border border-slate-800 shadow-2xl"
+                            className="relative w-full max-w-6xl max-h-[90vh] rounded-3xl overflow-hidden cursor-default flex flex-col bg-white border border-slate-200 shadow-2xl"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Image Container */}
-                            <div className="relative w-full h-[50vh] md:h-[70vh] bg-black">
+                            <div className="relative w-full h-[50vh] md:h-[70vh] bg-slate-100">
                                 <Image
                                     src={selectedProject.image}
                                     alt={selectedProject.client}
@@ -173,7 +173,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                     className="object-contain"
                                     sizes="100vw"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-100"></div>
                             </div>
 
                             {/* Info Container */}
@@ -183,12 +183,12 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-3 ${getBadgeStyle(selectedProject.color)}`}>
                                             {selectedProject.industry}
                                         </span>
-                                        <h3 className="text-2xl md:text-4xl font-black text-white leading-tight">
+                                        <h3 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight">
                                             {selectedProject.client}
                                         </h3>
                                     </div>
                                 </div>
-                                <p className="text-slate-300 leading-relaxed font-light text-sm md:text-base max-w-4xl">
+                                <p className="text-slate-600 leading-relaxed font-light text-sm md:text-base max-w-4xl">
                                     {selectedProject.desc}
                                 </p>
                             </div>
@@ -196,7 +196,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                             {/* Close Button */}
                             <button
                                 onClick={() => setSelectedProject(null)}
-                                className="absolute top-4 right-4 w-12 h-12 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-slate-300 hover:text-white backdrop-blur-md transition-all border border-white/10"
+                                className="absolute top-4 right-4 w-12 h-12 bg-white/50 hover:bg-white/90 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 backdrop-blur-md transition-all border border-slate-200 shadow-sm"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
