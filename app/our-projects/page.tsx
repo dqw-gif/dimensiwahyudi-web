@@ -525,7 +525,7 @@ export const projects = [
         client: 'PT Garuda Food',
         industry: 'FMCG & F&B',
         image: '/projects/PT Garuda Food.jpg',
-        logo: 'https://garudafood.com/cfind/source/thumb/images/cover_w207_h50_garudafood%20logo.png',
+        logo: 'https://www.vhv.rs/dpng/d/73-737965_garudafood-logo-png-transparent-png.png',
         size: 'standard',
         desc: 'Akselerasi ritme akhir pengemasan karton makanan ringan pada area paletizing yang menekan resiko cidera kerja.',
         color: 'blue'
