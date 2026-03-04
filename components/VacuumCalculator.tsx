@@ -158,9 +158,56 @@ const VacuumCalculator = () => {
               </div>
               <TechInput label="Total Cups" value={state.numCupsInput} onValueChange={setters.setNumCupsInput} unit="pcs" />
             </GlassCard>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-              <ResultDisplay label="Ø Min Horizontal" value={calculations.calcDiameter().h} unit={state.diameterUnit} icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="emerald" />
-              <ResultDisplay label="Ø Min Vertikal" value={calculations.calcDiameter().v} unit={state.diameterUnit} icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="emerald" />
+            <div className="flex flex-col gap-6 md:gap-8 justify-center">
+              {/* Card 1: Horizontal */}
+              <div className="flex flex-col items-center justify-center p-8 md:p-10 rounded-[2rem] bg-white border border-slate-200 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-transform duration-500">
+                <div className="text-blue-600 mb-8 w-16 h-16"><CustomIcons.HorizontalArrow className="w-full h-full" /></div>
+                <div className="flex flex-col sm:flex-row w-full justify-center items-center gap-8 sm:gap-12">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-baseline gap-2 text-slate-900">
+                      <span className="text-xl font-black text-blue-600">&gt;</span>
+                      <span className="text-4xl md:text-5xl font-black tracking-tighter">{calculations.calcDiameter().h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-lg font-black text-blue-600 uppercase tracking-tighter">mm</span>
+                    </div>
+                    <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup diameter</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-baseline gap-2 text-slate-900">
+                      <span className="text-xl font-black text-blue-600">&gt;</span>
+                      <span className="text-3xl md:text-4xl font-black tracking-tighter">{calculations.calcDiameter().area_h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-base font-black text-blue-600 uppercase tracking-tighter">mm²</span>
+                    </div>
+                    <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup area</span>
+                  </div>
+                </div>
+                <div className="w-full h-px bg-slate-100 my-6"></div>
+                <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-slate-400 text-center">With horizontal force application</p>
+              </div>
+
+              {/* Card 2: Vertical */}
+              <div className="flex flex-col items-center justify-center p-8 md:p-10 rounded-[2rem] bg-white border border-slate-200 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-transform duration-500">
+                <div className="text-slate-600 mb-8 w-16 h-16"><CustomIcons.VerticalArrow className="w-full h-full" /></div>
+                <div className="flex flex-col sm:flex-row w-full justify-center items-center gap-8 sm:gap-12">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-baseline gap-2 text-slate-900">
+                      <span className="text-xl font-black text-slate-500">&gt;</span>
+                      <span className="text-4xl md:text-5xl font-black tracking-tighter">{calculations.calcDiameter().v.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-lg font-black text-slate-500 uppercase tracking-tighter">mm</span>
+                    </div>
+                    <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup diameter</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center">
+                    <div className="flex items-baseline gap-2 text-slate-900">
+                      <span className="text-xl font-black text-slate-500">&gt;</span>
+                      <span className="text-3xl md:text-4xl font-black tracking-tighter">{calculations.calcDiameter().area_v.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-base font-black text-slate-500 uppercase tracking-tighter">mm²</span>
+                    </div>
+                    <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup area</span>
+                  </div>
+                </div>
+                <div className="w-full h-px bg-slate-100 my-6"></div>
+                <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-slate-400 text-center">With vertical force application</p>
+              </div>
             </div>
           </div>
         </ModuleWrapper>
@@ -196,18 +243,24 @@ const VacuumCalculator = () => {
 
       case 'holding_force': return (
         <ModuleWrapper title="Security" subtitle="Theoretical Holding Force">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
-            <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
-              <TechInput label="Mass" value={state.mass} onValueChange={setters.setMass} unit={state.massUnit} onUnitChange={setters.setMassUnit} unitType="mass" />
-              <TechInput label="Acceleration" value={state.accel} onValueChange={(val) => setters.setAccel(Number(val))} unit={state.accelUnit} onUnitChange={setters.setAccelUnit} unitType="accel" />
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
-                <TechInput label="Safety Factor" value={state.safety} onValueChange={setters.setSafety} unit="" step={0.1} />
-                <TechInput label="Friction (µ)" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} />
+          <div className="flex flex-col gap-6 md:gap-12">
+            <GlassCard className="p-6 md:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <TechInput label="Mass of workpiece" value={state.mass} onValueChange={setters.setMass} unit={state.massUnit} onUnitChange={setters.setMassUnit} unitType="mass" />
+                <TechInput label="Acceleration" value={state.accel} onValueChange={(val) => setters.setAccel(Number(val))} unit={state.accelUnit} onUnitChange={setters.setAccelUnit} unitType="accel" />
+                <TechInput label="Friction coefficient" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} />
+                <TechInput label="Safety factor" value={state.safety} onValueChange={setters.setSafety} unit="" step={0.1} />
               </div>
             </GlassCard>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-              <ResultDisplay label="Gaya Vertikal" value={calculations.calcHoldingForce().v} unit="N" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="rose" />
-              <ResultDisplay label="Gaya Horizontal" value={calculations.calcHoldingForce().h} unit="N" icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="indigo" />
+
+            <div className="flex items-center justify-center -my-2 md:-my-6 text-slate-300">
+              <ChevronDown size={32} />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
+              <ResultDisplay label="Load case 1" value={calculations.calcHoldingForce().lc1.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} unit="N" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
+              <ResultDisplay label="Load case 2" value={calculations.calcHoldingForce().lc2.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} unit="N" icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="indigo" />
+              <ResultDisplay label="Load case 3" value={calculations.calcHoldingForce().lc3.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} unit="N" icon={<div className="transform rotate-90"><CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" /></div>} color="slate" />
             </div>
           </div>
         </ModuleWrapper>
@@ -243,7 +296,7 @@ const VacuumCalculator = () => {
               <TechInput label="Kapasitas Pompa" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
               <TechInput label="Target Vakum" value={state.vacuum} onValueChange={setters.setVacuum} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
             </GlassCard>
-            <ResultDisplay label="Waktu Evakuasi" value={calculations.calcEvacTime()} unit="detik" icon={<Timer size={40} />} color="emerald" />
+            <ResultDisplay label="Waktu Evakuasi" value={calculations.calcEvacTime().toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit="s" icon={<Timer size={40} />} color="emerald" />
           </div>
         </ModuleWrapper>
       );
@@ -254,9 +307,12 @@ const VacuumCalculator = () => {
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Volume Tangki" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
               <TechInput label="Target Vakum" value={state.vacuum} onValueChange={setters.setVacuum} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
-              <TechInput label="Waktu Target" value={state.evacTime} onValueChange={setters.setEvacTime} unit={state.evacTimeUnit} onUnitChange={setters.setEvacTimeUnit} unitType="none" />
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                <TechInput label="Waktu Target" value={state.evacTime} onValueChange={setters.setEvacTime} unit={state.evacTimeUnit} onUnitChange={setters.setEvacTimeUnit} unitType="none" />
+                <SelectField label="Satuan Output" value={state.reqSuctionCapUnit} options={UNITS.flow.options} onChange={setters.setReqSuctionCapUnit} />
+              </div>
             </GlassCard>
-            <ResultDisplay label="Kapasitas Pompa Ideal" value={calculations.calcSuctionCap()} unit={state.pumpCapacityUnit} icon={<Wind size={40} />} color="blue" />
+            <ResultDisplay label="Kapasitas Pompa Ideal" value={calculations.calcSuctionCap().toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit={state.reqSuctionCapUnit} icon={<Wind size={40} />} color="blue" />
           </div>
         </ModuleWrapper>
       );
@@ -272,8 +328,11 @@ const VacuumCalculator = () => {
               <div className="space-y-6 md:space-y-8">
                 {state.hoseDiaMode === 'vacuum' ? (
                   <>
-                    <TechInput label="Laju Volume (Q)" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
-                    <TechInput label="Kecepatan Aliran (v)" value={state.flowRate} onValueChange={setters.setFlowRate} unit={state.flowRateUnit} onUnitChange={setters.setFlowRateUnit} unitType="velocity" />
+                    <TechInput label="Panjang Selang" value={state.hoseLength} onValueChange={setters.setHoseLength} unit={state.hoseLengthUnit} onUnitChange={setters.setHoseLengthUnit} unitType="length" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                      <TechInput label="Kapasitas Suction" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
+                      <TechInput label="Kecepatan Aliran (v)" value={state.flowRate} onValueChange={setters.setFlowRate} unit={state.flowRateUnit} onUnitChange={setters.setFlowRateUnit} unitType="velocity" />
+                    </div>
                   </>
                 ) : (
                   <>
@@ -285,21 +344,27 @@ const VacuumCalculator = () => {
                 )}
               </div>
             </GlassCard>
-            <ResultDisplay label="Diameter Selang Ideal" value={calculations.calcHoseDiameter()} unit="mm" icon={<Activity size={40} />} color="blue" />
+            <ResultDisplay label="Diameter Selang Ideal" value={calculations.calcHoseDiameter().toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit="mm" icon={<Activity size={40} />} color="blue" />
           </div>
         </ModuleWrapper>
       );
 
       case 'ambient_pressure': return (
         <ModuleWrapper title="Atmosphere" subtitle="Ambient Pressure & Limits">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
-            <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
+          <div className="flex flex-col gap-6 md:gap-12">
+            <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8 max-w-3xl mx-auto w-full">
               <TechInput label="Ketinggian Elevasi (h)" value={state.altitude} onValueChange={setters.setAltitude} unit={state.altitudeUnit} onUnitChange={setters.setAltitudeUnit} unitType="length" />
               <TechInput label="Target Efisiensi Pompa" value={state.nominalEvacuation} onValueChange={setters.setNominalEvacuation} unit="%" unitType="percentage" />
             </GlassCard>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-              <ResultDisplay label="Tekanan Ambien (Abs)" value={calculations.calcAmbientPressure()} unit="mbar" icon={<Cloud size={28} />} color="slate" />
-              <ResultDisplay label="Batas Vakum Maksimal" value={calculations.calcMaxAchievableVacuum()} unit="mbar" icon={<Gauge size={28} />} color="orange" />
+
+            <div className="flex items-center justify-center -my-2 md:-my-6 text-slate-300">
+              <ChevronDown size={32} />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              <ResultDisplay label="Tekanan Ambien" value={calculations.calcAtmosphere().ambient.toLocaleString('id-ID', { maximumFractionDigits: 2 })} unit="mbar, abs" icon={<Cloud size={28} />} color="slate" />
+              <ResultDisplay label="Batas Vakum Maksimal" value={calculations.calcAtmosphere().max_vac.toLocaleString('id-ID', { maximumFractionDigits: 2 })} unit="mbar, rel" icon={<Gauge size={28} />} color="blue" />
+              <ResultDisplay label="Max (Cuaca Buruk -5%)" value={calculations.calcAtmosphere().max_vac_bad.toLocaleString('id-ID', { maximumFractionDigits: 2 })} unit="mbar, rel" icon={<div className="text-orange-500 font-bold"><Gauge size={28} /></div>} color="orange" />
             </div>
           </div>
         </ModuleWrapper>

@@ -47,22 +47,40 @@ export const useForceCalculations = () => {
     }, [calcAreaMode, areaType, dim1, dim2, suctionAreaUnit]);
 
     const calcNumCups = () => {
-        const fv = getSI(mass, massUnit, 'mass') * (9.81 + getSI(accel, accelUnit, 'accel')) * safety;
+        const m = getSI(mass, massUnit, 'mass');
+        const a = getSI(accel, accelUnit, 'accel');
+
+        // Correct Schmalz formulas
+        const f_horizontal = m * (9.81 + a / friction) * safety;
+        const f_vertical = (m / friction) * (9.81 + a) * safety;
+
         const fs = getSI(vacuum, vacuumUnit, 'pressure') * getSI(suctionArea, suctionAreaUnit, 'area');
         if (fs <= 0) return { h: 0, v: 0 };
-        return { h: Math.ceil(fv / (fs * friction)), v: Math.ceil(fv / fs) };
+        return {
+            h: Math.ceil(f_horizontal / fs),
+            v: Math.ceil(f_vertical / fs)
+        };
     };
 
     const calcDiameter = () => {
-        const fv = getSI(mass, massUnit, 'mass') * (9.81 + getSI(accel, accelUnit, 'accel')) * safety;
+        const m = getSI(mass, massUnit, 'mass');
+        const a = getSI(accel, accelUnit, 'accel');
+
+        const f_horizontal = m * (9.81 + a / friction) * safety;
+        const f_vertical = (m / friction) * (9.81 + a) * safety;
+
         const p = getSI(vacuum, vacuumUnit, 'pressure');
-        if (p <= 0 || numCupsInput <= 0) return { h: 0, v: 0 };
-        const aH = fv / (numCupsInput * p * friction);
-        const aV = fv / (numCupsInput * p);
+        if (p <= 0 || numCupsInput <= 0) return { h: 0, v: 0, area_h: 0, area_v: 0 };
+
+        const aH = f_horizontal / (numCupsInput * p);
+        const aV = f_vertical / (numCupsInput * p);
+
         const factor = 1 / UNITS.length.factors[diameterUnit];
         return {
-            h: Math.ceil(2 * Math.sqrt(aH / Math.PI) * factor),
-            v: Math.ceil(2 * Math.sqrt(aV / Math.PI) * factor),
+            h: Number((2 * Math.sqrt(aH / Math.PI) * factor).toFixed(2)),
+            v: Number((2 * Math.sqrt(aV / Math.PI) * factor).toFixed(2)),
+            area_h: Number((aH * 1e6).toFixed(2)),
+            area_v: Number((aV * 1e6).toFixed(2)),
         };
     };
 
@@ -73,8 +91,18 @@ export const useForceCalculations = () => {
     };
 
     const calcHoldingForce = () => {
-        const fv = getSI(mass, massUnit, 'mass') * (9.81 + getSI(accel, accelUnit, 'accel')) * safety;
-        return { v: Math.round(fv), h: Math.round(fv / friction) };
+        const m = getSI(mass, massUnit, 'mass');
+        const a = getSI(accel, accelUnit, 'accel');
+
+        const lc1 = m * (9.81 + a) * safety;
+        const lc2 = m * (9.81 + a / friction) * safety;
+        const lc3 = (m / friction) * (9.81 + a) * safety;
+
+        return {
+            lc1: Number(lc1.toFixed(1)),
+            lc2: Number(lc2.toFixed(1)),
+            lc3: Number(lc3.toFixed(1))
+        };
     };
 
     return {

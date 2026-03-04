@@ -40,18 +40,28 @@ export const useHoseCalc = (
 
     const calcHoseDiameter = () => {
         const q_m3s = parseFloat(String(pumpCapacity)) * UNITS.flow.factors[pumpCapacityUnit];
+        const L = getSI(hoseLength, hoseLengthUnit, 'length');
         let d_m = 0;
+
         if (hoseDiaMode === 'vacuum') {
             const v_ms = parseFloat(String(flowRate)) * UNITS.velocity.factors[flowRateUnit];
-            if (v_ms > 0) d_m = Math.sqrt((4 * q_m3s) / (Math.PI * v_ms));
+
+            let d_v = 0;
+            if (v_ms > 0) d_v = Math.sqrt((4 * q_m3s) / (Math.PI * v_ms));
+
+            let d_p = 0;
+            // Schmalz uses a pressure drop constraint for vacuum hoses, modeled here with ~200mbar limit equivalent
+            if (L > 0) d_p = Math.pow((Math.pow(q_m3s, 2) * L) / 20500, 0.2) * 0.5;
+
+            d_m = Math.max(d_v, d_p);
         } else {
             const p_sys_pa = getSI(sysPressure, sysPressureUnit, 'pressure');
             const p_gen_pa = getSI(genPressure, genPressureUnit, 'pressure');
             const dP = Math.abs(p_sys_pa - p_gen_pa);
-            const L = getSI(hoseLength, hoseLengthUnit, 'length');
             if (dP > 0 && L > 0) d_m = Math.pow((Math.pow(q_m3s, 2) * L) / dP, 0.2) * 0.5;
         }
-        return (d_m * 1000).toFixed(1);
+
+        return Number((d_m * 1000).toFixed(2));
     };
 
     const calcAmbientPressure = () => {
@@ -64,6 +74,17 @@ export const useHoseCalc = (
         const p_atm = calcAmbientPressure();
         const nom = parseFloat(String(nominalEvacuation)) / 100;
         return Math.round(p_atm * nom);
+    };
+
+    const calcAtmosphere = () => {
+        const h = parseFloat(String(altitude)) * (altitudeUnit === 'm' ? 1 : 0.3048);
+        const p_atm = 1013.25 * Math.pow((1 - 2.25577e-5 * h), 5.25588);
+        const nom = parseFloat(String(nominalEvacuation)) / 100;
+        return {
+            ambient: p_atm,
+            max_vac: -(p_atm * nom),
+            max_vac_bad: -(p_atm * nom * 0.95)
+        };
     };
 
     const calcAirFlowResistor = () => {
@@ -90,7 +111,7 @@ export const useHoseCalc = (
         },
         calculations: {
             calcHoseDist, calcHoseDiameter, calcAmbientPressure,
-            calcMaxAchievableVacuum, calcAirFlowResistor,
+            calcMaxAchievableVacuum, calcAtmosphere, calcAirFlowResistor,
         },
     };
 };
