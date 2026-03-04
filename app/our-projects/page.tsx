@@ -515,7 +515,7 @@ export const projects = [
         client: 'PT Astra Daihatsu Motor',
         industry: 'Otomotif & Kendaraan',
         image: '/projects/PT Astra Daihatsu Motor.jpg',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Daihatsu_Logo.svg/1200px-Daihatsu_Logo.svg.png',
+        logo: 'https://medias.astra-daihatsu.id/sys-master-media/h70/hc8/8819719208990/astraDaihatsulogo.svg',
         size: 'large',
         desc: 'Pengangkatan plat bodi kendaraan berdimensi masif untuk kelancaran assembly line pabrikan mobil global tanpa cacat.',
         color: 'red'
@@ -525,7 +525,7 @@ export const projects = [
         client: 'PT Garuda Food',
         industry: 'FMCG & F&B',
         image: '/projects/PT Garuda Food.jpg',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Logo_Garudafood.svg/2560px-Logo_Garudafood.svg.png',
+        logo: 'https://garudafood.com/cfind/source/thumb/images/cover_w207_h50_garudafood%20logo.png',
         size: 'standard',
         desc: 'Akselerasi ritme akhir pengemasan karton makanan ringan pada area paletizing yang menekan resiko cidera kerja.',
         color: 'blue'
@@ -535,7 +535,7 @@ export const projects = [
         client: 'PT YKK AP Indonesia',
         industry: 'Bahan Bangunan & Infrastruktur',
         image: '/projects/PT YKK AP.jpg',
-        logo: 'https://www.ykkap.co.id/wp-content/uploads/2021/07/ykkap_logo.png',
+        logo: 'https://www.ykkap.co.id/assets/img/header_logo01.svg',
         size: 'tall',
         desc: 'Sistem handling profil arsitektur aluminium (ekstrusi) berukuran presisi, meminimalisir baret pada permukaan material.',
         color: 'slate'
