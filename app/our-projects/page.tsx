@@ -39,7 +39,7 @@ export const projects = [
     },
     {
         id: 'auto-gt-1',
-        client: 'PT Gajah Tunggal (Area Mixing)',
+        client: 'PT Gajah Tunggal',
         industry: 'Otomotif & Kendaraan',
         image: '/projects/PT Gajah Tunggal (1).jpg',
         logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',
@@ -49,7 +49,7 @@ export const projects = [
     },
     {
         id: 'auto-gt-2',
-        client: 'PT Gajah Tunggal (Area Curing)',
+        client: 'PT Gajah Tunggal',
         industry: 'Otomotif & Kendaraan',
         image: '/projects/PT Gajah Tunggal (2).jpg',
         logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',

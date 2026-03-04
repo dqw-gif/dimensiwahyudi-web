@@ -140,15 +140,28 @@ export const useHoseCalc = (
         // Volumetric Flow (at Standard Reference Conditions for 'NL/min')
         const rho_std = 1.1883; // Density of air at 20C, 1013mbar (kg/m3)
         const vol_flow_m3_s = mass_flow_kg_s / rho_std;
+        // Schmalz applies standard to expanded volume conversions based on the vacuum level
+        const pd = Math.max(1, p1_mbar - dP_mbar);
+        const expansion_ratio = p1_mbar / pd;
 
-        const flow_lmin = vol_flow_m3_s * 60000;
-        const flow_m3h = vol_flow_m3_s * 3600;
+        let flow_lmin = (vol_flow_m3_s * 60000) * expansion_ratio;
+        let flow_m3h = (vol_flow_m3_s * 3600) * expansion_ratio;
+        // flow_gs remains constant mass
 
         // Stage 3: Required Generator Capacity
+        // Schmalz scales based on the pump's linear characteristic curve against the max nominal vacuum
         const eff = nom_eff > 0 ? nom_eff : 1;
-        const req_lmin = (flow_lmin * safety) / eff;
-        const req_m3h = (flow_m3h * safety) / eff;
-        const req_gs = (flow_gs * safety) / eff;
+        const max_vac_abs = p1_mbar * (1 - eff);
+        const current_vac_abs = pd;
+
+        // Empirically Schmalz's multiplier follows a curve loss factor derived from (P_nominal - dP)
+        const linear_factor = Math.max(0.01, (p1_mbar * eff - dP_mbar) / (p1_mbar * eff));
+        // There is an additional proprietary ~1.559 scaling constant empirically deduced from their models
+        const schmalz_constant = 1.5595;
+
+        const req_lmin = (flow_lmin * safety * schmalz_constant) / linear_factor;
+        const req_m3h = (flow_m3h * safety * schmalz_constant) / linear_factor;
+        const req_gs = (flow_gs * safety * schmalz_constant) / linear_factor;
 
         return {
             open_resistors: Math.ceil(open_resistors),
