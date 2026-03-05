@@ -54,7 +54,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const post = await getPostBySlug(slug);
+
+    // Decode URI component properly just in case the slug has special characters
+    const decodedSlug = decodeURIComponent(slug);
+    const post = await getPostBySlug(decodedSlug);
 
     if (!post) {
         return (
@@ -77,9 +80,10 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
     const relatedPosts: PostSummary[] = await getRelatedPosts(categorySlug, post.id);
 
 
-    // Calculate Read Time
-    const words = post.content.replace(/<[^>]+>/g, '').split(/\s+/).length;
-    const readTime = Math.ceil(words / 200);
+    // Calculate Read Time safely
+    const contentStr = post.content || '';
+    const words = contentStr.replace(/<[^>]+>/g, '').split(/\s+/).length;
+    const readTime = Math.ceil(words / 200) || 1;
 
     // Format Date (server-side, consistent string)
     function formatDateString(dateString: string) {
@@ -209,7 +213,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                     text-slate-600 [&_p]:text-slate-600 [&_li]:text-slate-600 [&_h2]:text-slate-900 [&_h3]:text-slate-900 [&_strong]:text-slate-900 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5
                     [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-2xl [&_iframe]:my-8"
                             dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(post.content, {
+                                __html: DOMPurify.sanitize(post.content || '', {
                                     ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
                                         'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'figure', 'figcaption', 'table',
                                         'thead', 'tbody', 'tr', 'th', 'td', 'code', 'pre', 'iframe', 'div', 'span'],
@@ -268,7 +272,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                                     <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-3">
                                         {related.title}
                                     </h3>
-                                    <div className="text-slate-500 text-xs line-clamp-2 leading-relaxed" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(related.excerpt) }} />
+                                    <div className="text-slate-500 text-xs line-clamp-2 leading-relaxed" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(related.excerpt || '') }} />
                                 </div>
                             </Link>
                         ))}

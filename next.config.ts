@@ -54,6 +54,26 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'media.schmalz.cn',
       },
+      {
+        protocol: 'https',
+        hostname: 'i0.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i1.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i2.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i3.wp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'secure.gravatar.com',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },
