@@ -68,7 +68,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                 {/* BENTO GRID */}
                 <motion.div
                     layout
-                    className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[280px]"
+                    className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[280px] grid-flow-row-dense"
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.map((p, idx) => {
