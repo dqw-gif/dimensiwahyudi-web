@@ -192,72 +192,69 @@ export function AboutProcessImage() {
 
 /* ─── Client Logos ─── */
 const projectLogos = [
-    "PT Angkasa Pura II.jpg",
-    "PT Asahimas Flat Glass Tbk.jpeg",
-    "PT Astra Daihatsu Motor.jpg",
-    "PT Bredero.jpg",
-    "PT Cabot Indonesia.png",
-    "PT Delifood.jpg",
-    "PT Diageo Indonesia.jpg",
-    "PT Elang Perdana Tyre.jpg",
-    "PT GS Battery.jpg",
-    "PT Gajah Tunggal (1).jpg",
-    "PT Gajah Tunggal (2).jpg",
-    "PT Gajah Tunggal.jpg",
-    "PT Garuda Food.jpg",
-    "PT HOKKAN INDONESIA.jpg",
-    "PT Hempel Indonesia.jpg",
-    "PT Industrial Robotic Automation.jpg",
-    "PT Inoac.jpg",
-    "PT Kalbe Morinaga.jpg",
-    "PT Kayu Permata.png",
-    "PT Kian Mulia Manunggal.jpg",
-    "PT Mayora Indah.jpeg",
-    "PT Meiji Food Indonesia.jpg",
-    "PT Mortar Utama.jpg",
-    "PT Mowilex Indonesia.jpg",
-    "PT Multi Bintang Indonesia Tbk.png",
-    "PT NESTLE.jpg",
-    "PT Nutribev Nabati Indonesia.jpg",
-    "PT Nutrifood Indonesia.jpeg",
-    "PT Nutrifood Indonesia.jpg",
-    "PT Otsuka Indonesia.jpeg",
-    "PT Rinnai.jpg",
-    "PT Sarihusada Generasi Mahardhika.jpg",
-    "PT Sri Trang Lingga.jpg",
-    "PT Sugity.jpg",
-    "PT Summy Rubber.jpg",
-    "PT Suryaraya Rubber.jpg",
-    "PT Taco Anugrah Corporindo.jpg",
-    "PT URC Indonesia.jpg",
-    "PT Unilever Indonesia Tbk.jpeg",
-    "PT YKK AP.jpg",
-    "PT Yakult Indonesia Persada.jpg",
-    "PT. DSM Firmenich Aromatics.jpg",
-    "PT. Evoluzione Tyre.jpg",
-    "PT. Federal Karyatama.jpg",
-    "PT. Fukusuke Kogyo Indonesia.png",
-    "PT. Indofood CBP Sukses.jpg",
-    "PT. Indonesia Nikka Chemicals.jpg",
-    "PT. Mars Symbiocince.jpg",
-    "PT. Mura Maha Agung.jpg",
-    "PT. Nufarm.jpg",
-    "PT. Sakae Riken Indonesia.jpg",
-    "PT. Suntory Garuda.png",
-    "PT. Suryaraya Rubberindo.jpg"
+    { "logo": "https://www.mayoraindah.co.id/assets/frontend/images/logo.png", "client": "PT Mayora Indah" },
+    { "logo": "https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png", "client": "PT Gajah Tunggal" },
+    { "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/a/a6/Angkasa_Pura_II_logo_2014.svg/3840px-Angkasa_Pura_II_logo_2014.svg.png", "client": "PT Angkasa Pura II" },
+    { "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_Asahimas_Flat_Glass_Tbk.png", "client": "PT Asahimas Flat Glass Tbk" },
+    { "logo": "https://upload.wikimedia.org/wikipedia/id/3/37/Unilever.png", "client": "PT Unilever Indonesia Tbk" },
+    { "logo": "https://img2.lokercepat.id/files/2023-11-11/pt-indonesia-nikka-chemicals-inkali-382.jpg", "client": "PT. Indonesia Nikka Chemicals" },
+    { "logo": "https://www.gs.astra.co.id/media/dzpc02gq/gs-battery-logo.png", "client": "PT GS Battery" },
+    { "logo": "https://www.nestle.co.id/themes/custom/da_vinci_code/logo.svg", "client": "PT Nestle Indonesia" },
+    { "logo": "https://www.hokkan.co.id/images/logo.jpg", "client": "PT Hokkan Indonesia" },
+    { "logo": "https://manage.taco.co.id/asset-images/logo.svg", "client": "PT Taco Anugrah Corporindo" },
+    { "logo": "https://www.otsuka.co.id/themes/otsuka/assets/img/otsuka.png", "client": "PT Otsuka Indonesia" },
+    { "logo": "https://mowilex.com/wp-content/themes/movi/images/MowilexPremiumPaints.webp", "client": "PT Mowilex Indonesia" },
+    { "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Yakult-Logo.svg", "client": "PT Yakult Indonesia Persada" },
+    { "logo": "https://www.nutrifood.co.id/wp-content/themes/nutrifood/images/logo-nutrifood.png", "client": "PT Nutrifood Indonesia" },
+    { "logo": "https://www.nabatisnack.co.id/assets/icons/ic-nabati.png", "client": "PT Nutribev Nabati Indonesia" },
+    { "logo": "https://companieslogo.com/img/orig/CBT_BIG-f438266d.png?t=1720244491", "client": "PT Cabot Indonesia" },
+    { "logo": "https://www.permatadoor.com/wp-content/themes/permata_door/assets/images/svg/permata_door.svg", "client": "PT Kayu Permata" },
+    { "logo": "https://cdn.cookielaw.org/logos/00afdec3-358f-4f2d-8b63-0c71e6f49172/019808a1-d0bd-747f-b424-020636e1ab33/8a3915b9-9563-470f-8efd-2af699d3f08e/multibintang.png", "client": "PT Multi Bintang Indonesia Tbk" },
+    { "logo": "https://www.dsm-firmenich.com/content/dam/dsm-firmenich/logos/logo-black.svg", "client": "PT. DSM Firmenich Aromatics" },
+    { "logo": "https://federaloil.co.id/themes/web/desktop2020/new/assets/collections/default/fo-logo-2.png", "client": "PT. Federal Karyatama" },
+    { "logo": "https://kemindogroup.id/wp-content/uploads/2020/09/logo-client-kemindo-8.png", "client": "PT. Fukusuke Kogyo Indonesia" },
+    { "logo": "https://www.indofoodcbp.com/images/btn/logo-indofoodcbp.png", "client": "PT. Indofood CBP Sukses Makmur" },
+    { "logo": "https://wikiexport.ai/wp-content/uploads/2022/10/15-1170x600.png", "client": "PT. Mars Symbioscience" },
+    { "logo": "https://nufarm.com/id/wp-content/themes/nufarm/images/site-logo.svg", "client": "PT. Nufarm Indonesia" },
+    { "logo": "https://www.sakaeriken.co.jp/assets/img/common/logo/logo-site.png", "client": "PT. Sakae Riken Indonesia" },
+    { "logo": "https://www.vhv.rs/dpng/d/73-737965_garudafood-logo-png-transparent-png.png", "client": "PT Garuda Food" },
+    { "logo": "https://karir-production.nos.jkt-1.neo.id/logos/22/1264222/Bredero_Shaw_Indonesia_01.png", "client": "PT Bredero Shaw Indonesia" },
+    { "logo": "https://cdn0-production-images-kly.akamaized.net/TpRMBHzC6SCc6V4oTvo3-KIt8kE=/2560x1440/smart/filters:quality(75):strip_icc()/kly-media-production/medias/4243444/original/067506700_1669705672-logo_mayora.jpg", "client": "PT Delifood Sentosa Corpindo" },
+    { "logo": "https://cdn.getamigo.io/ggr/rebuild/client-story-imgs/diageo-hero.webp", "client": "PT Diageo Indonesia" },
+    { "logo": "https://admin.zeetex-radial.com/storage/page-contents/February2021/hcwzrhzeJOolozrpB7p5.png", "client": "PT Elangperdana Tyre Industry" },
+    { "logo": "https://image1ws.indotrading.com/s3/webp/co19822/companylogo/w400-h220/logo.jpg", "client": "PT Hempel Indonesia" },
+    { "logo": "https://i.imgur.com/7Jpv5Qg.jpeg", "client": "PT Industrial Robotic Automation" },
+    { "logo": "https://www.inoac.co.jp/common/img/logo.svg", "client": "PT Inoac Polytechno Indonesia" },
+    { "logo": "https://kalbenutritionals.com/images/kalbe-nutritionals-logo.png", "client": "PT Kalbe Morinaga Indonesia" },
+    { "logo": "https://www.temposcangroup.com/public/images/LOGO_TEMPO_SCAN_100_INDONESIA.png", "client": "PT Kian Mulia Manunggal" },
+    { "logo": "https://meiji.co.id/storage/public/generals/eY0Fj5yMvi7ZPSz9zNcI9RSoYvYQIuQb2cMEKCTl.png", "client": "PT Meiji Food Indonesia" },
+    { "logo": "https://www.mortarutama.com/wp-content/uploads/2023/12/logo-MU-new-hires-01-1536x635.png", "client": "PT Cipta Mortar Utama" },
+    { "logo": "https://www.rinnai.co.id/wp-content/uploads/2019/04/logo-395x100.png", "client": "PT Rinnai Indonesia" },
+    { "logo": "https://www.sarihusada.co.id/assets/img/logo.png", "client": "PT Sarihusada Generasi Mahardhika" },
+    { "logo": "https://axeoneverest.com/wp-content/uploads/2011/04/sri-trang-group-everest-logo-1.jpg", "client": "PT Sri Trang Lingga Indonesia" },
+    { "logo": "https://uccareer.id/assets/upload/company/thumbs/thumb300px-20251007-100131-a1262.jpg", "client": "PT Sugity Creatives" },
+    { "logo": "https://dunlop.co.id/logo-default.svg", "client": "PT Sumi Rubber Indonesia" },
+    { "logo": "https://www.urc.co.id/wp-content/uploads/2021/01/2.jpg", "client": "PT URC Indonesia" },
+    { "logo": "https://csr.subang.go.id/assets/upload/company/pt-evoluzione-tyres-768x576.jpg", "client": "PT. Evoluzione Tyres" },
+    { "logo": "https://www.muramaha.com/wp-content/uploads/2017/01/cropped-logo-muramaha3.png", "client": "PT. Mura Maha Agung" },
+    { "logo": "https://fdrtire.com/assets/frontend/img/logo.jpg", "client": "PT Suryaraya Rubberindo Industries" },
+    { "logo": "https://medias.astra-daihatsu.id/sys-master-media/h70/hc8/8819719208990/astraDaihatsulogo.svg", "client": "PT Astra Daihatsu Motor" },
+    { "logo": "https://www.ykkap.co.id/assets/img/header_logo01.svg", "client": "PT YKK AP Indonesia" }
 ];
 
 export function AboutClientLogos() {
     const defaultLogos = [1, 2, 3, 4, 5, 6, 7, 8].map(num => ({
         id: `default-${num}`,
         src: `/logos/client(${num}).svg`,
-        alt: `Client partner ${num}`
+        alt: `Client partner ${num}`,
+        isNextImage: true
     }));
 
-    const newLogos = projectLogos.map((filename, i) => ({
+    const newLogos = projectLogos.map((p, i) => ({
         id: `project-${i}`,
-        src: `/projects/${encodeURI(filename)}`,
-        alt: filename.replace(/\.[^/.]+$/, "")
+        src: p.logo,
+        alt: p.client,
+        isNextImage: false
     }));
 
     const allLogos = [...defaultLogos, ...newLogos];
@@ -274,13 +271,22 @@ export function AboutClientLogos() {
                     whileHover={{ scale: 1.15 }}
                     className="relative h-14 w-full flex justify-center group"
                 >
-                    <Image
-                        src={logo.src}
-                        alt={logo.alt}
-                        width={140}
-                        height={70}
-                        className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 max-h-14"
-                    />
+                    {logo.isNextImage ? (
+                        <Image
+                            src={logo.src}
+                            alt={logo.alt}
+                            width={140}
+                            height={70}
+                            className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 max-h-14"
+                        />
+                    ) : (
+                        /* eslint-disable-next-line @next/next/no-img-element */
+                        <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 max-h-14 w-auto max-w-[140px]"
+                        />
+                    )}
                 </motion.div>
             ))}
         </div>
