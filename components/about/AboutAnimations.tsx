@@ -163,33 +163,46 @@ export function AboutClientLogos() {
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                                    className="overflow-hidden"
                                 >
-                                    <div className="p-6 pt-2 bg-slate-50/50 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                                        {logos.map((logo, index) => (
-                                            <motion.div
-                                                key={logo.client}
-                                                initial={{ opacity: 0, scale: 0.9 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: index * 0.03, duration: 0.3 }}
-                                                className="relative h-20 w-full flex items-center justify-center p-3 group bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.02)] hover:shadow-lg hover:border-slate-300 hover:-translate-y-1 hover:z-10 transition-all duration-300"
-                                            >
-                                                {/* Tooltip on Hover */}
-                                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none drop-shadow-md z-20">
-                                                    {logo.client}
-                                                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45"></div>
-                                                </div>
+                                    {/* Using grid-flow-dense and varying spans for a more dynamic "bento/masonry" style */}
+                                    <div className="p-6 pt-2 bg-slate-50/50 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 auto-rows-[100px] grid-flow-dense gap-4">
+                                        {logos.map((logo, index) => {
+                                            // Make every 5th logo slightly larger (span 2 columns, span 2 rows)
+                                            // and every 3rd logo span 2 columns but 1 row
+                                            // Normal logos span 1 column, 1 row using Tailwind breakpoints instead of window size
+                                            let spanClass = "col-span-1 row-span-1";
+                                            let imgSizeClass = "max-h-12 max-w-full";
+                                            if (index % 5 === 0 && logos.length > 3) {
+                                                spanClass = "md:col-span-2 md:row-span-2";
+                                                imgSizeClass = "max-h-12 md:max-h-20 max-w-[80%]";
+                                            } else if (index % 3 === 0 && logos.length > 2) {
+                                                spanClass = "sm:col-span-2 row-span-1";
+                                            }
 
-                                                {/* Used eslint-disable for standard img to avoid Next config overhead */}
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img
-                                                    src={logo.logo}
-                                                    alt={logo.client}
-                                                    className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 max-h-10 w-auto max-w-full drop-shadow-sm group-hover:drop-shadow-md"
-                                                />
-                                            </motion.div>
-                                        ))}
+                                            return (
+                                                <motion.div
+                                                    key={logo.client}
+                                                    initial={{ opacity: 0, scale: 0.9 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    transition={{ delay: index * 0.03, duration: 0.3 }}
+                                                    className={`relative w-full h-full flex flex-col items-center justify-center p-4 group bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.02)] hover:shadow-lg hover:border-slate-300 hover:-translate-y-1 hover:z-10 transition-all duration-300 ${spanClass}`}
+                                                >
+                                                    {/* Tooltip on Hover */}
+                                                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none drop-shadow-md z-20">
+                                                        {logo.client}
+                                                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45"></div>
+                                                    </div>
+
+                                                    {/* Used eslint-disable for standard img to avoid Next config overhead */}
+                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                    <img
+                                                        src={logo.logo}
+                                                        alt={logo.client}
+                                                        className={`object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 mx-auto drop-shadow-sm group-hover:drop-shadow-md relative z-10 ${imgSizeClass}`}
+                                                    />
+                                                </motion.div>
+                                            );
+                                        })}
                                     </div>
                                 </motion.div>
                             )}
