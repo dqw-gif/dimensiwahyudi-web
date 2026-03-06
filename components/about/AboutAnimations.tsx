@@ -191,25 +191,95 @@ export function AboutProcessImage() {
 }
 
 /* ─── Client Logos ─── */
+const projectLogos = [
+    "PT Angkasa Pura II.jpg",
+    "PT Asahimas Flat Glass Tbk.jpeg",
+    "PT Astra Daihatsu Motor.jpg",
+    "PT Bredero.jpg",
+    "PT Cabot Indonesia.png",
+    "PT Delifood.jpg",
+    "PT Diageo Indonesia.jpg",
+    "PT Elang Perdana Tyre.jpg",
+    "PT GS Battery.jpg",
+    "PT Gajah Tunggal (1).jpg",
+    "PT Gajah Tunggal (2).jpg",
+    "PT Gajah Tunggal.jpg",
+    "PT Garuda Food.jpg",
+    "PT HOKKAN INDONESIA.jpg",
+    "PT Hempel Indonesia.jpg",
+    "PT Industrial Robotic Automation.jpg",
+    "PT Inoac.jpg",
+    "PT Kalbe Morinaga.jpg",
+    "PT Kayu Permata.png",
+    "PT Kian Mulia Manunggal.jpg",
+    "PT Mayora Indah.jpeg",
+    "PT Meiji Food Indonesia.jpg",
+    "PT Mortar Utama.jpg",
+    "PT Mowilex Indonesia.jpg",
+    "PT Multi Bintang Indonesia Tbk.png",
+    "PT NESTLE.jpg",
+    "PT Nutribev Nabati Indonesia.jpg",
+    "PT Nutrifood Indonesia.jpeg",
+    "PT Nutrifood Indonesia.jpg",
+    "PT Otsuka Indonesia.jpeg",
+    "PT Rinnai.jpg",
+    "PT Sarihusada Generasi Mahardhika.jpg",
+    "PT Sri Trang Lingga.jpg",
+    "PT Sugity.jpg",
+    "PT Summy Rubber.jpg",
+    "PT Suryaraya Rubber.jpg",
+    "PT Taco Anugrah Corporindo.jpg",
+    "PT URC Indonesia.jpg",
+    "PT Unilever Indonesia Tbk.jpeg",
+    "PT YKK AP.jpg",
+    "PT Yakult Indonesia Persada.jpg",
+    "PT. DSM Firmenich Aromatics.jpg",
+    "PT. Evoluzione Tyre.jpg",
+    "PT. Federal Karyatama.jpg",
+    "PT. Fukusuke Kogyo Indonesia.png",
+    "PT. Indofood CBP Sukses.jpg",
+    "PT. Indonesia Nikka Chemicals.jpg",
+    "PT. Mars Symbiocince.jpg",
+    "PT. Mura Maha Agung.jpg",
+    "PT. Nufarm.jpg",
+    "PT. Sakae Riken Indonesia.jpg",
+    "PT. Suntory Garuda.png",
+    "PT. Suryaraya Rubberindo.jpg"
+];
+
 export function AboutClientLogos() {
+    const defaultLogos = [1, 2, 3, 4, 5, 6, 7, 8].map(num => ({
+        id: `default-${num}`,
+        src: `/logos/client(${num}).svg`,
+        alt: `Client partner ${num}`
+    }));
+
+    const newLogos = projectLogos.map((filename, i) => ({
+        id: `project-${i}`,
+        src: `/projects/${encodeURI(filename)}`,
+        alt: filename.replace(/\.[^/.]+$/, "")
+    }));
+
+    const allLogos = [...defaultLogos, ...newLogos];
+
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center px-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((num, index) => (
+            {allLogos.map((logo, index) => (
                 <motion.div
-                    key={num}
+                    key={logo.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.08, duration: 0.5 }}
+                    transition={{ delay: (index % 8) * 0.08, duration: 0.5 }}
                     whileHover={{ scale: 1.15 }}
                     className="relative h-14 w-full flex justify-center group"
                 >
                     <Image
-                        src={`/logos/client(${num}).svg`}
-                        alt={`Client partner ${num}`}
+                        src={logo.src}
+                        alt={logo.alt}
                         width={140}
                         height={70}
-                        className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                        className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 max-h-14"
                     />
                 </motion.div>
             ))}
