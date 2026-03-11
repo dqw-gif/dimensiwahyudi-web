@@ -4,19 +4,18 @@ import nodemailer from 'nodemailer';
 export async function POST(req: NextRequest) {
     const { name, email, message } = await req.json();
 
-    // Buat transporter SMTP Outlook
     const transporter = nodemailer.createTransport({
         service: 'Outlook365',
         auth: {
-            user: process.env.OUTLOOK_USER, // email Outlook kamu
-            pass: process.env.OUTLOOK_PASS, // password atau app password
+            user: process.env.OUTLOOK_USER,
+            pass: process.env.OUTLOOK_PASS,
         },
     });
 
     try {
         await transporter.sendMail({
             from: process.env.OUTLOOK_USER,
-            to: process.env.OUTLOOK_USER, // bisa diganti ke email lain
+            to: process.env.OUTLOOK_USER,
             subject: `Contact Form dari ${name}`,
             text: `Nama: ${name}\nEmail: ${email}\nPesan: ${message}`,
             html: `<b>Nama:</b> ${name}<br/><b>Email:</b> ${email}<br/><b>Pesan:</b><br/>${message}`,
@@ -27,17 +26,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ success: false, error: err }, { status: 500 });
     }
 }
-import { NextRequest, NextResponse } from 'next/server';
-
-export async function POST(request: NextRequest) {
-    try {
-        const body = await request.json();
-        const { name, company, email, message, _hp, _t } = body;
-
-        // ── Anti-bot: Honeypot field harus kosong ──────────────────────────────
-        if (_hp) {
-            // Silent success — jangan beri tahu bot bahwa mereka terdeteksi
-            return NextResponse.json({ success: true });
         }
 
         // ── Anti-bot: Timing check — submit terlalu cepat = bot ───────────────
