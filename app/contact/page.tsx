@@ -9,14 +9,14 @@ export default function ContactForm() {
   const FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw';
   const FORMSPREE_URL = `https://formspree.io/f/${FORM_ID}`;
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus('loading');
-    const form = e.target;
+    const form = e.target as HTMLFormElement;
     const data = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value,
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
     const res = await fetch(FORMSPREE_URL, {
       method: 'POST',
