@@ -2,10 +2,8 @@
 
 import { useState } from 'react';
 
-export default function ContactForm() {
+function ContactForm() {
   const [status, setStatus] = useState('');
-
-  // Ganti dengan Formspree ID kamu
   const FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw';
   const FORMSPREE_URL = `https://formspree.io/f/${FORM_ID}`;
 
@@ -37,5 +35,14 @@ export default function ContactForm() {
       {status === 'success' && <p>Email terkirim!</p>}
       {status === 'error' && <p>Gagal mengirim email.</p>}
     </form>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <main className="py-16 min-h-screen bg-white">
+      <h1 className="text-3xl font-bold text-center mb-8">Hubungi Kami</h1>
+      <ContactForm />
+    </main>
   );
 }
