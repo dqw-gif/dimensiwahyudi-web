@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp / debug / build scripts (jangan commit)
+build_admin.js
+build_output.txt
+dump.json
+error.log
+latest_posts.json
+lint_report.txt
+posts.json
+recovery.js
+temp_*.json
+*.log
