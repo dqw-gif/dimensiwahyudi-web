@@ -106,8 +106,7 @@ const localBusinessSchema = {
     closes: "17:00",
   },
   sameAs: [
-    "https://www.schmalz.com",
-    "https://www.binarhandling.com",
+    "https://dimensiwahyudi.com",
   ],
 };
 

@@ -35,7 +35,7 @@ export async function getHomeData() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query }),
-      next: { revalidate: 1 },
+      next: { revalidate: 3600 },
     });
 
     if (!res.ok) {
@@ -141,6 +141,11 @@ export async function getPostBySlug(slug: string) {
       next: { revalidate: 60 },
     });
 
+    if (!res.ok) {
+      console.error(`WP API Error: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
     const json = await res.json();
     return json.data?.post;
   } catch (error) {
@@ -149,31 +154,31 @@ export async function getPostBySlug(slug: string) {
   }
 }
 
-export async function getRelatedPosts(categorySlug: string, excludeId: string) {
+export async function getRelatedPosts(categoryName: string, excludeId: string) {
   const query = `
-    query RelatedPosts($categorySlug: String, $excludeId: [ID]) {
-        posts(first: 3, where: { categoryName: $categorySlug, notIn: $excludeId }) {
-            nodes {
-                id
-                slug
-                title
-                excerpt
-                date
-                featuredImage {
-                    node {
-                        sourceUrl
-                    }
-                }
-                categories {
-                    nodes {
-                        name
-                        slug
-                    }
-                }
+    query RelatedPosts($categoryName: String!) {
+      posts(first: 3, where: { categoryName: $categoryName, orderby: { field: DATE, order: DESC } }) {
+        nodes {
+          id
+          slug
+          title
+          excerpt
+          date
+          featuredImage {
+            node {
+              sourceUrl
             }
+          }
+          categories {
+            nodes {
+              name
+              slug
+            }
+          }
         }
+      }
     }
-    `;
+  `;
 
   const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
 
@@ -181,17 +186,22 @@ export async function getRelatedPosts(categorySlug: string, excludeId: string) {
     const res = await fetch(wpUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query,
-        variables: { categorySlug, excludeId: [excludeId] },
-      }),
-      next: { revalidate: 60 },
+      body: JSON.stringify({ query, variables: { categoryName } }),
+      next: { revalidate: 3600 },
     });
 
+    if (!res.ok) {
+      console.error(`WP API Error: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
     const json = await res.json();
-    return json.data?.posts?.nodes || [];
+    const posts = json.data?.posts?.nodes || [];
+    return posts.filter((p: { id: string }) => p.id !== excludeId);
   } catch (error) {
     console.error('Error fetching related posts:', error);
     return [];
   }
 }
+
+

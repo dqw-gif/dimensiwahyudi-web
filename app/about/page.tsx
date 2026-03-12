@@ -65,7 +65,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-slate-600 leading-relaxed text-lg text-justify">
               <p>
-                Didirikan di Bekasi, <strong>PT Dimensi Quantum Wahyudi</strong> sebagai bagian dari <strong className="text-blue-600">Nabel Sakha Group</strong> adalah perusahaan terdepan di Indonesia yang berspesialisasi dalam desain dan distribusi komponen vakum serta sistem *handling*.
+                Didirikan di Bekasi, <strong>PT Dimensi Quantum Wahyudi</strong> sebagai bagian dari <strong className="text-blue-600">Nabel Sakha Group</strong> adalah perusahaan terdepan di Indonesia yang berspesialisasi dalam desain dan distribusi komponen vakum serta sistem <em>handling</em>.
               </p>
               <p>
                 Dengan fokus eksklusif pada distribusi <em>vacuum components</em> dan <em>handling system</em>, PT Dimensi Quantum Wahyudi terus berkomitmen untuk memberikan pelanggan setia kami produk dan layanan terbaik yang tersedia di pasaran global.

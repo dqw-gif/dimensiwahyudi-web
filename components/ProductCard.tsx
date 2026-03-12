@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link'; // 👈 Kita butuh Link
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import DOMPurify from 'isomorphic-dompurify';
 
 interface ProductCardProps {
   title: string;
@@ -48,7 +49,7 @@ export default function ProductCard({ title, excerpt, imageUrl, slug }: ProductC
           
           <div 
             className="text-slate-400 text-sm mb-6 line-clamp-3 flex-grow"
-            dangerouslySetInnerHTML={{ __html: excerpt }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(excerpt) }}
           />
 
           {/* Tombol Panah */}

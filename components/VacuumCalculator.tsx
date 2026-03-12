@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useRef } from 'react';
 import {
@@ -21,15 +21,19 @@ import { ResultDisplay } from './vacuum-calculator/ResultDisplay';
 
 // --- APP LOGIC ---
 
-const VacuumCalculator = () => {
-  const { state, setters, calculations } = useVacuumCalculator();
+// --- MODULE WRAPPER (defined outside component to avoid remount on every render) ---
+interface ModuleWrapperProps {
+  children: React.ReactNode;
+  title: string;
+  subtitle: string;
+  onBack: () => void;
+}
 
-  // --- VIEWS ---
-
-  const renderHeader = (title: string, subtitle: string) => (
+const ModuleWrapper = ({ children, title, subtitle, onBack }: ModuleWrapperProps) => (
+  <div className="w-full mx-auto px-2 sm:px-4 py-4 md:py-8 animate-in slide-in-from-bottom-8 duration-700">
     <div className="bg-transparent px-4 md:px-8 py-4 md:py-6 relative z-20 transition-all flex items-center">
       <button
-        onClick={() => setters.setCurrentView('dashboard')}
+        onClick={onBack}
         className="flex items-center gap-3 text-slate-400 hover:text-blue-600 transition-all font-black text-[10px] md:text-[11px] uppercase tracking-[0.2em] md:tracking-[0.3em] group"
       >
         <div className="p-2 md:p-3 rounded-xl bg-white border border-slate-200 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all shadow-sm">
@@ -44,21 +48,17 @@ const VacuumCalculator = () => {
         <p className="text-blue-600 font-bold uppercase tracking-widest text-xs hidden sm:block mt-1">{subtitle}</p>
       </div>
     </div>
-  );
-
-  interface ModuleWrapperProps {
-    children: React.ReactNode;
-    title: string;
-    subtitle: string;
-  }
-  const ModuleWrapper = ({ children, title, subtitle }: ModuleWrapperProps) => (
-    <div className="w-full mx-auto px-2 sm:px-4 py-4 md:py-8 animate-in slide-in-from-bottom-8 duration-700">
-      {renderHeader(title, subtitle)}
-      <div className="max-w-6xl mx-auto mt-4">
-        {children}
-      </div>
+    <div className="max-w-6xl mx-auto mt-4">
+      {children}
     </div>
-  );
+  </div>
+);
+
+const VacuumCalculator = () => {
+  const { state, setters, calculations } = useVacuumCalculator();
+  const goToDashboard = () => setters.setCurrentView('dashboard');
+
+  // --- VIEWS ---
 
   const renderDashboard = () => (
     <div className="max-w-7xl mx-auto px-4 pt-8 pb-12 md:pt-16 md:pb-24 animate-in fade-in duration-1000">
@@ -105,7 +105,7 @@ const VacuumCalculator = () => {
       case 'dashboard': return renderDashboard();
 
       case 'num_cups': return (
-        <ModuleWrapper title="Unit Count" subtitle="Number of Suction Cups Required">
+        <ModuleWrapper onBack={goToDashboard} title="Unit Count" subtitle="Number of Suction Cups Required">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Workpiece Mass" value={state.mass} onValueChange={(val) => setters.setMass(Number(val))} unit={state.massUnit} onUnitChange={setters.setMassUnit} unitType="mass" />
@@ -113,7 +113,7 @@ const VacuumCalculator = () => {
               <TechInput label="Vacuum Level" value={state.vacuum} onValueChange={(val) => setters.setVacuum(Number(val))} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
               <div className="grid grid-cols-2 gap-4 md:gap-6">
                 <TechInput label="Safety Factor" value={state.safety} onValueChange={(val) => setters.setSafety(Number(val))} step={0.1} unit="" />
-                <TechInput label="Friction (µ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" info={true} />
+                <TechInput label="Friction (Âµ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" info={true} />
               </div>
             </GlassCard>
 
@@ -146,7 +146,7 @@ const VacuumCalculator = () => {
       );
 
       case 'cup_diameter': return (
-        <ModuleWrapper title="Dimensions" subtitle="Optimal Suction Cup Diameter">
+        <ModuleWrapper onBack={goToDashboard} title="Dimensions" subtitle="Optimal Suction Cup Diameter">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Workpiece Mass" value={state.mass} onValueChange={(val) => setters.setMass(Number(val))} unit={state.massUnit} onUnitChange={setters.setMassUnit} unitType="mass" />
@@ -154,7 +154,7 @@ const VacuumCalculator = () => {
               <TechInput label="Vacuum Level" value={state.vacuum} onValueChange={(val) => setters.setVacuum(Number(val))} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
               <div className="grid grid-cols-2 gap-4 md:gap-6">
                 <TechInput label="Safety Factor" value={state.safety} onValueChange={(val) => setters.setSafety(Number(val))} step={0.1} unit="" />
-                <TechInput label="Friction (µ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" />
+                <TechInput label="Friction (Âµ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" />
               </div>
               <TechInput label="Total Cups" value={state.numCupsInput} onValueChange={setters.setNumCupsInput} unit="pcs" />
             </GlassCard>
@@ -175,7 +175,7 @@ const VacuumCalculator = () => {
                     <div className="flex items-baseline gap-2 text-slate-900">
                       <span className="text-xl font-black text-blue-600">&gt;</span>
                       <span className="text-3xl md:text-4xl font-black tracking-tighter">{calculations.calcDiameter().area_h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="text-base font-black text-blue-600 uppercase tracking-tighter">mm²</span>
+                      <span className="text-base font-black text-blue-600 uppercase tracking-tighter">mmÂ²</span>
                     </div>
                     <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup area</span>
                   </div>
@@ -200,7 +200,7 @@ const VacuumCalculator = () => {
                     <div className="flex items-baseline gap-2 text-slate-900">
                       <span className="text-xl font-black text-slate-500">&gt;</span>
                       <span className="text-3xl md:text-4xl font-black tracking-tighter">{calculations.calcDiameter().area_v.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="text-base font-black text-slate-500 uppercase tracking-tighter">mm²</span>
+                      <span className="text-base font-black text-slate-500 uppercase tracking-tighter">mmÂ²</span>
                     </div>
                     <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup area</span>
                   </div>
@@ -214,7 +214,7 @@ const VacuumCalculator = () => {
       );
 
       case 'suction_force': return (
-        <ModuleWrapper title="Force Yield" subtitle="Suction Force Generation">
+        <ModuleWrapper onBack={goToDashboard} title="Force Yield" subtitle="Suction Force Generation">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Suction Area" value={state.suctionArea} onValueChange={setters.setSuctionArea} unit={state.suctionAreaUnit} onUnitChange={setters.setSuctionAreaUnit} unitType="area" disabled={state.calcAreaMode} />
@@ -231,7 +231,7 @@ const VacuumCalculator = () => {
                 </div>
               )}
               <TechInput label="Vacuum Level" value={state.vacuum} onValueChange={(val) => setters.setVacuum(Number(val))} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
-              <TechInput label="Friction (µ)" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} info={true} />
+              <TechInput label="Friction (Âµ)" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} info={true} />
             </GlassCard>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
               <ResultDisplay label="Gaya Tarik (Tegak Lurus)" value={calculations.calcForce()} unit="N" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
@@ -242,7 +242,7 @@ const VacuumCalculator = () => {
       );
 
       case 'holding_force': return (
-        <ModuleWrapper title="Security" subtitle="Theoretical Holding Force">
+        <ModuleWrapper onBack={goToDashboard} title="Security" subtitle="Theoretical Holding Force">
           <div className="flex flex-col gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -267,29 +267,29 @@ const VacuumCalculator = () => {
       );
 
       case 'hose_dist': return (
-        <ModuleWrapper title="Flow Logic" subtitle="Hose Network Distribution">
+        <ModuleWrapper onBack={goToDashboard} title="Flow Logic" subtitle="Hose Network Distribution">
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-12">
             <GlassCard className="p-6 md:p-12">
               <div className="flex flex-col sm:flex-row bg-slate-100 p-2 rounded-xl md:rounded-[1.5rem] mb-6 md:mb-12 gap-2">
                 <button onClick={() => setters.setHoseDistMode('main_to_sub')} className={`flex-1 py-3 md:py-5 rounded-lg md:rounded-[1rem] font-black text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${state.hoseDistMode === 'main_to_sub' ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}>
-                  <CustomIcons.hoseBranch /> Utama → Cabang
+                  <CustomIcons.hoseBranch /> Utama â†’ Cabang
                 </button>
                 <button onClick={() => setters.setHoseDistMode('sub_to_main')} className={`flex-1 py-3 md:py-5 rounded-lg md:rounded-[1rem] font-black text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${state.hoseDistMode !== 'main_to_sub' ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}>
-                  <div className="rotate-180"><CustomIcons.hoseBranch /></div> Cabang → Utama
+                  <div className="rotate-180"><CustomIcons.hoseBranch /></div> Cabang â†’ Utama
                 </button>
               </div>
               <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                <TechInput label={state.hoseDistMode === 'main_to_sub' ? "Ø Selang Utama" : "Ø Selang Cabang"} value={state.hoseInputDia} onValueChange={setters.setHoseInputDia} unit={state.hoseInputDiaUnit} onUnitChange={setters.setHoseInputDiaUnit} unitType="length" />
+                <TechInput label={state.hoseDistMode === 'main_to_sub' ? "Ã˜ Selang Utama" : "Ã˜ Selang Cabang"} value={state.hoseInputDia} onValueChange={setters.setHoseInputDia} unit={state.hoseInputDiaUnit} onUnitChange={setters.setHoseInputDiaUnit} unitType="length" />
                 <TechInput label="Jumlah Cabang" value={state.subHoses} onValueChange={setters.setSubHoses} unit="pcs" />
               </div>
             </GlassCard>
-            <ResultDisplay label={state.hoseDistMode === 'main_to_sub' ? "Rekomendasi Ø Cabang" : "Rekomendasi Ø Utama"} value={calculations.calcHoseDist()} unit={state.hoseInputDiaUnit} icon={<Share2 size={32} />} color="indigo" />
+            <ResultDisplay label={state.hoseDistMode === 'main_to_sub' ? "Rekomendasi Ã˜ Cabang" : "Rekomendasi Ã˜ Utama"} value={calculations.calcHoseDist()} unit={state.hoseInputDiaUnit} icon={<Share2 size={32} />} color="indigo" />
           </div>
         </ModuleWrapper>
       );
 
       case 'evac_time': return (
-        <ModuleWrapper title="Dynamics" subtitle="System Evacuation Time">
+        <ModuleWrapper onBack={goToDashboard} title="Dynamics" subtitle="System Evacuation Time">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Volume Tangki" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
@@ -302,7 +302,7 @@ const VacuumCalculator = () => {
       );
 
       case 'suction_cap': return (
-        <ModuleWrapper title="Capacity" subtitle="Required Suction Capacity">
+        <ModuleWrapper onBack={goToDashboard} title="Capacity" subtitle="Required Suction Capacity">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Volume Tangki" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
@@ -318,7 +318,7 @@ const VacuumCalculator = () => {
       );
 
       case 'hose_dia_vac': return (
-        <ModuleWrapper title="Piping" subtitle="Hose Diameter Selection">
+        <ModuleWrapper onBack={goToDashboard} title="Piping" subtitle="Hose Diameter Selection">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12">
               <div className="flex flex-col sm:flex-row bg-slate-100 p-2 rounded-xl md:rounded-[1.5rem] mb-6 md:mb-10 gap-2">
@@ -350,7 +350,7 @@ const VacuumCalculator = () => {
       );
 
       case 'ambient_pressure': return (
-        <ModuleWrapper title="Atmosphere" subtitle="Ambient Pressure & Limits">
+        <ModuleWrapper onBack={goToDashboard} title="Atmosphere" subtitle="Ambient Pressure & Limits">
           <div className="flex flex-col gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8 max-w-3xl mx-auto w-full">
               <TechInput label="Ketinggian Elevasi (h)" value={state.altitude} onValueChange={setters.setAltitude} unit={state.altitudeUnit} onUnitChange={setters.setAltitudeUnit} unitType="length" />
@@ -371,12 +371,12 @@ const VacuumCalculator = () => {
       );
 
       case 'air_flow': return (
-        <ModuleWrapper title="Calculations" subtitle="Air flow rate through flow resistors">
+        <ModuleWrapper onBack={goToDashboard} title="Calculations" subtitle="Air flow rate through flow resistors">
           <div className="flex flex-col gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <TechInput label="Ambient pressure or absolute inlet pressure" value={state.inletPressure} onValueChange={setters.setInletPressure} unit={state.inletPressureUnit} onUnitChange={setters.setInletPressureUnit} unitType="pressure" />
-                <TechInput label="Temperature [°C]" value={state.temperature} onValueChange={setters.setTemperature} unit="" />
+                <TechInput label="Temperature [Â°C]" value={state.temperature} onValueChange={setters.setTemperature} unit="" />
                 <TechInput label="Number of flow resistors" value={state.numResistors} onValueChange={setters.setNumResistors} unit="" />
                 <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto] items-end gap-2">
                   <TechInput label="Occupancy rate [%]" value={state.occupancyRate} onValueChange={setters.setOccupancyRate} unit="" step={1} max={100} />
@@ -410,7 +410,7 @@ const VacuumCalculator = () => {
                 <div className="space-y-2">
                   <div className="flex justify-center items-center gap-2">
                     <span className="text-3xl md:text-4xl font-black text-blue-600 tracking-tighter">{calculations.calcAirFlowResistor().area_per_resistor.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                    <span className="text-lg md:text-xl font-black text-blue-600">mm²</span>
+                    <span className="text-lg md:text-xl font-black text-blue-600">mmÂ²</span>
                   </div>
                   <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bore cross-sectional area per flow resistors</p>
                 </div>
@@ -422,7 +422,7 @@ const VacuumCalculator = () => {
                     </div>
                     <div className="flex items-center gap-4 text-blue-600 font-black">
                       <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_m3h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="text-xl">m³/h</span>
+                      <span className="text-xl">mÂ³/h</span>
                       <span className="text-3xl tracking-tighter text-slate-300 px-4">=</span>
                       <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_gs.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       <span className="text-xl">g/s</span>
@@ -454,7 +454,7 @@ const VacuumCalculator = () => {
                 </div>
                 <div className="flex items-center gap-4 text-blue-600 font-black">
                   <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_m3h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                  <span className="text-xl">m³/h</span>
+                  <span className="text-xl">mÂ³/h</span>
                   <span className="text-3xl tracking-tighter text-slate-300 px-4">=</span>
                   <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_gs.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   <span className="text-xl">g/s</span>

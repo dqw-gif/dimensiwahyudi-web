@@ -44,7 +44,7 @@ export default function MaintenancePage() {
                             Email Kami
                         </a>
                         <a
-                            href="https://wa.me/628123456789" // Ganti dengan nomor asli
+                            href="https://wa.me/6281119168752"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-8 py-3 bg-transparent border border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-400 transition-all font-semibold rounded-lg"

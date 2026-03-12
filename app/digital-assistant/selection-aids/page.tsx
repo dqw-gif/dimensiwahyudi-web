@@ -15,6 +15,7 @@ export default function SelectionAidsPage() {
         className="w-full h-[calc(100vh-100px)] border-none"
         title="DQW Selection Assistant"
         loading="lazy"
+        sandbox="allow-scripts allow-same-origin allow-forms"
       />
     </main>
   );

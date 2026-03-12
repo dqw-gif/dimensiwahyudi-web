@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { getPostBySlug, getRelatedPosts, getAllPosts } from '../../../services/wordpress';
 import { Calendar, ChevronLeft, Clock, Tag, ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
@@ -59,20 +60,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
     const decodedSlug = decodeURIComponent(slug);
     const post = await getPostBySlug(decodedSlug);
 
-    if (!post) {
-        return (
-            <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center pt-20 px-4 text-center">
-                <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-6 text-slate-300">
-                    <Tag size={40} />
-                </div>
-                <h1 className="text-4xl font-black text-slate-900 mb-2">404 Not Found</h1>
-                <p className="text-slate-500 mb-8 max-w-md">Article not found in our quantum database. It may have been moved or deleted.</p>
-                <Link href="/news" className="px-8 py-3 bg-blue-600 text-white rounded-full font-bold uppercase tracking-wider text-sm hover:bg-blue-700 transition shadow-lg hover:shadow-blue-600/30">
-                    Back to Insights
-                </Link>
-            </div>
-        );
-    }
+    if (!post) notFound();
 
     // Fetch Related Posts
     const categorySlug = post.categories?.nodes[0]?.name || '';

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function proxy(request: NextRequest) {
+export default function middleware(request: NextRequest) {
     const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
 
     // Redirect ke /maintenance jika mode maintenance aktif

@@ -7,7 +7,7 @@ import BrandShowcase from '../components/BrandShowcase';
 import SmartCalculator from '../components/Calculator';
 import ProjectMarquee from '../components/ProjectMarquee';
 import TestimonialsSection from '../components/TestimonialsSection';
-import { projects } from './our-projects/page';
+import { projects } from '../data/projects';
 
 export const metadata: Metadata = {
   title: "Vacuum Lifter Indonesia | Solusi Lifting Ergonomis & Safety | PT Dimensi Quantum Wahyudi",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 // --- MAIN PAGE COMPONENT ---
-export default async function Home() {
+export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-white">
 
