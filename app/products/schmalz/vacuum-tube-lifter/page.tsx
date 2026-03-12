@@ -1,10 +1,10 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Zap, AlertTriangle, Droplets, Wind, Layers } from 'lucide-react';
 import { vacuumTubeLifterVariants } from '../../../../data/products/vacuum-tube-lifters';
 
 export const metadata: Metadata = {
-    title: 'Vacuum Tube Lifters — Semua Seri Jumbo | Schmalz — PT Dimensi Quantum Wahyudi',
+    title: 'Vacuum Tube Lifters � Semua Seri Jumbo | Schmalz � PT Dimensi Quantum Wahyudi',
     description: 'Pilihan lengkap vacuum tube lifter Schmalz: JumboFlex, JumboErgo, JumboSprint, JumboSprint EX (ATEX), PalVac Hygienic, High-Stack, Low-Stack. 9 varian untuk semua kebutuhan.',
 };
 
@@ -41,7 +41,7 @@ export default function VacuumTubeLifterIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Zap size={11} /> 9 Varian — Satu Kategori
+                        <Zap size={11} /> 9 Varian � Satu Kategori
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUUM TUBE
@@ -49,7 +49,7 @@ export default function VacuumTubeLifterIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Seri Jumbo dari Schmalz — lini vakum tube lifter paling komprehensif di dunia. Dari clean room hingga zona ATEX, dari 50 kg hingga 300 kg.
+                        Seri Jumbo dari Schmalz � lini vakum tube lifter paling komprehensif di dunia. Dari clean room hingga zona ATEX, dari 50 kg hingga 300 kg.
                     </p>
 
                     {/* Quick stats */}
@@ -93,7 +93,7 @@ export default function VacuumTubeLifterIndexPage() {
                                             loading="lazy"
                                         />
                                     ) : (
-                                        /* 📷 Foto belum diisi — tampilkan gradient */
+                                        /* ?? Foto belum diisi � tampilkan gradient */
                                         <div className="absolute inset-0 opacity-25"
                                             style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
                                     )}

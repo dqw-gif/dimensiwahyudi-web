@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArrowLeft, CheckCircle, Phone, Mail, ChevronRight, Cpu } from 'lucide-react';
@@ -196,7 +196,7 @@ export default async function BinarProductDetail({ params }: Props) {
                                         <Phone size={17} /> Chat WhatsApp
                                     </a>
                                     <Link
-                                        href="/about"
+                                        href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-red-600/20"
                                     >
                                         <Mail size={17} /> Minta Penawaran

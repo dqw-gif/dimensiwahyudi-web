@@ -1,10 +1,10 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Smartphone, Zap } from 'lucide-react';
 import { mobileLiftingVariants } from '../../../../data/products/mobile-lifting';
 
 export const metadata: Metadata = {
-    title: 'Mobile Lifting Devices — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
+    title: 'Mobile Lifting Devices � Semua Varian | Schmalz � PT Dimensi Quantum Wahyudi',
     description: 'Schmalz JumboFlex Mobile (standar socket) dan JumboFlex Picker (forklift mount, touch display). Solusi vacuum tube lifter mobile tanpa overhead crane permanen.',
 };
 
@@ -28,7 +28,7 @@ export default function MobileLiftingIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Smartphone size={11} /> {mobileLiftingVariants.length} Varian — Fully Mobile
+                        <Smartphone size={11} /> {mobileLiftingVariants.length} Varian � Fully Mobile
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         MOBILE
@@ -36,7 +36,7 @@ export default function MobileLiftingIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Vacuum tube lifter yang sepenuhnya mobile — tidak butuh crane overhead permanen. Cukup colok ke stop kontak atau pasang di garpu forklift.
+                        Vacuum tube lifter yang sepenuhnya mobile � tidak butuh crane overhead permanen. Cukup colok ke stop kontak atau pasang di garpu forklift.
                     </p>
                 </div>
             </section>

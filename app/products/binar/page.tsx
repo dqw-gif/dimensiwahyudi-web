@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowRight, ArrowLeft, Filter, Award } from 'lucide-react';
@@ -51,7 +51,7 @@ export default function BinarCatalogPage() {
                     <div className="flex items-start justify-between">
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-bold uppercase tracking-widest mb-6">
-                                🇸🇪 Made in Sweden · Est. 1976
+                                ???? Made in Sweden � Est. 1976
                             </div>
                             <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                                 BINAR
@@ -59,7 +59,7 @@ export default function BinarCatalogPage() {
                             </h1>
                             <div className="h-1.5 w-24 bg-gradient-to-r from-red-600 to-rose-500 rounded-full mb-6" />
                             <p className="text-zinc-400 text-lg max-w-xl leading-relaxed">
-                                Teknologiledare dalam intelligent lift arms — servo precision yang menetapkan standar baru ergonomi industri global.
+                                Teknologiledare dalam intelligent lift arms � servo precision yang menetapkan standar baru ergonomi industri global.
                             </p>
                         </div>
                         <div className="hidden lg:flex flex-col items-end gap-6">

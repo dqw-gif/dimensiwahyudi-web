@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { CheckCircle, Phone, Mail, ChevronRight, Shield } from 'lucide-react';
@@ -128,7 +128,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors">
                                         <Phone size={17} /> Chat WhatsApp
                                     </a>
-                                    <Link href="/about"
+                                    <Link href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3.5 rounded-xl transition-colors">
                                         <Mail size={17} /> Minta Penawaran
                                     </Link>

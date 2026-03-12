@@ -1,11 +1,11 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Layers } from 'lucide-react';
 import { ropeBalancerVariants } from '../../../../data/products/rope-balancers';
 
 export const metadata: Metadata = {
-    title: 'Rope Balancers & Lift Systems — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
-    description: 'Binar Handling NEO 30 (battery, 30kg), QLA (360°, 300kg), QLR (rail, 600kg), Ergo-Glass. Intelligent lift systems untuk workstation presisi.',
+    title: 'Rope Balancers & Lift Systems � Semua Varian | Schmalz � PT Dimensi Quantum Wahyudi',
+    description: 'Binar Handling NEO 30 (battery, 30kg), QLA (360�, 300kg), QLR (rail, 600kg), Ergo-Glass. Intelligent lift systems untuk workstation presisi.',
 };
 
 const badgeColors: Record<string, string> = {
@@ -32,7 +32,7 @@ export default function RopeBalancerIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> {ropeBalancerVariants.length} Sistem — Binar Handling
+                        <Layers size={11} /> {ropeBalancerVariants.length} Sistem � Binar Handling
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         ROPE BALANCERS
@@ -40,7 +40,7 @@ export default function RopeBalancerIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-amber-500 to-orange-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Intelligent lift systems dari Binar Handling — zero-gravity feel, positioning presisi, mulai dari 30 kg battery-operated hingga 600 kg rail system.
+                        Intelligent lift systems dari Binar Handling � zero-gravity feel, positioning presisi, mulai dari 30 kg battery-operated hingga 600 kg rail system.
                     </p>
                 </div>
             </section>

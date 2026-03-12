@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowRight, ArrowLeft, Filter, Award } from 'lucide-react';
@@ -45,14 +45,14 @@ export default function SchmalzCatalogPage() {
                     <div className="flex items-start justify-between">
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                                🇩🇪 Made in Germany · Est. 1910
+                                ???? Made in Germany � Est. 1910
                             </div>
                             <h1 className="text-6xl md:text-8xl font-black text-white leading-none tracking-tighter mb-4">
                                 SCHMALZ
                             </h1>
                             <div className="h-1.5 w-24 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
                             <p className="text-slate-400 text-lg max-w-xl leading-relaxed">
-                                Pemimpin global dalam teknologi vakum industri — solusi lengkap untuk otomasi, manual handling, dan clamping.
+                                Pemimpin global dalam teknologi vakum industri � solusi lengkap untuk otomasi, manual handling, dan clamping.
                             </p>
                         </div>
                         <div className="hidden lg:flex flex-col items-end gap-6">
@@ -108,7 +108,7 @@ export default function SchmalzCatalogPage() {
                                             loading="lazy"
                                         />
                                     ) : (
-                                        /* 📷 Foto belum diisi — gradient ditampilkan sebagai placeholder */
+                                        /* ?? Foto belum diisi � gradient ditampilkan sebagai placeholder */
                                         <div className="absolute inset-0 opacity-20"
                                             style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
                                     )}
