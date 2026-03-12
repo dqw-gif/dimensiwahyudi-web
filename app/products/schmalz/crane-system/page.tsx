@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Layers, Building2 } from 'lucide-r
 import { craneSystemVariants } from '../../../../data/products/crane-systems';
 
 export const metadata: Metadata = {
-    title: 'Crane Systems & Jib Cranes � Semua Varian | Schmalz � PT Dimensi Quantum Wahyudi',
-    description: 'Schmalz Jib Cranes (1.000kg), Aluminum Bridge Cranes (1.200kg), KBG Modular Steel (30�8.5m), Chain Hoists (2.500kg). Fondasi sistem handling vakum premium.',
+    title: 'Crane Systems & Jib Cranes — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
+    description: 'Schmalz Jib Cranes (1.000kg), Aluminum Bridge Cranes (1.200kg), KBG Modular Steel (30×8.5m), Chain Hoists (2.500kg). Fondasi sistem handling vakum premium.',
 };
 
 const badgeColors: Record<string, string> = {
@@ -32,7 +32,7 @@ export default function CraneSystemIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Building2 size={11} /> {craneSystemVariants.length} Sistem � Hingga 2.500 kg
+                        <Building2 size={11} /> {craneSystemVariants.length} Sistem — Hingga 2.500 kg
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         CRANE SYSTEMS
@@ -40,14 +40,14 @@ export default function CraneSystemIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-sky-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Fondasi sistem handling yang handal � Jib Crane, Bridge Crane aluminium, struktur baja modular KBG, hingga Chain Hoist 2.500 kg bersertifikat CSA.
+                        Fondasi sistem handling yang handal — Jib Crane, Bridge Crane aluminium, struktur baja modular KBG, hingga Chain Hoist 2.500 kg bersertifikat CSA.
                     </p>
 
                     <div className="flex items-center gap-8 mt-8">
                         {[
                             { label: 'Varian', value: '4' },
                             { label: 'Max Hoist', value: '2.500 kg' },
-                            { label: 'Max Workspace', value: '30 � 8.5 m' },
+                            { label: 'Max Workspace', value: '30 × 8.5 m' },
                         ].map(s => (
                             <div key={s.label} className="text-center">
                                 <div className="text-2xl font-black text-white">{s.value}</div>

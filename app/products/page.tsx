@@ -4,7 +4,7 @@ import { ArrowRight, Globe, Award, Zap } from 'lucide-react';
 import { BRANDS, schmalzProducts, binarProducts } from '../../data/products';
 
 export const metadata: Metadata = {
-    title: 'Produk | PT Dimensi Quantum Wahyudi � Distributor Resmi Schmalz & Binar Handling',
+    title: 'Produk | PT Dimensi Quantum Wahyudi — Distributor Resmi Schmalz & Binar Handling',
     description: 'Temukan solusi vacuum lifter, lift arm ergonomis, dan gripdon dari Schmalz (Germany) dan Binar Handling (Sweden). Distributor resmi di Indonesia.',
 };
 
@@ -62,7 +62,7 @@ export default function ProductsPage() {
                 <div className="relative max-w-7xl mx-auto px-6 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-8">
                         <Zap size={12} />
-                        Authorized Distributor � Indonesia
+                        Authorized Distributor — Indonesia
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight mb-6">
                         <span className="block text-xl md:text-2xl font-bold text-slate-600 mb-2 uppercase tracking-widest">Distributor Resmi</span>
@@ -72,7 +72,7 @@ export default function ProductsPage() {
                         </span>
                     </h1>
                     <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                        PT Dimensi Quantum Wahyudi adalah distributor resmi <strong className="text-slate-800">Schmalz</strong> dari Jerman dan <strong className="text-slate-800">Binar Handling</strong> dari Swedia � dua pemimpin teknologi ergonomi & vakum dunia.
+                        PT Dimensi Quantum Wahyudi adalah distributor resmi <strong className="text-slate-800">Schmalz</strong> dari Jerman dan <strong className="text-slate-800">Binar Handling</strong> dari Swedia — dua pemimpin teknologi ergonomi & vakum dunia.
                     </p>
                 </div>
             </section>

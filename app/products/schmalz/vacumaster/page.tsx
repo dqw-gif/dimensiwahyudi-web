@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, ChevronRight, Shield, Droplets, Leaf, Layers, Wi
 import { vacuMasterVariants } from '../../../../data/products/vacumaster';
 
 export const metadata: Metadata = {
-    title: 'VacuMaster � Semua Seri | Schmalz � PT Dimensi Quantum Wahyudi',
+    title: 'VacuMaster — Semua Seri | Schmalz — PT Dimensi Quantum Wahyudi',
     description: 'Lini lengkap Schmalz VacuMaster: Basic, Comfort, Vario (2000kg), Eco (tanpa listrik), Window, Wood, Coil, Light, Multi, Glass, Panel (14m). 11 varian untuk setiap industri.',
 };
 
@@ -43,7 +43,7 @@ export default function VacuMasterIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> 11 Varian � Satu Kategori
+                        <Layers size={11} /> 11 Varian — Satu Kategori
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUMASTER
@@ -51,7 +51,7 @@ export default function VacuMasterIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Seri VacuMaster dari Schmalz � vacuum lifting device paling serbaguna. Dari 100 kg hingga 2.000 kg, dari kayu berpori hingga kaca, dari coil baja hingga panel 14 meter.
+                        Seri VacuMaster dari Schmalz — vacuum lifting device paling serbaguna. Dari 100 kg hingga 2.000 kg, dari kayu berpori hingga kaca, dari coil baja hingga panel 14 meter.
                     </p>
 
                     <div className="flex items-center gap-8 mt-8">

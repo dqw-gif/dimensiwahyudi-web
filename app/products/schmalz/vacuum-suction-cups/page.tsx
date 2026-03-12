@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Layers, Zap } from 'lucide-react';
 import { suctionCupVariants } from '../../../../data/products/suction-cups';
 
 export const metadata: Metadata = {
-    title: 'Vacuum Suction Cups � Semua Varian | Schmalz � PT Dimensi Quantum Wahyudi',
-    description: 'Jelajahi seluruh rangkaian Vacuum Suction Cup Schmalz � flat, bellows, oval, dan varian khusus untuk elektronik, sheet metal, kaca, kayu, pengemasan, dan high-temperature.',
+    title: 'Vacuum Suction Cups — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
+    description: 'Jelajahi seluruh rangkaian Vacuum Suction Cup Schmalz — flat, bellows, oval, dan varian khusus untuk elektronik, sheet metal, kaca, kayu, pengemasan, dan high-temperature.',
 };
 
 const badgeColors: Record<string, string> = {
@@ -37,7 +37,7 @@ export default function SuctionCupsPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> {suctionCupVariants.length} Tipe � Komponen Vakum
+                        <Layers size={11} /> {suctionCupVariants.length} Tipe — Komponen Vakum
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUUM
@@ -45,7 +45,7 @@ export default function SuctionCupsPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Ratusan varian untuk setiap kebutuhan gripping � dari elektronik sensitif hingga sheet metal berat. Pilih dari desain flat, bellows, oval, dan khusus yang direkayasa untuk aplikasi Anda.
+                        Ratusan varian untuk setiap kebutuhan gripping — dari elektronik sensitif hingga sheet metal berat. Pilih dari desain flat, bellows, oval, dan khusus yang direkayasa untuk aplikasi Anda.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         {['NBR', 'Silicone', 'Viton', 'PU', 'PTFE'].map(m => (
