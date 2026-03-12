@@ -19,7 +19,6 @@ export interface VTLVariant {
     specs: VTLSpec[];
     features: string[];
     applications: string[];
-    // 📷 TODO: Upload foto ke imgur.com → salin direct link → paste di sini
     imageUrl: string;
 }
 

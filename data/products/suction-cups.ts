@@ -10,7 +10,7 @@ export interface SuctionCupVariant {
     specs: { label: string; value: string }[];
     features: string[];
     applications: string[];
-    imageUrl: string; // 📷 TODO: replace with actual image URL
+    imageUrl: string;
 }
 
 export const suctionCupVariants: SuctionCupVariant[] = [
@@ -46,7 +46,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Printing & CNC machining',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00191/f03704cb51f0_PUG_PGE-00191_000.jpg?size=m',
-        // 📷 TODO: replace with dedicated flat round cup image
     },
     {
         slug: 'bellows-round',
@@ -80,7 +79,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Automotive body panels',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00188/b1b20d090412_PUG_PGE-00188_000.jpg?size=m',
-        // 📷 TODO: replace with dedicated bellows round cup image
     },
     {
         slug: 'flat-oval',
@@ -114,7 +112,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Solar panel manufacturing',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00190/3d41a69d8700_PUG_PGE-00190_000.jpg?size=m',
-        // 📷 TODO: replace with dedicated flat oval cup image
     },
     {
         slug: 'bellows-oval',
@@ -148,7 +145,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Delicate narrow-part automation',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00187/a4df48d0b713_PUG_PGE-00187_000.jpg?size=m',
-        // 📷 TODO: replace with dedicated bellows oval cup image
     },
     {
         slug: 'sheet-metal',
@@ -182,7 +178,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Steel service center automation',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/002/00218/3e55526969e8_PUG_PGE-00218_000.jpg?size=m',
-        // 📷 TODO: replace with sheet metal cup image
     },
     {
         slug: 'packaging',
@@ -216,7 +211,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Film and bag pick & place',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/038/03884/c0e2bf725db7_PUG_PGE-03884_000.jpg?size=m',
-        // 📷 TODO: replace with packaging cup image
     },
     {
         slug: 'electronics',
@@ -250,7 +244,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Display and glass substrate handling',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/0_/056/05664/dd65cffc2b0d_PUG_PGE-05664_001.jpg?size=m',
-        // 📷 TODO: replace with electronics cup image
     },
     {
         slug: 'bag-handling',
@@ -284,7 +277,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Fertilizer and cement bag lines',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/0_/062/06281/bdeed794c67c_PUG_PGE-06281.jpg?size=m',
-        // 📷 TODO: replace with bag gripper image
     },
     {
         slug: 'plastic-film-paper',
@@ -318,7 +310,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Label and foil automation',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00192/75d35cbc5f99_PUG_PGE-00192_002.jpg?size=m',
-        // 📷 TODO: replace with film/paper cup image
     },
     {
         slug: 'wood',
@@ -352,7 +343,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Veneer and panel pressing',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/037/03730/2c3587935e1f_PUG_PGE-03730_000.jpg?size=m',
-        // 📷 TODO: replace with wood handling cup image
     },
     {
         slug: 'glass',
@@ -386,7 +376,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Solar panel glass handling',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/042/04293/afeae7504d21_PUG_PGE-04293_000.jpg?size=m',
-        // 📷 TODO: replace with glass cup image
     },
     {
         slug: 'high-temperature',
@@ -420,6 +409,5 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Ceramic kiln automation',
         ],
         imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00198/d6d46a8525c3_PUG_PGE-00198_000.jpg?size=m',
-        // 📷 TODO: replace with high-temp cup image
     },
 ];

@@ -58,7 +58,7 @@ export const metadata: Metadata = {
       "Solusi material handling terpercaya di Indonesia. Vacuum lifter, lift arm, & crane system standar Eropa.",
     images: [
       {
-        url: `${BASE_URL}/og-image.png`,
+        url: `${BASE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "PT Dimensi Quantum Wahyudi — Industrial Lifting Solutions",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PT Dimensi Quantum Wahyudi — Distributor Schmalz & Binar Handling",
     description: "Solusi material handling standar Eropa untuk industri Indonesia.",
-    images: [`${BASE_URL}/og-image.png`],
+    images: [`${BASE_URL}/opengraph-image`],
   },
   alternates: {
     canonical: BASE_URL,

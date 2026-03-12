@@ -20,7 +20,6 @@ export interface VacuumGeneratorVariant {
     specs: VacuumGeneratorSpec[];
     features: string[];
     applications: string[];
-    // 📷 TODO: Upload foto ke imgur.com → salin direct link → paste di sini
     imageUrl: string;
 }
 

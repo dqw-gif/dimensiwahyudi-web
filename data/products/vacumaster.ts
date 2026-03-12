@@ -19,7 +19,6 @@ export interface VacuMasterVariant {
     specs: VacuMasterSpec[];
     features: string[];
     applications: string[];
-    // 📷 TODO: Upload foto ke imgur.com → salin direct link → paste di sini
     imageUrl: string;
 }
 

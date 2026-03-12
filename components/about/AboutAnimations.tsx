@@ -225,7 +225,7 @@ export function AboutStoryImage() {
             className="relative h-[500px] rounded-2xl overflow-hidden border border-slate-200 group shadow-2xl shadow-slate-200/50"
         >
             <Image
-                src="https://i.imgur.com/M39qASX.jpeg" // Ganti URL ini untuk gambar "Transformasi Operasional"
+                src="https://i.imgur.com/M39qASX.jpeg"
                 alt="PT Dimensi Quantum Wahyudi Professional Team"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -352,7 +352,7 @@ export function AboutProcessImage() {
             <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '20px 20px' }} />
             <div className="relative z-10 text-center group">
                 <Image
-                    src="https://i.imgur.com/N3cXzid.jpeg" // Ganti URL ini untuk gambar "Metodologi Kerja"
+                    src="https://i.imgur.com/N3cXzid.jpeg"
                     alt="Precision Engineering Plan and Blueprint"
                     width={450}
                     height={350}
