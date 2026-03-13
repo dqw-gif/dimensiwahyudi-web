@@ -1,8 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { useLanguage } from './LanguageProvider';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-white border-t border-slate-200 pt-16 pb-8 text-slate-600 font-sans relative z-10">
       <div className="max-w-7xl mx-auto px-6">
@@ -24,8 +29,7 @@ export default function Footer() {
             </div>
 
             <p className="text-sm leading-relaxed mb-6">
-              Mitra terpercaya solusi industrial lifting & handling system di Indonesia.
-              Menggabungkan presisi teknologi Jerman dan inovasi Swedia untuk produktivitas pabrik Anda.
+              {t.footer.tagline}
             </p>
             <div className="flex gap-4">
               <a href="https://www.linkedin.com/company/dimensiwahyudi" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-700 hover:text-white transition-all shadow-sm">
@@ -39,29 +43,29 @@ export default function Footer() {
 
           {/* Kolom 2: Quick Links */}
           <div>
-            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">Perusahaan</h4>
+            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.company}</h4>
             <ul className="space-y-4 text-sm font-medium">
-              <li><Link href="/about" className="hover:text-cyan-600 transition-colors">Tentang Kami</Link></li>
-              <li><Link href="/products" className="hover:text-cyan-600 transition-colors">Katalog Produk</Link></li>
-              <li><Link href="/services" className="hover:text-cyan-600 transition-colors">Layanan Service</Link></li>
-              <li><Link href="/career" className="hover:text-cyan-600 transition-colors">Karir</Link></li>
+              <li><Link href="/about" className="hover:text-cyan-600 transition-colors">{t.footer.about}</Link></li>
+              <li><Link href="/products" className="hover:text-cyan-600 transition-colors">{t.footer.catalog}</Link></li>
+              <li><Link href="/services" className="hover:text-cyan-600 transition-colors">{t.footer.service}</Link></li>
+              <li><Link href="/career" className="hover:text-cyan-600 transition-colors">{t.footer.career}</Link></li>
             </ul>
           </div>
 
           {/* Kolom 3: Produk */}
           <div>
-            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">Solusi Kami</h4>
+            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.solutions}</h4>
             <ul className="space-y-4 text-sm font-medium">
               <li><Link href="/products/schmalz/vacuum-tube-lifter" className="hover:text-cyan-600 transition-colors">Vacuum Lifters</Link></li>
               <li><Link href="/products/schmalz/crane-system" className="hover:text-cyan-600 transition-colors">Crane Systems</Link></li>
               <li><Link href="/products/binar" className="hover:text-cyan-600 transition-colors">Lift Arms & Grippers</Link></li>
-              <li><Link href="/services" className="hover:text-cyan-600 transition-colors">Layanan & Service</Link></li>
+              <li><Link href="/services" className="hover:text-cyan-600 transition-colors">{t.footer.liftingService}</Link></li>
             </ul>
           </div>
 
           {/* Kolom 4: Kontak */}
           <div>
-            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">Hubungi Kami</h4>
+            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.contactUs}</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-cyan-600 mt-1 shrink-0" />

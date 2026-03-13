@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLanguage } from '../../../components/LanguageProvider';
 
 type ModuleKey = 'lifters' | 'generators';
 
@@ -621,6 +622,7 @@ function OptionCard({
 }
 
 export default function SelectionAidsClient() {
+  const { t } = useLanguage();
   const [currentModule, setCurrentModule] = useState<ModuleKey | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [selections, setSelections] = useState<SelectionMap>({});
@@ -686,10 +688,10 @@ export default function SelectionAidsClient() {
       >
         <div className="mx-auto max-w-3xl space-y-4 px-4">
           <h1 className="text-3xl font-black leading-tight tracking-tighter text-slate-900 md:text-5xl">
-            Selection <span className="italic text-blue-600">Assistant.</span>
+            {t.selectionAids.title.replace('Assistant.', '').trim()} <span className="italic text-blue-600">Assistant.</span>
           </h1>
           <p className="mx-auto max-w-2xl text-sm font-medium leading-relaxed text-slate-500 md:text-lg">
-            Pilih kategori sistem vakum di bawah ini untuk memulai konfigurasi.
+            {t.selectionAids.subtitle}
           </p>
         </div>
 
@@ -717,7 +719,7 @@ export default function SelectionAidsClient() {
                 <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Handling manual ergonomis (Jumbo/VacuMaster).</p>
               </div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 transition-transform group-hover:translate-x-2 md:text-xs">
-                Mulai Audit Lifter →
+                {t.selectionAids.startLifter}
               </p>
             </div>
           </motion.button>
@@ -745,7 +747,7 @@ export default function SelectionAidsClient() {
                 <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Sistem otomasi & ejector (Ejector/Pump).</p>
               </div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 transition-transform group-hover:translate-x-2 md:text-xs">
-                Mulai Audit Generator →
+                {t.selectionAids.startGenerator}
               </p>
             </div>
           </motion.button>
@@ -770,7 +772,7 @@ export default function SelectionAidsClient() {
 
             <div className="max-h-[60vh] space-y-3 overflow-y-auto">
               {previousSteps.length === 0 && (
-                <p className="py-4 text-center text-[10px] text-slate-400">Menunggu data...</p>
+                <p className="py-4 text-center text-[10px] text-slate-400">{t.selectionAids.waitingData}</p>
               )}
               {previousSteps.map((logStep) => {
                 let value = selections[logStep.id] ?? '---';
@@ -795,7 +797,7 @@ export default function SelectionAidsClient() {
               className="mt-6 w-full rounded-xl border border-slate-200 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 transition-colors hover:bg-slate-50 hover:text-slate-900"
               type="button"
             >
-              Reset Audit
+              {t.selectionAids.resetAudit}
             </button>
           </div>
         </aside>
@@ -923,11 +925,11 @@ export default function SelectionAidsClient() {
                   >
                   <div className="space-y-4 text-center">
                     <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-100 px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.3em] text-emerald-800 shadow-lg">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" /> Selesai
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" /> {t.selectionAids.complete}
                     </div>
                     <h2 className="text-3xl font-black uppercase leading-none tracking-tighter text-slate-900 md:text-5xl">
                       Solution <br />
-                      <span className="text-blue-600">Found.</span>
+                      <span className="text-blue-600">{t.selectionAids.found}</span>
                     </h2>
                   </div>
 
@@ -965,7 +967,7 @@ export default function SelectionAidsClient() {
                           type="button"
                           className="rounded-xl border border-white/20 bg-transparent px-8 py-4 text-[10px] font-black uppercase tracking-widest text-white transition-all hover:bg-white/10"
                         >
-                          Restart
+                          {t.selectionAids.restart}
                         </button>
                       </div>
                     </motion.div>
@@ -977,7 +979,7 @@ export default function SelectionAidsClient() {
                       className="col-span-5 space-y-6"
                     >
                       <div className="rounded-[2.5rem] border-2 border-slate-100 bg-white p-8 shadow-xl">
-                        <h4 className="mb-6 text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">Technical Spec Sheet</h4>
+                        <h4 className="mb-6 text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">{t.selectionAids.technicalSpec}</h4>
                         <div className="space-y-3">
                           {recommendation.specs.map((spec) => (
                             <div key={spec.key} className="flex items-center justify-between border-b border-slate-50 py-3 last:border-0">
@@ -988,7 +990,7 @@ export default function SelectionAidsClient() {
                         </div>
 
                         <div className="mt-6 space-y-2">
-                          <p className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">Performance Snapshot</p>
+                          <p className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">{t.selectionAids.performanceSnapshot}</p>
                           {['Efisiensi', 'Keamanan', 'Kecepatan', 'Ergonomi', 'ROI'].map((label, idx) => (
                             <div key={label} className="space-y-1">
                               <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wide text-slate-500">
@@ -1019,7 +1021,7 @@ export default function SelectionAidsClient() {
                 disabled={currentStep === 0}
                 className="w-full rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 transition-all hover:bg-slate-200/50 hover:text-blue-900 disabled:pointer-events-none disabled:opacity-0 md:w-auto"
               >
-                ← KEMBALI
+                {t.selectionAids.back}
               </button>
 
               {step.type !== 'results' && (
@@ -1028,7 +1030,7 @@ export default function SelectionAidsClient() {
                   type="button"
                   className="group flex w-full items-center justify-center gap-4 rounded-full bg-slate-900 px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] text-white shadow-xl transition-all hover:bg-blue-600 md:w-auto md:rounded-[2rem] md:px-12"
                 >
-                  <span>{currentStep === moduleConfig.steps.length - 2 ? 'LIHAT HASIL' : 'LANJUTKAN'}</span>
+                  <span>{currentStep === moduleConfig.steps.length - 2 ? t.selectionAids.seeResult : t.selectionAids.continue}</span>
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </button>
               )}

@@ -2,10 +2,13 @@
 import { Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppFloat from "../components/WhatsAppFloat";
+import { LanguageProvider, type Lang } from "../components/LanguageProvider";
+import AutoTranslateLayer from "../components/AutoTranslateLayer";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -110,24 +113,31 @@ const localBusinessSchema = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const langCookie = cookieStore.get("site-lang")?.value;
+  const initialLang: Lang = langCookie === "en" ? "en" : "id";
+
   return (
-    <html lang="id" className="scroll-smooth">
+    <html lang={initialLang} className="scroll-smooth">
       <body className={`${barlow.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
-        <WhatsAppFloat />
-        <Analytics />
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        <LanguageProvider initialLang={initialLang}>
+          <AutoTranslateLayer />
+          <Navbar />
+          {children}
+          <Footer />
+          <WhatsAppFloat />
+          <Analytics />
+          {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        </LanguageProvider>
       </body>
     </html>
   );

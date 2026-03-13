@@ -3,12 +3,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, BookOpen, Briefcase, Package, Play } from 'lucide-react';
+import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from './LanguageProvider';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   // Single state replaces 3 separate states — null = all closed, string = which dropdown is open
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const openDropdown = (name: string) => setActiveDropdown(name);
   const closeDropdown = () => setActiveDropdown(null);
@@ -34,10 +37,10 @@ export default function Navbar() {
           {/* Center Links (Desktop) */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
-              Home
+              {t.navbar.home}
             </Link>
             <Link href="/about" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
-              About Us
+              {t.navbar.about}
             </Link>
 
             {/* Dropdown INSIGHTS */}
@@ -47,7 +50,7 @@ export default function Navbar() {
               onMouseLeave={closeDropdown}
             >
               <button className="flex items-center space-x-1 text-slate-600 group-hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide outline-none">
-                <span>Insights</span>
+                <span>{t.navbar.insights}</span>
                 <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === 'insights' ? 'rotate-180' : ''}`} />
               </button>
 
@@ -61,7 +64,7 @@ export default function Navbar() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-800">News &amp; Updates</p>
-                        <p className="text-xs text-slate-500">Corporate &amp; product news</p>
+                        <p className="text-xs text-slate-500">{t.navbar.newsDesc}</p>
                       </div>
                     </Link>
 
@@ -72,7 +75,7 @@ export default function Navbar() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-800">Our Projects</p>
-                        <p className="text-xs text-slate-500">Industrial success stories</p>
+                        <p className="text-xs text-slate-500">{t.navbar.projectsDesc}</p>
                       </div>
                     </Link>
                   </div>
@@ -87,7 +90,7 @@ export default function Navbar() {
               onMouseLeave={closeDropdown}
             >
               <button className="flex items-center space-x-1 text-slate-600 group-hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide outline-none">
-                <span>Digital Assistants</span>
+                <span>{t.navbar.digitalAssistants}</span>
                 <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === 'assistant' ? 'rotate-180' : ''}`} />
               </button>
 
@@ -112,7 +115,7 @@ export default function Navbar() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-800">Selection Aids</p>
-                        <p className="text-xs text-slate-500">Smart tools for picking parts</p>
+                        <p className="text-xs text-slate-500">{t.navbar.selectionAidsDesc}</p>
                       </div>
                     </Link>
 
@@ -123,7 +126,7 @@ export default function Navbar() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-800">Video Library</p>
-                        <p className="text-xs text-slate-500">Demo produk Schmalz</p>
+                        <p className="text-xs text-slate-500">{t.navbar.videoLibraryDesc}</p>
                       </div>
                     </Link>
                   </div>
@@ -138,7 +141,7 @@ export default function Navbar() {
               onMouseLeave={closeDropdown}
             >
               <button className="flex items-center space-x-1 text-slate-600 group-hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide outline-none">
-                <span>Products</span>
+                <span>{t.navbar.products}</span>
                 <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
               </button>
 
@@ -172,7 +175,7 @@ export default function Navbar() {
                   </div>
                   <div className="border-t border-slate-100 px-4 py-3">
                     <Link href="/products" onClick={closeDropdown} className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                      Lihat semua brand →
+                      {t.navbar.seeAllBrands}
                     </Link>
                   </div>
                 </div>
@@ -180,18 +183,19 @@ export default function Navbar() {
             </div>
 
             <Link href="/services" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
-              Services
+              {t.navbar.services}
             </Link>
             <Link href="/contact" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
-              Contact
+              {t.navbar.contact}
             </Link>
           </div>
 
           {/* Right Side: Button (Desktop) */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             <Link href="/contact"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-full transition-all shadow-md shadow-blue-500/20 hover:shadow-blue-500/40 text-sm">
-              Get Quote
+              {t.navbar.quote}
             </Link>
           </div>
 
@@ -200,7 +204,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-slate-600 hover:text-slate-900 focus:outline-none p-2"
-              aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
+              aria-label={isOpen ? t.navbar.closeMenu : t.navbar.openMenu}
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -212,12 +216,12 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-white border-b border-slate-200 absolute top-full left-0 w-full shadow-xl">
           <div className="px-4 pt-2 pb-6 space-y-1">
-            <Link href="/" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>Home</Link>
-            <Link href="/about" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>About Us</Link>
+            <Link href="/" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.home}</Link>
+            <Link href="/about" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.about}</Link>
 
             {/* Mobile Digital Assistants Section */}
             <div className="py-2 border-y border-slate-50">
-              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Digital Assistants</p>
+              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.digitalAssistants}</p>
               <Link href="/digital-assistant/vacuum-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Calculator size={18} className="text-blue-500" /><span>Vacuum Calculator</span>
               </Link>
@@ -232,7 +236,7 @@ export default function Navbar() {
 
             {/* Mobile Insights Section */}
             <div className="py-2 border-b border-slate-50">
-              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Insights</p>
+              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.insights}</p>
               <Link href="/news" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Newspaper size={18} className="text-orange-500" /><span>News &amp; Updates</span>
               </Link>
@@ -243,9 +247,9 @@ export default function Navbar() {
 
             {/* Mobile Products Section */}
             <div className="py-2 border-b border-slate-50">
-              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Products</p>
+              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.products}</p>
               <Link href="/products" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Package size={18} className="text-slate-400" /><span>Semua Brand</span>
+                <Package size={18} className="text-slate-400" /><span>{t.navbar.allBrands}</span>
               </Link>
               <Link href="/products/schmalz" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-blue-100 rounded-md p-1 shrink-0">
@@ -261,14 +265,19 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <Link href="/services" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>Services</Link>
-            <Link href="/contact" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>Contact</Link>
+            <Link href="/services" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.services}</Link>
+            <Link href="/contact" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.contact}</Link>
+
+            <div className="px-3 py-3">
+              <div className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">{t.navbar.language}</div>
+              <LanguageSwitcher compact />
+            </div>
 
             <div className="pt-4">
               <Link href="/contact"
                 className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-blue-500/20"
                 onClick={() => setIsOpen(false)}>
-                Get Quote
+                {t.navbar.quote}
               </Link>
             </div>
           </div>
