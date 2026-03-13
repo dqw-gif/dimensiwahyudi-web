@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import SelectionAidsClient from './SelectionAidsClient';
 
 export const metadata: Metadata = {
   title: 'Selection Aids | PT Dimensi Quantum Wahyudi',
@@ -7,16 +8,12 @@ export const metadata: Metadata = {
 
 export default function SelectionAidsPage() {
   return (
-    // Menambahkan pt-[100px] untuk mendorong konten ke bawah navbar yang fixed/sticky
     <main className="w-full min-h-screen pt-[100px] bg-[#F8FAFC]">
-      {/* Iframe memuat file HTML secara penuh, tingginya disesuaikan sisa layar */}
-      <iframe
-        src="/selection-aids.html"
-        className="w-full h-[calc(100vh-100px)] border-none"
-        title="DQW Selection Assistant"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-top-navigation-by-user-activation"
-      />
+      <div className="relative flex-1 p-4 md:p-8">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <SelectionAidsClient />
+        </div>
+      </div>
     </main>
   );
 }

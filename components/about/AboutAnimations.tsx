@@ -194,7 +194,7 @@ export function AboutClientLogos() {
                                                     </div>
 
                                                     {/* Used eslint-disable for standard img to avoid Next config overhead */}
-                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                    { }
                                                     <img
                                                         src={logo.logo}
                                                         alt={logo.client}

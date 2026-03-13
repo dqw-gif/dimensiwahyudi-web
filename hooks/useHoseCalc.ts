@@ -144,8 +144,8 @@ export const useHoseCalc = (
         const pd = Math.max(1, p1_mbar - dP_mbar);
         const expansion_ratio = p1_mbar / pd;
 
-        let flow_lmin = (vol_flow_m3_s * 60000) * expansion_ratio;
-        let flow_m3h = (vol_flow_m3_s * 3600) * expansion_ratio;
+        const flow_lmin = (vol_flow_m3_s * 60000) * expansion_ratio;
+        const flow_m3h = (vol_flow_m3_s * 3600) * expansion_ratio;
         // flow_gs remains constant mass
 
         // Stage 3: Required Generator Capacity

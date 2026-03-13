@@ -129,7 +129,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                     {/* Logo Factory Slot - Solid White Background & Auto Width for Landscape Logos */}
                                     <div className="absolute top-5 right-5 h-12 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[180px]">
                                         {p.logo ? (
-                                            /* eslint-disable-next-line @next/next/no-img-element */
+                                             
                                             <img src={p.logo} alt={`${p.client} Logo`} className="h-full w-auto object-contain" />
                                         ) : (
                                             <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase px-1">Logo</span>
