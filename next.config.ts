@@ -25,7 +25,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
       "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://formspree.io https://dimensiwahyudi.com https://vitals.vercel-insights.com",
-      "frame-src 'self'",
+      "frame-src 'self' https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com",
       "object-src 'none'",
       "base-uri 'self'",
     ].join('; '),
