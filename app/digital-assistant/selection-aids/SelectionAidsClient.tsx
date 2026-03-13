@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 type ModuleKey = 'lifters' | 'generators';
 
@@ -410,19 +410,35 @@ const DrawLib: Record<string, DrawFn> = {
   },
 };
 
-function drawCanvasIcon(canvasId: string, iconKey: string): void {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas || !(canvas instanceof HTMLCanvasElement)) return;
+function CanvasIcon({
+  iconKey,
+  width,
+  height,
+  className,
+}: {
+  iconKey: string;
+  width: number;
+  height: number;
+  className?: string;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-  const drawFn = DrawLib[iconKey] ?? DrawLib.default;
-  drawFn(ctx);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    const drawFn = DrawLib[iconKey] ?? DrawLib.default;
+    drawFn(ctx);
+  }, [iconKey]);
+
+  return <canvas ref={canvasRef} width={width} height={height} className={className} aria-hidden="true" />;
 }
 
 function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Recommendation {
@@ -593,7 +609,7 @@ function OptionCard({
       type="button"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 text-slate-400 transition-colors group-hover:text-blue-600">
-        <canvas id={`icon-${option.id}`} width={60} height={60} className="h-10 w-10" aria-hidden="true" />
+        <CanvasIcon iconKey={option.id} width={60} height={60} className="h-10 w-10" />
       </div>
       <p className="mb-1 truncate text-[10px] font-black uppercase tracking-[0.2em] md:text-xs">{option.label}</p>
       <span className="block truncate text-[8px] font-bold uppercase tracking-widest text-blue-500 opacity-60 md:text-[9px]">
@@ -617,24 +633,6 @@ export default function SelectionAidsClient() {
     if (current.type !== 'results') return null;
     return getRecommendation(currentModule, selections);
   }, [currentModule, currentStep, selections]);
-
-  useEffect(() => {
-    if (!currentModule) {
-      drawCanvasIcon('icon-lifter-hub', 'lifterHub');
-      drawCanvasIcon('icon-gen-hub', 'genHub');
-      return;
-    }
-
-    if (!step?.options?.length) return;
-
-    const timer = window.setTimeout(() => {
-      step.options?.forEach((opt) => {
-        drawCanvasIcon(`icon-${opt.id}`, opt.id);
-      });
-    }, 40);
-
-    return () => window.clearTimeout(timer);
-  }, [currentModule, step]);
 
   const startModule = (moduleKey: ModuleKey) => {
     setCurrentModule(moduleKey);
@@ -712,7 +710,7 @@ export default function SelectionAidsClient() {
             />
             <div className="relative z-10 space-y-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
-                <canvas id="icon-lifter-hub" width={36} height={36} aria-hidden="true" />
+                <CanvasIcon iconKey="lifterHub" width={36} height={36} />
               </div>
               <div>
                 <h3 className="text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Lifters</h3>
@@ -740,7 +738,7 @@ export default function SelectionAidsClient() {
             />
             <div className="relative z-10 space-y-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
-                <canvas id="icon-gen-hub" width={36} height={36} aria-hidden="true" />
+                <CanvasIcon iconKey="genHub" width={36} height={36} />
               </div>
               <div>
                 <h3 className="text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Generators</h3>
