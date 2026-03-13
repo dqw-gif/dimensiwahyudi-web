@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 
 export type Lang = 'id' | 'en';
 
@@ -171,11 +172,22 @@ export function LanguageProvider({
 }) {
   const [lang, setLangState] = useState<Lang>(initialLang);
 
+  useEffect(() => {
+    const fromCookie = document.cookie
+      .split('; ')
+      .find((part) => part.startsWith('site-lang='))
+      ?.split('=')[1];
+
+    if (fromCookie === 'id' || fromCookie === 'en') {
+      setLangState(fromCookie);
+      document.documentElement.lang = fromCookie;
+    }
+  }, []);
+
   const setLang = (nextLang: Lang) => {
     setLangState(nextLang);
     document.cookie = `site-lang=${nextLang}; path=/; max-age=31536000; samesite=lax`;
     document.documentElement.lang = nextLang;
-    window.location.reload();
   };
 
   const value = useMemo(
