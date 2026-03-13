@@ -214,10 +214,20 @@ export default function AutoTranslateLayer() {
     const run = () => replaceInNode(document.body);
     run();
 
+    // Run multiple passes to catch content that appears after hydration/animations.
+    const t1 = window.setTimeout(run, 80);
+    const t2 = window.setTimeout(run, 350);
+    const t3 = window.setTimeout(run, 900);
+
     const observer = new MutationObserver(() => run());
     observer.observe(document.body, { childList: true, subtree: true });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+    };
   }, [lang]);
 
   return null;
