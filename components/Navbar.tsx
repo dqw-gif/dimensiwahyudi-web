@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play } from 'lucide-react';
-import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from './LanguageProvider';
 
 export default function Navbar() {
@@ -192,7 +191,6 @@ export default function Navbar() {
 
           {/* Right Side: Button (Desktop) */}
           <div className="hidden md:flex items-center gap-3">
-            <LanguageSwitcher />
             <Link href="/contact"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-full transition-all shadow-md shadow-blue-500/20 hover:shadow-blue-500/40 text-sm">
               {t.navbar.quote}
@@ -267,11 +265,6 @@ export default function Navbar() {
 
             <Link href="/services" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.services}</Link>
             <Link href="/contact" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.contact}</Link>
-
-            <div className="px-3 py-3">
-              <div className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">{t.navbar.language}</div>
-              <LanguageSwitcher compact />
-            </div>
 
             <div className="pt-4">
               <Link href="/contact"

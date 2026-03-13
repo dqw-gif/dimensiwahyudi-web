@@ -7,16 +7,16 @@ import { videos } from '../../../data/videos';
 import ProductVideoGrid from './ProductVideoGrid';
 
 export const metadata: Metadata = {
-    title: 'Produk Schmalz Indonesia | Vacuum Lifter, VacuMaster, Crane System | PT Dimensi Quantum Wahyudi',
-    description: 'Katalog lengkap produk Schmalz: Vacuum Tube Lifter JumboFlex, VacuMaster, Crane System, Mobile Lifting Device, Suction Cup. Distributor resmi Schmalz di Indonesia. Garansi resmi & spare part tersedia.',
-    keywords: ['Schmalz Indonesia', 'Vacuum Tube Lifter Schmalz', 'VacuMaster Indonesia', 'JumboFlex', 'Crane System Schmalz', 'Alat Angkat Vakum', 'PT Dimensi Quantum Wahyudi Bekasi'],
+    title: 'Products Schmalz Indonesia | Vacuum Lifter, VacuMaster, Crane System | PT Dimensi Quantum Wahyudi',
+    description: 'Complete Schmalz portfolio: Vacuum Tube Lifters, VacuMaster, Crane Systems, Mobile Lifting Devices, and Suction Cups. Official Schmalz distributor in Indonesia with genuine parts support.',
+    keywords: ['Schmalz Indonesia', 'Schmalz Vacuum Tube Lifter', 'VacuMaster Indonesia', 'JumboFlex', 'Schmalz Crane System', 'Vacuum Lifting Equipment', 'PT Dimensi Quantum Wahyudi Bekasi'],
     alternates: { canonical: 'https://dimensiwahyudi.com/products/schmalz' },
     openGraph: {
-        title: 'Produk Schmalz Indonesia | Vacuum Lifter & Crane System',
-        description: 'Distributor resmi Schmalz untuk Indonesia. Vacuum lifter, crane system, suction cup standar Jerman.',
+        title: 'Products Schmalz Indonesia | Vacuum Lifter & Crane System',
+        description: 'Official Schmalz distributor in Indonesia for German-standard vacuum lifters, crane systems, and suction cups.',
         url: 'https://dimensiwahyudi.com/products/schmalz',
         type: 'website',
-        locale: 'id_ID',
+        locale: 'en_US',
         siteName: 'PT Dimensi Quantum Wahyudi',
     },
 };
@@ -40,7 +40,7 @@ export default function SchmalzCatalogPage() {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     <Link href="/products" className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 mb-8 text-sm font-medium transition-colors">
-                        <ArrowLeft size={16} /> Semua Brand
+                        <ArrowLeft size={16} /> All Brands
                     </Link>
                     <div className="flex items-start justify-between">
                         <div>
@@ -52,7 +52,7 @@ export default function SchmalzCatalogPage() {
                             </h1>
                             <div className="h-1.5 w-24 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
                             <p className="text-slate-400 text-lg max-w-xl leading-relaxed">
-                                Pemimpin global dalam teknologi vakum industri — solusi lengkap untuk otomasi, manual handling, dan clamping.
+                                A global leader in industrial vacuum technology with complete solutions for automation, manual handling, and clamping.
                             </p>
                         </div>
                         <div className="hidden lg:flex flex-col items-end gap-6">
@@ -70,12 +70,12 @@ export default function SchmalzCatalogPage() {
                             <div className="flex items-center gap-4 text-slate-500 text-sm">
                                 <div className="text-center">
                                     <div className="text-3xl font-black text-white">{schmalzProducts.length}</div>
-                                    <div className="text-xs uppercase tracking-widest">Produk</div>
+                                    <div className="text-xs uppercase tracking-widest">Products</div>
                                 </div>
                                 <div className="w-px h-12 bg-slate-700" />
                                 <div className="text-center">
                                     <div className="text-3xl font-black text-blue-400">70+</div>
-                                    <div className="text-xs uppercase tracking-widest">Negara</div>
+                                    <div className="text-xs uppercase tracking-widest">Countries</div>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@ export default function SchmalzCatalogPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex items-center gap-3 mb-10">
                         <Filter size={16} className="text-slate-400" />
-                        <span className="text-slate-500 text-sm font-medium">Menampilkan {schmalzProducts.length} produk unggulan</span>
+                        <span className="text-slate-500 text-sm font-medium">Showing {schmalzProducts.length} featured products</span>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -108,7 +108,7 @@ export default function SchmalzCatalogPage() {
                                             loading="lazy"
                                         />
                                     ) : (
-                                        /* Foto belum diisi - gradient sebagai placeholder */
+                                        /* Image not available - gradient placeholder */
                                         <div className="absolute inset-0 opacity-20"
                                             style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
                                     )}
@@ -144,7 +144,7 @@ export default function SchmalzCatalogPage() {
                                     </div>
 
                                     <div className="flex items-center text-blue-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail
+                                        View Details
                                         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
@@ -161,10 +161,10 @@ export default function SchmalzCatalogPage() {
             <section className="py-16 bg-white border-t border-slate-100">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <Award className="w-10 h-10 text-blue-600 mx-auto mb-4 opacity-60" />
-                    <h2 className="text-2xl font-black text-slate-900 mb-3">Tidak Menemukan yang Anda Cari?</h2>
-                    <p className="text-slate-500 mb-8">Schmalz memiliki ribuan varian produk. Konsultasikan kebutuhan spesifik Anda dengan tim engineer kami.</p>
+                    <h2 className="text-2xl font-black text-slate-900 mb-3">Did Not Find What You Need?</h2>
+                    <p className="text-slate-500 mb-8">Schmalz offers thousands of product variants. Discuss your specific requirements with our engineering team.</p>
                     <a href="https://wa.me/6281119168752" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30">
-                        Konsultasi via WhatsApp
+                        Consult via WhatsApp
                         <ArrowRight size={16} />
                     </a>
                 </div>

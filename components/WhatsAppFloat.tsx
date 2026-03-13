@@ -32,17 +32,17 @@ export default function WhatsAppFloat() {
                 <button
                     onClick={() => setDismissed(true)}
                     className="absolute -top-2 -right-2 bg-slate-200 hover:bg-slate-300 rounded-full p-0.5 transition-colors"
-                    aria-label="Tutup"
+                    aria-label="Close"
                 >
                     <X size={12} className="text-slate-600" />
                 </button>
-                <p className="text-slate-700 font-semibold leading-snug">Ada pertanyaan teknis?</p>
-                <p className="text-slate-500 text-xs mt-0.5">Chat engineer kami sekarang!</p>
+                <p className="text-slate-700 font-semibold leading-snug">Need technical support?</p>
+                <p className="text-slate-500 text-xs mt-0.5">Chat with our engineers now.</p>
             </div>
 
             {/* Main button */}
             <a
-                href="https://wa.me/6281119168752?text=Halo%20PT%20Dimensi%20Quantum%20Wahyudi%2C%20saya%20ingin%20konsultasi%20mengenai%20solusi%20lifting%20untuk%20fasilitas%20kami."
+                href="https://wa.me/6281119168752?text=Hello%20PT%20Dimensi%20Quantum%20Wahyudi%2C%20I%20would%20like%20a%20consultation%20about%20lifting%20solutions%20for%20our%20facility."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat WhatsApp PT Dimensi Quantum Wahyudi"

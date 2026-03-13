@@ -15,21 +15,21 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const product = binarProducts.find(p => p.slug === slug);
-    if (!product) return { title: 'Produk Tidak Ditemukan' };
+    if (!product) return { title: 'Product Not Found' };
     const title = `${product.name} (${product.modelCode}) | Binar Handling — PT Dimensi Quantum Wahyudi`;
     const description = product.description.slice(0, 160);
     const url = `https://dimensiwahyudi.com/products/binar/${slug}`;
     return {
         title,
         description,
-        keywords: [product.name, product.modelCode, 'Binar Handling', 'PT Dimensi Quantum Wahyudi', 'Lift Arm Industri', 'Intelligent Lifting Sweden'],
+        keywords: [product.name, product.modelCode, 'Binar Handling', 'PT Dimensi Quantum Wahyudi', 'Industrial Lift Arm', 'Intelligent Lifting Sweden'],
         alternates: { canonical: url },
         openGraph: {
             title,
             description,
             url,
             type: 'website',
-            locale: 'id_ID',
+            locale: 'en_US',
             siteName: 'PT Dimensi Quantum Wahyudi',
         },
     };
@@ -74,7 +74,7 @@ export default async function BinarProductDetail({ params }: Props) {
                 <div className="relative max-w-7xl mx-auto px-6">
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-2 text-zinc-500 text-xs mb-8">
-                        <Link href="/products" className="hover:text-red-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-red-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/binar" className="hover:text-red-400 transition-colors">Binar Handling</Link>
                         <ChevronRight size={12} />
@@ -122,14 +122,14 @@ export default async function BinarProductDetail({ params }: Props) {
 
                             {/* Description */}
                             <div className="bg-white rounded-2xl border border-zinc-200 p-8">
-                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Deskripsi Produk</h2>
+                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Product Description</h2>
                                 <div className="h-1 w-12 bg-red-600 rounded-full mb-6" />
                                 <p className="text-zinc-600 leading-relaxed text-base">{product.description}</p>
                             </div>
 
                             {/* Specs */}
                             <div className="bg-white rounded-2xl border border-zinc-200 p-8">
-                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Spesifikasi Teknis</h2>
+                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Technical Specifications</h2>
                                 <div className="h-1 w-12 bg-red-600 rounded-full mb-6" />
                                 <div className="divide-y divide-zinc-100">
                                     {product.specs.map((spec, i) => (
@@ -143,7 +143,7 @@ export default async function BinarProductDetail({ params }: Props) {
 
                             {/* Features */}
                             <div className="bg-white rounded-2xl border border-zinc-200 p-8">
-                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Fitur Unggulan</h2>
+                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Key Features</h2>
                                 <div className="h-1 w-12 bg-red-600 rounded-full mb-6" />
                                 <div className="grid sm:grid-cols-2 gap-3">
                                     {product.features.map((feat, i) => (
@@ -157,7 +157,7 @@ export default async function BinarProductDetail({ params }: Props) {
 
                             {/* Applications */}
                             <div className="bg-white rounded-2xl border border-zinc-200 p-8">
-                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Aplikasi</h2>
+                                <h2 className="text-xl font-black text-zinc-900 uppercase tracking-tight mb-4">Applications</h2>
                                 <div className="h-1 w-12 bg-red-600 rounded-full mb-6" />
                                 <div className="flex flex-wrap gap-3">
                                     {product.applications.map((app, i) => (
@@ -176,19 +176,19 @@ export default async function BinarProductDetail({ params }: Props) {
                                 <div className="text-xs font-bold uppercase tracking-widest mb-1 text-red-500/70">Model</div>
                                 <div className="text-2xl font-black font-mono text-white">{product.modelCode}</div>
                                 <div className="mt-3 text-xs text-zinc-400 font-medium">
-                                    Kapasitas: <span className="font-black text-white text-base">{product.capacity}</span>
+                                    Capacity: <span className="font-black text-white text-base">{product.capacity}</span>
                                 </div>
                                 <div className="mt-2 text-xs text-zinc-600">Made in Sweden 🇸🇪</div>
                             </div>
 
                             {/* CTA */}
                             <div className="bg-white rounded-2xl border border-zinc-200 p-6 sticky top-24">
-                                <h3 className="text-lg font-black text-zinc-900 mb-1">Tertarik dengan produk ini?</h3>
-                                <p className="text-zinc-500 text-sm mb-6">Engineer kami siap membantu. Konsultasi gratis.</p>
+                                <h3 className="text-lg font-black text-zinc-900 mb-1">Interested in this product?</h3>
+                                <p className="text-zinc-500 text-sm mb-6">Our engineers are ready to help. Free consultation available.</p>
 
                                 <div className="flex flex-col gap-3">
                                     <a
-                                        href={`https://wa.me/6281119168752?text=Halo%2C+saya+tertarik+dengan+${encodeURIComponent(product.name)}.`}
+                                        href={`https://wa.me/6281119168752?text=Hello%2C+I+am+interested+in+${encodeURIComponent(product.name)}.`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-600/20"
@@ -199,12 +199,12 @@ export default async function BinarProductDetail({ params }: Props) {
                                         href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-red-600/20"
                                     >
-                                        <Mail size={17} /> Minta Penawaran
+                                        <Mail size={17} /> Request a Quote
                                     </Link>
                                 </div>
 
                                 <div className="mt-6 pt-6 border-t border-zinc-100">
-                                    <div className="text-xs text-zinc-400 font-medium mb-3 uppercase tracking-wider">Produk Lainnya Binar</div>
+                                    <div className="text-xs text-zinc-400 font-medium mb-3 uppercase tracking-wider">More Products Binar</div>
                                     <div className="space-y-1">
                                         {binarProducts
                                             .filter(p => p.slug !== slug)
@@ -223,7 +223,7 @@ export default async function BinarProductDetail({ params }: Props) {
                                                 </Link>
                                             ))}
                                         <Link href="/products/binar" className="flex items-center gap-1.5 py-2 px-3 text-xs font-bold text-red-600 hover:bg-red-50 rounded-lg transition-colors mt-1">
-                                            Semua produk Binar →
+                                            All Binar products
                                         </Link>
                                     </div>
                                 </div>

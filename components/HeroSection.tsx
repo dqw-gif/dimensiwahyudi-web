@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-// Kita gunakan icon dari Lucide agar lebih rapi (sudah diinstall sebelumnya)
+// Using Lucide icons for a cleaner visual style
 import { ArrowRight, MessageSquare } from 'lucide-react';
 
-const words = ['Vacuum Lifter', 'Otomasi Industri', 'Material Handling', 'Robotik & Cobot', 'Ergonomic Handling'];
+const words = ['Vacuum Lifters', 'Industrial Automation', 'Material Handling', 'Robotics & Cobots', 'Ergonomic Lifting'];
 
 export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -73,7 +73,7 @@ export default function HeroSection() {
             className="mb-4"
           >
             <span className="px-3 py-1 border border-cyan-500/30 rounded-full text-cyan-400 text-xs md:text-sm font-medium tracking-widest uppercase bg-cyan-500/10 backdrop-blur-md">
-              Solusi Material Handling & Otomasi Vakum
+              Market Leader in Vacuum Lifting Solutions
             </span>
           </motion.div>
 
@@ -87,6 +87,15 @@ export default function HeroSection() {
             PT Dimensi Quantum <br className="hidden md:block" /> Wahyudi
           </motion.h1>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="text-slate-200 text-base md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+          >
+            Since 2009, PT Dimensi Quantum Wahyudi has become the trusted market leader in Indonesia for vacuum lifting and ergonomic handling systems, helping manufacturers move faster, safer, and smarter.
+          </motion.p>
+
           {/* Typewriter Effect (Warna Cyan) */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -95,7 +104,7 @@ export default function HeroSection() {
             className="mb-12 min-h-[5rem] flex flex-col items-center justify-center gap-2" // Menggunakan flex-col dan items-center
           >
             <span className="text-xl md:text-3xl lg:text-4xl text-slate-300 font-light text-center">
-              Solusi Untuk
+              Built For
             </span>
             <span className="text-2xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-center h-12">
               {currentText}
@@ -114,9 +123,9 @@ export default function HeroSection() {
             <Link
               href="/services"
               className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-bold text-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/60 flex items-center gap-3"
-              aria-label="Eksplorasi Layanan Teknik & Solusi Lifting"
+              aria-label="Explore technical services and lifting solutions"
             >
-              Eksplorasi Solusi Vacuum & Lifting
+              Explore Vacuum & Lifting Solutions
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
 
@@ -125,7 +134,7 @@ export default function HeroSection() {
               href="/contact"
               className="relative px-8 py-4 border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-400 font-semibold text-lg rounded-lg transition-all duration-300 backdrop-blur-sm flex items-center gap-3 hover:border-cyan-400"
             >
-              Hubungi Kami
+              Talk to Our Engineers
               <MessageSquare className="w-5 h-5" />
             </Link>
           </motion.div>

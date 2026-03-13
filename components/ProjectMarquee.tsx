@@ -128,10 +128,10 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                 <div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/40 border border-cyan-800/50 rounded-full text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4">
                         <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                        Klien & Portofolio Manufaktur
+                        Clients & Manufacturing Portfolio
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-                        Bukti Nyata <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Implementasi Otomasi</span>.
+                        Real Proof of <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Automation Implementation</span>.
                     </h2>
                 </div>
 
@@ -140,7 +140,7 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                     className="group relative px-6 py-3 bg-slate-900 text-white font-semibold rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all overflow-hidden flex-shrink-0"
                 >
                     <span className="relative z-10 flex items-center gap-2">
-                        Lihat Semua Proyek
+                        View All Projects
                         <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>

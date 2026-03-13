@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link'; // 👈 Kita butuh Link
+import Link from 'next/link'; // 👈 Link is required
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import DOMPurify from 'isomorphic-dompurify';
@@ -23,7 +23,7 @@ export default function ProductCard({ title, excerpt, imageUrl, slug }: ProductC
         whileHover={{ y: -10 }}
         className="group relative h-full bg-slate-900 border border-white/10 rounded-xl overflow-hidden hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col"
       >
-        {/* 1. Gambar Produk */}
+        {/* 1. Product Image */}
         <div className="relative h-64 w-full overflow-hidden">
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
           
@@ -54,7 +54,7 @@ export default function ProductCard({ title, excerpt, imageUrl, slug }: ProductC
 
           {/* Tombol Panah */}
           <div className="flex items-center text-cyan-500 font-semibold text-sm tracking-wide mt-auto">
-            <span className="mr-2 group-hover:mr-4 transition-all">LIHAT DETAIL</span>
+            <span className="mr-2 group-hover:mr-4 transition-all">VIEW DETAILS</span>
             <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
           </div>
         </div>

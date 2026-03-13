@@ -20,22 +20,22 @@ export default function ProductsError({ error, reset }: ErrorBoundaryProps) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M12 3a9 9 0 110 18A9 9 0 0112 3z" />
                     </svg>
                 </div>
-                <h1 className="text-2xl font-black text-slate-900 mb-2">Halaman Tidak Dapat Dimuat</h1>
+                <h1 className="text-2xl font-black text-slate-900 mb-2">Unable to Load This Page</h1>
                 <p className="text-slate-500 mb-8 text-sm leading-relaxed">
-                    Terjadi kesalahan saat memuat data produk. Silakan coba lagi, atau hubungi kami bila masalah berlanjut.
+                    There was an error loading product data. Please try again, or contact us if the issue continues.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <button
                         onClick={reset}
                         className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-colors"
                     >
-                        Coba Lagi
+                        Try Again
                     </button>
                     <a
                         href="/contact"
                         className="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors"
                     >
-                        Hubungi Kami
+                        Contact Us
                     </a>
                 </div>
                 {process.env.NODE_ENV === 'development' && (

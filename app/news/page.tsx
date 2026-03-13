@@ -2,42 +2,31 @@ import type { Metadata } from 'next';
 import { getAllPosts } from '../../services/wordpress';
 import NewsGrid from '../../components/news/NewsGrid';
 import { Zap } from 'lucide-react';
-import { getServerLang } from '../../lib/i18n';
 
 export const revalidate = 3600; // ISR cache for 1 hour
 
 export const metadata: Metadata = {
-    title: 'Insights Hub | Berita & Artikel Teknis | PT Dimensi Quantum Wahyudi',
-    description: 'Eksplorasi konten seputar teknologi vakum, vacuum lifter, material handling, dan solusi industri terkini dari PT Dimensi Quantum Wahyudi.',
+    title: 'Insights Hub | Technical Articles & Updates | PT Dimensi Quantum Wahyudi',
+    description: 'Explore insights on vacuum technology, lifting systems, material handling, and practical industrial innovation from PT Dimensi Quantum Wahyudi.',
     openGraph: {
         title: 'Insights Hub | PT Dimensi Quantum Wahyudi',
-        description: 'Berita, artikel teknis, dan case study seputar vacuum lifter & material handling industri.',
+        description: 'Technical articles, field updates, and case-based insights on vacuum lifting and industrial material handling.',
         url: 'https://dimensiwahyudi.com/news',
         siteName: 'PT Dimensi Quantum Wahyudi',
-        locale: 'id_ID',
+        locale: 'en_US',
         type: 'website',
     },
 };
 
 export default async function NewsPage() {
-    const lang = await getServerLang();
     const posts = await getAllPosts();
-    const copy =
-        lang === 'en'
-            ? {
-                badge: 'Knowledge Base & Updates',
-                subtitle:
-                    'Exploring the frontiers of vacuum technology, engineering precision, and industrial innovation.',
-                emptyTitle: 'No Articles Yet',
-                emptyDesc: 'We are preparing fresh content. Please check back again soon.',
-            }
-            : {
-                badge: 'Knowledge Base & Updates',
-                subtitle:
-                    'Jelajahi wawasan terbaru seputar teknologi vakum, presisi engineering, dan inovasi industri.',
-                emptyTitle: 'Belum Ada Artikel',
-                emptyDesc: 'Konten sedang disiapkan. Silakan kembali lagi nanti.',
-            };
+    const copy = {
+        badge: 'Knowledge Base & Updates',
+        subtitle:
+            'Exploring the frontiers of vacuum technology, engineering precision, and industrial innovation.',
+        emptyTitle: 'No Articles Yet',
+        emptyDesc: 'We are preparing fresh content. Please check back again soon.',
+    };
 
     return (
         <main className="min-h-screen bg-slate-50 text-slate-800 font-sans overflow-hidden selection:bg-blue-100 selection:text-blue-900">

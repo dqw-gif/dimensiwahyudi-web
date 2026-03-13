@@ -9,7 +9,7 @@ const brands = [
   {
     name: 'SCHMALZ',
     country: 'Germany',
-    desc: 'Global market leader teknologi vacuum automation & ergonomic handling systems.',
+    desc: 'Global market leader in vacuum automation and ergonomic handling systems.',
     logoUrl: 'https://i.imgur.com/6ns1gwx.png',
     website: 'https://www.schmalz.com/',
     internalLink: '/products/schmalz',
@@ -39,19 +39,19 @@ const brands = [
     features: [
       {
         title: 'Vacuum Tube Lifter',
-        desc: 'JumboFlex & seri JUMBO untuk angkat beban berat tanpa sakit pinggang.',
+        desc: 'JumboFlex and JUMBO series for heavy lifting with safer, lower-strain operation.',
         img: 'https://media.schmalz.com/MAM_Library/Products/Anwendungsbilder/Handling%20Systems/Applications/Logistics/01f071828115_Picture_Anwendungsbilder_HS_JumboFlex%20Mobile_2024_03.jpg?size=l',
         tag: 'Flagship'
       },
       {
         title: 'VacuMaster',
-        desc: 'Vacuum lifter portable untuk pengangkatan karton, kayu, dan kaca hingga 1000 kg.',
+        desc: 'Portable vacuum lifting system for cartons, wood, and glass up to 1000 kg.',
         img: 'https://i.imgur.com/1Whf0JL.png',
         tag: 'Popular'
       },
       {
         title: 'Vacuum Suction Cup',
-        desc: 'Komponen vakum presisi untuk otomasi robotika & handling industri.',
+        desc: 'Precision vacuum components for robotics automation and industrial handling.',
         img: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00191/f03704cb51f0_PUG_PGE-00191_000.jpg?size=m',
         tag: 'Component'
       },
@@ -60,7 +60,7 @@ const brands = [
   {
     name: 'BINAR HANDLING',
     country: 'Sweden',
-    desc: 'Pionir solusi smart lifting & manipulator arms dengan kontrol presisi tak tertandingi.',
+    desc: 'Pioneer of smart lifting and manipulator arm systems with precision control.',
     logoUrl: 'https://i.imgur.com/OOBgQpe.png',
     website: 'https://www.binarhandling.com',
     internalLink: '/products/binar',
@@ -90,19 +90,19 @@ const brands = [
     features: [
       {
         title: 'Quick-Lift Arm 50i',
-        desc: 'Servo lift paling responsif — fingertip control untuk beban 50 kg.',
+        desc: 'Highly responsive servo lift with fingertip control for payloads up to 50 kg.',
         img: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLA50i_OM_utsnitt2_Gen3.png',
         tag: 'Bestseller'
       },
       {
         title: 'Quick-Lift Driven 300i',
-        desc: 'Motor-assisted 3-arah untuk beban hingga 300 kg tanpa risiko cedera.',
+        desc: 'Motor-assisted 3-axis lifting for payloads up to 300 kg with less injury risk.',
         img: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLA_300_v2_Gen3.png',
         tag: 'Heavy Duty'
       },
       {
         title: 'Vacuum End Effector',
-        desc: 'Gripdon vakum serbaguna dengan quick-connect untuk semua jenis permukaan.',
+        desc: 'Versatile vacuum gripper with quick-connect support for many surface types.',
         img: 'https://www.binarhandling.com/wp-content/uploads/2020/03/Vacuum_Versatile_end_effector_II.jpg',
         tag: 'Gripper'
       },
@@ -198,7 +198,7 @@ export default function BrandShowcase() {
                         {feat.desc}
                       </p>
                       <div className={`mt-4 flex items-center gap-1.5 text-xs font-bold ${brand.theme.btnText} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                        Lihat Produk <ArrowRight size={12} />
+                        View Product <ArrowRight size={12} />
                       </div>
                     </div>
                   </Link>

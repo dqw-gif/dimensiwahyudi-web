@@ -15,21 +15,21 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const product = schmalzProducts.find(p => p.slug === slug);
-    if (!product) return { title: 'Produk Tidak Ditemukan' };
+    if (!product) return { title: 'Product Not Found' };
     const title = `${product.name} | Schmalz — PT Dimensi Quantum Wahyudi`;
     const description = product.description.slice(0, 160);
     const url = `https://dimensiwahyudi.com/products/schmalz/${slug}`;
     return {
         title,
         description,
-        keywords: [product.name, product.category, 'Schmalz', 'PT Dimensi Quantum Wahyudi', 'Vacuum Lifter Indonesia', 'Alat Angkat Industri'],
+        keywords: [product.name, product.category, 'Schmalz', 'PT Dimensi Quantum Wahyudi', 'Vacuum Lifter Indonesia', 'Industrial Lifting Equipment'],
         alternates: { canonical: url },
         openGraph: {
             title,
             description,
             url,
             type: 'website',
-            locale: 'id_ID',
+            locale: 'en_US',
             siteName: 'PT Dimensi Quantum Wahyudi',
         },
     };
@@ -70,7 +70,7 @@ export default async function SchmalzProductDetail({ params }: Props) {
                 <div className="relative max-w-7xl mx-auto px-6">
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -104,7 +104,7 @@ export default async function SchmalzProductDetail({ params }: Props) {
                         {/* LEFT — Main Content */}
                         <div className="lg:col-span-2 space-y-10">
 
-                            {/* Product Image — 📷 Tampil otomatis setelah imageUrl diisi di schmalz.ts */}
+                            {/* Product image shown automatically when imageUrl is provided in schmalz.ts */}
                             {product.imageUrl && (
                                 <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                                     <img
@@ -118,14 +118,14 @@ export default async function SchmalzProductDetail({ params }: Props) {
 
                             {/* Description */}
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Deskripsi Produk</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Product Description</h2>
                                 <div className="h-1 w-12 bg-blue-600 rounded-full mb-6" />
                                 <p className="text-slate-600 leading-relaxed text-base">{product.description}</p>
                             </div>
 
                             {/* Specs Table */}
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Spesifikasi Teknis</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Technical Specifications</h2>
                                 <div className="h-1 w-12 bg-blue-600 rounded-full mb-6" />
                                 <div className="divide-y divide-slate-100">
                                     {product.specs.map((spec, i) => (
@@ -139,7 +139,7 @@ export default async function SchmalzProductDetail({ params }: Props) {
 
                             {/* Features */}
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Fitur Unggulan</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Key Features</h2>
                                 <div className="h-1 w-12 bg-blue-600 rounded-full mb-6" />
                                 <div className="grid sm:grid-cols-2 gap-3">
                                     {product.features.map((feat, i) => (
@@ -153,7 +153,7 @@ export default async function SchmalzProductDetail({ params }: Props) {
 
                             {/* Applications */}
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Aplikasi</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Applications</h2>
                                 <div className="h-1 w-12 bg-blue-600 rounded-full mb-6" />
                                 <div className="flex flex-wrap gap-3">
                                     {product.applications.map((app, i) => (
@@ -169,15 +169,15 @@ export default async function SchmalzProductDetail({ params }: Props) {
                         <div className="space-y-6">
                             {/* Capacity Badge */}
                             <div className={`rounded-2xl bg-gradient-to-br ${product.heroColor} p-6 text-white shadow-lg`}>
-                                <div className="text-xs font-bold uppercase tracking-widest mb-1 opacity-70">Kapasitas</div>
+                                <div className="text-xs font-bold uppercase tracking-widest mb-1 opacity-70">Capacity</div>
                                 <div className="text-3xl font-black">{product.capacity}</div>
                                 <div className="mt-3 text-xs opacity-70 font-medium">Schmalz — German Engineering</div>
                             </div>
 
                             {/* CTA Card */}
                             <div className="bg-white rounded-2xl border border-slate-200 p-6 sticky top-24">
-                                <h3 className="text-lg font-black text-slate-900 mb-1">Tertarik dengan produk ini?</h3>
-                                <p className="text-slate-500 text-sm mb-6">Konsultasikan kebutuhan teknis Anda dengan engineer kami — gratis.</p>
+                                <h3 className="text-lg font-black text-slate-900 mb-1">Interested in this product?</h3>
+                                <p className="text-slate-500 text-sm mb-6">Discuss your technical requirements with our engineers for free.</p>
 
                                 <div className="flex flex-col gap-3">
                                     <a
@@ -192,12 +192,12 @@ export default async function SchmalzProductDetail({ params }: Props) {
                                         href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20"
                                     >
-                                        <Mail size={17} /> Minta Penawaran
+                                        <Mail size={17} /> Request a Quote
                                     </Link>
                                 </div>
 
                                 <div className="mt-6 pt-6 border-t border-slate-100">
-                                    <div className="text-xs text-slate-400 font-medium mb-3 uppercase tracking-wider">Produk Lainnya</div>
+                                    <div className="text-xs text-slate-400 font-medium mb-3 uppercase tracking-wider">More Products</div>
                                     <div className="space-y-2">
                                         {schmalzProducts
                                             .filter(p => p.slug !== slug)
@@ -213,7 +213,7 @@ export default async function SchmalzProductDetail({ params }: Props) {
                                                 </Link>
                                             ))}
                                         <Link href="/products/schmalz" className="flex items-center gap-2 py-2 px-3 text-blue-600 text-xs font-bold hover:bg-blue-50 rounded-lg transition-colors">
-                                            Lihat semua produk Schmalz <ArrowLeft size={12} className="rotate-180" />
+                                            View all Schmalz products <ArrowLeft size={12} className="rotate-180" />
                                         </Link>
                                     </div>
                                 </div>

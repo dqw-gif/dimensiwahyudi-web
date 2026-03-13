@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Zap, AlertTriangle, Droplets, Wind
 import { vacuumTubeLifterVariants } from '../../../../data/products/vacuum-tube-lifters';
 
 export const metadata: Metadata = {
-    title: 'Vacuum Tube Lifters — Semua Seri Jumbo | Schmalz — PT Dimensi Quantum Wahyudi',
-    description: 'Pilihan lengkap vacuum tube lifter Schmalz: JumboFlex, JumboErgo, JumboSprint, JumboSprint EX (ATEX), PalVac Hygienic, High-Stack, Low-Stack. 9 varian untuk semua kebutuhan.',
+    title: 'Vacuum Tube Lifters - Jumbo Series | Schmalz - PT Dimensi Quantum Wahyudi',
+    description: 'Complete Schmalz vacuum tube lifter lineup: JumboFlex, JumboErgo, JumboSprint, JumboSprint EX (ATEX), PalVac Hygienic, High-Stack, and Low-Stack. Nine variants for diverse handling needs.',
 };
 
 const badgeIcons: Record<string, React.ReactNode> = {
@@ -33,7 +33,7 @@ export default function VacuumTubeLifterIndexPage() {
                 <div className="relative max-w-7xl mx-auto px-6">
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -41,7 +41,7 @@ export default function VacuumTubeLifterIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Zap size={11} /> 9 Varian — Satu Kategori
+                        <Zap size={11} /> 9 Variants - One Product Family
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUUM TUBE
@@ -49,14 +49,14 @@ export default function VacuumTubeLifterIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Seri Jumbo dari Schmalz — lini vakum tube lifter paling komprehensif di dunia. Dari clean room hingga zona ATEX, dari 50 kg hingga 300 kg.
+                        The Schmalz Jumbo series is one of the most complete vacuum tube lifter lines available, from cleanroom handling to ATEX zones and capacities from 50 kg to 300 kg.
                     </p>
 
                     {/* Quick stats */}
                     <div className="flex items-center gap-8 mt-8">
                         {[
-                            { label: 'Varian', value: '9' },
-                            { label: 'Max Kapasitas', value: '300 kg' },
+                            { label: 'Variants', value: '9' },
+                            { label: 'Max Capacity', value: '300 kg' },
                             { label: 'Max Stack Height', value: '255 cm' },
                         ].map(stat => (
                             <div key={stat.label} className="text-center">
@@ -73,7 +73,7 @@ export default function VacuumTubeLifterIndexPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex items-center gap-3 mb-10">
                         <Layers size={16} className="text-slate-400" />
-                        <span className="text-slate-500 text-sm font-medium">Pilih varian yang sesuai kebutuhan Anda</span>
+                        <span className="text-slate-500 text-sm font-medium">Choose the variant that matches your needs</span>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -93,7 +93,7 @@ export default function VacuumTubeLifterIndexPage() {
                                             loading="lazy"
                                         />
                                     ) : (
-                                        /* Foto belum diisi - tampilkan gradient */
+                                        /* Image not available - show gradient */
                                         <div className="absolute inset-0 opacity-25"
                                             style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
                                     )}
@@ -129,7 +129,7 @@ export default function VacuumTubeLifterIndexPage() {
                                     </p>
 
                                     <div className="flex items-center text-blue-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail
+                                        View Details
                                         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@ export default function VacuumTubeLifterIndexPage() {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <Link href="/products/schmalz" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium text-sm transition-colors">
-                        <ArrowLeft size={16} /> Kembali ke Semua Produk Schmalz
+                        <ArrowLeft size={16} /> Back to All Schmalz Products
                     </Link>
                     <a
                         href="https://wa.me/6281119168752"
@@ -151,7 +151,7 @@ export default function VacuumTubeLifterIndexPage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-600/20"
                     >
-                        Konsultasi Pemilihan Varian
+                        Variant Selection Consultation
                         <ArrowRight size={14} />
                     </a>
                 </div>

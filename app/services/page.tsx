@@ -1,38 +1,29 @@
 ﻿import { Metadata } from 'next';
 import Link from 'next/link';
 import { ServiceHero, ServiceList } from '../../components/services/ServiceAnimations';
-import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
-  title: 'Layanan Teknis | Instalasi, Maintenance & Training | PT Dimensi Quantum Wahyudi',
-  description: 'Layanan purna jual profesional PT Dimensi Quantum Wahyudi: instalasi & commissioning, pemeliharaan preventif, sertifikasi operator, suku cadang asli Schmalz & Binar. Respon teknisi 24 jam.',
-  keywords: ['layanan teknis', 'instalasi vacuum lifter', 'maintenance lifting equipment', 'sertifikasi operator', 'suku cadang Schmalz', 'after sales service'],
+  title: 'Technical Services | Installation, Maintenance & Training | PT Dimensi Quantum Wahyudi',
+  description: 'Professional after-sales services from PT Dimensi Quantum Wahyudi: installation and commissioning, preventive maintenance, operator training, and genuine Schmalz & Binar parts with responsive technical support.',
+  keywords: ['technical services', 'vacuum lifter installation', 'lifting equipment maintenance', 'operator training', 'Schmalz spare parts', 'after-sales service'],
   openGraph: {
-    title: 'Layanan Teknis PT Dimensi Quantum Wahyudi | Instalasi, Maintenance & Training',
-    description: 'Respon teknis 24 jam. Instalasi, pemeliharaan preventif, training operator, dan suku cadang asli Schmalz & Binar.',
+    title: 'Technical Services | Installation, Maintenance & Training',
+    description: 'Reliable installation, preventive maintenance, operator training, and genuine parts support for industrial lifting systems.',
     url: 'https://dimensiwahyudi.com/services',
     siteName: 'PT Dimensi Quantum Wahyudi',
-    locale: 'id_ID',
+    locale: 'en_US',
     type: 'website',
   },
   alternates: { canonical: 'https://dimensiwahyudi.com/services' },
 };
 
 export default async function ServicesPage() {
-  const lang = await getServerLang();
-  const copy = lang === 'en'
-    ? {
-        title: 'Optimize Your Equipment Performance Today',
-        desc: 'Protect your plant uptime with support from our specialist team. Schedule a technical visit today.',
-        btn1: 'Service Consultation',
-        btn2: 'Technical WhatsApp Support',
-      }
-    : {
-        title: 'Optimalkan Performa Alat Anda Sekarang',
-        desc: 'Lindungi kelangsungan operasional pabrik Anda dengan bantuan tim ahli kami. Jadwalkan Technical Visit hari ini.',
-        btn1: 'Konsultasi Layanan Servis',
-        btn2: 'Chat WhatsApp Teknis',
-      };
+  const copy = {
+    title: 'Optimize Your Equipment Performance Today',
+    desc: 'Protect your plant uptime with support from our specialist team. Schedule a technical visit today.',
+    btn1: 'Service Consultation',
+    btn2: 'Technical WhatsApp Support',
+  };
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
 

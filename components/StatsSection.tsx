@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const stats = [
-  { number: '12+', label: 'Tahun Pengalaman' },
-  { number: '500+', label: 'Proyek Selesai' },
-  { number: '50+', label: 'Mitra Industri' },
-  { number: '100%', label: 'Kepuasan Klien' },
+  { number: '17+', label: 'Years of Experience' },
+  { number: '500+', label: 'Completed Projects' },
+  { number: '50+', label: 'Industrial Partners' },
+  { number: '100%', label: 'Client Satisfaction' },
 ];
 
 const clients = [
@@ -26,7 +26,7 @@ export default function StatsSection() {
     <section className="relative w-full py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Container Statistik dengan Background Gelap (Kembali ke Style Awal) */}
+        {/* Statistics container with dark background (restored original style) */}
         <div className="relative p-8 md:p-16 bg-slate-900 rounded-[2rem] shadow-2xl mb-24 overflow-hidden border border-white/10">
           {/* Efek aksen cahaya di background kotak gelap */}
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.1),transparent)] pointer-events-none"></div>
@@ -55,7 +55,7 @@ export default function StatsSection() {
         {/* Client Logos Section (Tetap di atas Background Putih) */}
         <div className="text-center mb-12">
           <p className="text-slate-400 uppercase text-xs tracking-[0.4em] font-bold">
-            Dipercaya Oleh Industri Terkemuka
+            Trusted by Leading Manufacturers
           </p>
         </div>
 

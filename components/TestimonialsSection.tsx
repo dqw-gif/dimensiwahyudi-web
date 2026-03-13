@@ -6,35 +6,35 @@ import Image from 'next/image';
 
 const testimonials = [
     {
-        quote: 'Produk Jumbo Flex dari PT Dimensi Quantum Wahyudi sudah digunakan di Bining Receiving. Kehadiran alat ini sangat membantu operasional kami saat mengangkat barang berat, efektif mencegah risiko cedera, dan sangat mendukung ergonomi operator kami. Selain produknya yang handal, kami juga sangat puas dengan tim DQW. Penjelasan saat proses trial sangat jelas dan baik. Penanganan after-sales dan pelayanannya kepada user juga sangat bagus sekali. Harapannya, DQW bisa terus mengembangkan alat-alat canggih lainnya untuk membantu operasional di seluruh perusahaan, terutama di Toyota.',
+        quote: 'We now use JumboFlex from PT Dimensi Quantum Wahyudi in our receiving process. It has made heavy lifting much safer and easier for our team, with a clear improvement in operator ergonomics. Beyond the equipment itself, DQW delivered excellent technical guidance during the trial and strong after-sales support. We look forward to expanding similar solutions across our operations.',
         name: 'Abdullah Mubarok',
-        title: 'Receiving',
+        title: 'Receiving Team',
         company: 'PT Toyota Astra Motor',
-        industry: 'Otomotif',
-        metric: '0 cedera dalam 3 bulan',
+        industry: 'Automotive',
+        metric: '0 lifting injuries in 3 months',
         photo: 'https://i.imgur.com/kTWFvvP.png',
     },
     {
-        quote: 'Kami menggunakan vacuum lifter dan peralatan angkut dari Schmalz karena rekomendasi langsung dari headquarter kami di Italia. Sebagai agen lokal, PT Dimensi Quantum Wahyudi memberikan dukungan teknis yang sangat jelas dan komunikasi yang luar biasa kooperatif. Dari sisi harga, penawaran mereka memiliki economic value yang sangat kompetitif. Produk ini terbukti mempermudah pekerjaan operator kami serta meningkatkan standar safety dan ergonomi. Proses instalasi pun berjalan sangat lancar berkat komunikasi yang solid.',
+        quote: 'We adopted Schmalz vacuum lifters based on guidance from our Italian headquarters, and PT Dimensi Quantum Wahyudi has been a highly reliable local partner. Their technical support is clear, responsive, and collaborative. Commercially, the proposal offered strong value, and operationally the solution has improved both safety and ergonomics. Installation was smooth from start to finish.',
         name: 'Anang Wahyudi',
-        title: 'Bagian Proyek (Pengadaan)',
+        title: 'Project Procurement',
         company: 'PT Evoluzione Tyres',
-        industry: 'Ban & Otomotif',
-        metric: '+40% kecepatan handling',
+        industry: 'Tire & Automotive',
+        metric: '+40% handling speed',
         photo: 'https://i.imgur.com/2WEnjnU.png',
     },
     {
-        quote: 'Alat angkat vakum dari PT Dimensi Kuantum adalah solusi tepat untuk menekan angka penyakit akibat kerja. Sebelumnya, pekerja kami harus memindahkan beban 20 hingga 100 kg setiap hari. Dengan alat ini, pekerjaan berat menjadi jauh lebih ringan dan aman. Respon tim Dimensi Kuantum juga sangat cepat, langsung tanggap di hari yang sama!',
+        quote: 'The vacuum lifting solution from PT Dimensi Quantum Wahyudi has helped us significantly reduce work-related strain. Our operators used to handle loads between 20 and 100 kg manually every day. With this setup, heavy tasks are now much safer and more manageable. Their team is also very responsive, often supporting us on the same day.',
         name: 'Ibnu Abilbari',
         title: 'Industrial Engineering',
         company: 'PT Gajah Tunggal',
-        industry: 'Ban & Otomotif',
-        metric: 'Setup dalam 2 minggu',
+        industry: 'Tire & Automotive',
+        metric: 'Installed in 2 weeks',
         photo: 'https://i.imgur.com/9pAhEE5.png',
     },
 ];
 
-const industries = ['Otomotif', 'Packaging', 'FMCG / Food Manufacturing'];
+const industries = ['Automotive', 'Packaging', 'FMCG', 'Pharmaceutical', 'Logistics', 'Steel & Metal', 'Electronics', 'Chemical'];
 
 export default function TestimonialsSection() {
     return (
@@ -54,10 +54,10 @@ export default function TestimonialsSection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="text-blue-500 font-bold tracking-wider text-sm uppercase">Cerita Sukses & Implementasi Projek</span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mt-2 mb-6">Bukti Nyata <span className="text-cyan-400">Transformasi Otomasi</span> Pabrik</h2>
+                    <span className="text-blue-500 font-bold tracking-wider text-sm uppercase">Success Stories from the Factory Floor</span>
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mt-2 mb-6">Real Results from <span className="text-cyan-400">Automation Transformation</span></h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                        Dengarkan langsung dari para pemimpin industri manufaktur tentang bagaimana solusi <em>vacuum handling</em> kami meningkatkan efisiensi operasional dan mendukung pencapaian <em>zero accident</em> di lantai produksi.
+                        Hear directly from manufacturing leaders on how our <em>vacuum handling</em> solutions improve productivity while supporting safer, low-risk operations on the production floor.
                     </p>
                 </motion.div>
 
@@ -122,8 +122,8 @@ export default function TestimonialsSection() {
                     transition={{ delay: 0.4 }}
                     className="flex flex-wrap justify-center gap-3 mt-12"
                 >
-                    <span className="text-slate-500 text-xs font-medium uppercase tracking-widest mr-2 self-center">Industri yang Dilayani:</span>
-                    {['Otomotif', 'FMCG', 'Packaging', 'Farmasi', 'Logistik', 'Baja & Metal', 'Elektronik', 'Kimia'].map((ind) => (
+                    <span className="text-slate-500 text-xs font-medium uppercase tracking-widest mr-2 self-center">Industries Served:</span>
+                    {industries.map((ind) => (
                         <span key={ind} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-slate-400 text-xs">
                             {ind}
                         </span>

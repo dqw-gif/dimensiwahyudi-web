@@ -85,17 +85,17 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
                         {/* Content Body - Simplified for new Project Format */}
                         <div>
-                            <span className="text-xs font-black text-cyan-500 uppercase tracking-widest">Ikhtisar</span>
-                            <h2 className="text-2xl font-black text-slate-900 mt-2 mb-4">Latar Belakang Proyek</h2>
+                            <span className="text-xs font-black text-cyan-500 uppercase tracking-widest">Overview</span>
+                            <h2 className="text-2xl font-black text-slate-900 mt-2 mb-4">Project Background</h2>
                             <p className="text-slate-600 leading-relaxed text-lg">{c.desc}</p>
                         </div>
 
                         {/* Placeholder for future detailed elaboration */}
                         <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl">
-                            <h3 className="text-xl font-bold text-slate-900 mb-2">Tertarik dengan Skala Proyek ini?</h3>
-                            <p className="text-slate-500 mb-4">Konsultasikan kebutuhan handling di {c.industry} kepada tim Sales Engineering kami untuk mendapatkan proposal teknis lengkap.</p>
+                            <h3 className="text-xl font-bold text-slate-900 mb-2">Interested in a Similar Project Scale?</h3>
+                            <p className="text-slate-500 mb-4">Discuss your {c.industry} handling requirements with our sales engineering team and get a complete technical proposal.</p>
                             <Link href="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-bold transition-colors">
-                                Hubungi Kami Sekarang <ArrowRight size={16} />
+                                Talk to Our Team <ArrowRight size={16} />
                             </Link>
                         </div>
                     </div>
@@ -104,9 +104,9 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                             <CheckCircle size={20} className="text-blue-600 shrink-0 mt-0.5" />
                             <div className="flex-1">
                                 <div className="flex items-baseline gap-3 flex-wrap">
-                                    <span className="text-xl font-black text-blue-600">Sistem Handling Terpasang</span>
+                                    <span className="text-xl font-black text-blue-600">Handling System Installed</span>
                                 </div>
-                                <p className="text-slate-500 text-sm mt-1">Selesai diinstalasi dan diverifikasi beroperasi dengan aman sesuai standar ergonomis lantai produksi industri {c.industry}.</p>
+                                <p className="text-slate-500 text-sm mt-1">Completed installation and verified safe operation aligned with ergonomic production-floor standards for the {c.industry} industry.</p>
                             </div>
                         </div>
                     </div>
@@ -117,35 +117,35 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <div className="space-y-6">
                 {/* Project Fast Facts */}
                 <div className="bg-slate-950 rounded-2xl p-6 text-white sticky top-6">
-                    <h3 className="font-black text-sm uppercase tracking-wider text-slate-400 mb-4">Ringkasan Proyek</h3>
+                    <h3 className="font-black text-sm uppercase tracking-wider text-slate-400 mb-4">Project Summary</h3>
                     <dl className="space-y-3 text-sm">
                         <div>
-                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Klien</dt>
+                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Client</dt>
                             <dd className="text-white font-semibold mt-0.5">{c.client}</dd>
                         </div>
                         <div>
-                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Industri</dt>
+                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Industry</dt>
                             <dd className="text-white font-semibold mt-0.5">{c.industry}</dd>
                         </div>
                         <div>
-                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Lokasi</dt>
+                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Location</dt>
                             <dd className="text-white font-semibold mt-0.5">Indonesia</dd>
                         </div>
                         <div>
-                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Luas Skala</dt>
-                            <dd className="text-white font-semibold mt-0.5">{c.size === 'large' ? 'Fasilitas Padat Karya' : c.size === 'tall' ? 'Area Assembly Panjang' : 'Standar Fabrikasi'}</dd>
+                            <dt className="text-slate-500 text-xs uppercase tracking-wider">Project Scale</dt>
+                            <dd className="text-white font-semibold mt-0.5">{c.size === 'large' ? 'High-Throughput Facility' : c.size === 'tall' ? 'Extended Assembly Area' : 'Standard Fabrication Area'}</dd>
                         </div>
                         <div>
                             <dt className="text-slate-500 text-xs uppercase tracking-wider">Status</dt>
                             <dd className="text-white font-semibold flex items-center gap-1.5 mt-0.5 text-emerald-400">
-                                <CheckCircle size={14} /> Terselesaikan
+                                <CheckCircle size={14} /> Completed
                             </dd>
                         </div>
                     </dl>
 
                     <div className="border-t border-white/10 mt-5 pt-5 space-y-3">
                         <Link href="/contact" className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition-colors">
-                            Konsultasi untuk Proyek Serupa
+                            Consultation for Similar Projects
                         </Link>
                         <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-sm transition-colors">
@@ -156,7 +156,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
                 <div className="flex flex-col gap-4 sticky top-24">
                     <div className="p-6 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl">
-                        <h3 className="text-xl font-black text-white mb-4">Proyek Lainnya</h3>
+                        <h3 className="text-xl font-black text-white mb-4">More Projects</h3>
                         <div className="space-y-4">
                             {/* Other case studies */}
                             {projects.filter(p => p.id !== slug).slice(0, 3).map(cs => (

@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Layers, Building2 } from 'lucide-r
 import { craneSystemVariants } from '../../../../data/products/crane-systems';
 
 export const metadata: Metadata = {
-    title: 'Crane Systems & Jib Cranes — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
-    description: 'Schmalz Jib Cranes (1.000kg), Aluminum Bridge Cranes (1.200kg), KBG Modular Steel (30×8.5m), Chain Hoists (2.500kg). Fondasi sistem handling vakum premium.',
+    title: 'Crane Systems & Jib Cranes — Full Range | Schmalz — PT Dimensi Quantum Wahyudi',
+    description: 'Schmalz Jib Cranes (1,000kg), Aluminum Bridge Cranes (1,200kg), KBG Modular Steel (30x8.5m), and Chain Hoists (2,500kg). A premium foundation for vacuum handling systems.',
 };
 
 const badgeColors: Record<string, string> = {
@@ -24,7 +24,7 @@ export default function CraneSystemIndexPage() {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8 flex-wrap">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -32,7 +32,7 @@ export default function CraneSystemIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Building2 size={11} /> {craneSystemVariants.length} Sistem — Hingga 2.500 kg
+                        <Building2 size={11} /> {craneSystemVariants.length} Systems - Up to 2,500 kg
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         CRANE SYSTEMS
@@ -40,12 +40,12 @@ export default function CraneSystemIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-sky-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Fondasi sistem handling yang handal — Jib Crane, Bridge Crane aluminium, struktur baja modular KBG, hingga Chain Hoist 2.500 kg bersertifikat CSA.
+                        A reliable handling system foundation, from jib cranes and aluminum bridge cranes to modular KBG steel structures and CSA-certified 2,500 kg chain hoists.
                     </p>
 
                     <div className="flex items-center gap-8 mt-8">
                         {[
-                            { label: 'Varian', value: '4' },
+                            { label: 'Variants', value: '4' },
                             { label: 'Max Hoist', value: '2.500 kg' },
                             { label: 'Max Workspace', value: '30 × 8.5 m' },
                         ].map(s => (
@@ -90,7 +90,7 @@ export default function CraneSystemIndexPage() {
                                     <p className="text-blue-600 text-xs font-bold uppercase tracking-wider mb-3">{variant.highlight}</p>
                                     <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-5">{variant.tagline}</p>
                                     <div className="flex items-center text-blue-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                        View Details <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </Link>
@@ -102,11 +102,11 @@ export default function CraneSystemIndexPage() {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <Link href="/products/schmalz" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium text-sm transition-colors">
-                        <ArrowLeft size={16} /> Kembali ke Semua Produk Schmalz
+                        <ArrowLeft size={16} /> Back to All Schmalz Products
                     </Link>
                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-600/20">
-                        Konsultasi <ArrowRight size={14} />
+                        Consultation <ArrowRight size={14} />
                     </a>
                 </div>
             </section>

@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Shield, Droplets, Leaf, Layers, Wi
 import { vacuMasterVariants } from '../../../../data/products/vacumaster';
 
 export const metadata: Metadata = {
-    title: 'VacuMaster — Semua Seri | Schmalz — PT Dimensi Quantum Wahyudi',
-    description: 'Lini lengkap Schmalz VacuMaster: Basic, Comfort, Vario (2000kg), Eco (tanpa listrik), Window, Wood, Coil, Light, Multi, Glass, Panel (14m). 11 varian untuk setiap industri.',
+    title: 'VacuMaster - Full Series | Schmalz - PT Dimensi Quantum Wahyudi',
+    description: 'Full Schmalz VacuMaster lineup: Basic, Comfort, Vario (2000kg), Eco (without external power), Window, Wood, Coil, Light, Multi, Glass, and Panel (14m). Eleven variants for multiple industries.',
 };
 
 const badgeIcons: Record<string, React.ReactNode> = {
@@ -35,7 +35,7 @@ export default function VacuMasterIndexPage() {
                 <div className="relative max-w-7xl mx-auto px-6">
                     {/* Breadcrumb */}
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -43,7 +43,7 @@ export default function VacuMasterIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> 11 Varian — Satu Kategori
+                        <Layers size={11} /> 11 Variants - One Product Family
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUMASTER
@@ -51,13 +51,13 @@ export default function VacuMasterIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Seri VacuMaster dari Schmalz — vacuum lifting device paling serbaguna. Dari 100 kg hingga 2.000 kg, dari kayu berpori hingga kaca, dari coil baja hingga panel 14 meter.
+                        The Schmalz VacuMaster series is a highly versatile vacuum lifting range, from 100 kg to 2,000 kg and from porous wood to glass, steel coils, and 14-meter panels.
                     </p>
 
                     <div className="flex items-center gap-8 mt-8">
                         {[
-                            { label: 'Varian', value: '11' },
-                            { label: 'Max Kapasitas', value: '2.000 kg' },
+                            { label: 'Variants', value: '11' },
+                            { label: 'Max Capacity', value: '2,000 kg' },
                             { label: 'Max Panel Length', value: '14 m' },
                         ].map(stat => (
                             <div key={stat.label} className="text-center">
@@ -74,7 +74,7 @@ export default function VacuMasterIndexPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex items-center gap-3 mb-10">
                         <Layers size={16} className="text-slate-400" />
-                        <span className="text-slate-500 text-sm font-medium">Pilih varian yang sesuai kebutuhan Anda</span>
+                        <span className="text-slate-500 text-sm font-medium">Choose the variant that matches your needs</span>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -122,7 +122,7 @@ export default function VacuMasterIndexPage() {
                                         {variant.tagline}
                                     </p>
                                     <div className="flex items-center text-blue-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail
+                                        View Details
                                         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ export default function VacuMasterIndexPage() {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <Link href="/products/schmalz" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium text-sm transition-colors">
-                        <ArrowLeft size={16} /> Kembali ke Semua Produk Schmalz
+                        <ArrowLeft size={16} /> Back to All Schmalz Products
                     </Link>
                     <a
                         href="https://wa.me/6281119168752"
@@ -144,7 +144,7 @@ export default function VacuMasterIndexPage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-600/20"
                     >
-                        Konsultasi Pemilihan Varian
+                        Variant Selection Consultation
                         <ArrowRight size={14} />
                     </a>
                 </div>

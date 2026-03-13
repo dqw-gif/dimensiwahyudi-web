@@ -2,15 +2,14 @@
 import BentoGallery from './BentoGallery';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
-    title: 'Our Projects | Portofolio Instalasi PT Dimensi Quantum Wahyudi',
-    description: 'Lebih dari sekadar nama. Lihat langsung dokumentasi instalasi sistem vacuum lifting kami di berbagai fasilitas manufaktur raksasa Indonesia.',
-    keywords: ['portofolio PT Dimensi Quantum Wahyudi', 'proyek vacuum lifter', 'klien binar handling', 'instalasi schmalz indonesia'],
+    title: 'Our Projects | PT Dimensi Quantum Wahyudi',
+    description: 'Explore installation highlights and industrial implementation stories of our vacuum lifting systems across major manufacturing facilities in Indonesia.',
+    keywords: ['PT Dimensi Quantum Wahyudi portfolio', 'vacuum lifter projects', 'industrial handling implementation', 'Schmalz installation Indonesia'],
     openGraph: {
-        title: 'Our Projects PT Dimensi Quantum Wahyudi | Kepercayaan Raksasa Industri',
-        description: 'Bukti nyata implementasi solusi handling di lini produksi Gajah Tunggal, Unilever, Nestle, hingga Angkasa Pura.',
+        title: 'Our Projects | PT Dimensi Quantum Wahyudi',
+        description: 'Real implementation stories of handling solutions across leading industrial production lines in Indonesia.',
         url: 'https://dimensiwahyudi.com/our-projects',
     },
     alternates: { canonical: 'https://dimensiwahyudi.com/our-projects' },
@@ -20,31 +19,17 @@ import { projects } from '../../data/projects';
 export { projects };
 
 export default async function OurProjectsPage() {
-    const lang = await getServerLang();
-    const copy =
-        lang === 'en'
-            ? {
-                badge: 'Solutions Portfolio',
-                titleLine1: 'World-Class Material Handling',
-                titleLine2: 'Built for Indonesia.',
-                subtitle:
-                    'Trusted by leading manufacturers to integrate ergonomic European lifting technology for maximum productivity and workplace safety.',
-                ctaTitle: 'Boost Your Production Efficiency',
-                ctaDesc:
-                    'Every facility has its own material handling constraints. Talk to our engineers today and get a precision-built solution tailored to your production line.',
-                ctaButton: 'Discuss Your Requirements',
-            }
-            : {
-                badge: 'Portofolio Solusi',
-                titleLine1: 'Solusi Material Handling',
-                titleLine2: 'Kelas Dunia di Indonesia.',
-                subtitle:
-                    'Dipercaya oleh ratusan manufaktur terkemuka untuk mengintegrasikan teknologi alat angkat ergonomis Eropa demi produktivitas dan keselamatan kerja yang maksimal.',
-                ctaTitle: 'Tingkatkan Efisiensi Produksi Anda',
-                ctaDesc:
-                    'Setiap industri memiliki rintangan penanganan material yang spesifik. Hubungi tim engineer kami hari ini untuk merancang solusi presisi yang disesuaikan khusus dengan kebutuhan lini fasilitas Anda.',
-                ctaButton: 'Konsultasi Kebutuhan Anda',
-            };
+    const copy = {
+        badge: 'Solutions Portfolio',
+        titleLine1: 'World-Class Material Handling',
+        titleLine2: 'Built for Indonesia.',
+        subtitle:
+            'Trusted by leading manufacturers to integrate ergonomic European lifting technology for maximum productivity and workplace safety.',
+        ctaTitle: 'Boost Your Production Efficiency',
+        ctaDesc:
+            'Every facility has its own material handling constraints. Talk to our engineers today and get a precision-built solution tailored to your production line.',
+        ctaButton: 'Discuss Your Requirements',
+    };
 
     return (
         <main className="min-h-screen bg-slate-50 selection:bg-blue-500/30">

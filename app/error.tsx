@@ -42,7 +42,7 @@ export default function Error({
 
                 {/* Description */}
                 <p className="text-slate-500 text-lg mb-2 leading-relaxed">
-                    Terjadi kesalahan yang tidak terduga. Tim kami sudah diberitahu.
+                    An unexpected error occurred. Our team has been notified.
                 </p>
                 {process.env.NODE_ENV === 'development' && (
                     <p className="text-xs text-red-400 font-mono bg-red-50 px-4 py-2 rounded-xl mb-8 text-left break-all border border-red-100">
@@ -57,14 +57,14 @@ export default function Error({
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-full font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5"
                     >
                         <RefreshCw size={16} />
-                        Coba Lagi
+                        Try Again
                     </button>
                     <Link
                         href="/"
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-700 rounded-full font-bold text-sm hover:border-slate-900 transition-all hover:-translate-y-0.5"
                     >
                         <Home size={16} />
-                        Kembali ke Home
+                        Back to Home
                     </Link>
                 </div>
             </div>

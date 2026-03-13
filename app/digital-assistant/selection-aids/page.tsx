@@ -3,7 +3,7 @@ import SelectionAidsClient from './SelectionAidsClient';
 
 export const metadata: Metadata = {
   title: 'Selection Aids | PT Dimensi Quantum Wahyudi',
-  description: 'Asisten digital untuk konfigurasi sistem vakum presisi',
+  description: 'Digital assistant for precise vacuum system configuration',
 };
 
 export default function SelectionAidsPage() {

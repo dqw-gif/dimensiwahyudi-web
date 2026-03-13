@@ -2,11 +2,10 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowRight, Globe, Award, Zap } from 'lucide-react';
 import { BRANDS, schmalzProducts, binarProducts } from '../../data/products';
-import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
-    title: 'Produk | PT Dimensi Quantum Wahyudi — Distributor Resmi Schmalz & Binar Handling',
-    description: 'Temukan solusi vacuum lifter, lift arm ergonomis, dan gripdon dari Schmalz (Germany) dan Binar Handling (Sweden). Distributor resmi di Indonesia.',
+    title: 'Products | PT Dimensi Quantum Wahyudi — Official Schmalz & Binar Handling Distributor',
+    description: 'Explore vacuum lifters, ergonomic lift arms, and gripping solutions from Schmalz (Germany) and Binar Handling (Sweden), officially distributed by PT Dimensi Quantum Wahyudi in Indonesia.',
 };
 
 const brandCards = [
@@ -49,39 +48,21 @@ const brandCards = [
 ];
 
 export default async function ProductsPage() {
-    const lang = await getServerLang();
-    const copy =
-        lang === 'en'
-            ? {
-                heroBadge: 'Authorized Distributor - Indonesia',
-                heroKicker: 'Official Distributor',
-                heroTitleA: 'LIFTING SOLUTIONS &',
-                heroTitleB: 'VACUUM LIFTERS.',
-                heroDesc:
-                    'PT Dimensi Quantum Wahyudi is the official distributor of Schmalz from Germany and Binar Handling from Sweden, two global leaders in ergonomic and vacuum handling technology.',
-                plusMore: 'more',
-                featuredProducts: 'featured products',
-                catalogCta: 'View Product Catalog',
-                bottomTitle: 'Need Technical Consultation?',
-                bottomDesc: 'Our engineers are ready to help you select the right solution for your operation.',
-                whatsapp: 'Chat on WhatsApp',
-                about: 'About Us',
-            }
-            : {
-                heroBadge: 'Authorized Distributor - Indonesia',
-                heroKicker: 'Distributor Resmi',
-                heroTitleA: 'PRODUK SOLUSI ANGKAT &',
-                heroTitleB: 'VACUUM LIFTER.',
-                heroDesc:
-                    'PT Dimensi Quantum Wahyudi adalah distributor resmi Schmalz dari Jerman dan Binar Handling dari Swedia, dua pemimpin teknologi ergonomi dan vakum dunia.',
-                plusMore: 'lainnya',
-                featuredProducts: 'produk unggulan',
-                catalogCta: 'Lihat Katalog Produk',
-                bottomTitle: 'Butuh Konsultasi Teknis?',
-                bottomDesc: 'Engineer kami siap membantu memilih solusi yang tepat untuk kebutuhan industri Anda.',
-                whatsapp: 'Chat WhatsApp',
-                about: 'Tentang Kami',
-            };
+    const copy = {
+        heroBadge: 'Authorized Distributor - Indonesia',
+        heroKicker: 'Official Distributor',
+        heroTitleA: 'LIFTING SOLUTIONS &',
+        heroTitleB: 'VACUUM LIFTERS.',
+        heroDesc:
+            'PT Dimensi Quantum Wahyudi is the official distributor of Schmalz from Germany and Binar Handling from Sweden, two global leaders in ergonomic and vacuum handling technology.',
+        plusMore: 'more',
+        featuredProducts: 'featured products',
+        catalogCta: 'View Product Catalog',
+        bottomTitle: 'Need Technical Consultation?',
+        bottomDesc: 'Our engineers are ready to help you select the right solution for your operation.',
+        whatsapp: 'Chat on WhatsApp',
+        about: 'About Us',
+    };
 
     return (
         <main className="min-h-screen bg-white">

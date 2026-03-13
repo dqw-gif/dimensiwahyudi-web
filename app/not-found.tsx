@@ -27,12 +27,12 @@ export default function NotFound() {
 
                 {/* Title */}
                 <h1 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tight">
-                    Halaman Tidak Ditemukan
+                    Page Not Found
                 </h1>
 
                 {/* Description */}
                 <p className="text-slate-500 text-base leading-relaxed mb-10">
-                    Halaman yang Anda cari mungkin sudah dipindah, dihapus, atau URL yang Anda masukkan salah.
+                    The page you are looking for may have been moved, removed, or the URL may be incorrect.
                 </p>
 
                 {/* Actions */}
@@ -42,13 +42,13 @@ export default function NotFound() {
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-slate-900 text-white rounded-full font-bold text-sm hover:bg-blue-600 transition-all shadow-lg shadow-slate-900/20 hover:shadow-blue-600/30 hover:-translate-y-0.5"
                     >
                         <Home size={16} />
-                        Kembali ke Home
+                        Back to Home
                     </Link>
                     <Link
                         href="/news"
                         className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white border-2 border-slate-200 text-slate-700 rounded-full font-bold text-sm hover:border-slate-900 transition-all hover:-translate-y-0.5 group"
                     >
-                        Lihat Artikel
+                        View Articles
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>

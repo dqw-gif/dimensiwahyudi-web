@@ -2,12 +2,11 @@
 import { Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppFloat from "../components/WhatsAppFloat";
-import { LanguageProvider, type Lang } from "../components/LanguageProvider";
+import { LanguageProvider } from "../components/LanguageProvider";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -20,22 +19,23 @@ const BASE_URL = "https://dimensiwahyudi.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "PT Dimensi Quantum Wahyudi — Distributor Resmi Schmalz & Binar Handling Indonesia",
+    default: "PT Dimensi Quantum Wahyudi | Indonesia Market Leader in Vacuum Lifting Systems",
     template: "%s | PT Dimensi Quantum Wahyudi",
   },
   description:
-    "PT Dimensi Quantum Wahyudi adalah distributor resmi Schmalz (Jerman) dan Binar Handling (Swedia) di Indonesia. Solusi vacuum lifter, lift arm ergonomis, suction cup, dan crane system standar Eropa untuk industri manufaktur.",
+    "PT Dimensi Quantum Wahyudi, established in 2009, is Indonesia's market leader in vacuum lifting and ergonomic handling systems. Official Schmalz and Binar Handling distributor for high-performance industrial material handling.",
   keywords: [
     "Vacuum Lifter Indonesia",
-    "Distributor Schmalz Indonesia",
-    "Binar Handling Indonesia",
-    "Alat Angkat Ergonomis",
-    "Lift Arm Industri",
-    "Material Handling Indonesia",
-    "PT Dimensi Quantum Wahyudi",
-    "Suction Cup Industrial",
+    "Indonesia Market Leader Vacuum Lifter",
+    "Schmalz Distributor Indonesia",
+    "Binar Handling Distributor Indonesia",
+    "Ergonomic Lifting System",
+    "Industrial Lift Assist",
+    "Vacuum Tube Lifter Indonesia",
     "VacuMaster Indonesia",
-    "Vakum Lifter Bekasi",
+    "PT Dimensi Quantum Wahyudi",
+    "Material Handling Indonesia",
+    "Industrial Vacuum Handling",
   ],
   authors: [{ name: "PT Dimensi Quantum Wahyudi", url: BASE_URL }],
   creator: "PT Dimensi Quantum Wahyudi",
@@ -52,12 +52,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "id_ID",
+    locale: "en_US",
     url: BASE_URL,
     siteName: "PT Dimensi Quantum Wahyudi",
-    title: "PT Dimensi Quantum Wahyudi — Distributor Resmi Schmalz & Binar Handling Indonesia",
+    title: "PT Dimensi Quantum Wahyudi | Market Leader in Vacuum Lifting in Indonesia",
     description:
-      "Solusi material handling terpercaya di Indonesia. Vacuum lifter, lift arm, & crane system standar Eropa.",
+      "Trusted by leading manufacturers across Indonesia for vacuum lifters, lift-assist systems, and ergonomic material handling solutions.",
     images: [
       {
         url: `${BASE_URL}/opengraph-image`,
@@ -69,8 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PT Dimensi Quantum Wahyudi — Distributor Schmalz & Binar Handling",
-    description: "Solusi material handling standar Eropa untuk industri Indonesia.",
+    title: "PT Dimensi Quantum Wahyudi | Vacuum Lifting Leader in Indonesia",
+    description: "Market-leading vacuum lifting and ergonomic handling solutions for industrial manufacturers.",
     images: [`${BASE_URL}/opengraph-image`],
   },
   alternates: {
@@ -84,7 +84,8 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: "PT Dimensi Quantum Wahyudi",
   description:
-    "Distributor resmi Schmalz (Jerman) dan Binar Handling (Swedia) di Indonesia. Spesialis vacuum lifter, lift arm ergonomis, dan solusi material handling industri.",
+    "Established in 2009, PT Dimensi Quantum Wahyudi is Indonesia's market leader in vacuum lifting and ergonomic material handling systems.",
+  foundingDate: "2009",
   url: BASE_URL,
   telephone: "+62811-1916-8752",
   email: "sales@dimensiwahyudi.com",
@@ -117,9 +118,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const langCookie = cookieStore.get("site-lang")?.value;
-  const initialLang: Lang = langCookie === "en" ? "en" : "id";
+  const initialLang = "en";
 
   return (
     <html lang={initialLang} className="scroll-smooth">

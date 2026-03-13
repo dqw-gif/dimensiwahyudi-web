@@ -11,53 +11,37 @@ import {
 import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
-  title: 'Tentang Kami | PT Dimensi Quantum Wahyudi — Member of Nabel Sakha Group',
-  description: 'PT Dimensi Quantum Wahyudi sebagai bagian dari Nabel Sakha Group adalah perusahaan terkemuka Indonesia yang berspesialisasi dalam desain dan distribusi vacuum component and handling system.',
-  keywords: ['PT Dimensi Quantum Wahyudi', 'Nabel Sakha Group', 'Vacuum component', 'handling system', 'distributor Schmalz Indonesia', 'distributor Binar Indonesia', 'material handling Indonesia', 'tentang kami'],
+  title: 'About Us | PT Dimensi Quantum Wahyudi — Market Leader Since 2009',
+  description: 'Established in 2009, PT Dimensi Quantum Wahyudi is Indonesia\'s market leader in vacuum lifting and ergonomic handling solutions, and a proud member of Nabel Sakha Group.',
+  keywords: ['PT Dimensi Quantum Wahyudi', 'Nabel Sakha Group', 'vacuum component', 'handling system', 'Schmalz distributor Indonesia', 'Binar distributor Indonesia', 'material handling Indonesia', 'about PT Dimensi'],
   openGraph: {
-    title: 'Tentang PT Dimensi Quantum Wahyudi | Mitra Utama Vacuum Handling Indonesia',
-    description: 'Bagian dari Nabel Sakha Group, didirikan di Bekasi. Kami adalah pionir penyedia solusi Vacuum Automation dan Ergonomic Handling System terdepan di Indonesia.',
+    title: 'About PT Dimensi Quantum Wahyudi | Indonesia\'s Vacuum Handling Market Leader',
+    description: 'Part of Nabel Sakha Group and established in 2009, PT Dimensi Quantum Wahyudi leads Indonesia in vacuum automation and ergonomic handling systems.',
     url: 'https://dimensiwahyudi.com/about',
     siteName: 'PT Dimensi Quantum Wahyudi',
-    locale: 'id_ID',
+    locale: 'en_US',
     type: 'website',
   },
   alternates: { canonical: 'https://dimensiwahyudi.com/about' },
 };
 
 export default async function AboutPage() {
-  const lang = await getServerLang();
-  const copy = lang === 'en'
-    ? {
-        title: 'Pioneering Ergonomics & Vacuum Automation',
-        p1: 'Founded in Bekasi, PT Dimensi Quantum Wahyudi, part of the Nabel Sakha Group, is a leading Indonesian company specializing in vacuum components and handling systems.',
-        p2: 'With an exclusive focus on vacuum components and handling system distribution, we are committed to delivering world-class products and support.',
-        p3: 'As a trusted technical partner, we bridge top-tier European technology with the practical demands of local production floors.',
-        projects: 'Project Implementations',
-        clients: 'Multinational Clients',
-        philosophy: 'Our Philosophy',
-        philosophyTitle: 'Building Excellence Together',
-        process: 'Work Methodology',
-        processTitleA: 'A Standardized',
-        processTitleB: 'Execution Flow',
-        trusted: 'Trusted By',
-        trustedTitle: 'The Preferred Choice of Global Industry Leaders',
-      }
-    : {
-        title: 'Pionir Solusi Ergonomi & Otomasi Vakum',
-        p1: 'Didirikan di Bekasi, PT Dimensi Quantum Wahyudi sebagai bagian dari Nabel Sakha Group adalah perusahaan terdepan di Indonesia yang berspesialisasi dalam desain dan distribusi komponen vakum serta sistem handling.',
-        p2: 'Dengan fokus eksklusif pada distribusi vacuum components dan handling system, PT Dimensi Quantum Wahyudi terus berkomitmen untuk memberikan pelanggan setia kami produk dan layanan terbaik yang tersedia di pasaran global.',
-        p3: 'Sebagai konsultan teknis yang andal, kami menjembatani teknologi Eropa terkemuka dengan kebutuhan lantai produksi lokal yang menuntut presisi dan daya tahan tinggi.',
-        projects: 'Implementasi Proyek',
-        clients: 'Klien Multinasional',
-        philosophy: 'Filosofi Kami',
-        philosophyTitle: 'Membangun Keunggulan Bersama',
-        process: 'Metodologi Kerja',
-        processTitleA: 'Alur Kerja',
-        processTitleB: 'Terstandarisasi',
-        trusted: 'Dipercaya Oleh',
-        trustedTitle: 'Menjadi Pilihan Utama Pemimpin Industri Global',
-      };
+  await getServerLang();
+  const copy = {
+    title: 'Pioneering Ergonomics & Vacuum Automation',
+    p1: 'Established in 2009 in Bekasi, PT Dimensi Quantum Wahyudi, part of the Nabel Sakha Group, has grown into Indonesia\'s market leader in vacuum components and industrial handling systems.',
+    p2: 'With a dedicated focus on vacuum handling technologies, we deliver globally proven products backed by practical engineering support for local production realities.',
+    p3: 'As a trusted technical partner, we connect world-class European innovation with measurable results on Indonesian factory floors.',
+    projects: 'Project Implementations',
+    clients: 'Multinational Clients',
+    philosophy: 'Our Philosophy',
+    philosophyTitle: 'Building Excellence Together',
+    process: 'Work Methodology',
+    processTitleA: 'A Standardized',
+    processTitleB: 'Execution Flow',
+    trusted: 'Trusted By',
+    trustedTitle: 'The Preferred Choice of Global Industry Leaders',
+  };
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
 

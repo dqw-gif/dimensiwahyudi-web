@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { variant: slug } = await params;
     const v = ropeBalancerVariants.find(x => x.slug === slug);
-    if (!v) return { title: 'Tidak Ditemukan' };
+    if (!v) return { title: 'Not Found' };
     return { title: `${v.name} | Rope Balancers Schmalz — PT Dimensi Quantum Wahyudi`, description: v.description.slice(0, 160) };
 }
 
@@ -35,7 +35,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                 <div className={`absolute inset-0 bg-gradient-to-br ${variant.heroColor} opacity-20`} />
                 <div className="relative max-w-7xl mx-auto px-6">
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8 flex-wrap">
-                        <Link href="/products" className="hover:text-amber-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-amber-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-amber-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -68,7 +68,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                 </div>
                             )}
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Deskripsi Produk</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Product Description</h2>
                                 <div className="h-1 w-12 bg-amber-500 rounded-full mb-6" />
                                 <p className="text-slate-600 leading-relaxed">{variant.description}</p>
                                 <div className="mt-6 flex items-start gap-3 p-4 bg-amber-50 rounded-xl border border-amber-100">
@@ -80,7 +80,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                 </div>
                             </div>
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Spesifikasi Teknis</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Technical Specifications</h2>
                                 <div className="h-1 w-12 bg-amber-500 rounded-full mb-6" />
                                 <div className="divide-y divide-slate-100">
                                     {variant.specs.map((s, i) => (
@@ -92,7 +92,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                 </div>
                             </div>
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Fitur Unggulan</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Key Features</h2>
                                 <div className="h-1 w-12 bg-amber-500 rounded-full mb-6" />
                                 <div className="grid sm:grid-cols-2 gap-3">
                                     {variant.features.map((f, i) => (
@@ -104,7 +104,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                 </div>
                             </div>
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Aplikasi</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Applications</h2>
                                 <div className="h-1 w-12 bg-amber-500 rounded-full mb-6" />
                                 <div className="flex flex-wrap gap-3">
                                     {variant.applications.map((a, i) => (
@@ -116,13 +116,13 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
 
                         <div className="space-y-6">
                             <div className={`rounded-2xl bg-gradient-to-br ${variant.heroColor} p-6 text-white shadow-lg`}>
-                                <div className="text-xs font-bold uppercase tracking-widest mb-1 opacity-70">Kapasitas</div>
+                                <div className="text-xs font-bold uppercase tracking-widest mb-1 opacity-70">Capacity</div>
                                 <div className="text-3xl font-black">{variant.capacity}</div>
                                 <div className="mt-2 text-xs font-mono opacity-70">{variant.seriesCode}</div>
                             </div>
                             <div className="bg-white rounded-2xl border border-slate-200 p-6 sticky top-24">
-                                <h3 className="text-lg font-black text-slate-900 mb-1">Tertarik?</h3>
-                                <p className="text-slate-500 text-sm mb-6">Konsultasikan kebutuhan Anda bersama engineer kami.</p>
+                                <h3 className="text-lg font-black text-slate-900 mb-1">Interested?</h3>
+                                <p className="text-slate-500 text-sm mb-6">Discuss your requirements with our engineers.</p>
                                 <div className="flex flex-col gap-3">
                                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors">
@@ -130,11 +130,11 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                     </a>
                                     <Link href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3.5 rounded-xl transition-colors">
-                                        <Mail size={17} /> Minta Penawaran
+                                        <Mail size={17} /> Request a Quote
                                     </Link>
                                 </div>
                                 <div className="mt-6 pt-6 border-t border-slate-100">
-                                    <div className="text-xs text-slate-400 font-medium mb-3 uppercase tracking-wider">Varian Lain</div>
+                                    <div className="text-xs text-slate-400 font-medium mb-3 uppercase tracking-wider">Other variants</div>
                                     {ropeBalancerVariants.filter(v => v.slug !== slug).map(v => (
                                         <Link key={v.slug} href={`/products/schmalz/rope-balancer/${v.slug}`}
                                             className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-slate-50 transition-colors group/s">
@@ -147,7 +147,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                     ))}
                                     <Link href="/products/schmalz/rope-balancer"
                                         className="flex items-center gap-1.5 py-2 px-3 text-xs font-bold text-amber-600 hover:bg-amber-50 rounded-lg transition-colors mt-1">
-                                        Semua varian ({ropeBalancerVariants.length}) →
+                                        All variants ({ropeBalancerVariants.length}) →
                                     </Link>
                                 </div>
                             </div>

@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { variant: slug } = await params;
     const v = suctionCupVariants.find(x => x.slug === slug);
-    if (!v) return { title: 'Tidak Ditemukan' };
+    if (!v) return { title: 'Not Found' };
     return {
         title: `${v.name} | Vacuum Suction Cups Schmalz — PT Dimensi Quantum Wahyudi`,
         description: v.description.slice(0, 160),
@@ -45,7 +45,7 @@ export default async function SuctionCupVariantPage({ params }: Props) {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8 flex-wrap">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -83,20 +83,20 @@ export default async function SuctionCupVariantPage({ params }: Props) {
                             )}
 
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Deskripsi Produk</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Product Description</h2>
                                 <div className="h-1 w-12 bg-cyan-600 rounded-full mb-6" />
                                 <p className="text-slate-600 leading-relaxed">{variant.description}</p>
                                 <div className="mt-6 flex items-start gap-3 p-4 bg-cyan-50 rounded-xl border border-cyan-100">
                                     <Layers className="w-5 h-5 text-cyan-600 shrink-0 mt-0.5" />
                                     <div>
-                                        <div className="text-xs font-black text-cyan-700 uppercase tracking-wider mb-1">Aplikasi Utama</div>
+                                        <div className="text-xs font-black text-cyan-700 uppercase tracking-wider mb-1">Primary Application</div>
                                         <div className="text-slate-700 text-sm font-semibold">{variant.application}</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Spesifikasi Teknis</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Technical Specifications</h2>
                                 <div className="h-1 w-12 bg-cyan-600 rounded-full mb-6" />
                                 <div className="divide-y divide-slate-100">
                                     {variant.specs.map((s, i) => (
@@ -109,7 +109,7 @@ export default async function SuctionCupVariantPage({ params }: Props) {
                             </div>
 
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Fitur Unggulan</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Key Features</h2>
                                 <div className="h-1 w-12 bg-cyan-600 rounded-full mb-6" />
                                 <div className="grid sm:grid-cols-2 gap-3">
                                     {variant.features.map((f, i) => (
@@ -122,7 +122,7 @@ export default async function SuctionCupVariantPage({ params }: Props) {
                             </div>
 
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">
-                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Aplikasi</h2>
+                                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-4">Applications</h2>
                                 <div className="h-1 w-12 bg-cyan-600 rounded-full mb-6" />
                                 <div className="flex flex-wrap gap-3">
                                     {variant.applications.map((a, i) => (
@@ -141,17 +141,17 @@ export default async function SuctionCupVariantPage({ params }: Props) {
                             </div>
 
                             <div className="bg-white rounded-2xl border border-slate-200 p-6 sticky top-24">
-                                <h3 className="text-lg font-black text-slate-900 mb-1">Tertarik?</h3>
-                                <p className="text-slate-500 text-sm mb-6">Konsultasikan kebutuhan Anda bersama engineer kami.</p>
+                                <h3 className="text-lg font-black text-slate-900 mb-1">Interested?</h3>
+                                <p className="text-slate-500 text-sm mb-6">Discuss your requirements with our engineers.</p>
                                 <div className="flex flex-col gap-3">
-                                    <a href={`https://wa.me/6281119168752?text=Halo%2C+saya+tertarik+dengan+${encodeURIComponent(variant.name)}.`}
+                                    <a href={`https://wa.me/6281119168752?text=Hello%2C+I+am+interested+in+${encodeURIComponent(variant.name)}.`}
                                         target="_blank" rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-600/20">
                                         <Phone size={17} /> Chat WhatsApp
                                     </a>
                                     <Link href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20">
-                                        <Mail size={17} /> Minta Penawaran
+                                        <Mail size={17} /> Request a Quote
                                     </Link>
                                 </div>
 

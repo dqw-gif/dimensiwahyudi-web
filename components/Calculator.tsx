@@ -24,7 +24,7 @@ export default function SmartCalculator() {
         Kalkulator <span className="text-cyan-400">ROI & Beban Kerja Ergonomis</span>
       </h2>
       <p className="text-slate-400 text-center mb-10 max-w-2xl mx-auto">
-        Analisa risiko <span className="text-slate-200">manual material handling</span> di lini produksi pabrik Anda. Hitung akumulasi beban harian untuk mitigasi cedera tulang belakang (HNP) dan wujudkan standar K3 industri manufaktur global.
+        Analyze risks <span className="text-slate-200">manual material handling</span> in your production line. Calculate cumulative daily load to reduce spinal injury risk and improve workplace safety standards.
       </p>
 
       <div className="grid md:grid-cols-2 gap-12">
@@ -90,7 +90,7 @@ export default function SmartCalculator() {
             </div>
             <div className="flex justify-between text-slate-500 text-xs font-mono uppercase">
               <span>Rendah</span>
-              <span>Siklus Tinggi (High Frequency)</span>
+              <span>High Cycles (High Frequency)</span>
             </div>
           </div>
 
@@ -152,7 +152,7 @@ export default function SmartCalculator() {
               <div>
                 <h4 className={`font-bold text-lg mb-1 tracking-wide ${isDangerous ? 'text-red-400' : 'text-emerald-400'
                   }`}>
-                  {isDangerous ? 'BAHAYA: OVERLOAD ERGONOMIS' : 'STATUS: AMAN'}
+                    {isDangerous ? 'WARNING: ERGONOMIC OVERLOAD' : 'STATUS: SAFE'}
                 </h4>
                 <p className={`text-sm leading-relaxed ${isDangerous ? 'text-red-200/70' : 'text-emerald-200/70'
                   }`}>
@@ -168,14 +168,14 @@ export default function SmartCalculator() {
 
             <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
               <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
-              Rekomendasi Solusi Handling
+              Recommended Handling Solution
             </h4>
             <p className="text-white text-lg md:text-xl font-bold leading-tight z-10 relative mb-6">
               {recommendation.label}
             </p>
 
             <Link href={recommendation.productUrl} className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-6 rounded-lg transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/50 z-10 relative flex items-center justify-center gap-2 uppercase text-sm tracking-wide">
-              Lihat Produk <ArrowDown size={18} />
+              View Product <ArrowDown size={18} />
             </Link>
           </div>
         </div>

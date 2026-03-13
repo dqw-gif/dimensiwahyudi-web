@@ -1,9 +1,8 @@
 'use client';
 
 import { createContext, useContext, useMemo, useState } from 'react';
-import { useEffect } from 'react';
 
-export type Lang = 'id' | 'en';
+export type Lang = 'en';
 
 type Dictionary = {
   navbar: {
@@ -55,55 +54,6 @@ type Dictionary = {
 };
 
 const messages: Record<Lang, Dictionary> = {
-  id: {
-    navbar: {
-      home: 'Home',
-      about: 'Tentang Kami',
-      insights: 'Insight',
-      digitalAssistants: 'Asisten Digital',
-      products: 'Produk',
-      services: 'Layanan',
-      contact: 'Kontak',
-      quote: 'Minta Penawaran',
-      seeAllBrands: 'Lihat semua brand →',
-      selectionAidsDesc: 'Alat pintar untuk memilih komponen',
-      videoLibraryDesc: 'Demo produk Schmalz',
-      newsDesc: 'Kabar perusahaan & produk terbaru',
-      projectsDesc: 'Kisah sukses implementasi industri',
-      closeMenu: 'Tutup menu',
-      openMenu: 'Buka menu',
-      language: 'Bahasa',
-      allBrands: 'Semua Brand',
-    },
-    footer: {
-      company: 'Perusahaan',
-      solutions: 'Solusi Kami',
-      contactUs: 'Hubungi Kami',
-      about: 'Tentang Kami',
-      catalog: 'Katalog Produk',
-      service: 'Layanan Service',
-      career: 'Karir',
-      liftingService: 'Layanan & Service',
-      tagline:
-        'Mitra terpercaya solusi industrial lifting & handling system di Indonesia. Menggabungkan presisi teknologi Jerman dan inovasi Swedia untuk produktivitas pabrik Anda.',
-    },
-    selectionAids: {
-      title: 'Selection Assistant.',
-      subtitle: 'Pilih kategori sistem vakum di bawah ini untuk memulai konfigurasi.',
-      startLifter: 'Mulai Audit Lifter →',
-      startGenerator: 'Mulai Audit Generator →',
-      resetAudit: 'Reset Audit',
-      waitingData: 'Menunggu data...',
-      continue: 'LANJUTKAN',
-      seeResult: 'LIHAT HASIL',
-      back: '← KEMBALI',
-      restart: 'Restart',
-      found: 'Found.',
-      technicalSpec: 'Technical Spec Sheet',
-      performanceSnapshot: 'Performance Snapshot',
-      complete: 'Selesai',
-    },
-  },
   en: {
     navbar: {
       home: 'Home',
@@ -172,18 +122,6 @@ export function LanguageProvider({
 }) {
   const [lang, setLangState] = useState<Lang>(initialLang);
 
-  useEffect(() => {
-    const fromCookie = document.cookie
-      .split('; ')
-      .find((part) => part.startsWith('site-lang='))
-      ?.split('=')[1];
-
-    if (fromCookie === 'id' || fromCookie === 'en') {
-      setLangState(fromCookie);
-      document.documentElement.lang = fromCookie;
-    }
-  }, []);
-
   const setLang = (nextLang: Lang) => {
     setLangState(nextLang);
     document.cookie = `site-lang=${nextLang}; path=/; max-age=31536000; samesite=lax`;
@@ -195,7 +133,7 @@ export function LanguageProvider({
     () => ({
       lang,
       setLang,
-      t: messages[lang],
+      t: messages.en,
     }),
     [lang],
   );

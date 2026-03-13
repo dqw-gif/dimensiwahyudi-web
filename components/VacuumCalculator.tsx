@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useRef } from 'react';
 import {
@@ -39,7 +39,7 @@ const ModuleWrapper = ({ children, title, subtitle, onBack }: ModuleWrapperProps
         <div className="p-2 md:p-3 rounded-xl bg-white border border-slate-200 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:text-white transition-all shadow-sm">
           <ChevronLeft size={16} />
         </div>
-        Kembali ke Dashboard
+        Back to Dashboard
       </button>
       <div className="ml-auto text-right">
         <h2 className="text-2xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-none hidden sm:block">
@@ -71,7 +71,7 @@ const VacuumCalculator = () => {
           Vacuum <span className="text-blue-600">Calculator</span>
         </h1>
         <p className="text-slate-400 font-bold uppercase tracking-[0.1em] md:tracking-[0.3em] text-[10px] md:text-sm max-w-2xl mx-auto px-4">
-          Sistem kalkulasi teknis presisi untuk otomatisasi industri vakum
+          A precision technical calculation suite for industrial vacuum automation
         </p>
       </div>
 
@@ -113,7 +113,7 @@ const VacuumCalculator = () => {
               <TechInput label="Vacuum Level" value={state.vacuum} onValueChange={(val) => setters.setVacuum(Number(val))} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
               <div className="grid grid-cols-2 gap-4 md:gap-6">
                 <TechInput label="Safety Factor" value={state.safety} onValueChange={(val) => setters.setSafety(Number(val))} step={0.1} unit="" />
-                <TechInput label="Friction (Âµ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" info={true} />
+                <TechInput label="Friction (µ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" info={true} />
               </div>
             </GlassCard>
 
@@ -154,7 +154,7 @@ const VacuumCalculator = () => {
               <TechInput label="Vacuum Level" value={state.vacuum} onValueChange={(val) => setters.setVacuum(Number(val))} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
               <div className="grid grid-cols-2 gap-4 md:gap-6">
                 <TechInput label="Safety Factor" value={state.safety} onValueChange={(val) => setters.setSafety(Number(val))} step={0.1} unit="" />
-                <TechInput label="Friction (Âµ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" />
+                <TechInput label="Friction (µ)" value={state.friction} onValueChange={(val) => setters.setFriction(Number(val))} step={0.1} unit="" />
               </div>
               <TechInput label="Total Cups" value={state.numCupsInput} onValueChange={setters.setNumCupsInput} unit="pcs" />
             </GlassCard>
@@ -175,7 +175,7 @@ const VacuumCalculator = () => {
                     <div className="flex items-baseline gap-2 text-slate-900">
                       <span className="text-xl font-black text-blue-600">&gt;</span>
                       <span className="text-3xl md:text-4xl font-black tracking-tighter">{calculations.calcDiameter().area_h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="text-base font-black text-blue-600 uppercase tracking-tighter">mmÂ²</span>
+                      <span className="text-base font-black text-blue-600 uppercase tracking-tighter">mm²</span>
                     </div>
                     <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup area</span>
                   </div>
@@ -200,7 +200,7 @@ const VacuumCalculator = () => {
                     <div className="flex items-baseline gap-2 text-slate-900">
                       <span className="text-xl font-black text-slate-500">&gt;</span>
                       <span className="text-3xl md:text-4xl font-black tracking-tighter">{calculations.calcDiameter().area_v.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="text-base font-black text-slate-500 uppercase tracking-tighter">mmÂ²</span>
+                      <span className="text-base font-black text-slate-500 uppercase tracking-tighter">mm²</span>
                     </div>
                     <span className="text-xs text-slate-400 font-bold tracking-widest uppercase mt-2">Suction cup area</span>
                   </div>
@@ -231,7 +231,7 @@ const VacuumCalculator = () => {
                 </div>
               )}
               <TechInput label="Vacuum Level" value={state.vacuum} onValueChange={(val) => setters.setVacuum(Number(val))} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
-              <TechInput label="Friction (Âµ)" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} info={true} />
+              <TechInput label="Friction (µ)" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} info={true} />
             </GlassCard>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
               <ResultDisplay label="Gaya Tarik (Tegak Lurus)" value={calculations.calcForce()} unit="N" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
@@ -272,18 +272,18 @@ const VacuumCalculator = () => {
             <GlassCard className="p-6 md:p-12">
               <div className="flex flex-col sm:flex-row bg-slate-100 p-2 rounded-xl md:rounded-[1.5rem] mb-6 md:mb-12 gap-2">
                 <button onClick={() => setters.setHoseDistMode('main_to_sub')} className={`flex-1 py-3 md:py-5 rounded-lg md:rounded-[1rem] font-black text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${state.hoseDistMode === 'main_to_sub' ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}>
-                  <CustomIcons.hoseBranch /> Utama â†’ Cabang
+                  <CustomIcons.hoseBranch /> Utama → Cabang
                 </button>
                 <button onClick={() => setters.setHoseDistMode('sub_to_main')} className={`flex-1 py-3 md:py-5 rounded-lg md:rounded-[1rem] font-black text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${state.hoseDistMode !== 'main_to_sub' ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}>
-                  <div className="rotate-180"><CustomIcons.hoseBranch /></div> Cabang â†’ Utama
+                  <div className="rotate-180"><CustomIcons.hoseBranch /></div> Cabang → Utama
                 </button>
               </div>
               <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                <TechInput label={state.hoseDistMode === 'main_to_sub' ? "Ã˜ Selang Utama" : "Ã˜ Selang Cabang"} value={state.hoseInputDia} onValueChange={setters.setHoseInputDia} unit={state.hoseInputDiaUnit} onUnitChange={setters.setHoseInputDiaUnit} unitType="length" />
+                <TechInput label={state.hoseDistMode === 'main_to_sub' ? "Ø Selang Utama" : "Ø Selang Cabang"} value={state.hoseInputDia} onValueChange={setters.setHoseInputDia} unit={state.hoseInputDiaUnit} onUnitChange={setters.setHoseInputDiaUnit} unitType="length" />
                 <TechInput label="Jumlah Cabang" value={state.subHoses} onValueChange={setters.setSubHoses} unit="pcs" />
               </div>
             </GlassCard>
-            <ResultDisplay label={state.hoseDistMode === 'main_to_sub' ? "Rekomendasi Ã˜ Cabang" : "Rekomendasi Ã˜ Utama"} value={calculations.calcHoseDist()} unit={state.hoseInputDiaUnit} icon={<Share2 size={32} />} color="indigo" />
+            <ResultDisplay label={state.hoseDistMode === 'main_to_sub' ? "Rekomendasi Ø Cabang" : "Rekomendasi Ø Utama"} value={calculations.calcHoseDist()} unit={state.hoseInputDiaUnit} icon={<Share2 size={32} />} color="indigo" />
           </div>
         </ModuleWrapper>
       );
@@ -376,7 +376,7 @@ const VacuumCalculator = () => {
             <GlassCard className="p-6 md:p-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <TechInput label="Ambient pressure or absolute inlet pressure" value={state.inletPressure} onValueChange={setters.setInletPressure} unit={state.inletPressureUnit} onUnitChange={setters.setInletPressureUnit} unitType="pressure" />
-                <TechInput label="Temperature [Â°C]" value={state.temperature} onValueChange={setters.setTemperature} unit="" />
+                <TechInput label="Temperature [°C]" value={state.temperature} onValueChange={setters.setTemperature} unit="" />
                 <TechInput label="Number of flow resistors" value={state.numResistors} onValueChange={setters.setNumResistors} unit="" />
                 <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto] items-end gap-2">
                   <TechInput label="Occupancy rate [%]" value={state.occupancyRate} onValueChange={setters.setOccupancyRate} unit="" step={1} max={100} />
@@ -410,7 +410,7 @@ const VacuumCalculator = () => {
                 <div className="space-y-2">
                   <div className="flex justify-center items-center gap-2">
                     <span className="text-3xl md:text-4xl font-black text-blue-600 tracking-tighter">{calculations.calcAirFlowResistor().area_per_resistor.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                    <span className="text-lg md:text-xl font-black text-blue-600">mmÂ²</span>
+                    <span className="text-lg md:text-xl font-black text-blue-600">mm²</span>
                   </div>
                   <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bore cross-sectional area per flow resistors</p>
                 </div>
@@ -422,7 +422,7 @@ const VacuumCalculator = () => {
                     </div>
                     <div className="flex items-center gap-4 text-blue-600 font-black">
                       <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_m3h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                      <span className="text-xl">mÂ³/h</span>
+                      <span className="text-xl">m³/h</span>
                       <span className="text-3xl tracking-tighter text-slate-300 px-4">=</span>
                       <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().flow_gs.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       <span className="text-xl">g/s</span>
@@ -454,7 +454,7 @@ const VacuumCalculator = () => {
                 </div>
                 <div className="flex items-center gap-4 text-blue-600 font-black">
                   <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_m3h.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                  <span className="text-xl">mÂ³/h</span>
+                  <span className="text-xl">m³/h</span>
                   <span className="text-3xl tracking-tighter text-slate-300 px-4">=</span>
                   <span className="text-3xl tracking-tighter">{calculations.calcAirFlowResistor().req_gs.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   <span className="text-xl">g/s</span>

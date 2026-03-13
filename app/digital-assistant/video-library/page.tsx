@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Play, ExternalLink, Filter, X } from 'lucide-react';
-import { useLanguage } from '../../../components/LanguageProvider';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SCHMALZ VIDEO LIBRARY
@@ -85,67 +84,36 @@ function Modal({ video, onClose, copy }: { video: typeof videos[0] | null; onClo
 }
 
 export default function VideoLibraryPage() {
-    const { lang } = useLanguage();
     const [activeInd, setActiveInd] = useState(ALL);
     const [activeVideo, setActiveVideo] = useState<typeof videos[0] | null>(null);
 
-    const copy =
-        lang === 'en'
-            ? {
-                badge: 'Schmalz Official Video Library',
-                heroA: 'See How It Works',
-                heroB: 'In Real Operations',
-                heroDesc:
-                    'A curated collection of official Schmalz demo videos, from lightweight tube lifters to heavy-duty vacuum lifting devices.',
-                filterIndustry: 'Industry:',
-                videoCount: 'videos',
-                noVideo: 'No videos available for this filter.',
-                reset: 'Reset filter',
-                ctaTitle: 'Need a Live Demo?',
-                ctaDesc: 'Our engineering team is ready to run an on-site demo at your facility.',
-                ctaDemo: 'Request On-Site Demo',
-                ctaCalc: 'Try Vacuum Calculator',
-                openYoutube: 'Open on YouTube',
-                close: 'Close',
-            }
-            : {
-                badge: 'Schmalz Official Video Library',
-                heroA: 'Lihat Cara Kerja',
-                heroB: 'Nyata-nya',
-                heroDesc:
-                    'Koleksi video demo resmi produk Schmalz, dari tube lifter ringan hingga vacuum lifting device berton-ton.',
-                filterIndustry: 'Industri:',
-                videoCount: 'video',
-                noVideo: 'Tidak ada video untuk filter ini.',
-                reset: 'Reset filter',
-                ctaTitle: 'Butuh Demo Langsung?',
-                ctaDesc: 'Tim engineer PT Dimensi Quantum Wahyudi siap melakukan demo on-site di fasilitas Anda.',
-                ctaDemo: 'Request Demo On-Site',
-                ctaCalc: 'Coba Vacuum Calculator',
-                openYoutube: 'Buka YouTube',
-                close: 'Tutup',
-            };
+    const copy = {
+        badge: 'Schmalz Official Video Library',
+        heroA: 'See How It Works',
+        heroB: 'In Real Operations',
+        heroDesc:
+            'A curated collection of official Schmalz demo videos, from lightweight tube lifters to heavy-duty vacuum lifting devices.',
+        filterIndustry: 'Industry:',
+        videoCount: 'videos',
+        noVideo: 'No videos available for this filter.',
+        reset: 'Reset filter',
+        ctaTitle: 'Need a Live Demo?',
+        ctaDesc: 'Our engineering team is ready to run an on-site demo at your facility.',
+        ctaDemo: 'Request On-Site Demo',
+        ctaCalc: 'Try Vacuum Calculator',
+        openYoutube: 'Open on YouTube',
+        close: 'Close',
+    };
 
-    const industries =
-        lang === 'en'
-            ? [
-                { key: ALL, label: 'All' },
-                { key: 'Otomotif & Manufaktur', label: 'Automotive & Manufacturing' },
-                { key: 'Kaca & Jendela', label: 'Glass & Windows' },
-                { key: 'Logistik & Kemasan', label: 'Logistics & Packaging' },
-                { key: 'Logam & Baja', label: 'Metal & Steel' },
-                { key: 'Kayu & Furnitur', label: 'Wood & Furniture' },
-                { key: 'Kimia & Farmasi', label: 'Chemical & Pharmaceutical' },
-            ]
-            : [
-                { key: ALL, label: 'Semua' },
-                { key: 'Otomotif & Manufaktur', label: 'Otomotif & Manufaktur' },
-                { key: 'Kaca & Jendela', label: 'Kaca & Jendela' },
-                { key: 'Logistik & Kemasan', label: 'Logistik & Kemasan' },
-                { key: 'Logam & Baja', label: 'Logam & Baja' },
-                { key: 'Kayu & Furnitur', label: 'Kayu & Furnitur' },
-                { key: 'Kimia & Farmasi', label: 'Kimia & Farmasi' },
-            ];
+    const industries = [
+        { key: ALL, label: 'All' },
+        { key: 'Otomotif & Manufaktur', label: 'Automotive & Manufacturing' },
+        { key: 'Kaca & Jendela', label: 'Glass & Windows' },
+        { key: 'Logistik & Kemasan', label: 'Logistics & Packaging' },
+        { key: 'Logam & Baja', label: 'Metal & Steel' },
+        { key: 'Kayu & Furnitur', label: 'Wood & Furniture' },
+        { key: 'Kimia & Farmasi', label: 'Chemical & Pharmaceutical' },
+    ];
 
     const filtered = videos.filter(v =>
         (activeInd === ALL || v.industry === activeInd)

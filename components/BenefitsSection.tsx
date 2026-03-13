@@ -7,23 +7,23 @@ import Link from 'next/link';
 
 const features = [
   {
-    title: 'Safety & Ergonomi Optimal',
-    desc: 'Sistem vacuum lifter dengan standar K3 Eropa untuk memitigasi risiko cedera tulang belakang (HNP) dan memaksimalkan keselamatan operator.',
+    title: 'Safety-First Ergonomics',
+    desc: 'European-standard vacuum lifting systems designed to reduce strain injuries and improve daily operator safety.',
     icon: ShieldCheck,
   },
   {
-    title: 'Audit & Technical Visit',
-    desc: 'Survei lapangan oleh engineer tersertifikasi untuk memetakan alur produksi dan memastikan konfigurasi alat angkat yang paling presisi.',
+    title: 'On-Site Technical Audit',
+    desc: 'Certified engineers assess your production flow and recommend a lifting setup that fits your operation with precision.',
     icon: Settings,
   },
   {
-    title: 'Live Free Trial',
-    desc: 'Demo produk dan uji coba langsung unit handling di lini operasional pabrik Anda sebelum melakukan keputusan pembelian.',
+    title: 'Live Product Trial',
+    desc: 'Test handling units directly on your line before you commit, with measurable performance and ergonomics feedback.',
     icon: Zap,
   },
   {
-    title: 'Layanan Purna Jual & Servis',
-    desc: 'Dukungan teknis responsif 24 jam, jaminan ketersediaan sparepart resmi, dan maintenance rutin untuk durabilitas maksimal.',
+    title: 'After-Sales Service & Support',
+    desc: 'Responsive technical support, genuine spare part availability, and scheduled maintenance for long-term reliability.',
     icon: Activity,
   },
 ];
@@ -46,24 +46,24 @@ export default function BenefitsSection() {
           className="space-y-6"
         >
           <span className="text-blue-600 font-bold tracking-widest text-sm uppercase bg-blue-50 px-3 py-1 rounded-full">
-            Keahlian Teknisi Tersertifikasi
+            Certified Engineering Expertise
           </span>
           {/* Judul jadi hitam (slate-900) */}
           <h2 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">
-            Mitra Resmi Sistem <br />
+            Your Trusted Partner in <br />
             <span className="text-blue-600">
-              Lifting Berstandar Eropa
+              European-Grade Lifting Systems
             </span>
           </h2>
           {/* Teks jadi abu-abu tua (slate-600) */}
           <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
-            Sebagai distributor resmi Schmalz & Binar di Indonesia, kami tidak sekadar menjual alat bantu angkat. Kami adalah konsultan teknis yang menjamin setiap perangkat <em>vacuum handling</em> beroperasi dengan efisiensi prima, memacu produktivitas harian, dan memberikan <em>ROI</em> (Return on Investment) maksimal untuk bisnis manufaktur Anda.
+            As the official Schmalz and Binar Handling partner in Indonesia, we do more than supply lifting equipment. We design practical, high-performance <em>vacuum handling</em> systems that improve productivity, protect operators, and deliver strong long-term <em>ROI</em> for manufacturers.
           </p>
 
           <div className="pt-4">
             {/* Link jadi biru */}
             <Link href="/about" className="group inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-700 transition-all">
-              Pelajari Profil Perusahaan
+              Learn More About Our Company
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

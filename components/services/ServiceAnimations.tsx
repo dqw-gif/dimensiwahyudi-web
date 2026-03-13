@@ -13,26 +13,26 @@ interface ServiceItem {
 
 const services: ServiceItem[] = [
     {
-        title: 'Instalasi & Commissioning Spesialis',
-        desc: 'Kami memastikan transisi teknologi yang mulus di lini produksi Anda. Proses instalasi dilakukan oleh teknisi bersertifikat untuk menjamin presisi alat, keamanan operasional maksimal, dan performa siap pakai sejak hari pertama.',
+        title: 'Specialist Installation & Commissioning',
+        desc: 'We ensure smooth technology integration on your production line. Installation is handled by certified technicians to guarantee precision, operational safety, and day-one readiness.',
         icon: Wrench,
         image: 'https://i.imgur.com/hOiTPiG.jpeg', // Industrial construction/installation
     },
     {
-        title: 'Pemeliharaan Preventif (Maintenance)',
-        desc: 'Lindungi investasi Anda dengan program perawatan berkala yang dirancang untuk mengeliminasi risiko downtime mendadak. Fokus kami mencakup audit sistem vakum, kalibrasi motor, dan inspeksi kelistrikan sesuai standar manufaktur global.',
+        title: 'Preventive Maintenance',
+        desc: 'Protect your investment with scheduled maintenance designed to reduce unplanned downtime. Our scope includes vacuum system audits, motor calibration, and electrical inspections aligned with global manufacturing standards.',
         icon: Settings,
         image: 'https://i.imgur.com/AVUmEst.jpeg', // Engineer doing maintenance
     },
     {
-        title: 'Edukasi & Sertifikasi Operator',
-        desc: 'Meningkatkan produktivitas dimulai dari SDM yang kompeten. Kami menyediakan pelatihan intensif mencakup teknik pengoperasian ergonomis dan kepatuhan Prosedur Operasi Standar (SOP) keselamatan untuk meminimalisir risiko kecelakaan kerja.',
+        title: 'Operator Training & Certification',
+        desc: 'Higher productivity starts with skilled operators. We provide intensive training in ergonomic operation techniques and safety SOP compliance to minimize workplace incidents.',
         icon: Users,
         image: 'https://i.imgur.com/uBPspqb.jpeg', // People discussing/training in manufacturing
     },
     {
-        title: 'Suku Cadang Asli (Original Parts)',
-        desc: 'Jaminan ketersediaan komponen orisinal langsung dari prinsipal Schmalz Jerman dan Binar Swedia. Dengan manajemen rantai pasok yang cepat, kami memastikan siklus produksi Anda tidak terhenti akibat kendala teknis.',
+        title: 'Genuine Spare Parts',
+        desc: 'We secure original components directly from Schmalz Germany and Binar Sweden. With responsive supply management, we help keep your production cycle moving without technical delays.',
         icon: Truck,
         image: 'https://i.imgur.com/leBwKaE.jpeg', // Logistics/warehouse/parts
     },
@@ -46,7 +46,7 @@ export function ServiceHero() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-cyan-600 font-bold tracking-widest text-sm uppercase mb-4 block"
             >
-                Layanan Teknik Berkelanjutan
+                Ongoing Technical Services
             </motion.span>
             <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -54,9 +54,9 @@ export function ServiceHero() {
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight"
             >
-                Layanan Instalasi & Pemeliharaan <br />
+                Installation & Maintenance <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                    Alat Angkat Industri
+                    for Industrial Lifting Systems
                 </span>
             </motion.h1>
             <motion.p
@@ -65,7 +65,7 @@ export function ServiceHero() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-slate-600 max-w-2xl mx-auto font-medium"
             >
-                Komitmen kami dimulai setelah mesin terpasang. Kami hadir sebagai mitra teknis untuk memastikan setiap solusi lifting Anda beroperasi pada efisiensi 100% sepanjang waktu.
+                Our commitment starts after installation. We act as your long-term technical partner to keep every lifting solution running at peak efficiency.
             </motion.p>
         </div>
     );
@@ -106,11 +106,11 @@ export function ServiceList() {
                         <div className="grid sm:grid-cols-2 gap-4">
                             <div className="flex items-center gap-3 text-slate-700 font-semibold bg-slate-50 p-4 rounded-xl border border-slate-100 transition-colors hover:bg-white hover:border-cyan-200">
                                 <CheckCircle size={22} className="text-blue-600" />
-                                <span>Audit Teknik Rutin</span>
+                                <span>Routine Technical Audits</span>
                             </div>
                             <div className="flex items-center gap-3 text-slate-700 font-semibold bg-slate-50 p-4 rounded-xl border border-slate-100 transition-colors hover:bg-white hover:border-cyan-200">
                                 <CheckCircle size={22} className="text-blue-600" />
-                                <span>Respon Cepat 24 Jam</span>
+                                <span>Fast 24-Hour Response</span>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'PT Dimensi Quantum Wahyudi — Distributor Resmi Schmalz & Binar Handling Indonesia';
+export const alt = 'PT Dimensi Quantum Wahyudi — Market Leader in Vacuum Lifting Solutions in Indonesia';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -102,7 +102,7 @@ export default function OgImage() {
                   textTransform: 'uppercase',
                 }}
               >
-                Distributor Resmi Schmalz & Binar Handling
+                Official Schmalz & Binar Handling Partner
               </span>
             </div>
           </div>
@@ -144,16 +144,16 @@ export default function OgImage() {
                 lineHeight: 1.5,
               }}
             >
-              Solusi Vacuum Lifter & Material Handling Standar Eropa untuk Industri Indonesia
+              Market-leading vacuum lifting and ergonomic material handling solutions for Indonesian industry
             </div>
           </div>
 
           {/* Bottom: Stats row */}
           <div style={{ display: 'flex', gap: '48px', alignItems: 'flex-end' }}>
             {[
-              { value: '500+', label: 'Proyek Instalasi' },
-              { value: '12+', label: 'Tahun Pengalaman' },
-              { value: '100+', label: 'Klien Industri' },
+              { value: '500+', label: 'Project Installations' },
+              { value: '17+', label: 'Years of Experience' },
+              { value: '100+', label: 'Industrial Clients' },
             ].map((stat) => (
               <div key={stat.label} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 <span style={{ fontSize: '40px', fontWeight: 900, color: '#f1f5f9', lineHeight: 1 }}>

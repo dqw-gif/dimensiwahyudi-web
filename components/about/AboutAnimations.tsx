@@ -14,7 +14,7 @@ export function AboutHero() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-cyan-600 font-bold tracking-widest text-sm uppercase mb-4 block"
             >
-                Membangun Standar Baru Sejak 2012
+                Raising New Standards Since 2009
             </motion.span>
             <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -22,9 +22,9 @@ export function AboutHero() {
                 transition={{ delay: 0.2 }}
                 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight"
             >
-                Solusi Cerdas untuk <br />
+                Smart Solutions for <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                    Produktivitas Industri
+                    Industrial Productivity
                 </span>
             </motion.h1>
             <motion.p
@@ -33,7 +33,7 @@ export function AboutHero() {
                 transition={{ delay: 0.4 }}
                 className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed"
             >
-                PT Dimensi Quantum Wahyudi (DQW) adalah mitra strategis spesialis Material Handling & Otomasi Industri yang berfokus pada keselamatan kerja dan efisiensi operasional.
+                PT Dimensi Quantum Wahyudi (DQW) is a strategic partner in material handling and industrial automation, focused on safer operations and measurable efficiency gains.
             </motion.p>
         </div>
     );
@@ -42,67 +42,67 @@ export function AboutHero() {
 /* ─── Client Logos ─── */
 const projectLogos = [
     { "client": "PT Mayora Indah", "industry": "FMCG & F&B", "logo": "https://www.mayoraindah.co.id/assets/frontend/images/logo.png" },
-    { "client": "PT Gajah Tunggal", "industry": "Otomotif & Kendaraan", "logo": "https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png" },
-    { "client": "PT Angkasa Pura II", "industry": "Logistik Udara", "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/a/a6/Angkasa_Pura_II_logo_2014.svg/3840px-Angkasa_Pura_II_logo_2014.svg.png" },
-    { "client": "PT Asahimas Flat Glass Tbk", "industry": "Kaca & Material Solid", "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_Asahimas_Flat_Glass_Tbk.png" },
+    { "client": "PT Gajah Tunggal", "industry": "Automotive & Mobility", "logo": "https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png" },
+    { "client": "PT Angkasa Pura II", "industry": "Air Logistics", "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/a/a6/Angkasa_Pura_II_logo_2014.svg/3840px-Angkasa_Pura_II_logo_2014.svg.png" },
+    { "client": "PT Asahimas Flat Glass Tbk", "industry": "Glass & Solid Materials", "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_Asahimas_Flat_Glass_Tbk.png" },
     { "client": "PT Unilever Indonesia Tbk", "industry": "FMCG & F&B", "logo": "https://upload.wikimedia.org/wikipedia/id/3/37/Unilever.png" },
-    { "client": "PT. Indonesia Nikka Chemicals", "industry": "Kimia & Farmasi", "logo": "https://img2.lokercepat.id/files/2023-11-11/pt-indonesia-nikka-chemicals-inkali-382.jpg" },
-    { "client": "PT GS Battery", "industry": "Otomotif & Kendaraan", "logo": "https://www.gs.astra.co.id/media/dzpc02gq/gs-battery-logo.png" },
+    { "client": "PT. Indonesia Nikka Chemicals", "industry": "Chemical & Pharmaceutical", "logo": "https://img2.lokercepat.id/files/2023-11-11/pt-indonesia-nikka-chemicals-inkali-382.jpg" },
+    { "client": "PT GS Battery", "industry": "Automotive & Mobility", "logo": "https://www.gs.astra.co.id/media/dzpc02gq/gs-battery-logo.png" },
     { "client": "PT Nestle Indonesia", "industry": "FMCG & F&B", "logo": "https://www.nestle.co.id/themes/custom/da_vinci_code/logo.svg" },
-    { "client": "PT Hokkan Indonesia", "industry": "Kemasan & Plastik", "logo": "https://www.hokkan.co.id/images/logo.jpg" },
-    { "client": "PT Taco Anugrah Corporindo", "industry": "Furnitur & Interior", "logo": "https://manage.taco.co.id/asset-images/logo.svg" },
-    { "client": "PT Otsuka Indonesia", "industry": "Kimia & Farmasi", "logo": "https://www.otsuka.co.id/themes/otsuka/assets/img/otsuka.png" },
-    { "client": "PT Mowilex Indonesia", "industry": "Kimia & Farmasi", "logo": "https://mowilex.com/wp-content/themes/movi/images/MowilexPremiumPaints.webp" },
+    { "client": "PT Hokkan Indonesia", "industry": "Packaging & Plastics", "logo": "https://www.hokkan.co.id/images/logo.jpg" },
+    { "client": "PT Taco Anugrah Corporindo", "industry": "Furniture & Interior", "logo": "https://manage.taco.co.id/asset-images/logo.svg" },
+    { "client": "PT Otsuka Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://www.otsuka.co.id/themes/otsuka/assets/img/otsuka.png" },
+    { "client": "PT Mowilex Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://mowilex.com/wp-content/themes/movi/images/MowilexPremiumPaints.webp" },
     { "client": "PT Yakult Indonesia Persada", "industry": "FMCG & F&B", "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Yakult-Logo.svg" },
     { "client": "PT Nutrifood Indonesia", "industry": "FMCG & F&B", "logo": "https://www.nutrifood.co.id/wp-content/themes/nutrifood/images/logo-nutrifood.png" },
     { "client": "PT Nutribev Nabati Indonesia", "industry": "FMCG & F&B", "logo": "https://www.nabatisnack.co.id/assets/icons/ic-nabati.png" },
-    { "client": "PT Cabot Indonesia", "industry": "Kimia & Farmasi", "logo": "https://companieslogo.com/img/orig/CBT_BIG-f438266d.png?t=1720244491" },
-    { "client": "PT Kayu Permata", "industry": "Furnitur & Interior", "logo": "https://www.permatadoor.com/wp-content/themes/permata_door/assets/images/svg/permata_door.svg" },
+    { "client": "PT Cabot Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://companieslogo.com/img/orig/CBT_BIG-f438266d.png?t=1720244491" },
+    { "client": "PT Kayu Permata", "industry": "Furniture & Interior", "logo": "https://www.permatadoor.com/wp-content/themes/permata_door/assets/images/svg/permata_door.svg" },
     { "client": "PT Multi Bintang Indonesia Tbk", "industry": "FMCG & F&B", "logo": "https://cdn.cookielaw.org/logos/00afdec3-358f-4f2d-8b63-0c71e6f49172/019808a1-d0bd-747f-b424-020636e1ab33/8a3915b9-9563-470f-8efd-2af699d3f08e/multibintang.png" },
-    { "client": "PT. DSM Firmenich Aromatics", "industry": "Kimia & Farmasi", "logo": "https://www.dsm-firmenich.com/content/dam/dsm-firmenich/logos/logo-black.svg" },
-    { "client": "PT. Federal Karyatama", "industry": "Otomotif & Kendaraan", "logo": "https://federaloil.co.id/themes/web/desktop2020/new/assets/collections/default/fo-logo-2.png" },
-    { "client": "PT. Fukusuke Kogyo Indonesia", "industry": "Kemasan & Plastik", "logo": "https://kemindogroup.id/wp-content/uploads/2020/09/logo-client-kemindo-8.png" },
+    { "client": "PT. DSM Firmenich Aromatics", "industry": "Chemical & Pharmaceutical", "logo": "https://www.dsm-firmenich.com/content/dam/dsm-firmenich/logos/logo-black.svg" },
+    { "client": "PT. Federal Karyatama", "industry": "Automotive & Mobility", "logo": "https://federaloil.co.id/themes/web/desktop2020/new/assets/collections/default/fo-logo-2.png" },
+    { "client": "PT. Fukusuke Kogyo Indonesia", "industry": "Packaging & Plastics", "logo": "https://kemindogroup.id/wp-content/uploads/2020/09/logo-client-kemindo-8.png" },
     { "client": "PT. Indofood CBP Sukses Makmur", "industry": "FMCG & F&B", "logo": "https://www.indofoodcbp.com/images/btn/logo-indofoodcbp.png" },
     { "client": "PT. Mars Symbioscience", "industry": "FMCG & F&B", "logo": "https://wikiexport.ai/wp-content/uploads/2022/10/15-1170x600.png" },
-    { "client": "PT. Nufarm Indonesia", "industry": "Kimia & Farmasi", "logo": "https://nufarm.com/id/wp-content/themes/nufarm/images/site-logo.svg" },
-    { "client": "PT. Sakae Riken Indonesia", "industry": "Otomotif & Kendaraan", "logo": "https://www.sakaeriken.co.jp/assets/img/common/logo/logo-site.png" },
+    { "client": "PT. Nufarm Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://nufarm.com/id/wp-content/themes/nufarm/images/site-logo.svg" },
+    { "client": "PT. Sakae Riken Indonesia", "industry": "Automotive & Mobility", "logo": "https://www.sakaeriken.co.jp/assets/img/common/logo/logo-site.png" },
     { "client": "PT Garuda Food", "industry": "FMCG & F&B", "logo": "https://www.vhv.rs/dpng/d/73-737965_garudafood-logo-png-transparent-png.png" },
-    { "client": "PT Bredero Shaw Indonesia", "industry": "Industri Berat & Otomasi", "logo": "https://karir-production.nos.jkt-1.neo.id/logos/22/1264222/Bredero_Shaw_Indonesia_01.png" },
+    { "client": "PT Bredero Shaw Indonesia", "industry": "Heavy Industry & Automation", "logo": "https://karir-production.nos.jkt-1.neo.id/logos/22/1264222/Bredero_Shaw_Indonesia_01.png" },
     { "client": "PT Delifood Sentosa Corpindo", "industry": "FMCG & F&B", "logo": "https://cdn0-production-images-kly.akamaized.net/TpRMBHzC6SCc6V4oTvo3-KIt8kE=/2560x1440/smart/filters:quality(75):strip_icc()/kly-media-production/medias/4243444/original/067506700_1669705672-logo_mayora.jpg" },
     { "client": "PT Diageo Indonesia", "industry": "FMCG & F&B", "logo": "https://cdn.getamigo.io/ggr/rebuild/client-story-imgs/diageo-hero.webp" },
-    { "client": "PT Elangperdana Tyre Industry", "industry": "Otomotif & Kendaraan", "logo": "https://admin.zeetex-radial.com/storage/page-contents/February2021/hcwzrhzeJOolozrpB7p5.png" },
-    { "client": "PT Hempel Indonesia", "industry": "Bahan Bangunan & Infrastruktur", "logo": "https://image1ws.indotrading.com/s3/webp/co19822/companylogo/w400-h220/logo.jpg" },
-    { "client": "PT Industrial Robotic Automation", "industry": "Industri Berat & Otomasi", "logo": "https://i.imgur.com/7Jpv5Qg.jpeg" },
-    { "client": "PT Inoac Polytechno Indonesia", "industry": "Kemasan & Plastik", "logo": "https://www.inoac.co.jp/common/img/logo.svg" },
-    { "client": "PT Kalbe Morinaga Indonesia", "industry": "Kimia & Farmasi", "logo": "https://kalbenutritionals.com/images/kalbe-nutritionals-logo.png" },
-    { "client": "PT Kian Mulia Manunggal", "industry": "Kaca & Material Solid", "logo": "https://www.temposcangroup.com/public/images/LOGO_TEMPO_SCAN_100_INDONESIA.png" },
+    { "client": "PT Elangperdana Tyre Industry", "industry": "Automotive & Mobility", "logo": "https://admin.zeetex-radial.com/storage/page-contents/February2021/hcwzrhzeJOolozrpB7p5.png" },
+    { "client": "PT Hempel Indonesia", "industry": "Building Materials & Infrastructure", "logo": "https://image1ws.indotrading.com/s3/webp/co19822/companylogo/w400-h220/logo.jpg" },
+    { "client": "PT Industrial Robotic Automation", "industry": "Heavy Industry & Automation", "logo": "https://i.imgur.com/7Jpv5Qg.jpeg" },
+    { "client": "PT Inoac Polytechno Indonesia", "industry": "Packaging & Plastics", "logo": "https://www.inoac.co.jp/common/img/logo.svg" },
+    { "client": "PT Kalbe Morinaga Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://kalbenutritionals.com/images/kalbe-nutritionals-logo.png" },
+    { "client": "PT Kian Mulia Manunggal", "industry": "Glass & Solid Materials", "logo": "https://www.temposcangroup.com/public/images/LOGO_TEMPO_SCAN_100_INDONESIA.png" },
     { "client": "PT Meiji Food Indonesia", "industry": "FMCG & F&B", "logo": "https://meiji.co.id/storage/public/generals/eY0Fj5yMvi7ZPSz9zNcI9RSoYvYQIuQb2cMEKCTl.png" },
-    { "client": "PT Cipta Mortar Utama", "industry": "Bahan Bangunan & Infrastruktur", "logo": "https://www.mortarutama.com/wp-content/uploads/2023/12/logo-MU-new-hires-01-1536x635.png" },
-    { "client": "PT Rinnai Indonesia", "industry": "Elektronik", "logo": "https://www.rinnai.co.id/wp-content/uploads/2019/04/logo-395x100.png" },
+    { "client": "PT Cipta Mortar Utama", "industry": "Building Materials & Infrastructure", "logo": "https://www.mortarutama.com/wp-content/uploads/2023/12/logo-MU-new-hires-01-1536x635.png" },
+    { "client": "PT Rinnai Indonesia", "industry": "Electronics", "logo": "https://www.rinnai.co.id/wp-content/uploads/2019/04/logo-395x100.png" },
     { "client": "PT Sarihusada Generasi Mahardhika", "industry": "FMCG & F&B", "logo": "https://www.sarihusada.co.id/assets/img/logo.png" },
-    { "client": "PT Sri Trang Lingga Indonesia", "industry": "Kaca & Material Solid", "logo": "https://axeoneverest.com/wp-content/uploads/2011/04/sri-trang-group-everest-logo-1.jpg" },
-    { "client": "PT Sugity Creatives", "industry": "Otomotif & Kendaraan", "logo": "https://uccareer.id/assets/upload/company/thumbs/thumb300px-20251007-100131-a1262.jpg" },
-    { "client": "PT Sumi Rubber Indonesia", "industry": "Otomotif & Kendaraan", "logo": "https://dunlop.co.id/logo-default.svg" },
+    { "client": "PT Sri Trang Lingga Indonesia", "industry": "Glass & Solid Materials", "logo": "https://axeoneverest.com/wp-content/uploads/2011/04/sri-trang-group-everest-logo-1.jpg" },
+    { "client": "PT Sugity Creatives", "industry": "Automotive & Mobility", "logo": "https://uccareer.id/assets/upload/company/thumbs/thumb300px-20251007-100131-a1262.jpg" },
+    { "client": "PT Sumi Rubber Indonesia", "industry": "Automotive & Mobility", "logo": "https://dunlop.co.id/logo-default.svg" },
     { "client": "PT URC Indonesia", "industry": "FMCG & F&B", "logo": "https://www.urc.co.id/wp-content/uploads/2021/01/2.jpg" },
-    { "client": "PT. Evoluzione Tyres", "industry": "Otomotif & Kendaraan", "logo": "https://csr.subang.go.id/assets/upload/company/pt-evoluzione-tyres-768x576.jpg" },
-    { "client": "PT. Mura Maha Agung", "industry": "Bahan Bangunan & Infrastruktur", "logo": "https://www.muramaha.com/wp-content/uploads/2017/01/cropped-logo-muramaha3.png" },
-    { "client": "PT Suryaraya Rubberindo Industries", "industry": "Otomotif & Kendaraan", "logo": "https://fdrtire.com/assets/frontend/img/logo.jpg" },
-    { "client": "PT Astra Daihatsu Motor", "industry": "Otomotif & Kendaraan", "logo": "https://medias.astra-daihatsu.id/sys-master-media/h70/hc8/8819719208990/astraDaihatsulogo.svg" },
-    { "client": "PT YKK AP Indonesia", "industry": "Bahan Bangunan & Infrastruktur", "logo": "https://www.ykkap.co.id/assets/img/header_logo01.svg" }
+    { "client": "PT. Evoluzione Tyres", "industry": "Automotive & Mobility", "logo": "https://csr.subang.go.id/assets/upload/company/pt-evoluzione-tyres-768x576.jpg" },
+    { "client": "PT. Mura Maha Agung", "industry": "Building Materials & Infrastructure", "logo": "https://www.muramaha.com/wp-content/uploads/2017/01/cropped-logo-muramaha3.png" },
+    { "client": "PT Suryaraya Rubberindo Industries", "industry": "Automotive & Mobility", "logo": "https://fdrtire.com/assets/frontend/img/logo.jpg" },
+    { "client": "PT Astra Daihatsu Motor", "industry": "Automotive & Mobility", "logo": "https://medias.astra-daihatsu.id/sys-master-media/h70/hc8/8819719208990/astraDaihatsulogo.svg" },
+    { "client": "PT YKK AP Indonesia", "industry": "Building Materials & Infrastructure", "logo": "https://www.ykkap.co.id/assets/img/header_logo01.svg" }
 ];
 
 // Define Industry categories, icons, and priority
 const industriesConfig = [
     { name: "FMCG & F&B", icon: Factory, color: "text-blue-600", bg: "bg-blue-50/80", border: "border-blue-200" },
-    { name: "Otomotif & Kendaraan", icon: Truck, color: "text-red-600", bg: "bg-red-50/80", border: "border-red-200" },
-    { name: "Kimia & Farmasi", icon: FlaskConical, color: "text-emerald-600", bg: "bg-emerald-50/80", border: "border-emerald-200" },
-    { name: "Kaca & Material Solid", icon: Box, color: "text-slate-600", bg: "bg-slate-50/80", border: "border-slate-200" },
-    { name: "Kemasan & Plastik", icon: Box, color: "text-indigo-600", bg: "bg-indigo-50/80", border: "border-indigo-200" },
-    { name: "Furnitur & Interior", icon: Sofa, color: "text-amber-600", bg: "bg-amber-50/80", border: "border-amber-200" },
-    { name: "Bahan Bangunan & Infrastruktur", icon: Hammer, color: "text-stone-600", bg: "bg-stone-50/80", border: "border-stone-200" },
-    { name: "Industri Berat & Otomasi", icon: Factory, color: "text-slate-700", bg: "bg-slate-100/80", border: "border-slate-300" },
-    { name: "Elektronik", icon: Monitor, color: "text-cyan-600", bg: "bg-cyan-50/80", border: "border-cyan-200" },
-    { name: "Logistik Udara", icon: Truck, color: "text-sky-600", bg: "bg-sky-50/80", border: "border-sky-200" }
+    { name: "Automotive & Mobility", icon: Truck, color: "text-red-600", bg: "bg-red-50/80", border: "border-red-200" },
+    { name: "Chemical & Pharmaceutical", icon: FlaskConical, color: "text-emerald-600", bg: "bg-emerald-50/80", border: "border-emerald-200" },
+    { name: "Glass & Solid Materials", icon: Box, color: "text-slate-600", bg: "bg-slate-50/80", border: "border-slate-200" },
+    { name: "Packaging & Plastics", icon: Box, color: "text-indigo-600", bg: "bg-indigo-50/80", border: "border-indigo-200" },
+    { name: "Furniture & Interior", icon: Sofa, color: "text-amber-600", bg: "bg-amber-50/80", border: "border-amber-200" },
+    { name: "Building Materials & Infrastructure", icon: Hammer, color: "text-stone-600", bg: "bg-stone-50/80", border: "border-stone-200" },
+    { name: "Heavy Industry & Automation", icon: Factory, color: "text-slate-700", bg: "bg-slate-100/80", border: "border-slate-300" },
+    { name: "Electronics", icon: Monitor, color: "text-cyan-600", bg: "bg-cyan-50/80", border: "border-cyan-200" },
+    { name: "Air Logistics", icon: Truck, color: "text-sky-600", bg: "bg-sky-50/80", border: "border-sky-200" }
 ];
 
 export function AboutClientLogos() {
@@ -148,7 +148,7 @@ export function AboutClientLogos() {
                                 </div>
                                 <div className="text-left flex-1 min-w-[200px]">
                                     <h3 className="text-lg md:text-xl font-bold text-slate-800 tracking-tight">{industry.name}</h3>
-                                    <p className="text-sm text-slate-500 font-medium">{logos.length} Klien Multinasional</p>
+                                    <p className="text-sm text-slate-500 font-medium">{logos.length} Multinational Clients</p>
                                 </div>
                             </div>
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 text-slate-500 transition-transform duration-300 ${isExpanded ? 'rotate-180 bg-slate-200 text-slate-800' : 'group-hover:bg-slate-200'}`}>
@@ -231,7 +231,7 @@ export function AboutStoryImage() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md border border-slate-200 p-6 rounded-xl shadow-xl">
-                <p className="text-slate-500 font-bold text-xs uppercase tracking-widest mb-3">Partner Resmi</p>
+                <p className="text-slate-500 font-bold text-xs uppercase tracking-widest mb-3">Official Partners</p>
                 <div className="flex items-center gap-6">
                     <Image
                         src="/brands/schmalz.png"
@@ -258,16 +258,16 @@ export function AboutStoryImage() {
 const values = [
     {
         icon: <Target className="w-8 h-8" />,
-        title: 'Visi Kami',
+        title: 'Our Vision',
         color: 'blue',
-        desc: 'Menjadi penyedia Sistem Otomasi Vakum dan Handling Ergonomis yang unggul dalam produk maupun layanan dari semua kompetitor, serta terus meningkatkan nilai tambah bagi pelanggan di Indonesia.',
+        desc: 'To be the most trusted provider of vacuum automation and ergonomic handling systems in Indonesia, leading through product quality, technical support, and long-term customer value.',
         bgImage: 'https://dimensiwahyudi.com/wp-content/uploads/2025/11/pameran-allpack-indonesia-2025-dqw-dukung-industri-manufaktur-berkelanjutan-jsn.webp' // Modern factory/tech image
     },
     {
         icon: <Users className="w-8 h-8" />,
-        title: 'Misi Kami',
+        title: 'Our Mission',
         color: 'cyan',
-        desc: 'Terus menemukan, mengembangkan, dan menyediakan solusi Sistem Otomasi Vakum dan Handling Ergonomis yang inovatif demi kepuasan pelanggan, serta memberikan nilai tinggi bagi mereka yang berinvestasi pada ide dan kontribusi positif di perusahaan.',
+        desc: 'To continuously develop practical and innovative vacuum handling solutions that improve customer outcomes while creating meaningful value for everyone who contributes to our growth.',
         bgImage: 'https://dimensiwahyudi.com/wp-content/uploads/2025/05/0509_24-scaled.jpg' // Team collaboration image
     }
 ];
@@ -309,10 +309,10 @@ export function AboutCoreValues() {
 
 /* ─── Process Steps ─── */
 const steps = [
-    { step: '01', title: 'Audit Lapangan (Site Visit)', desc: 'Engineering kami melakukan survei langsung untuk memetakan alur produksi dan batasan teknis area kerja.' },
-    { step: '02', title: 'Analisa Ergonomi', desc: 'Mengkaji beban angkat dan postur operator guna menentukan perangkat yang paling tepat memitigasi cedera.' },
-    { step: '03', title: 'Desain Sistem Kustom', desc: 'Proses engineering untuk menyesuaikan konfigurasi sistem lifting dengan kebutuhan spesifik operasional Anda.' },
-    { step: '04', title: 'Instalasi & Sertifikasi', desc: 'Pemasangan oleh teknisi ahli serta pelatihan komprehensif untuk menjamin penggunaan yang aman dan efisien.' },
+    { step: '01', title: 'Site Audit', desc: 'Our engineering team surveys your production area to map flow requirements and technical constraints.' },
+    { step: '02', title: 'Ergonomic Assessment', desc: 'We evaluate load profiles and operator movement to identify the safest and most efficient handling approach.' },
+    { step: '03', title: 'Custom System Design', desc: 'We configure the lifting system to match your exact process, product, and cycle-time requirements.' },
+    { step: '04', title: 'Installation & Training', desc: 'Certified technicians install the system and train operators for safe, consistent, high-performance use.' },
 ];
 
 export function AboutProcess() {

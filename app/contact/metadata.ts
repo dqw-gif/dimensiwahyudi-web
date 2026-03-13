@@ -2,12 +2,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Konsultasi Teknikal & Penawaran Harga | PT Dimensi Quantum Wahyudi',
-    description: 'Hubungi tim engineering DQW untuk konsultasi gratis solusi vacuum lifting, material handling, dan crane system. Respon dalam 1×24 jam kerja.',
-    keywords: ['konsultasi vacuum lifter', 'penawaran harga lifting equipment', 'kontak PT Dimensi Quantum Wahyudi', 'material handling indonesia'],
+    title: 'Technical Consultation & Quotation | PT Dimensi Quantum Wahyudi',
+    description: 'Contact DQW engineering for a free consultation on vacuum lifting, material handling, and crane system solutions. Response within 24 business hours.',
+    keywords: ['vacuum lifter consultation', 'industrial lifting quotation', 'contact PT Dimensi Quantum Wahyudi', 'material handling Indonesia'],
     openGraph: {
-        title: 'Konsultasi Teknikal Gratis | PT Dimensi Quantum Wahyudi',
-        description: 'Tim engineer DQW siap membantu merancang solusi lifting terbaik untuk pabrik Anda.',
+        title: 'Free Technical Consultation | PT Dimensi Quantum Wahyudi',
+        description: 'Our engineering team is ready to design the right lifting solution for your facility.',
         url: 'https://dimensiwahyudi.com/contact',
     },
     alternates: { canonical: 'https://dimensiwahyudi.com/contact' },

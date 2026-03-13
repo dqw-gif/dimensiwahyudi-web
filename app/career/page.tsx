@@ -1,15 +1,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Briefcase, MapPin, Clock, ChevronRight, Send, ArrowRight, Zap, Target, Users } from 'lucide-react';
-import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
-    title: 'Karir | Bergabung dengan Tim PT Dimensi Quantum Wahyudi',
-    description: 'Bergabunglah dengan tim PT Dimensi Quantum Wahyudi. Kami mencari engineer, sales, dan technical specialist yang passionate di bidang material handling & otomasi industri Indonesia.',
-    keywords: ['lowongan kerja PT Dimensi Quantum Wahyudi', 'karir material handling', 'loker engineer Bekasi', 'PT Dimensi Quantum Wahyudi career'],
+    title: 'Careers | Join PT Dimensi Quantum Wahyudi',
+    description: 'Join PT Dimensi Quantum Wahyudi. We are looking for engineers, sales professionals, and technical specialists passionate about industrial material handling and automation.',
+    keywords: ['PT Dimensi Quantum Wahyudi careers', 'material handling careers', 'engineering jobs Bekasi', 'industrial automation careers'],
     openGraph: {
-        title: 'Karir di PT Dimensi Quantum Wahyudi | Bergabung dengan Tim Kami',
-        description: 'Bergabunglah dengan tim PT Dimensi Quantum Wahyudi. Kami mencari talenta terbaik di bidang material handling & otomasi industri.',
+        title: 'Careers at PT Dimensi Quantum Wahyudi',
+        description: 'Build your career with a team delivering market-leading material handling and automation solutions.',
         url: 'https://dimensiwahyudi.com/career',
     },
     alternates: { canonical: 'https://dimensiwahyudi.com/career' },
@@ -19,72 +18,56 @@ const openings = [
     {
         title: 'Technical Sales Engineer',
         type: 'Full Time',
-        location: 'Bekasi, Jawa Barat',
-        desc: 'Melakukan presentasi solusi teknis kepada klien industri, analisa kebutuhan material handling, dan mengembangkan hubungan bisnis jangka panjang.',
-        requirements: ['S1 Teknik Mesin / Industri / Elektro', 'Pengalaman sales industri 2+ tahun', 'Kemampuan presentasi teknis yang baik', 'Memiliki kendaraan pribadi'],
+        location: 'Bekasi, West Java',
+        desc: 'Present technical solutions to industrial clients, analyze material handling requirements, and build long-term business relationships.',
+        requirements: ['Bachelor\'s degree in Mechanical, Industrial, or Electrical Engineering', '2+ years in industrial sales', 'Strong technical presentation skills', 'Own transportation preferred'],
         icon: Target,
         color: 'blue'
     },
     {
         title: 'Field Service Technician',
         type: 'Full Time',
-        location: 'Bekasi (mobility ke klien)',
-        desc: 'Melakukan instalasi, commissioning, dan perawatan berkala sistem vakum & lifting equipment di fasilitas klien di seluruh Pulau Jawa.',
-        requirements: ['D3/S1 Teknik Mesin / Elektro', 'Pengalaman maintenance alat industri', 'Bersedia mobile ke lokasi klien', 'Memiliki SIM A/C'],
+        location: 'Bekasi (client-site mobility)',
+        desc: 'Handle installation, commissioning, and scheduled maintenance of vacuum and lifting systems at client facilities across Java.',
+        requirements: ['Diploma or Bachelor\'s in Mechanical or Electrical Engineering', 'Experience maintaining industrial equipment', 'Willing to travel to client sites', 'Valid driving license'],
         icon: Zap,
         color: 'amber'
     },
     {
         title: 'Application Engineer',
         type: 'Full Time',
-        location: 'Bekasi, Jawa Barat',
-        desc: 'Menganalisa kebutuhan teknis klien, merancang solusi sistem lifting/vacuum yang tepat, dan mendukung tim sales dengan kalkulasi teknis yang akurat.',
-        requirements: ['S1 Teknik Mesin / Industri', 'Familiar dengan AutoCAD atau SolidWorks', 'Kemampuan analitis dan problem-solving', 'Pengalaman 1+ tahun di bidang engineering'],
+        location: 'Bekasi, West Java',
+        desc: 'Analyze client technical requirements, design fit-for-purpose vacuum and lifting systems, and support sales with accurate engineering calculations.',
+        requirements: ['Bachelor\'s degree in Mechanical or Industrial Engineering', 'Familiar with AutoCAD or SolidWorks', 'Strong analytical and problem-solving skills', '1+ year of engineering experience'],
         icon: Users,
         color: 'emerald'
     },
 ];
 
 const benefits = [
-    'Paket Remunerasi & Insentif Kompetitif',
-    'Asuransi Kesehatan Komprehensif (BPJS+)',
-    'Program Pelatihan Prinsipal (Jerman/Swedia)',
-    'Fasilitas Kerja Lengkap (Laptop & Tools)',
-    'Budaya Kerja Inovatif & Supportif',
-    'Jalur Pengembangan Karir Progresif',
+    'Competitive Salary & Incentive Package',
+    'Comprehensive Health Coverage',
+    'Principal Training Programs (Germany/Sweden)',
+    'Complete Work Equipment (Laptop & Tools)',
+    'Innovative and Supportive Work Culture',
+    'Structured Career Growth Path',
 ];
 
 export default async function CareerPage() {
-    const lang = await getServerLang();
-    const copy = lang === 'en'
-        ? {
-            badge: 'Careers & Opportunities',
-            hero1: 'Shape the Future of',
-            hero2: 'Industrial Automation',
-            heroDesc: 'PT Dimensi Quantum Wahyudi is where top engineering talent meets world-class lifting technology. Build ergonomic solutions that transform how industries work.',
-            benefitsTitle: 'Benefits & Value',
-            openTitle: 'Open Positions',
-            openSubtitle: 'Find Your Role',
-            openDesc: 'All positions are based at our Bekasi HQ with mobility based on role requirements.',
-            keyReq: 'Key Requirements',
-            apply: 'Apply Now',
-            ctaTitle: 'Still Looking for the Right Role?',
-            ctaDesc: 'We are always looking for great thinkers and problem-solvers. Send your CV and tell us how you can create impact at DQW.',
-        }
-        : {
-            badge: 'Karir & Peluang',
-            hero1: 'Bentuk Masa Depan',
-            hero2: 'Otomasi Industri',
-            heroDesc: 'PT Dimensi Quantum Wahyudi adalah titik lebur antara talenta engineering luar biasa dan teknologi lifting kelas dunia. Mari ciptakan solusi ergonomis yang mengubah cara industri bekerja.',
-            benefitsTitle: 'Nilai & Keuntungan',
-            openTitle: 'Posisi Tersedia',
-            openSubtitle: 'Temukan Peran Anda',
-            openDesc: 'Semua posisi berbasis di fasilitas pusat kami di Bekasi, Jawa Barat, dengan mobilitas sesuai kebutuhan peran.',
-            keyReq: 'Persyaratan Kunci',
-            apply: 'Kirim Lamaran',
-            ctaTitle: 'Belum Menemukan Posisi yang Pas?',
-            ctaDesc: 'Kami selalu mencari inovator dan pemikir hebat. Kirimkan CV dan cerita singkat tentang bagaimana Anda dapat memberikan dampak di DQW.',
-        };
+    const copy = {
+        badge: 'Careers & Opportunities',
+        hero1: 'Shape the Future of',
+        hero2: 'Industrial Automation',
+        heroDesc: 'PT Dimensi Quantum Wahyudi is where top engineering talent meets world-class lifting technology. Build ergonomic solutions that transform how industries work.',
+        benefitsTitle: 'Benefits & Value',
+        openTitle: 'Open Positions',
+        openSubtitle: 'Find Your Role',
+        openDesc: 'All positions are based at our Bekasi headquarters with mobility requirements depending on the role.',
+        keyReq: 'Key Requirements',
+        apply: 'Apply Now',
+        ctaTitle: 'Still Looking for the Right Role?',
+        ctaDesc: 'We are always looking for great thinkers and problem-solvers. Send your CV and tell us how you can create impact at DQW.',
+    };
     return (
         <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white">
 
@@ -192,7 +175,7 @@ export default async function CareerPage() {
 
                                             {/* Apply Button Desktop */}
                                             <a
-                                                href={`mailto:marketing@dimensiwahyudi.com?subject=Lamaran: ${job.title}`}
+                                                href={`mailto:marketing@dimensiwahyudi.com?subject=Application: ${job.title}`}
                                                 className={`hidden lg:flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-slate-900/20 hover:${styling.glow} hover:-translate-y-1 whitespace-nowrap`}
                                             >
                                                 {copy.apply} <ArrowRight size={18} />
@@ -217,7 +200,7 @@ export default async function CareerPage() {
 
                                         {/* Apply Button Mobile */}
                                         <a
-                                            href={`mailto:marketing@dimensiwahyudi.com?subject=Lamaran: ${job.title}`}
+                                            href={`mailto:marketing@dimensiwahyudi.com?subject=Application: ${job.title}`}
                                             className="mt-8 flex lg:hidden items-center justify-center gap-2 w-full py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-xl transition-all"
                                         >
                                             {copy.apply} <ArrowRight size={18} />

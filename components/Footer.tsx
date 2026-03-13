@@ -52,7 +52,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Kolom 3: Produk */}
+          {/* Column 3: Products */}
           <div>
             <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.solutions}</h4>
             <ul className="space-y-4 text-sm font-medium">
@@ -63,7 +63,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Kolom 4: Kontak */}
+          {/* Column 4: Contact */}
           <div>
             <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.contactUs}</h4>
             <ul className="space-y-4 text-sm">

@@ -17,12 +17,12 @@ type Project = {
 };
 
 export default function BentoGallery({ projects }: { projects: Project[] }) {
-    const [filter, setFilter] = useState('Semua');
+    const [filter, setFilter] = useState('All');
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-    const industries = ['Semua', ...Array.from(new Set(projects.map(p => p.industry)))];
+    const industries = ['All', ...Array.from(new Set(projects.map(p => p.industry)))];
 
-    const filteredProjects = filter === 'Semua'
+    const filteredProjects = filter === 'All'
         ? projects
         : projects.filter(p => p.industry === filter);
 

@@ -48,7 +48,7 @@ const DATA: Record<ModuleKey, ModuleConfig> = {
         id: 'workpiece',
         label: 'Material',
         title: 'Jenis Material',
-        desc: 'Apa yang akan diangkat?',
+        desc: 'What are you lifting?',
         type: 'grid',
         options: [
           { id: 'cardboard', label: 'Cardboard', sub: 'Karton / Box' },
@@ -72,27 +72,27 @@ const DATA: Record<ModuleKey, ModuleConfig> = {
       },
       {
         id: 'movement',
-        label: 'Gerak',
-        title: 'Tipe Gerakan',
-        desc: 'Bagaimana benda dipindahkan?',
+        label: 'Movement',
+        title: 'Movement Type',
+        desc: 'How is the item moved?',
         type: 'binary',
         options: [
-          { id: 'horizontal', label: 'Horizontal', sub: 'Angkat & Pindah Saja' },
-          { id: 'tilt', label: 'Tilt / Turn', sub: 'Membalik / Memutar Benda' },
+          { id: 'horizontal', label: 'Horizontal', sub: 'Lift & Transfer Only' },
+          { id: 'tilt', label: 'Tilt / Turn', sub: 'Rotate or Flip Item' },
         ],
       },
       {
         id: 'cycle',
-        label: 'Siklus',
-        title: 'Frekuensi Angkat',
-        desc: 'Berapa kali angkat per menit?',
+        label: 'Cycles',
+        title: 'Lifting Frequency',
+        desc: 'How many lifts per minute?',
         type: 'binary',
         options: [
-          { id: 'high', label: 'High Freq', sub: '> 10x per menit (Cepat)' },
-          { id: 'low', label: 'Low Freq', sub: '< 5x per menit (Lambat)' },
+          { id: 'high', label: 'High Freq', sub: '> 10x per minute (Fast)' },
+          { id: 'low', label: 'Low Freq', sub: '< 5x per minute (Slow)' },
         ],
       },
-      { id: 'results', label: 'Solusi', title: 'Rekomendasi', desc: 'Solusi Handling DQW.', type: 'results' },
+      { id: 'results', label: 'Solution', title: 'Recommendation', desc: 'DQW handling recommendation.', type: 'results' },
     ],
   },
   generators: {
@@ -101,41 +101,41 @@ const DATA: Record<ModuleKey, ModuleConfig> = {
       {
         id: 'power',
         label: 'Power',
-        title: 'Sumber Daya',
-        desc: 'Apa sumber tenaga yang tersedia?',
+        title: 'Power Source',
+        desc: 'What power source is available?',
         type: 'binary',
         options: [
-          { id: 'pneumatic', label: 'Pneumatic', sub: 'Kompresor Udara' },
-          { id: 'electric', label: 'Electric', sub: 'Listrik (24V/220V)' },
+          { id: 'pneumatic', label: 'Pneumatic', sub: 'Air Compressor' },
+          { id: 'electric', label: 'Electric', sub: 'Electricity (24V/220V)' },
         ],
       },
       {
         id: 'porosity',
         label: 'Surface',
-        title: 'Porositas Benda',
-        desc: 'Apakah udara tembus melalui benda?',
+        title: 'Workpiece Porosity',
+        desc: 'Does air pass through the workpiece?',
         type: 'binary',
         options: [
-          { id: 'air-tight', label: 'Air-tight', sub: 'Kedap (Besi, Kaca)' },
-          { id: 'porous', label: 'Porous', sub: 'Berpori (Kardus, Kayu)' },
+          { id: 'air-tight', label: 'Air-tight', sub: 'Sealed (Metal, Glass)' },
+          { id: 'porous', label: 'Porous', sub: 'Porous (Carton, Wood)' },
         ],
       },
       {
         id: 'environment',
         label: 'Area',
-        title: 'Lingkungan',
-        desc: 'Kondisi area kerja?',
+        title: 'Environment',
+        desc: 'What is the work environment?',
         type: 'binary',
         options: [
-          { id: 'clean', label: 'Clean', sub: 'Standard / Bersih' },
-          { id: 'dusty', label: 'Dirty/Dusty', sub: 'Berdebu / Lembab' },
+          { id: 'clean', label: 'Clean', sub: 'Standard / Clean' },
+          { id: 'dusty', label: 'Dirty/Dusty', sub: 'Dusty / Humid' },
         ],
       },
       {
         id: 'system',
         label: 'Robot',
-        title: 'Integrasi',
-        desc: 'Tipe robot yang digunakan?',
+        title: 'Integration',
+        desc: 'What robot type is used?',
         type: 'grid',
         options: [
           { id: 'cobot', label: 'Cobot', sub: 'Collaborative' },
@@ -144,7 +144,7 @@ const DATA: Record<ModuleKey, ModuleConfig> = {
           { id: 'manual', label: 'Manual', sub: 'Fixture' },
         ],
       },
-      { id: 'results', label: 'Solusi', title: 'Rekomendasi', desc: 'Solusi Vakum DQW.', type: 'results' },
+      { id: 'results', label: 'Solution', title: 'Recommendation', desc: 'DQW vacuum recommendation.', type: 'results' },
     ],
   },
 };
@@ -452,8 +452,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
         name: 'VacuMaster',
         tagline: tilt ? 'Tilt & Turn' : 'Heavy Load Device',
         desc: tilt
-          ? 'Solusi angkat yang mampu membalik benda 90°/180° secara aman.'
-          : 'Solusi angkat beban berat dengan keamanan ganda.',
+          ? 'A lifting solution that safely rotates workpieces by 90°/180°.'
+          : 'A heavy-load lifting solution with dual-layer safety.',
         logic: tilt
           ? 'Fungsi Tilting/Turning mewajibkan penggunaan VacuMaster.'
           : `Beban ${weight}kg memerlukan sistem chain hoist + VacuMaster.`,
@@ -471,8 +471,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
       return {
         name: 'JumboFlex',
         tagline: 'High Speed Handler',
-        desc: 'Tube lifter operasional satu tangan untuk pemindahan barang frekuensi tinggi yang ergonomis.',
-        logic: `Beban ringan (${weight}kg) dan gerak horizontal optimal dengan operasi satu jari JumboFlex.`,
+        desc: 'One-hand ergonomic tube lifter for high-frequency material transfer.',
+        logic: `Light payload (${weight}kg) and horizontal movement are ideal for JumboFlex one-finger operation.`,
         specs: [
           { key: 'Control', value: 'Single-Finger' },
           { key: 'Tube', value: 'Ø 100-120mm' },
@@ -486,8 +486,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
     return {
       name: 'JumboErgo',
       tagline: 'Modular Tube Lifter',
-      desc: 'Sistem tube lifter dengan handle putar (twist grip) untuk kontrol beban medium yang presisi.',
-      logic: `Beban ${weight}kg paling stabil ditangani dengan handle dua tangan JumboErgo.`,
+      desc: 'Tube lifter with twist-grip control for precise medium-payload handling.',
+      logic: `A ${weight}kg payload is most stable with JumboErgo two-hand control.`,
       specs: [
         { key: 'Control', value: 'Twist Grip' },
         { key: 'Payload', value: 'Max 140kg' },
@@ -507,8 +507,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
     return {
       name: 'ECBPi',
       tagline: 'Cobot Pump',
-      desc: 'Generator vakum listrik cerdas dengan interface robot langsung (NFC/IO-Link).',
-      logic: 'Desain tanpa selang angin (hose-free) ideal untuk Cobot.',
+      desc: 'Smart electric vacuum generator with direct robot interface (NFC/IO-Link).',
+      logic: 'A hose-free design is ideal for cobot integration.',
       specs: [
         { key: 'Tech', value: 'Air-free' },
         { key: 'Comms', value: 'IO-Link / NFC' },
@@ -523,8 +523,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
     return {
       name: 'ECBPM',
       tagline: 'Mini Electric',
-      desc: 'Pembangkit vakum listrik kompak untuk sistem otomatisasi ringan tanpa suplai angin.',
-      logic: 'Solusi pick & place ringan (Small Parts) tanpa kompresor.',
+      desc: 'Compact electric vacuum source for lightweight automation without compressed air.',
+      logic: 'An ideal compressor-free setup for small-part pick-and-place.',
       specs: [
         { key: 'Voltage', value: '24V DC' },
         { key: 'Flow', value: '1.6 l/min' },
@@ -539,8 +539,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
     return {
       name: 'SCPS / SXPi',
       tagline: 'IP65 Ejector',
-      desc: 'Compact ejector tahan debu dan percikan air dengan nozzle teknologi Venturi.',
-      logic: 'Area berdebu mewajibkan proteksi IP65 pada SCPS.',
+      desc: 'Compact ejector resistant to dust and splash exposure with Venturi nozzle technology.',
+      logic: 'Dusty areas require IP65-grade SCPS protection.',
       specs: [
         { key: 'Protection', value: 'IP65' },
         { key: 'Nozzle', value: 'Single-stage' },
@@ -555,7 +555,7 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
     return {
       name: 'Basic Ejector (SBPL)',
       tagline: 'High Flow Ejector',
-      desc: 'Ejector multi-stage dengan aliran hisap besar untuk mengkompensasi kebocoran pada benda berpori.',
+      desc: 'Multi-stage ejector with high suction flow to compensate leakage on porous materials.',
       logic: 'Benda berpori memerlukan High Flow Rate, bukan High Vacuum.',
       specs: [
         { key: 'Tech', value: 'Multi-stage Eco' },
@@ -570,8 +570,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
   return {
     name: 'SCPM / SCPS',
     tagline: 'Compact Ejector',
-    desc: 'Sistem ejektor all-in-one dengan fungsi hemat udara terintegrasi.',
-    logic: 'Standar industri untuk benda kedap udara dengan efisiensi tinggi.',
+    desc: 'All-in-one ejector system with integrated air-saving control.',
+    logic: 'An industry standard for airtight workpieces with high efficiency.',
     specs: [
       { key: 'Efficiency', value: 'Air Saving' },
       { key: 'Control', value: 'NO / NC' },
@@ -907,7 +907,7 @@ export default function SelectionAidsClient() {
                           <div className="hidden flex-col items-center space-y-2 px-4 text-center md:flex">
                             <div className="h-1 w-8 rounded-full bg-blue-600" />
                             <p className="text-[10px] font-bold uppercase tracking-widest leading-relaxed text-slate-400">
-                              Menentukan diameter tube dan safety factor.
+                              Determines tube diameter and safety factor.
                             </p>
                           </div>
                         </div>
@@ -960,7 +960,7 @@ export default function SelectionAidsClient() {
                           href={recommendation.productUrl}
                           className="flex-1 rounded-xl bg-blue-600 py-4 text-center text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-blue-600/50 transition-all hover:bg-blue-700"
                         >
-                          Lihat Produk →
+                          View Product →
                         </a>
                         <button
                           onClick={resetToHub}

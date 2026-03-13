@@ -238,7 +238,7 @@ export default function NewsGrid({ posts }: NewsGridProps) {
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-2">No Articles Found</h3>
                     <p className="text-slate-500 max-w-md mx-auto">
-                        Tidak ada artikel dalam kategori &ldquo;{filter}&rdquo;. Coba pilih kategori lain.
+                        No articles are available in the &ldquo;{filter}&rdquo; category. Please try another filter.
                     </p>
                 </div>
             )}

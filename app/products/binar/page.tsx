@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowRight, ArrowLeft, Filter, Award } from 'lucide-react';
@@ -7,16 +7,16 @@ import { videos } from '../../../data/videos';
 import ProductVideoGrid from '../schmalz/ProductVideoGrid';
 
 export const metadata: Metadata = {
-    title: 'Produk Binar Handling Indonesia | Lift Arm Cerdas & Gripper | PT Dimensi Quantum Wahyudi',
-    description: 'Katalog produk Binar Handling dari Swedia: QLA Quick-Lift Arm, QLD Motorized 300kg, Vacuum Gripper, Magnetic Gripper. Solusi ergonomis untuk industri manufaktur & otomotif Indonesia.',
-    keywords: ['Binar Handling Indonesia', 'QLA Lift Arm', 'QLD 300i', 'Intelligent Lift Arm Sweden', 'Vacuum Gripper Industri', 'Magnetic Gripper', 'PT Dimensi Quantum Wahyudi'],
+    title: 'Binar Handling Products Indonesia | Intelligent Lift Arms & Grippers | PT Dimensi Quantum Wahyudi',
+    description: 'Binar Handling portfolio from Sweden: QLA Quick-Lift Arm, QLD Motorized 300kg, vacuum grippers, and magnetic grippers. Ergonomic solutions for Indonesian manufacturing and automotive sectors.',
+    keywords: ['Binar Handling Indonesia', 'QLA Lift Arm', 'QLD 300i', 'Intelligent Lift Arm Sweden', 'Industrial Vacuum Gripper', 'Magnetic Gripper', 'PT Dimensi Quantum Wahyudi'],
     alternates: { canonical: 'https://dimensiwahyudi.com/products/binar' },
     openGraph: {
-        title: 'Produk Binar Handling Indonesia | Lift Arm & Gripper Cerdas',
-        description: 'Distributor resmi Binar Handling (Swedia) di Indonesia. Lift arm pintar dan gripper untuk industri manufaktur.',
+        title: 'Binar Handling Products Indonesia | Intelligent Lift Arms & Grippers',
+        description: 'Official Binar Handling distributor in Indonesia. Intelligent lift arms and grippers for manufacturing operations.',
         url: 'https://dimensiwahyudi.com/products/binar',
         type: 'website',
-        locale: 'id_ID',
+        locale: 'en_US',
         siteName: 'PT Dimensi Quantum Wahyudi',
     },
 };
@@ -46,12 +46,12 @@ export default function BinarCatalogPage() {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     <Link href="/products" className="inline-flex items-center gap-2 text-zinc-400 hover:text-red-400 mb-8 text-sm font-medium transition-colors">
-                        <ArrowLeft size={16} /> Semua Brand
+                        <ArrowLeft size={16} /> All Brands
                     </Link>
                     <div className="flex items-start justify-between">
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-bold uppercase tracking-widest mb-6">
-                                🇸🇪 Made in Sweden — Est. 1976
+                                Made in Sweden - Est. 1976
                             </div>
                             <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                                 BINAR
@@ -59,7 +59,7 @@ export default function BinarCatalogPage() {
                             </h1>
                             <div className="h-1.5 w-24 bg-gradient-to-r from-red-600 to-rose-500 rounded-full mb-6" />
                             <p className="text-zinc-400 text-lg max-w-xl leading-relaxed">
-                                Teknologiledare dalam intelligent lift arms — servo precision yang menetapkan standar baru ergonomi industri global.
+                                A technology leader in intelligent lift arms, delivering servo precision that sets a new benchmark for industrial ergonomics.
                             </p>
                         </div>
                         <div className="hidden lg:flex flex-col items-end gap-6">
@@ -77,12 +77,12 @@ export default function BinarCatalogPage() {
                             <div className="flex items-center gap-4 text-zinc-500 text-sm">
                                 <div className="text-center">
                                     <div className="text-3xl font-black text-white">{binarProducts.length}</div>
-                                    <div className="text-xs uppercase tracking-widest">Produk</div>
+                                    <div className="text-xs uppercase tracking-widest">Products</div>
                                 </div>
                                 <div className="w-px h-12 bg-zinc-800" />
                                 <div className="text-center">
                                     <div className="text-3xl font-black text-red-500">8000+</div>
-                                    <div className="text-xs uppercase tracking-widest">Gripdon Dibuat</div>
+                                    <div className="text-xs uppercase tracking-widest">Gripdons Built</div>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@ export default function BinarCatalogPage() {
                         <div className="h-1 w-8 bg-red-600 rounded-full" />
                         <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Vikarmskranar / Lift Arms</h2>
                         <Filter size={14} className="text-zinc-400 ml-auto" />
-                        <span className="text-zinc-400 text-sm">{liftArms.length} produk</span>
+                        <span className="text-zinc-400 text-sm">{liftArms.length} products</span>
                     </div>
 
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
@@ -153,7 +153,7 @@ export default function BinarCatalogPage() {
                                     </div>
 
                                     <div className="flex items-center text-red-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail
+                                        View Details
                                         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@ export default function BinarCatalogPage() {
                         <div className="h-1 w-8 bg-rose-700 rounded-full" />
                         <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Gripdon / End Effectors</h2>
                         <Filter size={14} className="text-zinc-400 ml-auto" />
-                        <span className="text-zinc-400 text-sm">{grippers.length} produk</span>
+                        <span className="text-zinc-400 text-sm">{grippers.length} products</span>
                     </div>
 
                     <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -206,7 +206,7 @@ export default function BinarCatalogPage() {
                                         {product.tagline}
                                     </p>
                                     <div className="flex items-center text-rose-600 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
-                                        Lihat Detail <ArrowRight size={12} />
+                                        View Details <ArrowRight size={12} />
                                     </div>
                                 </div>
                             </Link>
@@ -222,11 +222,11 @@ export default function BinarCatalogPage() {
             <section className="py-16 bg-white border-t border-zinc-100">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <Award className="w-10 h-10 text-red-600 mx-auto mb-4 opacity-60" />
-                    <h2 className="text-2xl font-black text-zinc-900 mb-3">Butuh Gripdon Custom?</h2>
-                    <p className="text-zinc-500 mb-8">Binar Handling telah membuat 8.000+ varian gripdon custom. Konsultasikan kebutuhan spesifik Anda.</p>
+                    <h2 className="text-2xl font-black text-zinc-900 mb-3">Need a Custom Gripdon?</h2>
+                    <p className="text-zinc-500 mb-8">Binar Handling has delivered 8,000+ custom Gripdon variants. Discuss your specific requirements with our team.</p>
                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-600/30">
-                        Konsultasi via WhatsApp
+                        Consult via WhatsApp
                         <ArrowRight size={16} />
                     </a>
                 </div>

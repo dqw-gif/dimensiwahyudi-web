@@ -3,23 +3,15 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle, ExternalLink, AlertCircle } from 'lucide-react';
-import { useLanguage } from '../../components/LanguageProvider';
 
 type FieldErrors = { name?: string; email?: string; message?: string };
 
-function validateField(name: string, value: string, lang: 'id' | 'en'): string {
-  const text =
-    lang === 'en'
-      ? {
-          nameMin: 'Name must be at least 2 characters',
-          emailInvalid: 'Invalid email format',
-          messageMin: 'Description must be at least 20 characters',
-        }
-      : {
-          nameMin: 'Nama minimal 2 karakter',
-          emailInvalid: 'Format email tidak valid',
-          messageMin: 'Deskripsi minimal 20 karakter',
-        };
+function validateField(name: string, value: string): string {
+  const text = {
+    nameMin: 'Name must be at least 2 characters',
+    emailInvalid: 'Invalid email format',
+    messageMin: 'Description must be at least 20 characters',
+  };
 
   switch (name) {
     case 'name': return value.trim().length < 2 ? text.nameMin : '';
@@ -30,7 +22,6 @@ function validateField(name: string, value: string, lang: 'id' | 'en'): string {
 }
 
 export default function ContactPage() {
-  const { lang } = useLanguage();
   const [formData, setFormData] = useState({ name: '', company: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const FORMSPREE_URL = `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`;
@@ -42,7 +33,7 @@ export default function ContactPage() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     if (touched[name]) {
-      const error = validateField(name, value, lang);
+      const error = validateField(name, value);
       setErrors(prev => ({ ...prev, [name]: error }));
     }
   }
@@ -50,7 +41,7 @@ export default function ContactPage() {
   function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setTouched(prev => ({ ...prev, [name]: true }));
-    const error = validateField(name, value, lang);
+    const error = validateField(name, value);
     setErrors(prev => ({ ...prev, [name]: error }));
   }
 
@@ -58,7 +49,7 @@ export default function ContactPage() {
     const newErrors: FieldErrors = {};
     const required = ['name', 'email', 'message'] as const;
     required.forEach(field => {
-      const error = validateField(field, formData[field], lang);
+      const error = validateField(field, formData[field]);
       if (error) newErrors[field] = error;
     });
     setErrors(newErrors);
@@ -97,90 +88,47 @@ export default function ContactPage() {
     return touched[name] && errors[name] ? `${inputBase} ${inputErr}` : `${inputBase} border-emerald-400 focus:border-emerald-500 focus:ring-emerald-50`;
   }
 
-  const copy =
-    lang === 'en'
-      ? {
-          heroTitleA: 'Free Technical & Lifting',
-          heroTitleB: 'Consultation',
-          heroDesc:
-            'Share your current material handling challenge. Our certified engineers are ready to design the most efficient ergonomic vacuum lifting solution for your production line.',
-          contactCenter: 'Contact Service Center',
-          officeTitle: 'Workshop & Office Location',
-          officeResponse: 'Fast Response: Within 24 Business Hours',
-          businessMail: 'Business Correspondence',
-          hotline: 'Technical Hotline & WhatsApp',
-          emergency: 'Emergency Maintenance Support Available',
-          officeHours: 'Office Hours',
-          weekdays: 'Monday - Friday',
-          weekend: 'Saturday - Sunday',
-          closed: 'Closed',
-          formTitle: 'Request a Quote & Tailored Solution',
-          formDesc:
-            'Share your operational requirements so we can prepare a precise handling design and bill of quantity estimate.',
-          successTitle: 'Request Received!',
-          successDesc: 'Our engineer will contact you within 1x24 working hours.',
-          continueWa: 'Continue via WhatsApp',
-          sendAnother: 'Send another request',
-          failed: 'Failed to send message',
-          failedDesc: 'Please contact us directly via WhatsApp:',
-          waChat: 'WhatsApp Chat',
-          retry: 'Try again',
-          personName: 'Person in Charge Name',
-          companyName: 'Company Name',
-          corporateEmail: 'Corporate Email',
-          projectSpec: 'Project Specification',
-          namePlaceholder: 'Example: John Smith',
-          companyPlaceholder: 'Example: PT Manufacturing Indonesia',
-          emailPlaceholder: 'email@company-name.com',
-          messagePlaceholder: 'Mention material weight (kg), object type (box/sheet), and lifting frequency per hour...',
-          looksGood: 'Looks good!',
-          emailValid: 'Valid email',
-          processing: 'Processing...',
-          getQuote: 'Get Price Quotation',
-          privacy: 'Your data is kept confidential for technical consultation and official quotation purposes.',
-          minText: 'min',
-        }
-      : {
-          heroTitleA: 'Konsultasi',
-          heroTitleB: 'Teknikal & Lifting Gratis',
-          heroDesc:
-            'Sampaikan tantangan beban operasional Anda. Tim engineer tersertifikasi kami siap merancang solusi vacuum lifting dan material handling ergonomis paling efisien untuk lini produksi Anda.',
-          contactCenter: 'Hubungi Pusat Layanan',
-          officeTitle: 'Lokasi Workshop & Kantor',
-          officeResponse: 'Fast Response: 24 Jam Kerja',
-          businessMail: 'Korespondensi Bisnis',
-          hotline: 'Hotline Teknis & WhatsApp',
-          emergency: 'Layanan Darurat Maintenance Tersedia',
-          officeHours: 'Jam Operasional Kantor',
-          weekdays: 'Senin - Jumat',
-          weekend: 'Sabtu - Minggu',
-          closed: 'Tutup',
-          formTitle: 'Request Penawaran & Solusi Terkustomisasi',
-          formDesc:
-            'Lengkapi detail operasional pabrik Anda untuk rancang bangun sistem handling dan estimasi biaya (BoQ) yang presisi.',
-          successTitle: 'Permintaan Diterima!',
-          successDesc: 'Engineer kami akan menghubungi Anda dalam 1×24 jam kerja.',
-          continueWa: 'Lanjut via WhatsApp',
-          sendAnother: 'Kirim permintaan lainnya',
-          failed: 'Gagal mengirim pesan',
-          failedDesc: 'Silakan hubungi kami langsung via WhatsApp:',
-          waChat: 'Chat WhatsApp',
-          retry: 'Coba lagi',
-          personName: 'Nama Penanggung Jawab',
-          companyName: 'Nama Perusahaan',
-          corporateEmail: 'Email Korporat',
-          projectSpec: 'Spesifikasi Proyek',
-          namePlaceholder: 'Contoh: Budi Santoso',
-          companyPlaceholder: 'Contoh: PT Manufaktur Indonesia',
-          emailPlaceholder: 'alamat@nama-perusahaan.com',
-          messagePlaceholder: 'Sebutkan berat material (kg), jenis benda (box/plat), dan frekuensi angkat per jam...',
-          looksGood: 'Terlihat bagus!',
-          emailValid: 'Email valid',
-          processing: 'Memproses...',
-          getQuote: 'Dapatkan Penawaran Harga',
-          privacy: 'Data Anda akan dijaga kerahasiaannya untuk keperluan teknis & penawaran resmi.',
-          minText: 'min',
-        };
+  const copy = {
+    heroTitleA: 'Free Technical & Lifting',
+    heroTitleB: 'Consultation',
+    heroDesc:
+      'Share your current material handling challenge. Our certified engineers are ready to design the most efficient ergonomic vacuum lifting solution for your production line.',
+    contactCenter: 'Contact Service Center',
+    officeTitle: 'Workshop & Office Location',
+    officeResponse: 'Fast Response: Within 24 Business Hours',
+    businessMail: 'Business Correspondence',
+    hotline: 'Technical Hotline & WhatsApp',
+    emergency: 'Emergency Maintenance Support Available',
+    officeHours: 'Office Hours',
+    weekdays: 'Monday - Friday',
+    weekend: 'Saturday - Sunday',
+    closed: 'Closed',
+    formTitle: 'Request a Quote & Tailored Solution',
+    formDesc:
+      'Share your operational requirements so we can prepare a precise handling design and bill of quantity estimate.',
+    successTitle: 'Request Received!',
+    successDesc: 'Our engineer will contact you within 24 business hours.',
+    continueWa: 'Continue via WhatsApp',
+    sendAnother: 'Send another request',
+    failed: 'Failed to send message',
+    failedDesc: 'Please contact us directly via WhatsApp:',
+    waChat: 'WhatsApp Chat',
+    retry: 'Try again',
+    personName: 'Person in Charge Name',
+    companyName: 'Company Name',
+    corporateEmail: 'Corporate Email',
+    projectSpec: 'Project Specification',
+    namePlaceholder: 'Example: John Smith',
+    companyPlaceholder: 'Example: PT Manufacturing Indonesia',
+    emailPlaceholder: 'email@company-name.com',
+    messagePlaceholder: 'Mention material weight (kg), object type (box/sheet), and lifting frequency per hour...',
+    looksGood: 'Looks good!',
+    emailValid: 'Valid email',
+    processing: 'Processing...',
+    getQuote: 'Get Price Quotation',
+    privacy: 'Your data is kept confidential for technical consultation and official quotation purposes.',
+    minText: 'min',
+  };
 
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">

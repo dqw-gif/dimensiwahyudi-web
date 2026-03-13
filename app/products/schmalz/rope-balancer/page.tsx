@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Layers } from 'lucide-react';
 import { ropeBalancerVariants } from '../../../../data/products/rope-balancers';
 
 export const metadata: Metadata = {
-    title: 'Rope Balancers & Lift Systems — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
-    description: 'Binar Handling NEO 30 (battery, 30kg), QLA (360°, 300kg), QLR (rail, 600kg), Ergo-Glass. Intelligent lift systems untuk workstation presisi.',
+    title: 'Rope Balancers & Lift Systems — Full Range | Schmalz — PT Dimensi Quantum Wahyudi',
+    description: 'Binar Handling NEO 30 (battery, 30kg), QLA (360 degrees, 300kg), QLR (rail, 600kg), and Ergo-Glass. Intelligent lift systems for precision workstations.',
 };
 
 const badgeColors: Record<string, string> = {
@@ -24,7 +24,7 @@ export default function RopeBalancerIndexPage() {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8 flex-wrap">
-                        <Link href="/products" className="hover:text-amber-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-amber-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-amber-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -32,7 +32,7 @@ export default function RopeBalancerIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> {ropeBalancerVariants.length} Sistem — Binar Handling
+                        <Layers size={11} /> {ropeBalancerVariants.length} Systems - Binar Handling
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         ROPE BALANCERS
@@ -77,7 +77,7 @@ export default function RopeBalancerIndexPage() {
                                     <p className="text-amber-600 text-xs font-bold uppercase tracking-wider mb-3">{variant.highlight}</p>
                                     <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-5">{variant.tagline}</p>
                                     <div className="flex items-center text-amber-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                        View Details <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </Link>
@@ -89,11 +89,11 @@ export default function RopeBalancerIndexPage() {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <Link href="/products/schmalz" className="flex items-center gap-2 text-slate-500 hover:text-amber-600 font-medium text-sm transition-colors">
-                        <ArrowLeft size={16} /> Kembali ke Semua Produk Schmalz
+                        <ArrowLeft size={16} /> Back to All Schmalz Products
                     </Link>
                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-600/20">
-                        Konsultasi <ArrowRight size={14} />
+                        Consultation <ArrowRight size={14} />
                     </a>
                 </div>
             </section>

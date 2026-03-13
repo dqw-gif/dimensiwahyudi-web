@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronRight, Layers, Zap } from 'lucide-react';
 import { suctionCupVariants } from '../../../../data/products/suction-cups';
 
 export const metadata: Metadata = {
-    title: 'Vacuum Suction Cups — Semua Varian | Schmalz — PT Dimensi Quantum Wahyudi',
-    description: 'Jelajahi seluruh rangkaian Vacuum Suction Cup Schmalz — flat, bellows, oval, dan varian khusus untuk elektronik, sheet metal, kaca, kayu, pengemasan, dan high-temperature.',
+    title: 'Vacuum Suction Cups - Full Range | Schmalz - PT Dimensi Quantum Wahyudi',
+    description: 'Explore the complete Schmalz vacuum suction cup range: flat, bellows, oval, and specialized variants for electronics, sheet metal, glass, wood, packaging, and high-temperature applications.',
 };
 
 const badgeColors: Record<string, string> = {
@@ -29,7 +29,7 @@ export default function SuctionCupsPage() {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8 flex-wrap">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Produk</Link>
+                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
                         <ChevronRight size={12} />
                         <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
                         <ChevronRight size={12} />
@@ -37,7 +37,7 @@ export default function SuctionCupsPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> {suctionCupVariants.length} Tipe — Komponen Vakum
+                        <Layers size={11} /> {suctionCupVariants.length} Types - Vacuum Components
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUUM
@@ -45,7 +45,7 @@ export default function SuctionCupsPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Ratusan varian untuk setiap kebutuhan gripping — dari elektronik sensitif hingga sheet metal berat. Pilih dari desain flat, bellows, oval, dan khusus yang direkayasa untuk aplikasi Anda.
+                        Hundreds of variants for every gripping need, from sensitive electronics to heavy sheet metal. Choose from flat, bellows, oval, and engineered specialty designs.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-3">
                         {['NBR', 'Silicone', 'Viton', 'PU', 'PTFE'].map(m => (
@@ -94,7 +94,7 @@ export default function SuctionCupsPage() {
                                     <p className="text-cyan-600 text-xs font-bold uppercase tracking-wider mb-2">{variant.tagline}</p>
                                     <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-4">{variant.description}</p>
                                     <div className="flex items-center text-cyan-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        Lihat Detail <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                        View Details <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </Link>
@@ -106,11 +106,11 @@ export default function SuctionCupsPage() {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <Link href="/products/schmalz" className="flex items-center gap-2 text-slate-500 hover:text-cyan-600 font-medium text-sm transition-colors">
-                        <ArrowLeft size={16} /> Kembali ke Semua Produk Schmalz
+                        <ArrowLeft size={16} /> Back to All Schmalz Products
                     </Link>
                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-600/20">
-                        Konsultasi <ArrowRight size={14} />
+                        Consultation <ArrowRight size={14} />
                     </a>
                 </div>
             </section>

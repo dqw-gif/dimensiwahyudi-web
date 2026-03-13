@@ -22,10 +22,10 @@ export default function ProductVideoGrid({ videos }: { videos: Video[] }) {
                 <div className="text-center mb-10">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-100 border border-red-200 rounded-full text-red-700 text-xs font-bold uppercase tracking-widest mb-4">
                         <svg className="w-3 h-3 fill-red-700" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                        Video Demo Resmi
+                        Official Demo Videos
                     </div>
-                    <h2 className="text-3xl font-black text-slate-900 mb-3">Lihat Cara Kerjanya</h2>
-                    <p className="text-slate-500 max-w-xl mx-auto text-sm">Video demo resmi dari Schmalz — tampilkan produk beraksi nyata di lantai produksi industri global.</p>
+                    <h2 className="text-3xl font-black text-slate-900 mb-3">See How It Works</h2>
+                    <p className="text-slate-500 max-w-xl mx-auto text-sm">Official Schmalz demo videos showing products in real production environments.</p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-5 mb-8">
@@ -56,7 +56,7 @@ export default function ProductVideoGrid({ videos }: { videos: Video[] }) {
                 </div>
                 <div className="text-center">
                     <Link href="/digital-assistant/video-library" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition-colors">
-                        Lihat Semua Video
+                        View All Videos
                         <ArrowRight size={14} />
                     </Link>
                 </div>
@@ -87,12 +87,12 @@ export default function ProductVideoGrid({ videos }: { videos: Video[] }) {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 shrink-0 whitespace-nowrap"
                             >
-                                <ExternalLink size={14} /> Buka YouTube
+                                <ExternalLink size={14} /> Open on YouTube
                             </a>
                         </div>
                         <div className="px-6 pb-5">
                             <button onClick={() => setActiveVideo(null)} className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition-colors">
-                                <X size={14} /> Tutup
+                                <X size={14} /> Close
                             </button>
                         </div>
                     </div>
