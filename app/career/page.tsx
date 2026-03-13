@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Briefcase, MapPin, Clock, ChevronRight, Send, ArrowRight, Zap, Target, Users } from 'lucide-react';
+import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
     title: 'Karir | Bergabung dengan Tim PT Dimensi Quantum Wahyudi',
@@ -53,7 +54,37 @@ const benefits = [
     'Jalur Pengembangan Karir Progresif',
 ];
 
-export default function CareerPage() {
+export default async function CareerPage() {
+    const lang = await getServerLang();
+    const copy = lang === 'en'
+        ? {
+            badge: 'Careers & Opportunities',
+            hero1: 'Shape the Future of',
+            hero2: 'Industrial Automation',
+            heroDesc: 'PT Dimensi Quantum Wahyudi is where top engineering talent meets world-class lifting technology. Build ergonomic solutions that transform how industries work.',
+            benefitsTitle: 'Benefits & Value',
+            openTitle: 'Open Positions',
+            openSubtitle: 'Find Your Role',
+            openDesc: 'All positions are based at our Bekasi HQ with mobility based on role requirements.',
+            keyReq: 'Key Requirements',
+            apply: 'Apply Now',
+            ctaTitle: 'Still Looking for the Right Role?',
+            ctaDesc: 'We are always looking for great thinkers and problem-solvers. Send your CV and tell us how you can create impact at DQW.',
+        }
+        : {
+            badge: 'Karir & Peluang',
+            hero1: 'Bentuk Masa Depan',
+            hero2: 'Otomasi Industri',
+            heroDesc: 'PT Dimensi Quantum Wahyudi adalah titik lebur antara talenta engineering luar biasa dan teknologi lifting kelas dunia. Mari ciptakan solusi ergonomis yang mengubah cara industri bekerja.',
+            benefitsTitle: 'Nilai & Keuntungan',
+            openTitle: 'Posisi Tersedia',
+            openSubtitle: 'Temukan Peran Anda',
+            openDesc: 'Semua posisi berbasis di fasilitas pusat kami di Bekasi, Jawa Barat, dengan mobilitas sesuai kebutuhan peran.',
+            keyReq: 'Persyaratan Kunci',
+            apply: 'Kirim Lamaran',
+            ctaTitle: 'Belum Menemukan Posisi yang Pas?',
+            ctaDesc: 'Kami selalu mencari inovator dan pemikir hebat. Kirimkan CV dan cerita singkat tentang bagaimana Anda dapat memberikan dampak di DQW.',
+        };
     return (
         <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white">
 
@@ -69,18 +100,18 @@ export default function CareerPage() {
 
                 <div className="relative max-w-5xl mx-auto px-6 text-center z-10">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
-                        <Briefcase size={14} /> Karir & Peluang
+                        <Briefcase size={14} /> {copy.badge}
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight tracking-tight mb-8">
-                        Bentuk Masa Depan <br className="hidden md:block" />
+                        {copy.hero1} <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                            Otomasi Industri
+                            {copy.hero2}
                         </span>
                     </h1>
 
                     <p className="text-slate-600 text-xl max-w-3xl mx-auto leading-relaxed font-medium">
-                        PT Dimensi Quantum Wahyudi adalah titik lebur antara talenta engineering luar biasa dan teknologi lifting kelas dunia. Mari ciptakan solusi ergonomis yang mengubah cara industri bekerja.
+                        {copy.heroDesc}
                     </p>
                 </div>
             </section>
@@ -92,7 +123,7 @@ export default function CareerPage() {
 
                 <div className="relative z-10 max-w-6xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Nilai & Keuntungan</h2>
+                        <h2 className="text-3xl md:text-4xl font-black text-white mb-4">{copy.benefitsTitle}</h2>
                         <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto rounded-full"></div>
                     </div>
 
@@ -116,9 +147,9 @@ export default function CareerPage() {
             <section className="py-32 relative">
                 <div className="max-w-5xl mx-auto px-6 relative z-10">
                     <div className="text-center mb-20">
-                        <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 block">Posisi Tersedia</span>
-                        <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">Temukan Peran Anda</h2>
-                        <p className="text-slate-500 text-lg max-w-2xl mx-auto">Semua posisi berbasis di fasilitas pusat kami di Bekasi, Jawa Barat, dengan mobilitas sesuai kebutuhan peran.</p>
+                        <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 block">{copy.openTitle}</span>
+                        <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">{copy.openSubtitle}</h2>
+                        <p className="text-slate-500 text-lg max-w-2xl mx-auto">{copy.openDesc}</p>
                     </div>
 
                     <div className="space-y-8">
@@ -164,7 +195,7 @@ export default function CareerPage() {
                                                 href={`mailto:marketing@dimensiwahyudi.com?subject=Lamaran: ${job.title}`}
                                                 className={`hidden lg:flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-slate-900/20 hover:${styling.glow} hover:-translate-y-1 whitespace-nowrap`}
                                             >
-                                                Kirim Lamaran <ArrowRight size={18} />
+                                                {copy.apply} <ArrowRight size={18} />
                                             </a>
                                         </div>
 
@@ -172,7 +203,7 @@ export default function CareerPage() {
 
                                         <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6">
                                             <p className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
-                                                Persyaratan Kunci
+                                                {copy.keyReq}
                                             </p>
                                             <div className="grid md:grid-cols-2 gap-y-3 gap-x-8">
                                                 {job.requirements.map((req, j) => (
@@ -189,7 +220,7 @@ export default function CareerPage() {
                                             href={`mailto:marketing@dimensiwahyudi.com?subject=Lamaran: ${job.title}`}
                                             className="mt-8 flex lg:hidden items-center justify-center gap-2 w-full py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-xl transition-all"
                                         >
-                                            Kirim Lamaran <ArrowRight size={18} />
+                                            {copy.apply} <ArrowRight size={18} />
                                         </a>
                                     </div>
                                 </div>
@@ -211,9 +242,9 @@ export default function CareerPage() {
                             <Send size={32} className="text-blue-600" />
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 relative z-10">Belum Menemukan Posisi yang Pas?</h2>
+                        <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 relative z-10">{copy.ctaTitle}</h2>
                         <p className="text-slate-600 text-lg mb-10 max-w-2xl mx-auto relative z-10">
-                            Kami selalu mencari inovator dan pemikir hebat. Kirimkan CV dan cerita singkat tentang bagaimana Anda dapat memberikan dampak di DQW.
+                            {copy.ctaDesc}
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">

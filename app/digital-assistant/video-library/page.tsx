@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Play, ExternalLink, Filter, X, Plus } from 'lucide-react';
+import { Play, ExternalLink, Filter, X } from 'lucide-react';
+import { useLanguage } from '../../../components/LanguageProvider';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SCHMALZ VIDEO LIBRARY
@@ -10,8 +11,7 @@ import { Play, ExternalLink, Filter, X, Plus } from 'lucide-react';
 // ─────────────────────────────────────────────────────────────────────────────
 import { videos } from '../../../data/videos';
 
-const ALL = 'Semua';
-const industries = [ALL, 'Otomotif & Manufaktur', 'Kaca & Jendela', 'Logistik & Kemasan', 'Logam & Baja', 'Kayu & Furnitur', 'Kimia & Farmasi'];
+const ALL = 'all';
 
 function VideoCard({ v, onClick }: { v: typeof videos[0]; onClick: () => void }) {
     return (
@@ -45,7 +45,7 @@ function VideoCard({ v, onClick }: { v: typeof videos[0]; onClick: () => void })
     );
 }
 
-function Modal({ video, onClose }: { video: typeof videos[0] | null; onClose: () => void }) {
+function Modal({ video, onClose, copy }: { video: typeof videos[0] | null; onClose: () => void; copy: { openYoutube: string; close: string } }) {
     if (!video) return null;
     return (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={onClose}>
@@ -71,12 +71,12 @@ function Modal({ video, onClose }: { video: typeof videos[0] | null; onClose: ()
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 shrink-0 whitespace-nowrap"
                     >
-                        <ExternalLink size={14} /> Buka YouTube
+                        <ExternalLink size={14} /> {copy.openYoutube}
                     </a>
                 </div>
                 <div className="px-6 pb-5">
                     <button onClick={onClose} className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition-colors">
-                        <X size={14} /> Tutup
+                        <X size={14} /> {copy.close}
                     </button>
                 </div>
             </div>
@@ -85,8 +85,67 @@ function Modal({ video, onClose }: { video: typeof videos[0] | null; onClose: ()
 }
 
 export default function VideoLibraryPage() {
+    const { lang } = useLanguage();
     const [activeInd, setActiveInd] = useState(ALL);
     const [activeVideo, setActiveVideo] = useState<typeof videos[0] | null>(null);
+
+    const copy =
+        lang === 'en'
+            ? {
+                badge: 'Schmalz Official Video Library',
+                heroA: 'See How It Works',
+                heroB: 'In Real Operations',
+                heroDesc:
+                    'A curated collection of official Schmalz demo videos, from lightweight tube lifters to heavy-duty vacuum lifting devices.',
+                filterIndustry: 'Industry:',
+                videoCount: 'videos',
+                noVideo: 'No videos available for this filter.',
+                reset: 'Reset filter',
+                ctaTitle: 'Need a Live Demo?',
+                ctaDesc: 'Our engineering team is ready to run an on-site demo at your facility.',
+                ctaDemo: 'Request On-Site Demo',
+                ctaCalc: 'Try Vacuum Calculator',
+                openYoutube: 'Open on YouTube',
+                close: 'Close',
+            }
+            : {
+                badge: 'Schmalz Official Video Library',
+                heroA: 'Lihat Cara Kerja',
+                heroB: 'Nyata-nya',
+                heroDesc:
+                    'Koleksi video demo resmi produk Schmalz, dari tube lifter ringan hingga vacuum lifting device berton-ton.',
+                filterIndustry: 'Industri:',
+                videoCount: 'video',
+                noVideo: 'Tidak ada video untuk filter ini.',
+                reset: 'Reset filter',
+                ctaTitle: 'Butuh Demo Langsung?',
+                ctaDesc: 'Tim engineer PT Dimensi Quantum Wahyudi siap melakukan demo on-site di fasilitas Anda.',
+                ctaDemo: 'Request Demo On-Site',
+                ctaCalc: 'Coba Vacuum Calculator',
+                openYoutube: 'Buka YouTube',
+                close: 'Tutup',
+            };
+
+    const industries =
+        lang === 'en'
+            ? [
+                { key: ALL, label: 'All' },
+                { key: 'Otomotif & Manufaktur', label: 'Automotive & Manufacturing' },
+                { key: 'Kaca & Jendela', label: 'Glass & Windows' },
+                { key: 'Logistik & Kemasan', label: 'Logistics & Packaging' },
+                { key: 'Logam & Baja', label: 'Metal & Steel' },
+                { key: 'Kayu & Furnitur', label: 'Wood & Furniture' },
+                { key: 'Kimia & Farmasi', label: 'Chemical & Pharmaceutical' },
+            ]
+            : [
+                { key: ALL, label: 'Semua' },
+                { key: 'Otomotif & Manufaktur', label: 'Otomotif & Manufaktur' },
+                { key: 'Kaca & Jendela', label: 'Kaca & Jendela' },
+                { key: 'Logistik & Kemasan', label: 'Logistik & Kemasan' },
+                { key: 'Logam & Baja', label: 'Logam & Baja' },
+                { key: 'Kayu & Furnitur', label: 'Kayu & Furnitur' },
+                { key: 'Kimia & Farmasi', label: 'Kimia & Farmasi' },
+            ];
 
     const filtered = videos.filter(v =>
         (activeInd === ALL || v.industry === activeInd)
@@ -101,16 +160,16 @@ export default function VideoLibraryPage() {
                 <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.3) 0%, transparent 70%)' }} />
                 <div className="relative max-w-4xl mx-auto px-6 text-center">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600/20 border border-red-500/30 rounded-full text-red-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Play size={11} className="fill-red-400" /> Schmalz Official Video Library
+                        <Play size={11} className="fill-red-400" /> {copy.badge}
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-5">
-                        Lihat Cara Kerja{' '}
+                        {copy.heroA}{' '}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                            Nyata-nya
+                            {copy.heroB}
                         </span>
                     </h1>
                     <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                        Koleksi video demo resmi produk Schmalz — dari tube lifter ringan hingga vacuum lifting device berton-ton.
+                        {copy.heroDesc}
                     </p>
                 </div>
             </section>
@@ -120,15 +179,15 @@ export default function VideoLibraryPage() {
                 <div className="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center gap-4">
                     <div className="flex items-center gap-2 flex-wrap">
                         <Filter size={14} className="text-slate-400 shrink-0" />
-                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Industri:</span>
-                        {industries.map(i => (
-                            <button key={i} onClick={() => setActiveInd(i)}
-                                className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${activeInd === i ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
-                                {i}
+                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{copy.filterIndustry}</span>
+                        {industries.map((industry) => (
+                            <button key={industry.key} onClick={() => setActiveInd(industry.key)}
+                                className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${activeInd === industry.key ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
+                                {industry.label}
                             </button>
                         ))}
                     </div>
-                    <span className="ml-auto text-xs text-slate-400 font-medium shrink-0">{filtered.length} / {videos.length} video</span>
+                    <span className="ml-auto text-xs text-slate-400 font-medium shrink-0">{filtered.length} / {videos.length} {copy.videoCount}</span>
                 </div>
             </div>
 
@@ -137,8 +196,8 @@ export default function VideoLibraryPage() {
                 {filtered.length === 0 ? (
                     <div className="text-center py-20 text-slate-400">
                         <Play size={40} className="mx-auto mb-4 opacity-30" />
-                        <p className="font-semibold">Tidak ada video untuk filter ini.</p>
-                        <button onClick={() => setActiveInd(ALL)} className="mt-3 text-sm text-blue-600 underline underline-offset-4">Reset filter</button>
+                        <p className="font-semibold">{copy.noVideo}</p>
+                        <button onClick={() => setActiveInd(ALL)} className="mt-3 text-sm text-blue-600 underline underline-offset-4">{copy.reset}</button>
                     </div>
                 ) : (
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -153,20 +212,20 @@ export default function VideoLibraryPage() {
             {/* CTA */}
             <section className="border-t border-slate-200 bg-white py-14">
                 <div className="max-w-2xl mx-auto px-6 text-center">
-                    <h2 className="text-2xl font-black text-slate-900 mb-3">Butuh Demo Langsung?</h2>
-                    <p className="text-slate-500 mb-7">Tim engineer PT Dimensi Quantum Wahyudi siap melakukan demo on-site di fasilitas Anda.</p>
+                    <h2 className="text-2xl font-black text-slate-900 mb-3">{copy.ctaTitle}</h2>
+                    <p className="text-slate-500 mb-7">{copy.ctaDesc}</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <Link href="/contact" className="px-7 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-colors">
-                            Request Demo On-Site
+                            {copy.ctaDemo}
                         </Link>
                         <Link href="/digital-assistant/vacuum-calculator" className="px-7 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors">
-                            Coba Vacuum Calculator
+                            {copy.ctaCalc}
                         </Link>
                     </div>
                 </div>
             </section>
 
-            <Modal video={activeVideo} onClose={() => setActiveVideo(null)} />
+            <Modal video={activeVideo} onClose={() => setActiveVideo(null)} copy={{ openYoutube: copy.openYoutube, close: copy.close }} />
         </main>
     );
 }

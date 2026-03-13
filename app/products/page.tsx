@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { ArrowRight, Globe, Award, Zap } from 'lucide-react';
 import { BRANDS, schmalzProducts, binarProducts } from '../../data/products';
+import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
     title: 'Produk | PT Dimensi Quantum Wahyudi — Distributor Resmi Schmalz & Binar Handling',
@@ -47,7 +48,41 @@ const brandCards = [
     },
 ];
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+    const lang = await getServerLang();
+    const copy =
+        lang === 'en'
+            ? {
+                heroBadge: 'Authorized Distributor - Indonesia',
+                heroKicker: 'Official Distributor',
+                heroTitleA: 'LIFTING SOLUTIONS &',
+                heroTitleB: 'VACUUM LIFTERS.',
+                heroDesc:
+                    'PT Dimensi Quantum Wahyudi is the official distributor of Schmalz from Germany and Binar Handling from Sweden, two global leaders in ergonomic and vacuum handling technology.',
+                plusMore: 'more',
+                featuredProducts: 'featured products',
+                catalogCta: 'View Product Catalog',
+                bottomTitle: 'Need Technical Consultation?',
+                bottomDesc: 'Our engineers are ready to help you select the right solution for your operation.',
+                whatsapp: 'Chat on WhatsApp',
+                about: 'About Us',
+            }
+            : {
+                heroBadge: 'Authorized Distributor - Indonesia',
+                heroKicker: 'Distributor Resmi',
+                heroTitleA: 'PRODUK SOLUSI ANGKAT &',
+                heroTitleB: 'VACUUM LIFTER.',
+                heroDesc:
+                    'PT Dimensi Quantum Wahyudi adalah distributor resmi Schmalz dari Jerman dan Binar Handling dari Swedia, dua pemimpin teknologi ergonomi dan vakum dunia.',
+                plusMore: 'lainnya',
+                featuredProducts: 'produk unggulan',
+                catalogCta: 'Lihat Katalog Produk',
+                bottomTitle: 'Butuh Konsultasi Teknis?',
+                bottomDesc: 'Engineer kami siap membantu memilih solusi yang tepat untuk kebutuhan industri Anda.',
+                whatsapp: 'Chat WhatsApp',
+                about: 'Tentang Kami',
+            };
+
     return (
         <main className="min-h-screen bg-white">
 
@@ -62,17 +97,17 @@ export default function ProductsPage() {
                 <div className="relative max-w-7xl mx-auto px-6 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-8">
                         <Zap size={12} />
-                        Authorized Distributor — Indonesia
+                        {copy.heroBadge}
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight mb-6">
-                        <span className="block text-xl md:text-2xl font-bold text-slate-600 mb-2 uppercase tracking-widest">Distributor Resmi</span>
-                        PRODUK SOLUSI ANGKAT &
+                        <span className="block text-xl md:text-2xl font-bold text-slate-600 mb-2 uppercase tracking-widest">{copy.heroKicker}</span>
+                        {copy.heroTitleA}
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                            VACUUM LIFTER.
+                            {copy.heroTitleB}
                         </span>
                     </h1>
                     <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                        PT Dimensi Quantum Wahyudi adalah distributor resmi <strong className="text-slate-800">Schmalz</strong> dari Jerman dan <strong className="text-slate-800">Binar Handling</strong> dari Swedia — dua pemimpin teknologi ergonomi & vakum dunia.
+                        {copy.heroDesc}
                     </p>
                 </div>
             </section>
@@ -117,7 +152,7 @@ export default function ProductsPage() {
                                             </span>
                                         ))}
                                         <span className={`px-3 py-1 border rounded-lg text-xs font-medium ${tagPillCls}`}>
-                                            +{productCount - 4} lainnya
+                                            +{productCount - 4} {copy.plusMore}
                                         </span>
                                     </div>
 
@@ -125,10 +160,10 @@ export default function ProductsPage() {
                                     <div className="flex items-center justify-between">
                                         <div className={`flex items-center gap-2 text-sm ${countCls}`}>
                                             <Award size={14} />
-                                            <span>{productCount} produk unggulan</span>
+                                            <span>{productCount} {copy.featuredProducts}</span>
                                         </div>
                                         <div className={`flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all ${ctaCls}`}>
-                                            Lihat Katalog Produk {brand.name}
+                                            {copy.catalogCta} {brand.name}
                                             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                         </div>
                                     </div>
@@ -142,18 +177,18 @@ export default function ProductsPage() {
             {/* BOTTOM CTA */}
             <section className="py-20 bg-white border-t border-slate-100">
                 <div className="max-w-3xl mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-black text-slate-900 mb-4">Butuh Konsultasi Teknis?</h2>
-                    <p className="text-slate-500 mb-8">Engineer kami siap membantu memilih solusi yang tepat untuk kebutuhan industri Anda.</p>
+                    <h2 className="text-3xl font-black text-slate-900 mb-4">{copy.bottomTitle}</h2>
+                    <p className="text-slate-500 mb-8">{copy.bottomDesc}</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
                             href="https://wa.me/6281119168752"
                             target="_blank"
                             className="px-8 py-4 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl transition-all"
                         >
-                            Chat WhatsApp
+                            {copy.whatsapp}
                         </a>
                         <Link href="/contact" className="px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl transition-all">
-                            Tentang Kami
+                            {copy.about}
                         </Link>
                     </div>
                 </div>

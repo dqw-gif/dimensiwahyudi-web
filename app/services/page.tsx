@@ -1,6 +1,7 @@
 ﻿import { Metadata } from 'next';
 import Link from 'next/link';
 import { ServiceHero, ServiceList } from '../../components/services/ServiceAnimations';
+import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
   title: 'Layanan Teknis | Instalasi, Maintenance & Training | PT Dimensi Quantum Wahyudi',
@@ -17,7 +18,21 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://dimensiwahyudi.com/services' },
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const lang = await getServerLang();
+  const copy = lang === 'en'
+    ? {
+        title: 'Optimize Your Equipment Performance Today',
+        desc: 'Protect your plant uptime with support from our specialist team. Schedule a technical visit today.',
+        btn1: 'Service Consultation',
+        btn2: 'Technical WhatsApp Support',
+      }
+    : {
+        title: 'Optimalkan Performa Alat Anda Sekarang',
+        desc: 'Lindungi kelangsungan operasional pabrik Anda dengan bantuan tim ahli kami. Jadwalkan Technical Visit hari ini.',
+        btn1: 'Konsultasi Layanan Servis',
+        btn2: 'Chat WhatsApp Teknis',
+      };
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
 
@@ -50,17 +65,17 @@ export default function ServicesPage() {
           />
           <div className="relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Optimalkan Performa Alat Anda Sekarang
+              {copy.title}
             </h2>
             <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto font-medium">
-              Lindungi kelangsungan operasional pabrik Anda dengan bantuan tim ahli kami. Jadwalkan Technical Visit hari ini.
+              {copy.desc}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-5">
               <Link
                 href="/contact"
                 className="px-10 py-4 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 flex items-center justify-center gap-2"
               >
-                Konsultasi Layanan Servis
+                {copy.btn1}
               </Link>
               <a
                 href="https://wa.me/6281119168752"
@@ -68,7 +83,7 @@ export default function ServicesPage() {
                 rel="noopener noreferrer"
                 className="px-10 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-full hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center gap-2"
               >
-                Chat WhatsApp Teknis
+                {copy.btn2}
               </a>
             </div>
           </div>

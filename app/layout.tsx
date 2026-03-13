@@ -8,7 +8,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppFloat from "../components/WhatsAppFloat";
 import { LanguageProvider, type Lang } from "../components/LanguageProvider";
-import AutoTranslateLayer from "../components/AutoTranslateLayer";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -130,7 +129,6 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
         <LanguageProvider initialLang={initialLang}>
-          <AutoTranslateLayer />
           <Navbar />
           {children}
           <Footer />

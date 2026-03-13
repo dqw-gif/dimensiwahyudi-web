@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getAllPosts } from '../../services/wordpress';
 import NewsGrid from '../../components/news/NewsGrid';
 import { Zap } from 'lucide-react';
+import { getServerLang } from '../../lib/i18n';
 
 export const revalidate = 3600; // ISR cache for 1 hour
 
@@ -19,7 +20,24 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
+    const lang = await getServerLang();
     const posts = await getAllPosts();
+    const copy =
+        lang === 'en'
+            ? {
+                badge: 'Knowledge Base & Updates',
+                subtitle:
+                    'Exploring the frontiers of vacuum technology, engineering precision, and industrial innovation.',
+                emptyTitle: 'No Articles Yet',
+                emptyDesc: 'We are preparing fresh content. Please check back again soon.',
+            }
+            : {
+                badge: 'Knowledge Base & Updates',
+                subtitle:
+                    'Jelajahi wawasan terbaru seputar teknologi vakum, presisi engineering, dan inovasi industri.',
+                emptyTitle: 'Belum Ada Artikel',
+                emptyDesc: 'Konten sedang disiapkan. Silakan kembali lagi nanti.',
+            };
 
     return (
         <main className="min-h-screen bg-slate-50 text-slate-800 font-sans overflow-hidden selection:bg-blue-100 selection:text-blue-900">
@@ -41,14 +59,14 @@ export default async function NewsPage() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        Knowledge Base &amp; Updates
+                        {copy.badge}
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 text-slate-900 drop-shadow-sm">
                         INSIGHTS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">HUB</span>
                     </h1>
                     <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
-                        Exploring the frontiers of vacuum technology, engineering precision, and industrial innovation.
+                        {copy.subtitle}
                     </p>
                 </div>
 
@@ -60,9 +78,9 @@ export default async function NewsPage() {
                         <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
                             <Zap size={32} />
                         </div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">Belum Ada Artikel</h3>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{copy.emptyTitle}</h3>
                         <p className="text-slate-500 max-w-md mx-auto">
-                            Konten sedang disiapkan. Silakan kembali lagi nanti.
+                            {copy.emptyDesc}
                         </p>
                     </div>
                 )}

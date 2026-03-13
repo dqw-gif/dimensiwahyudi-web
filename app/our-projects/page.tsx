@@ -1,7 +1,8 @@
 ﻿import { Metadata } from 'next';
 import BentoGallery from './BentoGallery';
-import { BarChart2, CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { getServerLang } from '../../lib/i18n';
 
 export const metadata: Metadata = {
     title: 'Our Projects | Portofolio Instalasi PT Dimensi Quantum Wahyudi',
@@ -18,7 +19,33 @@ export const metadata: Metadata = {
 import { projects } from '../../data/projects';
 export { projects };
 
-export default function OurProjectsPage() {
+export default async function OurProjectsPage() {
+    const lang = await getServerLang();
+    const copy =
+        lang === 'en'
+            ? {
+                badge: 'Solutions Portfolio',
+                titleLine1: 'World-Class Material Handling',
+                titleLine2: 'Built for Indonesia.',
+                subtitle:
+                    'Trusted by leading manufacturers to integrate ergonomic European lifting technology for maximum productivity and workplace safety.',
+                ctaTitle: 'Boost Your Production Efficiency',
+                ctaDesc:
+                    'Every facility has its own material handling constraints. Talk to our engineers today and get a precision-built solution tailored to your production line.',
+                ctaButton: 'Discuss Your Requirements',
+            }
+            : {
+                badge: 'Portofolio Solusi',
+                titleLine1: 'Solusi Material Handling',
+                titleLine2: 'Kelas Dunia di Indonesia.',
+                subtitle:
+                    'Dipercaya oleh ratusan manufaktur terkemuka untuk mengintegrasikan teknologi alat angkat ergonomis Eropa demi produktivitas dan keselamatan kerja yang maksimal.',
+                ctaTitle: 'Tingkatkan Efisiensi Produksi Anda',
+                ctaDesc:
+                    'Setiap industri memiliki rintangan penanganan material yang spesifik. Hubungi tim engineer kami hari ini untuk merancang solusi presisi yang disesuaikan khusus dengan kebutuhan lini fasilitas Anda.',
+                ctaButton: 'Konsultasi Kebutuhan Anda',
+            };
+
     return (
         <main className="min-h-screen bg-slate-50 selection:bg-blue-500/30">
 
@@ -32,18 +59,18 @@ export default function OurProjectsPage() {
                 <div className="relative max-w-5xl mx-auto px-6 text-center z-10">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-slate-200 backdrop-blur-md rounded-full text-blue-700 text-xs font-bold uppercase tracking-[0.2em] mb-8 shadow-sm">
                         <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                        Portofolio Solusi
+                        {copy.badge}
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight drop-shadow-sm">
-                        Solusi Material Handling <br />
+                        {copy.titleLine1} <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-indigo-600">
-                            Kelas Dunia di Indonesia.
+                            {copy.titleLine2}
                         </span>
                     </h1>
 
                     <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                        Dipercaya oleh ratusan manufaktur terkemuka untuk mengintegrasikan teknologi alat angkat ergonomis Eropa demi <strong className="text-slate-900 font-semibold">produktivitas dan keselamatan kerja</strong> yang maksimal.
+                        {copy.subtitle}
                     </p>
                 </div>
             </section>
@@ -57,12 +84,12 @@ export default function OurProjectsPage() {
                     <div className="bg-white border border-slate-200 p-4 inline-block rounded-3xl mb-8 shadow-sm">
                         <CheckCircle size={40} className="text-blue-500" />
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 drop-shadow-sm">Tingkatkan Efisiensi Produksi Anda</h2>
+                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 drop-shadow-sm">{copy.ctaTitle}</h2>
                     <p className="text-slate-600 text-lg mb-10 leading-relaxed font-light">
-                        Setiap industri memiliki rintangan penanganan material yang spesifik. Hubungi tim <i>engineer</i> kami hari ini untuk merancang solusi presisi yang disesuaikan khusus dengan kebutuhan lini fasilitas Anda.
+                        {copy.ctaDesc}
                     </p>
                     <Link href="/contact" className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-md shadow-blue-600/20">
-                        Konsultasi Kebutuhan Anda <ArrowRight size={18} />
+                        {copy.ctaButton} <ArrowRight size={18} />
                     </Link>
                 </div>
             </section>
