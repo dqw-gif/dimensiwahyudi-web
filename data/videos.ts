@@ -9,12 +9,12 @@ export const videos = [
         desc: 'JumboFlex vacuum tube lifting system for handling exhaust components in automotive production.',
     },
     {
-        id: 'pK5xpDuNO_k',
-        title: 'Vacuum Suction Pads SAB: Handling of Sheets in an Automotive Press Plant',
-        product: 'Suction Pads',
+        id: 'tSlqQaYPpJs',
+        title: 'Vacuum Tube Lifter JumboFlex: Handle Goods Weighing up to 50 kg',
+        product: 'JumboFlex',
         category: 'Automotive & Manufacturing',
         industry: 'Automotive & Manufacturing',
-        desc: 'SAB suction pads engineered to handle oiled metal sheets in automotive press plants.',
+        desc: 'JumboFlex supports high-cycle ergonomic handling up to 50 kg in fast-paced manufacturing operations.',
     },
     {
         id: 'pD6me5MzTKQ',
@@ -79,28 +79,28 @@ export const videos = [
 
     // ── METAL & STEEL ──────────────────────────────────────────────────────────
     {
-        id: 'k9aW8mFhyy8',
-        title: 'Vacuum Lifting Device - Handling of metal sheets',
+        id: 'pyO4quR39_s',
+        title: 'Vacuum Lifting Device VacuMaster Basic for Loading a Laser Processing Center',
         product: 'VacuMaster',
         category: 'Metal & Steel',
         industry: 'Metal & Steel',
-        desc: 'Reliable transfer of heavy metal sheets using heavy-duty VacuMaster lifting devices.',
+        desc: 'VacuMaster Basic supports safe loading of laser processing centers for steel-sheet workflows.',
     },
     {
-        id: 'CsgWQNQw9r8',
-        title: 'Vacuum Lifting Device - Loading Machines with Sheets of Metal',
+        id: 'gYWSNIRkLZQ',
+        title: 'Vacuum Lifting Device VacuMaster: Grip Loads Weighing Multiple Tons Easily',
         product: 'VacuMaster',
         category: 'Metal & Steel',
         industry: 'Metal & Steel',
-        desc: 'Safe loading and unloading of large steel sheets on CNC laser cutting machines.',
+        desc: 'Heavy-duty VacuMaster lifting for multi-ton material handling in metal fabrication environments.',
     },
     {
-        id: 'e1NzKXcML4I',
-        title: 'Loading of a CNC-machine with metal sheets',
+        id: 'WDD46zuaTPs',
+        title: 'Vacuum Lifting Device VacuMaster Basic: Ergonomic Loading of a Laser Machining Center',
         product: 'VacuMaster',
         category: 'Metal & Steel',
         industry: 'Metal & Steel',
-        desc: 'Crane and VacuMaster integration for faster sheet loading into steel fabrication CNC lines.',
+        desc: 'Ergonomic laser-machine loading using VacuMaster Basic for repeatable steel-sheet handling cycles.',
     },
 
     // ── WOOD & FURNITURE ───────────────────────────────────────────────────────
