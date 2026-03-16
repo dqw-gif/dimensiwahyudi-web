@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 // Using Lucide icons for a cleaner visual style
 import { ArrowRight, MessageSquare } from 'lucide-react';
 
@@ -77,15 +78,31 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Company Name */}
-          <motion.h1
+          {/* Company Logo */}
+          <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight tracking-tight"
+            className="mb-6 flex justify-center"
           >
-            PT Dimensi Quantum <br className="hidden md:block" /> Wahyudi
-          </motion.h1>
+            <Image
+              src="/logo_dqw_putih.png"
+              alt="PT Dimensi Quantum Wahyudi"
+              width={1100}
+              height={220}
+              priority
+              className="w-full max-w-3xl h-auto"
+            />
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.28 }}
+            className="text-cyan-300 text-sm md:text-base font-semibold uppercase tracking-[0.18em] mb-4"
+          >
+            Market Leader in Vacuum Lifting Solutions in Indonesia
+          </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

@@ -217,7 +217,7 @@ export default async function BinarProductDetail({ params }: Props) {
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-600/20"
                                     >
-                                        <Phone size={17} /> Speak on WhatsApp
+                                        <Phone size={17} /> Chat on WhatsApp
                                     </a>
                                     <Link
                                         href="/contact"

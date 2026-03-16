@@ -165,7 +165,7 @@ export default async function CraneSystemVariantPage({ params }: Props) {
                                 <div className="flex flex-col gap-3">
                                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors">
-                                        <Phone size={17} /> Speak on WhatsApp
+                                        <Phone size={17} /> Chat on WhatsApp
                                     </a>
                                     <Link href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-colors">

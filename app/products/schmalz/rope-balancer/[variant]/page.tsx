@@ -160,7 +160,7 @@ export default async function RopeBalancerVariantPage({ params }: Props) {
                                 <div className="flex flex-col gap-3">
                                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors">
-                                        <Phone size={17} /> Speak on WhatsApp
+                                        <Phone size={17} /> Chat on WhatsApp
                                     </a>
                                     <Link href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3.5 rounded-xl transition-colors">
