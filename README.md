@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PT Dimensi Quantum Wahyudi Web
 
-## Getting Started
+Next.js 16 application for product catalog, technical content, and lead generation.
 
-First, run the development server:
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and fill values:
 
-## Learn More
+- `WORDPRESS_API_URL`
+- `NEXT_PUBLIC_GA_ID`
+- `NEXT_PUBLIC_FORMSPREE_ID`
 
-To learn more about Next.js, take a look at the following resources:
+Optional but recommended for production reliability:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+When Upstash variables are set, WordPress fallback cache becomes shared and persistent across instances.
 
-## Deploy on Vercel
+## Reliability Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Implemented reliability controls:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Timeout + retry + exponential backoff for WordPress fetches.
+- Circuit breaker for upstream failure bursts.
+- In-memory fallback cache (default).
+- Shared persistent fallback cache via Upstash (optional).
+- Health endpoint: `/api/health/wordpress`.
+
+## Quality Gates
+
+Run locally:
+
+```bash
+npm run lint
+npm run build
+npm run qa:route-health
+npm run qa:reliability
+```
+
+`qa:reliability` runs lint, build, starts production server, checks route health, and validates WordPress reliability health.
+
+## CI
+
+GitHub Actions workflow: `.github/workflows/reliability-gate.yml`.
+
+For pull requests and main branch pushes, CI runs reliability gate automatically.
+
+## Deployment Activation Checklist
+
+1. Set all production env vars from `.env.example`.
+2. Enable Upstash vars for persistent cache.
+3. Confirm `/api/health/wordpress` returns `status: ok` under normal operation.
+4. Ensure CI reliability gate is required before merge.
+5. Run post-deploy smoke test:
+
+```bash
+BASE_URL=https://your-domain.com npm run qa:route-health
+```

@@ -8,15 +8,15 @@ import ProductVideoGrid from '../schmalz/ProductVideoGrid';
 
 export const metadata: Metadata = {
     title: 'Binar Handling Products Indonesia | Intelligent Lift Arms & Grippers | PT Dimensi Quantum Wahyudi',
-    description: 'Binar Handling portfolio from Sweden: QLA Quick-Lift Arm, QLD Motorized 300kg, vacuum grippers, and magnetic grippers. Ergonomic solutions for Indonesian manufacturing and automotive sectors.',
+    description: 'Binar Handling portfolio from Sweden: QLA Quick-Lift Arm, QLD Motorized 300kg, vacuum grippers, and magnetic grippers. Precision ergonomic solutions for Indonesian manufacturing and automotive sectors.',
     keywords: ['Binar Handling Indonesia', 'QLA Lift Arm', 'QLD 300i', 'Intelligent Lift Arm Sweden', 'Industrial Vacuum Gripper', 'Magnetic Gripper', 'PT Dimensi Quantum Wahyudi'],
     alternates: { canonical: 'https://dimensiwahyudi.com/products/binar' },
     openGraph: {
         title: 'Binar Handling Products Indonesia | Intelligent Lift Arms & Grippers',
-        description: 'Official Binar Handling distributor in Indonesia. Intelligent lift arms and grippers for manufacturing operations.',
+        description: 'Official Binar Handling distributor in Indonesia, delivering intelligent lift arms and grippers for high-precision manufacturing operations.',
         url: 'https://dimensiwahyudi.com/products/binar',
         type: 'website',
-        locale: 'en_US',
+        locale: 'en_ID',
         siteName: 'PT Dimensi Quantum Wahyudi',
     },
 };
@@ -30,9 +30,34 @@ const categoryColors: Record<string, string> = {
 export default function BinarCatalogPage() {
     const liftArms = binarProducts.filter(p => p.category === 'Lift Arm');
     const grippers = binarProducts.filter(p => p.category === 'Gripper');
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://dimensiwahyudi.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Products',
+                item: 'https://dimensiwahyudi.com/products',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Binar Handling',
+                item: 'https://dimensiwahyudi.com/products/binar',
+            },
+        ],
+    };
 
     return (
         <main className="min-h-screen bg-white">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
             <section className="relative pt-32 pb-16 bg-gradient-to-br from-black via-zinc-950 to-black overflow-hidden">
@@ -82,7 +107,7 @@ export default function BinarCatalogPage() {
                                 <div className="w-px h-12 bg-zinc-800" />
                                 <div className="text-center">
                                     <div className="text-3xl font-black text-red-500">8000+</div>
-                                    <div className="text-xs uppercase tracking-widest">Gripdons Built</div>
+                                    <div className="text-xs uppercase tracking-widest">Gripdons Delivered</div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +120,7 @@ export default function BinarCatalogPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex items-center gap-4 mb-8">
                         <div className="h-1 w-8 bg-red-600 rounded-full" />
-                        <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Vikarmskranar / Lift Arms</h2>
+                        <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Intelligent Lift Arms</h2>
                         <Filter size={14} className="text-zinc-400 ml-auto" />
                         <span className="text-zinc-400 text-sm">{liftArms.length} products</span>
                     </div>
@@ -164,7 +189,7 @@ export default function BinarCatalogPage() {
                     {/* GRIPPERS */}
                     <div className="flex items-center gap-4 mb-8">
                         <div className="h-1 w-8 bg-rose-700 rounded-full" />
-                        <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Gripdon / End Effectors</h2>
+                        <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Gripdons / End Effectors</h2>
                         <Filter size={14} className="text-zinc-400 ml-auto" />
                         <span className="text-zinc-400 text-sm">{grippers.length} products</span>
                     </div>

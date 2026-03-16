@@ -6,14 +6,14 @@ import { Zap } from 'lucide-react';
 export const revalidate = 3600; // ISR cache for 1 hour
 
 export const metadata: Metadata = {
-    title: 'Insights Hub | Technical Articles & Updates | PT Dimensi Quantum Wahyudi',
-    description: 'Explore insights on vacuum technology, lifting systems, material handling, and practical industrial innovation from PT Dimensi Quantum Wahyudi.',
+    title: 'Insights Hub | Engineering Articles & Industry Updates | PT Dimensi Quantum Wahyudi',
+    description: 'Explore practical insights on vacuum technology, lifting systems, and industrial handling innovation from PT Dimensi Quantum Wahyudi.',
     openGraph: {
         title: 'Insights Hub | PT Dimensi Quantum Wahyudi',
-        description: 'Technical articles, field updates, and case-based insights on vacuum lifting and industrial material handling.',
+        description: 'Engineering articles, field updates, and case-based insights on vacuum lifting and industrial material handling.',
         url: 'https://dimensiwahyudi.com/news',
         siteName: 'PT Dimensi Quantum Wahyudi',
-        locale: 'en_US',
+        locale: 'en_ID',
         type: 'website',
     },
 };
@@ -23,9 +23,9 @@ export default async function NewsPage() {
     const copy = {
         badge: 'Knowledge Base & Updates',
         subtitle:
-            'Exploring the frontiers of vacuum technology, engineering precision, and industrial innovation.',
+            'Practical insights on vacuum technology, engineering precision, and measurable industrial improvement.',
         emptyTitle: 'No Articles Yet',
-        emptyDesc: 'We are preparing fresh content. Please check back again soon.',
+        emptyDesc: 'New technical insights are being prepared. Please check back soon.',
     };
 
     return (

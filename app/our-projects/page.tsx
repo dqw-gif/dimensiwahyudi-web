@@ -5,11 +5,11 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Our Projects | PT Dimensi Quantum Wahyudi',
-    description: 'Explore installation highlights and industrial implementation stories of our vacuum lifting systems across major manufacturing facilities in Indonesia.',
+    description: 'Explore selected project portfolio highlights featuring vacuum lifting and ergonomic handling systems deployed across major manufacturing facilities in Indonesia.',
     keywords: ['PT Dimensi Quantum Wahyudi portfolio', 'vacuum lifter projects', 'industrial handling implementation', 'Schmalz installation Indonesia'],
     openGraph: {
         title: 'Our Projects | PT Dimensi Quantum Wahyudi',
-        description: 'Real implementation stories of handling solutions across leading industrial production lines in Indonesia.',
+        description: 'Portfolio highlights of practical handling solutions deployed across leading industrial production lines in Indonesia.',
         url: 'https://dimensiwahyudi.com/our-projects',
     },
     alternates: { canonical: 'https://dimensiwahyudi.com/our-projects' },
@@ -24,7 +24,7 @@ export default async function OurProjectsPage() {
         titleLine1: 'World-Class Material Handling',
         titleLine2: 'Built for Indonesia.',
         subtitle:
-            'Trusted by leading manufacturers to integrate ergonomic European lifting technology for maximum productivity and workplace safety.',
+            'Trusted by leading manufacturers to deploy ergonomic European lifting technology that improves productivity and elevates workplace safety.',
         ctaTitle: 'Boost Your Production Efficiency',
         ctaDesc:
             'Every facility has its own material handling constraints. Talk to our engineers today and get a precision-built solution tailored to your production line.',

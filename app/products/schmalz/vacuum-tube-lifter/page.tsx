@@ -6,6 +6,25 @@ import { vacuumTubeLifterVariants } from '../../../../data/products/vacuum-tube-
 export const metadata: Metadata = {
     title: 'Vacuum Tube Lifters - Jumbo Series | Schmalz - PT Dimensi Quantum Wahyudi',
     description: 'Complete Schmalz vacuum tube lifter lineup: JumboFlex, JumboErgo, JumboSprint, JumboSprint EX (ATEX), PalVac Hygienic, High-Stack, and Low-Stack. Nine variants for diverse handling needs.',
+    keywords: [
+        'vacuum tube lifter indonesia',
+        'jumbo flex indonesia',
+        'jumbo ergo schmalz',
+        'atex vacuum lifter',
+        'ergonomic vacuum handling indonesia',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/vacuum-tube-lifter',
+    },
+    openGraph: {
+        title: 'Vacuum Tube Lifters Jumbo Series — Schmalz Indonesia',
+        description: 'Browse the Schmalz Jumbo vacuum tube lifter lineup for ergonomic, high-frequency, and ATEX-ready industrial handling.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/vacuum-tube-lifter',
+        type: 'website',
+        locale: 'en_ID',
+        siteName: 'PT Dimensi Quantum Wahyudi',
+    },
 };
 
 const badgeIcons: Record<string, React.ReactNode> = {

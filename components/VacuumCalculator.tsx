@@ -124,21 +124,21 @@ const VacuumCalculator = () => {
                   onClick={() => setters.setCalcAreaMode(!state.calcAreaMode)}
                   className={`mt-6 md:mt-8 w-full py-4 md:py-5 rounded-xl md:rounded-[1.5rem] font-black text-[10px] md:text-xs uppercase tracking-widest border-2 transition-all flex items-center justify-center gap-3 md:gap-4 ${state.calcAreaMode ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-50 border-slate-200 text-slate-400 hover:border-blue-600 hover:text-blue-600'}`}
                 >
-                  {state.calcAreaMode ? <Check size={18} /> : <div className="w-4 h-4 rounded-full border-2 border-current" />} Hitung dari Geometri
+                  {state.calcAreaMode ? <Check size={18} /> : <div className="w-4 h-4 rounded-full border-2 border-current" />} Calculate from Geometry
                 </button>
                 {state.calcAreaMode && (
                   <div className="mt-6 md:mt-10 space-y-4 md:space-y-8 animate-in zoom-in-95 duration-300">
-                    <SelectField label="Tipe Permukaan" value={state.areaType} options={['Area round', 'Oval surface', 'Rectangle area']} onChange={setters.setAreaType} />
+                    <SelectField label="Surface Type" value={state.areaType} options={['Area round', 'Oval surface', 'Rectangle area']} onChange={setters.setAreaType} />
                     <div className="grid grid-cols-2 gap-4 md:gap-6">
-                      <TechInput label={state.areaType === 'Area round' ? 'Diameter' : 'Panjang'} value={state.dim1} onValueChange={(val) => setters.setDim1(Number(val))} unit="mm" />
-                      {state.areaType !== 'Area round' && <TechInput label="Lebar" value={state.dim2} onValueChange={(val) => setters.setDim2(Number(val))} unit="mm" />}
+                      <TechInput label={state.areaType === 'Area round' ? 'Diameter' : 'Length'} value={state.dim1} onValueChange={(val) => setters.setDim1(Number(val))} unit="mm" />
+                      {state.areaType !== 'Area round' && <TechInput label="Width" value={state.dim2} onValueChange={(val) => setters.setDim2(Number(val))} unit="mm" />}
                     </div>
                   </div>
                 )}
               </GlassCard>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-                <ResultDisplay label="Kasus Horizontal" value={calculations.calcNumCups().h} unit="pcs" icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
-                <ResultDisplay label="Kasus Vertikal" value={calculations.calcNumCups().v} unit="pcs" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="indigo" />
+                <ResultDisplay label="Horizontal Case" value={calculations.calcNumCups().h} unit="pcs" icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
+                <ResultDisplay label="Vertical Case" value={calculations.calcNumCups().v} unit="pcs" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="indigo" />
               </div>
             </div>
           </div>
@@ -219,14 +219,14 @@ const VacuumCalculator = () => {
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
               <TechInput label="Suction Area" value={state.suctionArea} onValueChange={setters.setSuctionArea} unit={state.suctionAreaUnit} onUnitChange={setters.setSuctionAreaUnit} unitType="area" disabled={state.calcAreaMode} />
               <button onClick={() => setters.setCalcAreaMode(!state.calcAreaMode)} className={`mt-6 md:mt-8 w-full py-4 md:py-5 rounded-xl md:rounded-[1.5rem] font-black text-[10px] md:text-xs uppercase tracking-widest border-2 transition-all flex items-center justify-center gap-3 md:gap-4 ${state.calcAreaMode ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-slate-50 border-slate-200 text-slate-400 hover:border-blue-600 hover:text-blue-600'}`}>
-                {state.calcAreaMode ? <Check size={18} /> : <div className="w-4 h-4 rounded-full border-2 border-current" />} Hitung dari Geometri
+                {state.calcAreaMode ? <Check size={18} /> : <div className="w-4 h-4 rounded-full border-2 border-current" />} Calculate from Geometry
               </button>
               {state.calcAreaMode && (
                 <div className="mt-6 md:mt-10 space-y-4 md:space-y-8 animate-in zoom-in-95 duration-300">
-                  <SelectField label="Tipe Permukaan" value={state.areaType} options={['Area round', 'Oval surface', 'Rectangle area']} onChange={setters.setAreaType} />
+                  <SelectField label="Surface Type" value={state.areaType} options={['Area round', 'Oval surface', 'Rectangle area']} onChange={setters.setAreaType} />
                   <div className="grid grid-cols-2 gap-4 md:gap-6">
-                    <TechInput label={state.areaType === 'Area round' ? 'Diameter' : 'Panjang'} value={state.dim1} onValueChange={setters.setDim1} unit="mm" />
-                    {state.areaType !== 'Area round' && <TechInput label="Lebar" value={state.dim2} onValueChange={setters.setDim2} unit="mm" />}
+                    <TechInput label={state.areaType === 'Area round' ? 'Diameter' : 'Length'} value={state.dim1} onValueChange={setters.setDim1} unit="mm" />
+                    {state.areaType !== 'Area round' && <TechInput label="Width" value={state.dim2} onValueChange={setters.setDim2} unit="mm" />}
                   </div>
                 </div>
               )}
@@ -234,8 +234,8 @@ const VacuumCalculator = () => {
               <TechInput label="Friction (µ)" value={state.friction} onValueChange={setters.setFriction} unit="" step={0.1} info={true} />
             </GlassCard>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
-              <ResultDisplay label="Gaya Tarik (Tegak Lurus)" value={calculations.calcForce()} unit="N" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
-              <ResultDisplay label="Gaya Geser (Friction)" value={Math.round(calculations.calcForce() * state.friction)} unit="N" icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="orange" />
+              <ResultDisplay label="Pulling Force (Perpendicular)" value={calculations.calcForce()} unit="N" icon={<CustomIcons.VerticalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="blue" />
+              <ResultDisplay label="Shear Force (Friction)" value={Math.round(calculations.calcForce() * state.friction)} unit="N" icon={<CustomIcons.HorizontalArrow className="w-8 h-8 md:w-12 md:h-12" />} color="orange" />
             </div>
           </div>
         </ModuleWrapper>
@@ -272,18 +272,18 @@ const VacuumCalculator = () => {
             <GlassCard className="p-6 md:p-12">
               <div className="flex flex-col sm:flex-row bg-slate-100 p-2 rounded-xl md:rounded-[1.5rem] mb-6 md:mb-12 gap-2">
                 <button onClick={() => setters.setHoseDistMode('main_to_sub')} className={`flex-1 py-3 md:py-5 rounded-lg md:rounded-[1rem] font-black text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${state.hoseDistMode === 'main_to_sub' ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}>
-                  <CustomIcons.hoseBranch /> Utama → Cabang
+                  <CustomIcons.hoseBranch /> Main → Branch
                 </button>
                 <button onClick={() => setters.setHoseDistMode('sub_to_main')} className={`flex-1 py-3 md:py-5 rounded-lg md:rounded-[1rem] font-black text-[10px] md:text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${state.hoseDistMode !== 'main_to_sub' ? 'bg-white text-blue-600 shadow-md' : 'text-slate-400'}`}>
-                  <div className="rotate-180"><CustomIcons.hoseBranch /></div> Cabang → Utama
+                  <div className="rotate-180"><CustomIcons.hoseBranch /></div> Branch → Main
                 </button>
               </div>
               <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-                <TechInput label={state.hoseDistMode === 'main_to_sub' ? "Ø Selang Utama" : "Ø Selang Cabang"} value={state.hoseInputDia} onValueChange={setters.setHoseInputDia} unit={state.hoseInputDiaUnit} onUnitChange={setters.setHoseInputDiaUnit} unitType="length" />
-                <TechInput label="Jumlah Cabang" value={state.subHoses} onValueChange={setters.setSubHoses} unit="pcs" />
+                <TechInput label={state.hoseDistMode === 'main_to_sub' ? "Ø Main Hose" : "Ø Branch Hose"} value={state.hoseInputDia} onValueChange={setters.setHoseInputDia} unit={state.hoseInputDiaUnit} onUnitChange={setters.setHoseInputDiaUnit} unitType="length" />
+                <TechInput label="Number of Branches" value={state.subHoses} onValueChange={setters.setSubHoses} unit="pcs" />
               </div>
             </GlassCard>
-            <ResultDisplay label={state.hoseDistMode === 'main_to_sub' ? "Rekomendasi Ø Cabang" : "Rekomendasi Ø Utama"} value={calculations.calcHoseDist()} unit={state.hoseInputDiaUnit} icon={<Share2 size={32} />} color="indigo" />
+            <ResultDisplay label={state.hoseDistMode === 'main_to_sub' ? "Recommended Ø Branch" : "Recommended Ø Main"} value={calculations.calcHoseDist()} unit={state.hoseInputDiaUnit} icon={<Share2 size={32} />} color="indigo" />
           </div>
         </ModuleWrapper>
       );
@@ -292,11 +292,11 @@ const VacuumCalculator = () => {
         <ModuleWrapper onBack={goToDashboard} title="Dynamics" subtitle="System Evacuation Time">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
-              <TechInput label="Volume Tangki" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
-              <TechInput label="Kapasitas Pompa" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
-              <TechInput label="Target Vakum" value={state.vacuum} onValueChange={setters.setVacuum} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
+              <TechInput label="Tank Volume" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
+              <TechInput label="Pump Capacity" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
+              <TechInput label="Target Vacuum" value={state.vacuum} onValueChange={setters.setVacuum} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
             </GlassCard>
-            <ResultDisplay label="Waktu Evakuasi" value={calculations.calcEvacTime().toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit="s" icon={<Timer size={40} />} color="emerald" />
+            <ResultDisplay label="Evacuation Time" value={calculations.calcEvacTime().toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit="s" icon={<Timer size={40} />} color="emerald" />
           </div>
         </ModuleWrapper>
       );
@@ -305,14 +305,14 @@ const VacuumCalculator = () => {
         <ModuleWrapper onBack={goToDashboard} title="Capacity" subtitle="Required Suction Capacity">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8">
-              <TechInput label="Volume Tangki" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
-              <TechInput label="Target Vakum" value={state.vacuum} onValueChange={setters.setVacuum} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
+              <TechInput label="Tank Volume" value={state.volume} onValueChange={setters.setVolume} unit={state.volumeUnit} onUnitChange={setters.setVolumeUnit} unitType="volume" />
+              <TechInput label="Target Vacuum" value={state.vacuum} onValueChange={setters.setVacuum} unit={state.vacuumUnit} onUnitChange={setters.setVacuumUnit} unitType="pressure" step={0.1} />
               <div className="grid grid-cols-2 gap-4 md:gap-6">
-                <TechInput label="Waktu Target" value={state.evacTime} onValueChange={setters.setEvacTime} unit={state.evacTimeUnit} onUnitChange={setters.setEvacTimeUnit} unitType="none" />
-                <SelectField label="Satuan Output" value={state.reqSuctionCapUnit} options={UNITS.flow.options} onChange={setters.setReqSuctionCapUnit} />
+                <TechInput label="Target Time" value={state.evacTime} onValueChange={setters.setEvacTime} unit={state.evacTimeUnit} onUnitChange={setters.setEvacTimeUnit} unitType="none" />
+                <SelectField label="Output Unit" value={state.reqSuctionCapUnit} options={UNITS.flow.options} onChange={setters.setReqSuctionCapUnit} />
               </div>
             </GlassCard>
-            <ResultDisplay label="Kapasitas Pompa Ideal" value={calculations.calcSuctionCap().toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit={state.reqSuctionCapUnit} icon={<Wind size={40} />} color="blue" />
+            <ResultDisplay label="Ideal Pump Capacity" value={calculations.calcSuctionCap().toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit={state.reqSuctionCapUnit} icon={<Wind size={40} />} color="blue" />
           </div>
         </ModuleWrapper>
       );
@@ -328,23 +328,23 @@ const VacuumCalculator = () => {
               <div className="space-y-6 md:space-y-8">
                 {state.hoseDiaMode === 'vacuum' ? (
                   <>
-                    <TechInput label="Panjang Selang" value={state.hoseLength} onValueChange={setters.setHoseLength} unit={state.hoseLengthUnit} onUnitChange={setters.setHoseLengthUnit} unitType="length" />
+                    <TechInput label="Hose Length" value={state.hoseLength} onValueChange={setters.setHoseLength} unit={state.hoseLengthUnit} onUnitChange={setters.setHoseLengthUnit} unitType="length" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                      <TechInput label="Kapasitas Suction" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
-                      <TechInput label="Kecepatan Aliran (v)" value={state.flowRate} onValueChange={setters.setFlowRate} unit={state.flowRateUnit} onUnitChange={setters.setFlowRateUnit} unitType="velocity" />
+                      <TechInput label="Suction Capacity" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
+                      <TechInput label="Flow Velocity (v)" value={state.flowRate} onValueChange={setters.setFlowRate} unit={state.flowRateUnit} onUnitChange={setters.setFlowRateUnit} unitType="velocity" />
                     </div>
                   </>
                 ) : (
                   <>
-                    <TechInput label="Laju Volume (Q)" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
-                    <TechInput label="Tekanan Sistem" value={state.sysPressure} onValueChange={setters.setSysPressure} unit={state.sysPressureUnit} onUnitChange={setters.setSysPressureUnit} unitType="pressure" />
-                    <TechInput label="Tekanan Generator" value={state.genPressure} onValueChange={setters.setGenPressure} unit={state.genPressureUnit} onUnitChange={setters.setGenPressureUnit} unitType="pressure" />
-                    <TechInput label="Panjang Selang" value={state.hoseLength} onValueChange={setters.setHoseLength} unit={state.hoseLengthUnit} onUnitChange={setters.setHoseLengthUnit} unitType="length" />
+                    <TechInput label="Volume Flow (Q)" value={state.pumpCapacity} onValueChange={setters.setPumpCapacity} unit={state.pumpCapacityUnit} onUnitChange={setters.setPumpCapacityUnit} unitType="flow" />
+                    <TechInput label="System Pressure" value={state.sysPressure} onValueChange={setters.setSysPressure} unit={state.sysPressureUnit} onUnitChange={setters.setSysPressureUnit} unitType="pressure" />
+                    <TechInput label="Generator Pressure" value={state.genPressure} onValueChange={setters.setGenPressure} unit={state.genPressureUnit} onUnitChange={setters.setGenPressureUnit} unitType="pressure" />
+                    <TechInput label="Hose Length" value={state.hoseLength} onValueChange={setters.setHoseLength} unit={state.hoseLengthUnit} onUnitChange={setters.setHoseLengthUnit} unitType="length" />
                   </>
                 )}
               </div>
             </GlassCard>
-            <ResultDisplay label="Diameter Selang Ideal" value={calculations.calcHoseDiameter().toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit="mm" icon={<Activity size={40} />} color="blue" />
+            <ResultDisplay label="Ideal Hose Diameter" value={calculations.calcHoseDiameter().toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} unit="mm" icon={<Activity size={40} />} color="blue" />
           </div>
         </ModuleWrapper>
       );
@@ -353,8 +353,8 @@ const VacuumCalculator = () => {
         <ModuleWrapper onBack={goToDashboard} title="Atmosphere" subtitle="Ambient Pressure & Limits">
           <div className="flex flex-col gap-6 md:gap-12">
             <GlassCard className="p-6 md:p-12 space-y-6 md:space-y-8 max-w-3xl mx-auto w-full">
-              <TechInput label="Ketinggian Elevasi (h)" value={state.altitude} onValueChange={setters.setAltitude} unit={state.altitudeUnit} onUnitChange={setters.setAltitudeUnit} unitType="length" />
-              <TechInput label="Target Efisiensi Pompa" value={state.nominalEvacuation} onValueChange={setters.setNominalEvacuation} unit="%" unitType="percentage" />
+              <TechInput label="Elevation Height (h)" value={state.altitude} onValueChange={setters.setAltitude} unit={state.altitudeUnit} onUnitChange={setters.setAltitudeUnit} unitType="length" />
+              <TechInput label="Target Pump Efficiency" value={state.nominalEvacuation} onValueChange={setters.setNominalEvacuation} unit="%" unitType="percentage" />
             </GlassCard>
 
             <div className="flex items-center justify-center -my-2 md:-my-6 text-slate-300">
@@ -362,9 +362,9 @@ const VacuumCalculator = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-              <ResultDisplay label="Tekanan Ambien" value={calculations.calcAtmosphere().ambient.toLocaleString('id-ID', { maximumFractionDigits: 2 })} unit="mbar, abs" icon={<Cloud size={28} />} color="slate" />
-              <ResultDisplay label="Batas Vakum Maksimal" value={calculations.calcAtmosphere().max_vac.toLocaleString('id-ID', { maximumFractionDigits: 2 })} unit="mbar, rel" icon={<Gauge size={28} />} color="blue" />
-              <ResultDisplay label="Max (Cuaca Buruk -5%)" value={calculations.calcAtmosphere().max_vac_bad.toLocaleString('id-ID', { maximumFractionDigits: 2 })} unit="mbar, rel" icon={<div className="text-orange-500 font-bold"><Gauge size={28} /></div>} color="orange" />
+              <ResultDisplay label="Ambient Pressure" value={calculations.calcAtmosphere().ambient.toLocaleString('en-US', { maximumFractionDigits: 2 })} unit="mbar, abs" icon={<Cloud size={28} />} color="slate" />
+              <ResultDisplay label="Maximum Vacuum Limit" value={calculations.calcAtmosphere().max_vac.toLocaleString('en-US', { maximumFractionDigits: 2 })} unit="mbar, rel" icon={<Gauge size={28} />} color="blue" />
+              <ResultDisplay label="Max (Bad Weather -5%)" value={calculations.calcAtmosphere().max_vac_bad.toLocaleString('en-US', { maximumFractionDigits: 2 })} unit="mbar, rel" icon={<div className="text-orange-500 font-bold"><Gauge size={28} /></div>} color="orange" />
             </div>
           </div>
         </ModuleWrapper>
@@ -380,7 +380,7 @@ const VacuumCalculator = () => {
                 <TechInput label="Number of flow resistors" value={state.numResistors} onValueChange={setters.setNumResistors} unit="" />
                 <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto] items-end gap-2">
                   <TechInput label="Occupancy rate [%]" value={state.occupancyRate} onValueChange={setters.setOccupancyRate} unit="" step={1} max={100} />
-                  <div className="hidden sm:flex text-blue-600 mb-4 px-2 cursor-pointer hover:text-blue-800 transition-colors" title="Persentase jumlah lubang suction cup yang kebetulan tertutup oleh benda kerja"><Info size={24} /></div>
+                  <div className="hidden sm:flex text-blue-600 mb-4 px-2 cursor-pointer hover:text-blue-800 transition-colors" title="Percentage of suction cup holes that are accidentally covered by the workpiece"><Info size={24} /></div>
                 </div>
                 <TechInput label="Drill diameter of flow resistors" value={state.resistorDia} onValueChange={setters.setResistorDia} unit={state.resistorDiaUnit} onUnitChange={setters.setResistorDiaUnit} unitType="length" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 sm:mt-0 items-end">

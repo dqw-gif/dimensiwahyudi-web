@@ -121,7 +121,7 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                 style={{ x: bgTextX }}
                 className="absolute top-1/2 -translate-y-1/2 left-0 text-[12vw] font-black text-slate-900/50 whitespace-nowrap pointer-events-none z-0 selection:bg-transparent"
             >
-                TRUSTED BY 50+ MULTINATIONAL MANUFACTURES
+                TRUSTED BY 50+ MULTINATIONAL MANUFACTURERS
             </motion.div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row items-center justify-between gap-6 relative">
@@ -131,7 +131,7 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                         Clients & Manufacturing Portfolio
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-                        Real Proof of <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Automation Implementation</span>.
+                        Proven Outcomes from <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Industrial Automation Projects</span>.
                     </h2>
                 </div>
 

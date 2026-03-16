@@ -6,6 +6,25 @@ import { mobileLiftingVariants } from '../../../../data/products/mobile-lifting'
 export const metadata: Metadata = {
     title: 'Mobile Lifting Devices - Full Range | Schmalz - PT Dimensi Quantum Wahyudi',
     description: 'Schmalz JumboFlex Mobile (standard socket power) and JumboFlex Picker (forklift mount with touch display). Mobile vacuum tube lifter solutions without permanent overhead cranes.',
+    keywords: [
+        'mobile lifting device indonesia',
+        'mobile vacuum lifter',
+        'jumbo flex mobile',
+        'forklift vacuum lifter',
+        'schmalz indonesia',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/mobile-lifting-device',
+    },
+    openGraph: {
+        title: 'Mobile Lifting Devices — Schmalz Indonesia',
+        description: 'Discover fully mobile Schmalz vacuum tube lifter solutions that run without permanent overhead crane installation.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/mobile-lifting-device',
+        type: 'website',
+        locale: 'en_ID',
+        siteName: 'PT Dimensi Quantum Wahyudi',
+    },
 };
 
 export default function MobileLiftingIndexPage() {

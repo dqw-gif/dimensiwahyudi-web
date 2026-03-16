@@ -6,6 +6,25 @@ import { suctionCupVariants } from '../../../../data/products/suction-cups';
 export const metadata: Metadata = {
     title: 'Vacuum Suction Cups - Full Range | Schmalz - PT Dimensi Quantum Wahyudi',
     description: 'Explore the complete Schmalz vacuum suction cup range: flat, bellows, oval, and specialized variants for electronics, sheet metal, glass, wood, packaging, and high-temperature applications.',
+    keywords: [
+        'vacuum suction cup indonesia',
+        'schmalz suction cups',
+        'vacuum cup for robotics',
+        'vacuum cup sheet metal handling',
+        'industrial vacuum components indonesia',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/vacuum-suction-cups',
+    },
+    openGraph: {
+        title: 'Vacuum Suction Cups Full Range — Schmalz Indonesia',
+        description: 'Find Schmalz vacuum suction cups for electronics, packaging, glass, wood, and heavy industrial handling applications.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/vacuum-suction-cups',
+        type: 'website',
+        locale: 'en_ID',
+        siteName: 'PT Dimensi Quantum Wahyudi',
+    },
 };
 
 const badgeColors: Record<string, string> = {

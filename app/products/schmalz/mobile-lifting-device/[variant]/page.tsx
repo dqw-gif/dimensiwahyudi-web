@@ -22,8 +22,42 @@ export default async function MobileLiftingVariantPage({ params }: Props) {
     const variant = mobileLiftingVariants.find(v => v.slug === slug);
     if (!variant) notFound();
 
+    const productSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: variant.name,
+        description: variant.description,
+        sku: variant.slug,
+        mpn: variant.seriesCode,
+        category: 'Mobile Lifting Device',
+        url: `https://dimensiwahyudi.com/products/schmalz/mobile-lifting-device/${variant.slug}`,
+        image: variant.imageUrl ? [variant.imageUrl] : undefined,
+        brand: { '@type': 'Brand', name: 'Schmalz' },
+        offers: {
+            '@type': 'Offer',
+            availability: 'https://schema.org/InStock',
+            priceCurrency: 'IDR',
+            seller: { '@type': 'Organization', name: 'PT Dimensi Quantum Wahyudi' },
+            areaServed: 'ID',
+        },
+    };
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dimensiwahyudi.com/' },
+            { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://dimensiwahyudi.com/products' },
+            { '@type': 'ListItem', position: 3, name: 'Schmalz', item: 'https://dimensiwahyudi.com/products/schmalz' },
+            { '@type': 'ListItem', position: 4, name: 'Mobile Lifting Device', item: 'https://dimensiwahyudi.com/products/schmalz/mobile-lifting-device' },
+            { '@type': 'ListItem', position: 5, name: variant.name, item: `https://dimensiwahyudi.com/products/schmalz/mobile-lifting-device/${variant.slug}` },
+        ],
+    };
+
     return (
         <main className="min-h-screen bg-white">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <section className="relative pt-28 pb-14 bg-slate-950 overflow-hidden">
                 <div className="absolute inset-0 opacity-10"
                     style={{ backgroundImage: 'linear-gradient(rgba(99,179,237,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,0.3) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
@@ -64,7 +98,7 @@ export default async function MobileLiftingVariantPage({ params }: Props) {
                                 <div className="mt-6 flex items-start gap-3 p-4 bg-cyan-50 rounded-xl border border-cyan-100">
                                     <Shield className="w-5 h-5 text-cyan-600 shrink-0 mt-0.5" />
                                     <div>
-                                        <div className="text-xs font-black text-cyan-700 uppercase tracking-wider mb-1">Keunggulan Utama</div>
+                                        <div className="text-xs font-black text-cyan-700 uppercase tracking-wider mb-1">Primary Advantage</div>
                                         <div className="text-slate-700 text-sm font-semibold">{variant.highlight}</div>
                                     </div>
                                 </div>
@@ -111,12 +145,12 @@ export default async function MobileLiftingVariantPage({ params }: Props) {
                                 <div className="mt-2 text-xs font-mono opacity-70">{variant.seriesCode}</div>
                             </div>
                             <div className="bg-white rounded-2xl border border-slate-200 p-6 sticky top-24">
-                                <h3 className="text-lg font-black text-slate-900 mb-1">Interested?</h3>
-                                <p className="text-slate-500 text-sm mb-6">Discuss your requirements with our engineers.</p>
+                                <h3 className="text-lg font-black text-slate-900 mb-1">Need Technical Guidance?</h3>
+                                <p className="text-slate-500 text-sm mb-6">Discuss your workflow goals with our engineers for a precise recommendation.</p>
                                 <div className="flex flex-col gap-3">
                                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors">
-                                        <Phone size={17} /> Chat WhatsApp
+                                        <Phone size={17} /> Speak on WhatsApp
                                     </a>
                                     <Link href="/contact"
                                         className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl transition-colors">
@@ -124,7 +158,7 @@ export default async function MobileLiftingVariantPage({ params }: Props) {
                                     </Link>
                                 </div>
                                 <div className="mt-6 pt-6 border-t border-slate-100">
-                                    <div className="text-xs text-slate-400 font-medium mb-3 uppercase tracking-wider">Other variants</div>
+                                    <div className="text-xs text-slate-400 font-medium mb-3 uppercase tracking-wider">Other Mobile Lifting Variants</div>
                                     {mobileLiftingVariants.filter(v => v.slug !== slug).map(v => (
                                         <Link key={v.slug} href={`/products/schmalz/mobile-lifting-device/${v.slug}`}
                                             className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-slate-50 transition-colors group/s">
@@ -137,7 +171,7 @@ export default async function MobileLiftingVariantPage({ params }: Props) {
                                     ))}
                                     <Link href="/products/schmalz/mobile-lifting-device"
                                         className="flex items-center gap-1.5 py-2 px-3 text-xs font-bold text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors mt-1">
-                                        All variants →
+                                        View all variants
                                     </Link>
                                 </div>
                             </div>

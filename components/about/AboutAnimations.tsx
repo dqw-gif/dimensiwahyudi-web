@@ -360,7 +360,7 @@ export function AboutProcessImage() {
                 />
                 <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg border border-slate-100 max-w-[180px] text-left">
                     <p className="text-[10px] uppercase font-bold text-cyan-600 mb-1">Expertise</p>
-                    <p className="text-[11px] leading-snug text-slate-500 font-medium italic">&quot;Presisi bukan sekadar angka, tapi jaminan keselamatan operasional.&quot;</p>
+                        <p className="text-[11px] leading-snug text-slate-500 font-medium italic">&quot;Precision is not just a number, but a guarantee of operational safety.&quot;</p>
                 </div>
             </div>
         </motion.div>

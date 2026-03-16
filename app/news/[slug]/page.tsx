@@ -8,8 +8,8 @@ import ShareButton from '../../../components/news/ShareButton';
 import type { PostSummary } from '../../../types/wordpress';
 import DOMPurify from 'isomorphic-dompurify';
 
-// ISR: Re-generate pages in the background every hour
-export const revalidate = 3600;
+// ISR: Re-generate pages in the background every 6 hours.
+export const revalidate = 21600;
 
 // Pre-render all article slugs at build time
 export async function generateStaticParams() {
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                     height: 630,
                 },
             ],
-            locale: 'id_ID',
+            locale: 'en_ID',
             type: 'article',
         },
     };
@@ -62,10 +62,19 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
 
     if (!post) notFound();
 
+    const articleDate = new Date(post.date);
+    const isLegacyArticle = articleDate.getFullYear() <= 2024;
+
     // Fetch Related Posts
-    const categorySlug = post.categories?.nodes[0]?.name || '';
+    const categorySlug = post.categories?.nodes?.[0]?.name || '';
     // Note: getRelatedPosts expects categoryName or slug. Using name as per service implementation.
-    const relatedPosts: PostSummary[] = await getRelatedPosts(categorySlug, post.id);
+    const relatedFetch = categorySlug
+        ? getRelatedPosts(categorySlug, post.id, { revalidate: isLegacyArticle ? 86400 : 3600 })
+        : Promise.resolve([] as PostSummary[]);
+    const relatedPosts: PostSummary[] = await Promise.race([
+        relatedFetch,
+        new Promise<PostSummary[]>((resolve) => setTimeout(() => resolve([]), 1200)),
+    ]);
 
 
     // Calculate Read Time safely
@@ -76,20 +85,42 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
     // Format Date (server-side, consistent string)
     function formatDateString(dateString: string) {
         const date = new Date(dateString);
-        const months = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-        ];
-        const day = date.getDate();
-        const month = months[date.getMonth()];
-        const year = date.getFullYear();
-        return `${day} ${month} ${year}`;
+        return new Intl.DateTimeFormat('en-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        }).format(date);
     }
 
     const formattedDate = formatDateString(post.date);
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://dimensiwahyudi.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Insights',
+                item: 'https://dimensiwahyudi.com/news',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: post.title,
+                item: `https://dimensiwahyudi.com/news/${post.slug}`,
+            },
+        ],
+    };
 
     return (
         <article className="min-h-screen bg-slate-50 font-sans pb-24 selection:bg-blue-100 selection:text-blue-900">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             {/* Background Decor - Clean Lab Style */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-50">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-50 rounded-full blur-[100px]"></div>
@@ -119,7 +150,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 w-full relative z-10">
                         <div className="animate-in slide-in-from-bottom-5 fade-in duration-700">
                             <Link href="/news" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 uppercase tracking-widest text-xs font-bold transition-all hover:gap-3 group">
-                                <ChevronLeft size={16} /> Back to Hub
+                                <ChevronLeft size={16} /> Back to Insights
                             </Link>
 
                             <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -217,7 +248,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
             </div>
 
             {/* Related Posts Section */}
-            {relatedPosts.length > 0 && (
+            {relatedPosts.length > 0 ? (
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
                     <div className="mb-10 flex items-end justify-between border-b border-slate-200 pb-4">
                         <div>
@@ -264,6 +295,16 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                                 </div>
                             </Link>
                         ))}
+                    </div>
+                </div>
+            ) : (
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
+                    <div className="rounded-3xl border border-slate-200 bg-white px-6 py-8 text-center shadow-sm">
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">Insights Update</p>
+                        <p className="text-slate-600 text-sm md:text-base">Related insights are being refreshed. You can continue browsing the full insights library.</p>
+                        <Link href="/news" className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-500 transition-colors">
+                            Explore All Insights <ArrowRight size={14} />
+                        </Link>
                     </div>
                 </div>
             )}

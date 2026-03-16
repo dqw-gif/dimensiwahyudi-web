@@ -10,15 +10,26 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import { projects } from '../data/projects';
 
 export const metadata: Metadata = {
-  title: "Vacuum Lifter Indonesia | Market-Leading Ergonomic Lifting Solutions",
-  description: "PT Dimensi Quantum Wahyudi, established in 2009, is Indonesia's market leader in vacuum lifters and ergonomic handling systems. Trusted by leading manufacturers for safer and faster material handling.",
-  keywords: ["Vacuum Lifter Indonesia", "Ergonomic Lifting System", "Industrial Lift Assist", "Schmalz Indonesia", "Binar Handling Indonesia", "Material Handling Indonesia", "Vacuum Tube Lifter", "PT Dimensi Quantum Wahyudi"],
+  title: "Vacuum Lifter Indonesia | Premium Ergonomic Lifting Solutions",
+  description: "PT Dimensi Quantum Wahyudi helps Indonesian manufacturers improve safety, throughput, and ergonomics with premium vacuum lifting and handling solutions.",
+  keywords: [
+    "Vacuum Lifter Indonesia",
+    "Ergonomic Lifting System Indonesia",
+    "Industrial Lift Assist",
+    "Schmalz Indonesia",
+    "Binar Handling Indonesia",
+    "Material Handling Indonesia",
+    "Vacuum Tube Lifter Indonesia",
+    "Vacuum Generator Indonesia",
+    "Alat Bantu Angkat Ergonomis",
+    "PT Dimensi Quantum Wahyudi"
+  ],
   openGraph: {
-    title: "PT Dimensi Quantum Wahyudi | Indonesia's Market Leader in Vacuum Lifting",
-    description: "Since 2009, we have helped Indonesian manufacturers improve safety and throughput with world-class vacuum lifting and ergonomic handling systems.",
+    title: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting for Indonesian Industry",
+    description: "Since 2009, we have supported Indonesian manufacturers with premium vacuum lifting and ergonomic handling systems that improve safety and throughput.",
     url: "https://dimensiwahyudi.com",
     siteName: "PT Dimensi Quantum Wahyudi",
-    locale: "en_US",
+    locale: "en_ID",
     type: "website",
   },
 };

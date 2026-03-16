@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppFloat from "../components/WhatsAppFloat";
 import { LanguageProvider } from "../components/LanguageProvider";
+import ConversionTracker from "../components/ConversionTracker";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -19,14 +20,14 @@ const BASE_URL = "https://dimensiwahyudi.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "PT Dimensi Quantum Wahyudi | Indonesia Market Leader in Vacuum Lifting Systems",
+    default: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting & Ergonomic Handling Solutions",
     template: "%s | PT Dimensi Quantum Wahyudi",
   },
   description:
-    "PT Dimensi Quantum Wahyudi, established in 2009, is Indonesia's market leader in vacuum lifting and ergonomic handling systems. Official Schmalz and Binar Handling distributor for high-performance industrial material handling.",
+    "PT Dimensi Quantum Wahyudi delivers premium vacuum lifting and ergonomic handling solutions for industrial manufacturers across Indonesia, backed by engineering support and proven global technology.",
   keywords: [
     "Vacuum Lifter Indonesia",
-    "Indonesia Market Leader Vacuum Lifter",
+    "Vacuum Lifting Solutions Indonesia",
     "Schmalz Distributor Indonesia",
     "Binar Handling Distributor Indonesia",
     "Ergonomic Lifting System",
@@ -52,12 +53,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_ID",
     url: BASE_URL,
     siteName: "PT Dimensi Quantum Wahyudi",
-    title: "PT Dimensi Quantum Wahyudi | Market Leader in Vacuum Lifting in Indonesia",
+    title: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting Solutions in Indonesia",
     description:
-      "Trusted by leading manufacturers across Indonesia for vacuum lifters, lift-assist systems, and ergonomic material handling solutions.",
+      "Trusted by manufacturers across Indonesia for vacuum lifters, lift-assist systems, and ergonomic material handling solutions with dependable engineering support.",
     images: [
       {
         url: `${BASE_URL}/opengraph-image`,
@@ -69,12 +70,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PT Dimensi Quantum Wahyudi | Vacuum Lifting Leader in Indonesia",
-    description: "Market-leading vacuum lifting and ergonomic handling solutions for industrial manufacturers.",
+    title: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting in Indonesia",
+    description: "Premium vacuum lifting and ergonomic handling solutions for industrial manufacturers in Indonesia.",
     images: [`${BASE_URL}/opengraph-image`],
   },
   alternates: {
     canonical: BASE_URL,
+    languages: {
+      "en-ID": BASE_URL,
+      "x-default": BASE_URL,
+    },
   },
 };
 
@@ -84,7 +89,7 @@ const localBusinessSchema = {
   "@type": "LocalBusiness",
   name: "PT Dimensi Quantum Wahyudi",
   description:
-    "Established in 2009, PT Dimensi Quantum Wahyudi is Indonesia's market leader in vacuum lifting and ergonomic material handling systems.",
+    "Established in 2009, PT Dimensi Quantum Wahyudi provides premium vacuum lifting and ergonomic material handling systems for industrial operations across Indonesia.",
   foundingDate: "2009",
   url: BASE_URL,
   telephone: "+62811-1916-8752",
@@ -119,9 +124,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialLang = "en";
+  const htmlLang = "en-ID";
 
   return (
-    <html lang={initialLang} className="scroll-smooth">
+    <html lang={htmlLang} className="scroll-smooth">
       <body className={`${barlow.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
@@ -132,6 +138,7 @@ export default async function RootLayout({
           {children}
           <Footer />
           <WhatsAppFloat />
+          <ConversionTracker />
           <Analytics />
           {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
         </LanguageProvider>

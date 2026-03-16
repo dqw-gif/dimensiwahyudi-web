@@ -73,7 +73,7 @@ export default function HeroSection() {
             className="mb-4"
           >
             <span className="px-3 py-1 border border-cyan-500/30 rounded-full text-cyan-400 text-xs md:text-sm font-medium tracking-widest uppercase bg-cyan-500/10 backdrop-blur-md">
-              Market Leader in Vacuum Lifting Solutions
+              Trusted Partner for Vacuum Lifting Excellence
             </span>
           </motion.div>
 
@@ -93,7 +93,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.35 }}
             className="text-slate-200 text-base md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
           >
-            Since 2009, PT Dimensi Quantum Wahyudi has become the trusted market leader in Indonesia for vacuum lifting and ergonomic handling systems, helping manufacturers move faster, safer, and smarter.
+            Since 2009, PT Dimensi Quantum Wahyudi has helped Indonesian manufacturers improve safety, throughput, and operator ergonomics through high-performance vacuum lifting systems.
           </motion.p>
 
           {/* Typewriter Effect (Warna Cyan) */}
@@ -125,7 +125,7 @@ export default function HeroSection() {
               className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-bold text-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/60 flex items-center gap-3"
               aria-label="Explore technical services and lifting solutions"
             >
-              Explore Vacuum & Lifting Solutions
+              Explore Engineering Solutions
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
 

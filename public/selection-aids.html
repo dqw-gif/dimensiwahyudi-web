@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DQW Selection Assistant - Embed Mode</title>
+    <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -86,7 +87,7 @@
                         Selection <span class="text-blue-600 italic">Assistant.</span>
                     </h1>
                     <p class="text-slate-500 text-sm md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
-                        Pilih kategori sistem vakum di bawah ini untuk memulai konfigurasi.
+                        Choose a vacuum system category below to start the configuration.
                     </p>
                 </div>
 
@@ -106,12 +107,12 @@
                             <div>
                                 <h3 class="text-xl md:text-2xl font-black text-slate-900 leading-tight">
                                     Vacuum<br>Lifters</h3>
-                                <p class="text-slate-500 mt-2 font-medium text-xs md:text-sm">Handling manual ergonomis
+                                <p class="text-slate-500 mt-2 font-medium text-xs md:text-sm">Ergonomic manual handling
                                     (Jumbo/VacuMaster).</p>
                             </div>
                             <div
                                 class="flex items-center gap-2 text-blue-600 font-bold text-[10px] md:text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
-                                Mulai Audit Lifter &#8594;
+                                Start Lifter Audit &#8594;
                             </div>
                         </div>
                     </div>
@@ -131,12 +132,12 @@
                             <div>
                                 <h3 class="text-xl md:text-2xl font-black text-slate-900 leading-tight">
                                     Vacuum<br>Generators</h3>
-                                <p class="text-slate-500 mt-2 font-medium text-xs md:text-sm">Sistem otomasi & ejector
+                                <p class="text-slate-500 mt-2 font-medium text-xs md:text-sm">Automation system & ejector
                                     (Ejector/Pump).</p>
                             </div>
                             <div
                                 class="flex items-center gap-2 text-blue-600 font-bold text-[10px] md:text-xs uppercase tracking-widest group-hover:translate-x-2 transition-transform">
-                                Mulai Audit Generator &#8594;
+                                Start Generator Audit &#8594;
                             </div>
                         </div>
                     </div>
@@ -193,11 +194,11 @@
                                 class="px-6 py-6 bg-slate-50/80 backdrop-blur-sm border-t border-slate-100 flex flex-col-reverse md:flex-row justify-between items-center gap-4 relative z-20">
                                 <button onclick="app.prevStep()" id="btn-back"
                                     class="w-full md:w-auto flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-[0.3em] transition-all px-8 py-4 rounded-full text-slate-400 hover:text-blue-900 hover:bg-slate-200/50 focus:outline-none focus:ring-2 focus:ring-slate-300">
-                                    &#8592; KEMBALI
+                                    &#8592; BACK
                                 </button>
                                 <button onclick="app.nextStep()" id="btn-next"
                                     class="w-full md:w-auto bg-slate-900 text-white px-8 md:px-12 py-4 rounded-full md:rounded-[2rem] font-black text-[10px] uppercase tracking-[0.3em] hover:bg-blue-600 transition-all shadow-xl flex items-center justify-center gap-4 group disabled:opacity-30 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-blue-300">
-                                    <span id="btn-next-text">LANJUTKAN</span>
+                                    <span id="btn-next-text">CONTINUE</span>
                                     <span class="group-hover:translate-x-1 transition-transform">&#8594;</span>
                                 </button>
                             </div>
@@ -216,63 +217,63 @@
                 title: "Vacuum Lifters",
                 steps: [
                     {
-                        id: 'workpiece', label: 'Material', title: 'Jenis Material', desc: 'Apa yang akan diangkat?', type: 'grid', options: [
-                            { id: 'cardboard', label: 'Cardboard', sub: 'Karton / Box' },
-                            { id: 'bag', label: 'Sack', sub: 'Karung Plastik/Kertas' },
-                            { id: 'wood', label: 'Wood', sub: 'Panel Kayu' },
-                            { id: 'metal', label: 'Metal', sub: 'Plat Besi' },
-                            { id: 'barrel', label: 'Barrel', sub: 'Drum / Kaleng' },
-                            { id: 'glass', label: 'Glass', sub: 'Kaca / Jendela' },
-                            { id: 'bucket', label: 'Bucket', sub: 'Ember Cat' },
-                            { id: 'luggage', label: 'Luggage', sub: 'Bagasi' }
+                        id: 'workpiece', label: 'Material', title: 'Material Type', desc: 'What are you lifting?', type: 'grid', options: [
+                            { id: 'cardboard', label: 'Cardboard', sub: 'Carton / Box' },
+                            { id: 'bag', label: 'Sack', sub: 'Plastic/Paper Sack' },
+                            { id: 'wood', label: 'Wood', sub: 'Wood Panel' },
+                            { id: 'metal', label: 'Metal', sub: 'Steel Plate' },
+                            { id: 'barrel', label: 'Barrel', sub: 'Drum / Can' },
+                            { id: 'glass', label: 'Glass', sub: 'Glass / Window' },
+                            { id: 'bucket', label: 'Bucket', sub: 'Paint Bucket' },
+                            { id: 'luggage', label: 'Luggage', sub: 'Baggage' }
                         ]
                     },
-                    { id: 'weight', label: 'Beban', title: 'Berat Maksimal', desc: 'Berat benda terberat (Safe Working Load).', type: 'slider', min: 0, max: 250 },
+                    { id: 'weight', label: 'Load', title: 'Maximum Weight', desc: 'Weight of the heaviest workpiece (Safe Working Load).', type: 'slider', min: 0, max: 250 },
                     {
-                        id: 'movement', label: 'Gerak', title: 'Tipe Gerakan', desc: 'Bagaimana benda dipindahkan?', type: 'binary', options: [
-                            { id: 'horizontal', label: 'Horizontal', sub: 'Angkat & Pindah Saja' },
-                            { id: 'tilt', label: 'Tilt / Turn', sub: 'Membalik / Memutar Benda' }
+                        id: 'movement', label: 'Movement', title: 'Movement Type', desc: 'How is the item moved?', type: 'binary', options: [
+                            { id: 'horizontal', label: 'Horizontal', sub: 'Lift & Transfer Only' },
+                            { id: 'tilt', label: 'Tilt / Turn', sub: 'Rotate or Flip Item' }
                         ]
                     },
                     {
-                        id: 'cycle', label: 'Siklus', title: 'Frekuensi Angkat', desc: 'Berapa kali angkat per menit?', type: 'binary', options: [
-                            { id: 'high', label: 'High Freq', sub: '> 10x per menit (Cepat)' },
-                            { id: 'low', label: 'Low Freq', sub: '< 5x per menit (Lambat)' }
+                        id: 'cycle', label: 'Cycles', title: 'Lifting Frequency', desc: 'How many lifts per minute?', type: 'binary', options: [
+                            { id: 'high', label: 'High Freq', sub: '> 10x per minute (Fast)' },
+                            { id: 'low', label: 'Low Freq', sub: '< 5x per minute (Slow)' }
                         ]
                     },
-                    { id: 'results', label: 'Solusi', title: 'Rekomendasi', desc: 'Solusi Handling DQW.', type: 'results' }
+                    { id: 'results', label: 'Solution', title: 'Recommendation', desc: 'DQW handling recommendation.', type: 'results' }
                 ]
             },
             generators: {
                 title: "Vacuum Generators",
                 steps: [
                     {
-                        id: 'power', label: 'Power', title: 'Sumber Daya', desc: 'Apa sumber tenaga yang tersedia?', type: 'binary', options: [
-                            { id: 'pneumatic', label: 'Pneumatic', sub: 'Kompresor Udara' },
-                            { id: 'electric', label: 'Electric', sub: 'Listrik (24V/220V)' }
+                        id: 'power', label: 'Power', title: 'Power Source', desc: 'What power source is available?', type: 'binary', options: [
+                            { id: 'pneumatic', label: 'Pneumatic', sub: 'Air Compressor' },
+                            { id: 'electric', label: 'Electric', sub: 'Electricity (24V/220V)' }
                         ]
                     },
                     {
-                        id: 'porosity', label: 'Surface', title: 'Porositas Benda', desc: 'Apakah udara tembus melalui benda?', type: 'binary', options: [
-                            { id: 'air-tight', label: 'Air-tight', sub: 'Kedap (Besi, Kaca)' },
-                            { id: 'porous', label: 'Porous', sub: 'Berpori (Kardus, Kayu)' }
+                        id: 'porosity', label: 'Surface', title: 'Workpiece Porosity', desc: 'Does air pass through the workpiece?', type: 'binary', options: [
+                            { id: 'air-tight', label: 'Air-tight', sub: 'Sealed (Metal, Glass)' },
+                            { id: 'porous', label: 'Porous', sub: 'Porous (Carton, Wood)' }
                         ]
                     },
                     {
-                        id: 'environment', label: 'Area', title: 'Lingkungan', desc: 'Kondisi area kerja?', type: 'binary', options: [
-                            { id: 'clean', label: 'Clean', sub: 'Standard / Bersih' },
-                            { id: 'dusty', label: 'Dirty/Dusty', sub: 'Berdebu / Lembab' }
+                        id: 'environment', label: 'Area', title: 'Environment', desc: 'What is the work environment?', type: 'binary', options: [
+                            { id: 'clean', label: 'Clean', sub: 'Standard / Clean' },
+                            { id: 'dusty', label: 'Dirty/Dusty', sub: 'Dusty / Humid' }
                         ]
                     },
                     {
-                        id: 'system', label: 'Robot', title: 'Integrasi', desc: 'Tipe robot yang digunakan?', type: 'grid', options: [
+                        id: 'system', label: 'Robot', title: 'Integration', desc: 'What robot type is used?', type: 'grid', options: [
                             { id: 'cobot', label: 'Cobot', sub: 'Collaborative' },
                             { id: 'industrial', label: 'Industrial', sub: 'Heavy Robot' },
                             { id: 'gantry', label: 'Gantry', sub: 'Linear Axis' },
                             { id: 'manual', label: 'Manual', sub: 'Fixture' }
                         ]
                     },
-                    { id: 'results', label: 'Solusi', title: 'Rekomendasi', desc: 'Solusi Vakum DQW.', type: 'results' }
+                    { id: 'results', label: 'Solution', title: 'Recommendation', desc: 'DQW vacuum recommendation.', type: 'results' }
                 ]
             }
         };
@@ -487,7 +488,7 @@
                                 </div>
                                 <div class="hidden md:flex flex-col items-center text-center space-y-2 px-4">
                                     <div class="w-8 h-1 bg-blue-600 rounded-full"></div>
-                                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest leading-relaxed">Menentukan diameter tube dan safety factor.</p>
+                                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest leading-relaxed">Determines tube diameter and safety factor.</p>
                                 </div>
                             </div>
                         </div>
@@ -519,7 +520,7 @@
                         <div class="stagger-item visible space-y-8">
                             <div class="text-center space-y-4">
                                 <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-[0.3em] shadow-lg border border-emerald-200">
-                                    <span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-ping"></span> Selesai
+                                    <span class="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-ping"></span> Complete
                                 </div>
                                 <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">Solution <br> <span class="text-blue-600">Found.</span></h2>
                             </div>
@@ -540,7 +541,7 @@
                                         </div>
                                     </div>
                                     <div class="relative z-10 flex flex-col sm:flex-row gap-4">
-                                        <a href="${rec.productUrl}" target="_parent" class="flex-1 bg-blue-600 text-white font-black py-4 rounded-xl hover:bg-blue-700 transition-all uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-blue-600/50 focus:outline-none focus:ring-4 focus:ring-blue-300 text-center">Lihat Produk →</a>
+                                        <a href="${rec.productUrl}" target="_parent" class="flex-1 bg-blue-600 text-white font-black py-4 rounded-xl hover:bg-blue-700 transition-all uppercase tracking-[0.2em] text-[10px] shadow-lg shadow-blue-600/50 focus:outline-none focus:ring-4 focus:ring-blue-300 text-center">View Product →</a>
                                         <button onclick="app.resetToHub()" class="px-8 bg-transparent text-white border border-white/20 font-black py-4 rounded-xl hover:bg-white/10 transition-all text-[10px] uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-white">Restart</button>
                                     </div>
                                 </div>
@@ -576,7 +577,7 @@
                 backBtn.style.pointerEvents = this.currentStep === 0 ? 'none' : 'auto';
 
                 nextBtn.style.display = step.type === 'results' ? 'none' : 'flex';
-                document.getElementById('btn-next-text').innerText = (this.currentStep === module.steps.length - 2) ? 'LIHAT HASIL' : 'LANJUTKAN';
+                document.getElementById('btn-next-text').innerText = (this.currentStep === module.steps.length - 2) ? 'VIEW RESULTS' : 'CONTINUE';
 
                 // Draw Icons
                 if (step.options) {
@@ -686,7 +687,7 @@
                         </div>
                     `;
                 }).join('');
-                log.innerHTML = entries || '<p class="text-slate-400 text-[10px] text-center py-4">Menunggu data...</p>';
+                log.innerHTML = entries || '<p class="text-slate-400 text-[10px] text-center py-4">Waiting for data...</p>';
             },
 
             getRecommendation() {
@@ -702,8 +703,8 @@
                         return {
                             name: 'VacuMaster',
                             tagline: tilt ? 'Tilt & Turn' : 'Heavy Load Device',
-                            desc: tilt ? 'Solusi angkat yang mampu membalik benda 90°/180° secara aman.' : 'Solusi angkat beban berat dengan keamanan ganda.',
-                            logic: tilt ? 'Fungsi Tilting/Turning mewajibkan penggunaan VacuMaster.' : `Beban ${w}kg memerlukan sistem chain hoist + VacuMaster.`,
+                            desc: tilt ? 'A lifting solution that safely rotates workpieces by 90°/180°.' : 'A heavy-load lifting solution with dual-layer safety.',
+                            logic: tilt ? 'Tilting/turning motion requires a VacuMaster system.' : `A ${w}kg load requires a chain hoist + VacuMaster system.`,
                             specs: [{ key: 'Series', value: 'Basic/Comfort' }, { key: 'Motion', value: tilt ? '90°/180°' : 'Horizontal' }, { key: 'Safety', value: 'EN 13155' }],
                             productUrl: '/products/schmalz/vacumaster'
                         };
@@ -714,8 +715,8 @@
                         return {
                             name: 'JumboFlex',
                             tagline: 'High Speed Handler',
-                            desc: 'Tube lifter operasional satu tangan untuk pemindahan barang frekuensi tinggi yang ergonomis.',
-                            logic: `Beban ringan (${w}kg) dan gerak horizontal optimal dengan operasi satu jari JumboFlex.`,
+                            desc: 'One-hand ergonomic tube lifter for high-frequency material transfer.',
+                            logic: `Light payload (${w}kg) and horizontal movement are ideal for JumboFlex one-finger operation.`,
                             specs: [{ key: 'Control', value: 'Single-Finger' }, { key: 'Tube', value: 'Ø 100-120mm' }, { key: 'Feature', value: 'Quick Change' }],
                             productUrl: '/products/schmalz/vacuum-tube-lifter'
                         };
@@ -725,8 +726,8 @@
                     return {
                         name: 'JumboErgo',
                         tagline: 'Modular Tube Lifter',
-                        desc: 'Sistem tube lifter dengan handle putar (twist grip) untuk kontrol beban medium yang presisi.',
-                        logic: `Beban ${w}kg paling stabil ditangani dengan handle dua tangan JumboErgo.`,
+                        desc: 'Tube lifter with twist-grip control for precise medium-payload handling.',
+                        logic: `A ${w}kg payload is most stable with JumboErgo two-hand control.`,
                         specs: [{ key: 'Control', value: 'Twist Grip' }, { key: 'Payload', value: 'Max 140kg' }, { key: 'Apps', value: 'Universal' }],
                         productUrl: '/products/schmalz/vacuum-tube-lifter'
                     };
@@ -742,8 +743,8 @@
                         return {
                             name: 'ECBPi',
                             tagline: 'Cobot Pump',
-                            desc: 'Generator vakum listrik cerdas dengan interface robot langsung (NFC/IO-Link).',
-                            logic: 'Desain tanpa selang angin (hose-free) ideal untuk Cobot.',
+                            desc: 'Smart electric vacuum generator with direct robot interface (NFC/IO-Link).',
+                            logic: 'A hose-free design is ideal for cobot integration.',
                             specs: [{ key: 'Tech', value: 'Air-free' }, { key: 'Comms', value: 'IO-Link / NFC' }, { key: 'Gripper', value: 'Integrated' }],
                             productUrl: '/products/schmalz/vacuum-generator'
                         };
@@ -753,8 +754,8 @@
                         return {
                             name: 'ECBPM',
                             tagline: 'Mini Electric',
-                            desc: 'Pembangkit vakum listrik kompak untuk sistem otomatisasi ringan tanpa suplai angin.',
-                            logic: 'Solusi pick & place ringan (Small Parts) tanpa kompresor.',
+                            desc: 'Compact electric vacuum source for lightweight automation without compressed air.',
+                            logic: 'An ideal compressor-free setup for small-part pick-and-place.',
                             specs: [{ key: 'Voltage', value: '24V DC' }, { key: 'Flow', value: '1.6 l/min' }, { key: 'Size', value: 'Compact' }],
                             productUrl: '/products/schmalz/vacuum-generator'
                         };
@@ -764,8 +765,8 @@
                         return {
                             name: 'SCPS / SXPi',
                             tagline: 'IP65 Ejector',
-                            desc: 'Compact ejector tahan debu dan percikan air dengan nozzle teknologi Venturi.',
-                            logic: 'Area berdebu mewajibkan proteksi IP65 pada SCPS.',
+                            desc: 'Compact ejector resistant to dust and splash exposure with Venturi nozzle technology.',
+                            logic: 'Dusty areas require IP65-grade SCPS protection.',
                             specs: [{ key: 'Protection', value: 'IP65' }, { key: 'Nozzle', value: 'Single-stage' }, { key: 'Function', value: 'Auto-saving' }],
                             productUrl: '/products/schmalz/vacuum-generator'
                         };
@@ -775,8 +776,8 @@
                         return {
                             name: 'Basic Ejector (SBPL)',
                             tagline: 'High Flow Ejector',
-                            desc: 'Ejector multi-stage dengan aliran hisap besar untuk mengkompensasi kebocoran pada benda berpori.',
-                            logic: 'Benda berpori memerlukan High Flow Rate, bukan High Vacuum.',
+                            desc: 'Multi-stage ejector with high suction flow to compensate leakage on porous materials.',
+                            logic: 'Porous materials require high flow rate, not high vacuum.',
                             specs: [{ key: 'Tech', value: 'Multi-stage Eco' }, { key: 'Flow', value: 'High Volume' }, { key: 'Response', value: 'Fast' }],
                             productUrl: '/products/schmalz/vacuum-generator'
                         };
@@ -785,8 +786,8 @@
                     return {
                         name: 'SCPM / SCPS',
                         tagline: 'Compact Ejector',
-                        desc: 'Sistem ejektor "All-in-one" dengan fungsi hemat udara terintegrasi.',
-                        logic: 'Standar industri untuk benda kedap udara dengan efisiensi tinggi.',
+                        desc: 'All-in-one ejector system with integrated air-saving control.',
+                        logic: 'An industry standard for airtight workpieces with high efficiency.',
                         specs: [{ key: 'Efficiency', value: 'Air Saving' }, { key: 'Control', value: 'NO / NC' }, { key: 'Monitor', value: 'Digital' }],
                         productUrl: '/products/schmalz/vacuum-generator'
                     };
@@ -803,9 +804,9 @@
                 this.chartInstance = new Chart(ctx, {
                     type: 'radar',
                     data: {
-                        labels: ['Efisiensi', 'Keamanan', 'Kecepatan', 'Ergonomi', 'ROI'],
+                        labels: ['Efficiency', 'Safety', 'Speed', 'Ergonomics', 'ROI'],
                         datasets: [{
-                            label: 'Skor Solusi',
+                            label: 'Solution Score',
                             data: [90, 95, 88, 92, 85],
                             backgroundColor: 'rgba(37, 99, 235, 0.2)',
                             borderColor: '#2563EB',

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const alt = 'PT Dimensi Quantum Wahyudi — Market Leader in Vacuum Lifting Solutions in Indonesia';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';

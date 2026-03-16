@@ -6,6 +6,23 @@ import { ropeBalancerVariants } from '../../../../data/products/rope-balancers';
 export const metadata: Metadata = {
     title: 'Rope Balancers & Lift Systems — Full Range | Schmalz — PT Dimensi Quantum Wahyudi',
     description: 'Binar Handling NEO 30 (battery, 30kg), QLA (360 degrees, 300kg), QLR (rail, 600kg), and Ergo-Glass. Intelligent lift systems for precision workstations.',
+    keywords: [
+        'rope balancer indonesia',
+        'lift assist system indonesia',
+        'ergonomic lifting system indonesia',
+        'binar handling indonesia',
+        'industrial lifting solutions',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/rope-balancer',
+    },
+    openGraph: {
+        title: 'Rope Balancers & Lift Systems — Full Range | Schmalz',
+        description: 'Explore battery, articulated, and rail-based lift systems from Binar Handling and Schmalz for precise industrial lifting.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/rope-balancer',
+        type: 'website',
+    },
 };
 
 const badgeColors: Record<string, string> = {
@@ -40,7 +57,7 @@ export default function RopeBalancerIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-amber-500 to-orange-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Intelligent lift systems dari Binar Handling — zero-gravity feel, positioning presisi, mulai dari 30 kg battery-operated hingga 600 kg rail system.
+                        Intelligent lift systems from Binar Handling with zero-gravity feel and precise positioning, from 30 kg battery-operated units up to 600 kg rail systems.
                     </p>
                 </div>
             </section>

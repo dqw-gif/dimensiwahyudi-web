@@ -5,7 +5,24 @@ import { BRANDS, schmalzProducts, binarProducts } from '../../data/products';
 
 export const metadata: Metadata = {
     title: 'Products | PT Dimensi Quantum Wahyudi — Official Schmalz & Binar Handling Distributor',
-    description: 'Explore vacuum lifters, ergonomic lift arms, and gripping solutions from Schmalz (Germany) and Binar Handling (Sweden), officially distributed by PT Dimensi Quantum Wahyudi in Indonesia.',
+    description: 'Explore premium vacuum lifters, ergonomic lift arms, and gripping solutions from Schmalz (Germany) and Binar Handling (Sweden), officially distributed by PT Dimensi Quantum Wahyudi in Indonesia.',
+    keywords: [
+        'vacuum lifter indonesia',
+        'schmalz indonesia distributor',
+        'binar handling indonesia distributor',
+        'ergonomic lifting solutions indonesia',
+        'industrial material handling indonesia',
+        'pt dimensi quantum wahyudi',
+    ],
+    openGraph: {
+        title: 'Products | Official Schmalz & Binar Handling Distributor in Indonesia',
+        description: 'Explore premium industrial lifting and vacuum handling products from Schmalz and Binar Handling, officially distributed by PT Dimensi Quantum Wahyudi.',
+        url: 'https://dimensiwahyudi.com/products',
+        siteName: 'PT Dimensi Quantum Wahyudi',
+        locale: 'en_ID',
+        type: 'website',
+    },
+    alternates: { canonical: 'https://dimensiwahyudi.com/products' },
 };
 
 const brandCards = [
@@ -49,7 +66,7 @@ const brandCards = [
 
 export default async function ProductsPage() {
     const copy = {
-        heroBadge: 'Authorized Distributor - Indonesia',
+        heroBadge: 'Authorized Distributor in Indonesia',
         heroKicker: 'Official Distributor',
         heroTitleA: 'LIFTING SOLUTIONS &',
         heroTitleB: 'VACUUM LIFTERS.',
@@ -58,14 +75,66 @@ export default async function ProductsPage() {
         plusMore: 'more',
         featuredProducts: 'featured products',
         catalogCta: 'View Product Catalog',
-        bottomTitle: 'Need Technical Consultation?',
+        bottomTitle: 'Need Technical Guidance?',
         bottomDesc: 'Our engineers are ready to help you select the right solution for your operation.',
         whatsapp: 'Chat on WhatsApp',
         about: 'About Us',
     };
 
+    const productsFaqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+            {
+                '@type': 'Question',
+                name: 'Do you serve only customers in Indonesia?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. PT Dimensi Quantum Wahyudi focuses on industrial customers across Indonesia with local engineering support and implementation services.',
+                },
+            },
+            {
+                '@type': 'Question',
+                name: 'Are Schmalz and Binar products officially distributed by your company?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. We are the official distributor for Schmalz and Binar Handling in Indonesia, including technical consultation, installation support, and after-sales service.',
+                },
+            },
+            {
+                '@type': 'Question',
+                name: 'Can I request a product trial before purchasing?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. Our engineering team can arrange a technical assessment and product trial to validate fit, ergonomics, and operational performance before full deployment.',
+                },
+            },
+        ],
+    };
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://dimensiwahyudi.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Products',
+                item: 'https://dimensiwahyudi.com/products',
+            },
+        ],
+    };
+
     return (
         <main className="min-h-screen bg-white">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productsFaqSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
             <section className="relative pt-32 pb-20 bg-white overflow-hidden">

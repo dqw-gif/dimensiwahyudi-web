@@ -6,6 +6,25 @@ import { vacuMasterVariants } from '../../../../data/products/vacumaster';
 export const metadata: Metadata = {
     title: 'VacuMaster - Full Series | Schmalz - PT Dimensi Quantum Wahyudi',
     description: 'Full Schmalz VacuMaster lineup: Basic, Comfort, Vario (2000kg), Eco (without external power), Window, Wood, Coil, Light, Multi, Glass, and Panel (14m). Eleven variants for multiple industries.',
+    keywords: [
+        'vacumaster indonesia',
+        'heavy vacuum lifter',
+        'schmalz vacumaster',
+        'glass lifting vacuum system',
+        'industrial lifting indonesia',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/vacumaster',
+    },
+    openGraph: {
+        title: 'VacuMaster Full Series — Schmalz Indonesia',
+        description: 'Explore the complete VacuMaster series for glass, wood, coils, and heavy-duty industrial lifting applications.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/vacumaster',
+        type: 'website',
+        locale: 'en_ID',
+        siteName: 'PT Dimensi Quantum Wahyudi',
+    },
 };
 
 const badgeIcons: Record<string, React.ReactNode> = {

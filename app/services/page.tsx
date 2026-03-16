@@ -5,13 +5,21 @@ import { ServiceHero, ServiceList } from '../../components/services/ServiceAnima
 export const metadata: Metadata = {
   title: 'Technical Services | Installation, Maintenance & Training | PT Dimensi Quantum Wahyudi',
   description: 'Professional after-sales services from PT Dimensi Quantum Wahyudi: installation and commissioning, preventive maintenance, operator training, and genuine Schmalz & Binar parts with responsive technical support.',
-  keywords: ['technical services', 'vacuum lifter installation', 'lifting equipment maintenance', 'operator training', 'Schmalz spare parts', 'after-sales service'],
+  keywords: [
+    'technical services indonesia',
+    'vacuum lifter installation indonesia',
+    'lifting equipment maintenance',
+    'operator training industrial handling',
+    'Schmalz spare parts indonesia',
+    'Binar spare parts indonesia',
+    'after-sales service material handling',
+  ],
   openGraph: {
     title: 'Technical Services | Installation, Maintenance & Training',
     description: 'Reliable installation, preventive maintenance, operator training, and genuine parts support for industrial lifting systems.',
     url: 'https://dimensiwahyudi.com/services',
     siteName: 'PT Dimensi Quantum Wahyudi',
-    locale: 'en_US',
+    locale: 'en_ID',
     type: 'website',
   },
   alternates: { canonical: 'https://dimensiwahyudi.com/services' },
@@ -19,13 +27,46 @@ export const metadata: Metadata = {
 
 export default async function ServicesPage() {
   const copy = {
-    title: 'Optimize Your Equipment Performance Today',
-    desc: 'Protect your plant uptime with support from our specialist team. Schedule a technical visit today.',
-    btn1: 'Service Consultation',
-    btn2: 'Technical WhatsApp Support',
+    title: 'Maximize Equipment Performance with Expert Support',
+    desc: 'Protect uptime and extend equipment life with responsive support from our specialist engineering team.',
+    btn1: 'Book a Service Consultation',
+    btn2: 'Speak with Technical Support',
   };
+
+  const servicesFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Do you provide installation and commissioning services in Indonesia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Our technical team supports installation and commissioning projects across Indonesia for Schmalz and Binar handling systems.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you offer preventive maintenance and spare parts support?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. We provide preventive maintenance programs and genuine parts support to maintain reliability, safety, and uptime.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can operators receive on-site training?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. We provide practical operator training focused on safe handling procedures, ergonomic practices, and efficient day-to-day operation.',
+        },
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqSchema) }} />
 
       {/* BACKGROUND GRID ACCENT */}
       <div

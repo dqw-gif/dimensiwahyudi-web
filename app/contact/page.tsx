@@ -3,6 +3,8 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle, ExternalLink, AlertCircle } from 'lucide-react';
+import Script from 'next/script';
+import { trackEvent } from '@/lib/gtag';
 
 type FieldErrors = { name?: string; email?: string; message?: string };
 
@@ -28,6 +30,36 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const formRef = useRef<HTMLFormElement>(null);
+  const contactPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact PT Dimensi Wahyudi',
+    description: 'Request a quote and technical consultation for industrial vacuum lifting solutions in Indonesia.',
+    url: 'https://www.dimensiwahyudi.com/contact',
+    inLanguage: 'en-ID',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'PT Dimensi Wahyudi',
+      url: 'https://www.dimensiwahyudi.com',
+      email: 'sales@dimensiwahyudi.com',
+      telephone: '+62-811-1916-8752',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'BizPark 3 Bekasi, Jl. Sultan Agung No.80 No. C37, Kali Baru, Medan Satria',
+        addressLocality: 'Bekasi',
+        addressRegion: 'West Java',
+        postalCode: '17132',
+        addressCountry: 'ID',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: 'sales@dimensiwahyudi.com',
+        telephone: '+62-811-1916-8752',
+        availableLanguage: ['en', 'id'],
+      },
+    },
+  };
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
@@ -70,6 +102,11 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
       if (res.ok) {
+        trackEvent('generate_lead', {
+          event_category: 'Contact',
+          event_label: 'Contact Form Submission',
+          value: 1,
+        });
         setFormStatus('success');
       } else {
         setFormStatus('error');
@@ -132,6 +169,11 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
+      <Script
+        id="contact-page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
 
       {/* BACKGROUND GRID */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"

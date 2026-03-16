@@ -8,15 +8,15 @@ import ProductVideoGrid from './ProductVideoGrid';
 
 export const metadata: Metadata = {
     title: 'Products Schmalz Indonesia | Vacuum Lifter, VacuMaster, Crane System | PT Dimensi Quantum Wahyudi',
-    description: 'Complete Schmalz portfolio: Vacuum Tube Lifters, VacuMaster, Crane Systems, Mobile Lifting Devices, and Suction Cups. Official Schmalz distributor in Indonesia with genuine parts support.',
+    description: 'Complete Schmalz portfolio: Vacuum Tube Lifters, VacuMaster, Crane Systems, Mobile Lifting Devices, and Suction Cups. Official Schmalz distributor in Indonesia with engineering and genuine parts support.',
     keywords: ['Schmalz Indonesia', 'Schmalz Vacuum Tube Lifter', 'VacuMaster Indonesia', 'JumboFlex', 'Schmalz Crane System', 'Vacuum Lifting Equipment', 'PT Dimensi Quantum Wahyudi Bekasi'],
     alternates: { canonical: 'https://dimensiwahyudi.com/products/schmalz' },
     openGraph: {
         title: 'Products Schmalz Indonesia | Vacuum Lifter & Crane System',
-        description: 'Official Schmalz distributor in Indonesia for German-standard vacuum lifters, crane systems, and suction cups.',
+        description: 'Official Schmalz distributor in Indonesia for German-standard vacuum lifters, crane systems, and suction cups with dependable technical support.',
         url: 'https://dimensiwahyudi.com/products/schmalz',
         type: 'website',
-        locale: 'en_US',
+        locale: 'en_ID',
         siteName: 'PT Dimensi Quantum Wahyudi',
     },
 };
@@ -29,8 +29,34 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function SchmalzCatalogPage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://dimensiwahyudi.com/',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Products',
+                item: 'https://dimensiwahyudi.com/products',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Schmalz',
+                item: 'https://dimensiwahyudi.com/products/schmalz',
+            },
+        ],
+    };
+
     return (
         <main className="min-h-screen bg-white">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
             <section className="relative pt-32 pb-16 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
@@ -161,10 +187,10 @@ export default function SchmalzCatalogPage() {
             <section className="py-16 bg-white border-t border-slate-100">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <Award className="w-10 h-10 text-blue-600 mx-auto mb-4 opacity-60" />
-                    <h2 className="text-2xl font-black text-slate-900 mb-3">Did Not Find What You Need?</h2>
+                    <h2 className="text-2xl font-black text-slate-900 mb-3">Didn&apos;t Find the Right Variant?</h2>
                     <p className="text-slate-500 mb-8">Schmalz offers thousands of product variants. Discuss your specific requirements with our engineering team.</p>
                     <a href="https://wa.me/6281119168752" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30">
-                        Consult via WhatsApp
+                        Speak with an Engineer
                         <ArrowRight size={16} />
                     </a>
                 </div>

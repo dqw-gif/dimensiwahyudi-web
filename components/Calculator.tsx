@@ -21,7 +21,7 @@ export default function SmartCalculator() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center tracking-tight">
-        Kalkulator <span className="text-cyan-400">ROI & Beban Kerja Ergonomis</span>
+        Calculator <span className="text-cyan-400">ROI & Ergonomic Workload</span>
       </h2>
       <p className="text-slate-400 text-center mb-10 max-w-2xl mx-auto">
         Analyze risks <span className="text-slate-200">manual material handling</span> in your production line. Calculate cumulative daily load to reduce spinal injury risk and improve workplace safety standards.
@@ -34,7 +34,7 @@ export default function SmartCalculator() {
           <div className="flex items-center gap-2 mb-6">
             <Zap className="text-cyan-400" size={24} />
             <h3 className="text-2xl font-bold text-white">
-              Parameter Operasional
+              Operational Parameters
             </h3>
           </div>
 
@@ -42,7 +42,7 @@ export default function SmartCalculator() {
           <div className="space-y-4">
             <div className="flex justify-between items-end">
               <label className="text-slate-300 font-medium text-lg">
-                Berat Material Unit (Payload)
+                Unit Material Weight (Payload)
               </label>
               <span className={`font-bold text-2xl font-mono transition-colors ${weight > 25 ? 'text-red-400' : 'text-cyan-400'}`}>
                 {weight} <span className="text-sm text-slate-500">kg</span>
@@ -62,7 +62,7 @@ export default function SmartCalculator() {
             </div>
             <div className="flex justify-between text-slate-500 text-xs font-mono uppercase">
               <span>0 kg</span>
-              <span className="text-red-500 font-bold italic">Batas Aman Manual K3: 25kg</span>
+              <span className="text-red-500 font-bold italic">Manual Safety Limit: 25kg</span>
               <span>200 kg</span>
             </div>
           </div>
@@ -71,10 +71,10 @@ export default function SmartCalculator() {
           <div className="space-y-4">
             <div className="flex justify-between items-end">
               <label className="text-slate-300 font-medium text-lg">
-                Intensitas Angkat (Cycle Time)
+                Lifting Intensity (Cycle Time)
               </label>
               <span className="text-cyan-400 font-bold text-2xl font-mono">
-                {frequency} <span className="text-sm text-slate-500">kali/jam</span>
+                {frequency} <span className="text-sm text-slate-500">times/hour</span>
               </span>
             </div>
             <div className="py-2"> {/* Added padding for better mobile touch area */}
@@ -89,7 +89,7 @@ export default function SmartCalculator() {
               />
             </div>
             <div className="flex justify-between text-slate-500 text-xs font-mono uppercase">
-              <span>Rendah</span>
+              <span>Low</span>
               <span>High Cycles (High Frequency)</span>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function SmartCalculator() {
           {/* Work Hours Input */}
           <div className="space-y-3">
             <label className="text-slate-300 font-medium text-lg block">
-              Durasi Shift Kerja
+              Work Shift Duration
             </label>
             <div className="relative">
               <input
@@ -109,7 +109,7 @@ export default function SmartCalculator() {
                 suppressHydrationWarning
                 className="w-full px-4 py-3 bg-slate-800/50 text-white text-xl font-bold rounded-lg border border-white/10 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none transition-all"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">Jam/Hari</span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">Hours/Day</span>
             </div>
           </div>
         </div>
@@ -119,14 +119,14 @@ export default function SmartCalculator() {
           <div className="flex items-center gap-2 mb-6">
             <CheckCircle className="text-blue-500" size={24} />
             <h3 className="text-2xl font-bold text-white">
-              Hasil Analisa K3
+              Safety Analysis Results
             </h3>
           </div>
 
           {/* Total Load Display */}
           <div className="bg-slate-800/50 p-6 rounded-xl border border-white/5 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-500/10 to-transparent" />
-            <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider font-semibold">Akumulasi Beban Tubuh Harian</p>
+            <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider font-semibold">Daily Cumulative Body Load</p>
             <p className="text-5xl md:text-6xl font-black text-white tracking-tight">
               {totalLoadTons.toFixed(2)}
               <span className="text-2xl ml-2 text-cyan-500/70 font-medium">Ton</span>

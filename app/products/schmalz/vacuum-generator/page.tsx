@@ -6,6 +6,23 @@ import { vacuumGeneratorVariants } from '../../../../data/products/vacuum-genera
 export const metadata: Metadata = {
     title: 'Vacuum Generators — Ejector & Pump Schmalz | PT Dimensi Quantum Wahyudi',
     description: 'Schmalz vacuum generator components: Compact Ejector SCPS, Basic Ejector SBP, Multi-stage SBPL, X-Pump SXPi IO-Link, Regulated Pump ECBPM, and Vacuum Blower SBG. Official distributor in Indonesia.',
+    keywords: [
+        'vacuum generator indonesia',
+        'schmalz ejector indonesia',
+        'industrial vacuum pump indonesia',
+        'compact ejector SCPS',
+        'high flow ejector SBPL',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/vacuum-generator',
+    },
+    openGraph: {
+        title: 'Vacuum Generators — Ejector & Pump Schmalz',
+        description: 'Discover Schmalz ejectors, pumps, and blowers for compact automation, porous materials, and Industry 4.0-ready systems.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/vacuum-generator',
+        type: 'website',
+    },
 };
 
 const badgeColors: Record<string, string> = {
@@ -33,7 +50,7 @@ export default function VacuumGeneratorIndexPage() {
                     </nav>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> {vacuumGeneratorVariants.length} Jenis — Vacuum Components
+                        <Layers size={11} /> {vacuumGeneratorVariants.length} Product Types — Vacuum Components
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                         VACUUM
@@ -41,7 +58,7 @@ export default function VacuumGeneratorIndexPage() {
                     </h1>
                     <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-6" />
                     <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Ejector, pump, dan blower Schmalz — dari compact ejector pick-and-place hingga high-flow blower untuk benda berpori dan smart pump Industry 4.0 dengan IO-Link.
+                        Explore Schmalz ejectors, pumps, and blowers, from compact pick-and-place ejectors to high-flow blowers for porous materials and Industry 4.0-ready smart pumps with IO-Link.
                     </p>
                 </div>
             </section>

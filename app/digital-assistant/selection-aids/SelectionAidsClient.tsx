@@ -47,25 +47,25 @@ const DATA: Record<ModuleKey, ModuleConfig> = {
       {
         id: 'workpiece',
         label: 'Material',
-        title: 'Jenis Material',
+        title: 'Material Type',
         desc: 'What are you lifting?',
         type: 'grid',
         options: [
-          { id: 'cardboard', label: 'Cardboard', sub: 'Karton / Box' },
-          { id: 'bag', label: 'Sack', sub: 'Karung Plastik/Kertas' },
-          { id: 'wood', label: 'Wood', sub: 'Panel Kayu' },
-          { id: 'metal', label: 'Metal', sub: 'Plat Besi' },
-          { id: 'barrel', label: 'Barrel', sub: 'Drum / Kaleng' },
-          { id: 'glass', label: 'Glass', sub: 'Kaca / Jendela' },
-          { id: 'bucket', label: 'Bucket', sub: 'Ember Cat' },
-          { id: 'luggage', label: 'Luggage', sub: 'Bagasi' },
+          { id: 'cardboard', label: 'Cardboard', sub: 'Carton / Box' },
+          { id: 'bag', label: 'Sack', sub: 'Plastic/Paper Sack' },
+          { id: 'wood', label: 'Wood', sub: 'Wood Panel' },
+          { id: 'metal', label: 'Metal', sub: 'Steel Plate' },
+          { id: 'barrel', label: 'Barrel', sub: 'Drum / Can' },
+          { id: 'glass', label: 'Glass', sub: 'Glass / Window' },
+          { id: 'bucket', label: 'Bucket', sub: 'Paint Bucket' },
+          { id: 'luggage', label: 'Luggage', sub: 'Baggage' },
         ],
       },
       {
         id: 'weight',
-        label: 'Beban',
-        title: 'Berat Maksimal',
-        desc: 'Berat benda terberat (Safe Working Load).',
+        label: 'Load',
+        title: 'Maximum Weight',
+        desc: 'Weight of the heaviest workpiece (Safe Working Load).',
         type: 'slider',
         min: 0,
         max: 250,
@@ -88,8 +88,8 @@ const DATA: Record<ModuleKey, ModuleConfig> = {
         desc: 'How many lifts per minute?',
         type: 'binary',
         options: [
-          { id: 'high', label: 'High Freq', sub: '> 10x per minute (Fast)' },
-          { id: 'low', label: 'Low Freq', sub: '< 5x per minute (Slow)' },
+          { id: 'high', label: 'High Frequency', sub: '> 10 lifts per minute (Fast)' },
+          { id: 'low', label: 'Low Frequency', sub: '< 5 lifts per minute (Slow)' },
         ],
       },
       { id: 'results', label: 'Solution', title: 'Recommendation', desc: 'DQW handling recommendation.', type: 'results' },
@@ -453,10 +453,10 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
         tagline: tilt ? 'Tilt & Turn' : 'Heavy Load Device',
         desc: tilt
           ? 'A lifting solution that safely rotates workpieces by 90°/180°.'
-          : 'A heavy-load lifting solution with dual-layer safety.',
+          : 'A heavy-duty lifting solution with built-in dual safety protection.',
         logic: tilt
-          ? 'Fungsi Tilting/Turning mewajibkan penggunaan VacuMaster.'
-          : `Beban ${weight}kg memerlukan sistem chain hoist + VacuMaster.`,
+          ? 'Tilting/turning motion requires a VacuMaster system.'
+          : `A ${weight}kg load requires a chain hoist + VacuMaster system.`,
         specs: [
           { key: 'Series', value: 'Basic/Comfort' },
           { key: 'Motion', value: tilt ? '90°/180°' : 'Horizontal' },
@@ -471,8 +471,8 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
       return {
         name: 'JumboFlex',
         tagline: 'High Speed Handler',
-        desc: 'One-hand ergonomic tube lifter for high-frequency material transfer.',
-        logic: `Light payload (${weight}kg) and horizontal movement are ideal for JumboFlex one-finger operation.`,
+        desc: 'Ergonomic one-hand tube lifter for high-frequency material handling.',
+        logic: `A light ${weight}kg payload with horizontal movement is ideal for JumboFlex single-hand operation.`,
         specs: [
           { key: 'Control', value: 'Single-Finger' },
           { key: 'Tube', value: 'Ø 100-120mm' },
@@ -487,7 +487,7 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
       name: 'JumboErgo',
       tagline: 'Modular Tube Lifter',
       desc: 'Tube lifter with twist-grip control for precise medium-payload handling.',
-      logic: `A ${weight}kg payload is most stable with JumboErgo two-hand control.`,
+      logic: `A ${weight}kg payload is handled most reliably with JumboErgo two-hand control.`,
       specs: [
         { key: 'Control', value: 'Twist Grip' },
         { key: 'Payload', value: 'Max 140kg' },
@@ -556,7 +556,7 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
       name: 'Basic Ejector (SBPL)',
       tagline: 'High Flow Ejector',
       desc: 'Multi-stage ejector with high suction flow to compensate leakage on porous materials.',
-      logic: 'Benda berpori memerlukan High Flow Rate, bukan High Vacuum.',
+      logic: 'Porous materials require high flow rate, not high vacuum.',
       specs: [
         { key: 'Tech', value: 'Multi-stage Eco' },
         { key: 'Flow', value: 'High Volume' },
@@ -571,7 +571,7 @@ function getRecommendation(moduleKey: ModuleKey, selections: SelectionMap): Reco
     name: 'SCPM / SCPS',
     tagline: 'Compact Ejector',
     desc: 'All-in-one ejector system with integrated air-saving control.',
-    logic: 'An industry standard for airtight workpieces with high efficiency.',
+      logic: 'A proven industry standard for airtight workpieces with high efficiency.',
     specs: [
       { key: 'Efficiency', value: 'Air Saving' },
       { key: 'Control', value: 'NO / NC' },
@@ -716,7 +716,7 @@ export default function SelectionAidsClient() {
               </div>
               <div>
                 <h3 className="text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Lifters</h3>
-                <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Handling manual ergonomis (Jumbo/VacuMaster).</p>
+                <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Ergonomic manual handling systems (Jumbo/VacuMaster).</p>
               </div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 transition-transform group-hover:translate-x-2 md:text-xs">
                 {t.selectionAids.startLifter}
@@ -744,7 +744,7 @@ export default function SelectionAidsClient() {
               </div>
               <div>
                 <h3 className="text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Generators</h3>
-                <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Sistem otomasi & ejector (Ejector/Pump).</p>
+                <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Automation and ejector systems (Ejector/Pump).</p>
               </div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 transition-transform group-hover:translate-x-2 md:text-xs">
                 {t.selectionAids.startGenerator}
@@ -991,7 +991,7 @@ export default function SelectionAidsClient() {
 
                         <div className="mt-6 space-y-2">
                           <p className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">{t.selectionAids.performanceSnapshot}</p>
-                          {['Efisiensi', 'Keamanan', 'Kecepatan', 'Ergonomi', 'ROI'].map((label, idx) => (
+                          {['Efficiency', 'Safety', 'Speed', 'Ergonomics', 'ROI'].map((label, idx) => (
                             <div key={label} className="space-y-1">
                               <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wide text-slate-500">
                                 <span>{label}</span>

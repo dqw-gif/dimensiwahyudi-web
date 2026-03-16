@@ -22,14 +22,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title,
         description,
-        keywords: [product.name, product.modelCode, 'Binar Handling', 'PT Dimensi Quantum Wahyudi', 'Industrial Lift Arm', 'Intelligent Lifting Sweden'],
+        keywords: [
+            product.name,
+            product.modelCode,
+            'Binar Handling',
+            'PT Dimensi Quantum Wahyudi',
+            'Industrial Lift Arm',
+            'Intelligent Lifting Sweden',
+            'Material Handling Indonesia',
+        ],
         alternates: { canonical: url },
         openGraph: {
             title,
             description,
             url,
             type: 'website',
-            locale: 'en_US',
+            locale: 'en_ID',
             siteName: 'PT Dimensi Quantum Wahyudi',
         },
     };
@@ -46,20 +54,36 @@ export default async function BinarProductDetail({ params }: Props) {
         '@type': 'Product',
         name: product!.name,
         description: product!.description,
+        sku: product!.slug,
         mpn: product!.modelCode,
+        category: product!.category,
+        url: `https://dimensiwahyudi.com/products/binar/${product!.slug}`,
+        image: product!.imageUrl ? [product!.imageUrl] : undefined,
         brand: { '@type': 'Brand', name: 'Binar Handling' },
         offers: {
             '@type': 'Offer',
             availability: 'https://schema.org/InStock',
+            priceCurrency: 'IDR',
             seller: { '@type': 'Organization', name: 'PT Dimensi Quantum Wahyudi' },
             areaServed: 'ID',
-            priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'IDR' },
         },
+    };
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dimensiwahyudi.com/' },
+            { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://dimensiwahyudi.com/products' },
+            { '@type': 'ListItem', position: 3, name: 'Binar Handling', item: 'https://dimensiwahyudi.com/products/binar' },
+            { '@type': 'ListItem', position: 4, name: product.name, item: `https://dimensiwahyudi.com/products/binar/${product.slug}` },
+        ],
     };
 
     return (
         <main className="min-h-screen bg-white">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO — black + red grid */}
             <section className="relative pt-28 pb-16 bg-black overflow-hidden">
@@ -183,8 +207,8 @@ export default async function BinarProductDetail({ params }: Props) {
 
                             {/* CTA */}
                             <div className="bg-white rounded-2xl border border-zinc-200 p-6 sticky top-24">
-                                <h3 className="text-lg font-black text-zinc-900 mb-1">Interested in this product?</h3>
-                                <p className="text-zinc-500 text-sm mb-6">Our engineers are ready to help. Free consultation available.</p>
+                                <h3 className="text-lg font-black text-zinc-900 mb-1">Need Technical Guidance?</h3>
+                                <p className="text-zinc-500 text-sm mb-6">Our engineers are ready to map your workflow and recommend the right system.</p>
 
                                 <div className="flex flex-col gap-3">
                                     <a
@@ -193,7 +217,7 @@ export default async function BinarProductDetail({ params }: Props) {
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-green-600/20"
                                     >
-                                        <Phone size={17} /> Chat WhatsApp
+                                        <Phone size={17} /> Speak on WhatsApp
                                     </a>
                                     <Link
                                         href="/contact"

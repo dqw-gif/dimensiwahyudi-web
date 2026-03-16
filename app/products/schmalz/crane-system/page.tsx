@@ -6,6 +6,25 @@ import { craneSystemVariants } from '../../../../data/products/crane-systems';
 export const metadata: Metadata = {
     title: 'Crane Systems & Jib Cranes — Full Range | Schmalz — PT Dimensi Quantum Wahyudi',
     description: 'Schmalz Jib Cranes (1,000kg), Aluminum Bridge Cranes (1,200kg), KBG Modular Steel (30x8.5m), and Chain Hoists (2,500kg). A premium foundation for vacuum handling systems.',
+    keywords: [
+        'crane system indonesia',
+        'jib crane indonesia',
+        'chain hoist schmalz',
+        'aluminum bridge crane',
+        'industrial lifting system indonesia',
+        'pt dimensi quantum wahyudi',
+    ],
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/products/schmalz/crane-system',
+    },
+    openGraph: {
+        title: 'Crane Systems & Jib Cranes — Schmalz Indonesia',
+        description: 'Explore Schmalz jib cranes, aluminum bridge cranes, modular steel structures, and chain hoists for industrial lifting systems in Indonesia.',
+        url: 'https://dimensiwahyudi.com/products/schmalz/crane-system',
+        type: 'website',
+        locale: 'en_ID',
+        siteName: 'PT Dimensi Quantum Wahyudi',
+    },
 };
 
 const badgeColors: Record<string, string> = {

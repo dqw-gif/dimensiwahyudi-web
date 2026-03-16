@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "qa:route-health": "node scripts/route-health-check.mjs",
+    "qa:performance": "node scripts/route-health-check.mjs",
+    "qa:reliability": "node scripts/reliability-gate.mjs",
+    "qa:full": "npm run qa:reliability"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",

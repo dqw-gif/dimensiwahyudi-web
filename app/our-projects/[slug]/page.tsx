@@ -44,7 +44,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 {/* BREADCRUMB / BACK LINK */}
                 <div className="absolute top-8 left-6 md:left-12 z-20">
                     <Link href="/our-projects" className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm mb-8 transition-colors">
-                        <ArrowLeft size={16} /> Kembali ke Galeri
+                        <ArrowLeft size={16} /> Back to Gallery
                     </Link>
                 </div>
 
@@ -64,7 +64,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
                     <div className="flex flex-wrap items-center gap-6 text-slate-400 text-sm">
                         <span className="flex items-center gap-1.5"><MapPin size={14} /> Indonesia</span>
-                        <span className="flex items-center gap-1.5"><Package size={14} /> Solusi Handling Terintegrasi</span>
+                        <span className="flex items-center gap-1.5"><Package size={14} /> Integrated Handling Solution</span>
                     </div>
                 </div>
             </section>
