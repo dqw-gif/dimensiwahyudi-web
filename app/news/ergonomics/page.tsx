@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import {
   SolidSafetyIcon,
   SolidHealthIcon,
@@ -113,6 +113,51 @@ const topicCards = [
   },
 ];
 
+const visualNavigationTiles = [
+  {
+    title: 'Ergonomics for Every Industry',
+    desc: 'Start from the complete hub and pick your implementation path.',
+    href: '/news/ergonomics',
+    image: '/placeholders/ergonomics/tile-1.svg',
+    className: 'md:col-span-7 md:row-span-2 min-h-[340px] md:min-h-[460px]',
+  },
+  {
+    title: 'Health Risks and MSD Exposure',
+    desc: 'Identify strain patterns and high-risk manual handling tasks.',
+    href: '/news/ergonomics/health-risks',
+    image: '/placeholders/ergonomics/tile-2.svg',
+    className: 'md:col-span-5 min-h-[220px]',
+  },
+  {
+    title: 'Productivity Impact',
+    desc: 'Translate ergonomics into throughput and quality consistency.',
+    href: '/news/ergonomics/productivity',
+    image: '/placeholders/ergonomics/tile-3.svg',
+    className: 'md:col-span-5 min-h-[220px]',
+  },
+  {
+    title: 'Safety and Standards',
+    desc: 'Map controls to practical compliance on your production floor.',
+    href: '/news/ergonomics/safety-standards',
+    image: '/placeholders/ergonomics/tile-4.svg',
+    className: 'md:col-span-4 min-h-[220px]',
+  },
+  {
+    title: 'Open ROI Calculator',
+    desc: 'Estimate ergonomic impact and investment economics quickly.',
+    href: '/digital-assistant/roi-calculator',
+    image: '/placeholders/ergonomics/tile-5.svg',
+    className: 'md:col-span-4 min-h-[220px]',
+  },
+  {
+    title: 'Selection Aids',
+    desc: 'Use digital assistant tools to shortlist suitable handling systems.',
+    href: '/digital-assistant/selection-aids',
+    image: '/placeholders/ergonomics/tile-6.svg',
+    className: 'md:col-span-4 min-h-[220px]',
+  },
+];
+
 export default function ErgonomicsHubPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
@@ -165,6 +210,47 @@ export default function ErgonomicsHubPage() {
             Ergonomics is no longer just a health initiative. It is now a strategic lever for plant reliability,
             productivity consistency, and sustainable workforce performance. Teams that ignore ergonomics often face
             hidden losses through absenteeism, quality variation, and avoidable operational risk.
+          </p>
+        </section>
+
+        <section>
+          <div className="flex items-end justify-between mb-8 gap-4">
+            <div>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Visual Navigation</p>
+              <h2 className="text-3xl font-black text-slate-900">Explore Ergonomics by Scenario</h2>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-12 gap-4 md:gap-5 auto-rows-fr">
+            {visualNavigationTiles.map((tile) => (
+              <Link
+                key={tile.title}
+                href={tile.href}
+                className={`group relative overflow-hidden rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all ${tile.className}`}
+              >
+                <Image
+                  src={tile.image}
+                  alt={`${tile.title} placeholder`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/35 to-transparent" />
+
+                <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-white">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] mb-3">
+                    Open topic
+                    <ArrowUpRight size={13} />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-black leading-tight">{tile.title}</h3>
+                  <p className="mt-2 text-sm text-slate-100/90 max-w-2xl">{tile.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 mt-4">
+            {/* DEV: Semua image masih dummy placeholder. Ganti ke foto asli project/stock industrial saat final asset siap. */}
+            Placeholder visuals are temporary and can be replaced with approved industrial photos.
           </p>
         </section>
 
