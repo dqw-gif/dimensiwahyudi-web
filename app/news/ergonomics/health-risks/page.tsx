@@ -184,7 +184,7 @@ export default function ErgonomicsHealthRisksPage() {
             <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors">
               Request Health-Risk Consultation
             </Link>
-            <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
+            <Link href="/digital-assistant/roi-calculator" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
               Estimate ROI Impact
             </Link>
           </div>

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse } from 'lucide-react';
+import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse, BarChart3 } from 'lucide-react';
 import { useLanguage } from './LanguageProvider';
 
 export default function Navbar() {
@@ -115,6 +115,17 @@ export default function Navbar() {
                       <div>
                         <p className="text-sm font-bold text-slate-800">Vacuum Calculator</p>
                         <p className="text-xs text-slate-500">Calculate system performance</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/digital-assistant/roi-calculator" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-indigo-50 p-2 rounded-lg group-hover/item:bg-indigo-100 transition-colors mr-3 text-indigo-600">
+                        <BarChart3 size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">ROI Calculator</p>
+                        <p className="text-xs text-slate-500">Estimate ergonomic impact and ROI</p>
                       </div>
                     </Link>
 
@@ -233,6 +244,9 @@ export default function Navbar() {
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.digitalAssistants}</p>
               <Link href="/digital-assistant/vacuum-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Calculator size={18} className="text-blue-500" /><span>Vacuum Calculator</span>
+              </Link>
+              <Link href="/digital-assistant/roi-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+                <BarChart3 size={18} className="text-indigo-500" /><span>ROI Calculator</span>
               </Link>
               <Link href="/digital-assistant/selection-aids" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Cpu size={18} className="text-cyan-500" /><span>Selection Aids</span>

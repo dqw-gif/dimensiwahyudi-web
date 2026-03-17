@@ -195,7 +195,7 @@ export default function ErgonomicsProductivityPage() {
             Use our digital calculator to estimate handling improvement potential based on your operating scenario.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors inline-flex items-center gap-2">
+            <Link href="/digital-assistant/roi-calculator" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors inline-flex items-center gap-2">
               <SolidCalculatorIcon className="w-4.5 h-4.5" /> Start Calculation
             </Link>
             <Link href="/contact" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">

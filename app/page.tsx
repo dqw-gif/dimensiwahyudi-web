@@ -61,7 +61,7 @@ export default async function Home() {
       <BrandShowcase />
 
       {/* 6. CALCULATOR & AGR CERTIFICATION SECTION (SEO OPTIMIZED) */}
-      <section className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+      <section id="roi-calculator" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
 
         {/* Background Pattern Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
