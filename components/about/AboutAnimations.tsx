@@ -225,7 +225,7 @@ export function AboutStoryImage() {
             className="relative h-[500px] rounded-2xl overflow-hidden border border-slate-200 group shadow-2xl shadow-slate-200/50"
         >
             <Image
-                src="https://i.imgur.com/M39qASX.jpeg"
+                src="https://i.imgur.com/RMjGMRg.jpeg"
                 alt="PT Dimensi Quantum Wahyudi Professional Team"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
