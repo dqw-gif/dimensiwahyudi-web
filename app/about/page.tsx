@@ -67,7 +67,7 @@ export default async function AboutPage() {
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0">
           <Image
-            src="https://i.imgur.com/iSGtXzt.jpeg"
+            src="https://i.imgur.com/RMjGMRg.jpeg"
             alt="PT Dimensi Quantum Wahyudi Warehouse Solutions"
             fill
             priority
