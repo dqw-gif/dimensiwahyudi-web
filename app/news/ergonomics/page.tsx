@@ -46,21 +46,21 @@ const benchmarkCards = [
     value: '12-25%',
     note: 'Typical end-of-shift handling slowdown in non-ergonomic repetitive tasks.',
     icon: SolidWarningIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-rose-600 bg-rose-50 border-rose-200',
   },
   {
     title: 'Potential Throughput Lift',
     value: '8-22%',
     note: 'Indicative gain when high-strain manual handling is assisted by ergonomic systems.',
     icon: SolidProductivityIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
   },
   {
     title: 'Handling Safety Consistency',
     value: 'Higher',
     note: 'Structured ergonomic workflows reduce risky movement variability across shifts.',
     icon: SolidSafetyIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-blue-600 bg-blue-50 border-blue-200',
   },
 ];
 
@@ -88,28 +88,28 @@ const topicCards = [
     desc: 'Understand the operational impact of musculoskeletal disorders and how to prevent long-term operator strain.',
     href: '/news/ergonomics/health-risks',
     icon: SolidHealthIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-rose-600 bg-rose-50 border-rose-200',
   },
   {
     title: 'Ergonomics and Productivity',
     desc: 'See how ergonomic handling supports throughput, quality consistency, and workforce resilience.',
     href: '/news/ergonomics/productivity',
     icon: SolidProductivityIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
   },
   {
     title: 'Safety and Standards',
     desc: 'Review practical safety principles and compliance-oriented ergonomics implementation in industrial settings.',
     href: '/news/ergonomics/safety-standards',
     icon: SolidSafetyIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-blue-600 bg-blue-50 border-blue-200',
   },
   {
     title: 'Ergonomics Glossary',
     desc: 'A clear explanation of key ergonomics terms for engineers, procurement teams, and plant leaders.',
     href: '/news/ergonomics/glossary',
     icon: SolidGlossaryIcon,
-    color: 'text-white bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border-[#3F617A]/40 shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)]',
+    color: 'text-violet-600 bg-violet-50 border-violet-200',
   },
 ];
 
@@ -125,11 +125,11 @@ export default function ErgonomicsHubPage() {
       <div className="relative z-10 pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <section className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#3F617A]/30 text-[#3F617A] font-bold text-xs tracking-widest uppercase mb-6">
+            <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6">
               Industrial Ergonomics Knowledge Hub
             </p>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 mb-6">
-              Protect Operators. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2F4E67] to-[#5F7F99]">Improve Throughput.</span>
+              Protect Operators. <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Improve Throughput.</span>
             </h1>
             <p className="text-slate-600 text-lg leading-relaxed max-w-2xl">
               This hub helps industrial teams evaluate ergonomics from every critical angle: health risk prevention,
@@ -137,10 +137,10 @@ export default function ErgonomicsHubPage() {
               production floors in Indonesia.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
-              <Link href="/contact" className="px-6 py-3 bg-[#2F4E67] hover:bg-[#274258] text-white font-bold rounded-xl transition-colors">
+              <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-colors">
                 Request Engineering Consultation
               </Link>
-              <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-white border border-[#3F617A]/30 hover:border-[#3F617A]/60 text-[#2F4E67] font-bold rounded-xl transition-colors">
+              <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-white border border-slate-200 hover:border-blue-300 text-slate-700 font-bold rounded-xl transition-colors">
                 Open ROI Calculator
               </Link>
             </div>
@@ -171,7 +171,7 @@ export default function ErgonomicsHubPage() {
         <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
           <div className="flex items-end justify-between mb-6 gap-4">
             <div>
-              <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
               <h2 className="text-2xl md:text-3xl font-black text-slate-900">Ergonomics impact at a glance</h2>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function ErgonomicsHubPage() {
         <section>
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-2">Explore by Perspective</p>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Explore by Perspective</p>
               <h2 className="text-3xl font-black text-slate-900">Core Ergonomics Topics</h2>
             </div>
           </div>
@@ -212,12 +212,12 @@ export default function ErgonomicsHubPage() {
                   href={card.href}
                   className="group block bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg hover:border-blue-300 transition-all"
                 >
-                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-4 ring-1 ring-white/20 ${card.color}`}>
+                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{card.title}</h3>
                   <p className="text-slate-600 leading-relaxed mb-5">{card.desc}</p>
-                  <div className="inline-flex items-center gap-2 font-bold text-[#2F4E67]">
+                  <div className="inline-flex items-center gap-2 font-bold text-blue-600">
                     Read topic
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -228,12 +228,12 @@ export default function ErgonomicsHubPage() {
         </section>
 
         <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
-          <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6">From risk mapping to ergonomic deployment</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {implementationSteps.map((item) => (
               <article key={item.step} className="relative bg-slate-50 border border-slate-200 rounded-2xl p-5">
-                <p className="text-xs font-black text-[#3F617A] tracking-[0.2em] mb-3">STEP {item.step}</p>
+                <p className="text-xs font-black text-blue-600 tracking-[0.2em] mb-3">STEP {item.step}</p>
                 <h3 className="text-lg font-black text-slate-900 mb-2">{item.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
               </article>
@@ -248,14 +248,14 @@ export default function ErgonomicsHubPage() {
           />
           <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <p className="text-[#A4BED2] text-xs font-bold uppercase tracking-[0.2em] mb-3">Next Action</p>
+              <p className="text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">Next Action</p>
               <h2 className="text-3xl md:text-4xl font-black mb-4">Measure the economics of ergonomic investment</h2>
               <p className="text-slate-300 leading-relaxed mb-7">
                 Use the ROI calculator to estimate potential productivity gains and operational savings for your
                 handling scenario.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-[#3F617A] hover:bg-[#2F4E67] rounded-xl font-bold transition-colors inline-flex items-center gap-2">
+                <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors inline-flex items-center gap-2">
                   <SolidCalculatorIcon className="w-4.5 h-4.5" /> Open Calculator
                 </Link>
                 <Link href="/digital-assistant/selection-aids" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">

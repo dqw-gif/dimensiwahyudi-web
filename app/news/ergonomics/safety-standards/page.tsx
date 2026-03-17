@@ -77,7 +77,7 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <section className="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-3">Compliance Perspective</p>
+            <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-3">Compliance Perspective</p>
             <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-5">Occupational safety and ergonomics standards</h1>
             <p className="text-slate-600 text-lg leading-relaxed">
               Safety excellence is achieved when ergonomic controls are embedded into the actual workflow. Standards are
@@ -99,7 +99,7 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Implementation principles for safer handling</h2>
@@ -117,7 +117,7 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Standards and compliance matrix</h2>
@@ -155,7 +155,7 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
+            <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-600 flex items-center justify-center">
               <SolidWarningIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">STOP principle in handling operations</h2>
@@ -171,7 +171,7 @@ export default function ErgonomicsSafetyStandardsPage() {
         </section>
 
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
-          <div className="flex items-center gap-2 text-[#A4BED2] text-xs font-bold uppercase tracking-[0.2em] mb-3">
+          <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <SolidSafetyIcon className="w-4 h-4" /> Recommended Next Step
           </div>
           <h2 className="text-3xl font-black mb-4">Map your safety-critical handling points with our team</h2>
@@ -180,7 +180,7 @@ export default function ErgonomicsSafetyStandardsPage() {
             operational reliability.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/contact" className="px-6 py-3 bg-[#3F617A] hover:bg-[#2F4E67] rounded-xl font-bold transition-colors">
+            <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors">
               Request Safety-Focused Assessment
             </Link>
             <Link href="/products/schmalz" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
