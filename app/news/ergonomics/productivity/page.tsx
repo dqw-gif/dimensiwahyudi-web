@@ -1,16 +1,58 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, TrendingUp, Gauge, Calculator } from 'lucide-react';
+import { ArrowLeft, ArrowRight, TrendingUp, Gauge, Calculator, Timer, Target, BarChart3 } from 'lucide-react';
+import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
 
 export const metadata: Metadata = {
   title: 'Ergonomics as a Productivity Lever | Industrial Ergonomics',
   description:
     'Learn how ergonomics contributes to throughput stability, error reduction, and better manpower utilization in manufacturing operations.',
+  keywords: [
+    'ergonomi dan produktivitas',
+    'peningkatan throughput pabrik',
+    'efisiensi handling material',
+    'cycle time manufaktur',
+    'reduksi error produksi',
+    'optimasi tenaga kerja produksi',
+    'alat angkat ergonomis indonesia',
+    'roi ergonomi industri',
+  ],
   alternates: {
     canonical: 'https://dimensiwahyudi.com/news/ergonomics/productivity',
   },
 };
+
+const kpiCards = [
+  {
+    title: 'Cycle Time Stability',
+    value: 'Improves',
+    note: 'Less fatigue-driven variability during repetitive handling windows.',
+    icon: Timer,
+    color: 'text-blue-600 bg-blue-50 border-blue-200',
+  },
+  {
+    title: 'Process Accuracy',
+    value: 'Improves',
+    note: 'Assisted control reduces small handling mistakes that trigger rework.',
+    icon: Target,
+    color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
+  },
+  {
+    title: 'Output Reliability',
+    value: 'Improves',
+    note: 'Operational performance remains more consistent across shifts.',
+    icon: BarChart3,
+    color: 'text-violet-600 bg-violet-50 border-violet-200',
+  },
+];
+
+const evaluationMetrics = [
+  'Average cycle time before vs after implementation',
+  'Shift-end speed drop compared to shift-start baseline',
+  'Handling-related rework or defect frequency trend',
+  'Absence and replacement manpower requirement trend',
+];
 
 const impactPoints = [
   {
@@ -80,6 +122,32 @@ export default function ErgonomicsProductivityPage() {
           </div>
         </section>
 
+        <ErgonomicsCaseStudies topic="productivity" />
+
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
+              <BarChart3 size={18} />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900">Productivity infographic dashboard</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {kpiCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <article key={card.title} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
+                    <Icon size={18} />
+                  </div>
+                  <p className="text-xs uppercase tracking-[0.16em] font-bold text-slate-500 mb-2">{card.title}</p>
+                  <p className="text-2xl font-black text-slate-900 mb-2">{card.value}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{card.note}</p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
         <section className="grid lg:grid-cols-2 gap-6">
           <div className="bg-white border border-slate-200 rounded-3xl p-8">
             <h3 className="text-xl font-black text-slate-900 mb-3">The hidden cost of non-ergonomic handling</h3>
@@ -97,6 +165,22 @@ export default function ErgonomicsProductivityPage() {
           </div>
         </section>
 
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+          <p className="text-xs font-bold text-emerald-600 uppercase tracking-[0.2em] mb-2">KPI Tracking Framework</p>
+          <h2 className="text-2xl font-black text-slate-900 mb-6">How to quantify ergonomics impact in your plant</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {evaluationMetrics.map((metric) => (
+              <div key={metric} className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-slate-700 leading-relaxed">
+                {metric}
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 mt-4">
+            {/* DEV: Jika ada data pilot project internal, tambahkan chart before/after di section ini. */}
+            Tip: publish this section with before-after charts from your own implementation data for stronger credibility.
+          </p>
+        </section>
+
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
           <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <TrendingUp size={14} /> Recommended Next Step
@@ -110,7 +194,7 @@ export default function ErgonomicsProductivityPage() {
               <Calculator size={18} /> Start Calculation
             </Link>
             <Link href="/contact" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
-              Discuss with an Engineer
+              Request Productivity Assessment
             </Link>
           </div>
         </section>

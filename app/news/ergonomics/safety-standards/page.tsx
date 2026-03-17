@@ -1,16 +1,61 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ShieldCheck, FileCheck2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShieldCheck, FileCheck2, Scale, ShieldAlert } from 'lucide-react';
+import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
 
 export const metadata: Metadata = {
   title: 'Occupational Safety and Ergonomics Standards | Industrial Ergonomics',
   description:
     'Practical safety and ergonomics guidance for industrial teams: compliance mindset, preventive controls, and implementation priorities.',
+  keywords: [
+    'standar keselamatan kerja ergonomi',
+    'k3 ergonomi manufaktur',
+    'compliance handling material',
+    'pengendalian risiko ergonomi',
+    'audit keselamatan angkat manual',
+    'ergonomic risk assessment indonesia',
+    'technical control lifting process',
+    'ergonomi dan kepatuhan industri',
+  ],
   alternates: {
     canonical: 'https://dimensiwahyudi.com/news/ergonomics/safety-standards',
   },
 };
+
+const standardsMap = [
+  {
+    title: 'ISO 45001 (OHS Management)',
+    focus: 'System-level safety governance and risk reduction',
+  },
+  {
+    title: 'Manual Handling Rules',
+    focus: 'Task design to minimize lifting, carrying, pushing, and pulling risks',
+  },
+  {
+    title: 'Human Factors / Ergonomic Design',
+    focus: 'Workstation and tool design aligned to human capability',
+  },
+];
+
+const stopModel = [
+  {
+    label: 'S - Substitution',
+    desc: 'Remove the hazardous task pattern where possible.',
+  },
+  {
+    label: 'T - Technical Controls',
+    desc: 'Use engineering solutions to reduce physical load at source.',
+  },
+  {
+    label: 'O - Organizational Controls',
+    desc: 'Adjust shift design, task rotation, and process allocation.',
+  },
+  {
+    label: 'P - Personal Controls',
+    desc: 'Training and behavior reinforcement as supporting layer.',
+  },
+];
 
 const principles = [
   'Prioritize preventive controls before relying on behavioral correction',
@@ -67,6 +112,29 @@ export default function ErgonomicsSafetyStandardsPage() {
           </ul>
         </section>
 
+        <ErgonomicsCaseStudies topic="safety" />
+
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
+              <Scale size={18} />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900">Standards and compliance matrix</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {standardsMap.map((item) => (
+              <article key={item.title} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h3 className="font-black text-slate-900 mb-2">{item.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.focus}</p>
+              </article>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 mt-4">
+            {/* DEV: Bisa tambah nomor regulasi lokal Indonesia bila tim legal/EHS sudah approve. */}
+            Align this matrix with your local legal and EHS references before final publication.
+          </p>
+        </section>
+
         <section className="grid lg:grid-cols-2 gap-6">
           <div className="bg-white border border-slate-200 rounded-3xl p-8">
             <h3 className="text-xl font-black text-slate-900 mb-3">Risk control hierarchy in practice</h3>
@@ -84,6 +152,23 @@ export default function ErgonomicsSafetyStandardsPage() {
           </div>
         </section>
 
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-600 flex items-center justify-center">
+              <ShieldAlert size={18} />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900">STOP principle in handling operations</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {stopModel.map((item) => (
+              <article key={item.label} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h3 className="font-black text-slate-900 mb-2">{item.label}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
           <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <ShieldCheck size={14} /> Recommended Next Step
@@ -95,7 +180,7 @@ export default function ErgonomicsSafetyStandardsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors">
-              Request Safety-Focused Consultation
+              Request Safety-Focused Assessment
             </Link>
             <Link href="/products/schmalz" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
               Explore Handling Solutions

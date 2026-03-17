@@ -1,12 +1,24 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, Activity, TrendingUp, BookOpen, Calculator } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Activity, TrendingUp, BookOpen, Calculator, Gauge, AlertTriangle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Industrial Ergonomics Hub | Health, Productivity, and Safety Insights',
   description:
     'Explore practical ergonomics guidance for Indonesian manufacturers: health risk prevention, productivity improvement, safety compliance, and implementation strategy.',
+  keywords: [
+    'ergonomi industri indonesia',
+    'ergonomi kerja manufaktur',
+    'keselamatan kerja angkat manual',
+    'MSD manufaktur',
+    'peningkatan produktivitas pabrik',
+    'alat bantu angkat ergonomis',
+    'vacuum lifter ergonomis indonesia',
+    'material handling ergonomis',
+    'k3 ergonomi pabrik',
+    'PT Dimensi Quantum Wahyudi',
+  ],
   alternates: {
     canonical: 'https://dimensiwahyudi.com/news/ergonomics',
   },
@@ -19,6 +31,48 @@ export const metadata: Metadata = {
     locale: 'en_ID',
   },
 };
+
+const benchmarkCards = [
+  {
+    title: 'Fatigue-Related Slowdown',
+    value: '12-25%',
+    note: 'Typical end-of-shift handling slowdown in non-ergonomic repetitive tasks.',
+    icon: AlertTriangle,
+    color: 'text-rose-600 bg-rose-50 border-rose-200',
+  },
+  {
+    title: 'Potential Throughput Lift',
+    value: '8-22%',
+    note: 'Indicative gain when high-strain manual handling is assisted by ergonomic systems.',
+    icon: Gauge,
+    color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
+  },
+  {
+    title: 'Handling Safety Consistency',
+    value: 'Higher',
+    note: 'Structured ergonomic workflows reduce risky movement variability across shifts.',
+    icon: Shield,
+    color: 'text-blue-600 bg-blue-50 border-blue-200',
+  },
+];
+
+const implementationSteps = [
+  {
+    step: '01',
+    title: 'Identify High-Strain Tasks',
+    desc: 'Map lifting frequency, awkward posture exposure, and load characteristics by workstation.',
+  },
+  {
+    step: '02',
+    title: 'Quantify Business Impact',
+    desc: 'Estimate cycle-time loss, quality disruption, and absence risk using baseline operational data.',
+  },
+  {
+    step: '03',
+    title: 'Deploy Assisted Handling',
+    desc: 'Prioritize technical controls and validate results through KPI-based pilot implementation.',
+  },
+];
 
 const topicCards = [
   {
@@ -106,6 +160,34 @@ export default function ErgonomicsHubPage() {
           </p>
         </section>
 
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
+          <div className="flex items-end justify-between mb-6 gap-4">
+            <div>
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
+              <h2 className="text-2xl md:text-3xl font-black text-slate-900">Ergonomics impact at a glance</h2>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {benchmarkCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <article key={card.title} className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
+                    <Icon size={18} />
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">{card.title}</p>
+                  <p className="text-3xl font-black text-slate-900 mb-2">{card.value}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed">{card.note}</p>
+                </article>
+              );
+            })}
+          </div>
+          <p className="text-xs text-slate-400 mt-4">
+            {/* DEV: Ganti benchmark dengan data internal proyek Indonesia / studi pelanggan terverifikasi. */}
+            Indicative benchmarks for planning discussion. Replace with audited project data for publication-ready claims.
+          </p>
+        </section>
+
         <section>
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -134,6 +216,20 @@ export default function ErgonomicsHubPage() {
                 </Link>
               );
             })}
+          </div>
+        </section>
+
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6">From risk mapping to ergonomic deployment</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {implementationSteps.map((item) => (
+              <article key={item.step} className="relative bg-slate-50 border border-slate-200 rounded-2xl p-5">
+                <p className="text-xs font-black text-blue-600 tracking-[0.2em] mb-3">STEP {item.step}</p>
+                <h3 className="text-lg font-black text-slate-900 mb-2">{item.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+              </article>
+            ))}
           </div>
         </section>
 

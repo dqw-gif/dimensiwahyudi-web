@@ -6,10 +6,35 @@ export const metadata: Metadata = {
   title: 'Industrial Ergonomics Glossary | Key Terms for Manufacturing Teams',
   description:
     'A practical glossary of ergonomics terms for industrial engineers, procurement teams, and plant managers.',
+  keywords: [
+    'glosarium ergonomi industri',
+    'istilah ergonomi manufaktur',
+    'definisi msd',
+    'manual handling definition',
+    'ergonomic risk terms',
+    'istilah k3 ergonomi',
+    'kamus ergonomi pabrik',
+    'ergonomi indonesia',
+  ],
   alternates: {
     canonical: 'https://dimensiwahyudi.com/news/ergonomics/glossary',
   },
 };
+
+const roleUsage = [
+  {
+    role: 'Engineering Team',
+    use: 'Align technical discussion on load profile, workstation design, and control options.',
+  },
+  {
+    role: 'Procurement Team',
+    use: 'Evaluate requirement scope and compare ergonomic solution proposals consistently.',
+  },
+  {
+    role: 'Plant and HSE Team',
+    use: 'Standardize language for risk review, training, and implementation decisions.',
+  },
+];
 
 const terms = [
   {
@@ -85,6 +110,19 @@ export default function ErgonomicsGlossaryPage() {
               <p className="text-slate-600 leading-relaxed">{item.def}</p>
             </article>
           ))}
+        </section>
+
+        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">How To Use This Glossary</p>
+          <h2 className="text-2xl font-black text-slate-900 mb-6">Apply a shared vocabulary across teams</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {roleUsage.map((item) => (
+              <article key={item.role} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h3 className="font-black text-slate-900 mb-2">{item.role}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.use}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
