@@ -48,6 +48,7 @@ export default function Footer() {
               <li><Link href="/about" className="hover:text-cyan-600 transition-colors">{t.footer.about}</Link></li>
               <li><Link href="/products" className="hover:text-cyan-600 transition-colors">{t.footer.catalog}</Link></li>
               <li><Link href="/services" className="hover:text-cyan-600 transition-colors">{t.footer.service}</Link></li>
+              <li><Link href="/news/ergonomics" className="hover:text-cyan-600 transition-colors">Ergonomics Hub</Link></li>
               <li><Link href="/career" className="hover:text-cyan-600 transition-colors">{t.footer.career}</Link></li>
             </ul>
           </div>

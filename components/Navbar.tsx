@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play } from 'lucide-react';
+import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse } from 'lucide-react';
 import { useLanguage } from './LanguageProvider';
 
 export default function Navbar() {
@@ -75,6 +75,17 @@ export default function Navbar() {
                       <div>
                         <p className="text-sm font-bold text-slate-800">Our Projects</p>
                         <p className="text-xs text-slate-500">{t.navbar.projectsDesc}</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/news/ergonomics" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-rose-50 p-2 rounded-lg group-hover/item:bg-rose-100 transition-colors mr-3 text-rose-600">
+                        <HeartPulse size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">Ergonomics Hub</p>
+                        <p className="text-xs text-slate-500">Health, productivity, and safety insights</p>
                       </div>
                     </Link>
                   </div>
@@ -240,6 +251,9 @@ export default function Navbar() {
               </Link>
               <Link href="/our-projects" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Briefcase size={18} className="text-emerald-500" /><span>Our Projects</span>
+              </Link>
+              <Link href="/news/ergonomics" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+                <HeartPulse size={18} className="text-rose-500" /><span>Ergonomics Hub</span>
               </Link>
             </div>
 

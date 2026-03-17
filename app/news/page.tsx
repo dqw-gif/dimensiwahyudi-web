@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { getAllPosts } from '../../services/wordpress';
 import NewsGrid from '../../components/news/NewsGrid';
-import { Zap } from 'lucide-react';
+import { Zap, ArrowRight, HeartPulse } from 'lucide-react';
 
 export const revalidate = 3600; // ISR cache for 1 hour
 
@@ -57,6 +58,26 @@ export default async function NewsPage() {
                     <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
                         {copy.subtitle}
                     </p>
+                </div>
+
+                <div className="mb-12 bg-white rounded-[2rem] border border-slate-200 p-8 md:p-10 shadow-sm">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                        <div>
+                            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-600 mb-3">
+                                <HeartPulse size={14} /> Featured Topic Cluster
+                            </p>
+                            <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2">Industrial Ergonomics Hub</h2>
+                            <p className="text-slate-600 max-w-2xl">
+                                Explore practical guidance on health risks, productivity, and safety standards for industrial handling operations.
+                            </p>
+                        </div>
+                        <Link
+                            href="/news/ergonomics"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-colors"
+                        >
+                            Open Ergonomics Hub <ArrowRight size={16} />
+                        </Link>
+                    </div>
                 </div>
 
                 {/* NewsGrid: Client Component untuk filter interaktif + rendering grid */}
