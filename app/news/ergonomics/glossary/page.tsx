@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, BookOpenText } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { SolidGlossaryIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
 
 export const metadata: Metadata = {
   title: 'Industrial Ergonomics Glossary | Key Terms for Manufacturing Teams',
@@ -92,7 +93,7 @@ export default function ErgonomicsGlossaryPage() {
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-200 text-violet-600 flex items-center justify-center">
-              <BookOpenText size={18} />
+              <SolidGlossaryIcon className="w-4.5 h-4.5" />
             </div>
             <p className="text-xs font-bold text-violet-600 uppercase tracking-[0.2em]">Reference Page</p>
           </div>

@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, TrendingUp, Gauge, Calculator, Timer, Target, BarChart3 } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
+import {
+  SolidProductivityIcon,
+  SolidCalculatorIcon,
+  SolidSafetyIcon,
+} from '../../../../components/icons/ErgonomicsSolidIcons';
 
 export const metadata: Metadata = {
   title: 'Ergonomics as a Productivity Lever | Industrial Ergonomics',
@@ -28,21 +33,21 @@ const kpiCards = [
     title: 'Cycle Time Stability',
     value: 'Improves',
     note: 'Less fatigue-driven variability during repetitive handling windows.',
-    icon: Timer,
+    icon: SolidProductivityIcon,
     color: 'text-blue-600 bg-blue-50 border-blue-200',
   },
   {
     title: 'Process Accuracy',
     value: 'Improves',
     note: 'Assisted control reduces small handling mistakes that trigger rework.',
-    icon: Target,
+    icon: SolidSafetyIcon,
     color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
   },
   {
     title: 'Output Reliability',
     value: 'Improves',
     note: 'Operational performance remains more consistent across shifts.',
-    icon: BarChart3,
+    icon: SolidProductivityIcon,
     color: 'text-violet-600 bg-violet-50 border-violet-200',
   },
 ];
@@ -108,7 +113,7 @@ export default function ErgonomicsProductivityPage() {
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center">
-              <Gauge size={18} />
+              <SolidProductivityIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Productivity impacts you can measure</h2>
           </div>
@@ -127,7 +132,7 @@ export default function ErgonomicsProductivityPage() {
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
-              <BarChart3 size={18} />
+              <SolidProductivityIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Productivity infographic dashboard</h2>
           </div>
@@ -137,7 +142,7 @@ export default function ErgonomicsProductivityPage() {
               return (
                 <article key={card.title} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
                   <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
-                    <Icon size={18} />
+                    <Icon className="w-4.5 h-4.5" />
                   </div>
                   <p className="text-xs uppercase tracking-[0.16em] font-bold text-slate-500 mb-2">{card.title}</p>
                   <p className="text-2xl font-black text-slate-900 mb-2">{card.value}</p>
@@ -183,7 +188,7 @@ export default function ErgonomicsProductivityPage() {
 
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
           <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
-            <TrendingUp size={14} /> Recommended Next Step
+            <SolidProductivityIcon className="w-4 h-4" /> Recommended Next Step
           </div>
           <h2 className="text-3xl font-black mb-4">Model your potential productivity and ROI uplift</h2>
           <p className="text-slate-300 leading-relaxed mb-7 max-w-3xl">
@@ -191,7 +196,7 @@ export default function ErgonomicsProductivityPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors inline-flex items-center gap-2">
-              <Calculator size={18} /> Start Calculation
+              <SolidCalculatorIcon className="w-4.5 h-4.5" /> Start Calculation
             </Link>
             <Link href="/contact" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
               Request Productivity Assessment

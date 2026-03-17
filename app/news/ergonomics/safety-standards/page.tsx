@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ShieldCheck, FileCheck2, Scale, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
+import { SolidSafetyIcon, SolidWarningIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
 
 export const metadata: Metadata = {
   title: 'Occupational Safety and Ergonomics Standards | Industrial Ergonomics',
@@ -99,7 +100,7 @@ export default function ErgonomicsSafetyStandardsPage() {
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
-              <FileCheck2 size={18} />
+              <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Implementation principles for safer handling</h2>
           </div>
@@ -117,7 +118,7 @@ export default function ErgonomicsSafetyStandardsPage() {
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
-              <Scale size={18} />
+              <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Standards and compliance matrix</h2>
           </div>
@@ -155,7 +156,7 @@ export default function ErgonomicsSafetyStandardsPage() {
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-600 flex items-center justify-center">
-              <ShieldAlert size={18} />
+              <SolidWarningIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">STOP principle in handling operations</h2>
           </div>
@@ -171,7 +172,7 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
           <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
-            <ShieldCheck size={14} /> Recommended Next Step
+            <SolidSafetyIcon className="w-4 h-4" /> Recommended Next Step
           </div>
           <h2 className="text-3xl font-black mb-4">Map your safety-critical handling points with our team</h2>
           <p className="text-slate-300 leading-relaxed mb-7 max-w-3xl">

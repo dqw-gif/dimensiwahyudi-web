@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { ArrowRight, BriefcaseBusiness } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { ergonomicsCasesByTopic } from '../../data/ergonomicsCases';
+import { SolidCaseIcon } from '../icons/ErgonomicsSolidIcons';
 
 type TopicKey = 'health' | 'productivity' | 'safety';
 
@@ -13,7 +14,7 @@ export default function ErgonomicsCaseStudies({ topic }: { topic: TopicKey }) {
     <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center">
-          <BriefcaseBusiness size={18} />
+          <SolidCaseIcon className="w-4.5 h-4.5" />
         </div>
         <div>
           <p className="text-xs font-bold text-amber-600 uppercase tracking-[0.2em] mb-1">Implementation Snapshot</p>

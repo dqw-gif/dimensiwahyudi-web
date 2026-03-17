@@ -1,7 +1,15 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, Activity, TrendingUp, BookOpen, Calculator, Gauge, AlertTriangle, Shield } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import {
+  SolidSafetyIcon,
+  SolidHealthIcon,
+  SolidProductivityIcon,
+  SolidGlossaryIcon,
+  SolidCalculatorIcon,
+  SolidWarningIcon,
+} from '../../../components/icons/ErgonomicsSolidIcons';
 
 export const metadata: Metadata = {
   title: 'Industrial Ergonomics Hub | Health, Productivity, and Safety Insights',
@@ -37,21 +45,21 @@ const benchmarkCards = [
     title: 'Fatigue-Related Slowdown',
     value: '12-25%',
     note: 'Typical end-of-shift handling slowdown in non-ergonomic repetitive tasks.',
-    icon: AlertTriangle,
+    icon: SolidWarningIcon,
     color: 'text-rose-600 bg-rose-50 border-rose-200',
   },
   {
     title: 'Potential Throughput Lift',
     value: '8-22%',
     note: 'Indicative gain when high-strain manual handling is assisted by ergonomic systems.',
-    icon: Gauge,
+    icon: SolidProductivityIcon,
     color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
   },
   {
     title: 'Handling Safety Consistency',
     value: 'Higher',
     note: 'Structured ergonomic workflows reduce risky movement variability across shifts.',
-    icon: Shield,
+    icon: SolidSafetyIcon,
     color: 'text-blue-600 bg-blue-50 border-blue-200',
   },
 ];
@@ -79,28 +87,28 @@ const topicCards = [
     title: 'Health Risks and Diseases',
     desc: 'Understand the operational impact of musculoskeletal disorders and how to prevent long-term operator strain.',
     href: '/news/ergonomics/health-risks',
-    icon: Activity,
+    icon: SolidHealthIcon,
     color: 'text-rose-600 bg-rose-50 border-rose-200',
   },
   {
     title: 'Ergonomics and Productivity',
     desc: 'See how ergonomic handling supports throughput, quality consistency, and workforce resilience.',
     href: '/news/ergonomics/productivity',
-    icon: TrendingUp,
+    icon: SolidProductivityIcon,
     color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
   },
   {
     title: 'Safety and Standards',
     desc: 'Review practical safety principles and compliance-oriented ergonomics implementation in industrial settings.',
     href: '/news/ergonomics/safety-standards',
-    icon: ShieldCheck,
+    icon: SolidSafetyIcon,
     color: 'text-blue-600 bg-blue-50 border-blue-200',
   },
   {
     title: 'Ergonomics Glossary',
     desc: 'A clear explanation of key ergonomics terms for engineers, procurement teams, and plant leaders.',
     href: '/news/ergonomics/glossary',
-    icon: BookOpen,
+    icon: SolidGlossaryIcon,
     color: 'text-violet-600 bg-violet-50 border-violet-200',
   },
 ];
@@ -173,7 +181,7 @@ export default function ErgonomicsHubPage() {
               return (
                 <article key={card.title} className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
                   <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
-                    <Icon size={18} />
+                    <Icon className="w-4.5 h-4.5" />
                   </div>
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 mb-2">{card.title}</p>
                   <p className="text-3xl font-black text-slate-900 mb-2">{card.value}</p>
@@ -205,7 +213,7 @@ export default function ErgonomicsHubPage() {
                   className="group block bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg hover:border-blue-300 transition-all"
                 >
                   <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
-                    <Icon size={20} />
+                    <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{card.title}</h3>
                   <p className="text-slate-600 leading-relaxed mb-5">{card.desc}</p>
@@ -248,7 +256,7 @@ export default function ErgonomicsHubPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors inline-flex items-center gap-2">
-                  <Calculator size={18} /> Open Calculator
+                  <SolidCalculatorIcon className="w-4.5 h-4.5" /> Open Calculator
                 </Link>
                 <Link href="/digital-assistant/selection-aids" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
                   Selection Aids
