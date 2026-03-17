@@ -70,7 +70,7 @@ export default function ErgonomicsHealthRisksPage() {
 
         <section className="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="text-xs font-bold text-rose-600 uppercase tracking-[0.2em] mb-3">Health Perspective</p>
+            <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-3">Health Perspective</p>
             <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-5">Health risks and diseases in manual handling operations</h1>
             <p className="text-slate-600 text-lg leading-relaxed">
               Daily lifting, carrying, and repetitive handling can create a cumulative physical burden. Without ergonomic
@@ -93,7 +93,7 @@ export default function ErgonomicsHealthRisksPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
               <SolidWarningIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Common risk patterns on factory floors</h2>
@@ -109,7 +109,7 @@ export default function ErgonomicsHealthRisksPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
               <SolidHealthIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Health impact infographic snapshot</h2>
@@ -131,7 +131,7 @@ export default function ErgonomicsHealthRisksPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
@@ -172,7 +172,7 @@ export default function ErgonomicsHealthRisksPage() {
         <ErgonomicsCaseStudies topic="health" />
 
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
-          <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
+          <div className="flex items-center gap-2 text-[#A4BED2] text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <SolidHealthIcon className="w-4 h-4" /> Recommended Next Step
           </div>
           <h2 className="text-3xl font-black mb-4">Assess your lifting risk and mitigation options</h2>
@@ -181,7 +181,7 @@ export default function ErgonomicsHealthRisksPage() {
             risk in your operation.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors">
+            <Link href="/contact" className="px-6 py-3 bg-[#3F617A] hover:bg-[#2F4E67] rounded-xl font-bold transition-colors">
               Request Health-Risk Consultation
             </Link>
             <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">

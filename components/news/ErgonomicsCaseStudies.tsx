@@ -13,11 +13,11 @@ export default function ErgonomicsCaseStudies({ topic }: { topic: TopicKey }) {
   return (
     <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
           <SolidCaseIcon className="w-4.5 h-4.5" />
         </div>
         <div>
-          <p className="text-xs font-bold text-amber-600 uppercase tracking-[0.2em] mb-1">Implementation Snapshot</p>
+          <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-1">Implementation Snapshot</p>
           <h2 className="text-2xl font-black text-slate-900">Case-style examples</h2>
         </div>
       </div>

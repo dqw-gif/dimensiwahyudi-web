@@ -92,10 +92,10 @@ export default function ErgonomicsGlossaryPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-200 text-violet-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
               <SolidGlossaryIcon className="w-4.5 h-4.5" />
             </div>
-            <p className="text-xs font-bold text-violet-600 uppercase tracking-[0.2em]">Reference Page</p>
+            <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em]">Reference Page</p>
           </div>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-5">Industrial ergonomics glossary</h1>
           <p className="text-slate-600 text-lg leading-relaxed max-w-3xl">
@@ -114,7 +114,7 @@ export default function ErgonomicsGlossaryPage() {
         </section>
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
-          <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">How To Use This Glossary</p>
+          <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-2">How To Use This Glossary</p>
           <h2 className="text-2xl font-black text-slate-900 mb-6">Apply a shared vocabulary across teams</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {roleUsage.map((item) => (
@@ -132,7 +132,7 @@ export default function ErgonomicsGlossaryPage() {
             Our team can translate ergonomics principles into practical handling recommendations for your process.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors">
+            <Link href="/contact" className="px-6 py-3 bg-[#3F617A] hover:bg-[#2F4E67] rounded-xl font-bold transition-colors">
               Request Consultation
             </Link>
             <Link href="/digital-assistant/selection-aids" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">

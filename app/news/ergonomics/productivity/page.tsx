@@ -90,7 +90,7 @@ export default function ErgonomicsProductivityPage() {
 
         <section className="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <p className="text-xs font-bold text-emerald-600 uppercase tracking-[0.2em] mb-3">Performance Perspective</p>
+            <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-3">Performance Perspective</p>
             <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-5">Ergonomics as the foundation for maximum productivity</h1>
             <p className="text-slate-600 text-lg leading-relaxed">
               Ergonomics is not only a safety topic. It is an operational discipline that protects performance quality.
@@ -112,7 +112,7 @@ export default function ErgonomicsProductivityPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
               <SolidProductivityIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Productivity impacts you can measure</h2>
@@ -131,7 +131,7 @@ export default function ErgonomicsProductivityPage() {
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5F7F99] to-[#2F4E67] border border-[#3F617A]/40 text-white flex items-center justify-center shadow-[0_10px_24px_-10px_rgba(47,78,103,0.85)] ring-1 ring-white/20">
               <SolidProductivityIcon className="w-4.5 h-4.5" />
             </div>
             <h2 className="text-2xl font-black text-slate-900">Productivity infographic dashboard</h2>
@@ -171,7 +171,7 @@ export default function ErgonomicsProductivityPage() {
         </section>
 
         <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
-          <p className="text-xs font-bold text-emerald-600 uppercase tracking-[0.2em] mb-2">KPI Tracking Framework</p>
+          <p className="text-xs font-bold text-[#3F617A] uppercase tracking-[0.2em] mb-2">KPI Tracking Framework</p>
           <h2 className="text-2xl font-black text-slate-900 mb-6">How to quantify ergonomics impact in your plant</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {evaluationMetrics.map((metric) => (
@@ -187,7 +187,7 @@ export default function ErgonomicsProductivityPage() {
         </section>
 
         <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
-          <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
+          <div className="flex items-center gap-2 text-[#A4BED2] text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <SolidProductivityIcon className="w-4 h-4" /> Recommended Next Step
           </div>
           <h2 className="text-3xl font-black mb-4">Model your potential productivity and ROI uplift</h2>
@@ -195,7 +195,7 @@ export default function ErgonomicsProductivityPage() {
             Use our digital calculator to estimate handling improvement potential based on your operating scenario.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-colors inline-flex items-center gap-2">
+            <Link href="/digital-assistant/vacuum-calculator" className="px-6 py-3 bg-[#3F617A] hover:bg-[#2F4E67] rounded-xl font-bold transition-colors inline-flex items-center gap-2">
               <SolidCalculatorIcon className="w-4.5 h-4.5" /> Start Calculation
             </Link>
             <Link href="/contact" className="px-6 py-3 bg-white/10 border border-white/20 hover:bg-white/20 rounded-xl font-bold transition-colors">
