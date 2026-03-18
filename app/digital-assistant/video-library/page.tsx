@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Play, ExternalLink, Filter, X, Search, ArrowUpDown } from 'lucide-react';
+import { spacingTokens } from '../../../constants/spacingTokens';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SCHMALZ VIDEO LIBRARY
@@ -111,11 +112,11 @@ export default function VideoLibraryPage() {
     const [sortBy, setSortBy] = useState<SortKey>('newest');
 
     const copy = {
-        badge: 'Schmalz Official Video Library',
+        badge: 'Schmalz & Binar Official Video Library',
         heroA: 'See How It Works',
         heroB: 'In Real Operations',
         heroDesc:
-            'A curated collection of official Schmalz demo videos, from lightweight tube lifters to heavy-duty vacuum lifting devices.',
+            'A curated collection of official Schmalz and Binar demo videos, from lightweight tube lifters to heavy-duty ergonomic handling systems.',
         filterIndustry: 'Industry:',
         videoCount: 'videos',
         noVideo: 'No videos available for this filter.',
@@ -177,10 +178,10 @@ export default function VideoLibraryPage() {
         <main className="min-h-screen bg-slate-50">
 
             {/* HERO */}
-            <section className="pt-32 pb-14 bg-slate-950 relative overflow-hidden">
+            <section className={`${spacingTokens.hero.standard} bg-slate-950 relative overflow-hidden`}>
                 <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
                 <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.3) 0%, transparent 70%)' }} />
-                <div className="relative max-w-4xl mx-auto px-6 text-center">
+                <div className={`${spacingTokens.page.containerCompact} max-w-4xl relative text-center`}>
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600/20 border border-red-500/30 rounded-full text-red-400 text-xs font-bold uppercase tracking-widest mb-6">
                         <Play size={11} className="fill-red-400" /> {copy.badge}
                     </div>
@@ -198,7 +199,7 @@ export default function VideoLibraryPage() {
 
             {/* FILTER */}
             <div className="sticky top-0 z-20 bg-white border-b border-slate-200 shadow-sm">
-                <div className="max-w-6xl mx-auto px-6 py-3 flex flex-wrap items-center gap-4">
+                <div className={`${spacingTokens.page.containerNarrow} py-3 flex flex-wrap items-center gap-4`}>
                     <div className="flex items-center gap-2 flex-wrap">
                         <Filter size={14} className="text-slate-400 shrink-0" />
                         <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{copy.filterIndustry}</span>
@@ -214,7 +215,7 @@ export default function VideoLibraryPage() {
             </div>
 
             {/* VIDEO GRID */}
-            <section className="max-w-6xl mx-auto px-6 py-12">
+            <section className={`${spacingTokens.section.compact} ${spacingTokens.page.containerNarrow}`}>
                 <div className="mb-6 grid gap-3 md:grid-cols-[1fr_auto]">
                     <div className="relative">
                         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -257,8 +258,8 @@ export default function VideoLibraryPage() {
 
 
             {/* CTA */}
-            <section className="border-t border-slate-200 bg-white py-14">
-                <div className="max-w-2xl mx-auto px-6 text-center">
+            <section className={`${spacingTokens.section.compact} border-t border-slate-200 bg-white`}>
+                <div className={`${spacingTokens.page.containerCompact} max-w-2xl text-center`}>
                     <h2 className="text-2xl font-black text-slate-900 mb-3">{copy.ctaTitle}</h2>
                     <p className="text-slate-500 mb-7">{copy.ctaDesc}</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">

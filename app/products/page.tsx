@@ -137,14 +137,14 @@ export default async function ProductsPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
-            <section className="relative pt-32 pb-20 bg-white overflow-hidden">
+            <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-white overflow-hidden">
                 {/* Grid pattern bg */}
                 <div className="absolute inset-0 opacity-[0.06]"
                     style={{ backgroundImage: 'linear-gradient(rgba(37,99,235,1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
                 {/* Soft blue radial fade */}
                 <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(219,234,254,0.9) 0%, transparent 70%)' }} />
 
-                <div className="relative max-w-7xl mx-auto px-6 text-center">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-8">
                         <Zap size={12} />
                         {copy.heroBadge}
@@ -163,8 +163,8 @@ export default async function ProductsPage() {
             </section>
 
             {/* BRAND CARDS */}
-            <section className="py-20 bg-white">
-                <div className="max-w-6xl mx-auto px-6">
+            <section className="py-16 md:py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-2 gap-8">
                         {brandCards.map(({ brand, productCount, href, gradient, cardBg, glowColor, hoverGlow, tagColor, accentLine, nameCls, descCls, countCls, ctaCls, estCls, tagPillCls, categories }) => (
                             <Link
@@ -225,8 +225,8 @@ export default async function ProductsPage() {
             </section>
 
             {/* BOTTOM CTA */}
-            <section className="py-20 bg-white border-t border-slate-100">
-                <div className="max-w-3xl mx-auto px-6 text-center">
+            <section className="py-16 md:py-20 bg-white border-t border-slate-100">
+                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-black text-slate-900 mb-4">{copy.bottomTitle}</h2>
                     <p className="text-slate-500 mb-8">{copy.bottomDesc}</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

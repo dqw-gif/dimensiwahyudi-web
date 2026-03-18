@@ -61,15 +61,15 @@ export default async function Home() {
       <BrandShowcase />
 
       {/* 6. CALCULATOR & AGR CERTIFICATION SECTION (SEO OPTIMIZED) */}
-      <section id="roi-calculator" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+      <section id="roi-calculator" className="py-20 md:py-24 bg-white border-t border-slate-100 relative overflow-hidden">
 
         {/* Background Pattern Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-        <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
           {/* BAGIAN ATAS: AGR CERTIFICATION */}
-          <div className="text-center mb-20 space-y-8">
+          <div className="text-center mb-16 md:mb-20 space-y-8">
             <div className="inline-block px-4 py-2 bg-blue-100 border border-blue-200 rounded-full">
               <span className="text-blue-700 font-bold text-xs tracking-widest uppercase">
                 {copy.certBadge}
@@ -134,7 +134,7 @@ export default async function Home() {
           </div>
 
           {/* Garis Pembatas */}
-          <div className="w-full h-px bg-slate-100 mb-20"></div>
+          <div className="w-full h-px bg-slate-100 mb-16 md:mb-20"></div>
 
           {/* BAGIAN BAWAH: SMART CALCULATOR */}
           <div className="w-full">

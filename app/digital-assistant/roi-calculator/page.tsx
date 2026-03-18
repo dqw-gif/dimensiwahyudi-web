@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SmartCalculator from '@/components/Calculator';
+import { spacingTokens } from '../../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'ROI Calculator for Ergonomics | Digital Assistant',
@@ -21,11 +22,11 @@ export const metadata: Metadata = {
 export default function RoiCalculatorPage() {
   return (
     <main className="min-h-screen bg-slate-50">
-      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
+      <section className={`relative overflow-hidden border-b border-slate-200 bg-white ${spacingTokens.hero.standard}`}>
         <div className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-blue-100 blur-3xl" aria-hidden="true" />
         <div className="absolute -bottom-24 left-0 h-72 w-72 rounded-full bg-cyan-100 blur-3xl" aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-32 sm:px-6 lg:px-8">
+        <div className={`relative ${spacingTokens.page.containerNarrow}`}>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">Digital Assistant</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-black tracking-tight text-slate-900 md:text-5xl">
             ROI & Ergonomic Workload Calculator
@@ -50,8 +51,8 @@ export default function RoiCalculatorPage() {
         </div>
       </section>
 
-      <section className="relative px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
+      <section className={`relative ${spacingTokens.section.standard}`}>
+        <div className={spacingTokens.page.containerNarrow}>
           {/* Komponen existing dipakai ulang agar logic kalkulator tetap satu sumber */}
           <SmartCalculator />
         </div>

@@ -9,6 +9,7 @@ import {
   AboutClientLogos,
 } from '../../components/about/AboutAnimations';
 import { getServerLang } from '../../lib/i18n';
+import { spacingTokens } from '../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'About Us | PT Dimensi Quantum Wahyudi — Engineering Excellence Since 2009',
@@ -64,7 +65,7 @@ export default async function AboutPage() {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden pt-20">
+      <section className={`relative h-[60vh] flex items-center justify-center overflow-hidden ${spacingTokens.hero.standard}`}>
         <div className="absolute inset-0">
           <Image
             src="https://i.imgur.com/RMjGMRg.jpeg"
@@ -79,8 +80,8 @@ export default async function AboutPage() {
       </section>
 
       {/* 2. OUR STORY */}
-      <section className="py-24 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <section className={`${spacingTokens.section.spacious} relative z-10`}>
+        <div className={`${spacingTokens.page.container} grid lg:grid-cols-2 gap-16 items-center`}>
           <AboutStoryImage />
           <div className="space-y-8">
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
@@ -115,8 +116,8 @@ export default async function AboutPage() {
       </section>
 
       {/* 3. CORE VALUES */}
-      <section className="py-24 bg-slate-50 border-y border-slate-200 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className={`${spacingTokens.section.spacious} bg-slate-50 border-y border-slate-200 relative z-10`}>
+        <div className={spacingTokens.page.container}>
           <div className="text-center mb-16">
             <span className="text-blue-600 font-bold tracking-widest text-sm uppercase">{copy.philosophy}</span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-2">{copy.philosophyTitle}</h2>
@@ -126,8 +127,8 @@ export default async function AboutPage() {
       </section>
 
       {/* 4. TECHNICAL PROCESS */}
-      <section className="py-24 px-6 relative z-10 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className={`${spacingTokens.section.spacious} relative z-10 overflow-hidden bg-white`}>
+        <div className={spacingTokens.page.container}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="text-cyan-600 font-bold tracking-widest text-sm uppercase">{copy.process}</span>
@@ -142,14 +143,13 @@ export default async function AboutPage() {
       </section>
 
       {/* 5. CLIENTS SECTION */}
-      <section className="py-24 px-6 relative z-10 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className={`${spacingTokens.section.spacious} relative z-10 bg-slate-50 border-t border-slate-200`}>
+        <div className={`${spacingTokens.page.container} text-center`}>
           <span className="text-blue-600 font-bold tracking-widest text-xs uppercase">{copy.trusted}</span>
           <h2 className="text-2xl font-bold text-slate-900 mt-2 mb-16">
             {copy.trustedTitle}
           </h2>
           <AboutClientLogos />
-          <p className="text-xs text-slate-400 mt-8"></p>
         </div>
       </section>
     </main>

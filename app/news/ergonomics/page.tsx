@@ -8,6 +8,7 @@ import {
   SolidCalculatorIcon,
   SolidWarningIcon,
 } from '../../../components/icons/ErgonomicsSolidIcons';
+import { spacingTokens } from '../../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'Industrial Ergonomics Hub | Health, Productivity, and Safety Insights',
@@ -134,7 +135,7 @@ export default function ErgonomicsHubPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
-      <div className="relative z-10 pt-28 md:pt-32 pb-20 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16">
+      <div className={`${spacingTokens.page.shell} ${spacingTokens.page.container} ${spacingTokens.page.stack}`}>
         <section className="grid lg:grid-cols-2 gap-8 md:gap-10 items-center">
           <div>
             <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6">
@@ -171,7 +172,7 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-7 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.inset} shadow-sm`}>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-3">Why this topic matters now</h2>
           <p className="text-slate-600 leading-relaxed">
             Ergonomics is no longer just a health initiative. It is now a strategic lever for plant reliability,
@@ -221,7 +222,7 @@ export default function ErgonomicsHubPage() {
           </p>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-7 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.inset} shadow-sm`}>
           <div className="flex items-end justify-between mb-6 gap-4">
             <div>
               <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
@@ -249,7 +250,7 @@ export default function ErgonomicsHubPage() {
           </p>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-7 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.inset} shadow-sm`}>
           <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6">From risk mapping to ergonomic deployment</h2>
           <div className="grid md:grid-cols-3 gap-4">

@@ -93,10 +93,10 @@ export default async function NewsPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
             </div>
 
-            <div className="relative z-10 pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 pt-28 md:pt-32 pb-20 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header Section - Static, rendered on server */}
-                <div className="text-center mb-20">
+                <div className="text-center mb-16 md:mb-20">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6 shadow-sm hover:shadow-md transition-shadow cursor-default">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -113,7 +113,7 @@ export default async function NewsPage() {
                     </p>
                 </div>
 
-                <div className="mb-12 bg-white rounded-[2rem] border border-slate-200 p-8 md:p-10 shadow-sm">
+                <div className="mb-10 md:mb-12 bg-white rounded-[2rem] border border-slate-200 p-7 md:p-10 shadow-sm">
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                         <div>
                             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-600 mb-3">

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Briefcase, MapPin, Clock, ChevronRight, Send, ArrowRight, Zap, Target, Users } from 'lucide-react';
+import { spacingTokens } from '../../constants/spacingTokens';
 
 export const metadata: Metadata = {
     title: 'Careers | Join PT Dimensi Quantum Wahyudi',
@@ -72,7 +73,7 @@ export default async function CareerPage() {
         <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white">
 
             {/* HERO SECTION - Futuristic Light Pattern */}
-            <section className="relative pt-40 pb-24 bg-white overflow-hidden border-b border-slate-200">
+            <section className={`relative ${spacingTokens.hero.tall} bg-white overflow-hidden border-b border-slate-200`}>
                 {/* Background Tech Grid */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
                     style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
@@ -81,7 +82,7 @@ export default async function CareerPage() {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-50 rounded-full blur-[120px] -z-10 opacity-70" />
                 <div className="absolute bottom-0 right-0 w-[500px] h-[300px] bg-cyan-50 rounded-full blur-[100px] -z-10 opacity-50" />
 
-                <div className="relative max-w-5xl mx-auto px-6 text-center z-10">
+                <div className={`${spacingTokens.page.containerMedium} relative text-center z-10`}>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
                         <Briefcase size={14} /> {copy.badge}
                     </div>
@@ -100,11 +101,11 @@ export default async function CareerPage() {
             </section>
 
             {/* BENEFITS SECTION - Modern Grid */}
-            <section className="py-24 relative overflow-hidden bg-slate-950">
+            <section className={`${spacingTokens.section.spacious} relative overflow-hidden bg-slate-950`}>
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-luminosity"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/90 to-slate-950"></div>
 
-                <div className="relative z-10 max-w-6xl mx-auto px-6">
+                <div className={`${spacingTokens.page.containerNarrow} relative z-10`}>
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-black text-white mb-4">{copy.benefitsTitle}</h2>
                         <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto rounded-full"></div>
@@ -127,8 +128,8 @@ export default async function CareerPage() {
             </section>
 
             {/* JOB OPENINGS - Advanced Glass Cards */}
-            <section className="py-32 relative">
-                <div className="max-w-5xl mx-auto px-6 relative z-10">
+            <section className={`${spacingTokens.section.spacious} relative`}>
+                <div className={`${spacingTokens.page.containerMedium} relative z-10`}>
                     <div className="text-center mb-20">
                         <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 block">{copy.openTitle}</span>
                         <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">{copy.openSubtitle}</h2>
@@ -214,8 +215,8 @@ export default async function CareerPage() {
             </section>
 
             {/* GENERAL APPLICATION CTA - Modern Box */}
-            <section className="py-24 bg-white border-t border-slate-200">
-                <div className="max-w-4xl mx-auto px-6">
+            <section className={`${spacingTokens.section.spacious} bg-white border-t border-slate-200`}>
+                <div className={spacingTokens.page.containerCompact}>
                     <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 rounded-[3rem] p-10 md:p-16 text-center shadow-2xl shadow-blue-100/50 relative overflow-hidden">
 
                         {/* Decorative background elements */}

@@ -8,6 +8,7 @@ import {
   SolidCalculatorIcon,
   SolidSafetyIcon,
 } from '../../../../components/icons/ErgonomicsSolidIcons';
+import { spacingTokens } from '../../../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'Ergonomics as a Productivity Lever | Industrial Ergonomics',
@@ -81,7 +82,7 @@ const impactPoints = [
 export default function ErgonomicsProductivityPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
-      <div className="relative z-10 pt-32 pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className={`${spacingTokens.page.shell} ${spacingTokens.page.containerNarrow} ${spacingTokens.page.stack}`}>
         <nav>
           <Link href="/news/ergonomics" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">
             <ArrowLeft size={16} /> Back to Ergonomics Hub
@@ -110,7 +111,7 @@ export default function ErgonomicsProductivityPage() {
           </div>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center">
               <SolidProductivityIcon className="w-4.5 h-4.5" />
@@ -129,7 +130,7 @@ export default function ErgonomicsProductivityPage() {
 
         <ErgonomicsCaseStudies topic="productivity" />
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidProductivityIcon className="w-4.5 h-4.5" />
@@ -154,14 +155,14 @@ export default function ErgonomicsProductivityPage() {
         </section>
 
         <section className="grid lg:grid-cols-2 gap-6">
-          <div className="bg-white border border-slate-200 rounded-3xl p-8">
+          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard}`}>
             <h3 className="text-xl font-black text-slate-900 mb-3">The hidden cost of non-ergonomic handling</h3>
             <p className="text-slate-600 leading-relaxed">
               Fatigue-driven slowdown, micro interruptions, and inconsistent execution are usually invisible in daily
               reporting, but they accumulate into significant annual productivity loss.
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-3xl p-8">
+          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard}`}>
             <h3 className="text-xl font-black text-slate-900 mb-3">A practical business case</h3>
             <p className="text-slate-600 leading-relaxed">
               Ergonomic handling systems can be evaluated with clear operational metrics: cycle time, error rate,
@@ -170,7 +171,7 @@ export default function ErgonomicsProductivityPage() {
           </div>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <p className="text-xs font-bold text-emerald-600 uppercase tracking-[0.2em] mb-2">KPI Tracking Framework</p>
           <h2 className="text-2xl font-black text-slate-900 mb-6">How to quantify ergonomics impact in your plant</h2>
           <div className="grid md:grid-cols-2 gap-4">
@@ -186,7 +187,7 @@ export default function ErgonomicsProductivityPage() {
           </p>
         </section>
 
-        <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
+        <section className={`bg-slate-900 text-white rounded-3xl ${spacingTokens.card.feature} border border-slate-800`}>
           <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <SolidProductivityIcon className="w-4 h-4" /> Recommended Next Step
           </div>

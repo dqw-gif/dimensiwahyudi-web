@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SolidGlossaryIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
+import { spacingTokens } from '../../../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'Industrial Ergonomics Glossary | Key Terms for Manufacturing Teams',
@@ -83,14 +84,14 @@ const terms = [
 export default function ErgonomicsGlossaryPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
-      <div className="relative z-10 pt-32 pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className={`${spacingTokens.page.shell} ${spacingTokens.page.containerNarrow} ${spacingTokens.page.stack}`}>
         <nav>
           <Link href="/news/ergonomics" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">
             <ArrowLeft size={16} /> Back to Ergonomics Hub
           </Link>
         </nav>
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-200 text-violet-600 flex items-center justify-center">
               <SolidGlossaryIcon className="w-4.5 h-4.5" />
@@ -113,7 +114,7 @@ export default function ErgonomicsGlossaryPage() {
           ))}
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">How To Use This Glossary</p>
           <h2 className="text-2xl font-black text-slate-900 mb-6">Apply a shared vocabulary across teams</h2>
           <div className="grid md:grid-cols-3 gap-4">
@@ -126,7 +127,7 @@ export default function ErgonomicsGlossaryPage() {
           </div>
         </section>
 
-        <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
+        <section className={`bg-slate-900 text-white rounded-3xl ${spacingTokens.card.feature} border border-slate-800`}>
           <h2 className="text-3xl font-black mb-4">Need guidance for your specific application?</h2>
           <p className="text-slate-300 leading-relaxed mb-7 max-w-3xl">
             Our team can translate ergonomics principles into practical handling recommendations for your process.

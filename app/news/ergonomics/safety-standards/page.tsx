@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
 import { SolidSafetyIcon, SolidWarningIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
+import { spacingTokens } from '../../../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'Occupational Safety and Ergonomics Standards | Industrial Ergonomics',
@@ -68,7 +69,7 @@ const principles = [
 export default function ErgonomicsSafetyStandardsPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
-      <div className="relative z-10 pt-32 pb-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className={`${spacingTokens.page.shell} ${spacingTokens.page.containerNarrow} ${spacingTokens.page.stack}`}>
         <nav>
           <Link href="/news/ergonomics" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">
             <ArrowLeft size={16} /> Back to Ergonomics Hub
@@ -97,7 +98,7 @@ export default function ErgonomicsSafetyStandardsPage() {
           </div>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
@@ -115,7 +116,7 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <ErgonomicsCaseStudies topic="safety" />
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
@@ -137,14 +138,14 @@ export default function ErgonomicsSafetyStandardsPage() {
         </section>
 
         <section className="grid lg:grid-cols-2 gap-6">
-          <div className="bg-white border border-slate-200 rounded-3xl p-8">
+          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard}`}>
             <h3 className="text-xl font-black text-slate-900 mb-3">Risk control hierarchy in practice</h3>
             <p className="text-slate-600 leading-relaxed">
               The strongest ergonomic programs prioritize technical mitigation at the process level. This helps reduce
               dependency on individual behavior while improving repeatable safety outcomes.
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-3xl p-8">
+          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard}`}>
             <h3 className="text-xl font-black text-slate-900 mb-3">Documentation and continuous review</h3>
             <p className="text-slate-600 leading-relaxed">
               Use incident data, near-miss patterns, and workstation feedback as input for periodic ergonomics and
@@ -153,7 +154,7 @@ export default function ErgonomicsSafetyStandardsPage() {
           </div>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm">
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-600 flex items-center justify-center">
               <SolidWarningIcon className="w-4.5 h-4.5" />
@@ -170,7 +171,7 @@ export default function ErgonomicsSafetyStandardsPage() {
           </div>
         </section>
 
-        <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-10 border border-slate-800">
+        <section className={`bg-slate-900 text-white rounded-3xl ${spacingTokens.card.feature} border border-slate-800`}>
           <div className="flex items-center gap-2 text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">
             <SolidSafetyIcon className="w-4 h-4" /> Recommended Next Step
           </div>

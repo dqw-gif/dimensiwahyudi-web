@@ -215,9 +215,9 @@ export default function ContactPage() {
         style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
       {/* 1. Header */}
-      <section className="pt-44 pb-20 relative overflow-hidden">
+      <section className="pt-32 md:pt-40 pb-16 md:pb-20 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-50 rounded-full blur-[120px] -z-10" />
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-slate-900">
             {copy.heroTitleA} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{copy.heroTitleB}</span>
@@ -230,7 +230,7 @@ export default function ContactPage() {
       </section>
 
       {/* 2. Contact Information & Form */}
-      <section className="pb-32 px-6 relative z-10">
+      <section className="pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50">
 
           {/* LEFT: INFO */}

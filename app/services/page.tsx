@@ -1,6 +1,7 @@
 ﻿import { Metadata } from 'next';
 import Link from 'next/link';
 import { ServiceHero, ServiceList } from '../../components/services/ServiceAnimations';
+import { spacingTokens } from '../../constants/spacingTokens';
 
 export const metadata: Metadata = {
   title: 'Technical Services | Installation, Maintenance & Training | PT Dimensi Quantum Wahyudi',
@@ -78,19 +79,23 @@ export default async function ServicesPage() {
       />
 
       {/* 1. HERO SECTION */}
-      <section className="pt-44 pb-20 px-6 relative overflow-hidden">
+      <section className={`${spacingTokens.hero.tall} relative overflow-hidden`}>
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100 rounded-full blur-[120px] -z-10" />
-        <ServiceHero />
+        <div className={spacingTokens.page.container}>
+          <ServiceHero />
+        </div>
       </section>
 
       {/* 2. SERVICE LIST */}
-      <section className="py-12 px-6 relative z-10">
-        <ServiceList />
+      <section className={`${spacingTokens.section.compact} relative z-10`}>
+        <div className={spacingTokens.page.container}>
+          <ServiceList />
+        </div>
       </section>
 
       {/* 3. CTA BOX */}
-      <section className="py-24 px-6 relative z-10">
-        <div className="max-w-5xl mx-auto bg-slate-900 rounded-[2.5rem] p-12 md:p-16 text-center border border-slate-800 relative overflow-hidden shadow-2xl">
+      <section className={`${spacingTokens.section.spacious} relative z-10`}>
+        <div className={`${spacingTokens.page.containerMedium} bg-slate-900 rounded-[2.5rem] p-12 md:p-16 text-center border border-slate-800 relative overflow-hidden shadow-2xl`}>
           <div
             className="absolute inset-0 opacity-10 pointer-events-none"
             style={{ backgroundImage: `radial-gradient(#fff 0.5px, transparent 0.5px)`, backgroundSize: '24px 24px' }}

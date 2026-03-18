@@ -2,6 +2,7 @@
 import BentoGallery from './BentoGallery';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { spacingTokens } from '../../constants/spacingTokens';
 
 export const metadata: Metadata = {
     title: 'Our Projects | PT Dimensi Quantum Wahyudi',
@@ -49,13 +50,13 @@ export default async function OurProjectsPage() {
         <main className="min-h-screen bg-slate-50 selection:bg-blue-500/30">
 
             {/* HERO SECTION - LIGHT/GRID */}
-            <section className="relative pt-32 pb-20 overflow-hidden">
+            <section className={`relative ${spacingTokens.hero.standard} overflow-hidden`}>
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-sky-100/50 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
-                <div className="relative max-w-5xl mx-auto px-6 text-center z-10">
+                <div className={`${spacingTokens.page.containerMedium} relative text-center z-10`}>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-slate-200 backdrop-blur-md rounded-full text-blue-700 text-xs font-bold uppercase tracking-[0.2em] mb-8 shadow-sm">
                         <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
                         {copy.badge}
@@ -78,8 +79,8 @@ export default async function OurProjectsPage() {
             <BentoGallery projects={projects} />
 
             {/* CTA SECTION - GRADIENT */}
-            <section className="py-24 relative overflow-hidden bg-slate-100 border-t border-slate-200">
-                <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
+            <section className={`${spacingTokens.section.spacious} relative overflow-hidden bg-slate-100 border-t border-slate-200`}>
+                <div className={`${spacingTokens.page.containerCompact} max-w-3xl text-center relative z-10`}>
                     <div className="bg-white border border-slate-200 p-4 inline-block rounded-3xl mb-8 shadow-sm">
                         <CheckCircle size={40} className="text-blue-500" />
                     </div>
