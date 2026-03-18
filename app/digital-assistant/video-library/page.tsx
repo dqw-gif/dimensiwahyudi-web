@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Play, ExternalLink, Filter, X } from 'lucide-react';
+import { Play, ExternalLink, Filter, X, Search, ArrowUpDown } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SCHMALZ VIDEO LIBRARY
@@ -12,8 +12,21 @@ import { Play, ExternalLink, Filter, X } from 'lucide-react';
 import { videos } from '../../../data/videos';
 
 const ALL = 'all';
+const BINAR_VIDEO_IDS = new Set([
+    'k6plgvsJOn0',
+    'NP26W7Op55Q',
+    'ir6TccqPuyY',
+    'XLrabCCFk-c',
+]);
 
-function VideoCard({ v, onClick }: { v: typeof videos[0]; onClick: () => void }) {
+type SourceLabel = 'Schmalz' | 'Binar';
+type SortKey = 'newest' | 'title' | 'industry';
+
+function getSourceByVideoId(id: string): SourceLabel {
+    return BINAR_VIDEO_IDS.has(id) ? 'Binar' : 'Schmalz';
+}
+
+function VideoCard({ v, source, onClick }: { v: typeof videos[0]; source: SourceLabel; onClick: () => void }) {
     return (
         <div
             className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-blue-300 transition-all duration-300 cursor-pointer"
@@ -35,6 +48,11 @@ function VideoCard({ v, onClick }: { v: typeof videos[0]; onClick: () => void })
                 <div className="absolute top-3 left-3">
                     <span className="px-2 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-md uppercase tracking-wide">
                         {v.category}
+                    </span>
+                </div>
+                <div className="absolute top-3 right-3">
+                    <span className={`px-2 py-1 text-[10px] font-bold rounded-md uppercase tracking-wide ${source === 'Binar' ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-700'}`}>
+                        {source}
                     </span>
                 </div>
             </div>
@@ -89,6 +107,8 @@ function Modal({ video, onClose, copy }: { video: typeof videos[0] | null; onClo
 export default function VideoLibraryPage() {
     const [activeInd, setActiveInd] = useState(ALL);
     const [activeVideo, setActiveVideo] = useState<typeof videos[0] | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [sortBy, setSortBy] = useState<SortKey>('newest');
 
     const copy = {
         badge: 'Schmalz Official Video Library',
@@ -108,19 +128,50 @@ export default function VideoLibraryPage() {
         close: 'Close',
     };
 
+    const industryLabelMap: Record<string, string> = {
+        'Glass & Window': 'Glass & Windows',
+        'Chemical & Pharma': 'Chemical & Pharmaceutical',
+    };
+
     const industries = [
         { key: ALL, label: 'All' },
-        { key: 'Otomotif & Manufaktur', label: 'Automotive & Manufacturing' },
-        { key: 'Kaca & Jendela', label: 'Glass & Windows' },
-        { key: 'Logistik & Kemasan', label: 'Logistics & Packaging' },
-        { key: 'Logam & Baja', label: 'Metal & Steel' },
-        { key: 'Kayu & Furnitur', label: 'Wood & Furniture' },
-        { key: 'Kimia & Farmasi', label: 'Chemical & Pharmaceutical' },
+        ...Array.from(new Set(videos.map((video) => video.industry)))
+            .sort((a, b) => a.localeCompare(b))
+            .map((industry) => ({
+                key: industry,
+                label: industryLabelMap[industry] ?? industry,
+            })),
     ];
 
-    const filtered = videos.filter(v =>
-        (activeInd === ALL || v.industry === activeInd)
-    );
+    const filtered = useMemo(() => {
+        const normalizedQuery = searchQuery.trim().toLowerCase();
+
+        const byIndustry = videos.filter((video) => (activeInd === ALL || video.industry === activeInd));
+        const byKeyword = normalizedQuery
+            ? byIndustry.filter((video) => {
+                const source = getSourceByVideoId(video.id);
+                const haystack = [video.title, video.desc, video.product, video.category, video.industry, source]
+                    .join(' ')
+                    .toLowerCase();
+                return haystack.includes(normalizedQuery);
+            })
+            : byIndustry;
+
+        if (sortBy === 'title') {
+            return [...byKeyword].sort((a, b) => a.title.localeCompare(b.title));
+        }
+
+        if (sortBy === 'industry') {
+            return [...byKeyword].sort((a, b) => {
+                const byIndustryName = a.industry.localeCompare(b.industry);
+                if (byIndustryName !== 0) return byIndustryName;
+                return a.title.localeCompare(b.title);
+            });
+        }
+
+        // "Newest" follows curated data order from `videos`.
+        return byKeyword;
+    }, [activeInd, searchQuery, sortBy]);
 
     return (
         <main className="min-h-screen bg-slate-50">
@@ -164,16 +215,41 @@ export default function VideoLibraryPage() {
 
             {/* VIDEO GRID */}
             <section className="max-w-6xl mx-auto px-6 py-12">
+                <div className="mb-6 grid gap-3 md:grid-cols-[1fr_auto]">
+                    <div className="relative">
+                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input
+                            type="search"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder="Search use-case, product, industry, or source..."
+                            className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-9 pr-3 text-sm text-slate-700 outline-none transition-colors focus:border-blue-400"
+                        />
+                    </div>
+                    <div className="relative min-w-[220px]">
+                        <ArrowUpDown size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                        <select
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value as SortKey)}
+                            className="w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-8 pr-8 text-sm font-medium text-slate-700 outline-none transition-colors focus:border-blue-400"
+                        >
+                            <option value="newest">Sort: Newest</option>
+                            <option value="title">Sort: A-Z</option>
+                            <option value="industry">Sort: By Industry</option>
+                        </select>
+                    </div>
+                </div>
+
                 {filtered.length === 0 ? (
                     <div className="text-center py-20 text-slate-400">
                         <Play size={40} className="mx-auto mb-4 opacity-30" />
                         <p className="font-semibold">{copy.noVideo}</p>
-                        <button onClick={() => setActiveInd(ALL)} className="mt-3 text-sm text-blue-600 underline underline-offset-4">{copy.reset}</button>
+                        <button onClick={() => { setActiveInd(ALL); setSearchQuery(''); }} className="mt-3 text-sm text-blue-600 underline underline-offset-4">{copy.reset}</button>
                     </div>
                 ) : (
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filtered.map(v => (
-                            <VideoCard key={v.id} v={v} onClick={() => setActiveVideo(v)} />
+                            <VideoCard key={v.id} v={v} source={getSourceByVideoId(v.id)} onClick={() => setActiveVideo(v)} />
                         ))}
                     </div>
                 )}
