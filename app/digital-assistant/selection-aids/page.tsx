@@ -14,11 +14,17 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: 'https://dimensiwahyudi.com/digital-assistant/selection-aids',
+    languages: {
+      'en-ID': 'https://dimensiwahyudi.com/digital-assistant/selection-aids',
+      'id-ID': 'https://dimensiwahyudi.com/digital-assistant/selection-aids',
+      'x-default': 'https://dimensiwahyudi.com/digital-assistant/selection-aids',
+    },
   },
   openGraph: {
     title: 'Engineering Selection Aids | PT Dimensi Quantum Wahyudi',
     description: 'Configure vacuum lifters and vacuum generators through guided, step-by-step engineering recommendations.',
     url: 'https://dimensiwahyudi.com/digital-assistant/selection-aids',
+    locale: 'en_ID',
     type: 'website',
   },
 };

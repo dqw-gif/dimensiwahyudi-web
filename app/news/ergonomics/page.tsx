@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import {
   SolidSafetyIcon,
-  SolidHealthIcon,
   SolidProductivityIcon,
-  SolidGlossaryIcon,
   SolidCalculatorIcon,
   SolidWarningIcon,
 } from '../../../components/icons/ErgonomicsSolidIcons';
@@ -82,37 +80,6 @@ const implementationSteps = [
   },
 ];
 
-const topicCards = [
-  {
-    title: 'Health Risks and Diseases',
-    desc: 'Understand the operational impact of musculoskeletal disorders and how to prevent long-term operator strain.',
-    href: '/news/ergonomics/health-risks',
-    icon: SolidHealthIcon,
-    color: 'text-rose-600 bg-rose-50 border-rose-200',
-  },
-  {
-    title: 'Ergonomics and Productivity',
-    desc: 'See how ergonomic handling supports throughput, quality consistency, and workforce resilience.',
-    href: '/news/ergonomics/productivity',
-    icon: SolidProductivityIcon,
-    color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
-  },
-  {
-    title: 'Safety and Standards',
-    desc: 'Review practical safety principles and compliance-oriented ergonomics implementation in industrial settings.',
-    href: '/news/ergonomics/safety-standards',
-    icon: SolidSafetyIcon,
-    color: 'text-blue-600 bg-blue-50 border-blue-200',
-  },
-  {
-    title: 'Ergonomics Glossary',
-    desc: 'A clear explanation of key ergonomics terms for engineers, procurement teams, and plant leaders.',
-    href: '/news/ergonomics/glossary',
-    icon: SolidGlossaryIcon,
-    color: 'text-violet-600 bg-violet-50 border-violet-200',
-  },
-];
-
 const visualNavigationTiles = [
   {
     title: 'Ergonomics for Every Industry',
@@ -167,8 +134,8 @@ export default function ErgonomicsHubPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
-      <div className="relative z-10 pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        <section className="grid lg:grid-cols-2 gap-10 items-center">
+      <div className="relative z-10 pt-28 md:pt-32 pb-20 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 md:space-y-16">
+        <section className="grid lg:grid-cols-2 gap-8 md:gap-10 items-center">
           <div>
             <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6">
               Industrial Ergonomics Knowledge Hub
@@ -204,7 +171,7 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-7 md:p-10 shadow-sm">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-3">Why this topic matters now</h2>
           <p className="text-slate-600 leading-relaxed">
             Ergonomics is no longer just a health initiative. It is now a strategic lever for plant reliability,
@@ -214,7 +181,7 @@ export default function ErgonomicsHubPage() {
         </section>
 
         <section>
-          <div className="flex items-end justify-between mb-8 gap-4">
+          <div className="flex items-end justify-between mb-6 md:mb-8 gap-4">
             <div>
               <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Visual Navigation</p>
               <h2 className="text-3xl font-black text-slate-900">Explore Ergonomics by Scenario</h2>
@@ -254,7 +221,7 @@ export default function ErgonomicsHubPage() {
           </p>
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-7 md:p-10 shadow-sm">
           <div className="flex items-end justify-between mb-6 gap-4">
             <div>
               <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
@@ -282,38 +249,7 @@ export default function ErgonomicsHubPage() {
           </p>
         </section>
 
-        <section>
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Explore by Perspective</p>
-              <h2 className="text-3xl font-black text-slate-900">Core Ergonomics Topics</h2>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {topicCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <Link
-                  key={card.href}
-                  href={card.href}
-                  className="group block bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg hover:border-blue-300 transition-all"
-                >
-                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{card.title}</h3>
-                  <p className="text-slate-600 leading-relaxed mb-5">{card.desc}</p>
-                  <div className="inline-flex items-center gap-2 font-bold text-blue-600">
-                    Read topic
-                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 md:p-10 shadow-sm">
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-7 md:p-10 shadow-sm">
           <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6">From risk mapping to ergonomic deployment</h2>
           <div className="grid md:grid-cols-3 gap-4">
@@ -327,7 +263,7 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className="bg-slate-900 text-white rounded-[2rem] p-8 md:p-12 border border-slate-800 overflow-hidden relative">
+        <section className="bg-slate-900 text-white rounded-[2rem] p-7 md:p-12 border border-slate-800 overflow-hidden relative">
           <div
             className="absolute inset-0 opacity-10 pointer-events-none"
             style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}

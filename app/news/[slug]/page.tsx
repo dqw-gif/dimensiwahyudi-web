@@ -32,23 +32,56 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const excerpt = post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160) || `Read more about ${post.title}`;
+    const canonicalUrl = `https://dimensiwahyudi.com/news/${slug}`;
+    const featuredImage = post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image';
+    const categoryNames = post.categories?.nodes?.map((category) => category.name) || [];
+
     return {
         title: `${post.title} | Insights Dimensi Wahyudi`,
-        description: post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160) || `Read more about ${post.title}`,
+        description: excerpt,
+        keywords: [
+            ...categoryNames,
+            'industrial insights Indonesia',
+            'vacuum lifting article',
+            'material handling best practice',
+            'ergonomic handling Indonesia',
+        ],
+        alternates: {
+            canonical: canonicalUrl,
+            languages: {
+                'en-ID': canonicalUrl,
+                'id-ID': canonicalUrl,
+                'x-default': canonicalUrl,
+            },
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
         openGraph: {
             title: post.title,
-            description: post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160),
-            url: `https://dimensiwahyudi.com/news/${slug}`,
+            description: excerpt,
+            url: canonicalUrl,
             siteName: 'Dimensi Wahyudi',
             images: [
                 {
-                    url: post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/og-image.jpg', // Fallback image
+                    url: featuredImage,
                     width: 1200,
                     height: 630,
                 },
             ],
             locale: 'en_ID',
             type: 'article',
+            publishedTime: post.date,
+            modifiedTime: (post as { modified?: string }).modified || post.date,
+            authors: ['PT Dimensi Quantum Wahyudi'],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: excerpt,
+            images: [featuredImage],
         },
     };
 }
@@ -117,9 +150,35 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
             },
         ],
     };
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160) || post.title,
+        inLanguage: 'en-ID',
+        datePublished: post.date,
+        dateModified: (post as { modified?: string }).modified || post.date,
+        mainEntityOfPage: `https://dimensiwahyudi.com/news/${post.slug}`,
+        author: {
+            '@type': 'Organization',
+            name: 'PT Dimensi Quantum Wahyudi',
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'PT Dimensi Quantum Wahyudi',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://dimensiwahyudi.com/logo.png',
+            },
+        },
+        image: post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image',
+        articleSection: post.categories?.nodes?.[0]?.name || 'Insights',
+        keywords: (post.categories?.nodes || []).map((category) => category.name).join(', '),
+    };
 
     return (
         <article className="min-h-screen bg-slate-50 font-sans pb-24 selection:bg-blue-100 selection:text-blue-900">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             {/* Background Decor - Clean Lab Style */}
             <div className="fixed inset-0 z-0 pointer-events-none opacity-50">

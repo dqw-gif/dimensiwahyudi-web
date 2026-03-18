@@ -9,6 +9,15 @@ export const metadata: Metadata = {
         title: 'Technical Consultation | PT Dimensi Quantum Wahyudi',
         description: 'Our engineering team is ready to design a precise lifting solution for your facility.',
         url: 'https://dimensiwahyudi.com/contact',
+        locale: 'en_ID',
+        type: 'website',
     },
-    alternates: { canonical: 'https://dimensiwahyudi.com/contact' },
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/contact',
+        languages: {
+            'en-ID': 'https://dimensiwahyudi.com/contact',
+            'id-ID': 'https://dimensiwahyudi.com/contact',
+            'x-default': 'https://dimensiwahyudi.com/contact',
+        },
+    },
 };

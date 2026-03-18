@@ -19,6 +19,8 @@ const BASE_URL = "https://dimensiwahyudi.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
+  applicationName: "PT Dimensi Quantum Wahyudi",
+  category: "Industrial Equipment",
   title: {
     default: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting & Ergonomic Handling Solutions",
     template: "%s | PT Dimensi Quantum Wahyudi",
@@ -48,6 +50,7 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       "max-image-preview": "large",
+      "max-video-preview": -1,
       "max-snippet": -1,
     },
   },
@@ -78,43 +81,65 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
     languages: {
       "en-ID": BASE_URL,
+      "id-ID": BASE_URL,
       "x-default": BASE_URL,
     },
   },
 };
 
-// JSON-LD: LocalBusiness schema — diindex Google untuk Knowledge Panel
-const localBusinessSchema = {
+// JSON-LD: LocalBusiness + WebSite graph untuk memperkuat entity SEO Indonesia.
+const seoStructuredData = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "PT Dimensi Quantum Wahyudi",
-  description:
-    "Established in 2009, PT Dimensi Quantum Wahyudi provides premium vacuum lifting and ergonomic material handling systems for industrial operations across Indonesia.",
-  foundingDate: "2009",
-  url: BASE_URL,
-  telephone: "+62811-1916-8752",
-  email: "sales@dimensiwahyudi.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "BizPark 3 Bekasi, Jl. Sultan Agung No.80 No. C37, Kali Baru, Medan Satria",
-    addressLocality: "Bekasi",
-    addressRegion: "West Java",
-    postalCode: "17132",
-    addressCountry: "ID",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: -6.2279,
-    longitude: 106.9849,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "08:00",
-    closes: "17:00",
-  },
-  sameAs: [
-    "https://dimensiwahyudi.com",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": `${BASE_URL}/#organization`,
+      name: "PT Dimensi Quantum Wahyudi",
+      description:
+        "Established in 2009, PT Dimensi Quantum Wahyudi provides premium vacuum lifting and ergonomic material handling systems for industrial operations across Indonesia.",
+      foundingDate: "2009",
+      url: BASE_URL,
+      telephone: "+62811-1916-8752",
+      email: "sales@dimensiwahyudi.com",
+      areaServed: {
+        "@type": "Country",
+        name: "Indonesia",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "BizPark 3 Bekasi, Jl. Sultan Agung No.80 No. C37, Kali Baru, Medan Satria",
+        addressLocality: "Bekasi",
+        addressRegion: "West Java",
+        postalCode: "17132",
+        addressCountry: "ID",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -6.2279,
+        longitude: 106.9849,
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "17:00",
+      },
+      sameAs: [
+        "https://dimensiwahyudi.com",
+        "https://www.youtube.com/@SchmalzMediaCenter",
+        "https://www.youtube.com/@BinarHandling",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      url: BASE_URL,
+      name: "PT Dimensi Quantum Wahyudi",
+      inLanguage: ["en-ID", "id-ID"],
+      publisher: {
+        "@id": `${BASE_URL}/#organization`,
+      },
+    },
   ],
 };
 
@@ -131,7 +156,7 @@ export default async function RootLayout({
       <body className={`${barlow.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(seoStructuredData) }}
         />
         <LanguageProvider initialLang={initialLang}>
           <Navbar />

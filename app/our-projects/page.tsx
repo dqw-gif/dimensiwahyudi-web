@@ -11,8 +11,22 @@ export const metadata: Metadata = {
         title: 'Our Projects | PT Dimensi Quantum Wahyudi',
         description: 'Portfolio highlights of practical handling solutions deployed across leading industrial production lines in Indonesia.',
         url: 'https://dimensiwahyudi.com/our-projects',
+        locale: 'en_ID',
+        type: 'website',
     },
-    alternates: { canonical: 'https://dimensiwahyudi.com/our-projects' },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Our Projects | PT Dimensi Quantum Wahyudi',
+        description: 'Explore portfolio highlights for vacuum lifting and ergonomic handling projects in Indonesia.',
+    },
+    alternates: {
+        canonical: 'https://dimensiwahyudi.com/our-projects',
+        languages: {
+            'en-ID': 'https://dimensiwahyudi.com/our-projects',
+            'id-ID': 'https://dimensiwahyudi.com/our-projects',
+            'x-default': 'https://dimensiwahyudi.com/our-projects',
+        },
+    },
 };
 
 import { projects } from '../../data/projects';
