@@ -1,4 +1,9 @@
 import type { NextConfig } from "next";
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const securityHeaders = [
   // Prevent clickjacking
@@ -91,9 +96,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'secure.gravatar.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

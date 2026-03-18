@@ -6,11 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "analyze": "set ANALYZE=true&& next build",
     "lint": "eslint",
+    "test": "npm run test:unit",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
     "qa:route-health": "node scripts/route-health-check.mjs",
     "qa:performance": "node scripts/route-health-check.mjs",
     "qa:reliability": "node scripts/reliability-gate.mjs",
-    "qa:full": "npm run qa:reliability"
+    "qa:full": "npm run qa:reliability && npm run test:unit"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
@@ -27,6 +31,8 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.6",
+    "@playwright/test": "^1.55.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -36,6 +42,7 @@
     "eslint-formatter-table": "^7.32.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.4"
   }
 }

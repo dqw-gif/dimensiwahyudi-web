@@ -193,12 +193,13 @@ export function AboutClientLogos() {
                                                         <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45"></div>
                                                     </div>
 
-                                                    {/* Used eslint-disable for standard img to avoid Next config overhead */}
-                                                    { }
-                                                    <img
+                                                    <Image
                                                         src={logo.logo}
                                                         alt={logo.client}
+                                                        width={180}
+                                                        height={80}
                                                         className={`object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 mx-auto drop-shadow-sm group-hover:drop-shadow-md relative z-10 ${imgSizeClass}`}
+                                                        unoptimized
                                                     />
                                                 </motion.div>
                                             );

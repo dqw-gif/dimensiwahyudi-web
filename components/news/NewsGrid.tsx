@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, ArrowRight, Newspaper, Activity, Filter, ChevronRight } from 'lucide-react';
 import { motion, type Variants } from 'framer-motion';
+import DOMPurify from 'isomorphic-dompurify';
 import type { PostSummary } from '../../types/wordpress';
 
 interface NewsGridProps {
@@ -37,6 +38,13 @@ const itemVariants: Variants = {
 
 export default function NewsGrid({ posts }: NewsGridProps) {
     const [filter, setFilter] = useState('All');
+
+    const sanitizeExcerpt = (html: string) =>
+        DOMPurify.sanitize(html, {
+            ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'b', 'i', 'a', 'span'],
+            ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
+            ALLOW_UNKNOWN_PROTOCOLS: false,
+        });
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('id-ID', {
@@ -147,7 +155,7 @@ export default function NewsGrid({ posts }: NewsGridProps) {
                                     </h2>
                                 </Link>
 
-                                <div className="text-slate-500 text-base leading-relaxed line-clamp-3 mb-8" dangerouslySetInnerHTML={{ __html: filteredPosts[0].excerpt || '' }} />
+                                <div className="text-slate-500 text-base leading-relaxed line-clamp-3 mb-8" dangerouslySetInnerHTML={{ __html: sanitizeExcerpt(filteredPosts[0].excerpt || '') }} />
 
                                 <div>
                                     <Link href={`/news/${filteredPosts[0].slug}`} className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-sm hover:bg-blue-600 transition-colors group/btn shadow-lg shadow-slate-900/20 hover:shadow-blue-600/30">
@@ -179,7 +187,7 @@ export default function NewsGrid({ posts }: NewsGridProps) {
                                                 {post.title}
                                             </h3>
                                         </Link>
-                                        <div className="text-slate-500 text-xs line-clamp-2 mb-4" dangerouslySetInnerHTML={{ __html: post.excerpt || '' }} />
+                                        <div className="text-slate-500 text-xs line-clamp-2 mb-4" dangerouslySetInnerHTML={{ __html: sanitizeExcerpt(post.excerpt || '') }} />
                                     </div>
                                     <Link href={`/news/${post.slug}`} className="text-blue-600 text-xs font-bold uppercase tracking-widest flex items-center gap-1 group/link mt-auto">
                                         Read More <ChevronRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
@@ -220,7 +228,7 @@ export default function NewsGrid({ posts }: NewsGridProps) {
                                     </h3>
                                 </Link>
 
-                                <div className="text-slate-500 text-sm line-clamp-2 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: post.excerpt || '' }} />
+                                <div className="text-slate-500 text-sm line-clamp-2 mb-6 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeExcerpt(post.excerpt || '') }} />
 
                                 <div className="mt-auto pt-6 border-t border-slate-50 flex justify-between items-center w-full">
                                     <Link href={`/news/${post.slug}`} className="text-xs font-bold text-slate-900 uppercase tracking-widest hover:text-blue-600 transition-colors flex items-center gap-2 group/btn">

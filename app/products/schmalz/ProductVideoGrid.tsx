@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ArrowRight, ExternalLink, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Video = {
     id: string;
@@ -36,10 +37,12 @@ export default function ProductVideoGrid({ videos }: { videos: Video[] }) {
                             className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer"
                         >
                             <div className="relative aspect-video bg-slate-900">
-                                <img
+                                <Image
                                     src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
                                     alt={v.title}
+                                    fill
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                 />
                                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">
                                     <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl">

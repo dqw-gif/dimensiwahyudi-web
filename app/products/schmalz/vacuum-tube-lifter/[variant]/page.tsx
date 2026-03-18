@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArrowLeft, CheckCircle, Phone, Mail, ChevronRight, Zap, AlertTriangle } from 'lucide-react';
@@ -123,11 +124,13 @@ export default async function VTLVariantDetailPage({ params }: Props) {
                             {/* Product Image — 📷 Tampil otomatis setelah imageUrl diisi di vacuum-tube-lifters.ts */}
                             {variant.imageUrl && (
                                 <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                                    <img
+                                    <Image
                                         src={variant.imageUrl}
                                         alt={variant.name}
+                                        width={1280}
+                                        height={576}
                                         className="w-full h-72 object-cover"
-                                        loading="lazy"
+                                        sizes="(max-width: 1024px) 100vw, 66vw"
                                     />
                                 </div>
                             )}

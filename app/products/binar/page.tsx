@@ -134,11 +134,12 @@ export default function BinarCatalogPage() {
                             >
                                 <div className={`h-44 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
                                     {product.imageUrl ? (
-                                        <img
+                                        <Image
                                             src={product.imageUrl}
                                             alt={product.name}
+                                            fill
                                             className="absolute inset-0 w-full h-full object-cover"
-                                            loading="lazy"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                                         />
                                     ) : (
                                         <div className="absolute inset-0 opacity-20"
@@ -203,11 +204,12 @@ export default function BinarCatalogPage() {
                             >
                                 <div className={`h-32 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
                                     {product.imageUrl ? (
-                                        <img
+                                        <Image
                                             src={product.imageUrl}
                                             alt={product.name}
+                                            fill
                                             className="absolute inset-0 w-full h-full object-cover"
-                                            loading="lazy"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                                         />
                                     ) : (
                                         <div className="absolute inset-0 opacity-20"

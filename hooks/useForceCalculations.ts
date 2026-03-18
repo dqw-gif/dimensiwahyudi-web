@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { UNITS } from '../constants/calculatorData';
 
 /**
@@ -30,21 +30,22 @@ export const useForceCalculations = () => {
         return parseFloat(String(val)) * factor;
     }, []);
 
-    // Auto-calculate suction area from dimensions
-    useEffect(() => {
-        if (calcAreaMode) {
-            let areaMM2 = 0;
-            const d1 = parseFloat(String(dim1)) || 0;
-            const d2 = parseFloat(String(dim2)) || 0;
-            if (areaType === 'Area round') areaMM2 = Math.PI * Math.pow(d1 / 2, 2);
-            else if (areaType === 'Rectangle area') areaMM2 = d1 * d2;
-            else if (areaType === 'Oval surface') areaMM2 = (Math.PI / 4) * d1 * d2;
-            const areaM2 = areaMM2 * 1e-6;
-            const factorToUnit = 1 / UNITS.area.factors[suctionAreaUnit];
-            const newValue = Number((areaM2 * factorToUnit).toFixed(2));
-            setSuctionArea(prev => prev !== newValue ? newValue : prev);
+    const effectiveSuctionArea = useMemo(() => {
+        if (!calcAreaMode) {
+            return suctionArea;
         }
-    }, [calcAreaMode, areaType, dim1, dim2, suctionAreaUnit]);
+
+        let areaMM2 = 0;
+        const d1 = parseFloat(String(dim1)) || 0;
+        const d2 = parseFloat(String(dim2)) || 0;
+        if (areaType === 'Area round') areaMM2 = Math.PI * Math.pow(d1 / 2, 2);
+        else if (areaType === 'Rectangle area') areaMM2 = d1 * d2;
+        else if (areaType === 'Oval surface') areaMM2 = (Math.PI / 4) * d1 * d2;
+
+        const areaM2 = areaMM2 * 1e-6;
+        const factorToUnit = 1 / UNITS.area.factors[suctionAreaUnit];
+        return Number((areaM2 * factorToUnit).toFixed(2));
+    }, [calcAreaMode, areaType, dim1, dim2, suctionAreaUnit, suctionArea]);
 
     const calcNumCups = () => {
         const m = getSI(mass, massUnit, 'mass');
@@ -54,7 +55,7 @@ export const useForceCalculations = () => {
         const f_horizontal = m * (9.81 + a / friction) * safety;
         const f_vertical = (m / friction) * (9.81 + a) * safety;
 
-        const fs = getSI(vacuum, vacuumUnit, 'pressure') * getSI(suctionArea, suctionAreaUnit, 'area');
+        const fs = getSI(vacuum, vacuumUnit, 'pressure') * getSI(effectiveSuctionArea, suctionAreaUnit, 'area');
         if (fs <= 0) return { h: 0, v: 0 };
         return {
             h: Math.ceil(f_horizontal / fs),
@@ -86,7 +87,7 @@ export const useForceCalculations = () => {
 
     const calcForce = () => {
         const p_pa = getSI(vacuum, vacuumUnit, 'pressure');
-        const area_m2 = getSI(suctionArea, suctionAreaUnit, 'area');
+        const area_m2 = getSI(effectiveSuctionArea, suctionAreaUnit, 'area');
         return Math.round(p_pa * area_m2);
     };
 
@@ -108,7 +109,7 @@ export const useForceCalculations = () => {
     return {
         state: {
             mass, massUnit, accel, accelUnit, vacuum, vacuumUnit, safety, friction,
-            suctionArea, suctionAreaUnit, calcAreaMode, areaType, dim1, dim2,
+            suctionArea: effectiveSuctionArea, suctionAreaUnit, calcAreaMode, areaType, dim1, dim2,
             numCupsInput, diameterUnit,
         },
         setters: {

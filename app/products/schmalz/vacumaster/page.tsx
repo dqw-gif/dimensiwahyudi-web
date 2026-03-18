@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Shield, Droplets, Leaf, Layers, Wind } from 'lucide-react';
 import { vacuMasterVariants } from '../../../../data/products/vacumaster';
@@ -106,11 +107,12 @@ export default function VacuMasterIndexPage() {
                                 {/* Card header */}
                                 <div className={`h-40 bg-gradient-to-br ${variant.heroColor} relative overflow-hidden`}>
                                     {variant.imageUrl ? (
-                                        <img
+                                        <Image
                                             src={variant.imageUrl}
                                             alt={variant.name}
+                                            fill
+                                            sizes="(max-width: 1024px) 100vw, 33vw"
                                             className="absolute inset-0 w-full h-full object-cover"
-                                            loading="lazy"
                                         />
                                     ) : (
                                         <div className="absolute inset-0 opacity-25"

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Zap, AlertTriangle, Droplets, Wind, Layers } from 'lucide-react';
 import { vacuumTubeLifterVariants } from '../../../../data/products/vacuum-tube-lifters';
@@ -105,11 +106,12 @@ export default function VacuumTubeLifterIndexPage() {
                                 {/* Card header */}
                                 <div className={`h-40 bg-gradient-to-br ${variant.heroColor} relative overflow-hidden`}>
                                     {variant.imageUrl ? (
-                                        <img
+                                        <Image
                                             src={variant.imageUrl}
                                             alt={variant.name}
+                                            fill
                                             className="absolute inset-0 w-full h-full object-cover"
-                                            loading="lazy"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                                         />
                                     ) : (
                                         /* Image not available - show gradient */

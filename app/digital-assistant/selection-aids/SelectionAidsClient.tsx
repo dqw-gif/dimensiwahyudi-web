@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '../../../components/LanguageProvider';
 
@@ -705,9 +706,11 @@ export default function SelectionAidsClient() {
             className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-8 text-left shadow-xl transition-all hover:shadow-2xl"
             type="button"
           >
-            <img
+              <Image
               src="/vacuum.svg"
               alt="Vacuum"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="pointer-events-none absolute bottom-0 right-0 top-0 h-full w-auto select-none object-contain opacity-10 transition-opacity duration-300 group-hover:opacity-100"
             />
             <div className="relative z-10 space-y-6">
@@ -733,9 +736,11 @@ export default function SelectionAidsClient() {
             className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-8 text-left shadow-xl transition-all hover:shadow-2xl"
             type="button"
           >
-            <img
+              <Image
               src="/generator.svg"
               alt="Generator"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="pointer-events-none absolute bottom-0 right-0 top-0 h-full w-auto select-none object-contain opacity-10 transition-opacity duration-300 group-hover:opacity-100"
             />
             <div className="relative z-10 space-y-6">

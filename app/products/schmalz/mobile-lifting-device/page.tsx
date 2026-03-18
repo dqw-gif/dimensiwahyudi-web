@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Smartphone, Zap } from 'lucide-react';
 import { mobileLiftingVariants } from '../../../../data/products/mobile-lifting';
@@ -72,7 +73,7 @@ export default function MobileLiftingIndexPage() {
                             >
                                 <div className={`h-48 bg-gradient-to-br ${variant.heroColor} relative overflow-hidden`}>
                                     {variant.imageUrl ? (
-                                        <img src={variant.imageUrl} alt={variant.name} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                                        <Image src={variant.imageUrl} alt={variant.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="absolute inset-0 w-full h-full object-cover" />
                                     ) : (
                                         <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
                                     )}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArrowLeft, CheckCircle, Phone, Mail, ChevronRight, Shield } from 'lucide-react';
@@ -88,7 +89,7 @@ export default async function MobileLiftingVariantPage({ params }: Props) {
                         <div className="lg:col-span-2 space-y-8">
                             {variant.imageUrl && (
                                 <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                                    <img src={variant.imageUrl} alt={variant.name} className="w-full h-72 object-cover" loading="lazy" />
+                                    <Image src={variant.imageUrl} alt={variant.name} width={1200} height={720} className="w-full h-72 object-cover" />
                                 </div>
                             )}
                             <div className="bg-white rounded-2xl border border-slate-200 p-8">

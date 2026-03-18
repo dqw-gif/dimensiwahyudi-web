@@ -1,8 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { getAllPosts } from '../../services/wordpress';
-import NewsGrid from '../../components/news/NewsGrid';
 import { Zap, ArrowRight, HeartPulse } from 'lucide-react';
+
+const NewsGrid = dynamic(() => import('../../components/news/NewsGrid'), {
+    loading: () => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-label="Loading articles">
+            {Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="h-72 rounded-3xl bg-white border border-slate-200 animate-pulse" />
+            ))}
+        </div>
+    ),
+});
 
 export const revalidate = 3600; // ISR cache for 1 hour
 

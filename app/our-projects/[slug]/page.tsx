@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, CheckCircle, Clock, MapPin, Package, ArrowRight } from 'lucide-react';
 import { projects } from '../page';
@@ -72,7 +73,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             {/* HERO IMAGE */}
             <div className="relative h-64 md:h-80 overflow-hidden bg-slate-200">
                 { }
-                <img src={c.image} alt={c.client} className="w-full h-full object-cover" />
+                <Image src={c.image} alt={c.client} fill sizes="100vw" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
 

@@ -206,8 +206,14 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                                 {/* Logo Factory Slot - Solid White Background & Auto Width for Landscape Logos */}
                                 <div className="absolute top-4 right-4 h-12 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[180px]">
                                     {p.logo ? (
-                                         
-                                        <img src={p.logo} alt={`${p.client} Logo`} className="h-full w-auto object-contain" />
+                                        <Image
+                                            src={p.logo}
+                                            alt={`${p.client} Logo`}
+                                            width={140}
+                                            height={44}
+                                            className="h-full w-auto object-contain"
+                                            unoptimized
+                                        />
                                     ) : (
                                         <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase px-1">Logo</span>
                                     )}

@@ -8,6 +8,45 @@ import { trackEvent } from '@/lib/gtag';
 
 type FieldErrors = { name?: string; email?: string; message?: string };
 
+const FORM_REQUEST_TIMEOUT_MS = 8000;
+const FORM_RETRY_ATTEMPTS = 2;
+const FORM_RETRY_BASE_DELAY_MS = 500;
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function postWithRetry(url: string, payload: unknown) {
+  for (let attempt = 0; attempt <= FORM_RETRY_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), FORM_REQUEST_TIMEOUT_MS);
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      // Retry only for transient upstream failures.
+      if (res.ok || res.status < 500 || attempt === FORM_RETRY_ATTEMPTS) {
+        return res;
+      }
+    } catch {
+      if (attempt === FORM_RETRY_ATTEMPTS) {
+        throw new Error('Contact form request failed after retries');
+      }
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    await sleep(FORM_RETRY_BASE_DELAY_MS * Math.pow(2, attempt));
+  }
+
+  throw new Error('Contact form request failed after retries');
+}
+
 function validateField(name: string, value: string): string {
   const text = {
     nameMin: 'Name must be at least 2 characters',
@@ -96,11 +135,7 @@ export default function ContactPage() {
     setFormStatus('submitting');
 
     try {
-      const res = await fetch(FORMSPREE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const res = await postWithRetry(FORMSPREE_URL, formData);
       if (res.ok) {
         trackEvent('generate_lead', {
           event_category: 'Contact',

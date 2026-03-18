@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ArrowLeft, CheckCircle, Phone, Mail, ChevronRight, Zap } from 'lucide-react';
@@ -131,11 +132,13 @@ export default async function SchmalzProductDetail({ params }: Props) {
                             {/* Product image shown automatically when imageUrl is provided in schmalz.ts */}
                             {product.imageUrl && (
                                 <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                                    <img
+                                    <Image
                                         src={product.imageUrl}
                                         alt={product.name}
+                                        width={1280}
+                                        height={576}
                                         className="w-full h-72 object-cover"
-                                        loading="lazy"
+                                        sizes="(max-width: 1024px) 100vw, 66vw"
                                     />
                                 </div>
                             )}

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Play, ExternalLink, Filter, X } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -19,9 +20,11 @@ function VideoCard({ v, onClick }: { v: typeof videos[0]; onClick: () => void })
             onClick={onClick}
         >
             <div className="relative aspect-video bg-slate-900 overflow-hidden">
-                <img
+                <Image
                     src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
                     alt={v.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-colors">

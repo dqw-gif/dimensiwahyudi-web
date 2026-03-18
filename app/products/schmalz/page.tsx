@@ -127,11 +127,12 @@ export default function SchmalzCatalogPage() {
                                 {/* Card image area */}
                                 <div className={`h-44 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
                                     {product.imageUrl ? (
-                                        <img
+                                        <Image
                                             src={product.imageUrl}
                                             alt={product.name}
+                                            fill
                                             className="absolute inset-0 w-full h-full object-cover"
-                                            loading="lazy"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                                         />
                                     ) : (
                                         /* Image not available - gradient placeholder */
