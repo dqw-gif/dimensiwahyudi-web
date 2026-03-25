@@ -23,6 +23,7 @@ type ParsedDescription = {
 const GOOGLE_SHEETS_API_URL =
   '/api/internal/schmalz-portfolio';
 const CACHE_KEY = 'schmalz_portfolio_cache';
+const ITEMS_PER_PAGE = 12;
 
 const INITIAL_DESC: ParsedDescription = {
   Before: '',
@@ -118,6 +119,7 @@ export default function SchmalzPortfolioClient() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndustry, setSelectedIndustry] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
   const [statusText, setStatusText] = useState('MENGHUBUNGKAN DATABASE...');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -142,6 +144,12 @@ export default function SchmalzPortfolioClient() {
       return matchedQuery && matchedIndustry;
     });
   }, [projects, searchTerm, selectedIndustry]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredProjects.length / ITEMS_PER_PAGE));
+  const paginatedProjects = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProjects.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProjects, currentPage]);
 
   async function fetchDataFromSheet(isForced = false) {
     if (isForced) {
@@ -259,6 +267,16 @@ export default function SchmalzPortfolioClient() {
     fetchDataFromSheet();
   }, []);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedIndustry]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
   return (
     <main className="min-h-screen bg-slate-50">
       <section className="bg-slate-900 px-4 pb-10 pt-28 text-white sm:px-6 lg:px-8">
@@ -298,7 +316,7 @@ export default function SchmalzPortfolioClient() {
       <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-800">
-            Menampilkan <span className="font-bold text-blue-600">{filteredProjects.length}</span> data
+            Menampilkan <span className="font-bold text-blue-600">{paginatedProjects.length}</span> dari <span className="font-bold text-blue-600">{filteredProjects.length}</span> data
           </h2>
           <button
             onClick={() => fetchDataFromSheet(true)}
@@ -310,11 +328,11 @@ export default function SchmalzPortfolioClient() {
           </button>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
           {!filteredProjects.length ? (
-            <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-500">Tidak ada data.</div>
+            <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-500 xl:col-span-2">Tidak ada data.</div>
           ) : (
-            filteredProjects.map((project) => (
+            paginatedProjects.map((project) => (
               <article
                 key={project.row_index}
                 className="group flex flex-col items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all hover:shadow-md sm:flex-row sm:gap-6"
@@ -356,6 +374,30 @@ export default function SchmalzPortfolioClient() {
             ))
           )}
         </div>
+
+        {filteredProjects.length > ITEMS_PER_PAGE ? (
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+              className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Sebelumnya
+            </button>
+
+            <span className="px-2 text-sm font-medium text-gray-600">
+              Halaman {currentPage} / {totalPages}
+            </span>
+
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+              disabled={currentPage === totalPages}
+              className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Berikutnya
+            </button>
+          </div>
+        ) : null}
       </section>
 
       {isModalOpen && formProject ? (
