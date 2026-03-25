@@ -1,0 +1,30 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import WhatsAppFloat from './WhatsAppFloat';
+import ConversionTracker from './ConversionTracker';
+
+type LayoutChromeProps = {
+  children: React.ReactNode;
+};
+
+export default function LayoutChrome({ children }: LayoutChromeProps) {
+  const pathname = usePathname();
+  const isInternal = pathname?.startsWith('/internal');
+
+  if (isInternal) {
+    return <>{children}</>;
+  }
+
+  return (
+    <>
+      <Navbar />
+      {children}
+      <Footer />
+      <WhatsAppFloat />
+      <ConversionTracker />
+    </>
+  );
+}

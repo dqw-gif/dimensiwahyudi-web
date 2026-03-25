@@ -3,11 +3,8 @@ import { Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import WhatsAppFloat from "../components/WhatsAppFloat";
+import LayoutChrome from "../components/LayoutChrome";
 import { LanguageProvider } from "../components/LanguageProvider";
-import ConversionTracker from "../components/ConversionTracker";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -158,11 +155,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(seoStructuredData) }}
         />
         <LanguageProvider initialLang={initialLang}>
-          <Navbar />
-          {children}
-          <Footer />
-          <WhatsAppFloat />
-          <ConversionTracker />
+          <LayoutChrome>{children}</LayoutChrome>
           <Analytics />
           {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
         </LanguageProvider>

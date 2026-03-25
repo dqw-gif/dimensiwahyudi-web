@@ -21,7 +21,7 @@ type ParsedDescription = {
 };
 
 const GOOGLE_SHEETS_API_URL =
-  'https://script.google.com/macros/s/AKfycbwrzzBRRVc0uUz6hUKbJVqwCCJa2Gjppb89Ptcjl62gJxvp-1Jt2u47TADle77n6p0ZjA/exec';
+  '/api/internal/schmalz-portfolio';
 const CACHE_KEY = 'schmalz_portfolio_cache';
 
 const INITIAL_DESC: ParsedDescription = {
@@ -168,15 +168,28 @@ export default function SchmalzPortfolioClient() {
         throw new Error(`Failed to fetch: ${response.status}`);
       }
 
-      const data = (await response.json()) as Record<string, string>[];
-      const mapped: Project[] = data.map((item, index) => ({
+      const json = (await response.json()) as {
+        ok?: boolean;
+        data?: unknown;
+      };
+
+      const rawRows = Array.isArray(json?.data)
+        ? json.data
+        : Array.isArray((json?.data as { data?: unknown } | undefined)?.data)
+          ? ((json.data as { data?: unknown }).data as unknown[])
+          : [];
+
+      const mapped: Project[] = rawRows.map((row, index) => {
+        const item = (row ?? {}) as Record<string, string>;
+        return {
         company: item.company || 'Tanpa Nama',
         industry: item.industry || 'Lainnya',
         project_desc: item.project_desc || '',
         company_logo: sanitizeHttpUrl(item.company_logo || ''),
         project_image: sanitizeHttpUrl(fixDriveUrl(item.project_image || '')),
         row_index: Number(item.row_index) || index + 2,
-      }));
+        };
+      });
 
       setProjects(mapped);
       window.localStorage.setItem(CACHE_KEY, JSON.stringify(mapped));
@@ -228,7 +241,9 @@ export default function SchmalzPortfolioClient() {
     try {
       await fetch(GOOGLE_SHEETS_API_URL, {
         method: 'POST',
-        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(payload),
       });
       closeModal();
