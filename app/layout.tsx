@@ -81,7 +81,6 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
     languages: {
       "en-ID": BASE_URL,
-      "id-ID": BASE_URL,
       "x-default": BASE_URL,
     },
   },
@@ -135,7 +134,7 @@ const seoStructuredData = {
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
       name: "PT Dimensi Quantum Wahyudi",
-      inLanguage: ["en-ID", "id-ID"],
+      inLanguage: "en-ID",
       publisher: {
         "@id": `${BASE_URL}/#organization`,
       },

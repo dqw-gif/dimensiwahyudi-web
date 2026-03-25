@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '../services/wordpress';
+import { projects } from '../data/projects';
 
 const BASE_URL = 'https://dimensiwahyudi.com';
 
@@ -78,10 +79,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'monthly',
             priority: 0.85,
         },
-        // Dynamic Our Projects Pages (Sample)
-        { url: `${BASE_URL}/our-projects/otomotif-stamping-line`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
-        { url: `${BASE_URL}/our-projects/fmcg-packaging-line`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
-        { url: `${BASE_URL}/our-projects/farmasi-cleanroom`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+        ...projects.map((project) => ({
+            url: `${BASE_URL}/our-projects/${project.id}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+        })),
         {
             url: `${BASE_URL}/digital-assistant/vacuum-calculator`,
             lastModified: new Date(),
