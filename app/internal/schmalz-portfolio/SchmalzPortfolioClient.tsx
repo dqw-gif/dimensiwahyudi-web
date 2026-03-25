@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { Search, Filter, ChevronDown, RefreshCw, Edit3, X, Save, Loader2 } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 type Project = {
   company: string;
@@ -126,6 +127,7 @@ export default function SchmalzPortfolioClient() {
   const [isSaving, setIsSaving] = useState(false);
   const [formProject, setFormProject] = useState<Project | null>(null);
   const [descFields, setDescFields] = useState<ParsedDescription>(INITIAL_DESC);
+  const prefersReducedMotion = useReducedMotion();
 
   const industries = useMemo(() => {
     return ['All', ...new Set(projects.map((p) => p.industry).filter(Boolean))].sort((a, b) => {
@@ -279,11 +281,59 @@ export default function SchmalzPortfolioClient() {
 
   return (
     <main className="min-h-screen bg-slate-50">
-      <section className="bg-slate-900 px-4 pb-10 pt-28 text-white sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-slate-900 px-4 pb-10 pt-28 text-white sm:px-6 lg:px-8">
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute -left-16 top-8 h-72 w-72 rounded-full bg-blue-500/30 blur-3xl"
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  x: [0, 40, -10, 0],
+                  y: [0, -20, 20, 0],
+                  scale: [1, 1.08, 0.96, 1],
+                }
+          }
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl"
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  x: [0, -30, 25, 0],
+                  y: [0, 10, -25, 0],
+                  scale: [1, 0.94, 1.1, 1],
+                }
+          }
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
         <div className="mx-auto max-w-7xl">
-          <h1 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">Daftar Manajemen Proyek</h1>
-          <p className="mt-2 text-center text-xs font-bold tracking-wide text-emerald-300">{statusText}</p>
-          <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-white/20 bg-white/10 p-2.5 backdrop-blur-md sm:flex-row">
+          <motion.h1
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl"
+          >
+            Daftar Manajemen Proyek
+          </motion.h1>
+          <motion.p
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 8 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+            className="mt-2 text-center text-xs font-bold tracking-wide text-emerald-300"
+          >
+            {statusText}
+          </motion.p>
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 14 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.12 }}
+            className="mt-6 flex flex-col gap-3 rounded-2xl border border-white/20 bg-white/10 p-2.5 backdrop-blur-md sm:flex-row"
+          >
             <label className="relative flex-1">
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
               <input
@@ -309,7 +359,7 @@ export default function SchmalzPortfolioClient() {
               </select>
               <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
             </label>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -328,14 +378,40 @@ export default function SchmalzPortfolioClient() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+        <motion.div
+          initial={prefersReducedMotion ? undefined : 'hidden'}
+          animate={prefersReducedMotion ? undefined : 'show'}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.05,
+              },
+            },
+          }}
+          className="grid grid-cols-1 gap-4 xl:grid-cols-2"
+        >
           {!filteredProjects.length ? (
             <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-500 xl:col-span-2">Tidak ada data.</div>
           ) : (
             paginatedProjects.map((project) => (
-              <article
+              <motion.article
                 key={project.row_index}
                 className="group flex flex-col items-start gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all hover:shadow-md sm:flex-row sm:gap-6"
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.34, ease: 'easeOut' }}
+                whileHover={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        y: -4,
+                        boxShadow: '0 18px 38px -22px rgba(15, 23, 42, 0.45)',
+                      }
+                }
               >
                 <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-slate-100 sm:h-36 sm:w-48">
                   {project.project_image ? (
@@ -370,40 +446,60 @@ export default function SchmalzPortfolioClient() {
                     Edit
                   </button>
                 </div>
-              </article>
+              </motion.article>
             ))
           )}
-        </div>
+        </motion.div>
 
         {filteredProjects.length > ITEMS_PER_PAGE ? (
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            <button
+            <motion.button
               onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
               className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             >
               Sebelumnya
-            </button>
+            </motion.button>
 
             <span className="px-2 text-sm font-medium text-gray-600">
               Halaman {currentPage} / {totalPages}
             </span>
 
-            <button
+            <motion.button
               onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
               className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             >
               Berikutnya
-            </button>
+            </motion.button>
           </div>
         ) : null}
       </section>
 
-      {isModalOpen && formProject ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={closeModal} />
-          <div className="relative mx-4 flex max-h-[95vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <AnimatePresence>
+        {isModalOpen && formProject ? (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+              onClick={closeModal}
+              initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0 }}
+            />
+            <motion.div
+              className="relative mx-4 flex max-h-[95vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.96, y: 24 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.97, y: 10 }}
+              transition={{ duration: 0.23, ease: 'easeOut' }}
+            >
             <div className="flex shrink-0 items-center justify-between border-b border-gray-100 bg-slate-50 px-6 py-4">
               <h3 className="flex items-center gap-2 text-lg font-bold text-gray-800">
                 <Edit3 className="h-5 w-5 text-blue-600" /> Kelola Proyek
@@ -513,9 +609,10 @@ export default function SchmalzPortfolioClient() {
                 {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Simpan Data
               </button>
             </div>
-          </div>
-        </div>
-      ) : null}
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </main>
   );
 }
