@@ -45,15 +45,25 @@ npm run lint
 npm run build
 npm run qa:route-health
 npm run qa:reliability
+npm run qa:e2e-stability
 ```
 
 `qa:reliability` runs lint, build, starts production server, checks route health, and validates WordPress reliability health.
+
+`qa:e2e-stability` runs Playwright E2E tests sequentially (default: 3 runs) to detect flaky user journeys. A summary is generated at `test-results/e2e-stability-summary.md`.
+In stability mode, Playwright reduces worker concurrency and uses a slightly higher timeout to avoid false negatives caused by resource spikes.
+
+To run with a custom number of repetitions:
+
+```bash
+E2E_STABILITY_RUNS=5 npm run qa:e2e-stability
+```
 
 ## CI
 
 GitHub Actions workflow: `.github/workflows/reliability-gate.yml`.
 
-For pull requests and main branch pushes, CI runs reliability gate automatically.
+For pull requests and main branch pushes, CI runs both reliability gate and E2E stability gate automatically.
 
 ## Deployment Activation Checklist
 

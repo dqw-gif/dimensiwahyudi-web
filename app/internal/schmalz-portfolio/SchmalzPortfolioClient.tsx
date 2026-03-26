@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Search, Filter, ChevronDown, RefreshCw, Edit3, X, Save, Loader2 } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
@@ -153,7 +153,7 @@ export default function SchmalzPortfolioClient() {
     return filteredProjects.slice(start, start + ITEMS_PER_PAGE);
   }, [filteredProjects, currentPage]);
 
-  async function fetchDataFromSheet(isForced = false) {
+  const fetchDataFromSheet = useCallback(async (isForced = false) => {
     if (isForced) {
       setIsRefreshing(true);
       setStatusText('MENGHUBUNGKAN ULANG...');
@@ -205,13 +205,16 @@ export default function SchmalzPortfolioClient() {
       window.localStorage.setItem(CACHE_KEY, JSON.stringify(mapped));
       setStatusText('DATABASE TERHUBUNG (TERBARU)');
     } catch {
-      if (!projects.length) {
-        setStatusText('MODE OFFLINE (API GAGAL)');
-      }
+      setProjects((prev) => {
+        if (!prev.length) {
+          setStatusText('MODE OFFLINE (API GAGAL)');
+        }
+        return prev;
+      });
     } finally {
       setIsRefreshing(false);
     }
-  }
+  }, []);
 
   function openEditModal(rowIndex: number) {
     const project = projects.find((p) => p.row_index === rowIndex);
@@ -267,7 +270,7 @@ export default function SchmalzPortfolioClient() {
 
   useEffect(() => {
     fetchDataFromSheet();
-  }, []);
+  }, [fetchDataFromSheet]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -415,10 +418,12 @@ export default function SchmalzPortfolioClient() {
               >
                 <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-slate-100 sm:h-36 sm:w-48">
                   {project.project_image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img src={project.project_image} alt="Project" className="h-full w-full object-cover" />
                   ) : null}
                   <div className="absolute -bottom-2 -right-2 flex h-14 w-14 items-center justify-center rounded-tl-xl border-l border-t border-gray-100 bg-white p-1.5 shadow-sm">
                     {project.company_logo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img src={project.company_logo} alt="Logo" className="max-h-full max-w-full object-contain" />
                     ) : null}
                   </div>
@@ -532,6 +537,7 @@ export default function SchmalzPortfolioClient() {
               {formProject.project_image ? (
                 <div>
                   <label className="mb-2 block text-sm font-bold uppercase tracking-wide text-gray-700">Visual Proyek</label>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={formProject.project_image}
                     alt="Preview"

@@ -44,12 +44,36 @@ const healthStats = [
 ];
 
 const bodyExposure = [
-  'Lower back',
-  'Shoulders and upper arms',
-  'Elbows and wrists',
-  'Neck and upper back',
-  'Hip and knee joints',
-  'Grip and forearm area',
+  {
+    area: 'Lower back',
+    note: 'Frequent strain during lifting from floor level and trunk rotation.',
+    imageAlt: 'Dummy ergonomic illustration for lower back risk',
+  },
+  {
+    area: 'Shoulders and upper arms',
+    note: 'Overload appears during overhead reach and repetitive object transfer.',
+    imageAlt: 'Dummy ergonomic illustration for shoulder and upper arm risk',
+  },
+  {
+    area: 'Elbows and wrists',
+    note: 'High repetition and forceful grip can trigger tendon stress quickly.',
+    imageAlt: 'Dummy ergonomic illustration for elbow and wrist risk',
+  },
+  {
+    area: 'Neck and upper back',
+    note: 'Static posture and frequent forward head position increase fatigue.',
+    imageAlt: 'Dummy ergonomic illustration for neck and upper back risk',
+  },
+  {
+    area: 'Hip and knee joints',
+    note: 'Repeated squatting and uneven load transfer reduce joint comfort.',
+    imageAlt: 'Dummy ergonomic illustration for hip and knee joint risk',
+  },
+  {
+    area: 'Grip and forearm area',
+    note: 'Sustained pinching and carrying force can reduce handling endurance.',
+    imageAlt: 'Dummy ergonomic illustration for grip and forearm risk',
+  },
 ];
 
 const riskItems = [
@@ -137,11 +161,26 @@ export default function ErgonomicsHealthRisksPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
           </div>
-          <div className="flex flex-wrap gap-3">
-            {bodyExposure.map((area) => (
-              <span key={area} className="px-4 py-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 font-medium">
-                {area}
-              </span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {bodyExposure.map((item) => (
+              <article key={item.area} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <div className="relative aspect-[4/3] bg-slate-100">
+                  <Image
+                    src="/placeholders/ergonomics-placeholder.svg"
+                    alt={item.imageAlt}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-slate-900/10 to-transparent" />
+                  <p className="absolute left-3 top-3 rounded-lg border border-white/25 bg-slate-900/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
+                    Exposure Zone
+                  </p>
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-extrabold text-slate-900">{item.area}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.note}</p>
+                </div>
+              </article>
             ))}
           </div>
           <div className="mt-6 bg-slate-50 border border-slate-200 rounded-2xl p-4">

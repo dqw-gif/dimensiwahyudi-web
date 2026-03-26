@@ -14,6 +14,7 @@
     "qa:route-health": "node scripts/route-health-check.mjs",
     "qa:performance": "node scripts/route-health-check.mjs",
     "qa:reliability": "node scripts/reliability-gate.mjs",
+    "qa:e2e-stability": "node scripts/e2e-stability-check.mjs",
     "qa:full": "npm run qa:reliability && npm run test:unit"
   },
   "dependencies": {
