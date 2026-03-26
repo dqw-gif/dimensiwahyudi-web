@@ -143,14 +143,13 @@ export default function ErgonomicsHealthRisksPage() {
               attendance, and production continuity.
             </p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-3xl p-3 shadow-sm">
-            {/* DEV: Ganti dengan foto operator handling beban manual berisiko postur */}
+          <div>
             <Image
-              src="/placeholders/ergonomics-placeholder.svg"
-              alt="Health risk visual placeholder"
+              src="/top.png"
+              alt="Factory floor health-risk visual"
               width={1600}
               height={900}
-              className="w-full h-auto rounded-2xl"
+              className="w-full h-auto"
               priority
             />
           </div>
