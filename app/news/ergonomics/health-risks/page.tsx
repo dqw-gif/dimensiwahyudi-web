@@ -178,36 +178,57 @@ export default function ErgonomicsHealthRisksPage() {
               <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            {bodyExposure.map((item, index) => (
-              <article
-                key={item.area}
-                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${index === 0 ? 'sm:col-span-2 xl:col-span-1' : ''}`}
-              >
-                <div className="absolute inset-x-0 top-0 h-1.5">
-                  <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
-                </div>
-                <div className="relative aspect-[4/3] bg-slate-100">
-                  <Image
-                    src="/placeholders/ergonomics-placeholder.svg"
-                    alt={item.imageAlt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/20 to-transparent" />
-                  <p className="absolute left-3 top-3 rounded-lg border border-white/25 bg-slate-900/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
-                    Exposure Zone
-                  </p>
-                  <p className={`absolute right-3 top-3 rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white bg-gradient-to-r ${item.accent}`}>
-                    {item.badge}
-                  </p>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-base font-extrabold text-slate-900 tracking-tight">{item.area}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.note}</p>
-                </div>
-              </article>
-            ))}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-12 xl:auto-rows-[minmax(150px,auto)]">
+            {bodyExposure.map((item, index) => {
+              const cardPlacement =
+                index === 0
+                  ? 'sm:col-span-2 xl:col-span-7 xl:row-span-2'
+                  : index === 1
+                    ? 'xl:col-span-5'
+                    : index === 2
+                      ? 'xl:col-span-2'
+                      : index === 3
+                        ? 'xl:col-span-3'
+                        : index === 4
+                          ? 'xl:col-span-4'
+                          : 'xl:col-span-8';
+
+              const isHero = index === 0;
+
+              return (
+                <article
+                  key={item.area}
+                  className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${cardPlacement}`}
+                >
+                  <div className="absolute inset-x-0 top-0 h-1.5">
+                    <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
+                  </div>
+                  <div className={`relative bg-slate-100 ${isHero ? 'aspect-[16/10]' : 'aspect-[16/9]'}`}>
+                    <Image
+                      src="/placeholders/ergonomics-placeholder.svg"
+                      alt={item.imageAlt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/20 to-transparent" />
+                    <p className="absolute left-3 top-3 rounded-lg border border-white/25 bg-slate-900/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
+                      Exposure Zone
+                    </p>
+                    <p className={`absolute right-3 top-3 rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white bg-gradient-to-r ${item.accent}`}>
+                      {item.badge}
+                    </p>
+                  </div>
+                  <div className={isHero ? 'p-5 sm:p-6' : 'p-4'}>
+                    <h3 className={`${isHero ? 'text-xl sm:text-2xl' : 'text-base'} font-extrabold text-slate-900 tracking-tight`}>
+                      {item.area}
+                    </h3>
+                    <p className={`${isHero ? 'mt-3 text-base' : 'mt-2 text-sm'} leading-relaxed text-slate-600`}>
+                      {item.note}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
           <div className="mt-6 bg-slate-50 border border-slate-200 rounded-2xl p-4">
             <p className="text-sm text-slate-600 leading-relaxed">
