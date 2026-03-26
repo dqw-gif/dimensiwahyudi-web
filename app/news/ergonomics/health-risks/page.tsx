@@ -165,7 +165,7 @@ export default function ErgonomicsHealthRisksPage() {
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {riskItems.map((item) => (
-              <article key={item.title} className="group rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+              <article key={item.title} className="group rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm">
                 <div className="flex items-start gap-3">
                   <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-slate-100">
                     <Image
