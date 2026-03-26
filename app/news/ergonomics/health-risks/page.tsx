@@ -151,7 +151,7 @@ export default function ErgonomicsHealthRisksPage() {
               alt="Factory floor health-risk visual"
               width={1600}
               height={900}
-              className="h-auto w-full max-w-[680px] object-contain object-right-bottom lg:absolute lg:bottom-0 lg:right-0 lg:translate-x-3"
+              className="h-auto w-full max-w-[680px] object-contain object-right-bottom lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
               priority
             />
           </div>
