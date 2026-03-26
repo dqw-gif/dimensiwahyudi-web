@@ -97,10 +97,30 @@ const bodyExposure = [
 const bodyExposureByNoteLength = [...bodyExposure].sort((a, b) => b.note.length - a.note.length);
 
 const riskItems = [
-  'Lower back strain and recurring pain from repetitive lifting tasks',
-  'Shoulder and elbow overload during awkward object positioning',
-  'Wrist and grip fatigue caused by continuous force application',
-  'Reduced concentration due to physical exhaustion over long shifts',
+  {
+    title: 'Lower back strain and recurring pain',
+    desc: 'Often triggered by repetitive lifting and trunk rotation without load-assist support.',
+    imageSrc: '/factory%20floors/imgi_61_64156f66f294_Icon_Ergonomie_R%C3%BCckenschmerzen_2025.jpg',
+    imageAlt: 'Factory-floor icon representing lower back ergonomic strain',
+  },
+  {
+    title: 'Joint overload during awkward positioning',
+    desc: 'Shoulder and elbow load spikes during off-axis object handling and poor reach angles.',
+    imageSrc: '/factory%20floors/imgi_62_e9d1b153173a_Icon_Ergonomie_Gelenkbeschwerden_2025.jpg',
+    imageAlt: 'Factory-floor icon representing ergonomic joint overload',
+  },
+  {
+    title: 'Physical exhaustion across long shifts',
+    desc: 'Continuous force application accumulates fatigue and reduces handling precision over time.',
+    imageSrc: '/factory%20floors/imgi_63_3d61795879c8_Icon_Ergonomie_Ersch%C3%B6pfung_2025.jpg',
+    imageAlt: 'Factory-floor icon representing ergonomic exhaustion risk',
+  },
+  {
+    title: 'Cognitive load and mental pressure',
+    desc: 'Sustained physical discomfort can degrade focus, consistency, and decision quality.',
+    imageSrc: '/factory%20floors/imgi_64_d5dd52b41cf5_Icon_Ergonomie_psychische%20Belastungen_2025.jpg',
+    imageAlt: 'Factory-floor icon representing ergonomic mental load risk',
+  },
 ];
 
 export default function ErgonomicsHealthRisksPage() {
@@ -143,13 +163,27 @@ export default function ErgonomicsHealthRisksPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900">Common risk patterns on factory floors</h2>
           </div>
-          <ul className="grid md:grid-cols-2 gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             {riskItems.map((item) => (
-              <li key={item} className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-slate-700 leading-relaxed">
-                {item}
-              </li>
+              <article key={item.title} className="group relative overflow-hidden rounded-2xl border border-slate-200">
+                <div className="relative aspect-[16/10] bg-slate-100">
+                  <Image
+                    src={item.imageSrc}
+                    alt={item.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/25 to-transparent" />
+                  <div className="absolute inset-x-3 bottom-3 rounded-xl border border-white/15 bg-slate-900/45 p-3 backdrop-blur-sm">
+                    <h3 className="text-base font-bold leading-tight text-white">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-100/95 opacity-90 transition-opacity group-hover:opacity-100">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </article>
             ))}
-          </ul>
+          </div>
         </section>
 
         <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
