@@ -221,7 +221,7 @@ export default function ErgonomicsHealthRisksPage() {
                       <h3 className={`${isHero ? 'text-lg sm:text-xl' : 'text-base'} font-extrabold tracking-tight text-white`}>
                         {item.area}
                       </h3>
-                      <p className={`${isHero ? 'mt-2 text-sm sm:text-base' : 'mt-2 text-xs sm:text-sm'} leading-relaxed text-slate-100/95`}>
+                      <p className={`${isHero ? 'mt-2 text-sm sm:text-base group-hover:max-h-28' : 'mt-2 text-xs sm:text-sm group-hover:max-h-24'} max-h-0 overflow-hidden leading-relaxed text-slate-100/95 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
                         {item.note}
                       </p>
                       <div className="mt-3 h-1.5 w-20 overflow-hidden rounded-full bg-white/30">
