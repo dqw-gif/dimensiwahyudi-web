@@ -49,7 +49,7 @@ const bodyExposure = [
     note: 'Frequent strain during lifting from floor level and trunk rotation.',
     imageAlt: 'Dummy ergonomic illustration for lower back risk',
     imageSrc: '/body%20zones/Lower%20back.jpeg',
-    accent: 'from-rose-500 to-orange-400',
+    accent: 'from-blue-700 to-cyan-500',
     badge: 'Highest Frequency',
   },
   {
@@ -57,7 +57,7 @@ const bodyExposure = [
     note: 'Overload appears during overhead reach and repetitive object transfer.',
     imageAlt: 'Dummy ergonomic illustration for shoulder and upper arm risk',
     imageSrc: '/body%20zones/Shoulder%20and%20upper%20arms.jpeg',
-    accent: 'from-blue-500 to-cyan-400',
+    accent: 'from-blue-600 to-cyan-500',
     badge: 'Overhead Load',
   },
   {
@@ -65,7 +65,7 @@ const bodyExposure = [
     note: 'Repetitive extension and load transfer can trigger tendon stress around the elbow.',
     imageAlt: 'Ergonomic illustration for elbow risk',
     imageSrc: '/body%20zones/Elbow.jpeg',
-    accent: 'from-violet-500 to-indigo-400',
+    accent: 'from-sky-600 to-blue-500',
     badge: 'Precision Stress',
   },
   {
@@ -73,7 +73,7 @@ const bodyExposure = [
     note: 'Static posture and frequent forward head position increase fatigue.',
     imageAlt: 'Ergonomic illustration for neck and upper back risk',
     imageSrc: '/body%20zones/Neck%20and%20upper%20back.jpeg',
-    accent: 'from-fuchsia-500 to-rose-400',
+    accent: 'from-cyan-600 to-blue-500',
     badge: 'Posture Drift',
   },
   {
@@ -81,7 +81,7 @@ const bodyExposure = [
     note: 'Uneven load transfer and frequent bending can increase hip joint pressure.',
     imageAlt: 'Ergonomic illustration for hip risk',
     imageSrc: '/body%20zones/hip.jpeg',
-    accent: 'from-amber-500 to-yellow-400',
+    accent: 'from-blue-500 to-sky-400',
     badge: 'Joint Pressure',
   },
   {
@@ -89,7 +89,7 @@ const bodyExposure = [
     note: 'Repeated squatting and lifting from low height can reduce knee comfort over shifts.',
     imageAlt: 'Ergonomic illustration for knee risk',
     imageSrc: '/body%20zones/knee.jpeg',
-    accent: 'from-emerald-500 to-teal-400',
+    accent: 'from-blue-700 to-sky-500',
     badge: 'Lower Joint Load',
   },
 ];
@@ -163,20 +163,21 @@ export default function ErgonomicsHealthRisksPage() {
             </div>
             <h2 className="text-2xl font-black text-slate-900">Common risk patterns on factory floors</h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3 md:grid-cols-2">
             {riskItems.map((item) => (
-              <article key={item.title} className="group relative overflow-hidden rounded-2xl border border-slate-200">
-                <div className="relative aspect-[16/10] bg-slate-100">
-                  <Image
-                    src={item.imageSrc}
-                    alt={item.imageAlt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/25 to-transparent" />
-                  <div className="absolute inset-x-3 bottom-3 rounded-xl border border-white/15 bg-slate-900/45 p-3 backdrop-blur-sm">
-                    <h3 className="text-base font-bold leading-tight text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-100/95 opacity-90 transition-opacity group-hover:opacity-100">
+              <article key={item.title} className="group rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+                <div className="flex items-start gap-3">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                    <Image
+                      src={item.imageSrc}
+                      alt={item.imageAlt}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold leading-tight text-slate-900">{item.title}</h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
                       {item.desc}
                     </p>
                   </div>
