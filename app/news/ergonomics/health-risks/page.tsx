@@ -178,20 +178,20 @@ export default function ErgonomicsHealthRisksPage() {
               <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-12 xl:auto-rows-[minmax(150px,auto)]">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-12">
             {bodyExposure.map((item, index) => {
               const cardPlacement =
                 index === 0
-                  ? 'sm:col-span-2 xl:col-span-7 xl:row-span-2'
+                  ? 'sm:col-span-2 xl:col-span-6 xl:row-span-2'
                   : index === 1
-                    ? 'xl:col-span-5'
+                    ? 'xl:col-span-3'
                     : index === 2
-                      ? 'xl:col-span-2'
+                      ? 'xl:col-span-3'
                       : index === 3
                         ? 'xl:col-span-3'
                         : index === 4
-                          ? 'xl:col-span-4'
-                          : 'xl:col-span-8';
+                          ? 'xl:col-span-3'
+                          : 'xl:col-span-6';
 
               const isHero = index === 0;
 
@@ -203,27 +203,36 @@ export default function ErgonomicsHealthRisksPage() {
                   <div className="absolute inset-x-0 top-0 h-1.5">
                     <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
                   </div>
-                  <div className={`relative bg-slate-100 ${isHero ? 'aspect-[16/10]' : 'aspect-[16/9]'}`}>
+                  <div className="relative aspect-square bg-slate-100">
                     <Image
                       src="/placeholders/ergonomics-placeholder.svg"
                       alt={item.imageAlt}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/35 to-slate-900/10" />
                     <p className="absolute left-3 top-3 rounded-lg border border-white/25 bg-slate-900/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
                       Exposure Zone
                     </p>
                     <p className={`absolute right-3 top-3 rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white bg-gradient-to-r ${item.accent}`}>
                       {item.badge}
                     </p>
-                  </div>
-                  <div className={isHero ? 'p-5 sm:p-6' : 'p-4'}>
-                    <h3 className={`${isHero ? 'text-xl sm:text-2xl' : 'text-base'} font-extrabold text-slate-900 tracking-tight`}>
-                      {item.area}
-                    </h3>
-                    <p className={`${isHero ? 'mt-3 text-base' : 'mt-2 text-sm'} leading-relaxed text-slate-600`}>
-                      {item.note}
+                    <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-white/20 bg-white/12 p-3 backdrop-blur-md">
+                      <h3 className={`${isHero ? 'text-lg sm:text-xl' : 'text-base'} font-extrabold tracking-tight text-white`}>
+                        {item.area}
+                      </h3>
+                      <p className={`${isHero ? 'mt-2 text-sm sm:text-base' : 'mt-2 text-xs sm:text-sm'} leading-relaxed text-slate-100/95`}>
+                        {item.note}
+                      </p>
+                      <div className="mt-3 h-1.5 w-20 overflow-hidden rounded-full bg-white/30">
+                        <div className={`h-full w-full rounded-full bg-gradient-to-r ${item.accent}`} />
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(255,255,255,0.35),transparent_35%)]" />
+                    </div>
+                    <p className="absolute right-3 bottom-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white/80">
+                      {isHero ? 'Primary Focus' : 'Watch Zone'}
                     </p>
                   </div>
                 </article>
