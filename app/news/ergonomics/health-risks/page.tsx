@@ -133,8 +133,8 @@ export default function ErgonomicsHealthRisksPage() {
           </Link>
         </nav>
 
-        <section className="grid items-end gap-4 lg:grid-cols-12 lg:gap-2">
-          <div className="max-w-xl lg:col-span-5">
+        <section className="grid items-end gap-4 lg:grid-cols-12 lg:gap-1">
+          <div className="max-w-[520px] lg:col-span-5">
             <p className="text-xs font-bold text-rose-600 uppercase tracking-[0.2em] mb-3">Health Perspective</p>
             <h1 className="text-4xl font-black tracking-tight leading-[0.95] text-slate-900 mb-5 sm:text-5xl">
               Health risks and diseases in manual handling operations
@@ -145,13 +145,13 @@ export default function ErgonomicsHealthRisksPage() {
               attendance, and production continuity.
             </p>
           </div>
-          <div className="relative lg:col-span-7 lg:min-h-[360px]">
+          <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
               src="/top.png"
               alt="Factory floor health-risk visual"
               width={1600}
               height={900}
-              className="h-auto w-full max-w-[620px] object-contain object-right-bottom lg:absolute lg:bottom-0 lg:right-0"
+              className="h-auto w-full max-w-[680px] object-contain object-right-bottom lg:absolute lg:bottom-0 lg:right-0 lg:translate-x-3"
               priority
             />
           </div>
