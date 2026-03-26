@@ -48,6 +48,7 @@ const bodyExposure = [
     area: 'Lower back',
     note: 'Frequent strain during lifting from floor level and trunk rotation.',
     imageAlt: 'Dummy ergonomic illustration for lower back risk',
+    imageSrc: '/body%20zones/Lower%20back.jpeg',
     accent: 'from-rose-500 to-orange-400',
     badge: 'Highest Frequency',
   },
@@ -55,36 +56,41 @@ const bodyExposure = [
     area: 'Shoulders and upper arms',
     note: 'Overload appears during overhead reach and repetitive object transfer.',
     imageAlt: 'Dummy ergonomic illustration for shoulder and upper arm risk',
+    imageSrc: '/body%20zones/Shoulder%20and%20upper%20arms.jpeg',
     accent: 'from-blue-500 to-cyan-400',
     badge: 'Overhead Load',
   },
   {
-    area: 'Elbows and wrists',
-    note: 'High repetition and forceful grip can trigger tendon stress quickly.',
-    imageAlt: 'Dummy ergonomic illustration for elbow and wrist risk',
+    area: 'Elbow',
+    note: 'Repetitive extension and load transfer can trigger tendon stress around the elbow.',
+    imageAlt: 'Ergonomic illustration for elbow risk',
+    imageSrc: '/body%20zones/Elbow.jpeg',
     accent: 'from-violet-500 to-indigo-400',
     badge: 'Precision Stress',
   },
   {
     area: 'Neck and upper back',
     note: 'Static posture and frequent forward head position increase fatigue.',
-    imageAlt: 'Dummy ergonomic illustration for neck and upper back risk',
+    imageAlt: 'Ergonomic illustration for neck and upper back risk',
+    imageSrc: '/body%20zones/Neck%20and%20upper%20back.jpeg',
     accent: 'from-fuchsia-500 to-rose-400',
     badge: 'Posture Drift',
   },
   {
-    area: 'Hip and knee joints',
-    note: 'Repeated squatting and uneven load transfer reduce joint comfort.',
-    imageAlt: 'Dummy ergonomic illustration for hip and knee joint risk',
+    area: 'Hip',
+    note: 'Uneven load transfer and frequent bending can increase hip joint pressure.',
+    imageAlt: 'Ergonomic illustration for hip risk',
+    imageSrc: '/body%20zones/hip.jpeg',
     accent: 'from-amber-500 to-yellow-400',
     badge: 'Joint Pressure',
   },
   {
-    area: 'Grip and forearm area',
-    note: 'Sustained pinching and carrying force can reduce handling endurance.',
-    imageAlt: 'Dummy ergonomic illustration for grip and forearm risk',
+    area: 'Knee',
+    note: 'Repeated squatting and lifting from low height can reduce knee comfort over shifts.',
+    imageAlt: 'Ergonomic illustration for knee risk',
+    imageSrc: '/body%20zones/knee.jpeg',
     accent: 'from-emerald-500 to-teal-400',
-    badge: 'Grip Fatigue',
+    badge: 'Lower Joint Load',
   },
 ];
 
@@ -207,7 +213,7 @@ export default function ErgonomicsHealthRisksPage() {
                   </div>
                   <div className="relative aspect-square bg-slate-100">
                     <Image
-                      src="/placeholders/ergonomics-placeholder.svg"
+                      src={item.imageSrc}
                       alt={item.imageAlt}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
