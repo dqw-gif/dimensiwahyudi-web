@@ -88,6 +88,8 @@ const bodyExposure = [
   },
 ];
 
+const bodyExposureByNoteLength = [...bodyExposure].sort((a, b) => b.note.length - a.note.length);
+
 const riskItems = [
   'Lower back strain and recurring pain from repetitive lifting tasks',
   'Shoulder and elbow overload during awkward object positioning',
@@ -178,20 +180,20 @@ export default function ErgonomicsHealthRisksPage() {
               <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-12">
-            {bodyExposure.map((item, index) => {
+          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-fr">
+            {bodyExposureByNoteLength.map((item, index) => {
               const cardPlacement =
                 index === 0
-                  ? 'sm:col-span-2 xl:col-span-6 xl:row-span-2'
+                  ? 'sm:col-span-2 lg:col-span-2 lg:row-span-2'
                   : index === 1
-                    ? 'xl:col-span-3'
+                    ? 'lg:col-start-3 lg:row-start-1'
                     : index === 2
-                      ? 'xl:col-span-3'
+                      ? 'lg:col-start-3 lg:row-start-2'
                       : index === 3
-                        ? 'xl:col-span-3'
+                        ? 'lg:col-start-1 lg:row-start-3'
                         : index === 4
-                          ? 'xl:col-span-3'
-                          : 'xl:col-span-6';
+                          ? 'lg:col-start-2 lg:row-start-3'
+                          : 'lg:col-start-3 lg:row-start-3';
 
               const isHero = index === 0;
 
@@ -217,11 +219,11 @@ export default function ErgonomicsHealthRisksPage() {
                     <p className={`absolute right-3 top-3 rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white bg-gradient-to-r ${item.accent}`}>
                       {item.badge}
                     </p>
-                    <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-white/20 bg-white/12 p-3 backdrop-blur-md">
-                      <h3 className={`${isHero ? 'text-lg sm:text-xl' : 'text-base'} font-extrabold tracking-tight text-white`}>
+                    <div className={`absolute inset-x-3 bottom-3 rounded-2xl border border-white/20 bg-white/12 backdrop-blur-md ${isHero ? 'p-4 sm:p-5' : 'p-3'}`}>
+                      <h3 className={`${isHero ? 'text-xl sm:text-2xl' : 'text-base'} font-extrabold tracking-tight text-white`}>
                         {item.area}
                       </h3>
-                      <p className={`${isHero ? 'mt-2 text-sm sm:text-base group-hover:max-h-28' : 'mt-2 text-xs sm:text-sm group-hover:max-h-24'} max-h-0 overflow-hidden leading-relaxed text-slate-100/95 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
+                      <p className={`${isHero ? 'mt-2 text-sm sm:text-base group-hover:max-h-40' : 'mt-2 text-xs sm:text-sm group-hover:max-h-24'} max-h-0 overflow-hidden leading-relaxed text-slate-100/95 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
                         {item.note}
                       </p>
                       <div className="mt-3 h-1.5 w-20 overflow-hidden rounded-full bg-white/30">
