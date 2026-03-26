@@ -48,31 +48,43 @@ const bodyExposure = [
     area: 'Lower back',
     note: 'Frequent strain during lifting from floor level and trunk rotation.',
     imageAlt: 'Dummy ergonomic illustration for lower back risk',
+    accent: 'from-rose-500 to-orange-400',
+    badge: 'Highest Frequency',
   },
   {
     area: 'Shoulders and upper arms',
     note: 'Overload appears during overhead reach and repetitive object transfer.',
     imageAlt: 'Dummy ergonomic illustration for shoulder and upper arm risk',
+    accent: 'from-blue-500 to-cyan-400',
+    badge: 'Overhead Load',
   },
   {
     area: 'Elbows and wrists',
     note: 'High repetition and forceful grip can trigger tendon stress quickly.',
     imageAlt: 'Dummy ergonomic illustration for elbow and wrist risk',
+    accent: 'from-violet-500 to-indigo-400',
+    badge: 'Precision Stress',
   },
   {
     area: 'Neck and upper back',
     note: 'Static posture and frequent forward head position increase fatigue.',
     imageAlt: 'Dummy ergonomic illustration for neck and upper back risk',
+    accent: 'from-fuchsia-500 to-rose-400',
+    badge: 'Posture Drift',
   },
   {
     area: 'Hip and knee joints',
     note: 'Repeated squatting and uneven load transfer reduce joint comfort.',
     imageAlt: 'Dummy ergonomic illustration for hip and knee joint risk',
+    accent: 'from-amber-500 to-yellow-400',
+    badge: 'Joint Pressure',
   },
   {
     area: 'Grip and forearm area',
     note: 'Sustained pinching and carrying force can reduce handling endurance.',
     imageAlt: 'Dummy ergonomic illustration for grip and forearm risk',
+    accent: 'from-emerald-500 to-teal-400',
+    badge: 'Grip Fatigue',
   },
 ];
 
@@ -154,30 +166,44 @@ export default function ErgonomicsHealthRisksPage() {
           </p>
         </section>
 
-        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
+        <section className={`relative overflow-hidden bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
+          <div aria-hidden className="pointer-events-none absolute -left-12 -top-12 h-44 w-44 rounded-full bg-blue-200/35 blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -right-16 -bottom-16 h-52 w-52 rounded-full bg-cyan-200/35 blur-3xl" />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
-            <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-600">Risk Heatmap</p>
+              <h2 className="text-2xl font-black text-slate-900">Most exposed body zones in repetitive handling</h2>
+            </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {bodyExposure.map((item) => (
-              <article key={item.area} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            {bodyExposure.map((item, index) => (
+              <article
+                key={item.area}
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${index === 0 ? 'sm:col-span-2 xl:col-span-1' : ''}`}
+              >
+                <div className="absolute inset-x-0 top-0 h-1.5">
+                  <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
+                </div>
                 <div className="relative aspect-[4/3] bg-slate-100">
                   <Image
                     src="/placeholders/ergonomics-placeholder.svg"
                     alt={item.imageAlt}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/55 via-slate-900/10 to-transparent" />
-                  <p className="absolute left-3 top-3 rounded-lg border border-white/25 bg-slate-900/60 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/20 to-transparent" />
+                  <p className="absolute left-3 top-3 rounded-lg border border-white/25 bg-slate-900/65 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
                     Exposure Zone
+                  </p>
+                  <p className={`absolute right-3 top-3 rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white bg-gradient-to-r ${item.accent}`}>
+                    {item.badge}
                   </p>
                 </div>
                 <div className="p-4">
-                  <h3 className="text-base font-extrabold text-slate-900">{item.area}</h3>
+                  <h3 className="text-base font-extrabold text-slate-900 tracking-tight">{item.area}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.note}</p>
                 </div>
               </article>
