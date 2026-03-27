@@ -157,7 +157,7 @@ export default function ErgonomicsHealthRisksPage() {
           </div>
         </section>
 
-        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm lg:-mt-10`}>
+        <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           <div className="flex items-center gap-3 mb-5">
             <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
               <SolidWarningIcon className="w-4.5 h-4.5" />
