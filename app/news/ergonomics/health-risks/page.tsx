@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { Activity, AlertTriangle, ArrowLeft, ArrowRight, TrendingDown } from 'lucide-react';
 import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
 import { SolidHealthIcon, SolidSafetyIcon, SolidWarningIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
 import { spacingTokens } from '../../../../constants/spacingTokens';
@@ -31,9 +31,8 @@ const healthStats = [
     label: 'Risk Task',
     value: 'High-Risk Zone',
     note: 'Repetitive lifting with awkward posture should be prioritized in the first intervention wave.',
-    metricLabel: 'Priority score',
     metricValue: 'P1',
-    trend: 'Load exposure compounds daily',
+    icon: AlertTriangle,
     accent: 'from-blue-700 to-cyan-500',
   },
   {
@@ -41,9 +40,8 @@ const healthStats = [
     label: 'Early Symptoms',
     value: '2-12 Weeks',
     note: 'Minor discomfort can escalate into recurring strain when task design remains unchanged.',
-    metricLabel: 'Response SLA',
     metricValue: '< 14 days',
-    trend: 'Recovery time grows each cycle',
+    icon: Activity,
     accent: 'from-blue-600 to-sky-500',
   },
   {
@@ -51,9 +49,8 @@ const healthStats = [
     label: 'Business Loss',
     value: 'People -> Throughput',
     note: 'Health strain typically surfaces first as output variability, quality drift, and attendance pressure.',
-    metricLabel: 'Output risk',
     metricValue: 'High',
-    trend: 'Stability drops across shifts',
+    icon: TrendingDown,
     accent: 'from-blue-700 to-blue-500',
   },
 ];
@@ -214,31 +211,26 @@ export default function ErgonomicsHealthRisksPage() {
             </div>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
-            {healthStats.map((item, index) => (
-              <article key={item.label} className="group relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            {healthStats.map((item) => (
+              <article key={item.label} className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
                 <div className="absolute inset-x-0 top-0 h-1.5 overflow-hidden rounded-t-xl">
                   <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
                 </div>
-                <div className="mb-4 flex items-center justify-between">
-                  <p className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-2 text-xs font-black tracking-wide text-blue-700">
+                <div className="mb-4 flex items-center justify-between pt-1">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-blue-700">
+                    <item.icon className="h-4.5 w-4.5" />
+                  </span>
+                  <p className="inline-flex h-7 min-w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-2 text-[11px] font-black tracking-wide text-slate-600">
                     {item.stage}
                   </p>
-                  <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">
-                    {item.metricLabel}
-                  </span>
                 </div>
                 <p className="text-[11px] uppercase tracking-[0.16em] font-bold text-slate-500 mb-2">{item.label}</p>
-                <p className="text-3xl font-black leading-tight text-slate-900 mb-3">{item.value}</p>
+                <p className="text-[30px] font-black leading-tight text-slate-900 mb-3">{item.value}</p>
                 <p className="text-sm text-slate-600 leading-relaxed">{item.note}</p>
                 <div className="mt-4 flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">{item.metricValue}</span>
-                  <span className="text-[11px] font-medium text-slate-500">{item.trend}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">KPI</span>
+                  <span className="text-xs font-black tracking-wide text-blue-700">{item.metricValue}</span>
                 </div>
-                {index < healthStats.length - 1 ? (
-                  <div className="pointer-events-none absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-blue-200 bg-blue-50 text-blue-600 lg:flex">
-                    <ArrowRight size={14} />
-                  </div>
-                ) : null}
               </article>
             ))}
           </div>
