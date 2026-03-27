@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Activity, AlertTriangle, ArrowLeft, ArrowRight, TrendingDown } from 'lucide-react';
 import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStudies';
-import { SolidHealthIcon, SolidSafetyIcon, SolidWarningIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
+import { SolidHealthIcon, SolidSafetyIcon, SolidWarningIcon, SolidCalculatorIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
 import { spacingTokens } from '../../../../constants/spacingTokens';
 
 export const metadata: Metadata = {
@@ -151,11 +151,19 @@ export default function ErgonomicsHealthRisksPage() {
             <h1 className="text-4xl font-black tracking-tight leading-[0.95] text-slate-900 mb-5 sm:text-5xl">
               Health risks and diseases in manual handling operations
             </h1>
-            <p className="text-slate-600 text-lg leading-relaxed">
+            <p className="text-slate-600 text-lg leading-relaxed mb-8">
               Daily lifting, carrying, and repetitive handling can create a cumulative physical burden. Without ergonomic
               support, minor discomfort often develops into persistent musculoskeletal problems that affect people,
               attendance, and production continuity.
             </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/digital-assistant/roi-calculator" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-colors">
+                <Activity className="w-4 h-4" /> Get Risk Assessment
+              </Link>
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-600 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors">
+                Discuss with Engineering
+              </Link>
+            </div>
           </div>
           <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
@@ -376,54 +384,46 @@ export default function ErgonomicsHealthRisksPage() {
           </div>
         </section>
 
+        {/* UPGRADED CARDS WITH ICONS & STAT CHIPS (Matching Productivity style) */}
         <section className="grid lg:grid-cols-2 gap-6 lg:items-stretch">
-          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard} flex flex-col justify-between gap-5`}>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center shrink-0">
-                  <TrendingDown className="w-4 h-4" />
-                </div>
-                <h3 className="text-xl font-black text-slate-900">Operational consequence</h3>
+          <div className={`bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between`}>
+            <div>
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 border border-rose-200 text-rose-600">
+                <SolidWarningIcon className="h-6 w-6" />
               </div>
-              <p className="text-slate-600 leading-relaxed text-sm">
+              <h3 className="text-2xl font-black text-slate-900 mb-4">Operational consequence</h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
                 Physical fatigue does not stay at the individual level. It influences handling speed, consistency, error
-                rates, and workforce stability. Over time, this creates hidden costs through quality disruption and lost
-                productive hours.
+                rates, and workforce stability. Over time, this creates hidden costs through quality disruption and
+                lost productive hours.
               </p>
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {[{ stat: '↑ Error', label: 'Rate' }, { stat: '↓ Speed', label: 'Output' }, { stat: '↑ Absent', label: 'Rate' }].map((item) => (
-                <div key={item.stat} className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 text-center">
-                  <p className="text-sm font-black text-rose-600">{item.stat}</p>
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wide mt-0.5">{item.label}</p>
-                </div>
-              ))}
+            <div className="mt-8 flex flex-wrap gap-2">
+              <span className="inline-flex items-center rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-700 border border-rose-200">↑ Error Rate</span>
+              <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 border border-slate-200">↓ Speed Output</span>
+              <span className="inline-flex items-center rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-700 border border-rose-200">↑ Absent Rate</span>
             </div>
           </div>
-          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard} flex flex-col justify-between gap-5`}>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center shrink-0">
-                  <Activity className="w-4 h-4" />
-                </div>
-                <h3 className="text-xl font-black text-slate-900">What ergonomics changes</h3>
+          <div className={`bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between`}>
+            <div>
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-200 text-blue-600">
+                <SolidHealthIcon className="h-6 w-6" />
               </div>
-              <p className="text-slate-600 leading-relaxed text-sm">
+              <h3 className="text-2xl font-black text-slate-900 mb-4">What ergonomics changes</h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
                 Engineered lifting assistance shifts physical load from operators to handling systems. This lowers strain,
                 supports healthier working routines, and helps maintain consistent output quality across shifts.
               </p>
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {[{ stat: '↓ Strain', label: 'Load' }, { stat: '↑ Quality', label: 'Output' }, { stat: '↓ Risk', label: 'Exposure' }].map((item) => (
-                <div key={item.stat} className="rounded-xl border border-blue-100 bg-blue-50 px-3 py-2.5 text-center">
-                  <p className="text-sm font-black text-blue-600">{item.stat}</p>
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wide mt-0.5">{item.label}</p>
-                </div>
-              ))}
+            <div className="mt-8 flex flex-wrap gap-2">
+              <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 border border-blue-200">↓ Strain Load</span>
+              <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 border border-emerald-200">↑ Quality Output</span>
+              <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 border border-blue-200">↓ Risk Exposure</span>
             </div>
           </div>
         </section>
 
+        {/* 6. CASE STUDIES (Moved from above) */}
         <ErgonomicsCaseStudies topic="health" />
 
         <section className={`bg-slate-900 text-white rounded-3xl ${spacingTokens.card.feature} border border-slate-800`}>
