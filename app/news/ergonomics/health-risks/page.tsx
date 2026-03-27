@@ -27,19 +27,34 @@ export const metadata: Metadata = {
 
 const healthStats = [
   {
-    label: 'High-Risk Manual Handling Tasks',
-    value: 'Top Priority',
-    note: 'Repetitive lifting and awkward posture tasks should be assessed first.',
+    stage: '01',
+    label: 'Risk Task',
+    value: 'High-Risk Zone',
+    note: 'Repetitive lifting with awkward posture should be prioritized in the first intervention wave.',
+    metricLabel: 'Priority score',
+    metricValue: 'P1',
+    trend: 'Load exposure compounds daily',
+    accent: 'from-blue-700 to-cyan-500',
   },
   {
-    label: 'Early Warning Window',
-    value: 'Weeks to Months',
-    note: 'Minor discomfort can escalate quickly if load profile is unchanged.',
+    stage: '02',
+    label: 'Early Symptoms',
+    value: '2-12 Weeks',
+    note: 'Minor discomfort can escalate into recurring strain when task design remains unchanged.',
+    metricLabel: 'Response SLA',
+    metricValue: '< 14 days',
+    trend: 'Recovery time grows each cycle',
+    accent: 'from-blue-600 to-sky-500',
   },
   {
-    label: 'Business Impact Path',
-    value: 'People -> Output',
-    note: 'Health strain often appears first as quality and speed inconsistency.',
+    stage: '03',
+    label: 'Business Loss',
+    value: 'People -> Throughput',
+    note: 'Health strain typically surfaces first as output variability, quality drift, and attendance pressure.',
+    metricLabel: 'Output risk',
+    metricValue: 'High',
+    trend: 'Stability drops across shifts',
+    accent: 'from-blue-700 to-blue-500',
   },
 ];
 
@@ -193,20 +208,43 @@ export default function ErgonomicsHealthRisksPage() {
             <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
               <SolidHealthIcon className="w-4.5 h-4.5" />
             </div>
-            <h2 className="text-2xl font-black text-slate-900">Health impact infographic snapshot</h2>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-600">Impact Storyline</p>
+              <h2 className="text-2xl font-black text-slate-900">Health impact infographic snapshot</h2>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {healthStats.map((item) => (
-              <article key={item.label} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-                <p className="text-xs uppercase tracking-[0.16em] font-bold text-slate-500 mb-2">{item.label}</p>
-                <p className="text-2xl font-black text-slate-900 mb-2">{item.value}</p>
+          <div className="grid gap-4 lg:grid-cols-3">
+            {healthStats.map((item, index) => (
+              <article key={item.label} className="group relative rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="absolute inset-x-0 top-0 h-1.5 overflow-hidden rounded-t-xl">
+                  <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
+                </div>
+                <div className="mb-4 flex items-center justify-between">
+                  <p className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-2 text-xs font-black tracking-wide text-blue-700">
+                    {item.stage}
+                  </p>
+                  <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-600">
+                    {item.metricLabel}
+                  </span>
+                </div>
+                <p className="text-[11px] uppercase tracking-[0.16em] font-bold text-slate-500 mb-2">{item.label}</p>
+                <p className="text-3xl font-black leading-tight text-slate-900 mb-3">{item.value}</p>
                 <p className="text-sm text-slate-600 leading-relaxed">{item.note}</p>
+                <div className="mt-4 flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">{item.metricValue}</span>
+                  <span className="text-[11px] font-medium text-slate-500">{item.trend}</span>
+                </div>
+                {index < healthStats.length - 1 ? (
+                  <div className="pointer-events-none absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border border-blue-200 bg-blue-50 text-blue-600 lg:flex">
+                    <ArrowRight size={14} />
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
-          <p className="text-xs text-slate-400 mt-4">
+          <p className="mt-5 rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-xs text-slate-600">
             {/* DEV: Jika sudah ada data absensi / incident client lokal, taruh metrik real di kartu ini. */}
-            Use your internal EHS and attendance data to replace these planning-level indicators.
+            Use your internal EHS and attendance data to replace these planning-level indicators and quantify each stage.
           </p>
         </section>
 
