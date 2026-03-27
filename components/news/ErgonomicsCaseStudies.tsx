@@ -37,9 +37,7 @@ export default function ErgonomicsCaseStudies({ topic }: { topic: TopicKey }) {
         ))}
       </div>
 
-      <p className="text-xs text-slate-400 mt-4">
-        DEV: Replace with verified customer stories, real KPI outcomes, and approved client references.
-      </p>
+
     </section>
   );
 }

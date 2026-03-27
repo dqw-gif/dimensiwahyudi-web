@@ -38,18 +38,18 @@ const healthStats = [
   {
     stage: '02',
     label: 'Early Symptoms',
-    value: '2-12 Weeks',
+    value: '2–12 Weeks',
     note: 'Minor discomfort can escalate into recurring strain when task design remains unchanged.',
-    metricValue: '< 14 days',
+    metricValue: '2–12 wks',
     icon: Activity,
     accent: 'from-blue-600 to-sky-500',
   },
   {
     stage: '03',
     label: 'Business Loss',
-    value: 'People -> Throughput',
-    note: 'Health strain typically surfaces first as output variability, quality drift, and attendance pressure.',
-    metricValue: 'High',
+    value: 'Output Drain',
+    note: 'Health strain surfaces first as output variability, quality drift, and rising attendance pressure.',
+    metricValue: 'Critical',
     icon: TrendingDown,
     accent: 'from-blue-700 to-blue-500',
   },
@@ -163,7 +163,7 @@ export default function ErgonomicsHealthRisksPage() {
               alt="Factory floor health-risk visual"
               width={1600}
               height={900}
-              className="h-auto w-full max-w-[680px] object-contain object-right-bottom lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
+              className="h-auto w-full max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
               priority
             />
           </div>
@@ -201,7 +201,8 @@ export default function ErgonomicsHealthRisksPage() {
         </section>
 
         <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
-          <div className="flex items-center gap-3 mb-6">
+          {/* Section Header */}
+          <div className="flex items-center gap-3 mb-8">
             <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
               <SolidHealthIcon className="w-4.5 h-4.5" />
             </div>
@@ -210,33 +211,87 @@ export default function ErgonomicsHealthRisksPage() {
               <h2 className="text-2xl font-black text-slate-900">Health impact infographic snapshot</h2>
             </div>
           </div>
-          <div className="grid gap-4 lg:grid-cols-3">
-            {healthStats.map((item) => (
-              <article key={item.label} className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                <div className="absolute inset-x-0 top-0 h-1.5 overflow-hidden rounded-t-xl">
-                  <div className={`h-full w-full bg-gradient-to-r ${item.accent}`} />
+
+          {/* Infographic: 3 clean stage cards + SVG arrows between them */}
+          <div className="flex flex-col lg:flex-row items-stretch gap-0">
+            {healthStats.map((item, index) => {
+              const riskPct = index === 0 ? 85 : index === 1 ? 55 : 90;
+              const riskColor = index === 0 ? 'text-rose-600' : index === 1 ? 'text-amber-500' : 'text-red-600';
+              const riskBarColor = index === 0 ? 'bg-rose-500' : index === 1 ? 'bg-amber-400' : 'bg-red-500';
+              const stageRingColor = index === 0 ? 'border-blue-600 text-blue-700 bg-blue-50' : index === 1 ? 'border-sky-500 text-sky-700 bg-sky-50' : 'border-blue-700 text-blue-800 bg-blue-50';
+              const accentLine = index === 0 ? 'bg-gradient-to-r from-blue-700 to-cyan-500' : index === 1 ? 'bg-gradient-to-r from-blue-600 to-sky-500' : 'bg-gradient-to-r from-blue-700 to-blue-500';
+
+              return (
+                <div key={item.label} className="flex lg:flex-1 flex-col lg:flex-row items-stretch">
+                  {/* Card */}
+                  <article className="flex-1 group rounded-2xl border border-slate-200 bg-white p-6 hover:border-blue-300 hover:shadow-md transition-all duration-200 flex flex-col gap-4">
+
+                    {/* Top row: stage ring + icon + KPI badge */}
+                    <div className="flex items-center justify-between">
+                      <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full border-2 text-sm font-black ${stageRingColor}`}>
+                        {item.stage}
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-slate-500">
+                        <item.icon className="w-3 h-3" />
+                        {item.label}
+                      </span>
+                    </div>
+
+                    {/* Big stat */}
+                    <div>
+                      <p className="text-2xl font-black leading-tight text-slate-900 tracking-tight">{item.value}</p>
+                      <p className="mt-1.5 text-xs text-slate-500 leading-relaxed">{item.note}</p>
+                    </div>
+
+                    {/* Risk level bar */}
+                    <div className="mt-auto space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-slate-400">Risk Level</span>
+                        <span className={`text-[11px] font-black ${riskColor}`}>{riskPct}%</span>
+                      </div>
+                      <div className="h-1.5 w-full rounded-full bg-slate-100 overflow-hidden">
+                        <div className={`h-full rounded-full ${riskBarColor} transition-all duration-500`} style={{ width: `${riskPct}%` }} />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] text-slate-400">KPI</span>
+                        <span className="text-[10px] font-black text-blue-700">{item.metricValue}</span>
+                      </div>
+                    </div>
+
+                    {/* Accent bottom line */}
+                    <div className={`h-0.5 rounded-full ${accentLine}`} />
+                  </article>
+
+                  {/* Arrow connector between cards (desktop only, not after last) */}
+                  {index < healthStats.length - 1 && (
+                    <div className="hidden lg:flex items-center justify-center w-10 shrink-0 text-slate-300">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
                 </div>
-                <div className="mb-4 flex items-center justify-between pt-1">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-blue-200 bg-blue-50 text-blue-700">
-                    <item.icon className="h-4.5 w-4.5" />
-                  </span>
-                  <p className="inline-flex h-7 min-w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-2 text-[11px] font-black tracking-wide text-slate-600">
-                    {item.stage}
-                  </p>
-                </div>
-                <p className="text-[11px] uppercase tracking-[0.16em] font-bold text-slate-500 mb-2">{item.label}</p>
-                <p className="text-[30px] font-black leading-tight text-slate-900 mb-3">{item.value}</p>
-                <p className="text-sm text-slate-600 leading-relaxed">{item.note}</p>
-                <div className="mt-4 flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">KPI</span>
-                  <span className="text-xs font-black tracking-wide text-blue-700">{item.metricValue}</span>
-                </div>
-              </article>
+              );
+            })}
+          </div>
+
+          {/* Bottom summary stats */}
+          <div className="mt-5 grid grid-cols-3 divide-x divide-slate-100 rounded-2xl border border-slate-100 bg-slate-50/70 overflow-hidden">
+            {[
+              { label: 'Body Zones At Risk', value: '6', unit: 'zones' },
+              { label: 'Avg. Symptom Onset', value: '2–12', unit: 'weeks' },
+              { label: 'Throughput Impact', value: 'High', unit: 'priority' },
+            ].map((stat) => (
+              <div key={stat.label} className="px-4 py-3.5 text-center">
+                <p className="text-xl font-black text-slate-900 leading-none">{stat.value}</p>
+                <p className="text-[9px] uppercase tracking-[0.18em] font-bold text-blue-500 mt-0.5">{stat.unit}</p>
+                <p className="text-[10px] text-slate-400 mt-1">{stat.label}</p>
+              </div>
             ))}
           </div>
-          <p className="mt-5 rounded-lg border border-blue-100 bg-blue-50/60 px-3 py-2 text-xs text-slate-600">
-            {/* DEV: Jika sudah ada data absensi / incident client lokal, taruh metrik real di kartu ini. */}
-            Use your internal EHS and attendance data to replace these planning-level indicators and quantify each stage.
+
+          <p className="mt-3 text-[11px] text-slate-400 leading-relaxed">
+            Replace risk levels with your internal EHS and attendance data.
           </p>
         </section>
 
@@ -321,21 +376,51 @@ export default function ErgonomicsHealthRisksPage() {
           </div>
         </section>
 
-        <section className="grid lg:grid-cols-2 gap-6">
-          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard}`}>
-            <h3 className="text-xl font-black text-slate-900 mb-3">Operational consequence</h3>
-            <p className="text-slate-600 leading-relaxed">
-              Physical fatigue does not stay at the individual level. It influences handling speed, consistency, error
-              rates, and workforce stability. Over time, this creates hidden costs through quality disruption and lost
-              productive hours.
-            </p>
+        <section className="grid lg:grid-cols-2 gap-6 lg:items-stretch">
+          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard} flex flex-col justify-between gap-5`}>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center shrink-0">
+                  <TrendingDown className="w-4 h-4" />
+                </div>
+                <h3 className="text-xl font-black text-slate-900">Operational consequence</h3>
+              </div>
+              <p className="text-slate-600 leading-relaxed text-sm">
+                Physical fatigue does not stay at the individual level. It influences handling speed, consistency, error
+                rates, and workforce stability. Over time, this creates hidden costs through quality disruption and lost
+                productive hours.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {[{ stat: '↑ Error', label: 'Rate' }, { stat: '↓ Speed', label: 'Output' }, { stat: '↑ Absent', label: 'Rate' }].map((item) => (
+                <div key={item.stat} className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 text-center">
+                  <p className="text-sm font-black text-rose-600">{item.stat}</p>
+                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wide mt-0.5">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard}`}>
-            <h3 className="text-xl font-black text-slate-900 mb-3">What ergonomics changes</h3>
-            <p className="text-slate-600 leading-relaxed">
-              Engineered lifting assistance shifts physical load from operators to handling systems. This lowers strain,
-              supports healthier working routines, and helps maintain consistent output quality across shifts.
-            </p>
+          <div className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.standard} flex flex-col justify-between gap-5`}>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center shrink-0">
+                  <Activity className="w-4 h-4" />
+                </div>
+                <h3 className="text-xl font-black text-slate-900">What ergonomics changes</h3>
+              </div>
+              <p className="text-slate-600 leading-relaxed text-sm">
+                Engineered lifting assistance shifts physical load from operators to handling systems. This lowers strain,
+                supports healthier working routines, and helps maintain consistent output quality across shifts.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {[{ stat: '↓ Strain', label: 'Load' }, { stat: '↑ Quality', label: 'Output' }, { stat: '↓ Risk', label: 'Exposure' }].map((item) => (
+                <div key={item.stat} className="rounded-xl border border-blue-100 bg-blue-50 px-3 py-2.5 text-center">
+                  <p className="text-sm font-black text-blue-600">{item.stat}</p>
+                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wide mt-0.5">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
