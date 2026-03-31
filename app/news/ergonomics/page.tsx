@@ -318,16 +318,13 @@ export default function ErgonomicsHubPage() {
                 </Link>
               </div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-3">
-              {/* DEV: Ganti dengan mockup screenshot calculator/selection aids */}
-              <Image
-                src="/placeholders/ergonomics-placeholder.svg"
-                alt="Calculator preview placeholder"
-                width={1600}
-                height={900}
-                className="w-full h-auto rounded-xl"
-              />
-            </div>
+            <Image
+              src="/dian.png"
+              alt="Economic calculation visual for ergonomic investment"
+              width={1600}
+              height={900}
+              className="w-full h-auto rounded-2xl"
+            />
           </div>
         </section>
       </div>
