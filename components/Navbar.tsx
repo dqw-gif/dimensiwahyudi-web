@@ -58,7 +58,7 @@ export default function Navbar() {
                   <div className="p-2 space-y-1">
                     <Link href="/news" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-orange-50 p-2 rounded-lg group-hover/item:bg-orange-100 transition-colors mr-3 text-orange-600">
+                      <div className="bg-blue-50 p-2 rounded-lg group-hover/item:bg-blue-100 transition-colors mr-3 text-blue-600">
                         <Newspaper size={20} />
                       </div>
                       <div>
@@ -69,7 +69,7 @@ export default function Navbar() {
 
                     <Link href="/our-projects" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-emerald-50 p-2 rounded-lg group-hover/item:bg-emerald-100 transition-colors mr-3 text-emerald-600">
+                      <div className="bg-cyan-50 p-2 rounded-lg group-hover/item:bg-cyan-100 transition-colors mr-3 text-cyan-600">
                         <Briefcase size={20} />
                       </div>
                       <div>
@@ -80,7 +80,7 @@ export default function Navbar() {
 
                     <Link href="/news/ergonomics" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-rose-50 p-2 rounded-lg group-hover/item:bg-rose-100 transition-colors mr-3 text-rose-600">
+                      <div className="bg-blue-50 p-2 rounded-lg group-hover/item:bg-blue-100 transition-colors mr-3 text-blue-700">
                         <HeartPulse size={20} />
                       </div>
                       <div>
@@ -120,7 +120,7 @@ export default function Navbar() {
 
                     <Link href="/digital-assistant/roi-calculator" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-indigo-50 p-2 rounded-lg group-hover/item:bg-indigo-100 transition-colors mr-3 text-indigo-600">
+                      <div className="bg-cyan-50 p-2 rounded-lg group-hover/item:bg-cyan-100 transition-colors mr-3 text-cyan-600">
                         <BarChart3 size={20} />
                       </div>
                       <div>
@@ -142,7 +142,7 @@ export default function Navbar() {
 
                     <Link href="/digital-assistant/video-library" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-red-50 p-2 rounded-lg group-hover/item:bg-red-100 transition-colors mr-3 text-red-600">
+                      <div className="bg-blue-50 p-2 rounded-lg group-hover/item:bg-blue-100 transition-colors mr-3 text-blue-600">
                         <Play size={20} />
                       </div>
                       <div>
@@ -243,16 +243,16 @@ export default function Navbar() {
             <div className="py-2 border-y border-slate-50">
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.digitalAssistants}</p>
               <Link href="/digital-assistant/vacuum-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Calculator size={18} className="text-blue-500" /><span>Vacuum Calculator</span>
+                <Calculator size={18} className="text-blue-600" /><span>Vacuum Calculator</span>
               </Link>
               <Link href="/digital-assistant/roi-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <BarChart3 size={18} className="text-indigo-500" /><span>ROI Calculator</span>
+                <BarChart3 size={18} className="text-cyan-600" /><span>ROI Calculator</span>
               </Link>
               <Link href="/digital-assistant/selection-aids" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Cpu size={18} className="text-cyan-500" /><span>Selection Aids</span>
+                <Cpu size={18} className="text-blue-600" /><span>Selection Aids</span>
               </Link>
               <Link href="/digital-assistant/video-library" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Play size={18} className="text-red-500" /><span>Video Library</span>
+                <Play size={18} className="text-cyan-600" /><span>Video Library</span>
               </Link>
             </div>
 
@@ -261,13 +261,13 @@ export default function Navbar() {
             <div className="py-2 border-b border-slate-50">
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.insights}</p>
               <Link href="/news" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Newspaper size={18} className="text-orange-500" /><span>News &amp; Updates</span>
+                <Newspaper size={18} className="text-blue-600" /><span>News &amp; Updates</span>
               </Link>
               <Link href="/our-projects" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Briefcase size={18} className="text-emerald-500" /><span>Our Projects</span>
+                <Briefcase size={18} className="text-cyan-600" /><span>Our Projects</span>
               </Link>
               <Link href="/news/ergonomics" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <HeartPulse size={18} className="text-rose-500" /><span>Ergonomics Hub</span>
+                <HeartPulse size={18} className="text-blue-700" /><span>Ergonomics Hub</span>
               </Link>
             </div>
 
@@ -275,7 +275,7 @@ export default function Navbar() {
             <div className="py-2 border-b border-slate-50">
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.products}</p>
               <Link href="/products" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
-                <Package size={18} className="text-slate-400" /><span>{t.navbar.allBrands}</span>
+                <Package size={18} className="text-blue-600" /><span>{t.navbar.allBrands}</span>
               </Link>
               <Link href="/products/schmalz" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-blue-100 rounded-md p-1 shrink-0">
