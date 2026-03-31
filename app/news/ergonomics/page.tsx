@@ -143,8 +143,8 @@ export default function ErgonomicsHubPage() {
       </div>
 
       <div className={`${spacingTokens.page.shell} ${spacingTokens.page.container} ${spacingTokens.page.stack}`}>
-        <section className="grid lg:grid-cols-2 gap-4 lg:gap-1 items-center pb-0 md:pb-0">
-          <div>
+        <section className="grid items-end gap-4 lg:grid-cols-12 lg:gap-1 pb-0 md:pb-0">
+          <div className="max-w-[520px] lg:col-span-5">
             <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6">
               Industrial Ergonomics Knowledge Hub
             </p>
