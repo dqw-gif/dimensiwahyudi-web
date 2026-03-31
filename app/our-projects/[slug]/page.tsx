@@ -164,7 +164,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
 
             {/* HERO */}
-            <section className="relative pt-28 pb-16 bg-slate-950 overflow-hidden">
+            <section className="relative pt-28 pb-14 md:pb-16 bg-slate-950 overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.04]"
                     style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
@@ -193,14 +193,30 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                         <span className="flex items-center gap-1.5"><MapPin size={14} /> Indonesia</span>
                         <span className="flex items-center gap-1.5"><Package size={14} /> Integrated Handling Solution</span>
                     </div>
+
+                    <div className="mt-10 rounded-3xl border border-white/10 bg-slate-900/70 p-1.5 shadow-2xl shadow-black/40">
+                        <div className="relative aspect-[16/10] md:aspect-[21/9] overflow-hidden rounded-[1.35rem] bg-slate-900">
+                            <Image
+                                src={c.image}
+                                alt={`${c.client} project backdrop`}
+                                fill
+                                sizes="100vw"
+                                className="object-cover scale-105 opacity-35 blur-md"
+                                aria-hidden="true"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-slate-950/20" />
+                            <Image
+                                src={c.image}
+                                alt={c.client}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1100px"
+                                className="object-contain p-2 md:p-3"
+                                priority
+                            />
+                        </div>
+                    </div>
                 </div>
             </section>
-
-            {/* HERO IMAGE */}
-            <div className="relative h-64 md:h-80 overflow-hidden bg-slate-200">
-                <Image src={c.image} alt={c.client} fill sizes="100vw" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
 
             {/* CONTENT */}
             <div className="max-w-6xl mx-auto px-6 py-14 md:py-16">
