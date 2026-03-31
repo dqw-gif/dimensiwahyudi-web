@@ -193,24 +193,19 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                         <span className="flex items-center gap-1.5"><MapPin size={14} /> Indonesia</span>
                         <span className="flex items-center gap-1.5"><Package size={14} /> Integrated Handling Solution</span>
                     </div>
+                </div>
+            </section>
 
-                    <div className="mt-10 rounded-3xl border border-white/10 bg-slate-900/70 p-1.5 shadow-2xl shadow-black/40">
-                        <div className="relative aspect-[16/10] md:aspect-[21/9] overflow-hidden rounded-[1.35rem] bg-slate-900">
+            <section className="bg-slate-100 border-y border-slate-200">
+                <div className="max-w-6xl mx-auto px-6 py-6 md:py-8">
+                    <div className="rounded-3xl border border-slate-200 bg-white p-2 md:p-3 shadow-sm">
+                        <div className="relative h-[240px] md:h-[420px] overflow-hidden rounded-2xl bg-slate-100">
                             <Image
                                 src={c.image}
-                                alt={`${c.client} project backdrop`}
+                                alt={`${c.client} project visual`}
                                 fill
-                                sizes="100vw"
-                                className="object-cover scale-105 opacity-35 blur-md"
-                                aria-hidden="true"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-slate-950/20" />
-                            <Image
-                                src={c.image}
-                                alt={c.client}
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 92vw, 1100px"
-                                className="object-contain p-2 md:p-3"
+                                sizes="(max-width: 768px) 100vw, 1200px"
+                                className="object-contain"
                                 priority
                             />
                         </div>
