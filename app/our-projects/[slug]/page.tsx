@@ -227,13 +227,13 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 <div className="max-w-6xl mx-auto px-6 py-7 md:py-10">
                     <div className="grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
                         <div className="rounded-3xl border border-slate-200 bg-white p-2 md:p-3 shadow-sm">
-                            <div className="relative h-[260px] md:h-[420px] overflow-hidden rounded-2xl bg-[radial-gradient(circle_at_20%_20%,#dbeafe_0%,#e2e8f0_45%,#f8fafc_100%)]">
+                            <div className="relative h-[260px] md:h-[420px] overflow-hidden rounded-2xl bg-slate-100">
                                 <Image
                                     src={c.image}
                                     alt={`${c.client} project visual`}
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 900px"
-                                    className="object-contain p-2 md:p-4"
+                                    className="object-cover"
                                     priority
                                 />
                             </div>
