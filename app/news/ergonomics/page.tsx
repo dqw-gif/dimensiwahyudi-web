@@ -86,42 +86,48 @@ const visualNavigationTiles = [
     title: 'Ergonomics for Every Industry',
     desc: 'Start from the complete hub and pick your implementation path.',
     href: '/news/ergonomics',
-    image: '/placeholders/ergonomics/tile-1.svg',
+    image: '/projects/PT Mayora Indah.jpeg',
+    position: 'center 30%',
     className: 'md:col-span-7 md:row-span-2 min-h-[340px] md:min-h-[460px]',
   },
   {
     title: 'Health Risks and MSD Exposure',
     desc: 'Identify strain patterns and high-risk manual handling tasks.',
     href: '/news/ergonomics/health-risks',
-    image: '/placeholders/ergonomics/tile-2.svg',
+    image: '/projects/PT Gajah Tunggal.jpg',
+    position: 'center 38%',
     className: 'md:col-span-5 min-h-[220px]',
   },
   {
     title: 'Productivity Impact',
     desc: 'Translate ergonomics into throughput and quality consistency.',
     href: '/news/ergonomics/productivity',
-    image: '/placeholders/ergonomics/tile-3.svg',
+    image: '/projects/PT HOKKAN INDONESIA.jpg',
+    position: 'center 32%',
     className: 'md:col-span-5 min-h-[220px]',
   },
   {
     title: 'Safety and Standards',
     desc: 'Map controls to practical compliance on your production floor.',
     href: '/news/ergonomics/safety-standards',
-    image: '/placeholders/ergonomics/tile-4.svg',
+    image: '/projects/PT GS Battery.jpg',
+    position: 'center 40%',
     className: 'md:col-span-4 min-h-[220px]',
   },
   {
     title: 'Open ROI Calculator',
     desc: 'Estimate ergonomic impact and investment economics quickly.',
     href: '/digital-assistant/roi-calculator',
-    image: '/placeholders/ergonomics/tile-5.svg',
+    image: '/projects/PT Asahimas Flat Glass Tbk.jpeg',
+    position: 'center 38%',
     className: 'md:col-span-4 min-h-[220px]',
   },
   {
     title: 'Selection Aids',
     desc: 'Use digital assistant tools to shortlist suitable handling systems.',
     href: '/digital-assistant/selection-aids',
-    image: '/placeholders/ergonomics/tile-6.svg',
+    image: '/projects/PT Otsuka Indonesia.jpeg',
+    position: 'center 34%',
     className: 'md:col-span-4 min-h-[220px]',
   },
 ];
@@ -160,13 +166,12 @@ export default function ErgonomicsHubPage() {
           </div>
 
           <div className="bg-white border border-slate-200 rounded-[2rem] p-3 shadow-sm">
-            {/* DEV: Ganti dengan visual hero ergonomics industrial (operator handling beban di pabrik) */}
             <Image
-              src="/placeholders/ergonomics-placeholder.svg"
-              alt="Industrial ergonomics visual placeholder"
+              src="/projects/PT Gajah Tunggal (2).jpg"
+              alt="Industrial ergonomics implementation in tire manufacturing line"
               width={1600}
               height={900}
-              className="w-full h-auto rounded-[1.5rem]"
+              className="w-full h-auto rounded-[1.5rem] object-cover"
               priority
             />
           </div>
@@ -198,9 +203,10 @@ export default function ErgonomicsHubPage() {
               >
                 <Image
                   src={tile.image}
-                  alt={`${tile.title} placeholder`}
+                  alt={tile.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: tile.position ?? 'center' }}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/35 to-transparent" />
@@ -217,8 +223,7 @@ export default function ErgonomicsHubPage() {
             ))}
           </div>
           <p className="text-xs text-slate-400 mt-4">
-            {/* DEV: Semua image masih dummy placeholder. Ganti ke foto asli project/stock industrial saat final asset siap. */}
-            Placeholder visuals are temporary and can be replaced with approved industrial photos.
+            Visuals use real industrial project photos from PT Dimensi Quantum Wahyudi portfolio archives.
           </p>
         </section>
 
