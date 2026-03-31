@@ -9,6 +9,62 @@ interface Props {
     params: Promise<{ slug: string }>;
 }
 
+type NarrativeParts = {
+    challenge: string;
+    solution: string;
+    result: string;
+};
+
+function buildNarrativeParts(description: string): NarrativeParts {
+    const text = description.replace(/\s+/g, ' ').trim();
+    const resultMarker = 'Result:';
+    const operationMarker = ' In this ';
+
+    let challenge = text;
+    let solution = '';
+    let result = '';
+
+    const operationIndex = text.indexOf(operationMarker);
+    if (operationIndex > -1) {
+        challenge = text.slice(0, operationIndex).trim();
+        solution = text.slice(operationIndex + 1).trim();
+    }
+
+    const resultIndex = solution.indexOf(resultMarker);
+    if (resultIndex > -1) {
+        result = solution.slice(resultIndex + resultMarker.length).trim();
+        solution = solution.slice(0, resultIndex).trim();
+    }
+
+    if (!solution) {
+        const sentences = challenge.split('. ').filter(Boolean);
+        if (sentences.length > 1) {
+            challenge = sentences[0].trim();
+            solution = `${sentences.slice(1).join('. ').trim()}`;
+        }
+    }
+
+    if (!result) {
+        result = 'Safer and more consistent handling performance aligned with operational productivity goals.';
+    }
+
+    if (!challenge.endsWith('.')) {
+        challenge = `${challenge}.`;
+    }
+    if (solution && !solution.endsWith('.')) {
+        solution = `${solution}.`;
+    }
+    if (!result.endsWith('.')) {
+        result = `${result}.`;
+    }
+
+    return {
+        challenge,
+        solution: solution || 'Engineered lifting support was introduced to stabilize handling quality and reduce repetitive operator strain.',
+        result,
+    };
+}
+
 export async function generateStaticParams() {
     return projects.map(p => ({ slug: p.id }));
 }
@@ -65,6 +121,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
     const { slug } = await params;
     const c = projects.find(cs => cs.id === slug);
     if (!c) notFound();
+    const narrative = buildNarrativeParts(c.desc);
 
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
@@ -154,7 +211,22 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                         <div>
                             <span className="text-xs font-black text-cyan-500 uppercase tracking-widest">Overview</span>
                             <h2 className="text-2xl font-black text-slate-900 mt-2 mb-4">Project Background</h2>
-                            <p className="text-slate-600 leading-relaxed text-lg">{c.desc}</p>
+                            <p className="text-slate-600 leading-relaxed text-lg">{narrative.challenge}</p>
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-3">
+                            <article className="rounded-2xl border border-slate-200 bg-white p-5">
+                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-slate-400">Challenge</p>
+                                <p className="mt-2 text-sm leading-relaxed text-slate-600">{narrative.challenge}</p>
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 bg-white p-5">
+                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-600">Solution</p>
+                                <p className="mt-2 text-sm leading-relaxed text-slate-600">{narrative.solution}</p>
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 bg-white p-5">
+                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-600">Result</p>
+                                <p className="mt-2 text-sm leading-relaxed text-slate-600">{narrative.result}</p>
+                            </article>
                         </div>
 
                         <div className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-200">
@@ -171,7 +243,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                             <h3 className="text-xl font-bold text-slate-900 mb-2">Interested in a Similar Project Scale?</h3>
                             <p className="text-slate-500 mb-4">Discuss your {c.industry} handling requirements with our sales engineering team and get a complete technical proposal.</p>
                             <Link href="/contact" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-bold transition-colors">
-                                Talk to Our Team <ArrowRight size={16} />
+                                Discuss Similar Project <ArrowRight size={16} />
                             </Link>
                         </div>
                     </div>
@@ -207,7 +279,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
                             <div className="border-t border-white/10 mt-5 pt-5 space-y-3">
                                 <Link href="/contact" className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition-colors">
-                                    Consultation for Similar Projects
+                                    Discuss Similar Project
                                 </Link>
                                 <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                                     className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-sm transition-colors">
@@ -235,6 +307,25 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                             </div>
                         </div>
                     </aside>
+                </div>
+            </div>
+
+            <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-3 backdrop-blur lg:hidden">
+                <div className="mx-auto flex max-w-6xl items-center gap-2">
+                    <Link
+                        href="/contact"
+                        className="inline-flex flex-1 items-center justify-center rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-700"
+                    >
+                        Discuss Similar Project
+                    </Link>
+                    <a
+                        href="https://wa.me/6281119168752"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100"
+                    >
+                        Chat WhatsApp
+                    </a>
                 </div>
             </div>
         </main>

@@ -1,10 +1,11 @@
 ﻿import type { Metadata } from "next";
 import { Barlow } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import "./globals.css";
 import LayoutChrome from "../components/LayoutChrome";
 import { LanguageProvider } from "../components/LanguageProvider";
+import AnalyticsGate from "../components/AnalyticsGate";
+import CookieConsentBanner from "../components/CookieConsentBanner";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -13,6 +14,34 @@ const barlow = Barlow({
 });
 
 const BASE_URL = "https://dimensiwahyudi.com";
+
+const consentModeBootstrap = `
+(function () {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () {
+    window.dataLayer.push(arguments);
+  };
+
+  var consentKey = 'dwq-cookie-consent';
+  var storedChoice = null;
+
+  try {
+    storedChoice = window.localStorage.getItem(consentKey);
+  } catch (error) {
+    storedChoice = null;
+  }
+
+  var analyticsState = storedChoice === 'accepted' ? 'granted' : 'denied';
+
+  window.gtag('consent', 'default', {
+    analytics_storage: analyticsState,
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+})();
+`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -150,14 +179,15 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang} className="scroll-smooth">
       <body className={`${barlow.variable} font-sans antialiased`}>
+        <Script id="consent-mode-bootstrap" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: consentModeBootstrap }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(seoStructuredData) }}
         />
         <LanguageProvider initialLang={initialLang}>
           <LayoutChrome>{children}</LayoutChrome>
-          <Analytics />
-          {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+          <CookieConsentBanner />
+          <AnalyticsGate gaId={process.env.NEXT_PUBLIC_GA_ID} />
         </LanguageProvider>
       </body>
     </html>

@@ -17,7 +17,7 @@ export const projects: Project[] = [
         image: '/projects/PT Mayora Indah.jpeg',
         logo: 'https://www.mayoraindah.co.id/assets/frontend/images/logo.png',
         size: 'large',
-        desc: 'Optimized high-volume production and packaging flows for daily consumer goods, reducing product damage across handling stages.',
+        desc: 'High-volume FMCG production and packaging flow was improved with ergonomic handling support to maintain throughput and reduce product damage across critical transfer stages.',
         color: 'blue'
     },
     {
@@ -27,7 +27,7 @@ export const projects: Project[] = [
         image: '/projects/PT Gajah Tunggal.jpg',
         logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',
         size: 'tall',
-        desc: 'Improved tire assembly throughput while minimizing lower-back injury risk through ergonomic material handling.',
+        desc: 'To improve tire-assembly throughput while reducing lower-back strain risk, sheet rubber loads up to 45 kg were handled using a Binar Handling Pneumatic Lifting Device with vacuum gripper. The setup delivered safer transfer and stable single-operator handling on repetitive cycles.',
         color: 'red'
     },
     {
@@ -37,7 +37,7 @@ export const projects: Project[] = [
         image: '/projects/PT Gajah Tunggal (1).jpg',
         logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',
         size: 'standard',
-        desc: 'Safe raw-rubber handling in mixing operations with hoist systems designed for high carbon-dust environments.',
+        desc: 'In high carbon-dust rubber-mixing areas, rubber bales up to 40 kg were handled with Jumbo Sprint 85 and a crane system to stabilize repetitive transfer. The upgrade improved ergonomic control and reduced lower back-strain exposure during routine handling.',
         color: 'red'
     },
     {
@@ -47,7 +47,7 @@ export const projects: Project[] = [
         image: '/projects/PT Gajah Tunggal (2).jpg',
         logo: 'https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png',
         size: 'standard',
-        desc: 'Tire lifting system for curing press operations that preserves tire geometry under high operating temperatures.',
+        desc: 'For curing-press handling under high-temperature conditions, tire rolls up to 200 kg were managed with a Pneumatic Lifting Device and Mechanical Gripper to preserve geometry during transfer. The process delivered stable and safer single-operator handling.',
         color: 'red'
     },
     {
@@ -57,7 +57,7 @@ export const projects: Project[] = [
         image: '/projects/PT Angkasa Pura II.jpg',
         logo: 'https://upload.wikimedia.org/wikipedia/id/thumb/a/a6/Angkasa_Pura_II_logo_2014.svg/3840px-Angkasa_Pura_II_logo_2014.svg.png',
         size: 'standard',
-        desc: 'High-throughput airport cargo handling that reduces repetitive strain injuries for field operators.',
+        desc: 'At baggage-handling points where speed and load pressure are both high, bag and suitcase units up to 50 kg were transferred using Jumbo Flex 50 to reduce rough handling risk. The solution improved ergonomic control and enabled safer, damage-free vacuum gripping. Implementation scope covered Plant B.',
         color: 'sky'
     },
     {
@@ -67,7 +67,7 @@ export const projects: Project[] = [
         image: '/projects/PT Asahimas Flat Glass Tbk.jpeg',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_Asahimas_Flat_Glass_Tbk.png',
         size: 'large',
-        desc: 'Heavy glass-sheet lifting solution with even load distribution to minimize crack and scratch risk in demanding assembly areas.',
+        desc: 'For heavy glass-sheet handling in demanding assembly zones, loads up to 250 kg were managed with Vacumaster Basic 90 500 kg to preserve even load distribution and reduce crack or scratch exposure. The process achieved safer handling with reliable single-operator control.',
         color: 'slate'
     },
     {
@@ -77,7 +77,7 @@ export const projects: Project[] = [
         image: '/projects/PT Unilever Indonesia Tbk.jpeg',
         logo: 'https://upload.wikimedia.org/wikipedia/id/3/37/Unilever.png',
         size: 'standard',
-        desc: 'Fast, hygienic handling systems for modern production facilities aligned with Unilever global safety standards.',
+        desc: 'To support fast and hygienic handling aligned with modern FMCG safety expectations, sack loads up to 25 kg were transferred using Jumbo Flex 35 with a column-mounted jib crane. This improved handling consistency and helped reduce downtime risk linked to operator strain.',
         color: 'blue'
     },
     {
@@ -87,7 +87,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Indonesia Nikka Chemicals.jpg',
         logo: 'https://img2.lokercepat.id/files/2023-11-11/pt-indonesia-nikka-chemicals-inkali-382.jpg',
         size: 'tall',
-        desc: 'Reliable transfer of textile chemical materials, with vacuum drum handling that prevents spills and improves plant safety.',
+        desc: 'To support safer transfer of textile chemical materials, sack loads up to 50 kg were handled using Jumbo Sprint 65 A2 with a column-mounted flat jib crane. This reduced spill exposure, improved ergonomic control, and helped increase line throughput.',
         color: 'emerald'
     },
     {
@@ -97,7 +97,7 @@ export const projects: Project[] = [
         image: '/projects/PT GS Battery.jpg',
         logo: 'https://www.gs.astra.co.id/media/dzpc02gq/gs-battery-logo.png',
         size: 'standard',
-        desc: 'Precision lifting for dense battery-assembly components, supporting stable and safe continuous production flow.',
+        desc: 'For dense battery-assembly handling, loads up to 34 kg were transferred with Jumbo Flex 50 and a column-mounted jib crane to maintain precise positioning and stable repetitive flow. The setup enabled safer, reliable single-operator handling.',
         color: 'red'
     },
     {
@@ -107,7 +107,7 @@ export const projects: Project[] = [
         image: '/projects/PT NESTLE.jpg',
         logo: 'https://www.nestle.co.id/themes/custom/da_vinci_code/logo.svg',
         size: 'standard',
-        desc: 'Mechanical assistance in nutrition packaging operations with full compliance for food clean-zone requirements.',
+        desc: 'In nutrition-packaging operations with clean-zone requirements, Jumbo Flex 35 with a mobile jib crane was applied to improve lifting consistency and maintain ergonomic material handling performance.',
         color: 'blue'
     },
     {
@@ -117,7 +117,7 @@ export const projects: Project[] = [
         image: '/projects/PT HOKKAN INDONESIA.jpg',
         logo: 'https://www.hokkan.co.id/images/logo.jpg',
         size: 'large',
-        desc: 'Specialized PET bottle handling for high-speed filling conveyors, enabling uninterrupted high-volume throughput.',
+        desc: 'In high-speed PET bottle operations, sack loads up to 50 kg were handled with Jumbo Sprint 85 and a crane system to stabilize repetitive transfer and reduce loading-cycle time. The result was smoother handling with stronger productivity performance.',
         color: 'indigo'
     },
     {
@@ -137,7 +137,7 @@ export const projects: Project[] = [
         image: '/projects/PT Otsuka Indonesia.jpeg',
         logo: 'https://www.otsuka.co.id/themes/otsuka/assets/img/otsuka.png',
         size: 'standard',
-        desc: 'Stainless lifting equipment for high-sanitation cleanroom zones supporting clinical nutrition and pharmaceutical compliance.',
+        desc: 'For high-sanitation cleanroom handling, sack loads up to 50 kg were managed using Jumbo Sprint 65 with a column-mounted jib crane to support ergonomic transfer, process consistency, and clinical nutrition compliance requirements.',
         color: 'teal'
     },
     {
@@ -147,7 +147,7 @@ export const projects: Project[] = [
         image: '/projects/PT Mowilex Indonesia.jpg',
         logo: 'https://mowilex.com/wp-content/themes/movi/images/MowilexPremiumPaints.webp',
         size: 'standard',
-        desc: 'High-frequency rotation and transfer of coating liquids while reducing operator back-fatigue risk.',
+        desc: 'For high-frequency coating-material transfer, sack loads up to 50 kg were handled with Jumbo Sprint 85 and a column-mounted jib crane to keep movement consistent across shifts. This reduced back-fatigue exposure while improving ergonomic handling control.',
         color: 'emerald'
     },
     {
@@ -157,7 +157,7 @@ export const projects: Project[] = [
         image: '/projects/PT Yakult Indonesia Persada.jpg',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Yakult-Logo.svg',
         size: 'standard',
-        desc: 'Sterile lifting infrastructure for bulk handling across probiotic beverage supply operations.',
+        desc: 'Across probiotic beverage bulk-handling operations, sack loads up to 50 kg were handled with Jumbo Sprint 85 and a column-mounted jib crane to maintain hygienic transfer conditions and more consistent ergonomic handling.',
         color: 'blue'
     },
     {
@@ -167,7 +167,7 @@ export const projects: Project[] = [
         image: '/projects/PT Nutrifood Indonesia.jpeg',
         logo: 'https://www.nutrifood.co.id/wp-content/themes/nutrifood/images/logo-nutrifood.png',
         size: 'standard',
-        desc: 'Integrated ergonomic vacuum systems that improve material flow in health-nutrition production facilities.',
+        desc: 'In health-nutrition production lines, integrated ergonomic vacuum handling was applied for sack loads up to 50 kg using Jumbo Sprint 85 kg with a column-mounted flat jib crane, improving material flow stability and operator handling control.',
         color: 'blue'
     },
     {
@@ -177,7 +177,7 @@ export const projects: Project[] = [
         image: '/projects/PT Nutribev Nabati Indonesia.jpg',
         logo: 'https://www.nabatisnack.co.id/assets/icons/ic-nabati.png',
         size: 'large',
-        desc: 'High-speed lifting of carton and sack stacks in snack manufacturing to sustain aggressive output targets.',
+        desc: 'To sustain high-output snack manufacturing targets, carton and sack handling up to 50 kg was supported by Jumbo Sprint 85 with a column-mounted jib crane. The system improved repetitive lifting consistency and strengthened ergonomic handling control at line speed.',
         color: 'blue'
     },
     {
@@ -187,7 +187,7 @@ export const projects: Project[] = [
         image: '/projects/PT Cabot Indonesia.png',
         logo: 'https://companieslogo.com/img/orig/CBT_BIG-f438266d.png?t=1720244491',
         size: 'standard',
-        desc: 'Large-scale synthetic raw-material handling that safeguards the supply chain from leakage risks.',
+        desc: 'For synthetic raw-material transfer at scale, loads up to 25 kg were managed with Jumbo Ergo 45 and a column-mounted jib crane to improve handling consistency and reduce leakage risk during movement. This delivered faster, more controlled handling cycles.',
         color: 'emerald'
     },
     {
@@ -197,7 +197,7 @@ export const projects: Project[] = [
         image: '/projects/PT Kayu Permata.png',
         logo: 'https://www.permatadoor.com/wp-content/themes/permata_door/assets/images/svg/permata_door.svg',
         size: 'standard',
-        desc: 'Efficient rotation of solid wood panels that reduces physical strain in premium door and furniture production.',
+        desc: 'To improve panel rotation in premium door and furniture production, wooden panel loads up to 50 kg were handled with Jumbo Ergo 85 and a mobile jib crane. This reduced physical strain while keeping movement precision consistent across repetitive tasks.',
         color: 'amber'
     },
     {
@@ -207,7 +207,7 @@ export const projects: Project[] = [
         image: '/projects/PT Multi Bintang Indonesia Tbk.png',
         logo: 'https://cdn.cookielaw.org/logos/00afdec3-358f-4f2d-8b63-0c71e6f49172/019808a1-d0bd-747f-b424-020636e1ab33/8a3915b9-9563-470f-8efd-2af699d3f08e/multibintang.png',
         size: 'large',
-        desc: 'Efficient transfer of multi-crates and kegs on beverage lines, minimizing shock to materials and finished products.',
+        desc: 'On high-volume beverage lines, multi-crate and keg transfer up to 40 kg per unit was executed with Jumbo Ergo plus KEG Gripper on a mobile jib crane, reducing impact risk to materials while improving ergonomic handling consistency.',
         color: 'blue'
     },
     {
@@ -217,7 +217,7 @@ export const projects: Project[] = [
         image: '/projects/PT. DSM Firmenich Aromatics.jpg',
         logo: 'https://www.dsm-firmenich.com/content/dam/dsm-firmenich/logos/logo-black.svg',
         size: 'standard',
-        desc: 'Hygienic lifting of nutrition and aromatic drums using certified hoists for high-cleanliness environments.',
+        desc: 'Within high-cleanliness nutrition and aromatics handling, carton loads up to 20 kg were transferred with Jumbo Flex 35 and a crane system to keep movement hygienic and repeatable. The process improved ergonomic control and supported higher throughput.',
         color: 'teal'
     },
     {
@@ -237,7 +237,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Fukusuke Kogyo Indonesia.png',
         logo: 'https://kemindogroup.id/wp-content/uploads/2020/09/logo-client-kemindo-8.png',
         size: 'standard',
-        desc: 'Assisted lifting of heavy packaging-film rolls on plastic extrusion conversion lines.',
+        desc: 'For packaging-film and conversion handling, carton loads up to 25 kg were supported by Jumbo Flex 35 with a crane system to improve operator ergonomics and transfer consistency. This shortened handling cycles and improved productivity stability.',
         color: 'indigo'
     },
     {
@@ -247,7 +247,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Indofood CBP Sukses.jpg',
         logo: 'https://www.indofoodcbp.com/images/btn/logo-indofoodcbp.png',
         size: 'large',
-        desc: 'Standardized loading and unloading of thousands of instant-noodle cartons with accurate and labor-efficient logistics placement.',
+        desc: 'For large-scale instant-noodle logistics, carton loading and unloading up to 26 kg was standardized using Jumbo Flex 35 with a column-mounted jib crane to improve placement accuracy, labor efficiency, and ergonomic repeatability.',
         color: 'blue'
     },
     {
@@ -257,7 +257,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Mars Symbiocince.jpg',
         logo: 'https://wikiexport.ai/wp-content/uploads/2022/10/15-1170x600.png',
         size: 'standard',
-        desc: 'Innovative high-volume raw cocoa sack handling for international chocolate manufacturing supply lines.',
+        desc: 'In high-volume raw-cocoa handling for chocolate manufacturing lines, carton loads up to 20 kg were managed with Jumbo Flex 35 and a column-mounted jib crane to keep transfer rhythm stable. The setup improved ergonomic control and day-to-day handling consistency.',
         color: 'blue'
     },
     {
@@ -267,7 +267,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Nufarm.jpg',
         logo: 'https://nufarm.com/id/wp-content/themes/nufarm/images/site-logo.svg',
         size: 'standard',
-        desc: 'Improved mobility in pesticide packaging while adding proactive operator protection from hazardous agrochemicals.',
+        desc: 'For pesticide-packaging workflows requiring safer material mobility, sack loads up to 20 kg were handled with Jumbo Flex 35 and a column-mounted jib crane. This improved ergonomic consistency while strengthening operator protection from hazardous agrochemical exposure.',
         color: 'emerald'
     },
     {
@@ -277,7 +277,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Sakae Riken Indonesia.jpg',
         logo: 'https://www.sakaeriken.co.jp/assets/img/common/logo/logo-site.png',
         size: 'standard',
-        desc: 'Optimized resin accessory molding assembly where vacuum gripping prevents scratches on high-gloss automotive bumpers.',
+        desc: 'In resin-accessory molding for high-gloss bumper components, sack loads up to 25 kg were transferred with Jumbo Flex 35 kg and a column-mounted jib crane. Vacuum-assisted handling helped preserve surface quality while improving ergonomic repeatability.',
         color: 'red'
     },
     {
@@ -287,7 +287,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Suntory Garuda.png',
         logo: 'https://www.vhv.rs/dpng/d/73-737965_garudafood-logo-png-transparent-png.png',
         size: 'large',
-        desc: 'Smooth mass-cycle palletizing of energy-drink and tea bottle crates with automated handling that minimizes defects.',
+        desc: 'For mass-cycle palletizing of energy-drink and tea bottle crates, sack loads up to 50 kg were handled with Jumbo Ergo 85 to keep repetitive movement stable at high speed. The approach improved ergonomic control and helped reduce handling-related defects.',
         color: 'blue'
     },
     {
@@ -297,7 +297,7 @@ export const projects: Project[] = [
         image: '/projects/PT Bredero.jpg',
         logo: 'https://karir-production.nos.jkt-1.neo.id/logos/22/1264222/Bredero_Shaw_Indonesia_01.png',
         size: 'large',
-        desc: 'Heavy steel pipe lifting for coating operations with full safety assurance in large-scale operational zones.',
+        desc: 'In large-scale coating operations, heavy steel pipe handling was supported by Jumbo Flex 35 with a column-mounted articulated jib crane for safer and more controlled transfer. For sack movement up to 25 kg, the same setup improved throughput while reducing back-strain exposure under repetitive loading.',
         color: 'slate'
     },
     {
@@ -307,7 +307,7 @@ export const projects: Project[] = [
         image: '/projects/PT Delifood.jpg',
         logo: 'https://cdn0-production-images-kly.akamaized.net/TpRMBHzC6SCc6V4oTvo3-KIt8kE=/2560x1440/smart/filters:quality(75):strip_icc()/kly-media-production/medias/4243444/original/067506700_1669705672-logo_mayora.jpg',
         size: 'standard',
-        desc: 'Food raw-material loading systems that combine high speed with operator back ergonomics.',
+        desc: 'For fast-paced food raw-material loading, box loads up to 50 kg were handled with Jumbo Sprint plus Mechanical Gripper on a column-mounted jib crane to keep transfer speed stable. The system improved ergonomic consistency and reduced lower back-strain exposure during repetitive handling.',
         color: 'blue'
     },
     {
@@ -317,7 +317,7 @@ export const projects: Project[] = [
         image: '/projects/PT Diageo Indonesia.jpg',
         logo: 'https://cdn.getamigo.io/ggr/rebuild/client-story-imgs/diageo-hero.webp',
         size: 'standard',
-        desc: 'Heavy keg and beverage-crate handling to accelerate warehouse logistics without operational gaps.',
+        desc: 'To accelerate keg and beverage-crate logistics without disrupting operations, sack loads up to 50 kg were handled with Jumbo Sprint 65 A2 and a crane system. The setup improved ergonomic handling consistency while contributing to measurable productivity gains.',
         color: 'blue'
     },
     {
@@ -327,7 +327,7 @@ export const projects: Project[] = [
         image: '/projects/PT Elang Perdana Tyre.jpg',
         logo: 'https://admin.zeetex-radial.com/storage/page-contents/February2021/hcwzrhzeJOolozrpB7p5.png',
         size: 'tall',
-        desc: 'Deformation-free handling of green and cured tires with precision movement that supports strict plant safety standards.',
+        desc: 'For green and cured tire handling where shape integrity is critical, rubber bales up to 35 kg were transferred using Jumbo Sprint 65 with a column-mounted jib crane. This improved movement precision, supported safer handling, and helped smooth cycle time.',
         color: 'red'
     },
     {
@@ -337,7 +337,7 @@ export const projects: Project[] = [
         image: '/projects/PT Hempel Indonesia.jpg',
         logo: 'https://image1ws.indotrading.com/s3/webp/co19822/companylogo/w400-h220/logo.jpg',
         size: 'standard',
-        desc: 'Balanced distribution of large paint cans and drums using high-precision vacuum gripping.',
+        desc: 'In paint and coating handling, pail loads up to 40 kg were managed with Jumbo Sprint 65 EX and a wall-mounted flat jib crane to maintain balanced transfer and precise gripping. The operation gained safer handling with lower back-strain exposure for operators.',
         color: 'emerald'
     },
     {
@@ -347,7 +347,7 @@ export const projects: Project[] = [
         image: '/projects/PT Industrial Robotic Automation.jpg',
         logo: 'https://i.imgur.com/7Jpv5Qg.jpeg',
         size: 'standard',
-        desc: 'Integration of certified smart lifting systems for advanced Industry 4.0 automation lines.',
+        desc: 'On Industry 4.0 automation lines, loads up to 220 kg were managed with Jumbo Sprint 300 kg and a column-mounted jib crane to strengthen safe, repeatable transfer. The integration improved ergonomic handling quality and made daily operation easier for operators.',
         color: 'slate'
     },
     {
@@ -357,7 +357,7 @@ export const projects: Project[] = [
         image: '/projects/PT Inoac.jpg',
         logo: 'https://www.inoac.co.jp/common/img/logo.svg',
         size: 'large',
-        desc: 'Transfer of extra-large polyurethane foam blocks without structural distortion during fabrication.',
+        desc: 'To protect extra-large polyurethane foam blocks from distortion during fabrication, sack loads up to 25 kg were handled with Jumbo Sprint 45 and a column-mounted jib crane. This improved ergonomic transfer consistency and reduced manual lifting burden during sack-opening tasks.',
         color: 'amber'
     },
     {
@@ -387,7 +387,7 @@ export const projects: Project[] = [
         image: '/projects/PT Meiji Food Indonesia.jpg',
         logo: 'https://meiji.co.id/storage/public/generals/eY0Fj5yMvi7ZPSz9zNcI9RSoYvYQIuQb2cMEKCTl.png',
         size: 'standard',
-        desc: 'High-speed biscuit-carton palletizing that removes bottlenecks at snack line end-of-line operations.',
+        desc: 'For high-speed biscuit-carton palletizing at end-of-line stations, sack loads up to 50 kg were handled with Jumbo Sprint 65 and a column-mounted jib crane. The setup reduced bottlenecks while improving ergonomic consistency in repetitive movement.',
         color: 'blue'
     },
     {
@@ -407,7 +407,7 @@ export const projects: Project[] = [
         image: '/projects/PT Nutrifood Indonesia.jpg',
         logo: 'https://www.nutrifood.co.id/wp-content/themes/nutrifood/images/logo-nutrifood.png',
         size: 'standard',
-        desc: 'Integrated powdered-beverage packaging flow with hygienic, obstruction-free material movement.',
+        desc: 'In powdered-beverage packaging flow, sack loads up to 50 kg were handled with Jumbo Sprint 85 on a ceiling-mounted crane system to keep movement hygienic and obstruction-free. The arrangement improved ergonomic control and transfer consistency across shifts.',
         color: 'blue'
     },
     {
@@ -417,7 +417,7 @@ export const projects: Project[] = [
         image: '/projects/PT Rinnai.jpg',
         logo: 'https://www.rinnai.co.id/wp-content/uploads/2019/04/logo-395x100.png',
         size: 'standard',
-        desc: 'Dynamic handling of sheet-metal partitions and home-electronics component assembly.',
+        desc: 'For sheet-metal partition and home-electronics assembly handling, carton loads up to 22 kg were transferred using Jumbo Flex 35 with a monorail crane. This improved ergonomic handling consistency and supported safer, damage-free vacuum gripping during transfer.',
         color: 'slate'
     },
     {
@@ -427,7 +427,7 @@ export const projects: Project[] = [
         image: '/projects/PT Sarihusada Generasi Mahardhika.jpg',
         logo: 'https://www.sarihusada.co.id/assets/img/logo.png',
         size: 'large',
-        desc: 'High-grade raw-material handling for clinical nutrition, designed to meet strict infant-food sanitation standards.',
+        desc: 'For clinical nutrition production with strict infant-food sanitation standards, sack loads up to 50 kg were handled using Jumbo Sprint 85 to keep transfer clean, stable, and ergonomically controlled.',
         color: 'blue'
     },
     {
@@ -437,7 +437,7 @@ export const projects: Project[] = [
         image: '/projects/PT Sri Trang Lingga.jpg',
         logo: 'https://axeoneverest.com/wp-content/uploads/2011/04/sri-trang-group-everest-logo-1.jpg',
         size: 'standard',
-        desc: 'Accelerated lifting of large rubber blocks while reducing excessive forklift dependency.',
+        desc: 'To accelerate large rubber-block lifting while reducing forklift dependency, rubber bales up to 40 kg were transferred with Jumbo Sprint low Stack and a column-mounted jib crane. The setup improved ergonomic control and stabilized repetitive handling flow.',
         color: 'emerald'
     },
     {
@@ -447,7 +447,7 @@ export const projects: Project[] = [
         image: '/projects/PT Sugity.jpg',
         logo: 'https://uccareer.id/assets/upload/company/thumbs/thumb300px-20251007-100131-a1262.jpg',
         size: 'standard',
-        desc: 'Scratch-free transfer of large automotive injection-molded parts to preserve resin-part finish quality.',
+        desc: 'For scratch-free transfer of large injection-molded automotive parts, sack loads up to 25 kg were handled with Jumbo Sprint 45 and a mobile jib crane. This preserved resin-part finish quality while improving ergonomic repeatability.',
         color: 'red'
     },
     {
@@ -457,7 +457,7 @@ export const projects: Project[] = [
         image: '/projects/PT Summy Rubber.jpg',
         logo: 'https://dunlop.co.id/logo-default.svg',
         size: 'standard',
-        desc: 'Ergonomic lifting for tire-curing rubber operations that sustain output targets without compromising HSE standards.',
+        desc: 'In tire-curing rubber operations, sack loads up to 25 kg were managed with Jumbo Sprint 65 and a column-mounted jib crane to support output targets without compromising HSE standards. The process improved ergonomic handling consistency across repetitive cycles.',
         color: 'red'
     },
     {
@@ -467,7 +467,7 @@ export const projects: Project[] = [
         image: '/projects/PT URC Indonesia.jpg',
         logo: 'https://www.urc.co.id/wp-content/uploads/2021/01/2.jpg',
         size: 'standard',
-        desc: 'Efficient snack-carton palletizing rhythm that lowers repetitive strain frequency for warehouse teams.',
+        desc: 'To improve snack-carton palletizing rhythm in warehouse operations, sack loads up to 50 kg were handled with Jumbo Sprint 65 and a column-mounted jib crane. This reduced repetitive strain pressure and supported stable single-operator handling.',
         color: 'blue'
     },
     {
@@ -477,7 +477,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Evoluzione Tyre.jpg',
         logo: 'https://csr.subang.go.id/assets/upload/company/pt-evoluzione-tyres-768x576.jpg',
         size: 'tall',
-        desc: 'Non-damaging lifting techniques for green and finished tires that protect premium compound tread surfaces.',
+        desc: 'In tire-formulation handling, manual sack movement was upgraded with Jumbo Sprint 65 and a 12 x 6 m crane system for loads up to 25 kg. The new workflow delivered faster transfer cycles and improved operator ergonomics in daily operation.',
         color: 'red'
     },
     {
@@ -487,7 +487,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Mura Maha Agung.jpg',
         logo: 'https://www.muramaha.com/wp-content/uploads/2017/01/cropped-logo-muramaha3.png',
         size: 'standard',
-        desc: 'Secure transfer of steel plates and heavy fabricated structures without dangerous deflection.',
+        desc: 'For safer transfer of steel plates and heavy fabricated structures, sack loads up to 50 kg were supported with Jumbo Sprint 85 kg to stabilize movement and reduce deflection risk during handling.',
         color: 'slate'
     },
     {
@@ -497,7 +497,7 @@ export const projects: Project[] = [
         image: '/projects/PT. Suryaraya Rubberindo.jpg',
         logo: 'https://fdrtire.com/assets/frontend/img/logo.jpg',
         size: 'standard',
-        desc: 'Reliable support for two-wheel tire assembly lines, enabling safe repetitive sorting tasks.',
+        desc: 'On two-wheel tire assembly lines, roll loads up to 38 kg were handled using SCH plus Mechanical Gripper with a column-mounted jib crane to keep repetitive sorting safer and more consistent. The setup also helped lower downtime risk linked to operator strain.',
         color: 'red'
     },
     {
@@ -507,7 +507,7 @@ export const projects: Project[] = [
         image: '/projects/PT Astra Daihatsu Motor.jpg',
         logo: 'https://medias.astra-daihatsu.id/sys-master-media/h70/hc8/8819719208990/astraDaihatsulogo.svg',
         size: 'large',
-        desc: 'Lifting of large vehicle body panels for defect-free flow on global automotive assembly lines.',
+        desc: 'For warehouse raw-material handling, including large barrels, small barrels, and pallets, loads up to 250 kg were managed with SCH-M and an aluminum crane system. Chain-hoist integration improved handling consistency and made daily transfer operations easier. Implementation scope covered West Karawang Plant.',
         color: 'red'
     },
     {
@@ -517,7 +517,7 @@ export const projects: Project[] = [
         image: '/projects/PT Garuda Food.jpg',
         logo: 'https://www.vhv.rs/dpng/d/73-737965_garudafood-logo-png-transparent-png.png',
         size: 'standard',
-        desc: 'Faster end-of-line snack carton packaging in palletizing zones with lower occupational injury risk.',
+        desc: 'At end-of-line palletizing zones, sack loads up to 50 kg were handled with Mechanical Gripper plus SCH on a column-mounted jib crane to keep snack-carton packaging flow faster and safer. This lowered operator burden during repetitive transfer tasks.',
         color: 'blue'
     },
     {
@@ -527,7 +527,7 @@ export const projects: Project[] = [
         image: '/projects/PT YKK AP.jpg',
         logo: 'https://www.ykkap.co.id/assets/img/header_logo01.svg',
         size: 'tall',
-        desc: 'Precision handling of extruded architectural aluminum profiles that minimizes surface scratching.',
+        desc: 'For precision handling of extruded architectural aluminum profiles, aluminum rolls up to 38 kg were transferred with SCH plus Scissors Gripper and a column-mounted jib crane. The setup reduced surface-scratch risk while improving ergonomic handling consistency.',
         color: 'slate'
     },
 ];
