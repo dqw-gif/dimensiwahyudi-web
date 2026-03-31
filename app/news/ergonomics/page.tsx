@@ -296,13 +296,18 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className="bg-slate-900 text-white rounded-[2rem] p-7 md:p-12 border border-slate-800 relative overflow-visible">
+        <section className="relative overflow-visible">
+          {/* Dark card – covers left text column only */}
           <div
-            className="absolute inset-0 opacity-10 pointer-events-none"
-            style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
-          />
-          <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-end">
-            <div>
+            className="bg-slate-900 text-white rounded-[2rem] border border-slate-800 relative overflow-hidden"
+            style={{ paddingRight: 'clamp(0px, 42%, 520px)' }}
+          >
+            {/* dot pattern */}
+            <div
+              className="absolute inset-0 opacity-10 pointer-events-none"
+              style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
+            />
+            <div className="relative z-10 p-7 md:p-12">
               <p className="text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">Next Action</p>
               <h2 className="text-3xl md:text-4xl font-black mb-4">Measure the economics of ergonomic investment</h2>
               <p className="text-slate-300 leading-relaxed mb-7">
@@ -318,12 +323,20 @@ export default function ErgonomicsHubPage() {
                 </Link>
               </div>
             </div>
+          </div>
+
+          {/* Character image – flush-right, overflows above the card at the top */}
+          <div
+            className="hidden lg:block absolute right-0 bottom-0 pointer-events-none select-none"
+            style={{ width: 'clamp(320px, 40%, 500px)' }}
+          >
             <Image
               src="/dian.png"
               alt="Economic calculation visual for ergonomic investment"
-              width={1600}
-              height={900}
-              className="w-full h-auto rounded-2xl -mt-16 md:-mt-24"
+              width={900}
+              height={1100}
+              className="w-full h-auto object-contain object-bottom drop-shadow-2xl translate-y-0 -mt-24"
+              style={{ marginTop: '-6rem' }}
             />
           </div>
         </section>
