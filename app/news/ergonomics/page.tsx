@@ -86,6 +86,7 @@ const visualNavigationTiles = [
     title: 'Ergonomics for Every Industry',
     desc: 'Start from the complete hub and pick your implementation path.',
     href: '/news/ergonomics',
+    disabled: true,
     image: '/projects/PT Mayora Indah.jpeg',
     position: 'center 30%',
     className: 'md:col-span-7 md:row-span-2 min-h-[340px] md:min-h-[460px]',
@@ -165,13 +166,13 @@ export default function ErgonomicsHubPage() {
             </div>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-[2rem] p-3 shadow-sm">
+          <div className="relative lg:min-h-[420px]">
             <Image
-              src="/projects/PT Gajah Tunggal (2).jpg"
-              alt="Industrial ergonomics implementation in tire manufacturing line"
+              src="/divdin.png"
+              alt="Industrial ergonomics implementation visual"
               width={1600}
               height={900}
-              className="w-full h-auto rounded-[1.5rem] object-cover"
+              className="h-auto w-full max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
               priority
             />
           </div>
@@ -196,30 +197,56 @@ export default function ErgonomicsHubPage() {
 
           <div className="grid md:grid-cols-12 gap-4 md:gap-5 auto-rows-fr">
             {visualNavigationTiles.map((tile) => (
-              <Link
-                key={tile.title}
-                href={tile.href}
-                className={`group relative overflow-hidden rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all ${tile.className}`}
-              >
-                <Image
-                  src={tile.image}
-                  alt={tile.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{ objectPosition: tile.position ?? 'center' }}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/35 to-transparent" />
+              tile.disabled ? (
+                <article
+                  key={tile.title}
+                  aria-current="page"
+                  className={`relative overflow-hidden rounded-3xl border border-slate-200 shadow-sm ${tile.className}`}
+                >
+                  <Image
+                    src={tile.image}
+                    alt={tile.title}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: tile.position ?? 'center' }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/35 to-transparent" />
 
-                <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-white">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] mb-3">
-                    Open topic
-                    <ArrowUpRight size={13} />
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-white">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] mb-3">
+                      Current topic
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-black leading-tight">{tile.title}</h3>
+                    <p className="mt-2 text-sm text-slate-100/90 max-w-2xl">{tile.desc}</p>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-black leading-tight">{tile.title}</h3>
-                  <p className="mt-2 text-sm text-slate-100/90 max-w-2xl">{tile.desc}</p>
-                </div>
-              </Link>
+                </article>
+              ) : (
+                <Link
+                  key={tile.title}
+                  href={tile.href}
+                  className={`group relative overflow-hidden rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all ${tile.className}`}
+                >
+                  <Image
+                    src={tile.image}
+                    alt={tile.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ objectPosition: tile.position ?? 'center' }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/35 to-transparent" />
+
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-white">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] mb-3">
+                      Open topic
+                      <ArrowUpRight size={13} />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-black leading-tight">{tile.title}</h3>
+                    <p className="mt-2 text-sm text-slate-100/90 max-w-2xl">{tile.desc}</p>
+                  </div>
+                </Link>
+              )
             ))}
           </div>
           <p className="text-xs text-slate-400 mt-4">
