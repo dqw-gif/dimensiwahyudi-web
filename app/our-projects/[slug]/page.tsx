@@ -163,52 +163,95 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
 
-            {/* HERO */}
-            <section className="relative pt-28 pb-14 md:pb-16 bg-slate-950 overflow-hidden">
-                <div className="absolute inset-0 opacity-[0.04]"
-                    style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            {/* EDITORIAL HEADER */}
+            <section className="relative overflow-hidden bg-slate-950 pt-28 pb-10 md:pb-12">
+                <div
+                    className="absolute inset-0 opacity-[0.05]"
+                    style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
+                />
+                <div className="absolute -left-24 top-24 h-64 w-64 rounded-full bg-cyan-400/15 blur-3xl" />
+                <div className="absolute -right-24 bottom-8 h-72 w-72 rounded-full bg-blue-500/15 blur-3xl" />
 
-                {/* BREADCRUMB / BACK LINK */}
-                <div className="absolute top-8 left-6 md:left-12 z-20">
-                    <Link href="/our-projects" className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm mb-8 transition-colors">
+                <div className="relative max-w-6xl mx-auto px-6">
+                    <Link href="/our-projects" className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm transition-colors">
                         <ArrowLeft size={16} /> Back to Gallery
                     </Link>
-                </div>
 
-                <div className="max-w-5xl mx-auto px-6">
-                    <div className="flex flex-wrap items-center gap-3 mb-6">
-                        <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-300 text-xs font-bold uppercase tracking-wider">
-                            {c.industry}
-                        </span>
-                        <span className="flex items-center gap-1.5 text-slate-500 text-xs">
-                            <Clock size={12} /> 2024
-                        </span>
-                    </div>
+                    <div className="mt-7 grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+                        <div>
+                            <div className="flex flex-wrap items-center gap-3 mb-5">
+                                <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-300 text-xs font-bold uppercase tracking-wider">
+                                    {c.industry}
+                                </span>
+                                <span className="flex items-center gap-1.5 text-slate-500 text-xs">
+                                    <Clock size={12} /> 2024
+                                </span>
+                            </div>
 
-                    <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-                        {c.client}
-                    </h1>
+                            <h1 className="text-4xl md:text-6xl font-black text-white leading-[1.05] tracking-tight">
+                                {c.client}
+                            </h1>
 
-                    <div className="flex flex-wrap items-center gap-6 text-slate-400 text-sm">
-                        <span className="flex items-center gap-1.5"><MapPin size={14} /> Indonesia</span>
-                        <span className="flex items-center gap-1.5"><Package size={14} /> Integrated Handling Solution</span>
+                            <p className="mt-5 max-w-2xl text-slate-300 leading-relaxed text-base md:text-lg">
+                                Engineered material-handling deployment tailored for real production constraints, with stronger ergonomic control and stable throughput on repetitive transfer operations.
+                            </p>
+
+                            <div className="mt-6 flex flex-wrap items-center gap-5 text-slate-300 text-sm">
+                                <span className="flex items-center gap-1.5"><MapPin size={14} /> Indonesia</span>
+                                <span className="flex items-center gap-1.5"><Package size={14} /> Integrated Handling Solution</span>
+                            </div>
+                        </div>
+
+                        <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+                            <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400 font-black">Project Snapshot</p>
+                            <dl className="mt-3 space-y-2 text-sm">
+                                <div>
+                                    <dt className="text-slate-500">Client</dt>
+                                    <dd className="text-white font-semibold">{c.client}</dd>
+                                </div>
+                                <div>
+                                    <dt className="text-slate-500">Industry</dt>
+                                    <dd className="text-white font-semibold">{c.industry}</dd>
+                                </div>
+                                <div>
+                                    <dt className="text-slate-500">Scope</dt>
+                                    <dd className="text-white font-semibold">Facility Handling Upgrade</dd>
+                                </div>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section className="bg-slate-100 border-y border-slate-200">
-                <div className="max-w-6xl mx-auto px-6 py-6 md:py-8">
-                    <div className="rounded-3xl border border-slate-200 bg-white p-2 md:p-3 shadow-sm">
-                        <div className="relative h-[240px] md:h-[420px] overflow-hidden rounded-2xl bg-slate-100">
-                            <Image
-                                src={c.image}
-                                alt={`${c.client} project visual`}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 1200px"
-                                className="object-contain"
-                                priority
-                            />
+            <section className="bg-gradient-to-b from-slate-100 to-white border-y border-slate-200">
+                <div className="max-w-6xl mx-auto px-6 py-7 md:py-10">
+                    <div className="grid gap-5 lg:grid-cols-[1.3fr_0.7fr]">
+                        <div className="rounded-3xl border border-slate-200 bg-white p-2 md:p-3 shadow-sm">
+                            <div className="relative h-[260px] md:h-[420px] overflow-hidden rounded-2xl bg-[radial-gradient(circle_at_20%_20%,#dbeafe_0%,#e2e8f0_45%,#f8fafc_100%)]">
+                                <Image
+                                    src={c.image}
+                                    alt={`${c.client} project visual`}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 900px"
+                                    className="object-contain p-2 md:p-4"
+                                    priority
+                                />
+                            </div>
                         </div>
+
+                        <article className="rounded-3xl border border-slate-200 bg-white p-6 md:p-7 shadow-sm">
+                            <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400 font-black">Why This Matters</p>
+                            <h2 className="mt-2 text-2xl font-black text-slate-900 leading-tight">Operational performance with safer repetitive handling.</h2>
+                            <p className="mt-4 text-slate-600 leading-relaxed text-sm md:text-base">
+                                The implementation combines ergonomic lifting support and handling precision to reduce physical strain risk, keep process quality stable, and maintain output consistency in real factory conditions.
+                            </p>
+                            <Link
+                                href="/contact"
+                                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-700"
+                            >
+                                Discuss Similar Project <ArrowRight size={15} />
+                            </Link>
+                        </article>
                     </div>
                 </div>
             </section>
