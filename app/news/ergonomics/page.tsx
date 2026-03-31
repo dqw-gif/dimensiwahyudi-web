@@ -143,7 +143,7 @@ export default function ErgonomicsHubPage() {
       </div>
 
       <div className={`${spacingTokens.page.shell} ${spacingTokens.page.container} ${spacingTokens.page.stack}`}>
-        <section className="grid lg:grid-cols-2 gap-8 md:gap-10 items-center">
+        <section className="grid lg:grid-cols-2 gap-8 md:gap-10 items-center pb-6 md:pb-8">
           <div>
             <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6">
               Industrial Ergonomics Knowledge Hub
@@ -296,12 +296,12 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className="bg-slate-900 text-white rounded-[2rem] p-7 md:p-12 border border-slate-800 overflow-hidden relative">
+        <section className="bg-slate-900 text-white rounded-[2rem] p-7 md:p-12 border border-slate-800 relative overflow-visible">
           <div
             className="absolute inset-0 opacity-10 pointer-events-none"
             style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
           />
-          <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-end">
             <div>
               <p className="text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">Next Action</p>
               <h2 className="text-3xl md:text-4xl font-black mb-4">Measure the economics of ergonomic investment</h2>
@@ -323,7 +323,7 @@ export default function ErgonomicsHubPage() {
               alt="Economic calculation visual for ergonomic investment"
               width={1600}
               height={900}
-              className="w-full h-auto rounded-2xl"
+              className="w-full h-auto rounded-2xl -mt-16 md:-mt-24"
             />
           </div>
         </section>
