@@ -143,7 +143,7 @@ export default function ErgonomicsHubPage() {
       </div>
 
       <div className={`${spacingTokens.page.shell} ${spacingTokens.page.container} ${spacingTokens.page.stack}`}>
-        <section className="grid lg:grid-cols-2 gap-8 md:gap-10 items-center pb-0 md:pb-0">
+        <section className="grid lg:grid-cols-2 gap-4 lg:gap-1 items-center pb-0 md:pb-0">
           <div>
             <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6">
               Industrial Ergonomics Knowledge Hub
@@ -166,7 +166,7 @@ export default function ErgonomicsHubPage() {
             </div>
           </div>
 
-          <div className="relative lg:min-h-[420px]">
+          <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
               src="/divdin.png"
               alt="Industrial ergonomics implementation visual"
@@ -178,7 +178,7 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.inset} shadow-sm`}>
+        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.feature} shadow-sm`}>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-3">Why this topic matters now</h2>
           <p className="text-slate-600 leading-relaxed">
             Ergonomics is no longer just a health initiative. It is now a strategic lever for plant reliability,
