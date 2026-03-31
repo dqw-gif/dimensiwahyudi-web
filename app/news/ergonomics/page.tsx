@@ -178,7 +178,7 @@ export default function ErgonomicsHubPage() {
           </div>
         </section>
 
-        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.feature} shadow-sm`}>
+        <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.feature} shadow-sm -mt-8 md:-mt-12`}>
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-3">Why this topic matters now</h2>
           <p className="text-slate-600 leading-relaxed">
             Ergonomics is no longer just a health initiative. It is now a strategic lever for plant reliability,
