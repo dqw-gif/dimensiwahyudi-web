@@ -214,128 +214,113 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                         >
                             <AnimatePresence mode="popLayout">
                                 {visibleProjects.map((p, idx) => {
-                            // Determine grid spans based on the 'size' property
-                            let spanClass = 'col-span-1 row-span-1'; // standard
-                            if (p.size === 'large') spanClass = 'col-span-1 md:col-span-2 row-span-1';
-                            if (p.size === 'tall') spanClass = 'col-span-1 row-span-2';
+                                    let spanClass = 'col-span-1 row-span-1';
+                                    if (p.size === 'large') spanClass = 'col-span-1 md:col-span-2 row-span-1';
+                                    if (p.size === 'tall') spanClass = 'col-span-1 row-span-2';
 
-                            return (
-                                <motion.div
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
-                                    transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 14 }}
-                                    key={p.id}
-                                    className={`relative rounded-3xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-xl ${spanClass}`}
-                                >
-                                    <Link
-                                        href={`/our-projects/${p.id}`}
-                                        className="absolute inset-0 z-20"
-                                        aria-label={`Open ${p.client} case study`}
-                                    >
-                                        <span className="sr-only">View full case study for {p.client}</span>
-                                    </Link>
+                                    return (
+                                        <motion.div
+                                            layout
+                                            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
+                                            transition={{ duration: 0.4, type: 'spring', stiffness: 100, damping: 14 }}
+                                            key={p.id}
+                                            className={`relative rounded-3xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-xl ${spanClass}`}
+                                        >
+                                            <Link
+                                                href={`/our-projects/${p.id}`}
+                                                className="absolute inset-0 z-20"
+                                                aria-label={`Open ${p.client} case study`}
+                                            >
+                                                <span className="sr-only">View full case study for {p.client}</span>
+                                            </Link>
 
-                                    {/* Image Background */}
-                                    <div className="absolute inset-0 w-full h-full">
-                                        <Image
-                                            src={p.image}
-                                            alt={p.client}
-                                            fill
-                                            className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
-                                            sizes={p.size === 'large' ? '(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw' : '(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw'}
-                                            loading={idx < 4 ? 'eager' : 'lazy'}
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                                    </div>
-
-                                    {/* Glassmorphism Hover Content */}
-                                    <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex flex-col justify-end h-full z-20">
-
-                                        {/* Smooth expanding content container */}
-                                        <div className="flex flex-col gap-2 transform transition-all duration-500">
-                                            <div>
-                                                <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-3 ${getBadgeStyle(p.color)}`}>
-                                                    {p.industry}
-                                                </span>
-                                                <h3 className="text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
-                                                    {p.client}
-                                                </h3>
+                                            <div className="absolute inset-0 w-full h-full">
+                                                <Image
+                                                    src={p.image}
+                                                    alt={p.client}
+                                                    fill
+                                                    className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
+                                                    sizes={p.size === 'large' ? '(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw' : '(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw'}
+                                                    loading={idx < 4 ? 'eager' : 'lazy'}
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                                             </div>
 
-                                            <div className="flex items-center gap-2">
-                                                <span className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
-                                                    View Project
-                                                </span>
-                                                <button
-                                                    type="button"
-                                                    onClick={(event) => {
-                                                        event.preventDefault();
-                                                        event.stopPropagation();
-                                                        setSelectedProject(p);
-                                                    }}
-                                                    className="z-30 rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-white/25"
-                                                >
-                                                    Quick Preview
-                                                </button>
-                                            </div>
+                                            <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex flex-col justify-end h-full z-20">
+                                                <div className="flex flex-col gap-2 transform transition-all duration-500">
+                                                    <div>
+                                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-3 ${getBadgeStyle(p.color)}`}>
+                                                            {p.industry}
+                                                        </span>
+                                                        <h3 className="text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
+                                                            {p.client}
+                                                        </h3>
+                                                    </div>
 
-                                            {/* Hover state: Smart Description - using layout grid trick for smooth auto height animation */}
-                                            <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
-                                                <div className="overflow-hidden">
-                                                    <p className="text-slate-300 text-sm leading-relaxed font-light drop-shadow-lg pt-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                                                        {p.desc}
-                                                    </p>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                                                            View Project
+                                                        </span>
+                                                        <button
+                                                            type="button"
+                                                            onClick={(event) => {
+                                                                event.preventDefault();
+                                                                event.stopPropagation();
+                                                                setSelectedProject(p);
+                                                            }}
+                                                            className="z-30 rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-white/25"
+                                                        >
+                                                            Quick Preview
+                                                        </button>
+                                                    </div>
+
+                                                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+                                                        <div className="overflow-hidden">
+                                                            <p className="text-slate-300 text-sm leading-relaxed font-light drop-shadow-lg pt-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+                                                                {p.desc}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                                })}
-                                            </AnimatePresence>
-                                        </motion.div>
 
-                                        {hasMoreProjects ? (
-                                            <div className="mt-10 flex justify-center">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setVisibleCount((prev) => prev + 12)}
-                                                    className="rounded-2xl border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
-                                                >
-                                                    Load more projects
-                                                </button>
+                                            <div className="absolute top-5 right-5 h-12 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[180px]">
+                                                {p.logo ? (
+                                                    <Image
+                                                        src={p.logo}
+                                                        alt={`${p.client} logo`}
+                                                        width={140}
+                                                        height={44}
+                                                        className="h-full w-auto object-contain"
+                                                        unoptimized
+                                                    />
+                                                ) : (
+                                                    <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase px-1">Logo</span>
+                                                )}
                                             </div>
-                                        ) : null}
-                                    </>
-                                )}
 
-                                    {/* Logo Factory Slot - Solid White Background & Auto Width for Landscape Logos */}
-                                    <div className="absolute top-5 right-5 h-12 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[180px]">
-                                        {p.logo ? (
-                                            <Image
-                                                src={p.logo}
-                                                alt={`${p.client} Logo`}
-                                                width={140}
-                                                height={44}
-                                                className="h-full w-auto object-contain"
-                                                unoptimized
-                                            />
-                                        role="presentation"
-                                        ) : (
-                                            <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase px-1">Logo</span>
-                                        )}
-                                    </div>
-
-                                    {/* Futuristic Glow Border Effect on Hover */}
-                                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 rounded-3xl transition-colors duration-500 pointer-events-none z-10"></div>
-                                </motion.div>
-                                            role="dialog"
-                                            aria-modal="true"
-                                            aria-labelledby="project-preview-title"
-                                            aria-describedby="project-preview-description"
-                                            ref={modalRef}
-                            );
-                        })}
+                                            <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 rounded-3xl transition-colors duration-500 pointer-events-none z-10" />
+                                        </motion.div>
+                                    );
+                                })}
                     </AnimatePresence>
                 </motion.div>
+
+                        {hasMoreProjects ? (
+                            <div className="mt-10 flex justify-center">
+                                <button
+                                    type="button"
+                                    onClick={() => setVisibleCount((prev) => prev + 12)}
+                                    className="rounded-2xl border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+                                >
+                                    Load more projects
+                                </button>
+                            </div>
+                        ) : null}
+                    </>
+                )}
 
             </div>
 
@@ -348,6 +333,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedProject(null)}
                         className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-sm cursor-zoom-out"
+                        role="presentation"
                     >
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -356,6 +342,11 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
                             className="relative w-full max-w-6xl max-h-[90vh] rounded-3xl overflow-hidden cursor-default flex flex-col bg-white border border-slate-200 shadow-2xl"
                             onClick={(e) => e.stopPropagation()}
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="project-preview-title"
+                            aria-describedby="project-preview-description"
+                            ref={modalRef}
                         >
                             {/* Image Container */}
                             <div className="relative w-full h-[50vh] md:h-[70vh] bg-slate-100">
