@@ -166,13 +166,13 @@ export default function ErgonomicsHubPage() {
             </div>
           </div>
 
-          <div className="relative lg:col-span-7 lg:min-h-[420px]">
+          <div className="lg:col-span-7 lg:min-h-[420px] flex items-end justify-end -mt-12 lg:mt-0">
             <Image
               src="/divdin.png"
               alt="Industrial ergonomics implementation visual"
               width={1600}
               height={900}
-              className="h-auto w-full max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
+              className="h-auto w-full max-w-[680px] object-contain object-bottom"
               priority
             />
           </div>
