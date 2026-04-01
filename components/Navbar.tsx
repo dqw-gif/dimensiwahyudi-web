@@ -195,13 +195,68 @@ export default function Navbar() {
                     </Link>
                   </div>
                   <div className="border-t border-slate-100 px-4 py-3">
-                    <Link href="/products" onClick={closeDropdown} className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                      {t.navbar.seeAllBrands}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Dropdown Industries */}
+            <div
+              className="relative group py-2"
+              onMouseEnter={() => openDropdown('industries')}
+              onMouseLeave={closeDropdown}
+            >
+              <button className="flex items-center space-x-1 text-slate-600 group-hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide outline-none">
+                <span>Industries</span>
+                <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === 'industries' ? 'rotate-180' : ''}`} />
+              </button>
+
+              <div className={`absolute left-0 top-full w-64 pt-2 transition-all duration-300 origin-top-left ${activeDropdown === 'industries' ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-95 -translate-y-2 invisible pointer-events-none'}`}>
+                <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden shadow-slate-200/50">
+                  <div className="p-2 space-y-1">
+                    <Link href="/industries/food-beverage" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-orange-50 p-2 rounded-lg group-hover/item:bg-orange-100 transition-colors mr-3 text-orange-600">
+                        <Package size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">Food & Pharma</p>
+                        <p className="text-xs text-slate-500">Hygienic standard</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/industries/automotive-metal" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-slate-100 p-2 rounded-lg group-hover/item:bg-slate-200 transition-colors mr-3 text-slate-700">
+                        <Briefcase size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">Auto & Metal</p>
+                        <p className="text-xs text-slate-500">Heavy duty lifting</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/industries/logistics-ecommerce" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-blue-50 p-2 rounded-lg group-hover/item:bg-blue-100 transition-colors mr-3 text-blue-600">
+                        <BarChart3 size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">Logistics & E-comm</p>
+                        <p className="text-xs text-slate-500">High speed sorting</p>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="border-t border-slate-100 px-4 py-3 bg-slate-50">
+                    <Link href="/industries" onClick={closeDropdown} className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 w-full justify-center">
+                      View All 8 Industries
                     </Link>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Contact Us Link */}
 
             <Link href="/services" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
               {t.navbar.services}
