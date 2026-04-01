@@ -45,6 +45,11 @@ export default function WhatsAppFloat() {
                 href="https://wa.me/6281119168752?text=Hello%20PT%20Dimensi%20Quantum%20Wahyudi%2C%20I%20would%20like%20a%20consultation%20about%20lifting%20solutions%20for%20our%20facility."
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).gtag) {
+                        (window as any).gtag('event', 'whatsapp_click', { event_category: 'CTA', value: 1 });
+                    }
+                }}
                 aria-label="Chat WhatsApp PT Dimensi Quantum Wahyudi"
                 className="flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-400 text-white rounded-full shadow-2xl shadow-green-500/40 hover:shadow-green-500/60 transition-all duration-300 hover:scale-110 active:scale-95"
             >

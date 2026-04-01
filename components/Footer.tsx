@@ -91,9 +91,11 @@ export default function Footer() {
         {/* Garis Pemisah & Copyright */}
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-medium text-slate-500">
           <p>&copy; 2026 PT Dimensi Quantum Wahyudi. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="#" className="hover:text-cyan-600">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white px-3 py-1 bg-slate-900 rounded-md transition-colors hover:bg-cyan-600">Terms of Service</Link>
+          <div className="flex gap-6 mt-4 md:mt-0 flex-wrap justify-center">
+            <Link href="/sitemap" className="hover:text-cyan-600">Sitemap</Link>
+            <Link href="/faq" className="hover:text-cyan-600">FAQ</Link>
+            <Link href="/privacy-policy" className="hover:text-cyan-600">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="hover:text-white px-3 py-1 bg-slate-900 rounded-md transition-colors hover:bg-cyan-600">Terms of Service</Link>
           </div>
         </div>
       </div>

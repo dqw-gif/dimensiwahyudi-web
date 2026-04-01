@@ -60,6 +60,18 @@ export default async function Home() {
       <BenefitsSection />
       <BrandShowcase />
 
+      {/* MID-PAGE CTA */}
+      <section className="bg-blue-600 text-white py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent_50%)] pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-3xl font-bold mb-4">Ready to improve your production floor safety?</h2>
+          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">Get a free site assessment from our ergonomic lifting experts to evaluate your material handling processes.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="/contact" className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-lg border-2 border-transparent hover:border-white hover:bg-transparent hover:text-white transition-all">Schedule a Demo</a>
+          </div>
+        </div>
+      </section>
+
       {/* 6. CALCULATOR & AGR CERTIFICATION SECTION (SEO OPTIMIZED) */}
       <section id="roi-calculator" className="py-20 md:py-24 bg-white border-t border-slate-100 relative overflow-hidden">
 

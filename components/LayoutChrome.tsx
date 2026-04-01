@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import WhatsAppFloat from './WhatsAppFloat';
+import B2BChatbot from './B2BChatbot';
 import ConversionTracker from './ConversionTracker';
 
 type LayoutChromeProps = {
@@ -23,7 +23,7 @@ export default function LayoutChrome({ children }: LayoutChromeProps) {
       <Navbar />
       {children}
       <Footer />
-      <WhatsAppFloat />
+      <B2BChatbot />
       <ConversionTracker />
     </>
   );

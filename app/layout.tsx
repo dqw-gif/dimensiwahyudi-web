@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Barlow } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -151,8 +151,8 @@ const seoStructuredData = {
       },
       sameAs: [
         "https://dimensiwahyudi.com",
-        "https://www.youtube.com/@SchmalzMediaCenter",
-        "https://www.youtube.com/@BinarHandling",
+        "https://www.linkedin.com/company/dimensiwahyudi",
+        "https://www.instagram.com/nabelsakha/",
       ],
     },
     {

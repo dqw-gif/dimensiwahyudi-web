@@ -53,6 +53,7 @@ export default function HeroSection() {
         loop
         muted
         playsInline
+        poster="/hero-poster.jpg"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover opacity-50"
       >
@@ -65,6 +66,9 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-center px-6 max-w-6xl mx-auto">
+
+          {/* H1 for SEO (Visually Hidden) */}
+          <h1 className="sr-only">PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting Solutions in Indonesia</h1>
 
           {/* Tagline Kecil di Atas */}
           <motion.div

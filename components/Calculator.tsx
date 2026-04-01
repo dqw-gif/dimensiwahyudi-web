@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Zap, CheckCircle, AlertTriangle, ArrowDown } from 'lucide-react';
+import { Zap, CheckCircle, AlertTriangle, ArrowDown, Mail } from 'lucide-react';
 import { calculateTotalLoad, checkSafetyStatus, getRecommendation, getSafetyMessage } from '../utils/calculatorLogic';
 
 export default function SmartCalculator() {
   const [weight, setWeight] = useState(50); // kg
   const [frequency, setFrequency] = useState(100); // times/hour
   const [workHours, setWorkHours] = useState(8); // hours
+  const [email, setEmail] = useState('');
+  const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const { tons: totalLoadTons } = calculateTotalLoad(weight, frequency, workHours);
   const isDangerous = checkSafetyStatus(totalLoadTons, weight);
@@ -178,6 +180,76 @@ export default function SmartCalculator() {
               View Product <ArrowDown size={18} />
             </Link>
           </div>
+
+          {/* Lead Capture Form */}
+          <div className="bg-slate-800/80 p-5 rounded-xl border border-slate-700/50 mt-6 shadow-inner">
+            <h4 className="text-white font-bold text-sm mb-2 flex items-center gap-2">
+              <Mail size={16} className="text-cyan-400" />
+              Get Detailed Safety & ROI Report
+            </h4>
+            <p className="text-slate-400 text-xs mb-4">
+              Enter your corporate email to receive a customized engineering report based on these parameters.
+            </p>
+
+            {leadStatus === 'success' ? (
+              <div className="bg-emerald-500/20 text-emerald-300 p-3 rounded-lg text-sm flex items-center gap-2 border border-emerald-500/30">
+                <CheckCircle size={16} /> Request Received! Our engineer will follow up shortly.
+              </div>
+            ) : (
+              <form 
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (!email) return;
+                  setLeadStatus('loading');
+                  try {
+                    const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        subject: '💡 ROI Calculator Lead',
+                        email: email,
+                        weight_kg: weight,
+                        frequency_per_hr: frequency,
+                        hours_per_day: workHours,
+                        total_load_tons: totalLoadTons.toFixed(2),
+                        status: isDangerous ? 'DANGEROUS' : 'SAFE',
+                        recommendation: recommendation.label
+                      })
+                    });
+                    if (res.ok) {
+                      setLeadStatus('success');
+                      if (typeof window !== 'undefined' && (window as any).gtag) {
+                        (window as any).gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
+                      }
+                    } else {
+                      setLeadStatus('error');
+                    }
+                  } catch (err) {
+                    setLeadStatus('error');
+                  }
+                }}
+                className="flex gap-2"
+              >
+                <input 
+                  type="email" 
+                  required
+                  placeholder="name@company.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500"
+                />
+                <button 
+                  type="submit" 
+                  disabled={leadStatus === 'loading'}
+                  className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-4 py-2 rounded-lg text-sm transition-colors whitespace-nowrap disabled:opacity-50"
+                >
+                  {leadStatus === 'loading' ? 'Sending...' : 'Send Report'}
+                </button>
+              </form>
+            )}
+            {leadStatus === 'error' && <p className="text-red-400 text-xs mt-2">Failed to send request. Please try again.</p>}
+          </div>
+
         </div>
       </div>
     </div>

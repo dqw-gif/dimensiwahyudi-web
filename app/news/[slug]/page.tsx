@@ -7,6 +7,7 @@ import { Metadata } from 'next';
 import ShareButton from '../../../components/news/ShareButton';
 import type { PostSummary } from '../../../types/wordpress';
 import DOMPurify from 'isomorphic-dompurify';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 
 // ISR: Re-generate pages in the background every 6 hours.
 export const revalidate = 21600;
@@ -208,6 +209,13 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                 <div className="absolute inset-0 flex flex-col justify-end pb-32 md:pb-40">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 w-full relative z-10">
                         <div className="animate-in slide-in-from-bottom-5 fade-in duration-700">
+                            <div className="mb-6 -mt-4 opacity-80 mix-blend-screen overflow-hidden">
+                                <Breadcrumbs items={[
+                                    { label: 'Insights', href: '/news' },
+                                    { label: post.categories?.nodes[0]?.name || 'Article', href: '/news' },
+                                    { label: post.title, href: `/news/${post.slug}` },
+                                ]} />
+                            </div>
                             <Link href="/news" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 uppercase tracking-widest text-xs font-bold transition-all hover:gap-3 group">
                                 <ChevronLeft size={16} /> Back to Insights
                             </Link>
@@ -303,6 +311,29 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                         />
                     </div>
 
+                </div>
+            </div>
+
+            {/* Contextual B2B CTA Banner */}
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 mb-24 animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-500">
+                <div className="bg-gradient-to-br from-blue-900 via-slate-900 to-blue-950 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative border border-blue-500/20">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-3xl rounded-full"></div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                        <div className="flex-1">
+                            <h3 className="text-2xl md:text-3xl font-black text-white mb-3">Ready to transform your production line?</h3>
+                            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                                Calculate the potential medical cost savings and productivity increase you could achieve using our handling solutions.
+                            </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
+                            <Link href="/#roi-calculator" className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-6 py-4 rounded-xl text-sm transition-all shadow-lg hover:shadow-cyan-500/25 flex items-center justify-center gap-2 uppercase tracking-wide">
+                                Calculate ROI <ArrowRight size={16} />
+                            </Link>
+                            <Link href="/products" className="bg-transparent hover:bg-white/5 border border-white/20 text-white font-bold px-6 py-4 rounded-xl text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-wide">
+                                View Products
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 

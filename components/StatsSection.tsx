@@ -11,14 +11,14 @@ const stats = [
 ];
 
 const clients = [
-  { src: '/logos/client(1).svg', alt: 'Client 1' },
-  { src: '/logos/client(2).svg', alt: 'Client 2' },
-  { src: '/logos/client(3).svg', alt: 'Client 3' },
-  { src: '/logos/client(4).svg', alt: 'Client 4' },
-  { src: '/logos/client(5).svg', alt: 'Client 5' },
-  { src: '/logos/client(6).svg', alt: 'Client 6' },
-  { src: '/logos/client(7).svg', alt: 'Client 7' },
-  { src: '/logos/client(8).svg', alt: 'Client 8' },
+  { src: '/logos/client(1).svg', alt: 'Yuasa' },
+  { src: '/logos/client(2).svg', alt: 'Toyota Astra Motor' },
+  { src: '/logos/client(3).svg', alt: 'Jotun' },
+  { src: '/logos/client(4).svg', alt: 'Hankook' },
+  { src: '/logos/client(5).svg', alt: 'Suzuki' },
+  { src: '/logos/client(6).svg', alt: 'Evoluzione Tyres' },
+  { src: '/logos/client(7).svg', alt: 'Gajah Tunggal' },
+  { src: '/logos/client(8).svg', alt: 'Honda' },
 ];
 
 export default function StatsSection() {

@@ -79,7 +79,12 @@ const VacuumCalculator = () => {
         {MENU_ITEMS.map((item) => (
           <button
             key={item.id}
-            onClick={() => setters.setCurrentView(item.id)}
+            onClick={() => {
+              setters.setCurrentView(item.id);
+              if (typeof window !== 'undefined' && (window as any).gtag) {
+                (window as any).gtag('event', 'use_calculator', { event_category: 'Tool', event_label: item.title });
+              }
+            }}
             className="group p-6 md:p-10 bg-white border border-slate-100 rounded-[1.5rem] md:rounded-[2.5rem] shadow-md shadow-slate-200/50 hover:shadow-xl hover:shadow-blue-200/40 hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

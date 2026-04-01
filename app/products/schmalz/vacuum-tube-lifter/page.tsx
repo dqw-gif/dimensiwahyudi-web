@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { ArrowLeft, ArrowRight, ChevronRight, Zap, AlertTriangle, Droplets, Wind, Layers } from 'lucide-react';
 import { vacuumTubeLifterVariants } from '../../../../data/products/vacuum-tube-lifters';
+import Breadcrumbs from '../../../../components/Breadcrumbs';
+import ProductMatrix from '../../../../components/ProductMatrix';
 
 export const metadata: Metadata = {
     title: 'Vacuum Tube Lifters - Jumbo Series | Schmalz - PT Dimensi Quantum Wahyudi',
@@ -52,13 +54,13 @@ export default function VacuumTubeLifterIndexPage() {
 
                 <div className="relative max-w-7xl mx-auto px-6">
                     {/* Breadcrumb */}
-                    <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
-                        <ChevronRight size={12} />
-                        <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
-                        <ChevronRight size={12} />
-                        <span className="text-slate-300">Vacuum Tube Lifters</span>
-                    </nav>
+                    <div className="mb-8">
+                        <Breadcrumbs items={[
+                            { label: 'Products', href: '/products' },
+                            { label: 'Schmalz', href: '/products/schmalz' },
+                            { label: 'Vacuum Tube Lifters', href: '/products/schmalz/vacuum-tube-lifter' },
+                        ]} />
+                    </div>
 
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
                         <Zap size={11} /> 9 Variants - One Product Family
@@ -157,6 +159,9 @@ export default function VacuumTubeLifterIndexPage() {
                             </Link>
                         ))}
                     </div>
+
+                    {/* Product Comparison Matrix */}
+                    <ProductMatrix />
                 </div>
             </section>
 
