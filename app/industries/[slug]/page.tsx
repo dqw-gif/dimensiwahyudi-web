@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { ChevronRight, ArrowRight, Zap, AlertCircle, CheckCircle2 } from 'lucide-react';
@@ -35,9 +36,18 @@ export default async function IndustryDetailPage({ params }: Props) {
     <main className="min-h-screen bg-slate-50">
       {/* HERO */}
       <section className="relative pt-32 pb-24 bg-slate-950 overflow-hidden">
+        {industry.imageUrl && (
+          <Image 
+             src={industry.imageUrl}
+             alt={industry.name}
+             fill
+             className="object-cover object-center opacity-40 mix-blend-overlay"
+             priority
+          />
+        )}
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-        <div className={`absolute inset-0 bg-gradient-to-br ${industry.heroColor} opacity-20`} />
+        <div className={`absolute inset-0 bg-gradient-to-br ${industry.heroColor} opacity-70`} />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}
@@ -111,14 +121,19 @@ export default async function IndustryDetailPage({ params }: Props) {
             {recommendedLifters.map((product) => (
               <Link href={`/products/schmalz/vacuum-tube-lifter/${product.slug}`} key={product.slug} className="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2 transition-all duration-300 flex flex-col">
                 <div className={`h-48 bg-gradient-to-br ${product.heroColor} p-6 relative overflow-hidden flex flex-col justify-between`}>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-md text-[10px] text-white font-black uppercase tracking-widest w-fit">
+                  {product.imageUrl ? (
+                    <Image src={product.imageUrl} alt={product.name} fill className="object-cover opacity-60 mix-blend-multiply group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 33vw" />
+                  ) : (
+                    <Zap className="absolute -bottom-4 -right-4 w-32 h-32 text-white opacity-10 group-hover:scale-110 transition-transform duration-500" />
+                  )}
+                  
+                  <div className="relative z-10 inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/20 backdrop-blur-sm rounded-md text-[10px] text-white font-black uppercase tracking-widest w-fit">
                     {product.badge || 'Standard Series'}
                   </div>
-                  <div>
+                  <div className="relative z-10">
                     <h4 className="text-2xl font-black text-white group-hover:underline underline-offset-4 decoration-white/50">{product.seriesCode}</h4>
                     <p className="text-white/80 font-mono text-sm mt-1">Cap: {product.capacity}</p>
                   </div>
-                  <Zap className="absolute -bottom-4 -right-4 w-32 h-32 text-white opacity-10 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 
                 <div className="p-6 flex-1 flex flex-col">

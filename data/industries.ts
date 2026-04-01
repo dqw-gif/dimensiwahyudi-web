@@ -6,6 +6,7 @@ export interface IndustryDef {
   tagline: string;
   description: string;
   heroColor: string;
+  imageUrl: string;
   iconType: 'food' | 'pill' | 'car' | 'box' | 'factory' | 'hard-hat' | 'cpu' | 'flask';
   recommendedProducts: string[]; // references VTLVariant slugs
   painPoints: string[];
@@ -17,7 +18,8 @@ export const industries: IndustryDef[] = [
     name: 'Food & Beverage',
     tagline: 'Hygienic material handling that meets strict food-grade standards',
     description: 'The food and beverage industry requires handling systems that are easily washable, resistant to high-pressure cleaning, and compliant with FDA regulations. Manual handling of sacks of raw ingredients or moving delicate finished products can be streamlined using IP69K-rated vacuum tech.',
-    heroColor: 'from-orange-500 to-red-600',
+    heroColor: 'from-blue-700 to-slate-900',
+    imageUrl: 'https://images.unsplash.com/photo-1621648083815-46ff8cf97bdc?q=80&w=2670&auto=format&fit=crop',
     iconType: 'food',
     painPoints: [
       'Contamination risk from standard lifting equipment',
@@ -31,7 +33,8 @@ export const industries: IndustryDef[] = [
     name: 'Pharmaceuticals & Chemicals',
     tagline: 'Precision handling with HEPA filtration and ATEX safety guarantees',
     description: 'In pharmaceutical clean rooms and volatile chemical zones, worker safety is paramount. We provide lifting aids equipped with H14 HEPA filters to prevent contamination, alongside intrinsically safe (ATEX) lifters for hazardous explosive zones.',
-    heroColor: 'from-teal-500 to-emerald-600',
+    heroColor: 'from-cyan-700 to-blue-900',
+    imageUrl: 'https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80&w=2670&auto=format&fit=crop',
     iconType: 'flask',
     painPoints: [
       'Airborne particle contamination during powder transfer',
@@ -45,7 +48,8 @@ export const industries: IndustryDef[] = [
     name: 'Automotive & Metal Work',
     tagline: 'Heavy-duty lifting for dense, non-porous metal components and car parts',
     description: 'Moving car chassis components, pressing heavy sheet metal, and unloading engine parts from deep crates takes a massive physical toll. Our ergonomic heavy-lifters provide up to 300kg capacity with optional 90-degree swivel for precise placement in CNC machines or assembly lines.',
-    heroColor: 'from-slate-700 to-slate-900',
+    heroColor: 'from-blue-800 to-slate-800',
+    imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop',
     iconType: 'car',
     painPoints: [
       'High incidence of musculoskeletal injuries among assembly line workers',
@@ -59,7 +63,8 @@ export const industries: IndustryDef[] = [
     name: 'Logistics, Warehousing & E-commerce',
     tagline: 'High-speed sorting, palletizing, and order picking automation',
     description: 'Speed is the ultimate metric in logistics. Dealing with un-uniform parcel sizes, rapid high-cycle carton handling, and stacking to tall pallets requires an agile one-hand control lifter. Maximize vertical warehouse space and slash loading time.',
-    heroColor: 'from-blue-600 to-indigo-700',
+    heroColor: 'from-blue-600 to-cyan-800',
+    imageUrl: 'https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2670&auto=format&fit=crop',
     iconType: 'box',
     painPoints: [
       'Slow order fulfillment speeds due to manual box picking',
@@ -73,7 +78,8 @@ export const industries: IndustryDef[] = [
     name: 'Construction, Glass & Woodworking',
     tagline: 'Secure vacuum hold for massive, unwieldy architectural materials',
     description: 'Glass panes, marble slabs, and massive wooden doors cannot be dropped. We deploy multi-circuit vacuum safety technology for lifting non-porous (glass) and semi-porous (MDF/wood) panels up to 300kg with 100% confidence and zero surface damage.',
-    heroColor: 'from-amber-600 to-orange-800',
+    heroColor: 'from-slate-800 to-blue-950',
+    imageUrl: 'https://images.unsplash.com/photo-1541888086913-91b3437bc60a?q=80&w=2670&auto=format&fit=crop',
     iconType: 'hard-hat',
     painPoints: [
       'Catastrophic financial and safety risk from dropping glass/marble slabs',
@@ -87,7 +93,8 @@ export const industries: IndustryDef[] = [
     name: 'Packaging & Printing',
     tagline: 'Gentle handling of paper rolls, foils, and delicate printed media',
     description: 'Swapping heavy paper rolls on printing presses or loading continuous foil packaging machines can paralyze a production line if done manually. Our core-gripping vacuum lifters make loading round, heavy packaging materials a one-person job.',
-    heroColor: 'from-cyan-500 to-blue-600',
+    heroColor: 'from-cyan-600 to-blue-700',
+    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=2670&auto=format&fit=crop',
     iconType: 'factory',
     painPoints: [
       'Production downtime when waiting for staff to mount heavy paper/foil rolls',
@@ -101,7 +108,8 @@ export const industries: IndustryDef[] = [
     name: 'Electronics & Semiconductors',
     tagline: 'ESD-safe handling for high-value sensitive components',
     description: 'Static electricity is the enemy of electronics manufacturing. Handing server racks, sensitive displays, or battery modules requires Anti-Static (ESD) compliant equipment to prevent invisible micro-shocks that destroy product value.',
-    heroColor: 'from-purple-600 to-fuchsia-700',
+    heroColor: 'from-blue-500 to-slate-800',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop',
     iconType: 'cpu',
     painPoints: [
       'Electrostatic discharge (ESD) destroying expensive components during transit',
@@ -115,7 +123,8 @@ export const industries: IndustryDef[] = [
     name: 'Plastics & Rubber',
     tagline: 'Enduring handling solutions for hot, abrasive, and raw material sacks',
     description: 'Feeding hoppers with 25kg bags of plastic pellets or lifting hot rubber molds demands durable handling tools. Alleviate the brutal physical work of hopper-feeding and mold transportation with heat-resistant vacuum attachments.',
-    heroColor: 'from-rose-500 to-pink-700',
+    heroColor: 'from-slate-700 to-blue-800',
+    imageUrl: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2670&auto=format&fit=crop',
     iconType: 'factory',
     painPoints: [
       'Back-breaking repetition of lifting 25kg pellet sacks into tall hoppers',

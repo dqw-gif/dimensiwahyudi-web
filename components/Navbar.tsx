@@ -216,7 +216,7 @@ export default function Navbar() {
                   <div className="p-2 space-y-1">
                     <Link href="/industries/food-beverage" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-orange-50 p-2 rounded-lg group-hover/item:bg-orange-100 transition-colors mr-3 text-orange-600">
+                      <div className="bg-blue-50 p-2 rounded-lg group-hover/item:bg-blue-100 transition-colors mr-3 text-blue-600">
                         <Package size={20} />
                       </div>
                       <div>
@@ -227,7 +227,7 @@ export default function Navbar() {
 
                     <Link href="/industries/automotive-metal" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-slate-100 p-2 rounded-lg group-hover/item:bg-slate-200 transition-colors mr-3 text-slate-700">
+                      <div className="bg-cyan-50 p-2 rounded-lg group-hover/item:bg-cyan-100 transition-colors mr-3 text-cyan-600">
                         <Briefcase size={20} />
                       </div>
                       <div>
@@ -238,7 +238,7 @@ export default function Navbar() {
 
                     <Link href="/industries/logistics-ecommerce" onClick={closeDropdown}
                       className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
-                      <div className="bg-blue-50 p-2 rounded-lg group-hover/item:bg-blue-100 transition-colors mr-3 text-blue-600">
+                      <div className="bg-slate-50 p-2 rounded-lg border border-slate-100 group-hover/item:bg-slate-100 transition-colors mr-3 text-blue-700">
                         <BarChart3 size={20} />
                       </div>
                       <div>
