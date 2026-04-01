@@ -19,7 +19,7 @@ export const industries: IndustryDef[] = [
     tagline: 'Hygienic material handling that meets strict food-grade standards',
     description: 'The food and beverage industry requires handling systems that are easily washable, resistant to high-pressure cleaning, and compliant with FDA regulations. Manual handling of sacks of raw ingredients or moving delicate finished products can be streamlined using IP69K-rated vacuum tech.',
     heroColor: 'from-blue-700 to-slate-900',
-    imageUrl: 'https://images.unsplash.com/photo-1621648083815-46ff8cf97bdc?q=80&w=2670&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1590682680695-43b964a3ae17?q=80&w=2670&auto=format&fit=crop',
     iconType: 'food',
     painPoints: [
       'Contamination risk from standard lifting equipment',
@@ -79,7 +79,7 @@ export const industries: IndustryDef[] = [
     tagline: 'Secure vacuum hold for massive, unwieldy architectural materials',
     description: 'Glass panes, marble slabs, and massive wooden doors cannot be dropped. We deploy multi-circuit vacuum safety technology for lifting non-porous (glass) and semi-porous (MDF/wood) panels up to 300kg with 100% confidence and zero surface damage.',
     heroColor: 'from-slate-800 to-blue-950',
-    imageUrl: 'https://images.unsplash.com/photo-1541888086913-91b3437bc60a?q=80&w=2670&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2670&auto=format&fit=crop',
     iconType: 'hard-hat',
     painPoints: [
       'Catastrophic financial and safety risk from dropping glass/marble slabs',
@@ -94,7 +94,7 @@ export const industries: IndustryDef[] = [
     tagline: 'Gentle handling of paper rolls, foils, and delicate printed media',
     description: 'Swapping heavy paper rolls on printing presses or loading continuous foil packaging machines can paralyze a production line if done manually. Our core-gripping vacuum lifters make loading round, heavy packaging materials a one-person job.',
     heroColor: 'from-cyan-600 to-blue-700',
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c80a30?q=80&w=2670&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1587293852726-70cd0272b123?q=80&w=2670&auto=format&fit=crop',
     iconType: 'factory',
     painPoints: [
       'Production downtime when waiting for staff to mount heavy paper/foil rolls',
