@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import B2BChatbot from './B2BChatbot';
+import ExitIntentPopup from './ExitIntentPopup';
 import ConversionTracker from './ConversionTracker';
 
 type LayoutChromeProps = {
@@ -24,6 +25,7 @@ export default function LayoutChrome({ children }: LayoutChromeProps) {
       {children}
       <Footer />
       <B2BChatbot />
+      <ExitIntentPopup />
       <ConversionTracker />
     </>
   );
