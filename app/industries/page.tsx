@@ -51,13 +51,11 @@ export default function IndustriesIndexPage() {
               <Link 
                 href={`/industries/${ind.slug}`} 
                 key={ind.slug}
-                className="group relative bg-white border border-slate-200 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden flex flex-col h-full"
+                className="group relative bg-white border border-slate-200 rounded-3xl p-8 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-2 transition-all duration-300 overflow-hidden flex flex-col h-full"
               >
-                {/* Background glow on hover */}
-                <div className={`absolute -bottom-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${ind.heroColor}`}></div>
-                
+
                 <div className="relative z-10 flex-1">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-slate-100 bg-gradient-to-br ${ind.heroColor} text-white`}>
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-blue-100 bg-blue-50 text-blue-600">
                     {getIcon(ind.iconType)}
                   </div>
                   <h2 className="text-xl font-black text-slate-900 mb-3">{ind.name}</h2>
