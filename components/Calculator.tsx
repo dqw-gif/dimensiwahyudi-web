@@ -19,247 +19,259 @@ export default function SmartCalculator() {
   const safetyMessage = getSafetyMessage(isDangerous, weight);
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-6 md:p-8 bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-blue-900/20 relative overflow-hidden">
+    <div className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white/90 p-6 shadow-[0_30px_100px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-8 lg:p-10">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.12),transparent_30%)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-cyan-200/50 blur-3xl" aria-hidden="true" />
 
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center tracking-tight">
-        Calculator <span className="text-cyan-400">ROI & Ergonomic Workload</span>
-      </h2>
-      <p className="text-slate-400 text-center mb-10 max-w-2xl mx-auto">
-        Analyze risks <span className="text-slate-200">manual material handling</span> in your production line. Calculate cumulative daily load to reduce spinal injury risk and improve workplace safety standards.
-      </p>
-
-      <div className="grid md:grid-cols-2 gap-12">
-
-        {/* Left Side - Inputs */}
-        <div className="space-y-8">
-          <div className="flex items-center gap-2 mb-6">
-            <Zap className="text-cyan-400" size={24} />
-            <h3 className="text-2xl font-bold text-white">
-              Operational Parameters
-            </h3>
+      <div className="relative">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-6">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-cyan-700">
+              <Zap size={12} />
+              Interactive estimator
+            </div>
+            <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+              ROI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">& Ergonomic Workload</span>
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Adjust the operational inputs to see how cumulative load, safety status, and handling recommendations shift in real time.
+            </p>
           </div>
 
-          {/* Material Weight Slider */}
-          <div className="space-y-4">
-            <div className="flex justify-between items-end">
-              <label className="text-slate-300 font-medium text-lg">
-                Unit Material Weight (Payload)
-              </label>
-              <span className={`font-bold text-2xl font-mono transition-colors ${weight > 25 ? 'text-red-400' : 'text-cyan-400'}`}>
-                {weight} <span className="text-sm text-slate-500">kg</span>
-              </span>
+          <div className="grid min-w-full gap-3 sm:min-w-0 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Payload</p>
+              <p className="mt-1 text-lg font-black text-slate-950">{weight} kg</p>
             </div>
-            <div className="py-2"> {/* Added padding for better mobile touch area */}
-              <input
-                type="range"
-                min="0"
-                max="200"
-                value={weight}
-                onChange={(e) => setWeight(Number(e.target.value))}
-                suppressHydrationWarning
-                className={`w-full h-4 md:h-2 rounded-lg appearance-none cursor-pointer transition-all ${weight > 25 ? 'bg-red-500/30 accent-red-500' : 'bg-slate-700 accent-cyan-500'
-                  }`}
-              />
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Cycles</p>
+              <p className="mt-1 text-lg font-black text-slate-950">{frequency}/hr</p>
             </div>
-            <div className="flex justify-between text-slate-500 text-xs font-mono uppercase">
-              <span>0 kg</span>
-              <span className="text-red-500 font-bold italic">Manual Safety Limit: 25kg</span>
-              <span>200 kg</span>
-            </div>
-          </div>
-
-          {/* Lifting Frequency Slider */}
-          <div className="space-y-4">
-            <div className="flex justify-between items-end">
-              <label className="text-slate-300 font-medium text-lg">
-                Lifting Intensity (Cycle Time)
-              </label>
-              <span className="text-cyan-400 font-bold text-2xl font-mono">
-                {frequency} <span className="text-sm text-slate-500">times/hour</span>
-              </span>
-            </div>
-            <div className="py-2"> {/* Added padding for better mobile touch area */}
-              <input
-                type="range"
-                min="0"
-                max="500"
-                value={frequency}
-                onChange={(e) => setFrequency(Number(e.target.value))}
-                suppressHydrationWarning
-                className="w-full h-4 md:h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500 hover:accent-cyan-400 transition-all"
-              />
-            </div>
-            <div className="flex justify-between text-slate-500 text-xs font-mono uppercase">
-              <span>Low</span>
-              <span>High Cycles (High Frequency)</span>
-            </div>
-          </div>
-
-          {/* Work Hours Input */}
-          <div className="space-y-3">
-            <label className="text-slate-300 font-medium text-lg block">
-              Work Shift Duration
-            </label>
-            <div className="relative">
-              <input
-                type="number"
-                min="1"
-                max="24"
-                value={workHours}
-                onChange={(e) => setWorkHours(Number(e.target.value))}
-                suppressHydrationWarning
-                className="w-full px-4 py-3 bg-slate-800/50 text-white text-xl font-bold rounded-lg border border-white/10 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none transition-all"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">Hours/Day</span>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Shift</p>
+              <p className="mt-1 text-lg font-black text-slate-950">{workHours} h</p>
             </div>
           </div>
         </div>
 
-        {/* Right Side - Results (Gated) */}
-        <div className="space-y-6 relative">
-          <div className="flex items-center gap-2 mb-6">
-            <CheckCircle className="text-blue-500" size={24} />
-            <h3 className="text-2xl font-bold text-white">
-              Safety Analysis Results
-            </h3>
-          </div>
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:gap-10">
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 md:p-6">
+              <div className="mb-5 flex items-center gap-2">
+                <Zap className="text-cyan-600" size={20} />
+                <h3 className="text-lg font-black text-slate-950 md:text-xl">Operational parameters</h3>
+              </div>
 
-          <div className={`space-y-6 transition-all duration-700 ${!isUnlocked ? 'blur-[8px] opacity-30 select-none pointer-events-none grayscale-[50%]' : ''}`}>
-            {/* Total Load Display */}
-            <div className="bg-slate-800/50 p-6 rounded-xl border border-white/5 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-500/10 to-transparent" />
-              <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider font-semibold">Daily Cumulative Body Load</p>
-              <p className="text-5xl md:text-6xl font-black text-white tracking-tight">
-                {totalLoadTons.toFixed(2)}
-                <span className="text-2xl ml-2 text-cyan-500/70 font-medium">Ton</span>
-              </p>
-            </div>
-
-            {/* Safety Status */}
-            <div className={`p-5 rounded-xl border transition-all duration-300 ${isDangerous
-              ? 'bg-red-500/10 border-red-500/50'
-              : 'bg-emerald-500/10 border-emerald-500/50'
-              }`}>
-              <div className="flex items-start gap-4">
-                {isDangerous ? (
-                  <div className="p-2 bg-red-500/20 rounded-lg text-red-500">
-                    <AlertTriangle size={28} />
+              <div className="space-y-6">
+                <div className="space-y-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
+                  <div className="flex items-end justify-between gap-4">
+                    <label className="text-sm font-bold text-slate-700 md:text-base">Unit material weight (payload)</label>
+                    <span className={`font-mono text-2xl font-black transition-colors ${weight > 25 ? 'text-rose-600' : 'text-cyan-600'}`}>
+                      {weight} <span className="text-xs font-semibold text-slate-400">kg</span>
+                    </span>
                   </div>
-                ) : (
-                  <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-500">
-                    <CheckCircle size={28} />
+                  <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={weight}
+                    onChange={(e) => setWeight(Number(e.target.value))}
+                    suppressHydrationWarning
+                    className={`w-full appearance-none rounded-full ${weight > 25 ? 'bg-rose-200 accent-rose-600' : 'bg-slate-200 accent-cyan-600'}`}
+                  />
+                  <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                    <span>0 kg</span>
+                    <span className="text-rose-600">Manual safety limit: 25 kg</span>
+                    <span>200 kg</span>
                   </div>
-                )}
+                </div>
 
-                <div>
-                  <h4 className={`font-bold text-lg mb-1 tracking-wide ${isDangerous ? 'text-red-400' : 'text-emerald-400'
-                    }`}>
-                      {isDangerous ? 'WARNING: ERGONOMIC OVERLOAD' : 'STATUS: SAFE'}
-                  </h4>
-                  <p className={`text-sm leading-relaxed ${isDangerous ? 'text-red-200/70' : 'text-emerald-200/70'
-                    }`}>
-                    {safetyMessage}
-                  </p>
+                <div className="space-y-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
+                  <div className="flex items-end justify-between gap-4">
+                    <label className="text-sm font-bold text-slate-700 md:text-base">Lifting intensity (cycle time)</label>
+                    <span className="font-mono text-2xl font-black text-cyan-600">
+                      {frequency} <span className="text-xs font-semibold text-slate-400">times/hour</span>
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="500"
+                    value={frequency}
+                    onChange={(e) => setFrequency(Number(e.target.value))}
+                    suppressHydrationWarning
+                    className="w-full appearance-none rounded-full bg-slate-200 accent-cyan-600"
+                  />
+                  <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                    <span>Low</span>
+                    <span>High frequency</span>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-white bg-white p-4 shadow-sm">
+                  <label className="mb-3 block text-sm font-bold text-slate-700 md:text-base">Work shift duration</label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      min="1"
+                      max="24"
+                      value={workHours}
+                      onChange={(e) => setWorkHours(Number(e.target.value))}
+                      suppressHydrationWarning
+                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-28 text-lg font-black text-slate-950 outline-none transition focus:border-cyan-500 focus:bg-white"
+                    />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-[0.18em] text-slate-400">hours/day</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Recommendation Card */}
-            <div className="bg-gradient-to-br from-blue-900/40 to-slate-900 p-6 rounded-xl border border-blue-500/30 relative overflow-hidden shadow-inner">
-              <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl" />
-
-              <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
-                <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
-                Recommended Handling Solution
-              </h4>
-              <p className="text-white text-lg md:text-xl font-bold leading-tight z-10 relative mb-6">
-                {recommendation.label}
-              </p>
-
-              <Link href={recommendation.productUrl} className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-6 rounded-lg transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/50 z-10 relative flex items-center justify-center gap-2 uppercase text-sm tracking-wide">
-                View Product <ArrowDown size={18} />
-              </Link>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Risk lens</p>
+                <p className="mt-2 text-sm font-semibold text-slate-700">Body load accumulation</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Use case</p>
+                <p className="mt-2 text-sm font-semibold text-slate-700">Manual material handling</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Outcome</p>
+                <p className="mt-2 text-sm font-semibold text-slate-700">Solution direction</p>
+              </div>
             </div>
           </div>
 
-          {!isUnlocked && (
-            <div className="absolute inset-0 top-16 z-20 flex flex-col items-center justify-start text-center">
-               <div className="bg-slate-900/90 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-blue-500/30 shadow-2xl space-y-4 max-w-sm mx-auto w-full mt-4">
-                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-500 mx-auto rounded-full flex items-center justify-center shadow-lg border border-white/20 mb-2">
-                   <Lock size={20} className="text-white" />
-                 </div>
-                 <h4 className="text-xl font-black text-white leading-tight">Unlock Full Analysis</h4>
-                 <p className="text-slate-400 text-xs leading-relaxed mb-4">
-                   Enter your corporate email to instantly reveal the cumulative load calculation and engineered solution recommendation.
-                 </p>
-                 <form 
-                   onSubmit={async (e) => {
-                     e.preventDefault();
-                     if (!email) return;
-                     setLeadStatus('loading');
-                     try {
-                       const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
-                         method: 'POST',
-                         headers: { 'Content-Type': 'application/json' },
-                         body: JSON.stringify({
-                           subject: '💡 ROI Calculator Lead',
-                           email: email,
-                           weight_kg: weight,
-                           frequency_per_hr: frequency,
-                           hours_per_day: workHours,
-                           total_load_tons: totalLoadTons.toFixed(2),
-                           status: isDangerous ? 'DANGEROUS' : 'SAFE',
-                           recommendation: recommendation.label
-                         })
-                       });
-                       if (res.ok) {
-                         setLeadStatus('success');
-                         setIsUnlocked(true);
-                         if (typeof window !== 'undefined' && (window as any).gtag) {
-                           (window as any).gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
-                         }
-                       } else {
-                         setLeadStatus('error');
-                       }
-                     } catch (err) {
-                       setLeadStatus('error');
-                     }
-                   }}
-                   className="flex flex-col gap-3"
-                 >
-                   <input 
-                     type="email" 
-                     required
-                     placeholder="name@company.com" 
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                     className="w-full bg-slate-950 border border-slate-700/50 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 text-center"
-                   />
-                   <button 
-                     type="submit" 
-                     disabled={leadStatus === 'loading'}
-                     className="bg-cyan-600 w-full hover:bg-cyan-500 text-white font-bold px-4 py-3 rounded-lg text-sm transition-colors disabled:opacity-50 shadow-lg"
-                   >
-                     {leadStatus === 'loading' ? 'Unlocking...' : 'Unlock Results Now'}
-                   </button>
-                 </form>
-                 {leadStatus === 'error' && <p className="text-red-400 text-xs mt-2">Failed to unlock. Please try again.</p>}
-                 <p className="text-[10px] text-slate-500 mt-2 flex items-center justify-center gap-1"><Lock size={10} /> Secure & confidential calculation</p>
-               </div>
-            </div>
-          )}
+          <div className="relative overflow-hidden rounded-3xl border border-slate-900 bg-slate-950 p-5 text-white shadow-[0_24px_80px_rgba(15,23,42,0.28)] md:p-6">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_35%)]" aria-hidden="true" />
 
-          {isUnlocked && (
-             <div className="bg-emerald-500/10 text-emerald-400 p-4 rounded-xl border border-emerald-500/20 flex items-start gap-3 mt-8 duration-500 relative z-30">
-               <CheckCircle size={20} className="shrink-0 mt-0.5" />
-               <div className="text-sm">
-                 <p className="font-bold mb-0.5">Analysis Unlocked Successfully</p>
-                 <p className="text-emerald-500/80 text-xs leading-relaxed">Our engineering team has also sent a copy of these recommendations to <span className="font-medium text-emerald-400">{email}</span>.</p>
-               </div>
-             </div>
-          )}
+            <div className={`relative space-y-5 transition-all duration-700 ${!isUnlocked ? 'blur-[8px] opacity-30 select-none pointer-events-none grayscale-[30%]' : ''}`}>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">Daily cumulative body load</p>
+                <div className="mt-3 flex items-end gap-2">
+                  <p className="text-5xl font-black tracking-tight md:text-6xl">{totalLoadTons.toFixed(2)}</p>
+                  <span className="pb-2 text-lg font-semibold text-cyan-300/80">Ton</span>
+                </div>
+              </div>
+
+              <div className={`rounded-2xl border p-5 ${isDangerous ? 'border-rose-400/40 bg-rose-500/10' : 'border-emerald-400/40 bg-emerald-500/10'}`}>
+                <div className="flex items-start gap-4">
+                  {isDangerous ? (
+                    <div className="rounded-xl bg-rose-500/20 p-2 text-rose-300">
+                      <AlertTriangle size={24} />
+                    </div>
+                  ) : (
+                    <div className="rounded-xl bg-emerald-500/20 p-2 text-emerald-300">
+                      <CheckCircle size={24} />
+                    </div>
+                  )}
+
+                  <div>
+                    <h4 className={`text-sm font-black uppercase tracking-[0.18em] ${isDangerous ? 'text-rose-200' : 'text-emerald-200'}`}>
+                      {isDangerous ? 'Warning: ergonomic overload' : 'Status: safe'}
+                    </h4>
+                    <p className={`mt-2 text-sm leading-relaxed ${isDangerous ? 'text-rose-100/80' : 'text-emerald-100/80'}`}>
+                      {safetyMessage}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-slate-900 to-slate-950 p-5 shadow-inner">
+                <div className="absolute -right-12 -bottom-12 h-40 w-40 rounded-full bg-cyan-500/15 blur-3xl" aria-hidden="true" />
+                <h4 className="relative text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">Recommended handling solution</h4>
+                <p className="relative mt-3 text-xl font-black leading-tight text-white md:text-2xl">
+                  {recommendation.label}
+                </p>
+                <Link href={recommendation.productUrl} className="relative mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-500 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-950 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400">
+                  View Product <ArrowDown size={16} />
+                </Link>
+              </div>
+            </div>
+
+            {!isUnlocked && (
+              <div className="absolute inset-0 z-20 flex items-center justify-center p-5">
+                <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-slate-950/95 p-6 text-center shadow-2xl backdrop-blur-md">
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
+                    <Lock size={20} className="text-white" />
+                  </div>
+                  <h4 className="text-2xl font-black tracking-tight text-white">Unlock full analysis</h4>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                    Enter your corporate email to reveal the cumulative load calculation and engineered recommendation.
+                  </p>
+                  <form
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      if (!email) return;
+                      setLeadStatus('loading');
+                      try {
+                        const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            subject: 'ROI Calculator Lead',
+                            email: email,
+                            weight_kg: weight,
+                            frequency_per_hr: frequency,
+                            hours_per_day: workHours,
+                            total_load_tons: totalLoadTons.toFixed(2),
+                            status: isDangerous ? 'DANGEROUS' : 'SAFE',
+                            recommendation: recommendation.label,
+                          }),
+                        });
+                        if (res.ok) {
+                          setLeadStatus('success');
+                          setIsUnlocked(true);
+                          if (typeof window !== 'undefined' && (window as any).gtag) {
+                            (window as any).gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
+                          }
+                        } else {
+                          setLeadStatus('error');
+                        }
+                      } catch (err) {
+                        setLeadStatus('error');
+                      }
+                    }}
+                    className="mt-6 flex flex-col gap-3"
+                  >
+                    <input
+                      type="email"
+                      required
+                      placeholder="name@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
+                    />
+                    <button
+                      type="submit"
+                      disabled={leadStatus === 'loading'}
+                      className="inline-flex items-center justify-center rounded-2xl bg-cyan-500 px-4 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-950 transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {leadStatus === 'loading' ? 'Unlocking...' : 'Unlock results'}
+                    </button>
+                  </form>
+                  {leadStatus === 'error' && <p className="mt-3 text-xs font-medium text-rose-300">Failed to unlock. Please try again.</p>}
+                  <p className="mt-4 flex items-center justify-center gap-1 text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                    <Lock size={10} /> Secure and confidential calculation
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {isUnlocked && (
+              <div className="relative mt-5 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-4 text-emerald-100">
+                <div className="flex items-start gap-3">
+                  <CheckCircle size={20} className="mt-0.5 shrink-0 text-emerald-300" />
+                  <div className="text-sm">
+                    <p className="font-bold text-emerald-100">Analysis unlocked successfully</p>
+                    <p className="mt-1 text-xs leading-relaxed text-emerald-100/75">
+                      Our engineering team has sent a copy of these recommendations to <span className="font-semibold text-emerald-200">{email}</span>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
