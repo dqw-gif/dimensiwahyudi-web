@@ -40,12 +40,12 @@ export default async function IndustryDetailPage({ params }: Props) {
           <img 
              src={industry.imageUrl}
              alt={industry.name}
-             className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+             className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
           />
         )}
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-        <div className={`absolute inset-0 bg-gradient-to-br ${industry.heroColor} opacity-70`} />
+        <div className={`absolute inset-0 bg-gradient-to-br ${industry.heroColor} opacity-50`} />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}
