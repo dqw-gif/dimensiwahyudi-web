@@ -111,7 +111,7 @@ const visualNavigationTiles = [
     title: 'Safety and Standards',
     desc: 'Map controls to practical compliance on your production floor.',
     href: '/news/ergonomics/safety-standards',
-    image: '/projects/PT GS Battery.webp',
+    image: '/Ergonomics/SAFETY%20&%20STANDARDS%20(COMPRESS).webp',
     position: 'center 40%',
     className: 'md:col-span-4 min-h-[220px]',
   },
