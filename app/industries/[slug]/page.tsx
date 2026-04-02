@@ -125,7 +125,8 @@ export default async function IndustryDetailPage({ params }: Props) {
                     <Zap className="absolute -bottom-4 -right-4 w-32 h-32 text-slate-200 opacity-50 group-hover:scale-110 transition-transform duration-500" />
                   )}
                   
-                  <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/10 to-transparent pointer-events-none" />
+                  {/* Layer Gradasi Hitam (Gelap di Bawah, agak gelap di Atas untuk Badge) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-slate-900/50 pointer-events-none" />
 
                   <div className="relative z-10 inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-600 rounded-md text-[10px] text-white font-black uppercase tracking-widest w-fit shadow-md">
                     {product.badge || 'Standard Series'}
