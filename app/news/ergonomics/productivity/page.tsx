@@ -105,7 +105,7 @@ const impactPoints = [
   {
     title: 'More resilient workforce',
     desc: 'Less physical burden helps teams sustain output over time.',
-    imageSrc: '/Productivity/imgi_145_d75966cb42a2_Icon_Ergonomie_Hohe%20Kosten_2025.jpg',
+    imageSrc: '/Productivity/imgi_145_d75966cb42a2_Icon_Ergonomie_Hohe%20Kosten_2025.webp',
     imageAlt: 'Ergonomic icon representing high cost from workforce strain',
   },
 ];
