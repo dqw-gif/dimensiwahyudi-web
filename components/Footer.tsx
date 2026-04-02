@@ -88,6 +88,18 @@ export default function Footer() {
 
         </div>
 
+        {/* Localized SEO Block */}
+        <div className="border-t border-slate-200 py-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-slate-500 leading-relaxed mt-4">
+          <div>
+            <h5 className="font-bold text-slate-700 uppercase tracking-widest mb-3">Indonesia Operations</h5>
+            <p>PT Dimensi Quantum Wahyudi adalah perusahaan penyedia solusi penanganan material (material handling) mutakhir berpusat di Bekasi, Indonesia. Kami merancang instalasi vacuum handling system, alat bantu angkat ergonomis, crane pabrik, dan sistem otomasi berstandar keamanan tinggi untuk mencegah kelelahan pekerja.</p>
+          </div>
+          <div>
+            <h5 className="font-bold text-slate-700 uppercase tracking-widest mb-3">Global Engineering Standard</h5>
+            <p>Engineered to deliver maximum productivity and ergonomic safety. Trusted by manufacturing leaders worldwide for reducing physical strain, preventing musculoskeletal disorders (MSD), and improving cycle time efficiency on the production floor.</p>
+          </div>
+        </div>
+
         {/* Garis Pemisah & Copyright */}
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-medium text-slate-500">
           <p>&copy; 2026 PT Dimensi Quantum Wahyudi. All rights reserved.</p>

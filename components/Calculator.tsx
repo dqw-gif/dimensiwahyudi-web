@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Zap, CheckCircle, AlertTriangle, ArrowDown, Mail } from 'lucide-react';
+import { Zap, CheckCircle, AlertTriangle, ArrowDown, Mail, Lock } from 'lucide-react';
 import { calculateTotalLoad, checkSafetyStatus, getRecommendation, getSafetyMessage } from '../utils/calculatorLogic';
 
 export default function SmartCalculator() {
@@ -11,6 +11,7 @@ export default function SmartCalculator() {
   const [workHours, setWorkHours] = useState(8); // hours
   const [email, setEmail] = useState('');
   const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [isUnlocked, setIsUnlocked] = useState(false);
 
   const { tons: totalLoadTons } = calculateTotalLoad(weight, frequency, workHours);
   const isDangerous = checkSafetyStatus(totalLoadTons, weight);
@@ -116,8 +117,8 @@ export default function SmartCalculator() {
           </div>
         </div>
 
-        {/* Right Side - Results */}
-        <div className="space-y-6">
+        {/* Right Side - Results (Gated) */}
+        <div className="space-y-6 relative">
           <div className="flex items-center gap-2 mb-6">
             <CheckCircle className="text-blue-500" size={24} />
             <h3 className="text-2xl font-bold text-white">
@@ -125,131 +126,140 @@ export default function SmartCalculator() {
             </h3>
           </div>
 
-          {/* Total Load Display */}
-          <div className="bg-slate-800/50 p-6 rounded-xl border border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-500/10 to-transparent" />
-            <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider font-semibold">Daily Cumulative Body Load</p>
-            <p className="text-5xl md:text-6xl font-black text-white tracking-tight">
-              {totalLoadTons.toFixed(2)}
-              <span className="text-2xl ml-2 text-cyan-500/70 font-medium">Ton</span>
-            </p>
-          </div>
+          <div className={`space-y-6 transition-all duration-700 ${!isUnlocked ? 'blur-[8px] opacity-30 select-none pointer-events-none grayscale-[50%]' : ''}`}>
+            {/* Total Load Display */}
+            <div className="bg-slate-800/50 p-6 rounded-xl border border-white/5 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-cyan-500/10 to-transparent" />
+              <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider font-semibold">Daily Cumulative Body Load</p>
+              <p className="text-5xl md:text-6xl font-black text-white tracking-tight">
+                {totalLoadTons.toFixed(2)}
+                <span className="text-2xl ml-2 text-cyan-500/70 font-medium">Ton</span>
+              </p>
+            </div>
 
-          {/* Safety Status */}
-          <div className={`p-5 rounded-xl border transition-all duration-300 ${isDangerous
-            ? 'bg-red-500/10 border-red-500/50'
-            : 'bg-emerald-500/10 border-emerald-500/50'
-            }`}>
-            <div className="flex items-start gap-4">
-              {isDangerous ? (
-                <div className="p-2 bg-red-500/20 rounded-lg text-red-500">
-                  <AlertTriangle size={28} />
-                </div>
-              ) : (
-                <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-500">
-                  <CheckCircle size={28} />
-                </div>
-              )}
+            {/* Safety Status */}
+            <div className={`p-5 rounded-xl border transition-all duration-300 ${isDangerous
+              ? 'bg-red-500/10 border-red-500/50'
+              : 'bg-emerald-500/10 border-emerald-500/50'
+              }`}>
+              <div className="flex items-start gap-4">
+                {isDangerous ? (
+                  <div className="p-2 bg-red-500/20 rounded-lg text-red-500">
+                    <AlertTriangle size={28} />
+                  </div>
+                ) : (
+                  <div className="p-2 bg-emerald-500/20 rounded-lg text-emerald-500">
+                    <CheckCircle size={28} />
+                  </div>
+                )}
 
-              <div>
-                <h4 className={`font-bold text-lg mb-1 tracking-wide ${isDangerous ? 'text-red-400' : 'text-emerald-400'
-                  }`}>
-                    {isDangerous ? 'WARNING: ERGONOMIC OVERLOAD' : 'STATUS: SAFE'}
-                </h4>
-                <p className={`text-sm leading-relaxed ${isDangerous ? 'text-red-200/70' : 'text-emerald-200/70'
-                  }`}>
-                  {safetyMessage}
-                </p>
+                <div>
+                  <h4 className={`font-bold text-lg mb-1 tracking-wide ${isDangerous ? 'text-red-400' : 'text-emerald-400'
+                    }`}>
+                      {isDangerous ? 'WARNING: ERGONOMIC OVERLOAD' : 'STATUS: SAFE'}
+                  </h4>
+                  <p className={`text-sm leading-relaxed ${isDangerous ? 'text-red-200/70' : 'text-emerald-200/70'
+                    }`}>
+                    {safetyMessage}
+                  </p>
+                </div>
               </div>
+            </div>
+
+            {/* Recommendation Card */}
+            <div className="bg-gradient-to-br from-blue-900/40 to-slate-900 p-6 rounded-xl border border-blue-500/30 relative overflow-hidden shadow-inner">
+              <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl" />
+
+              <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+                Recommended Handling Solution
+              </h4>
+              <p className="text-white text-lg md:text-xl font-bold leading-tight z-10 relative mb-6">
+                {recommendation.label}
+              </p>
+
+              <Link href={recommendation.productUrl} className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-6 rounded-lg transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/50 z-10 relative flex items-center justify-center gap-2 uppercase text-sm tracking-wide">
+                View Product <ArrowDown size={18} />
+              </Link>
             </div>
           </div>
 
-          {/* Recommendation Card */}
-          <div className="bg-gradient-to-br from-blue-900/40 to-slate-900 p-6 rounded-xl border border-blue-500/30 relative overflow-hidden shadow-inner">
-            <div className="absolute -right-10 -bottom-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl" />
+          {!isUnlocked && (
+            <div className="absolute inset-0 top-16 z-20 flex flex-col items-center justify-start text-center">
+               <div className="bg-slate-900/90 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-blue-500/30 shadow-2xl space-y-4 max-w-sm mx-auto w-full mt-4">
+                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-500 mx-auto rounded-full flex items-center justify-center shadow-lg border border-white/20 mb-2">
+                   <Lock size={20} className="text-white" />
+                 </div>
+                 <h4 className="text-xl font-black text-white leading-tight">Unlock Full Analysis</h4>
+                 <p className="text-slate-400 text-xs leading-relaxed mb-4">
+                   Enter your corporate email to instantly reveal the cumulative load calculation and engineered solution recommendation.
+                 </p>
+                 <form 
+                   onSubmit={async (e) => {
+                     e.preventDefault();
+                     if (!email) return;
+                     setLeadStatus('loading');
+                     try {
+                       const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
+                         method: 'POST',
+                         headers: { 'Content-Type': 'application/json' },
+                         body: JSON.stringify({
+                           subject: '💡 ROI Calculator Lead',
+                           email: email,
+                           weight_kg: weight,
+                           frequency_per_hr: frequency,
+                           hours_per_day: workHours,
+                           total_load_tons: totalLoadTons.toFixed(2),
+                           status: isDangerous ? 'DANGEROUS' : 'SAFE',
+                           recommendation: recommendation.label
+                         })
+                       });
+                       if (res.ok) {
+                         setLeadStatus('success');
+                         setIsUnlocked(true);
+                         if (typeof window !== 'undefined' && (window as any).gtag) {
+                           (window as any).gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
+                         }
+                       } else {
+                         setLeadStatus('error');
+                       }
+                     } catch (err) {
+                       setLeadStatus('error');
+                     }
+                   }}
+                   className="flex flex-col gap-3"
+                 >
+                   <input 
+                     type="email" 
+                     required
+                     placeholder="name@company.com" 
+                     value={email}
+                     onChange={(e) => setEmail(e.target.value)}
+                     className="w-full bg-slate-950 border border-slate-700/50 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 text-center"
+                   />
+                   <button 
+                     type="submit" 
+                     disabled={leadStatus === 'loading'}
+                     className="bg-cyan-600 w-full hover:bg-cyan-500 text-white font-bold px-4 py-3 rounded-lg text-sm transition-colors disabled:opacity-50 shadow-lg"
+                   >
+                     {leadStatus === 'loading' ? 'Unlocking...' : 'Unlock Results Now'}
+                   </button>
+                 </form>
+                 {leadStatus === 'error' && <p className="text-red-400 text-xs mt-2">Failed to unlock. Please try again.</p>}
+                 <p className="text-[10px] text-slate-500 mt-2 flex items-center justify-center gap-1"><Lock size={10} /> Secure & confidential calculation</p>
+               </div>
+            </div>
+          )}
 
-            <h4 className="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
-              Recommended Handling Solution
-            </h4>
-            <p className="text-white text-lg md:text-xl font-bold leading-tight z-10 relative mb-6">
-              {recommendation.label}
-            </p>
-
-            <Link href={recommendation.productUrl} className="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-6 rounded-lg transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/50 z-10 relative flex items-center justify-center gap-2 uppercase text-sm tracking-wide">
-              View Product <ArrowDown size={18} />
-            </Link>
-          </div>
-
-          {/* Lead Capture Form */}
-          <div className="bg-slate-800/80 p-5 rounded-xl border border-slate-700/50 mt-6 shadow-inner">
-            <h4 className="text-white font-bold text-sm mb-2 flex items-center gap-2">
-              <Mail size={16} className="text-cyan-400" />
-              Get Detailed Safety & ROI Report
-            </h4>
-            <p className="text-slate-400 text-xs mb-4">
-              Enter your corporate email to receive a customized engineering report based on these parameters.
-            </p>
-
-            {leadStatus === 'success' ? (
-              <div className="bg-emerald-500/20 text-emerald-300 p-3 rounded-lg text-sm flex items-center gap-2 border border-emerald-500/30">
-                <CheckCircle size={16} /> Request Received! Our engineer will follow up shortly.
-              </div>
-            ) : (
-              <form 
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  if (!email) return;
-                  setLeadStatus('loading');
-                  try {
-                    const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({
-                        subject: '💡 ROI Calculator Lead',
-                        email: email,
-                        weight_kg: weight,
-                        frequency_per_hr: frequency,
-                        hours_per_day: workHours,
-                        total_load_tons: totalLoadTons.toFixed(2),
-                        status: isDangerous ? 'DANGEROUS' : 'SAFE',
-                        recommendation: recommendation.label
-                      })
-                    });
-                    if (res.ok) {
-                      setLeadStatus('success');
-                      if (typeof window !== 'undefined' && (window as any).gtag) {
-                        (window as any).gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
-                      }
-                    } else {
-                      setLeadStatus('error');
-                    }
-                  } catch (err) {
-                    setLeadStatus('error');
-                  }
-                }}
-                className="flex gap-2"
-              >
-                <input 
-                  type="email" 
-                  required
-                  placeholder="name@company.com" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500"
-                />
-                <button 
-                  type="submit" 
-                  disabled={leadStatus === 'loading'}
-                  className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-4 py-2 rounded-lg text-sm transition-colors whitespace-nowrap disabled:opacity-50"
-                >
-                  {leadStatus === 'loading' ? 'Sending...' : 'Send Report'}
-                </button>
-              </form>
-            )}
-            {leadStatus === 'error' && <p className="text-red-400 text-xs mt-2">Failed to send request. Please try again.</p>}
-          </div>
-
+          {isUnlocked && (
+             <div className="bg-emerald-500/10 text-emerald-400 p-4 rounded-xl border border-emerald-500/20 flex items-start gap-3 mt-8 duration-500 relative z-30">
+               <CheckCircle size={20} className="shrink-0 mt-0.5" />
+               <div className="text-sm">
+                 <p className="font-bold mb-0.5">Analysis Unlocked Successfully</p>
+                 <p className="text-emerald-500/80 text-xs leading-relaxed">Our engineering team has also sent a copy of these recommendations to <span className="font-medium text-emerald-400">{email}</span>.</p>
+               </div>
+             </div>
+          )}
         </div>
       </div>
     </div>

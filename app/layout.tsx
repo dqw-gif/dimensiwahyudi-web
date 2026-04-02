@@ -6,6 +6,7 @@ import LayoutChrome from "../components/LayoutChrome";
 import { LanguageProvider } from "../components/LanguageProvider";
 import AnalyticsGate from "../components/AnalyticsGate";
 import CookieConsentBanner from "../components/CookieConsentBanner";
+import ExitIntentPopup from "../components/ExitIntentPopup";
 
 const barlow = Barlow({
   subsets: ["latin"],
@@ -188,6 +189,7 @@ export default async function RootLayout({
           <LayoutChrome>{children}</LayoutChrome>
           <CookieConsentBanner />
           <AnalyticsGate gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          <ExitIntentPopup />
         </LanguageProvider>
       </body>
     </html>
