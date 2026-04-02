@@ -71,7 +71,7 @@ export default function CatalogsGatePage() {
                 >
                     <div className="bg-slate-950 rounded-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-center p-8 relative">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl mix-blend-screen"></div>
-                        <Image src="/logo.png" alt="DQW Logo" width={200} height={50} className="opacity-50 object-contain mb-8 invert filter grayscale" />
+                        <Image src="/logo.webp" alt="DQW Logo" width={200} height={50} className="opacity-50 object-contain mb-8 invert filter grayscale" />
                         
                         <h2 className="text-4xl font-black text-white text-center mb-4 leading-none tracking-tighter">
                             INDUSTRIAL<br/>HANDLING<br/><span className="text-cyan-400">2026</span>

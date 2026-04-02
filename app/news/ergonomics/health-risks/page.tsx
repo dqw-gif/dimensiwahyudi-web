@@ -167,7 +167,7 @@ export default function ErgonomicsHealthRisksPage() {
           </div>
           <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
-              src="/top.png"
+              src="/top.webp"
               alt="Factory floor health-risk visual"
               width={1600}
               height={900}

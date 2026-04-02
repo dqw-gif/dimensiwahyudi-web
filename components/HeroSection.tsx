@@ -53,7 +53,7 @@ export default function HeroSection() {
         loop
         muted
         playsInline
-        poster="/hero-poster.jpg"
+        poster="/hero-poster.webp"
         suppressHydrationWarning
         className="absolute inset-0 w-full h-full object-cover opacity-50"
       >
@@ -90,7 +90,7 @@ export default function HeroSection() {
             className="mb-6 flex justify-center"
           >
             <Image
-              src="/logo_dqw_putih.png"
+              src="/logo_dqw_putih.webp"
               alt="PT Dimensi Quantum Wahyudi"
               width={1100}
               height={220}

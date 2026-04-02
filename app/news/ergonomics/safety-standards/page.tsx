@@ -68,41 +68,41 @@ const stopModel = [
   {
     label: 'S - Substitution',
     desc: 'Remove the hazardous task pattern where possible.',
-    imageSrc: '/stop/imgi_121_64f3dd7d4410_Picture_Ergonomie_STOP-Prinzip_Grafik_S-1_2025.jpg',
+    imageSrc: '/stop/imgi_121_64f3dd7d4410_Picture_Ergonomie_STOP-Prinzip_Grafik_S-1_2025.webp',
   },
   {
     label: 'T - Technical Controls',
     desc: 'Use engineering solutions to reduce physical load at source.',
-    imageSrc: '/stop/imgi_125_3847367ebb42_Picture_STOP-Prinzip_Grafik_T-2_2025.jpg',
+    imageSrc: '/stop/imgi_125_3847367ebb42_Picture_STOP-Prinzip_Grafik_T-2_2025.webp',
   },
   {
     label: 'O - Organizational Controls',
     desc: 'Adjust shift design, task rotation, and process allocation.',
-    imageSrc: '/stop/imgi_129_773d3bbdf100_Picture_STOP-Prinzip_Grafik_O-3_2025.jpg',
+    imageSrc: '/stop/imgi_129_773d3bbdf100_Picture_STOP-Prinzip_Grafik_O-3_2025.webp',
   },
   {
     label: 'P - Personal Controls',
     desc: 'Training and behavior reinforcement as supporting layer.',
-    imageSrc: '/stop/imgi_133_63d81f090abd_Picture_STOP-Prinzip_Grafik_P-4_2025.jpg',
+    imageSrc: '/stop/imgi_133_63d81f090abd_Picture_STOP-Prinzip_Grafik_P-4_2025.webp',
   },
 ];
 
 const principles = [
   {
     text: 'Prioritize preventive controls before relying on behavioral correction',
-    iconSrc: '/safer handling/Prioritize preventive.png'
+    iconSrc: '/safer handling/Prioritize preventive.webp'
   },
   {
     text: 'Design handling steps to minimize awkward posture and repetitive overload',
-    iconSrc: '/safer handling/Design handling.png'
+    iconSrc: '/safer handling/Design handling.webp'
   },
   {
     text: 'Use engineered assistance for heavy, repetitive, or precision-critical tasks',
-    iconSrc: '/safer handling/engineered assistance.png'
+    iconSrc: '/safer handling/engineered assistance.webp'
   },
   {
     text: 'Standardize safe handling workflow across shifts and operator groups',
-    iconSrc: '/safer handling/Standardize safe.png'
+    iconSrc: '/safer handling/Standardize safe.webp'
   },
 ];
 
@@ -137,7 +137,7 @@ export default function ErgonomicsSafetyStandardsPage() {
           </div>
           <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
-              src="/divadian.png"
+              src="/divadian.webp"
               alt="Occupational safety ergonomics visual"
               width={1600}
               height={900}

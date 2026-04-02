@@ -87,7 +87,7 @@ const visualNavigationTiles = [
     desc: 'Start from the complete hub and pick your implementation path.',
     href: '/news/ergonomics',
     disabled: true,
-    image: '/projects/PT Mayora Indah.jpeg',
+    image: '/projects/PT Mayora Indah.webp',
     position: 'center 30%',
     className: 'md:col-span-7 md:row-span-2 min-h-[340px] md:min-h-[460px]',
   },
@@ -95,7 +95,7 @@ const visualNavigationTiles = [
     title: 'Health Risks and MSD Exposure',
     desc: 'Identify strain patterns and high-risk manual handling tasks.',
     href: '/news/ergonomics/health-risks',
-    image: '/projects/PT Gajah Tunggal.jpg',
+    image: '/projects/PT Gajah Tunggal.webp',
     position: 'center 38%',
     className: 'md:col-span-5 min-h-[220px]',
   },
@@ -103,7 +103,7 @@ const visualNavigationTiles = [
     title: 'Productivity Impact',
     desc: 'Translate ergonomics into throughput and quality consistency.',
     href: '/news/ergonomics/productivity',
-    image: '/projects/PT HOKKAN INDONESIA.jpg',
+    image: '/projects/PT HOKKAN INDONESIA.webp',
     position: 'center 32%',
     className: 'md:col-span-5 min-h-[220px]',
   },
@@ -111,7 +111,7 @@ const visualNavigationTiles = [
     title: 'Safety and Standards',
     desc: 'Map controls to practical compliance on your production floor.',
     href: '/news/ergonomics/safety-standards',
-    image: '/projects/PT GS Battery.jpg',
+    image: '/projects/PT GS Battery.webp',
     position: 'center 40%',
     className: 'md:col-span-4 min-h-[220px]',
   },
@@ -119,7 +119,7 @@ const visualNavigationTiles = [
     title: 'Open ROI Calculator',
     desc: 'Estimate ergonomic impact and investment economics quickly.',
     href: '/digital-assistant/roi-calculator',
-    image: '/projects/PT Asahimas Flat Glass Tbk.jpeg',
+    image: '/projects/PT Asahimas Flat Glass Tbk.webp',
     position: 'center 38%',
     className: 'md:col-span-4 min-h-[220px]',
   },
@@ -127,7 +127,7 @@ const visualNavigationTiles = [
     title: 'Selection Aids',
     desc: 'Use digital assistant tools to shortlist suitable handling systems.',
     href: '/digital-assistant/selection-aids',
-    image: '/projects/PT Otsuka Indonesia.jpeg',
+    image: '/projects/PT Otsuka Indonesia.webp',
     position: 'center 34%',
     className: 'md:col-span-4 min-h-[220px]',
   },
@@ -168,7 +168,7 @@ export default function ErgonomicsHubPage() {
 
           <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
-              src="/divdin.png"
+              src="/divdin.webp"
               alt="Industrial ergonomics implementation visual"
               width={1600}
               height={900}
@@ -331,7 +331,7 @@ export default function ErgonomicsHubPage() {
             style={{ width: 'clamp(320px, 40%, 500px)' }}
           >
             <Image
-              src="/dian.png"
+              src="/dian.webp"
               alt="Economic calculation visual for ergonomic investment"
               width={900}
               height={1100}

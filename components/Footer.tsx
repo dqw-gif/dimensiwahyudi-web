@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="mb-8">
               <Link href="/" className="block relative h-16 w-64 hover:opacity-80 transition-opacity">
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="PT Dimensi Quantum Wahyudi Logo"
                   fill
                   className="object-contain object-left"

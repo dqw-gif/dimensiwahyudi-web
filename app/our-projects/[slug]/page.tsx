@@ -152,7 +152,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             name: 'PT Dimensi Quantum Wahyudi',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://dimensiwahyudi.com/logo.png',
+                url: 'https://dimensiwahyudi.com/logo.webp',
             },
         },
         about: c.industry,

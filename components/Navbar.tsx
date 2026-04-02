@@ -24,7 +24,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="block relative h-16 w-64 hover:opacity-80 transition-opacity">
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="PT Dimensi Quantum Wahyudi Logo"
                 fill
                 className="object-contain object-left"
@@ -175,7 +175,7 @@ export default function Navbar() {
                     <Link href="/products/schmalz" onClick={closeDropdown}
                       className="flex items-center p-3 rounded-xl hover:bg-blue-50 transition-all group/item">
                       <div className="bg-white border border-blue-100 rounded-lg p-1.5 mr-3 shrink-0 group-hover/item:border-blue-300 transition-colors">
-                        <Image src="/brands/schmalz.png" alt="Schmalz" width={56} height={24} className="object-contain h-6 w-14" />
+                        <Image src="/brands/schmalz.webp" alt="Schmalz" width={56} height={24} className="object-contain h-6 w-14" />
                       </div>
                       <div>
                         <p className="text-sm font-black text-slate-800">Schmalz</p>
@@ -186,7 +186,7 @@ export default function Navbar() {
                     <Link href="/products/binar" onClick={closeDropdown}
                       className="flex items-center p-3 rounded-xl hover:bg-red-50 transition-all group/item">
                       <div className="bg-white border border-red-100 rounded-lg p-1.5 mr-3 shrink-0 group-hover/item:border-red-300 transition-colors">
-                        <Image src="/brands/binar.png" alt="Binar Handling" width={56} height={24} className="object-contain h-6 w-14" />
+                        <Image src="/brands/binar.webp" alt="Binar Handling" width={56} height={24} className="object-contain h-6 w-14" />
                       </div>
                       <div>
                         <p className="text-sm font-black text-slate-800">Binar Handling</p>
@@ -334,13 +334,13 @@ export default function Navbar() {
               </Link>
               <Link href="/products/schmalz" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-blue-100 rounded-md p-1 shrink-0">
-                  <Image src="/brands/schmalz.png" alt="Schmalz" width={40} height={18} className="object-contain h-[18px] w-10" />
+                  <Image src="/brands/schmalz.webp" alt="Schmalz" width={40} height={18} className="object-contain h-[18px] w-10" />
                 </div>
                 <span>Schmalz</span>
               </Link>
               <Link href="/products/binar" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-red-100 rounded-md p-1 shrink-0">
-                  <Image src="/brands/binar.png" alt="Binar Handling" width={40} height={18} className="object-contain h-[18px] w-10" />
+                  <Image src="/brands/binar.webp" alt="Binar Handling" width={40} height={18} className="object-contain h-[18px] w-10" />
                 </div>
                 <span>Binar Handling</span>
               </Link>

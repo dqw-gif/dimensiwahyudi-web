@@ -169,7 +169,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
             name: 'PT Dimensi Quantum Wahyudi',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://dimensiwahyudi.com/logo.png',
+                url: 'https://dimensiwahyudi.com/logo.webp',
             },
         },
         image: post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image',

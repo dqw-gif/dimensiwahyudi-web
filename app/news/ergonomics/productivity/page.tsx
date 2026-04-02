@@ -87,19 +87,19 @@ const impactPoints = [
   {
     title: 'Higher process consistency',
     desc: 'Reduced fatigue supports stable handling quality across long shifts.',
-    imageSrc: '/Productivity/imgi_151_37809a956c3e_Icon_Ergonomie_Produktivitaetsverlust_2025.jpg',
+    imageSrc: '/Productivity/imgi_151_37809a956c3e_Icon_Ergonomie_Produktivitaetsverlust_2025.webp',
     imageAlt: 'Ergonomic icon representing productivity loss from fatigue',
   },
   {
     title: 'Lower avoidable errors',
     desc: 'Improved control and positioning reduce rework and handling-related defects.',
-    imageSrc: '/Productivity/imgi_148_f23f1e3eaebd_Icon_Ergonomie_Motivationsverlust_2025.jpg',
+    imageSrc: '/Productivity/imgi_148_f23f1e3eaebd_Icon_Ergonomie_Motivationsverlust_2025.webp',
     imageAlt: 'Ergonomic icon representing motivation and error reduction',
   },
   {
     title: 'Faster cycle execution',
     desc: 'Assisted lifting improves movement efficiency for repetitive tasks.',
-    imageSrc: '/Productivity/imgi_142_6197315e365c_Icon_Ergonomie_Ineffizient_2025.jpg',
+    imageSrc: '/Productivity/imgi_142_6197315e365c_Icon_Ergonomie_Ineffizient_2025.webp',
     imageAlt: 'Ergonomic icon representing inefficiency in handling cycles',
   },
   {
@@ -141,7 +141,7 @@ export default function ErgonomicsProductivityPage() {
           </div>
           <div className="relative lg:col-span-7 lg:min-h-[420px]">
             <Image
-              src="/diva1.png"
+              src="/diva1.webp"
               alt="Industrial productivity ergonomics visual"
               width={1600}
               height={900}

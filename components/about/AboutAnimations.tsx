@@ -41,7 +41,7 @@ export function AboutHero() {
 
 /* ─── Client Logos ─── */
 const projectLogos = [
-    { "client": "PT Mayora Indah", "industry": "FMCG & F&B", "logo": "https://www.mayoraindah.co.id/assets/frontend/images/logo.png" },
+    { "client": "PT Mayora Indah", "industry": "FMCG & F&B", "logo": "https://www.mayoraindah.co.id/assets/frontend/images/logo.webp" },
     { "client": "PT Gajah Tunggal", "industry": "Automotive & Mobility", "logo": "https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png" },
     { "client": "PT Angkasa Pura II", "industry": "Air Logistics", "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/a/a6/Angkasa_Pura_II_logo_2014.svg/3840px-Angkasa_Pura_II_logo_2014.svg.png" },
     { "client": "PT Asahimas Flat Glass Tbk", "industry": "Glass & Solid Materials", "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_Asahimas_Flat_Glass_Tbk.png" },
@@ -79,7 +79,7 @@ const projectLogos = [
     { "client": "PT Meiji Food Indonesia", "industry": "FMCG & F&B", "logo": "https://meiji.co.id/storage/public/generals/eY0Fj5yMvi7ZPSz9zNcI9RSoYvYQIuQb2cMEKCTl.png" },
     { "client": "PT Cipta Mortar Utama", "industry": "Building Materials & Infrastructure", "logo": "https://www.mortarutama.com/wp-content/uploads/2023/12/logo-MU-new-hires-01-1536x635.png" },
     { "client": "PT Rinnai Indonesia", "industry": "Electronics", "logo": "https://www.rinnai.co.id/wp-content/uploads/2019/04/logo-395x100.png" },
-    { "client": "PT Sarihusada Generasi Mahardhika", "industry": "FMCG & F&B", "logo": "https://www.sarihusada.co.id/assets/img/logo.png" },
+    { "client": "PT Sarihusada Generasi Mahardhika", "industry": "FMCG & F&B", "logo": "https://www.sarihusada.co.id/assets/img/logo.webp" },
     { "client": "PT Sri Trang Lingga Indonesia", "industry": "Glass & Solid Materials", "logo": "https://axeoneverest.com/wp-content/uploads/2011/04/sri-trang-group-everest-logo-1.jpg" },
     { "client": "PT Sugity Creatives", "industry": "Automotive & Mobility", "logo": "https://uccareer.id/assets/upload/company/thumbs/thumb300px-20251007-100131-a1262.jpg" },
     { "client": "PT Sumi Rubber Indonesia", "industry": "Automotive & Mobility", "logo": "https://dunlop.co.id/logo-default.svg" },
@@ -235,7 +235,7 @@ export function AboutStoryImage() {
                 <p className="text-slate-500 font-bold text-xs uppercase tracking-widest mb-3">Official Partners</p>
                 <div className="flex items-center gap-6">
                     <Image
-                        src="/brands/schmalz.png"
+                        src="/brands/schmalz.webp"
                         alt="Schmalz Germany"
                         width={120}
                         height={40}
@@ -243,7 +243,7 @@ export function AboutStoryImage() {
                     />
                     <div className="w-px h-8 bg-slate-200"></div>
                     <Image
-                        src="/brands/binar.png"
+                        src="/brands/binar.webp"
                         alt="Binar Sweden"
                         width={100}
                         height={40}
