@@ -9,8 +9,13 @@ export default function CookieConsentBanner() {
   const [state, setState] = useState<ConsentState>(() => (readConsentChoice() ? 'done' : 'pending'));
 
   const handleChoice = (choice: 'accepted' | 'rejected') => {
-    writeConsentChoice(choice);
     setState('done');
+
+    try {
+      writeConsentChoice(choice);
+    } catch {
+      // If storage is blocked, still hide the banner immediately.
+    }
   };
 
   if (state !== 'pending') {
