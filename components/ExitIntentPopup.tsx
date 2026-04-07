@@ -1,32 +1,53 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, Download, CheckCircle } from 'lucide-react';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hasTriggered, setHasTriggered] = useState(false);
+  const hasTriggeredRef = useRef(false);
   const [email, setEmail] = useState('');
-  const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [fullName, setFullName] = useState('');
+  const [company, setCompany] = useState('');
+  const [honeypot, setHoneypot] = useState('');
+  const [leadStep, setLeadStep] = useState<'capture' | 'profile' | 'done'>('capture');
+  const [captureStatus, setCaptureStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [profileStatus, setProfileStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [captureError, setCaptureError] = useState('');
+  const [profileError, setProfileError] = useState('');
+  const [captureStartedAt, setCaptureStartedAt] = useState(() => Date.now());
+  const [profileStartedAt, setProfileStartedAt] = useState(() => Date.now());
+
+const openModal = () => {
+    setCaptureStartedAt(Date.now());
+    setProfileStartedAt(Date.now());
+    setLeadStep('capture');
+    setCaptureStatus('idle');
+    setProfileStatus('idle');
+    setCaptureError('');
+    setProfileError('');
+    setHoneypot('');
+    setIsVisible(true);
+  };
 
   useEffect(() => {
     const sessionKey = 'dqw_exit_intent_catalog';
     const alreadyShown = sessionStorage.getItem(sessionKey);
-    
+
     if (alreadyShown) {
-      setHasTriggered(true);
+      hasTriggeredRef.current = true;
       return;
     }
 
     const mouseEvent = (e: MouseEvent) => {
-      if (!hasTriggered && e.clientY < 10) {
-        setIsVisible(true);
-        setHasTriggered(true);
+      if (!hasTriggeredRef.current && e.clientY < 10) {
+        hasTriggeredRef.current = true;
         sessionStorage.setItem(sessionKey, 'true');
-        
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'exit_intent_trigger', {
+        openModal();
+
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('event', 'exit_intent_trigger', {
                 event_category: 'LeadGen',
             });
         }
@@ -35,7 +56,7 @@ export default function ExitIntentPopup() {
 
     document.addEventListener('mouseleave', mouseEvent);
     return () => document.removeEventListener('mouseleave', mouseEvent);
-  }, [hasTriggered]);
+  }, []);
 
   const closeModal = () => setIsVisible(false);
 
@@ -83,38 +104,52 @@ export default function ExitIntentPopup() {
 
             {/* Right Form Side */}
             <div className="w-full md:w-7/12 p-8 md:p-12 bg-slate-50 flex flex-col justify-center">
-                {leadStatus !== 'success' ? (
+                {leadStep === 'capture' ? (
                   <>
                     <h2 className="text-3xl font-black text-slate-900 mb-3 tracking-tight">Leaving so soon?</h2>
                     <p className="text-slate-600 mb-8 leading-relaxed">
-                        Don't leave empty-handed. Download our comprehensive guide to vacuum handling systems and see how top manufacturers prevent musculoskeletal disorders.
+                      Download the guide instantly with your corporate email. We will only use it for technical follow-up and relevant product references.
                     </p>
 
                     <form 
                         onSubmit={async (e) => {
                           e.preventDefault();
                           if (!email) return;
-                          setLeadStatus('loading');
+                          setCaptureStatus('loading');
+                          setCaptureError('');
                           try {
-                            const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
+                            const res = await fetch('/api/lead-capture', {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({
-                                subject: '📚 Catalog Download Lead',
-                                email: email,
-                                source: 'Exit Intent Popup'
+                                kind: 'exit_intent_initial',
+                                email,
+                                honeypot,
+                                startedAt: captureStartedAt,
+                                context: {
+                                  source: 'Exit Intent Popup',
+                                  step: 1,
+                                },
                               })
                             });
                             if (res.ok) {
-                              setLeadStatus('success');
-                              if (typeof window !== 'undefined' && (window as any).gtag) {
-                                (window as any).gtag('event', 'generate_lead', { event_category: 'LeadGen', event_label: 'Catalog Download' });
+                              setLeadStep('profile');
+                              setProfileStartedAt(Date.now());
+                              if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                                window.gtag('event', 'generate_lead', { event_category: 'LeadGen', event_label: 'Catalog Download' });
+                                window.gtag('event', 'lead_funnel_step1_complete', {
+                                  event_category: 'LeadFunnel',
+                                  event_label: 'Exit Intent Email',
+                                });
                               }
                             } else {
-                              setLeadStatus('error');
+                              const payload = await res.json().catch(() => ({}));
+                              setCaptureError(typeof payload?.error === 'string' ? payload.error : 'Connection error. Please try again.');
+                              setCaptureStatus('error');
                             }
                           } catch (err) {
-                            setLeadStatus('error');
+                            setCaptureError('Connection error. Please try again.');
+                            setCaptureStatus('error');
                           }
                         }}
                         className="space-y-4"
@@ -130,40 +165,152 @@ export default function ExitIntentPopup() {
                               className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-medium"
                             />
                         </div>
+                        <input
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={honeypot}
+                          onChange={(e) => setHoneypot(e.target.value)}
+                          className="hidden"
+                          aria-hidden="true"
+                        />
                         <button 
                           type="submit" 
-                          disabled={leadStatus === 'loading'}
+                          disabled={captureStatus === 'loading'}
                           className="group relative flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-blue-600/30 disabled:opacity-50 overflow-hidden"
                         >
-                            {leadStatus === 'loading' ? 'Processing...' : (
+                            {captureStatus === 'loading' ? 'Processing...' : (
                               <>
                                 <Download size={20} className="relative z-10" /> 
                                 <span className="relative z-10">Send & Unlock PDF</span>
                               </>
                             )}
                         </button>
-                        {leadStatus === 'error' && <p className="text-red-500 text-sm mt-2 text-center">Connection error. Please try again.</p>}
+                        {captureStatus === 'error' && <p className="text-red-500 text-sm mt-2 text-center">{captureError || 'Connection error. Please try again.'}</p>}
                     </form>
 
                     <button 
                       onClick={closeModal}
                       className="mt-6 text-sm text-slate-400 hover:text-slate-600 font-medium underline-offset-4 hover:underline transition-colors block text-center"
                     >
-                      No thanks, I don't need the catalog right now
+                      No thanks, I do not need the catalog right now
                     </button>
+                  </>
+                ) : leadStep === 'profile' ? (
+                  <>
+                    <h2 className="text-3xl font-black text-slate-900 mb-3 tracking-tight">Help us tailor your use-case brief</h2>
+                    <p className="text-slate-600 mb-8 leading-relaxed">
+                      Optional but recommended: share your name and company so our engineers can send examples that match your industry and plant needs.
+                    </p>
+
+                    <form
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        setProfileStatus('loading');
+                        setProfileError('');
+
+                        try {
+                          const res = await fetch('/api/lead-capture', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              kind: 'exit_intent_profile',
+                              email,
+                              fullName,
+                              company,
+                              honeypot,
+                              startedAt: profileStartedAt,
+                              context: {
+                                source: 'Exit Intent Popup',
+                                step: 2,
+                              },
+                            }),
+                          });
+
+                          if (res.ok) {
+                            setLeadStep('done');
+                            if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                              window.gtag('event', 'lead_funnel_step2_complete', {
+                                event_category: 'LeadFunnel',
+                                event_label: 'Exit Intent Profile',
+                              });
+                            }
+                          } else {
+                            const payload = await res.json().catch(() => ({}));
+                            setProfileError(typeof payload?.error === 'string' ? payload.error : 'Failed to save details.');
+                            setProfileStatus('error');
+                          }
+                        } catch {
+                          setProfileError('Failed to save details.');
+                          setProfileStatus('error');
+                        }
+                      }}
+                      className="space-y-4"
+                    >
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Full Name (optional)</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Budi Santoso"
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-medium"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Company (optional)</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. PT Maju Jaya"
+                          value={company}
+                          onChange={(e) => setCompany(e.target.value)}
+                          className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all font-medium"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={profileStatus === 'loading'}
+                        className="group relative flex items-center justify-center gap-2 w-full bg-slate-900 hover:bg-black text-white font-bold py-4 px-6 rounded-xl transition-all disabled:opacity-50 overflow-hidden"
+                      >
+                        {profileStatus === 'loading' ? 'Saving...' : 'Save details'}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                            window.gtag('event', 'lead_funnel_step2_skipped', {
+                              event_category: 'LeadFunnel',
+                              event_label: 'Exit Intent Profile',
+                            });
+                          }
+                          setLeadStep('done');
+                        }}
+                        className="w-full text-sm text-slate-500 hover:text-slate-700 underline underline-offset-4"
+                      >
+                        Skip, just download
+                      </button>
+
+                      {profileStatus === 'error' && <p className="text-red-500 text-sm mt-2 text-center">{profileError || 'Failed to save details.'}</p>}
+                    </form>
                   </>
                 ) : (
                   <div className="text-center py-8">
                     <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <CheckCircle size={40} className="text-emerald-600" />
                     </div>
-                    <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tight">You're all set!</h2>
+                    <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tight">You&apos;re all set!</h2>
                     <p className="text-slate-600 mb-8 leading-relaxed">
                         A copy has been sent to your email. You can also download it directly right now.
                     </p>
                     <a 
-                      href="#" 
-                      onClick={(e) => { e.preventDefault(); alert('Catalog PDF downloading...'); closeModal(); }}
+                      href="/Ergonomic%20Vacuum%20Lifters.pdf"
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => closeModal()}
                       className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-emerald-600/30 w-full"
                     >
                         <Download size={20} /> Download PDF Directory

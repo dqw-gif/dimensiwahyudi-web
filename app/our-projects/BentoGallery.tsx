@@ -58,10 +58,6 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
     const hasMoreProjects = visibleCount < filteredProjects.length;
 
     useEffect(() => {
-        setVisibleCount(12);
-    }, [filter, normalizedQuery]);
-
-    useEffect(() => {
         const onScroll = () => {
             const maxScrollable = document.documentElement.scrollHeight - window.innerHeight;
             if (maxScrollable <= 0) {
@@ -155,7 +151,10 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                         <input
                             type="search"
                             value={query}
-                            onChange={(event) => setQuery(event.target.value)}
+                            onChange={(event) => {
+                                setQuery(event.target.value);
+                                setVisibleCount(12);
+                            }}
                             placeholder="Search by client, industry, or keyword"
                             className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                         />
@@ -171,6 +170,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                 onClick={() => {
                                     setFilter('All');
                                     setQuery('');
+                                    setVisibleCount(12);
                                 }}
                                 className="rounded-full border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 transition hover:bg-slate-50"
                             >
@@ -185,7 +185,10 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                     {industries.map(ind => (
                         <button
                             key={ind}
-                            onClick={() => setFilter(ind)}
+                            onClick={() => {
+                                setFilter(ind);
+                                setVisibleCount(12);
+                            }}
                             className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border backdrop-blur-md relative overflow-hidden group
                                 ${filter === ind
                                     ? 'bg-blue-600 border-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]'

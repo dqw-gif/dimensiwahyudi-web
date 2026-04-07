@@ -10,11 +10,9 @@ type AnalyticsGateProps = {
 };
 
 export default function AnalyticsGate({ gaId }: AnalyticsGateProps) {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(() => hasAnalyticsConsent());
 
   useEffect(() => {
-    setEnabled(hasAnalyticsConsent());
-
     const onConsentChanged = (event: Event) => {
       const customEvent = event as CustomEvent<ConsentChoice>;
       setEnabled(customEvent.detail === 'accepted');

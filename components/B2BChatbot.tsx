@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, ChevronRight, Calculator, LifeBuoy, Send, Bot } from 'lucide-react';
 import Link from 'next/link';
@@ -14,19 +14,18 @@ export default function B2BChatbot() {
   const WHATSAPP_NUMBER = '6281119168752';
   const WA_QUOTATION_TEXT = encodeURIComponent('Hello DQW, I am interested in requesting a product quotation. Please assist me.');
 
-  // Pre-open greeting logic (Optional subtle pulse or auto-open hint could be added here)
-  useEffect(() => {
-    if (isOpen && !hasOpened) {
+  const toggleChat = () => {
+    const nextOpen = !isOpen;
+    if (nextOpen && !hasOpened) {
       setHasOpened(true);
     }
-  }, [isOpen, hasOpened]);
-
-  const toggleChat = () => setIsOpen(!isOpen);
+    setIsOpen(nextOpen);
+  };
 
   // Track interactions (gtag)
   const trackAction = (actionLabel: string) => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'chatbot_click', {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'chatbot_click', {
         event_category: 'Engagement',
         event_label: actionLabel,
       });

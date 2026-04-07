@@ -9,7 +9,12 @@ export default function SmartCalculator() {
   const [weight, setWeight] = useState(50); // kg
   const [frequency, setFrequency] = useState(100); // times/hour
   const [workHours, setWorkHours] = useState(8); // hours
+  const [fullName, setFullName] = useState('');
+  const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
+  const [startedAt] = useState(() => Date.now());
+  const [leadError, setLeadError] = useState('');
   const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [isUnlocked, setIsUnlocked] = useState(false);
 
@@ -197,43 +202,73 @@ export default function SmartCalculator() {
                   </div>
                   <h4 className="text-2xl font-black tracking-tight text-white">Unlock full analysis</h4>
                   <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                    Enter your corporate email to reveal the cumulative load calculation and engineered recommendation.
+                    Use your corporate contact details so our engineers can send recommendations aligned with your facility context.
                   </p>
                   <form
                     onSubmit={async (e) => {
                       e.preventDefault();
-                      if (!email) return;
+                      if (!email || !fullName || !company) return;
                       setLeadStatus('loading');
+                      setLeadError('');
                       try {
-                        const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`, {
+                        const res = await fetch('/api/lead-capture', {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({
-                            subject: 'ROI Calculator Lead',
-                            email: email,
-                            weight_kg: weight,
-                            frequency_per_hr: frequency,
-                            hours_per_day: workHours,
-                            total_load_tons: totalLoadTons.toFixed(2),
-                            status: isDangerous ? 'DANGEROUS' : 'SAFE',
-                            recommendation: recommendation.label,
+                            kind: 'roi_unlock',
+                            fullName,
+                            company,
+                            email,
+                            honeypot,
+                            startedAt,
+                            context: {
+                              weight_kg: weight,
+                              frequency_per_hr: frequency,
+                              hours_per_day: workHours,
+                              total_load_tons: totalLoadTons.toFixed(2),
+                              status: isDangerous ? 'DANGEROUS' : 'SAFE',
+                              recommendation: recommendation.label,
+                            },
                           }),
                         });
                         if (res.ok) {
                           setLeadStatus('success');
                           setIsUnlocked(true);
-                          if (typeof window !== 'undefined' && (window as any).gtag) {
-                            (window as any).gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
+                          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                            window.gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
+                            window.gtag('event', 'lead_funnel_step1_complete', {
+                              event_category: 'LeadFunnel',
+                              event_label: 'ROI Unlock Form',
+                            });
                           }
                         } else {
+                          const payload = await res.json().catch(() => ({}));
+                          setLeadError(typeof payload?.error === 'string' ? payload.error : 'Failed to unlock. Please try again.');
                           setLeadStatus('error');
                         }
                       } catch (err) {
+                        setLeadError('Failed to unlock. Please try again.');
                         setLeadStatus('error');
                       }
                     }}
                     className="mt-6 flex flex-col gap-3"
                   >
+                    <input
+                      type="text"
+                      required
+                      placeholder="Full name (PIC)"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
+                    />
+                    <input
+                      type="text"
+                      required
+                      placeholder="Company or plant name"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
+                    />
                     <input
                       type="email"
                       required
@@ -242,15 +277,24 @@ export default function SmartCalculator() {
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
                     />
+                    <input
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      className="hidden"
+                      aria-hidden="true"
+                    />
                     <button
                       type="submit"
                       disabled={leadStatus === 'loading'}
                       className="inline-flex items-center justify-center rounded-2xl bg-cyan-500 px-4 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-950 transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      {leadStatus === 'loading' ? 'Unlocking...' : 'Unlock results'}
+                      {leadStatus === 'loading' ? 'Unlocking...' : 'Unlock engineered results'}
                     </button>
                   </form>
-                  {leadStatus === 'error' && <p className="mt-3 text-xs font-medium text-rose-300">Failed to unlock. Please try again.</p>}
+                  {leadStatus === 'error' && <p className="mt-3 text-xs font-medium text-rose-300">{leadError || 'Failed to unlock. Please try again.'}</p>}
                   <p className="mt-4 flex items-center justify-center gap-1 text-[10px] uppercase tracking-[0.18em] text-slate-500">
                     <Lock size={10} /> Secure and confidential calculation
                   </p>

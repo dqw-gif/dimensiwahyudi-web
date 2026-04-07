@@ -37,10 +37,13 @@ export default async function IndustryDetailPage({ params }: Props) {
       {/* HERO */}
       <section className="relative pt-32 pb-24 bg-slate-950 overflow-hidden">
         {industry.imageUrl && (
-          <img 
-             src={industry.imageUrl}
-             alt={industry.name}
-             className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
+          <Image
+            src={industry.imageUrl}
+            alt={industry.name}
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
           />
         )}
         <div className="absolute inset-0 opacity-10"

@@ -15,7 +15,7 @@ export default function CatalogsGatePage() {
     email: ''
   });
 
-  const SUPABASE_PDF_URL = 'https://[your-project].supabase.co/storage/v1/object/public/[bucket]/[filename.pdf]';
+    const CATALOG_PDF_URL = '/Ergonomic%20Vacuum%20Lifters.pdf';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,8 +28,8 @@ export default function CatalogsGatePage() {
     setIsSubmitting(false);
 
     // Track Gated Content Unlock
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'generate_lead', {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
             event_category: 'Lead Magnet',
             event_label: 'Catalog Unlock',
         });
@@ -201,7 +201,7 @@ export default function CatalogsGatePage() {
                             </p>
                             
                             <a 
-                                href={SUPABASE_PDF_URL} 
+                                href={CATALOG_PDF_URL} 
                                 download
                                 target="_blank"
                                 rel="noopener noreferrer"

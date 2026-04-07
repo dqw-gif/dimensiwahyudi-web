@@ -46,8 +46,8 @@ export default function WhatsAppFloat() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
-                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                        (window as any).gtag('event', 'whatsapp_click', { event_category: 'CTA', value: 1 });
+                    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                        window.gtag('event', 'whatsapp_click', { event_category: 'CTA', value: 1 });
                     }
                 }}
                 aria-label="Chat WhatsApp PT Dimensi Quantum Wahyudi"

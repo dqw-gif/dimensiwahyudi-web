@@ -15,7 +15,7 @@ export const projects: Project[] = [
         client: 'PT Mayora Indah',
         industry: 'FMCG & F&B',
         image: '/projects/PT Mayora Indah.webp',
-        logo: 'https://www.mayoraindah.co.id/assets/frontend/images/logo.webp',
+        logo: 'https://www.mayoraindah.co.id/assets/frontend/images/logo.png',
         size: 'large',
         desc: 'High-volume FMCG production and packaging flow was improved with ergonomic handling support to maintain throughput and reduce product damage across critical transfer stages.',
         color: 'blue'
@@ -425,7 +425,7 @@ export const projects: Project[] = [
         client: 'PT Sarihusada Generasi Mahardhika',
         industry: 'FMCG & F&B',
         image: '/projects/PT Sarihusada Generasi Mahardhika.webp',
-        logo: 'https://www.sarihusada.co.id/assets/img/logo.webp',
+        logo: 'https://www.sarihusada.co.id/assets/img/logo.png',
         size: 'large',
         desc: 'For clinical nutrition production with strict infant-food sanitation standards, sack loads up to 50 kg were handled using Jumbo Sprint 85 to keep transfer clean, stable, and ergonomically controlled.',
         color: 'blue'

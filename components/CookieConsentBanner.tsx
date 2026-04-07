@@ -1,17 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { readConsentChoice, writeConsentChoice } from '@/lib/consent';
 
 type ConsentState = 'loading' | 'pending' | 'done';
 
 export default function CookieConsentBanner() {
-  const [state, setState] = useState<ConsentState>('loading');
-
-  useEffect(() => {
-    const currentChoice = readConsentChoice();
-    setState(currentChoice ? 'done' : 'pending');
-  }, []);
+  const [state, setState] = useState<ConsentState>(() => (readConsentChoice() ? 'done' : 'pending'));
 
   const handleChoice = (choice: 'accepted' | 'rejected') => {
     writeConsentChoice(choice);

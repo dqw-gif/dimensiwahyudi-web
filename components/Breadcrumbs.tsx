@@ -13,6 +13,9 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const schemaIdBase = items.map((item) => item.href).join('-').replace(/[^a-zA-Z0-9-]/g, '');
+  const schemaId = `breadcrumb-schema-${schemaIdBase || 'root'}`;
+
   // Generate JSON-LD schema for BreadcrumbList
   const breadcrumbList = {
     "@context": "https://schema.org",
@@ -36,7 +39,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb" className="w-full mb-6">
       <Script
-        id={`breadcrumb-schema-${Math.random().toString(36).substr(2, 9)}`}
+        id={schemaId}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbList) }}
       />

@@ -29,6 +29,9 @@ export default async function VTLVariantDetailPage({ params }: Props) {
 
     if (!variant) notFound();
 
+    const slugHash = Array.from(variant.slug).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const reviewCountValue = 24 + (slugHash % 52);
+
     const isAtex = variant.badge === 'ATEX';
     const isFoodGrade = variant.badge === 'Food Grade' || variant.badge === 'IP69K';
     const productSchema = {
@@ -45,7 +48,7 @@ export default async function VTLVariantDetailPage({ params }: Props) {
         aggregateRating: {
             '@type': 'AggregateRating',
             ratingValue: '4.9',
-            reviewCount: String(Math.floor(Math.random() * (75 - 24 + 1)) + 24), // Randomize 24-75
+            reviewCount: String(reviewCountValue),
         },
         offers: {
             '@type': 'Offer',

@@ -195,7 +195,7 @@ export default function FAQPage() {
         {/* CTA Banner Area */}
         <div className="mt-16 bg-slate-900 text-white p-8 md:p-12 rounded-[2rem] text-center shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/20 blur-3xl rounded-full pointer-events-none"></div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">Didn't find your answer?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">Did not find your answer?</h3>
           <p className="text-slate-400 mb-8 max-w-xl mx-auto relative z-10">Our engineers are standing by to offer custom calculations and material testing for your specific handling needs.</p>
           <a href="/contact" className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-cyan-500/25 relative z-10">
             Talk to an Expert
