@@ -46,16 +46,17 @@ export default function HeroSection() {
   }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-slate-950">
+    <section className="relative min-h-[78svh] md:h-screen w-full overflow-hidden bg-slate-950">
       {/* Video Background */}
       <video
         autoPlay
         loop
         muted
         playsInline
+        preload="metadata"
         poster="/hero-poster.webp"
         suppressHydrationWarning
-        className="absolute inset-0 w-full h-full object-cover opacity-50"
+        className="absolute inset-0 w-full h-full object-cover opacity-35 md:opacity-50"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
@@ -87,7 +88,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className="mb-6 flex justify-center"
+            className="mb-4 md:mb-6 flex justify-center"
           >
             <Image
               src="/logo_dqw_putih.webp"
@@ -95,7 +96,7 @@ export default function HeroSection() {
               width={1100}
               height={220}
               priority
-              className="w-full max-w-3xl h-auto"
+              className="w-full max-w-[280px] sm:max-w-md md:max-w-3xl h-auto"
             />
           </motion.div>
 
@@ -112,7 +113,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="text-slate-200 text-base md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+            className="text-slate-200 text-sm sm:text-base md:text-xl max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed"
           >
             Since 2009, PT Dimensi Quantum Wahyudi has helped Indonesian manufacturers improve safety, throughput, and operator ergonomics through high-performance vacuum lifting systems.
           </motion.p>
@@ -122,12 +123,12 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mb-12 min-h-[5rem] flex flex-col items-center justify-center gap-2" // Menggunakan flex-col dan items-center
+            className="mb-8 md:mb-12 min-h-[4rem] md:min-h-[5rem] flex flex-col items-center justify-center gap-2" // Menggunakan flex-col dan items-center
           >
-            <span className="text-xl md:text-3xl lg:text-4xl text-slate-300 font-light text-center">
+            <span className="text-lg sm:text-xl md:text-3xl lg:text-4xl text-slate-300 font-light text-center">
               Built For
             </span>
-            <span className="text-2xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-center h-12">
+            <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-center h-10 md:h-12">
               {currentText}
               <span className="animate-pulse text-cyan-400">|</span>
             </span>
@@ -138,12 +139,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center"
           >
             {/* Tombol 1: Primary (Biru Solid) */}
             <Link
               href="/services"
-              className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-bold text-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/60 flex items-center gap-3"
+              className="group relative w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-bold text-base md:text-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/60 flex items-center justify-center gap-3"
               aria-label="Explore technical services and lifting solutions"
             >
               Explore Engineering Solutions
@@ -153,7 +154,7 @@ export default function HeroSection() {
             {/* Tombol 2: Secondary (Outline Cyan/Glass) */}
             <Link
               href="/contact"
-              className="relative px-8 py-4 border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-400 font-semibold text-lg rounded-lg transition-all duration-300 backdrop-blur-sm flex items-center gap-3 hover:border-cyan-400"
+              className="relative w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-400 font-semibold text-base md:text-lg rounded-lg transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-3 hover:border-cyan-400"
             >
               Talk to Our Engineers
               <MessageSquare className="w-5 h-5" />
@@ -165,7 +166,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+            className="hidden md:block absolute bottom-10 left-1/2 transform -translate-x-1/2"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}

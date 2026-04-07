@@ -34,10 +34,31 @@ const openModal = () => {
   useEffect(() => {
     const sessionKey = 'dqw_exit_intent_catalog';
     const alreadyShown = sessionStorage.getItem(sessionKey);
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
 
     if (alreadyShown) {
       hasTriggeredRef.current = true;
       return;
+    }
+
+    if (isMobile) {
+      const timeoutId = window.setTimeout(() => {
+        if (hasTriggeredRef.current) {
+          return;
+        }
+
+        hasTriggeredRef.current = true;
+        sessionStorage.setItem(sessionKey, 'true');
+        openModal();
+
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'exit_intent_trigger', {
+            event_category: 'LeadGen',
+          });
+        }
+      }, 45000);
+
+      return () => window.clearTimeout(timeoutId);
     }
 
     const mouseEvent = (e: MouseEvent) => {
@@ -63,7 +84,7 @@ const openModal = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -77,7 +98,7 @@ const openModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+            className="relative w-full max-w-4xl max-h-[92svh] overflow-y-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
           >
             {/* Close Button */}
             <button
@@ -88,7 +109,7 @@ const openModal = () => {
             </button>
 
             {/* Left Image Side */}
-            <div className="w-full md:w-5/12 bg-slate-950 p-8 flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="hidden md:flex w-full md:w-5/12 bg-slate-950 p-8 flex-col items-center justify-center relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-blue-500/10 blur-3xl rounded-full translate-x-[-20%] translate-y-[-20%]"></div>
                 <div className="relative z-10 text-center">
                     <BookOpen size={48} className="text-cyan-400 mx-auto mb-6" />
@@ -103,11 +124,11 @@ const openModal = () => {
             </div>
 
             {/* Right Form Side */}
-            <div className="w-full md:w-7/12 p-8 md:p-12 bg-slate-50 flex flex-col justify-center">
+            <div className="w-full md:w-7/12 p-5 sm:p-6 md:p-12 bg-slate-50 flex flex-col justify-center">
                 {leadStep === 'capture' ? (
                   <>
-                    <h2 className="text-3xl font-black text-slate-900 mb-3 tracking-tight">Leaving so soon?</h2>
-                    <p className="text-slate-600 mb-8 leading-relaxed">
+                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 tracking-tight">Leaving so soon?</h2>
+                    <p className="text-slate-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
                       Download the guide instantly with your corporate email. We will only use it for technical follow-up and relevant product references.
                     </p>
 
@@ -198,8 +219,8 @@ const openModal = () => {
                   </>
                 ) : leadStep === 'profile' ? (
                   <>
-                    <h2 className="text-3xl font-black text-slate-900 mb-3 tracking-tight">Help us tailor your use-case brief</h2>
-                    <p className="text-slate-600 mb-8 leading-relaxed">
+                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 tracking-tight">Help us tailor your use-case brief</h2>
+                    <p className="text-slate-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
                       Optional but recommended: share your name and company so our engineers can send examples that match your industry and plant needs.
                     </p>
 
@@ -301,8 +322,8 @@ const openModal = () => {
                     <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <CheckCircle size={40} className="text-emerald-600" />
                     </div>
-                    <h2 className="text-3xl font-black text-slate-900 mb-4 tracking-tight">You&apos;re all set!</h2>
-                    <p className="text-slate-600 mb-8 leading-relaxed">
+                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-4 tracking-tight">You&apos;re all set!</h2>
+                    <p className="text-slate-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
                         A copy has been sent to your email. You can also download it directly right now.
                     </p>
                     <a 

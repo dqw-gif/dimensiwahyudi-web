@@ -215,28 +215,28 @@ export default function ContactPage() {
         style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
       {/* 1. Header */}
-      <section className="pt-32 md:pt-40 pb-16 md:pb-20 relative overflow-hidden">
+      <section className="pt-28 md:pt-40 pb-12 md:pb-20 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-50 rounded-full blur-[120px] -z-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-slate-900">
+            className="text-3xl sm:text-4xl md:text-7xl font-extrabold mb-4 md:mb-6 tracking-tight text-slate-900">
             {copy.heroTitleA} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">{copy.heroTitleB}</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="text-slate-600 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            className="text-slate-600 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
             {copy.heroDesc}
           </motion.p>
         </div>
       </section>
 
       {/* 2. Contact Information & Form */}
-      <section className="pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="pb-16 md:pb-32 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50">
 
           {/* LEFT: INFO */}
-          <div className="p-10 md:p-16 bg-slate-50 border-r border-slate-200">
+          <div className="order-2 lg:order-1 p-6 md:p-16 bg-slate-50 border-r border-slate-200">
             <h2 className="text-3xl font-bold text-slate-900 mb-10">{copy.contactCenter}</h2>
-            <div className="space-y-10">
+            <div className="space-y-6 md:space-y-10">
               <div className="flex items-start gap-6">
                 <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg shadow-blue-200">
                   <MapPin size={28} />
@@ -297,9 +297,9 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT: FORM */}
-          <div className="p-10 md:p-16 bg-white">
+          <div className="order-1 lg:order-2 p-6 md:p-16 bg-white">
             <h2 className="text-3xl font-bold text-slate-900 mb-3">{copy.formTitle}</h2>
-            <p className="text-slate-500 mb-10 text-lg font-medium">{copy.formDesc}</p>
+            <p className="text-slate-500 mb-6 md:mb-10 text-base md:text-lg font-medium">{copy.formDesc}</p>
 
             {formStatus === 'success' ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}

@@ -118,49 +118,49 @@ export default function ErgonomicsSafetyStandardsPage() {
 
         <section className="grid items-end gap-4 lg:grid-cols-12 lg:gap-1">
           <div className="max-w-[520px] lg:col-span-5">
-            <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-3">Compliance Perspective</p>
-            <h1 className="text-4xl font-black tracking-tight leading-[0.95] text-slate-900 mb-5 sm:text-5xl">
+            <p className="text-[11px] sm:text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-3">Compliance Perspective</p>
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-[0.95] text-slate-900 mb-4 sm:mb-5 md:text-5xl">
               Occupational safety and ergonomics standards
             </h1>
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
               Safety excellence is achieved when ergonomic controls are embedded into the actual workflow. Standards are
               not checklists alone, they are operational design principles that protect people and performance.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-colors">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-colors">
                 <CheckCircle className="w-4 h-4" /> Request Compliance Audit
               </Link>
-              <Link href="/products/schmalz" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-600 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors">
+              <Link href="/products/schmalz" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-600 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors">
                 Explore Handling Solutions
               </Link>
             </div>
           </div>
-          <div className="relative lg:col-span-7 lg:min-h-[420px]">
+          <div className="relative lg:col-span-7 lg:min-h-[420px] mt-2 md:mt-0">
             <Image
               src="/divadian.webp"
               alt="Occupational safety ergonomics visual"
               width={1600}
               height={900}
-              className="h-auto w-full max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
+              className="h-auto w-full max-w-[420px] sm:max-w-[560px] md:max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
               priority
             />
           </div>
         </section>
 
         <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
-            <h2 className="text-2xl font-black text-slate-900">Implementation principles for safer handling</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">Implementation principles for safer handling</h2>
           </div>
           <ul className="grid md:grid-cols-2 gap-4">
             {principles.map((item) => (
-              <li key={item.text} className="group flex items-center gap-5 rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-300 hover:shadow-sm transition-all duration-200 border-l-4 border-l-blue-600">
-                <div className="relative h-24 w-24 shrink-0">
+              <li key={item.text} className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-5 rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-300 hover:shadow-sm transition-all duration-200 border-l-4 border-l-blue-600">
+                <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 mx-auto sm:mx-0">
                   <Image src={item.iconSrc} alt={item.text} fill className="object-contain" />
                 </div>
-                <p className="text-slate-700 leading-relaxed text-[15px] font-medium">{item.text}</p>
+                <p className="text-slate-700 leading-relaxed text-[13px] sm:text-[15px] font-medium">{item.text}</p>
               </li>
             ))}
           </ul>
@@ -169,11 +169,11 @@ export default function ErgonomicsSafetyStandardsPage() {
 
 
         <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center">
               <SolidSafetyIcon className="w-4.5 h-4.5" />
             </div>
-            <h2 className="text-2xl font-black text-slate-900">Standards and compliance matrix</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">Standards and compliance matrix</h2>
           </div>
           <div className="flex flex-col lg:flex-row items-stretch gap-0 mt-8">
             {standardsMap.map((item, index) => (
@@ -226,13 +226,13 @@ export default function ErgonomicsSafetyStandardsPage() {
         </section>
 
         <section className="grid lg:grid-cols-2 gap-6 lg:items-stretch">
-          <div className={`bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between`}>
+          <div className={`bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between`}>
             <div>
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 border border-blue-200 text-blue-600">
                 <SolidSafetyIcon className="h-6 w-6" />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4">Risk control hierarchy in practice</h3>
-              <p className="text-slate-600 leading-relaxed text-lg">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-4">Risk control hierarchy in practice</h3>
+              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
                 The strongest ergonomic programs prioritize technical mitigation at the process level. This helps reduce
                 dependency on individual behavior while improving repeatable safety outcomes.
               </p>
@@ -242,13 +242,13 @@ export default function ErgonomicsSafetyStandardsPage() {
               <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 border border-slate-200">↓ Behavioral Dependency</span>
             </div>
           </div>
-          <div className={`bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between`}>
+          <div className={`bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between`}>
             <div>
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 border border-rose-200 text-rose-600">
                 <SolidWarningIcon className="h-6 w-6" />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4">Documentation and continuous review</h3>
-              <p className="text-slate-600 leading-relaxed text-lg">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-4">Documentation and continuous review</h3>
+              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
                 Use incident data, near-miss patterns, and workstation feedback as input for periodic ergonomics and
                 handling process improvements.
               </p>

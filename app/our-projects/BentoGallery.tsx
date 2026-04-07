@@ -142,10 +142,10 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
     };
 
     return (
-        <section className="py-8 bg-transparent relative z-20">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="py-6 md:py-8 bg-transparent relative z-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-                <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="mb-6 md:mb-8 flex flex-col gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
                     <label className="relative block w-full md:max-w-md">
                         <span className="sr-only">Search projects</span>
                         <input
@@ -153,14 +153,14 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                             value={query}
                             onChange={(event) => {
                                 setQuery(event.target.value);
-                                setVisibleCount(12);
+                                setVisibleCount(window.innerWidth < 768 ? 6 : 12);
                             }}
                             placeholder="Search by client, industry, or keyword"
                             className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                         />
                     </label>
 
-                    <div className="flex items-center gap-2 text-sm">
+                    <div className="flex items-center gap-2 text-sm overflow-x-auto pb-1 md:pb-0 md:overflow-visible">
                         <span className="rounded-full border border-slate-200 bg-white px-3 py-1.5 font-semibold text-slate-600">
                             {filteredProjects.length} projects
                         </span>
@@ -181,7 +181,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                 </div>
 
                 {/* LIGHT MODE FILTER CHIPS */}
-                <div className="flex flex-wrap justify-center gap-3 mb-16">
+                <div className="flex flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-10 md:mb-16 overflow-x-auto pb-2 md:pb-0">
                     {industries.map(ind => (
                         <button
                             key={ind}
@@ -189,7 +189,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                 setFilter(ind);
                                 setVisibleCount(12);
                             }}
-                            className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border backdrop-blur-md relative overflow-hidden group
+                            className={`px-4 md:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 border backdrop-blur-md relative overflow-hidden group whitespace-nowrap
                                 ${filter === ind
                                     ? 'bg-blue-600 border-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]'
                                     : 'bg-white border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900 hover:bg-slate-50 shadow-sm'
@@ -213,7 +213,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                     <>
                         <motion.div
                             layout
-                            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[280px] grid-flow-row-dense"
+                            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[220px] sm:auto-rows-[240px] md:auto-rows-[280px] grid-flow-row-dense"
                         >
                             <AnimatePresence mode="popLayout">
                                 {visibleProjects.map((p, idx) => {
@@ -251,13 +251,13 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                                             </div>
 
-                                            <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 flex flex-col justify-end h-full z-20">
+                                            <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 md:p-6 flex flex-col justify-end h-full z-20">
                                                 <div className="flex flex-col gap-2 transform transition-all duration-500">
                                                     <div>
-                                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-3 ${getBadgeStyle(p.color)}`}>
+                                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-2 sm:mb-3 ${getBadgeStyle(p.color)}`}>
                                                             {p.industry}
                                                         </span>
-                                                        <h3 className="text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
+                                                        <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
                                                             {p.client}
                                                         </h3>
                                                     </div>
@@ -281,7 +281,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
 
                                                     <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
                                                         <div className="overflow-hidden">
-                                                            <p className="text-slate-300 text-sm leading-relaxed font-light drop-shadow-lg pt-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+                                                            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light drop-shadow-lg pt-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
                                                                 {p.desc}
                                                             </p>
                                                         </div>
@@ -289,7 +289,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                                 </div>
                                             </div>
 
-                                            <div className="absolute top-5 right-5 h-12 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[180px]">
+                                            <div className="absolute top-4 right-4 h-11 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[160px] sm:max-w-[180px]">
                                                 {p.logo ? (
                                                     <Image
                                                         src={p.logo}
@@ -312,11 +312,11 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                 </motion.div>
 
                         {hasMoreProjects ? (
-                            <div className="mt-10 flex justify-center">
+                            <div className="mt-8 md:mt-10 flex justify-center">
                                 <button
                                     type="button"
-                                    onClick={() => setVisibleCount((prev) => prev + 12)}
-                                    className="rounded-2xl border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+                                    onClick={() => setVisibleCount((prev) => prev + (window.innerWidth < 768 ? 6 : 12))}
+                                    className="rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
                                 >
                                     Load more projects
                                 </button>

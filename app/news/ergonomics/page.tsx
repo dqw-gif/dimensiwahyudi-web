@@ -257,8 +257,8 @@ export default function ErgonomicsHubPage() {
         <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.inset} shadow-sm`}>
           <div className="flex items-end justify-between mb-6 gap-4">
             <div>
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-900">Ergonomics impact at a glance</h2>
+              <p className="text-[11px] sm:text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Operational Snapshot</p>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900">Ergonomics impact at a glance</h2>
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
@@ -283,8 +283,8 @@ export default function ErgonomicsHubPage() {
         </section>
 
         <section className={`bg-white border border-slate-200 rounded-[2rem] ${spacingTokens.card.inset} shadow-sm`}>
-          <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6">From risk mapping to ergonomic deployment</h2>
+          <p className="text-[11px] sm:text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-2">Implementation Framework</p>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mb-4 sm:mb-6">From risk mapping to ergonomic deployment</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {implementationSteps.map((item) => (
               <article key={item.step} className="relative bg-slate-50 border border-slate-200 rounded-2xl p-5">
@@ -307,10 +307,10 @@ export default function ErgonomicsHubPage() {
               className="absolute inset-0 opacity-10 pointer-events-none"
               style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
             />
-            <div className="relative z-10 p-7 md:p-12">
+            <div className="relative z-10 p-6 sm:p-7 md:p-12">
               <p className="text-cyan-300 text-xs font-bold uppercase tracking-[0.2em] mb-3">Next Action</p>
-              <h2 className="text-3xl md:text-4xl font-black mb-4">Measure the economics of ergonomic investment</h2>
-              <p className="text-slate-300 leading-relaxed mb-7">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4">Measure the economics of ergonomic investment</h2>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 sm:mb-7">
                 Use the ROI calculator to estimate potential productivity gains and operational savings for your
                 handling scenario.
               </p>

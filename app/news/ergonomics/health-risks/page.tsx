@@ -147,48 +147,48 @@ export default function ErgonomicsHealthRisksPage() {
 
         <section className="grid items-end gap-4 lg:grid-cols-12 lg:gap-1">
           <div className="max-w-[520px] lg:col-span-5">
-            <p className="text-xs font-bold text-rose-600 uppercase tracking-[0.2em] mb-3">Health Perspective</p>
-            <h1 className="text-4xl font-black tracking-tight leading-[0.95] text-slate-900 mb-5 sm:text-5xl">
+            <p className="text-[11px] sm:text-xs font-bold text-rose-600 uppercase tracking-[0.2em] mb-3">Health Perspective</p>
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-[0.95] text-slate-900 mb-4 sm:mb-5 md:text-5xl">
               Health risks and diseases in manual handling operations
             </h1>
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
               Daily lifting, carrying, and repetitive handling can create a cumulative physical burden. Without ergonomic
               support, minor discomfort often develops into persistent musculoskeletal problems that affect people,
               attendance, and production continuity.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/digital-assistant/roi-calculator" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-colors">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link href="/digital-assistant/roi-calculator" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-colors">
                 <Activity className="w-4 h-4" /> Get Risk Assessment
               </Link>
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-600 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-600 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-colors">
                 Discuss with Engineering
               </Link>
             </div>
           </div>
-          <div className="relative lg:col-span-7 lg:min-h-[420px]">
+          <div className="relative lg:col-span-7 lg:min-h-[420px] mt-2 md:mt-0">
             <Image
               src="/top.webp"
               alt="Factory floor health-risk visual"
               width={1600}
               height={900}
-              className="h-auto w-full max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
+              className="h-auto w-full max-w-[420px] sm:max-w-[560px] md:max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3"
               priority
             />
           </div>
         </section>
 
         <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
-          <div className="flex items-center gap-3 mb-5">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5">
             <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
               <SolidWarningIcon className="w-4.5 h-4.5" />
             </div>
-            <h2 className="text-2xl font-black text-slate-900">Common risk patterns on factory floors</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">Common risk patterns on factory floors</h2>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {riskItems.map((item) => (
               <article key={item.title} className="group rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                  <div className="relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-lg bg-slate-100">
                     <Image
                       src={item.imageSrc}
                       alt={item.imageAlt}
@@ -198,7 +198,7 @@ export default function ErgonomicsHealthRisksPage() {
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-sm font-bold leading-tight text-slate-900">{item.title}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    <p className="mt-1.5 text-[11px] sm:text-xs leading-relaxed text-slate-600">
                       {item.desc}
                     </p>
                   </div>
@@ -210,13 +210,13 @@ export default function ErgonomicsHealthRisksPage() {
 
         <section className={`bg-white border border-slate-200 rounded-3xl ${spacingTokens.card.feature} shadow-sm`}>
           {/* Section Header */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center">
               <SolidHealthIcon className="w-4.5 h-4.5" />
             </div>
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-600">Impact Storyline</p>
-              <h2 className="text-2xl font-black text-slate-900">Health impact infographic snapshot</h2>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900">Health impact infographic snapshot</h2>
             </div>
           </div>
 

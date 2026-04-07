@@ -682,13 +682,13 @@ export default function SelectionAidsClient() {
   if (!currentModule || !moduleConfig || !step) {
     return (
       <motion.section
-        className="space-y-10 py-8 text-center"
+        className="space-y-8 py-6 md:py-8 text-center"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
         <div className="mx-auto max-w-3xl space-y-4 px-4">
-          <h1 className="text-3xl font-black leading-tight tracking-tighter text-slate-900 md:text-5xl">
+          <h1 className="text-2xl sm:text-3xl font-black leading-tight tracking-tighter text-slate-900 md:text-5xl">
             {t.selectionAids.title.replace('Assistant.', '').trim()} <span className="italic text-blue-600">Assistant.</span>
           </h1>
           <p className="mx-auto max-w-2xl text-sm font-medium leading-relaxed text-slate-500 md:text-lg">
@@ -696,14 +696,14 @@ export default function SelectionAidsClient() {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-4xl gap-6 px-2 md:grid-cols-2">
+        <div className="mx-auto grid max-w-4xl gap-4 md:gap-6 px-2 md:grid-cols-2">
           <motion.button
             onClick={() => startModule('lifters')}
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.04, ease: 'easeOut' }}
             whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-8 text-left shadow-xl transition-all hover:shadow-2xl"
+            className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-6 sm:p-8 text-left shadow-xl transition-all hover:shadow-2xl"
             type="button"
           >
               <Image
@@ -714,11 +714,11 @@ export default function SelectionAidsClient() {
               className="pointer-events-none absolute bottom-0 right-0 top-0 h-full w-auto select-none object-contain opacity-10 transition-opacity duration-300 group-hover:opacity-100"
             />
             <div className="relative z-10 space-y-6">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
+              <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
                 <CanvasIcon iconKey="lifterHub" width={36} height={36} />
               </div>
               <div>
-                <h3 className="text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Lifters</h3>
+                <h3 className="text-lg sm:text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Lifters</h3>
                 <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Ergonomic manual handling systems (Jumbo/VacuMaster).</p>
               </div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 transition-transform group-hover:translate-x-2 md:text-xs">
@@ -733,7 +733,7 @@ export default function SelectionAidsClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
             whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-8 text-left shadow-xl transition-all hover:shadow-2xl"
+            className="group relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-6 sm:p-8 text-left shadow-xl transition-all hover:shadow-2xl"
             type="button"
           >
               <Image
@@ -744,11 +744,11 @@ export default function SelectionAidsClient() {
               className="pointer-events-none absolute bottom-0 right-0 top-0 h-full w-auto select-none object-contain opacity-10 transition-opacity duration-300 group-hover:opacity-100"
             />
             <div className="relative z-10 space-y-6">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
+              <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
                 <CanvasIcon iconKey="genHub" width={36} height={36} />
               </div>
               <div>
-                <h3 className="text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Generators</h3>
+                <h3 className="text-lg sm:text-xl font-black leading-tight text-slate-900 md:text-2xl">Vacuum Generators</h3>
                 <p className="mt-2 text-xs font-medium text-slate-500 md:text-sm">Automation and ejector systems (Ejector/Pump).</p>
               </div>
               <p className="text-[10px] font-bold uppercase tracking-widest text-blue-600 transition-transform group-hover:translate-x-2 md:text-xs">
@@ -766,7 +766,7 @@ export default function SelectionAidsClient() {
   const sliderValue = Number(selections.weight ?? 35);
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-5 md:space-y-6">
       <div className="grid items-start gap-6 lg:grid-cols-12">
         <aside className="hidden space-y-6 lg:col-span-3 lg:block lg:sticky lg:top-8">
           <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-lg shadow-blue-900/5">
@@ -807,9 +807,9 @@ export default function SelectionAidsClient() {
           </div>
         </aside>
 
-        <div className="col-span-1 space-y-6 lg:col-span-9">
-          <div className="overflow-x-auto rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm">
-            <div className="relative flex min-w-[500px] justify-between px-4 md:min-w-full">
+        <div className="col-span-1 space-y-5 md:space-y-6 lg:col-span-9">
+          <div className="overflow-x-auto rounded-[2rem] border border-slate-200 bg-white p-3 sm:p-4 shadow-sm">
+            <div className="relative flex min-w-[460px] justify-between px-2 sm:px-4 md:min-w-full">
               <div className="absolute left-0 top-[18px] -z-10 h-[2px] w-full bg-slate-100" />
               <div className="absolute left-0 top-[18px] -z-10 h-[2px] bg-blue-600 transition-all duration-500" style={{ width: `${progressPercent}%` }} />
               {moduleConfig.steps.map((item, idx) => (
@@ -838,7 +838,7 @@ export default function SelectionAidsClient() {
           </div>
 
           <div className="relative flex min-h-[500px] flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-2xl shadow-blue-900/5">
-            <div className="flex flex-1 flex-col p-6 md:p-12">
+            <div className="flex flex-1 flex-col p-4 sm:p-6 md:p-12">
               <AnimatePresence mode="wait" initial={false}>
                 {step.type !== 'results' ? (
                   <motion.div
@@ -847,14 +847,14 @@ export default function SelectionAidsClient() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25, ease: 'easeOut' }}
-                    className="space-y-6 md:space-y-10"
+                    className="space-y-5 md:space-y-10"
                   >
-                    <div className="flex flex-col justify-between gap-4 border-b border-slate-100 pb-4 md:flex-row md:items-center md:pb-8">
+                    <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-4 md:flex-row md:items-center md:pb-8">
                       <div className="max-w-2xl space-y-2">
                         <p className="text-[10px] font-bold uppercase tracking-widest text-blue-500 lg:hidden">
                           Step {currentStep + 1} of {moduleConfig.steps.length}
                         </p>
-                        <h2 className="text-2xl font-black uppercase leading-tight tracking-tight text-slate-900 md:text-4xl">{step.title}</h2>
+                        <h2 className="text-xl sm:text-2xl font-black uppercase leading-tight tracking-tight text-slate-900 md:text-4xl">{step.title}</h2>
                         <p className="text-xs font-medium text-slate-500 md:text-sm">{step.desc}</p>
                       </div>
                       <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-xl shadow-blue-600/30 md:flex">
@@ -863,7 +863,7 @@ export default function SelectionAidsClient() {
                     </div>
 
                     {(step.type === 'grid' || step.type === 'binary') && (
-                      <div className={['grid gap-4', (step.options?.length ?? 0) > 4 ? 'grid-cols-2 md:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1 md:grid-cols-2'].join(' ')}>
+                      <div className={['grid gap-3 md:gap-4', (step.options?.length ?? 0) > 4 ? 'grid-cols-2 md:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1 md:grid-cols-2'].join(' ')}>
                         {step.options?.map((opt, idx) => (
                           <OptionCard
                             key={opt.id}
@@ -878,7 +878,7 @@ export default function SelectionAidsClient() {
 
                     {step.type === 'slider' && (
                       <motion.div
-                        className="mx-auto w-full max-w-3xl space-y-8 py-8 md:space-y-12"
+                        className="mx-auto w-full max-w-3xl space-y-6 py-4 md:space-y-12 md:py-8"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -894,7 +894,7 @@ export default function SelectionAidsClient() {
                             className="absolute h-full w-full cursor-pointer opacity-0"
                           />
                         </div>
-                        <div className="grid items-center gap-6 rounded-[2rem] border border-white/10 bg-slate-900 p-8 shadow-2xl md:grid-cols-2">
+                        <div className="grid items-center gap-6 rounded-[2rem] border border-white/10 bg-slate-900 p-5 sm:p-8 shadow-2xl md:grid-cols-2">
                           <div className="space-y-2 text-left">
                             <span className="mb-1 block text-[8px] font-black uppercase tracking-[0.3em] text-blue-400">Manual Input</span>
                             <div className="relative flex items-center">
@@ -904,7 +904,7 @@ export default function SelectionAidsClient() {
                                 min={step.min}
                                 max={step.max}
                                 onChange={(e) => handleSlider(e.target.value)}
-                                className="w-full rounded-xl border-2 border-slate-700 bg-slate-800 py-3 pl-4 pr-12 text-3xl font-black text-white outline-none transition-all focus:border-blue-500 md:text-4xl"
+                                className="w-full rounded-xl border-2 border-slate-700 bg-slate-800 py-3 pl-4 pr-12 text-2xl sm:text-3xl font-black text-white outline-none transition-all focus:border-blue-500 md:text-4xl"
                               />
                               <span className="absolute right-4 text-lg font-black text-blue-500">KG</span>
                             </div>
@@ -926,13 +926,13 @@ export default function SelectionAidsClient() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="space-y-8"
+                    className="space-y-6 md:space-y-8"
                   >
-                  <div className="space-y-4 text-center">
+                  <div className="space-y-3 text-center">
                     <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-100 px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.3em] text-emerald-800 shadow-lg">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" /> {t.selectionAids.complete}
                     </div>
-                    <h2 className="text-3xl font-black uppercase leading-none tracking-tighter text-slate-900 md:text-5xl">
+                    <h2 className="text-2xl sm:text-3xl font-black uppercase leading-none tracking-tighter text-slate-900 md:text-5xl">
                       Solution <br />
                       <span className="text-blue-600">{t.selectionAids.found}</span>
                     </h2>
@@ -943,7 +943,7 @@ export default function SelectionAidsClient() {
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.06, duration: 0.35 }}
-                      className="group relative col-span-7 flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 text-white shadow-xl md:p-12"
+                      className="group relative col-span-7 flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-slate-900 p-6 sm:p-8 text-white shadow-xl md:p-12"
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.26),transparent_45%),radial-gradient(circle_at_85%_85%,rgba(30,64,175,0.35),transparent_46%)]" />
                       <div className="relative z-10">
@@ -951,11 +951,11 @@ export default function SelectionAidsClient() {
                           <div className="h-1 w-8 rounded-full bg-blue-500" />
                           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-400">{recommendation.tagline}</span>
                         </div>
-                        <h3 className="mb-6 text-4xl font-black uppercase leading-none tracking-tighter text-white italic md:text-6xl">
+                        <h3 className="mb-5 text-3xl sm:text-4xl font-black uppercase leading-none tracking-tighter text-white italic md:text-6xl">
                           {recommendation.name}
                         </h3>
-                        <p className="mb-8 text-base font-medium leading-relaxed text-slate-400 md:text-lg">{recommendation.desc}</p>
-                        <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+                        <p className="mb-6 sm:mb-8 text-sm sm:text-base font-medium leading-relaxed text-slate-400 md:text-lg">{recommendation.desc}</p>
+                        <div className="mb-6 sm:mb-8 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
                           <p className="mb-2 text-[9px] font-black uppercase tracking-widest text-slate-500">Schmalz Logic Engine</p>
                           <p className="border-l-2 border-blue-500 pl-3 text-xs font-medium text-slate-300 md:text-sm">{recommendation.logic}</p>
                         </div>
@@ -983,7 +983,7 @@ export default function SelectionAidsClient() {
                       transition={{ delay: 0.12, duration: 0.35 }}
                       className="col-span-5 space-y-6"
                     >
-                      <div className="rounded-[2.5rem] border-2 border-slate-100 bg-white p-8 shadow-xl">
+                      <div className="rounded-[2.5rem] border-2 border-slate-100 bg-white p-6 sm:p-8 shadow-xl">
                         <h4 className="mb-6 text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">{t.selectionAids.technicalSpec}</h4>
                         <div className="space-y-3">
                           {recommendation.specs.map((spec) => (

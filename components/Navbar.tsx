@@ -22,7 +22,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="block relative h-16 w-64 hover:opacity-80 transition-opacity">
+            <Link href="/" className="block relative h-12 w-44 sm:h-14 sm:w-52 md:h-16 md:w-64 hover:opacity-80 transition-opacity">
               <Image
                 src="/logo.webp"
                 alt="PT Dimensi Quantum Wahyudi Logo"
@@ -291,22 +291,37 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-white border-b border-slate-200 absolute top-full left-0 w-full shadow-xl">
           <div className="px-4 pt-2 pb-6 space-y-1">
-            <Link href="/" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.home}</Link>
-            <Link href="/about" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.about}</Link>
+            <Link href="/" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.home}</Link>
+            <Link href="/about" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.about}</Link>
+
+            <div className="py-2 border-b border-slate-100">
+              <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Quick Actions</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 px-3">
+                <Link href="/contact" className="rounded-lg bg-blue-600 text-white text-sm font-bold py-2.5 text-center" onClick={() => setIsOpen(false)}>
+                  Get Quote
+                </Link>
+                <Link href="/digital-assistant/roi-calculator" className="rounded-lg border border-slate-200 text-slate-700 text-sm font-bold py-2.5 text-center" onClick={() => setIsOpen(false)}>
+                  ROI Calculator
+                </Link>
+                <Link href="/products" className="rounded-lg border border-slate-200 text-slate-700 text-sm font-bold py-2.5 text-center" onClick={() => setIsOpen(false)}>
+                  Products
+                </Link>
+              </div>
+            </div>
 
             {/* Mobile Digital Assistants Section */}
             <div className="py-2 border-y border-slate-50">
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.digitalAssistants}</p>
-              <Link href="/digital-assistant/vacuum-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/digital-assistant/vacuum-calculator" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Calculator size={18} className="text-blue-600" /><span>Vacuum Calculator</span>
               </Link>
-              <Link href="/digital-assistant/roi-calculator" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/digital-assistant/roi-calculator" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <BarChart3 size={18} className="text-cyan-600" /><span>ROI Calculator</span>
               </Link>
-              <Link href="/digital-assistant/selection-aids" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/digital-assistant/selection-aids" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Cpu size={18} className="text-blue-600" /><span>Selection Aids</span>
               </Link>
-              <Link href="/digital-assistant/video-library" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/digital-assistant/video-library" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Play size={18} className="text-cyan-600" /><span>Video Library</span>
               </Link>
             </div>
@@ -315,13 +330,13 @@ export default function Navbar() {
             {/* Mobile Insights Section */}
             <div className="py-2 border-b border-slate-50">
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.insights}</p>
-              <Link href="/news" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/news" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Newspaper size={18} className="text-blue-600" /><span>News &amp; Updates</span>
               </Link>
-              <Link href="/our-projects" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/our-projects" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Briefcase size={18} className="text-cyan-600" /><span>Our Projects</span>
               </Link>
-              <Link href="/news/ergonomics" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/news/ergonomics" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <HeartPulse size={18} className="text-blue-700" /><span>Ergonomics Hub</span>
               </Link>
             </div>
@@ -329,16 +344,16 @@ export default function Navbar() {
             {/* Mobile Products Section */}
             <div className="py-2 border-b border-slate-50">
               <p className="px-3 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.navbar.products}</p>
-              <Link href="/products" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/products" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Package size={18} className="text-blue-600" /><span>{t.navbar.allBrands}</span>
               </Link>
-              <Link href="/products/schmalz" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/products/schmalz" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-blue-100 rounded-md p-1 shrink-0">
                   <Image src="/brands/schmalz.webp" alt="Schmalz" width={40} height={18} className="object-contain h-[18px] w-10" />
                 </div>
                 <span>Schmalz</span>
               </Link>
-              <Link href="/products/binar" className="flex items-center space-x-3 px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+              <Link href="/products/binar" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-red-100 rounded-md p-1 shrink-0">
                   <Image src="/brands/binar.webp" alt="Binar Handling" width={40} height={18} className="object-contain h-[18px] w-10" />
                 </div>
@@ -346,8 +361,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <Link href="/services" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.services}</Link>
-            <Link href="/contact" className="block px-3 py-3 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.contact}</Link>
+            <Link href="/services" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.services}</Link>
+            <Link href="/contact" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.contact}</Link>
 
             <div className="pt-4">
               <Link href="/contact"

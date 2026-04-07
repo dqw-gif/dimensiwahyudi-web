@@ -60,7 +60,7 @@ export default function BinarCatalogPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
-            <section className="relative pt-32 pb-16 bg-gradient-to-br from-black via-zinc-950 to-black overflow-hidden">
+            <section className="relative pt-24 md:pt-32 pb-14 md:pb-16 bg-gradient-to-br from-black via-zinc-950 to-black overflow-hidden">
                 {/* Red grid overlay */}
                 <div className="absolute inset-0 opacity-10"
                     style={{ backgroundImage: 'linear-gradient(rgba(239,68,68,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(239,68,68,0.5) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
@@ -69,21 +69,21 @@ export default function BinarCatalogPage() {
                 {/* Subtle red bar at top */}
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
 
-                <div className="relative max-w-7xl mx-auto px-6">
-                    <Link href="/products" className="inline-flex items-center gap-2 text-zinc-400 hover:text-red-400 mb-8 text-sm font-medium transition-colors">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+                    <Link href="/products" className="inline-flex items-center gap-2 text-zinc-400 hover:text-red-400 mb-6 md:mb-8 text-sm font-medium transition-colors">
                         <ArrowLeft size={16} /> All Brands
                     </Link>
-                    <div className="flex items-start justify-between">
+                    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-bold uppercase tracking-widest mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-5 md:mb-6">
                                 Made in Sweden - Est. 1976
                             </div>
-                            <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
+                            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
                                 BINAR
                                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">HANDLING</span>
                             </h1>
-                            <div className="h-1.5 w-24 bg-gradient-to-r from-red-600 to-rose-500 rounded-full mb-6" />
-                            <p className="text-zinc-400 text-lg max-w-xl leading-relaxed">
+                            <div className="h-1.5 w-20 sm:w-24 bg-gradient-to-r from-red-600 to-rose-500 rounded-full mb-5 md:mb-6" />
+                            <p className="text-zinc-400 text-sm sm:text-lg max-w-xl leading-relaxed">
                                 A technology leader in intelligent lift arms, delivering servo precision that sets a new benchmark for industrial ergonomics.
                             </p>
                         </div>
@@ -116,23 +116,23 @@ export default function BinarCatalogPage() {
             </section>
 
             {/* LIFT ARMS */}
-            <section className="pt-16 pb-8 bg-zinc-50">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex items-center gap-4 mb-8">
+            <section className="pt-14 md:pt-16 pb-8 bg-zinc-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="flex items-center gap-4 mb-7 md:mb-8">
                         <div className="h-1 w-8 bg-red-600 rounded-full" />
-                        <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Intelligent Lift Arms</h2>
+                        <h2 className="text-xl sm:text-2xl font-black text-zinc-900 uppercase tracking-tight">Intelligent Lift Arms</h2>
                         <Filter size={14} className="text-zinc-400 ml-auto" />
                         <span className="text-zinc-400 text-sm">{liftArms.length} products</span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
                         {liftArms.map((product) => (
                             <Link
                                 key={product.slug}
                                 href={`/products/binar/${product.slug}`}
                                 className="group bg-white rounded-2xl border border-zinc-200 overflow-hidden hover:border-red-400 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 hover:-translate-y-0.5"
                             >
-                                <div className={`h-44 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
+                                <div className={`h-40 sm:h-44 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
                                     {product.imageUrl ? (
                                         <Image
                                             src={product.imageUrl}
@@ -158,18 +158,18 @@ export default function BinarCatalogPage() {
                                     </div>
                                 </div>
 
-                                <div className="p-6">
-                                    <h3 className="text-lg font-black text-zinc-900 mb-1 group-hover:text-red-700 transition-colors leading-tight">
+                                <div className="p-5 sm:p-6">
+                                    <h3 className="text-base sm:text-lg font-black text-zinc-900 mb-1 group-hover:text-red-700 transition-colors leading-tight">
                                         {product.name}
                                     </h3>
-                                    <p className="text-red-600 text-xs font-bold uppercase tracking-wider mb-3">
+                                    <p className="text-red-600 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3">
                                         {product.tagline}
                                     </p>
-                                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2 mb-5">
+                                    <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2 mb-4 md:mb-5">
                                         {product.description}
                                     </p>
 
-                                    <div className="grid grid-cols-2 gap-2 mb-5">
+                                    <div className="grid grid-cols-2 gap-2 mb-4 md:mb-5">
                                         {product.specs.slice(0, 2).map(spec => (
                                             <div key={spec.label} className="bg-zinc-50 rounded-lg px-3 py-2">
                                                 <div className="text-zinc-400 text-[10px] uppercase tracking-wider">{spec.label}</div>
@@ -188,21 +188,21 @@ export default function BinarCatalogPage() {
                     </div>
 
                     {/* GRIPPERS */}
-                    <div className="flex items-center gap-4 mb-8">
+                    <div className="flex items-center gap-4 mb-7 md:mb-8">
                         <div className="h-1 w-8 bg-rose-700 rounded-full" />
-                        <h2 className="text-2xl font-black text-zinc-900 uppercase tracking-tight">Gripdons / End Effectors</h2>
+                        <h2 className="text-xl sm:text-2xl font-black text-zinc-900 uppercase tracking-tight">Gripdons / End Effectors</h2>
                         <Filter size={14} className="text-zinc-400 ml-auto" />
                         <span className="text-zinc-400 text-sm">{grippers.length} products</span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
                         {grippers.map((product) => (
                             <Link
                                 key={product.slug}
                                 href={`/products/binar/${product.slug}`}
                                 className="group bg-white rounded-2xl border border-zinc-200 overflow-hidden hover:border-rose-400 hover:shadow-xl hover:shadow-rose-500/10 transition-all duration-300 hover:-translate-y-0.5"
                             >
-                                <div className={`h-32 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
+                                <div className={`h-28 sm:h-32 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
                                     {product.imageUrl ? (
                                         <Image
                                             src={product.imageUrl}
@@ -225,11 +225,11 @@ export default function BinarCatalogPage() {
                                     </div>
                                 </div>
 
-                                <div className="p-5">
-                                    <h3 className="text-base font-black text-zinc-900 mb-2 group-hover:text-rose-700 transition-colors leading-tight">
+                                <div className="p-4 sm:p-5">
+                                    <h3 className="text-sm sm:text-base font-black text-zinc-900 mb-2 group-hover:text-rose-700 transition-colors leading-tight">
                                         {product.name}
                                     </h3>
-                                    <p className="text-zinc-500 text-xs leading-relaxed line-clamp-2 mb-4">
+                                    <p className="text-zinc-500 text-[11px] sm:text-xs leading-relaxed line-clamp-2 mb-4">
                                         {product.tagline}
                                     </p>
                                     <div className="flex items-center text-rose-600 font-bold text-xs group-hover:gap-2 gap-1 transition-all">
@@ -246,11 +246,11 @@ export default function BinarCatalogPage() {
             <ProductVideoGrid videos={videos.filter(v => v.title.toLowerCase().includes('binar') || v.product.toLowerCase().includes('ql')).slice(0, 3)} />
 
             {/* CTA */}
-            <section className="py-16 bg-white border-t border-zinc-100">
-                <div className="max-w-4xl mx-auto px-6 text-center">
+            <section className="py-14 md:py-16 bg-white border-t border-zinc-100">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <Award className="w-10 h-10 text-red-600 mx-auto mb-4 opacity-60" />
-                    <h2 className="text-2xl font-black text-zinc-900 mb-3">Need a Custom Gripdon?</h2>
-                    <p className="text-zinc-500 mb-8">Binar Handling has delivered 8,000+ custom Gripdon variants. Discuss your specific requirements with our team.</p>
+                    <h2 className="text-xl sm:text-2xl font-black text-zinc-900 mb-3">Need a Custom Gripdon?</h2>
+                    <p className="text-sm sm:text-base text-zinc-500 mb-6 md:mb-8">Binar Handling has delivered 8,000+ custom Gripdon variants. Discuss your specific requirements with our team.</p>
                     <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-600/30">
                         Consult via WhatsApp

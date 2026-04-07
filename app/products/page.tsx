@@ -137,7 +137,7 @@ export default async function ProductsPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
-            <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 bg-white overflow-hidden">
+            <section className="relative pt-24 md:pt-32 pb-14 md:pb-20 bg-white overflow-hidden">
                 {/* Grid pattern bg */}
                 <div className="absolute inset-0 opacity-[0.06]"
                     style={{ backgroundImage: 'linear-gradient(rgba(37,99,235,1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -145,18 +145,18 @@ export default async function ProductsPage() {
                 <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(219,234,254,0.9) 0%, transparent 70%)' }} />
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-6 md:mb-8">
                         <Zap size={12} />
                         {copy.heroBadge}
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight mb-6">
-                        <span className="block text-xl md:text-2xl font-bold text-slate-600 mb-2 uppercase tracking-widest">{copy.heroKicker}</span>
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-slate-900 leading-[1.05] tracking-tight mb-5 md:mb-6">
+                        <span className="block text-lg sm:text-xl md:text-2xl font-bold text-slate-600 mb-2 uppercase tracking-widest">{copy.heroKicker}</span>
                         {copy.heroTitleA}
                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
                             {copy.heroTitleB}
                         </span>
                     </h1>
-                    <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-500 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                         {copy.heroDesc}
                     </p>
                 </div>
@@ -165,7 +165,7 @@ export default async function ProductsPage() {
             {/* BRAND CARDS */}
             <section className="py-16 md:py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-8">
+                    <div className="grid md:grid-cols-2 gap-5 md:gap-8">
                         {brandCards.map(({ brand, productCount, href, gradient, cardBg, glowColor, hoverGlow, tagColor, accentLine, nameCls, descCls, countCls, ctaCls, estCls, tagPillCls, categories }) => (
                             <Link
                                 key={brand.id}
@@ -175,10 +175,10 @@ export default async function ProductsPage() {
                                 {/* Top gradient bar */}
                                 <div className={`h-1.5 w-full bg-gradient-to-r ${gradient}`} />
 
-                                <div className="p-8 md:p-10">
+                                <div className="p-6 sm:p-8 md:p-10">
                                     {/* Origin badge */}
-                                    <div className="flex items-center justify-between mb-8">
-                                        <span className={`flex items-center gap-2 px-3 py-1 border rounded-full text-xs font-bold uppercase tracking-widest ${tagColor}`}>
+                                    <div className="flex items-center justify-between gap-3 mb-6 md:mb-8">
+                                        <span className={`flex items-center gap-2 px-3 py-1 border rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest ${tagColor}`}>
                                             <Globe size={10} />
                                             {brand.origin}
                                         </span>
@@ -186,28 +186,28 @@ export default async function ProductsPage() {
                                     </div>
 
                                     {/* Brand name */}
-                                    <h2 className={`text-4xl md:text-5xl font-black mb-2 tracking-tight transition-colors ${nameCls}`}>
+                                    <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mb-2 tracking-tight transition-colors ${nameCls}`}>
                                         {brand.name}
                                     </h2>
-                                    <div className={`h-1 w-16 ${accentLine} rounded-full mb-5`} />
-                                    <p className={`text-base leading-relaxed mb-8 ${descCls}`}>
+                                    <div className={`h-1 w-14 sm:w-16 ${accentLine} rounded-full mb-4 md:mb-5`} />
+                                    <p className={`text-sm sm:text-base leading-relaxed mb-6 md:mb-8 ${descCls}`}>
                                         {brand.description}
                                     </p>
 
                                     {/* Product preview tags */}
-                                    <div className="flex flex-wrap gap-2 mb-8">
+                                    <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
                                         {categories.map(cat => (
-                                            <span key={cat} className={`px-3 py-1 border rounded-lg text-xs font-medium ${tagPillCls}`}>
+                                            <span key={cat} className={`px-3 py-1 border rounded-lg text-[11px] sm:text-xs font-medium ${tagPillCls}`}>
                                                 {cat}
                                             </span>
                                         ))}
-                                        <span className={`px-3 py-1 border rounded-lg text-xs font-medium ${tagPillCls}`}>
+                                        <span className={`px-3 py-1 border rounded-lg text-[11px] sm:text-xs font-medium ${tagPillCls}`}>
                                             +{productCount - 4} {copy.plusMore}
                                         </span>
                                     </div>
 
                                     {/* CTA */}
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                         <div className={`flex items-center gap-2 text-sm ${countCls}`}>
                                             <Award size={14} />
                                             <span>{productCount} {copy.featuredProducts}</span>
@@ -225,11 +225,11 @@ export default async function ProductsPage() {
             </section>
 
             {/* BOTTOM CTA */}
-            <section className="py-16 md:py-20 bg-white border-t border-slate-100">
+            <section className="py-14 md:py-20 bg-white border-t border-slate-100">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-black text-slate-900 mb-4">{copy.bottomTitle}</h2>
-                    <p className="text-slate-500 mb-8">{copy.bottomDesc}</p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 md:mb-4">{copy.bottomTitle}</h2>
+                    <p className="text-sm sm:text-base text-slate-500 mb-6 md:mb-8">{copy.bottomDesc}</p>
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                         <a
                             href="https://wa.me/6281119168752"
                             target="_blank"

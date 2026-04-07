@@ -24,7 +24,7 @@ export default function SmartCalculator() {
   const safetyMessage = getSafetyMessage(isDangerous, weight);
 
   return (
-    <div className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white/90 p-6 shadow-[0_30px_100px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-8 lg:p-10">
+    <div className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-slate-200 bg-white/90 p-4 sm:p-6 shadow-[0_30px_100px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-8 lg:p-10">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.12),transparent_30%)]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-cyan-200/50 blur-3xl" aria-hidden="true" />
 
@@ -35,7 +35,7 @@ export default function SmartCalculator() {
               <Zap size={12} />
               Interactive estimator
             </div>
-            <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+            <h2 className="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
               ROI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">& Ergonomic Workload</span>
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
@@ -59,8 +59,8 @@ export default function SmartCalculator() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:gap-10">
-          <div className="space-y-6">
+        <div className="mt-6 md:mt-8 grid gap-6 md:gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:gap-10">
+          <div className="order-2 lg:order-1 space-y-6">
             <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 md:p-6">
               <div className="mb-5 flex items-center gap-2">
                 <Zap className="text-cyan-600" size={20} />
@@ -147,14 +147,14 @@ export default function SmartCalculator() {
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-slate-900 bg-slate-950 p-5 text-white shadow-[0_24px_80px_rgba(15,23,42,0.28)] md:p-6">
+          <div className="order-1 lg:order-2 relative overflow-hidden rounded-3xl border border-slate-900 bg-slate-950 p-4 sm:p-5 text-white shadow-[0_24px_80px_rgba(15,23,42,0.28)] md:p-6">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_35%)]" aria-hidden="true" />
 
             <div className={`relative space-y-5 transition-all duration-700 ${!isUnlocked ? 'blur-[8px] opacity-30 select-none pointer-events-none grayscale-[30%]' : ''}`}>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">Daily cumulative body load</p>
                 <div className="mt-3 flex items-end gap-2">
-                  <p className="text-5xl font-black tracking-tight md:text-6xl">{totalLoadTons.toFixed(2)}</p>
+                  <p className="text-4xl sm:text-5xl font-black tracking-tight md:text-6xl">{totalLoadTons.toFixed(2)}</p>
                   <span className="pb-2 text-lg font-semibold text-cyan-300/80">Ton</span>
                 </div>
               </div>
@@ -195,13 +195,13 @@ export default function SmartCalculator() {
             </div>
 
             {!isUnlocked && (
-              <div className="absolute inset-0 z-20 flex items-center justify-center p-5">
-                <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-slate-950/95 p-6 text-center shadow-2xl backdrop-blur-md">
+              <div className="absolute inset-0 z-20 flex items-center justify-center p-3 sm:p-5">
+                <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-slate-950/95 p-4 sm:p-6 text-center shadow-2xl backdrop-blur-md">
                   <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
                     <Lock size={20} className="text-white" />
                   </div>
-                  <h4 className="text-2xl font-black tracking-tight text-white">Unlock full analysis</h4>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                  <h4 className="text-xl sm:text-2xl font-black tracking-tight text-white">Unlock full analysis</h4>
+                  <p className="mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed text-slate-400">
                     Use your corporate contact details so our engineers can send recommendations aligned with your facility context.
                   </p>
                   <form
@@ -275,7 +275,7 @@ export default function SmartCalculator() {
                       placeholder="name@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
+                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
                     />
                     <input
                       type="text"

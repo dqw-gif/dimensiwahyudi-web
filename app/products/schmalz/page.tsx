@@ -59,25 +59,25 @@ export default function SchmalzCatalogPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
             {/* HERO */}
-            <section className="relative pt-32 pb-16 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
+            <section className="relative pt-24 md:pt-32 pb-14 md:pb-16 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 overflow-hidden">
                 <div className="absolute inset-0 opacity-10"
                     style={{ backgroundImage: 'linear-gradient(rgba(99,179,237,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,0.4) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
                 <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 80% at 30% 50%, rgba(37,99,235,0.2) 0%, transparent 70%)' }} />
 
-                <div className="relative max-w-7xl mx-auto px-6">
-                    <Link href="/products" className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 mb-8 text-sm font-medium transition-colors">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
+                    <Link href="/products" className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 mb-6 md:mb-8 text-sm font-medium transition-colors">
                         <ArrowLeft size={16} /> All Brands
                     </Link>
-                    <div className="flex items-start justify-between">
+                    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-5 md:mb-6">
                                 🇩🇪 Made in Germany — Est. 1910
                             </div>
-                            <h1 className="text-6xl md:text-8xl font-black text-white leading-none tracking-tighter mb-4">
+                            <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white leading-none tracking-tighter mb-4">
                                 SCHMALZ
                             </h1>
-                            <div className="h-1.5 w-24 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-6" />
-                            <p className="text-slate-400 text-lg max-w-xl leading-relaxed">
+                            <div className="h-1.5 w-20 sm:w-24 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full mb-5 md:mb-6" />
+                            <p className="text-slate-400 text-sm sm:text-lg max-w-xl leading-relaxed">
                                 A global leader in industrial vacuum technology with complete solutions for automation, manual handling, and clamping.
                             </p>
                         </div>
@@ -110,14 +110,14 @@ export default function SchmalzCatalogPage() {
             </section>
 
             {/* PRODUCT GRID */}
-            <section className="py-16 bg-slate-50">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex items-center gap-3 mb-10">
+            <section className="py-14 md:py-16 bg-slate-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="flex items-center gap-3 mb-8 md:mb-10">
                         <Filter size={16} className="text-slate-400" />
                         <span className="text-slate-500 text-sm font-medium">Showing {schmalzProducts.length} featured products</span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {schmalzProducts.map((product, i) => (
                             <Link
                                 key={product.slug}
@@ -125,7 +125,7 @@ export default function SchmalzCatalogPage() {
                                 className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-0.5"
                             >
                                 {/* Card image area */}
-                                <div className={`h-44 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
+                                <div className={`h-40 sm:h-44 bg-gradient-to-br ${product.heroColor} relative overflow-hidden`}>
                                     {product.imageUrl ? (
                                         <Image
                                             src={product.imageUrl}
@@ -149,19 +149,19 @@ export default function SchmalzCatalogPage() {
                                     </div>
                                 </div>
 
-                                <div className="p-6">
-                                    <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-blue-700 transition-colors leading-tight">
+                                <div className="p-5 sm:p-6">
+                                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mb-2 group-hover:text-blue-700 transition-colors leading-tight">
                                         {product.name}
                                     </h3>
-                                    <p className="text-blue-600 text-xs font-bold uppercase tracking-wider mb-3">
+                                    <p className="text-blue-600 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3">
                                         {product.tagline}
                                     </p>
-                                    <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-6">
+                                    <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-5 md:mb-6">
                                         {product.description}
                                     </p>
 
                                     {/* Key specs preview */}
-                                    <div className="grid grid-cols-2 gap-2 mb-6">
+                                    <div className="grid grid-cols-2 gap-2 mb-5 md:mb-6">
                                         {product.specs.slice(0, 2).map(spec => (
                                             <div key={spec.label} className="bg-slate-50 rounded-lg px-3 py-2">
                                                 <div className="text-slate-400 text-[10px] uppercase tracking-wider">{spec.label}</div>
@@ -185,11 +185,11 @@ export default function SchmalzCatalogPage() {
             <ProductVideoGrid videos={[videos[0], videos[2], videos[3]]} />
 
             {/* CTA */}
-            <section className="py-16 bg-white border-t border-slate-100">
-                <div className="max-w-4xl mx-auto px-6 text-center">
+            <section className="py-14 md:py-16 bg-white border-t border-slate-100">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
                     <Award className="w-10 h-10 text-blue-600 mx-auto mb-4 opacity-60" />
-                    <h2 className="text-2xl font-black text-slate-900 mb-3">Didn&apos;t Find the Right Variant?</h2>
-                    <p className="text-slate-500 mb-8">Schmalz offers thousands of product variants. Discuss your specific requirements with our engineering team.</p>
+                    <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-3">Didn&apos;t Find the Right Variant?</h2>
+                    <p className="text-sm sm:text-base text-slate-500 mb-6 md:mb-8">Schmalz offers thousands of product variants. Discuss your specific requirements with our engineering team.</p>
                     <a href="https://wa.me/6281119168752" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30">
                         Speak with an Engineer
                         <ArrowRight size={16} />
