@@ -1,0 +1,2166 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e7]:
+      - img [ref=e8]
+    - generic [ref=e11]:
+      - button "Open issues overlay" [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: "0"
+          - generic [ref=e15]: "1"
+        - generic [ref=e16]: Issue
+      - button "Collapse issues badge" [ref=e17]:
+        - img [ref=e18]
+  - navigation [ref=e20]:
+    - generic [ref=e22]:
+      - link "PT Dimensi Quantum Wahyudi Logo" [ref=e24] [cursor=pointer]:
+        - /url: /
+        - img "PT Dimensi Quantum Wahyudi Logo" [ref=e25]
+      - button "Open menu" [ref=e27]:
+        - img [ref=e28]
+  - main [ref=e29]:
+    - generic [ref=e34]:
+      - heading "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting Solutions in Indonesia" [level=1] [ref=e35]
+      - generic [ref=e37]: Trusted Partner for Vacuum Lifting Excellence
+      - img "PT Dimensi Quantum Wahyudi" [ref=e39]
+      - paragraph [ref=e40]: Market Leader in Vacuum Lifting Solutions in Indonesia
+      - paragraph [ref=e41]: Since 2009, PT Dimensi Quantum Wahyudi has helped Indonesian manufacturers improve safety, throughput, and operator ergonomics through high-performance vacuum lifting systems.
+      - generic [ref=e42]:
+        - generic [ref=e43]: Built For
+        - generic [ref=e44]: Ergonomic Lifting|
+      - generic [ref=e45]:
+        - link "Explore technical services and lifting solutions" [ref=e46] [cursor=pointer]:
+          - /url: /services
+          - text: Explore Engineering Solutions
+          - img [ref=e47]
+        - link "Talk to Our Engineers" [ref=e49] [cursor=pointer]:
+          - /url: /contact
+          - text: Talk to Our Engineers
+          - img [ref=e50]
+    - generic [ref=e53]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]: 17+
+          - generic [ref=e58]: Years of Experience
+        - generic [ref=e59]:
+          - generic [ref=e60]: 500+
+          - generic [ref=e61]: Completed Projects
+        - generic [ref=e62]:
+          - generic [ref=e63]: 50+
+          - generic [ref=e64]: Industrial Partners
+        - generic [ref=e65]:
+          - generic [ref=e66]: 100%
+          - generic [ref=e67]: Client Satisfaction
+      - paragraph [ref=e69]: Trusted by Leading Manufacturers
+      - generic [ref=e71]:
+        - img "Yuasa" [ref=e73]
+        - img "Toyota Astra Motor" [ref=e75]
+        - img "Jotun" [ref=e77]
+        - img "Hankook" [ref=e79]
+        - img "Suzuki" [ref=e81]
+        - img "Evoluzione Tyres" [ref=e83]
+        - img "Gajah Tunggal" [ref=e85]
+        - img "Honda" [ref=e87]
+        - img "Yuasa" [ref=e89]
+        - img "Toyota Astra Motor" [ref=e91]
+        - img "Jotun" [ref=e93]
+        - img "Hankook" [ref=e95]
+        - img "Suzuki" [ref=e97]
+        - img "Evoluzione Tyres" [ref=e99]
+        - img "Gajah Tunggal" [ref=e101]
+        - img "Honda" [ref=e103]
+    - generic [ref=e106]:
+      - generic [ref=e107]:
+        - text: Certified Engineering Expertise
+        - heading "Your Trusted Partner in European-Grade Lifting Systems" [level=2] [ref=e108]:
+          - text: Your Trusted Partner in
+          - text: European-Grade Lifting Systems
+        - paragraph [ref=e109]:
+          - text: As the official Schmalz and Binar Handling partner in Indonesia, we do more than supply lifting equipment. We design practical, high-performance
+          - emphasis [ref=e110]: vacuum handling
+          - text: systems that improve productivity, protect operators, and deliver strong long-term
+          - emphasis [ref=e111]: ROI
+          - text: for manufacturers.
+        - link "Learn More About Our Company" [ref=e113] [cursor=pointer]:
+          - /url: /about
+          - text: Learn More About Our Company
+          - img [ref=e114]
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - img [ref=e119]
+          - heading "Safety-First Ergonomics" [level=3] [ref=e122]
+          - paragraph [ref=e123]: European-standard vacuum lifting systems designed to reduce strain injuries and improve daily operator safety.
+        - generic [ref=e124]:
+          - img [ref=e126]
+          - heading "On-Site Technical Audit" [level=3] [ref=e129]
+          - paragraph [ref=e130]: Certified engineers assess your production flow and recommend a lifting setup that fits your operation with precision.
+        - generic [ref=e131]:
+          - img [ref=e133]
+          - heading "Live Product Trial" [level=3] [ref=e135]
+          - paragraph [ref=e136]: Test handling units directly on your line before you commit, with measurable performance and ergonomics feedback.
+        - generic [ref=e137]:
+          - img [ref=e139]
+          - heading "After-Sales Service & Support" [level=3] [ref=e141]
+          - paragraph [ref=e142]: Responsive technical support, genuine spare part availability, and scheduled maintenance for long-term reliability.
+    - generic [ref=e143]:
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - generic [ref=e147]:
+            - heading "SCHMALZ Germany" [level=3] [ref=e148]:
+              - text: SCHMALZ
+              - generic [ref=e149]: Germany
+            - paragraph [ref=e150]: Global market leader in vacuum automation and ergonomic handling systems.
+          - generic [ref=e151]:
+            - link "SCHMALZ Logo" [ref=e152] [cursor=pointer]:
+              - /url: https://www.schmalz.com/
+              - img "SCHMALZ Logo" [ref=e154]
+            - link "EXPLORE SCHMALZ" [ref=e155] [cursor=pointer]:
+              - /url: /products/schmalz
+              - text: EXPLORE SCHMALZ
+              - img [ref=e156]
+        - generic [ref=e158]:
+          - link "Vacuum Tube Lifter 01 Flagship Vacuum Tube Lifter JumboFlex and JUMBO series for heavy lifting with safer, lower-strain operation. View Product" [ref=e160] [cursor=pointer]:
+            - /url: /products/schmalz
+            - generic [ref=e161]:
+              - img "Vacuum Tube Lifter" [ref=e162]
+              - generic [ref=e163]: "01"
+              - generic [ref=e164]: Flagship
+            - generic [ref=e165]:
+              - heading "Vacuum Tube Lifter" [level=4] [ref=e166]
+              - paragraph [ref=e167]: JumboFlex and JUMBO series for heavy lifting with safer, lower-strain operation.
+              - generic [ref=e168]:
+                - text: View Product
+                - img [ref=e169]
+          - link "VacuMaster 02 Popular VacuMaster Portable vacuum lifting system for cartons, wood, and glass up to 1000 kg. View Product" [ref=e172] [cursor=pointer]:
+            - /url: /products/schmalz
+            - generic [ref=e173]:
+              - img "VacuMaster" [ref=e174]
+              - generic [ref=e175]: "02"
+              - generic [ref=e176]: Popular
+            - generic [ref=e177]:
+              - heading "VacuMaster" [level=4] [ref=e178]
+              - paragraph [ref=e179]: Portable vacuum lifting system for cartons, wood, and glass up to 1000 kg.
+              - generic [ref=e180]:
+                - text: View Product
+                - img [ref=e181]
+          - link "Vacuum Suction Cup 03 Component Vacuum Suction Cup Precision vacuum components for robotics automation and industrial handling. View Product" [ref=e184] [cursor=pointer]:
+            - /url: /products/schmalz
+            - generic [ref=e185]:
+              - img "Vacuum Suction Cup" [ref=e186]
+              - generic [ref=e187]: "03"
+              - generic [ref=e188]: Component
+            - generic [ref=e189]:
+              - heading "Vacuum Suction Cup" [level=4] [ref=e190]
+              - paragraph [ref=e191]: Precision vacuum components for robotics automation and industrial handling.
+              - generic [ref=e192]:
+                - text: View Product
+                - img [ref=e193]
+      - generic [ref=e196]:
+        - generic [ref=e197]:
+          - generic [ref=e198]:
+            - heading "BINAR HANDLING Sweden" [level=3] [ref=e199]:
+              - text: BINAR HANDLING
+              - generic [ref=e200]: Sweden
+            - paragraph [ref=e201]: Pioneer of smart lifting and manipulator arm systems with precision control.
+          - generic [ref=e202]:
+            - link "BINAR HANDLING Logo" [ref=e203] [cursor=pointer]:
+              - /url: https://www.binarhandling.com
+              - img "BINAR HANDLING Logo" [ref=e205]
+            - link "EXPLORE BINAR HANDLING" [ref=e206] [cursor=pointer]:
+              - /url: /products/binar
+              - text: EXPLORE BINAR HANDLING
+              - img [ref=e207]
+        - generic [ref=e209]:
+          - link "Quick-Lift Arm 50i 01 Bestseller Quick-Lift Arm 50i Highly responsive servo lift with fingertip control for payloads up to 50 kg. View Product" [ref=e211] [cursor=pointer]:
+            - /url: /products/binar
+            - generic [ref=e212]:
+              - img "Quick-Lift Arm 50i" [ref=e213]
+              - generic [ref=e214]: "01"
+              - generic [ref=e215]: Bestseller
+            - generic [ref=e216]:
+              - heading "Quick-Lift Arm 50i" [level=4] [ref=e217]
+              - paragraph [ref=e218]: Highly responsive servo lift with fingertip control for payloads up to 50 kg.
+              - generic [ref=e219]:
+                - text: View Product
+                - img [ref=e220]
+          - link "Quick-Lift Driven 300i 02 Heavy Duty Quick-Lift Driven 300i Motor-assisted 3-axis lifting for payloads up to 300 kg with less injury risk. View Product" [ref=e223] [cursor=pointer]:
+            - /url: /products/binar
+            - generic [ref=e224]:
+              - img "Quick-Lift Driven 300i" [ref=e225]
+              - generic [ref=e226]: "02"
+              - generic [ref=e227]: Heavy Duty
+            - generic [ref=e228]:
+              - heading "Quick-Lift Driven 300i" [level=4] [ref=e229]
+              - paragraph [ref=e230]: Motor-assisted 3-axis lifting for payloads up to 300 kg with less injury risk.
+              - generic [ref=e231]:
+                - text: View Product
+                - img [ref=e232]
+          - link "Vacuum End Effector 03 Gripper Vacuum End Effector Versatile vacuum gripper with quick-connect support for many surface types. View Product" [ref=e235] [cursor=pointer]:
+            - /url: /products/binar
+            - generic [ref=e236]:
+              - img "Vacuum End Effector" [ref=e237]
+              - generic [ref=e238]: "03"
+              - generic [ref=e239]: Gripper
+            - generic [ref=e240]:
+              - heading "Vacuum End Effector" [level=4] [ref=e241]
+              - paragraph [ref=e242]: Versatile vacuum gripper with quick-connect support for many surface types.
+              - generic [ref=e243]:
+                - text: View Product
+                - img [ref=e244]
+    - generic [ref=e247]:
+      - heading "Ready to improve your production floor safety?" [level=2] [ref=e248]
+      - paragraph [ref=e249]: Get a free site assessment from our ergonomic lifting experts to evaluate your material handling processes.
+      - link "Schedule a Demo" [ref=e251] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=e254]:
+      - generic [ref=e255]:
+        - generic [ref=e256]: AGR International Ergonomics Certification
+        - heading "Ergonomic Vacuum Lifting Solutions with German AGR Certification" [level=2] [ref=e257]
+        - paragraph [ref=e258]: Our handling systems are clinically validated by Aktion Gesunder Rücken e. V. (AGR) to support operator spinal health. The right lifting system protects your people while unlocking better operational performance.
+        - generic [ref=e259]:
+          - generic [ref=e260]:
+            - img [ref=e262]
+            - generic [ref=e264]:
+              - strong [ref=e265]: Optimized Workplace Ergonomics
+              - text: Reduces back-injury risks and physical fatigue for line operators.
+          - generic [ref=e266]:
+            - img [ref=e268]
+            - generic [ref=e270]:
+              - strong [ref=e271]: Global Safety Compliance
+              - text: Aligned with international occupational health and manufacturing safety standards.
+        - generic [ref=e272]:
+          - paragraph [ref=e273]: Download the Official AGR Certificate (PDF)
+          - link "German AGR certification for Schmalz vacuum lifting solutions" [ref=e274] [cursor=pointer]:
+            - /url: https://media.schmalz.com/MAM_Library/Dokumente/Publikation/Flyer/2a273ef199be_Flyer_AGR-Seal-of-Approval_Schmalz_2022_en-EN.pdf
+            - img "German AGR certification for Schmalz vacuum lifting solutions" [ref=e276]
+      - generic [ref=e278]:
+        - generic [ref=e279]:
+          - heading "ROI & Ergonomic Efficiency Calculator" [level=3] [ref=e280]
+          - paragraph [ref=e281]: Estimate potential healthcare cost savings and productivity improvement for your team.
+        - generic [ref=e283]:
+          - generic [ref=e284]:
+            - generic [ref=e285]:
+              - generic [ref=e286]:
+                - img [ref=e287]
+                - text: Interactive estimator
+              - heading "ROI & Ergonomic Workload" [level=2] [ref=e289]
+              - paragraph [ref=e290]: Adjust the operational inputs to see how cumulative load, safety status, and handling recommendations shift in real time.
+            - generic [ref=e291]:
+              - generic [ref=e292]:
+                - paragraph [ref=e293]: Payload
+                - paragraph [ref=e294]: 50 kg
+              - generic [ref=e295]:
+                - paragraph [ref=e296]: Cycles
+                - paragraph [ref=e297]: 100/hr
+              - generic [ref=e298]:
+                - paragraph [ref=e299]: Shift
+                - paragraph [ref=e300]: 8 h
+          - generic [ref=e301]:
+            - generic [ref=e302]:
+              - generic [ref=e303]:
+                - generic [ref=e304]:
+                  - img [ref=e305]
+                  - heading "Operational parameters" [level=3] [ref=e307]
+                - generic [ref=e308]:
+                  - generic [ref=e309]:
+                    - generic [ref=e310]:
+                      - generic [ref=e311]: Unit material weight (payload)
+                      - generic [ref=e312]: 50 kg
+                    - slider [ref=e313]: "50"
+                    - generic [ref=e314]:
+                      - generic [ref=e315]: 0 kg
+                      - generic [ref=e316]: "Manual safety limit: 25 kg"
+                      - generic [ref=e317]: 200 kg
+                  - generic [ref=e318]:
+                    - generic [ref=e319]:
+                      - generic [ref=e320]: Lifting intensity (cycle time)
+                      - generic [ref=e321]: 100 times/hour
+                    - slider [ref=e322]: "100"
+                    - generic [ref=e323]:
+                      - generic [ref=e324]: Low
+                      - generic [ref=e325]: High frequency
+                  - generic [ref=e326]:
+                    - generic [ref=e327]: Work shift duration
+                    - generic [ref=e328]:
+                      - spinbutton [ref=e329]: "8"
+                      - generic [ref=e330]: hours/day
+              - generic [ref=e331]:
+                - generic [ref=e332]:
+                  - paragraph [ref=e333]: Risk lens
+                  - paragraph [ref=e334]: Body load accumulation
+                - generic [ref=e335]:
+                  - paragraph [ref=e336]: Use case
+                  - paragraph [ref=e337]: Manual material handling
+                - generic [ref=e338]:
+                  - paragraph [ref=e339]: Outcome
+                  - paragraph [ref=e340]: Solution direction
+            - generic [ref=e341]:
+              - generic:
+                - generic:
+                  - paragraph: Daily cumulative body load
+                  - generic:
+                    - paragraph: "40.00"
+                    - generic: Ton
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - 'heading "Warning: ergonomic overload" [level=4]'
+                      - paragraph: Load exceeds the manual lifting limit. A vacuum lifter solution is required to reduce HNP injury risk.
+                - generic:
+                  - heading "Recommended handling solution" [level=4]
+                  - paragraph: "Medium Load Solution: SCHMALZ JumboErgo (Modular Tube Lifter)"
+                  - link "View Product":
+                    - /url: /products/schmalz/vacuum-tube-lifter
+                    - text: View Product
+                    - img
+              - generic [ref=e343]:
+                - img [ref=e345]
+                - heading "Unlock full analysis" [level=4] [ref=e348]
+                - paragraph [ref=e349]: Use your corporate contact details so our engineers can send recommendations aligned with your facility context.
+                - generic [ref=e350]:
+                  - textbox "Full name (PIC)" [ref=e351]
+                  - textbox "Company or plant name" [ref=e352]
+                  - textbox "name@company.com" [ref=e353]
+                  - button "Unlock engineered results" [ref=e354]
+                - paragraph [ref=e355]:
+                  - img [ref=e356]
+                  - text: Secure and confidential calculation
+    - generic [ref=e359]:
+      - generic: TRUSTED BY 50+ MULTINATIONAL MANUFACTURERS
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]: Clients & Manufacturing Portfolio
+          - heading "Proven Outcomes from Industrial Automation Projects." [level=2] [ref=e365]
+        - link "View All Projects" [ref=e366] [cursor=pointer]:
+          - /url: /our-projects
+          - generic [ref=e367]:
+            - text: View All Projects
+            - img [ref=e368]
+      - generic [ref=e373]:
+        - link "PT Mayora Indah FMCG & F&B PT Mayora Indah PT Mayora Indah Logo" [ref=e374] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mayora Indah" [ref=e375]
+          - generic [ref=e378]:
+            - generic [ref=e379]: FMCG & F&B
+            - heading "PT Mayora Indah" [level=3] [ref=e380]
+          - generic:
+            - img "PT Mayora Indah Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e381] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e382]
+          - generic [ref=e385]:
+            - generic [ref=e386]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e387]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e388] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e389]
+          - generic [ref=e392]:
+            - generic [ref=e393]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e394]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e395] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e396]
+          - generic [ref=e399]:
+            - generic [ref=e400]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e401]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Angkasa Pura II Air Logistics PT Angkasa Pura II PT Angkasa Pura II Logo" [ref=e402] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Angkasa Pura II" [ref=e403]
+          - generic [ref=e406]:
+            - generic [ref=e407]: Air Logistics
+            - heading "PT Angkasa Pura II" [level=3] [ref=e408]
+          - generic:
+            - img "PT Angkasa Pura II Logo"
+        - link "PT Asahimas Flat Glass Tbk Glass & Solid Materials PT Asahimas Flat Glass Tbk PT Asahimas Flat Glass Tbk Logo" [ref=e409] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Asahimas Flat Glass Tbk" [ref=e410]
+          - generic [ref=e413]:
+            - generic [ref=e414]: Glass & Solid Materials
+            - heading "PT Asahimas Flat Glass Tbk" [level=3] [ref=e415]
+          - generic:
+            - img "PT Asahimas Flat Glass Tbk Logo"
+        - link "PT Unilever Indonesia Tbk FMCG & F&B PT Unilever Indonesia Tbk PT Unilever Indonesia Tbk Logo" [ref=e416] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Unilever Indonesia Tbk" [ref=e417]
+          - generic [ref=e420]:
+            - generic [ref=e421]: FMCG & F&B
+            - heading "PT Unilever Indonesia Tbk" [level=3] [ref=e422]
+          - generic:
+            - img "PT Unilever Indonesia Tbk Logo"
+        - link "PT. Indonesia Nikka Chemicals Chemical & Pharma PT. Indonesia Nikka Chemicals PT. Indonesia Nikka Chemicals Logo" [ref=e423] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indonesia Nikka Chemicals" [ref=e424]
+          - generic [ref=e427]:
+            - generic [ref=e428]: Chemical & Pharma
+            - heading "PT. Indonesia Nikka Chemicals" [level=3] [ref=e429]
+          - generic:
+            - img "PT. Indonesia Nikka Chemicals Logo"
+        - link "PT GS Battery Automotive & Transportation PT GS Battery PT GS Battery Logo" [ref=e430] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT GS Battery" [ref=e431]
+          - generic [ref=e434]:
+            - generic [ref=e435]: Automotive & Transportation
+            - heading "PT GS Battery" [level=3] [ref=e436]
+          - generic:
+            - img "PT GS Battery Logo"
+        - link "PT Nestle Indonesia FMCG & F&B PT Nestle Indonesia PT Nestle Indonesia Logo" [ref=e437] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nestle Indonesia" [ref=e438]
+          - generic [ref=e441]:
+            - generic [ref=e442]: FMCG & F&B
+            - heading "PT Nestle Indonesia" [level=3] [ref=e443]
+          - generic:
+            - img "PT Nestle Indonesia Logo"
+        - link "PT Hokkan Indonesia Packaging & Plastics PT Hokkan Indonesia PT Hokkan Indonesia Logo" [ref=e444] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hokkan Indonesia" [ref=e445]
+          - generic [ref=e448]:
+            - generic [ref=e449]: Packaging & Plastics
+            - heading "PT Hokkan Indonesia" [level=3] [ref=e450]
+          - generic:
+            - img "PT Hokkan Indonesia Logo"
+        - link "PT Taco Anugrah Corporindo Furniture & Interior PT Taco Anugrah Corporindo PT Taco Anugrah Corporindo Logo" [ref=e451] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Taco Anugrah Corporindo" [ref=e452]
+          - generic [ref=e455]:
+            - generic [ref=e456]: Furniture & Interior
+            - heading "PT Taco Anugrah Corporindo" [level=3] [ref=e457]
+          - generic:
+            - img "PT Taco Anugrah Corporindo Logo"
+        - link "PT Otsuka Indonesia Chemical & Pharma PT Otsuka Indonesia PT Otsuka Indonesia Logo" [ref=e458] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Otsuka Indonesia" [ref=e459]
+          - generic [ref=e462]:
+            - generic [ref=e463]: Chemical & Pharma
+            - heading "PT Otsuka Indonesia" [level=3] [ref=e464]
+          - generic:
+            - img "PT Otsuka Indonesia Logo"
+        - link "PT Mowilex Indonesia Chemical & Pharma PT Mowilex Indonesia PT Mowilex Indonesia Logo" [ref=e465] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mowilex Indonesia" [ref=e466]
+          - generic [ref=e469]:
+            - generic [ref=e470]: Chemical & Pharma
+            - heading "PT Mowilex Indonesia" [level=3] [ref=e471]
+          - generic:
+            - img "PT Mowilex Indonesia Logo"
+        - link "PT Yakult Indonesia Persada FMCG & F&B PT Yakult Indonesia Persada PT Yakult Indonesia Persada Logo" [ref=e472] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Yakult Indonesia Persada" [ref=e473]
+          - generic [ref=e476]:
+            - generic [ref=e477]: FMCG & F&B
+            - heading "PT Yakult Indonesia Persada" [level=3] [ref=e478]
+          - generic:
+            - img "PT Yakult Indonesia Persada Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e479] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e480]
+          - generic [ref=e483]:
+            - generic [ref=e484]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e485]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Nutribev Nabati Indonesia FMCG & F&B PT Nutribev Nabati Indonesia PT Nutribev Nabati Indonesia Logo" [ref=e486] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutribev Nabati Indonesia" [ref=e487]
+          - generic [ref=e490]:
+            - generic [ref=e491]: FMCG & F&B
+            - heading "PT Nutribev Nabati Indonesia" [level=3] [ref=e492]
+          - generic:
+            - img "PT Nutribev Nabati Indonesia Logo"
+        - link "PT Cabot Indonesia Chemical & Pharma PT Cabot Indonesia PT Cabot Indonesia Logo" [ref=e493] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cabot Indonesia" [ref=e494]
+          - generic [ref=e497]:
+            - generic [ref=e498]: Chemical & Pharma
+            - heading "PT Cabot Indonesia" [level=3] [ref=e499]
+          - generic:
+            - img "PT Cabot Indonesia Logo"
+        - link "PT Kayu Permata Furniture & Interior PT Kayu Permata PT Kayu Permata Logo" [ref=e500] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kayu Permata" [ref=e501]
+          - generic [ref=e504]:
+            - generic [ref=e505]: Furniture & Interior
+            - heading "PT Kayu Permata" [level=3] [ref=e506]
+          - generic:
+            - img "PT Kayu Permata Logo"
+        - link "PT Multi Bintang Indonesia Tbk FMCG & F&B PT Multi Bintang Indonesia Tbk PT Multi Bintang Indonesia Tbk Logo" [ref=e507] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Multi Bintang Indonesia Tbk" [ref=e508]
+          - generic [ref=e511]:
+            - generic [ref=e512]: FMCG & F&B
+            - heading "PT Multi Bintang Indonesia Tbk" [level=3] [ref=e513]
+          - generic:
+            - img "PT Multi Bintang Indonesia Tbk Logo"
+        - link "PT. DSM Firmenich Aromatics Chemical & Pharma PT. DSM Firmenich Aromatics PT. DSM Firmenich Aromatics Logo" [ref=e514] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. DSM Firmenich Aromatics" [ref=e515]
+          - generic [ref=e518]:
+            - generic [ref=e519]: Chemical & Pharma
+            - heading "PT. DSM Firmenich Aromatics" [level=3] [ref=e520]
+          - generic:
+            - img "PT. DSM Firmenich Aromatics Logo"
+        - link "PT. Federal Karyatama Automotive & Transportation PT. Federal Karyatama PT. Federal Karyatama Logo" [ref=e521] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Federal Karyatama" [ref=e522]
+          - generic [ref=e525]:
+            - generic [ref=e526]: Automotive & Transportation
+            - heading "PT. Federal Karyatama" [level=3] [ref=e527]
+          - generic:
+            - img "PT. Federal Karyatama Logo"
+        - link "PT. Fukusuke Kogyo Indonesia Packaging & Plastics PT. Fukusuke Kogyo Indonesia PT. Fukusuke Kogyo Indonesia Logo" [ref=e528] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Fukusuke Kogyo Indonesia" [ref=e529]
+          - generic [ref=e532]:
+            - generic [ref=e533]: Packaging & Plastics
+            - heading "PT. Fukusuke Kogyo Indonesia" [level=3] [ref=e534]
+          - generic:
+            - img "PT. Fukusuke Kogyo Indonesia Logo"
+        - link "PT. Indofood CBP Sukses Makmur FMCG & F&B PT. Indofood CBP Sukses Makmur PT. Indofood CBP Sukses Makmur Logo" [ref=e535] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indofood CBP Sukses Makmur" [ref=e536]
+          - generic [ref=e539]:
+            - generic [ref=e540]: FMCG & F&B
+            - heading "PT. Indofood CBP Sukses Makmur" [level=3] [ref=e541]
+          - generic:
+            - img "PT. Indofood CBP Sukses Makmur Logo"
+        - link "PT. Mars Symbioscience FMCG & F&B PT. Mars Symbioscience PT. Mars Symbioscience Logo" [ref=e542] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mars Symbioscience" [ref=e543]
+          - generic [ref=e546]:
+            - generic [ref=e547]: FMCG & F&B
+            - heading "PT. Mars Symbioscience" [level=3] [ref=e548]
+          - generic:
+            - img "PT. Mars Symbioscience Logo"
+        - link "PT. Nufarm Indonesia Chemical & Pharma PT. Nufarm Indonesia PT. Nufarm Indonesia Logo" [ref=e549] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Nufarm Indonesia" [ref=e550]
+          - generic [ref=e553]:
+            - generic [ref=e554]: Chemical & Pharma
+            - heading "PT. Nufarm Indonesia" [level=3] [ref=e555]
+          - generic:
+            - img "PT. Nufarm Indonesia Logo"
+        - link "PT. Sakae Riken Indonesia Automotive & Transportation PT. Sakae Riken Indonesia PT. Sakae Riken Indonesia Logo" [ref=e556] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Sakae Riken Indonesia" [ref=e557]
+          - generic [ref=e560]:
+            - generic [ref=e561]: Automotive & Transportation
+            - heading "PT. Sakae Riken Indonesia" [level=3] [ref=e562]
+          - generic:
+            - img "PT. Sakae Riken Indonesia Logo"
+        - link "PT. Suntory Garuda FMCG & F&B PT. Suntory Garuda PT. Suntory Garuda Logo" [ref=e563] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Suntory Garuda" [ref=e564]
+          - generic [ref=e567]:
+            - generic [ref=e568]: FMCG & F&B
+            - heading "PT. Suntory Garuda" [level=3] [ref=e569]
+          - generic:
+            - img "PT. Suntory Garuda Logo"
+        - link "PT Bredero Shaw Indonesia Heavy Industry & Automation PT Bredero Shaw Indonesia PT Bredero Shaw Indonesia Logo" [ref=e570] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Bredero Shaw Indonesia" [ref=e571]
+          - generic [ref=e574]:
+            - generic [ref=e575]: Heavy Industry & Automation
+            - heading "PT Bredero Shaw Indonesia" [level=3] [ref=e576]
+          - generic:
+            - img "PT Bredero Shaw Indonesia Logo"
+        - link "PT Delifood Sentosa Corpindo FMCG & F&B PT Delifood Sentosa Corpindo PT Delifood Sentosa Corpindo Logo" [ref=e577] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Delifood Sentosa Corpindo" [ref=e578]
+          - generic [ref=e581]:
+            - generic [ref=e582]: FMCG & F&B
+            - heading "PT Delifood Sentosa Corpindo" [level=3] [ref=e583]
+          - generic:
+            - img "PT Delifood Sentosa Corpindo Logo"
+        - link "PT Diageo Indonesia FMCG & F&B PT Diageo Indonesia PT Diageo Indonesia Logo" [ref=e584] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Diageo Indonesia" [ref=e585]
+          - generic [ref=e588]:
+            - generic [ref=e589]: FMCG & F&B
+            - heading "PT Diageo Indonesia" [level=3] [ref=e590]
+          - generic:
+            - img "PT Diageo Indonesia Logo"
+        - link "PT Elangperdana Tyre Industry Automotive & Transportation PT Elangperdana Tyre Industry PT Elangperdana Tyre Industry Logo" [ref=e591] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Elangperdana Tyre Industry" [ref=e592]
+          - generic [ref=e595]:
+            - generic [ref=e596]: Automotive & Transportation
+            - heading "PT Elangperdana Tyre Industry" [level=3] [ref=e597]
+          - generic:
+            - img "PT Elangperdana Tyre Industry Logo"
+        - link "PT Hempel Indonesia Building Materials & Infrastructure PT Hempel Indonesia PT Hempel Indonesia Logo" [ref=e598] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hempel Indonesia" [ref=e599]
+          - generic [ref=e602]:
+            - generic [ref=e603]: Building Materials & Infrastructure
+            - heading "PT Hempel Indonesia" [level=3] [ref=e604]
+          - generic:
+            - img "PT Hempel Indonesia Logo"
+        - link "PT Industrial Robotic Automation Heavy Industry & Automation PT Industrial Robotic Automation PT Industrial Robotic Automation Logo" [ref=e605] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Industrial Robotic Automation" [ref=e606]
+          - generic [ref=e609]:
+            - generic [ref=e610]: Heavy Industry & Automation
+            - heading "PT Industrial Robotic Automation" [level=3] [ref=e611]
+          - generic:
+            - img "PT Industrial Robotic Automation Logo"
+        - link "PT Inoac Polytechno Indonesia Packaging & Plastics PT Inoac Polytechno Indonesia PT Inoac Polytechno Indonesia Logo" [ref=e612] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Inoac Polytechno Indonesia" [ref=e613]
+          - generic [ref=e616]:
+            - generic [ref=e617]: Packaging & Plastics
+            - heading "PT Inoac Polytechno Indonesia" [level=3] [ref=e618]
+          - generic:
+            - img "PT Inoac Polytechno Indonesia Logo"
+        - link "PT Kalbe Morinaga Indonesia Chemical & Pharma PT Kalbe Morinaga Indonesia PT Kalbe Morinaga Indonesia Logo" [ref=e619] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kalbe Morinaga Indonesia" [ref=e620]
+          - generic [ref=e623]:
+            - generic [ref=e624]: Chemical & Pharma
+            - heading "PT Kalbe Morinaga Indonesia" [level=3] [ref=e625]
+          - generic:
+            - img "PT Kalbe Morinaga Indonesia Logo"
+        - link "PT Kian Mulia Manunggal Glass & Solid Materials PT Kian Mulia Manunggal PT Kian Mulia Manunggal Logo" [ref=e626] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kian Mulia Manunggal" [ref=e627]
+          - generic [ref=e630]:
+            - generic [ref=e631]: Glass & Solid Materials
+            - heading "PT Kian Mulia Manunggal" [level=3] [ref=e632]
+          - generic:
+            - img "PT Kian Mulia Manunggal Logo"
+        - link "PT Meiji Food Indonesia FMCG & F&B PT Meiji Food Indonesia PT Meiji Food Indonesia Logo" [ref=e633] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Meiji Food Indonesia" [ref=e634]
+          - generic [ref=e637]:
+            - generic [ref=e638]: FMCG & F&B
+            - heading "PT Meiji Food Indonesia" [level=3] [ref=e639]
+          - generic:
+            - img "PT Meiji Food Indonesia Logo"
+        - link "PT Cipta Mortar Utama Building Materials & Infrastructure PT Cipta Mortar Utama PT Cipta Mortar Utama Logo" [ref=e640] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cipta Mortar Utama" [ref=e641]
+          - generic [ref=e644]:
+            - generic [ref=e645]: Building Materials & Infrastructure
+            - heading "PT Cipta Mortar Utama" [level=3] [ref=e646]
+          - generic:
+            - img "PT Cipta Mortar Utama Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e647] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e648]
+          - generic [ref=e651]:
+            - generic [ref=e652]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e653]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Rinnai Indonesia Elektronik PT Rinnai Indonesia PT Rinnai Indonesia Logo" [ref=e654] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Rinnai Indonesia" [ref=e655]
+          - generic [ref=e658]:
+            - generic [ref=e659]: Elektronik
+            - heading "PT Rinnai Indonesia" [level=3] [ref=e660]
+          - generic:
+            - img "PT Rinnai Indonesia Logo"
+        - link "PT Sarihusada Generasi Mahardhika FMCG & F&B PT Sarihusada Generasi Mahardhika PT Sarihusada Generasi Mahardhika Logo" [ref=e661] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sarihusada Generasi Mahardhika" [ref=e662]
+          - generic [ref=e665]:
+            - generic [ref=e666]: FMCG & F&B
+            - heading "PT Sarihusada Generasi Mahardhika" [level=3] [ref=e667]
+          - generic:
+            - img "PT Sarihusada Generasi Mahardhika Logo"
+        - link "PT Sri Trang Lingga Indonesia Glass & Solid Materials PT Sri Trang Lingga Indonesia PT Sri Trang Lingga Indonesia Logo" [ref=e668] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sri Trang Lingga Indonesia" [ref=e669]
+          - generic [ref=e672]:
+            - generic [ref=e673]: Glass & Solid Materials
+            - heading "PT Sri Trang Lingga Indonesia" [level=3] [ref=e674]
+          - generic:
+            - img "PT Sri Trang Lingga Indonesia Logo"
+        - link "PT Sugity Creatives Automotive & Transportation PT Sugity Creatives PT Sugity Creatives Logo" [ref=e675] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sugity Creatives" [ref=e676]
+          - generic [ref=e679]:
+            - generic [ref=e680]: Automotive & Transportation
+            - heading "PT Sugity Creatives" [level=3] [ref=e681]
+          - generic:
+            - img "PT Sugity Creatives Logo"
+        - link "PT Sumi Rubber Indonesia Automotive & Transportation PT Sumi Rubber Indonesia PT Sumi Rubber Indonesia Logo" [ref=e682] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sumi Rubber Indonesia" [ref=e683]
+          - generic [ref=e686]:
+            - generic [ref=e687]: Automotive & Transportation
+            - heading "PT Sumi Rubber Indonesia" [level=3] [ref=e688]
+          - generic:
+            - img "PT Sumi Rubber Indonesia Logo"
+        - link "PT URC Indonesia FMCG & F&B PT URC Indonesia PT URC Indonesia Logo" [ref=e689] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT URC Indonesia" [ref=e690]
+          - generic [ref=e693]:
+            - generic [ref=e694]: FMCG & F&B
+            - heading "PT URC Indonesia" [level=3] [ref=e695]
+          - generic:
+            - img "PT URC Indonesia Logo"
+        - link "PT. Evoluzione Tyres Automotive & Transportation PT. Evoluzione Tyres PT. Evoluzione Tyres Logo" [ref=e696] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Evoluzione Tyres" [ref=e697]
+          - generic [ref=e700]:
+            - generic [ref=e701]: Automotive & Transportation
+            - heading "PT. Evoluzione Tyres" [level=3] [ref=e702]
+          - generic:
+            - img "PT. Evoluzione Tyres Logo"
+        - link "PT. Mura Maha Agung Building Materials & Infrastructure PT. Mura Maha Agung PT. Mura Maha Agung Logo" [ref=e703] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mura Maha Agung" [ref=e704]
+          - generic [ref=e707]:
+            - generic [ref=e708]: Building Materials & Infrastructure
+            - heading "PT. Mura Maha Agung" [level=3] [ref=e709]
+          - generic:
+            - img "PT. Mura Maha Agung Logo"
+        - link "PT Suryaraya Rubberindo Industries Automotive & Transportation PT Suryaraya Rubberindo Industries PT Suryaraya Rubberindo Industries Logo" [ref=e710] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Suryaraya Rubberindo Industries" [ref=e711]
+          - generic [ref=e714]:
+            - generic [ref=e715]: Automotive & Transportation
+            - heading "PT Suryaraya Rubberindo Industries" [level=3] [ref=e716]
+          - generic:
+            - img "PT Suryaraya Rubberindo Industries Logo"
+        - link "PT Astra Daihatsu Motor Automotive & Transportation PT Astra Daihatsu Motor PT Astra Daihatsu Motor Logo" [ref=e717] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Astra Daihatsu Motor" [ref=e718]
+          - generic [ref=e721]:
+            - generic [ref=e722]: Automotive & Transportation
+            - heading "PT Astra Daihatsu Motor" [level=3] [ref=e723]
+          - generic:
+            - img "PT Astra Daihatsu Motor Logo"
+        - link "PT Garuda Food FMCG & F&B PT Garuda Food PT Garuda Food Logo" [ref=e724] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Garuda Food" [ref=e725]
+          - generic [ref=e728]:
+            - generic [ref=e729]: FMCG & F&B
+            - heading "PT Garuda Food" [level=3] [ref=e730]
+          - generic:
+            - img "PT Garuda Food Logo"
+        - link "PT YKK AP Indonesia Building Materials & Infrastructure PT YKK AP Indonesia PT YKK AP Indonesia Logo" [ref=e731] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT YKK AP Indonesia" [ref=e732]
+          - generic [ref=e735]:
+            - generic [ref=e736]: Building Materials & Infrastructure
+            - heading "PT YKK AP Indonesia" [level=3] [ref=e737]
+          - generic:
+            - img "PT YKK AP Indonesia Logo"
+        - link "PT Mayora Indah FMCG & F&B PT Mayora Indah PT Mayora Indah Logo" [ref=e738] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mayora Indah" [ref=e739]
+          - generic [ref=e742]:
+            - generic [ref=e743]: FMCG & F&B
+            - heading "PT Mayora Indah" [level=3] [ref=e744]
+          - generic:
+            - img "PT Mayora Indah Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e745] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e746]
+          - generic [ref=e749]:
+            - generic [ref=e750]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e751]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e752] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e753]
+          - generic [ref=e756]:
+            - generic [ref=e757]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e758]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e759] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e760]
+          - generic [ref=e763]:
+            - generic [ref=e764]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e765]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Angkasa Pura II Air Logistics PT Angkasa Pura II PT Angkasa Pura II Logo" [ref=e766] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Angkasa Pura II" [ref=e767]
+          - generic [ref=e770]:
+            - generic [ref=e771]: Air Logistics
+            - heading "PT Angkasa Pura II" [level=3] [ref=e772]
+          - generic:
+            - img "PT Angkasa Pura II Logo"
+        - link "PT Asahimas Flat Glass Tbk Glass & Solid Materials PT Asahimas Flat Glass Tbk PT Asahimas Flat Glass Tbk Logo" [ref=e773] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Asahimas Flat Glass Tbk" [ref=e774]
+          - generic [ref=e777]:
+            - generic [ref=e778]: Glass & Solid Materials
+            - heading "PT Asahimas Flat Glass Tbk" [level=3] [ref=e779]
+          - generic:
+            - img "PT Asahimas Flat Glass Tbk Logo"
+        - link "PT Unilever Indonesia Tbk FMCG & F&B PT Unilever Indonesia Tbk PT Unilever Indonesia Tbk Logo" [ref=e780] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Unilever Indonesia Tbk" [ref=e781]
+          - generic [ref=e784]:
+            - generic [ref=e785]: FMCG & F&B
+            - heading "PT Unilever Indonesia Tbk" [level=3] [ref=e786]
+          - generic:
+            - img "PT Unilever Indonesia Tbk Logo"
+        - link "PT. Indonesia Nikka Chemicals Chemical & Pharma PT. Indonesia Nikka Chemicals PT. Indonesia Nikka Chemicals Logo" [ref=e787] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indonesia Nikka Chemicals" [ref=e788]
+          - generic [ref=e791]:
+            - generic [ref=e792]: Chemical & Pharma
+            - heading "PT. Indonesia Nikka Chemicals" [level=3] [ref=e793]
+          - generic:
+            - img "PT. Indonesia Nikka Chemicals Logo"
+        - link "PT GS Battery Automotive & Transportation PT GS Battery PT GS Battery Logo" [ref=e794] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT GS Battery" [ref=e795]
+          - generic [ref=e798]:
+            - generic [ref=e799]: Automotive & Transportation
+            - heading "PT GS Battery" [level=3] [ref=e800]
+          - generic:
+            - img "PT GS Battery Logo"
+        - link "PT Nestle Indonesia FMCG & F&B PT Nestle Indonesia PT Nestle Indonesia Logo" [ref=e801] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nestle Indonesia" [ref=e802]
+          - generic [ref=e805]:
+            - generic [ref=e806]: FMCG & F&B
+            - heading "PT Nestle Indonesia" [level=3] [ref=e807]
+          - generic:
+            - img "PT Nestle Indonesia Logo"
+        - link "PT Hokkan Indonesia Packaging & Plastics PT Hokkan Indonesia PT Hokkan Indonesia Logo" [ref=e808] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hokkan Indonesia" [ref=e809]
+          - generic [ref=e812]:
+            - generic [ref=e813]: Packaging & Plastics
+            - heading "PT Hokkan Indonesia" [level=3] [ref=e814]
+          - generic:
+            - img "PT Hokkan Indonesia Logo"
+        - link "PT Taco Anugrah Corporindo Furniture & Interior PT Taco Anugrah Corporindo PT Taco Anugrah Corporindo Logo" [ref=e815] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Taco Anugrah Corporindo" [ref=e816]
+          - generic [ref=e819]:
+            - generic [ref=e820]: Furniture & Interior
+            - heading "PT Taco Anugrah Corporindo" [level=3] [ref=e821]
+          - generic:
+            - img "PT Taco Anugrah Corporindo Logo"
+        - link "PT Otsuka Indonesia Chemical & Pharma PT Otsuka Indonesia PT Otsuka Indonesia Logo" [ref=e822] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Otsuka Indonesia" [ref=e823]
+          - generic [ref=e826]:
+            - generic [ref=e827]: Chemical & Pharma
+            - heading "PT Otsuka Indonesia" [level=3] [ref=e828]
+          - generic:
+            - img "PT Otsuka Indonesia Logo"
+        - link "PT Mowilex Indonesia Chemical & Pharma PT Mowilex Indonesia PT Mowilex Indonesia Logo" [ref=e829] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mowilex Indonesia" [ref=e830]
+          - generic [ref=e833]:
+            - generic [ref=e834]: Chemical & Pharma
+            - heading "PT Mowilex Indonesia" [level=3] [ref=e835]
+          - generic:
+            - img "PT Mowilex Indonesia Logo"
+        - link "PT Yakult Indonesia Persada FMCG & F&B PT Yakult Indonesia Persada PT Yakult Indonesia Persada Logo" [ref=e836] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Yakult Indonesia Persada" [ref=e837]
+          - generic [ref=e840]:
+            - generic [ref=e841]: FMCG & F&B
+            - heading "PT Yakult Indonesia Persada" [level=3] [ref=e842]
+          - generic:
+            - img "PT Yakult Indonesia Persada Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e843] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e844]
+          - generic [ref=e847]:
+            - generic [ref=e848]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e849]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Nutribev Nabati Indonesia FMCG & F&B PT Nutribev Nabati Indonesia PT Nutribev Nabati Indonesia Logo" [ref=e850] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutribev Nabati Indonesia" [ref=e851]
+          - generic [ref=e854]:
+            - generic [ref=e855]: FMCG & F&B
+            - heading "PT Nutribev Nabati Indonesia" [level=3] [ref=e856]
+          - generic:
+            - img "PT Nutribev Nabati Indonesia Logo"
+        - link "PT Cabot Indonesia Chemical & Pharma PT Cabot Indonesia PT Cabot Indonesia Logo" [ref=e857] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cabot Indonesia" [ref=e858]
+          - generic [ref=e861]:
+            - generic [ref=e862]: Chemical & Pharma
+            - heading "PT Cabot Indonesia" [level=3] [ref=e863]
+          - generic:
+            - img "PT Cabot Indonesia Logo"
+        - link "PT Kayu Permata Furniture & Interior PT Kayu Permata PT Kayu Permata Logo" [ref=e864] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kayu Permata" [ref=e865]
+          - generic [ref=e868]:
+            - generic [ref=e869]: Furniture & Interior
+            - heading "PT Kayu Permata" [level=3] [ref=e870]
+          - generic:
+            - img "PT Kayu Permata Logo"
+        - link "PT Multi Bintang Indonesia Tbk FMCG & F&B PT Multi Bintang Indonesia Tbk PT Multi Bintang Indonesia Tbk Logo" [ref=e871] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Multi Bintang Indonesia Tbk" [ref=e872]
+          - generic [ref=e875]:
+            - generic [ref=e876]: FMCG & F&B
+            - heading "PT Multi Bintang Indonesia Tbk" [level=3] [ref=e877]
+          - generic:
+            - img "PT Multi Bintang Indonesia Tbk Logo"
+        - link "PT. DSM Firmenich Aromatics Chemical & Pharma PT. DSM Firmenich Aromatics PT. DSM Firmenich Aromatics Logo" [ref=e878] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. DSM Firmenich Aromatics" [ref=e879]
+          - generic [ref=e882]:
+            - generic [ref=e883]: Chemical & Pharma
+            - heading "PT. DSM Firmenich Aromatics" [level=3] [ref=e884]
+          - generic:
+            - img "PT. DSM Firmenich Aromatics Logo"
+        - link "PT. Federal Karyatama Automotive & Transportation PT. Federal Karyatama PT. Federal Karyatama Logo" [ref=e885] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Federal Karyatama" [ref=e886]
+          - generic [ref=e889]:
+            - generic [ref=e890]: Automotive & Transportation
+            - heading "PT. Federal Karyatama" [level=3] [ref=e891]
+          - generic:
+            - img "PT. Federal Karyatama Logo"
+        - link "PT. Fukusuke Kogyo Indonesia Packaging & Plastics PT. Fukusuke Kogyo Indonesia PT. Fukusuke Kogyo Indonesia Logo" [ref=e892] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Fukusuke Kogyo Indonesia" [ref=e893]
+          - generic [ref=e896]:
+            - generic [ref=e897]: Packaging & Plastics
+            - heading "PT. Fukusuke Kogyo Indonesia" [level=3] [ref=e898]
+          - generic:
+            - img "PT. Fukusuke Kogyo Indonesia Logo"
+        - link "PT. Indofood CBP Sukses Makmur FMCG & F&B PT. Indofood CBP Sukses Makmur PT. Indofood CBP Sukses Makmur Logo" [ref=e899] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indofood CBP Sukses Makmur" [ref=e900]
+          - generic [ref=e903]:
+            - generic [ref=e904]: FMCG & F&B
+            - heading "PT. Indofood CBP Sukses Makmur" [level=3] [ref=e905]
+          - generic:
+            - img "PT. Indofood CBP Sukses Makmur Logo"
+        - link "PT. Mars Symbioscience FMCG & F&B PT. Mars Symbioscience PT. Mars Symbioscience Logo" [ref=e906] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mars Symbioscience" [ref=e907]
+          - generic [ref=e910]:
+            - generic [ref=e911]: FMCG & F&B
+            - heading "PT. Mars Symbioscience" [level=3] [ref=e912]
+          - generic:
+            - img "PT. Mars Symbioscience Logo"
+        - link "PT. Nufarm Indonesia Chemical & Pharma PT. Nufarm Indonesia PT. Nufarm Indonesia Logo" [ref=e913] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Nufarm Indonesia" [ref=e914]
+          - generic [ref=e917]:
+            - generic [ref=e918]: Chemical & Pharma
+            - heading "PT. Nufarm Indonesia" [level=3] [ref=e919]
+          - generic:
+            - img "PT. Nufarm Indonesia Logo"
+        - link "PT. Sakae Riken Indonesia Automotive & Transportation PT. Sakae Riken Indonesia PT. Sakae Riken Indonesia Logo" [ref=e920] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Sakae Riken Indonesia" [ref=e921]
+          - generic [ref=e924]:
+            - generic [ref=e925]: Automotive & Transportation
+            - heading "PT. Sakae Riken Indonesia" [level=3] [ref=e926]
+          - generic:
+            - img "PT. Sakae Riken Indonesia Logo"
+        - link "PT. Suntory Garuda FMCG & F&B PT. Suntory Garuda PT. Suntory Garuda Logo" [ref=e927] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Suntory Garuda" [ref=e928]
+          - generic [ref=e931]:
+            - generic [ref=e932]: FMCG & F&B
+            - heading "PT. Suntory Garuda" [level=3] [ref=e933]
+          - generic:
+            - img "PT. Suntory Garuda Logo"
+        - link "PT Bredero Shaw Indonesia Heavy Industry & Automation PT Bredero Shaw Indonesia PT Bredero Shaw Indonesia Logo" [ref=e934] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Bredero Shaw Indonesia" [ref=e935]
+          - generic [ref=e938]:
+            - generic [ref=e939]: Heavy Industry & Automation
+            - heading "PT Bredero Shaw Indonesia" [level=3] [ref=e940]
+          - generic:
+            - img "PT Bredero Shaw Indonesia Logo"
+        - link "PT Delifood Sentosa Corpindo FMCG & F&B PT Delifood Sentosa Corpindo PT Delifood Sentosa Corpindo Logo" [ref=e941] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Delifood Sentosa Corpindo" [ref=e942]
+          - generic [ref=e945]:
+            - generic [ref=e946]: FMCG & F&B
+            - heading "PT Delifood Sentosa Corpindo" [level=3] [ref=e947]
+          - generic:
+            - img "PT Delifood Sentosa Corpindo Logo"
+        - link "PT Diageo Indonesia FMCG & F&B PT Diageo Indonesia PT Diageo Indonesia Logo" [ref=e948] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Diageo Indonesia" [ref=e949]
+          - generic [ref=e952]:
+            - generic [ref=e953]: FMCG & F&B
+            - heading "PT Diageo Indonesia" [level=3] [ref=e954]
+          - generic:
+            - img "PT Diageo Indonesia Logo"
+        - link "PT Elangperdana Tyre Industry Automotive & Transportation PT Elangperdana Tyre Industry PT Elangperdana Tyre Industry Logo" [ref=e955] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Elangperdana Tyre Industry" [ref=e956]
+          - generic [ref=e959]:
+            - generic [ref=e960]: Automotive & Transportation
+            - heading "PT Elangperdana Tyre Industry" [level=3] [ref=e961]
+          - generic:
+            - img "PT Elangperdana Tyre Industry Logo"
+        - link "PT Hempel Indonesia Building Materials & Infrastructure PT Hempel Indonesia PT Hempel Indonesia Logo" [ref=e962] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hempel Indonesia" [ref=e963]
+          - generic [ref=e966]:
+            - generic [ref=e967]: Building Materials & Infrastructure
+            - heading "PT Hempel Indonesia" [level=3] [ref=e968]
+          - generic:
+            - img "PT Hempel Indonesia Logo"
+        - link "PT Industrial Robotic Automation Heavy Industry & Automation PT Industrial Robotic Automation PT Industrial Robotic Automation Logo" [ref=e969] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Industrial Robotic Automation" [ref=e970]
+          - generic [ref=e973]:
+            - generic [ref=e974]: Heavy Industry & Automation
+            - heading "PT Industrial Robotic Automation" [level=3] [ref=e975]
+          - generic:
+            - img "PT Industrial Robotic Automation Logo"
+        - link "PT Inoac Polytechno Indonesia Packaging & Plastics PT Inoac Polytechno Indonesia PT Inoac Polytechno Indonesia Logo" [ref=e976] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Inoac Polytechno Indonesia" [ref=e977]
+          - generic [ref=e980]:
+            - generic [ref=e981]: Packaging & Plastics
+            - heading "PT Inoac Polytechno Indonesia" [level=3] [ref=e982]
+          - generic:
+            - img "PT Inoac Polytechno Indonesia Logo"
+        - link "PT Kalbe Morinaga Indonesia Chemical & Pharma PT Kalbe Morinaga Indonesia PT Kalbe Morinaga Indonesia Logo" [ref=e983] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kalbe Morinaga Indonesia" [ref=e984]
+          - generic [ref=e987]:
+            - generic [ref=e988]: Chemical & Pharma
+            - heading "PT Kalbe Morinaga Indonesia" [level=3] [ref=e989]
+          - generic:
+            - img "PT Kalbe Morinaga Indonesia Logo"
+        - link "PT Kian Mulia Manunggal Glass & Solid Materials PT Kian Mulia Manunggal PT Kian Mulia Manunggal Logo" [ref=e990] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kian Mulia Manunggal" [ref=e991]
+          - generic [ref=e994]:
+            - generic [ref=e995]: Glass & Solid Materials
+            - heading "PT Kian Mulia Manunggal" [level=3] [ref=e996]
+          - generic:
+            - img "PT Kian Mulia Manunggal Logo"
+        - link "PT Meiji Food Indonesia FMCG & F&B PT Meiji Food Indonesia PT Meiji Food Indonesia Logo" [ref=e997] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Meiji Food Indonesia" [ref=e998]
+          - generic [ref=e1001]:
+            - generic [ref=e1002]: FMCG & F&B
+            - heading "PT Meiji Food Indonesia" [level=3] [ref=e1003]
+          - generic:
+            - img "PT Meiji Food Indonesia Logo"
+        - link "PT Cipta Mortar Utama Building Materials & Infrastructure PT Cipta Mortar Utama PT Cipta Mortar Utama Logo" [ref=e1004] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cipta Mortar Utama" [ref=e1005]
+          - generic [ref=e1008]:
+            - generic [ref=e1009]: Building Materials & Infrastructure
+            - heading "PT Cipta Mortar Utama" [level=3] [ref=e1010]
+          - generic:
+            - img "PT Cipta Mortar Utama Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e1011] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e1012]
+          - generic [ref=e1015]:
+            - generic [ref=e1016]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e1017]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Rinnai Indonesia Elektronik PT Rinnai Indonesia PT Rinnai Indonesia Logo" [ref=e1018] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Rinnai Indonesia" [ref=e1019]
+          - generic [ref=e1022]:
+            - generic [ref=e1023]: Elektronik
+            - heading "PT Rinnai Indonesia" [level=3] [ref=e1024]
+          - generic:
+            - img "PT Rinnai Indonesia Logo"
+        - link "PT Sarihusada Generasi Mahardhika FMCG & F&B PT Sarihusada Generasi Mahardhika PT Sarihusada Generasi Mahardhika Logo" [ref=e1025] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sarihusada Generasi Mahardhika" [ref=e1026]
+          - generic [ref=e1029]:
+            - generic [ref=e1030]: FMCG & F&B
+            - heading "PT Sarihusada Generasi Mahardhika" [level=3] [ref=e1031]
+          - generic:
+            - img "PT Sarihusada Generasi Mahardhika Logo"
+        - link "PT Sri Trang Lingga Indonesia Glass & Solid Materials PT Sri Trang Lingga Indonesia PT Sri Trang Lingga Indonesia Logo" [ref=e1032] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sri Trang Lingga Indonesia" [ref=e1033]
+          - generic [ref=e1036]:
+            - generic [ref=e1037]: Glass & Solid Materials
+            - heading "PT Sri Trang Lingga Indonesia" [level=3] [ref=e1038]
+          - generic:
+            - img "PT Sri Trang Lingga Indonesia Logo"
+        - link "PT Sugity Creatives Automotive & Transportation PT Sugity Creatives PT Sugity Creatives Logo" [ref=e1039] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sugity Creatives" [ref=e1040]
+          - generic [ref=e1043]:
+            - generic [ref=e1044]: Automotive & Transportation
+            - heading "PT Sugity Creatives" [level=3] [ref=e1045]
+          - generic:
+            - img "PT Sugity Creatives Logo"
+        - link "PT Sumi Rubber Indonesia Automotive & Transportation PT Sumi Rubber Indonesia PT Sumi Rubber Indonesia Logo" [ref=e1046] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sumi Rubber Indonesia" [ref=e1047]
+          - generic [ref=e1050]:
+            - generic [ref=e1051]: Automotive & Transportation
+            - heading "PT Sumi Rubber Indonesia" [level=3] [ref=e1052]
+          - generic:
+            - img "PT Sumi Rubber Indonesia Logo"
+        - link "PT URC Indonesia FMCG & F&B PT URC Indonesia PT URC Indonesia Logo" [ref=e1053] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT URC Indonesia" [ref=e1054]
+          - generic [ref=e1057]:
+            - generic [ref=e1058]: FMCG & F&B
+            - heading "PT URC Indonesia" [level=3] [ref=e1059]
+          - generic:
+            - img "PT URC Indonesia Logo"
+        - link "PT. Evoluzione Tyres Automotive & Transportation PT. Evoluzione Tyres PT. Evoluzione Tyres Logo" [ref=e1060] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Evoluzione Tyres" [ref=e1061]
+          - generic [ref=e1064]:
+            - generic [ref=e1065]: Automotive & Transportation
+            - heading "PT. Evoluzione Tyres" [level=3] [ref=e1066]
+          - generic:
+            - img "PT. Evoluzione Tyres Logo"
+        - link "PT. Mura Maha Agung Building Materials & Infrastructure PT. Mura Maha Agung PT. Mura Maha Agung Logo" [ref=e1067] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mura Maha Agung" [ref=e1068]
+          - generic [ref=e1071]:
+            - generic [ref=e1072]: Building Materials & Infrastructure
+            - heading "PT. Mura Maha Agung" [level=3] [ref=e1073]
+          - generic:
+            - img "PT. Mura Maha Agung Logo"
+        - link "PT Suryaraya Rubberindo Industries Automotive & Transportation PT Suryaraya Rubberindo Industries PT Suryaraya Rubberindo Industries Logo" [ref=e1074] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Suryaraya Rubberindo Industries" [ref=e1075]
+          - generic [ref=e1078]:
+            - generic [ref=e1079]: Automotive & Transportation
+            - heading "PT Suryaraya Rubberindo Industries" [level=3] [ref=e1080]
+          - generic:
+            - img "PT Suryaraya Rubberindo Industries Logo"
+        - link "PT Astra Daihatsu Motor Automotive & Transportation PT Astra Daihatsu Motor PT Astra Daihatsu Motor Logo" [ref=e1081] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Astra Daihatsu Motor" [ref=e1082]
+          - generic [ref=e1085]:
+            - generic [ref=e1086]: Automotive & Transportation
+            - heading "PT Astra Daihatsu Motor" [level=3] [ref=e1087]
+          - generic:
+            - img "PT Astra Daihatsu Motor Logo"
+        - link "PT Garuda Food FMCG & F&B PT Garuda Food PT Garuda Food Logo" [ref=e1088] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Garuda Food" [ref=e1089]
+          - generic [ref=e1092]:
+            - generic [ref=e1093]: FMCG & F&B
+            - heading "PT Garuda Food" [level=3] [ref=e1094]
+          - generic:
+            - img "PT Garuda Food Logo"
+        - link "PT YKK AP Indonesia Building Materials & Infrastructure PT YKK AP Indonesia PT YKK AP Indonesia Logo" [ref=e1095] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT YKK AP Indonesia" [ref=e1096]
+          - generic [ref=e1099]:
+            - generic [ref=e1100]: Building Materials & Infrastructure
+            - heading "PT YKK AP Indonesia" [level=3] [ref=e1101]
+          - generic:
+            - img "PT YKK AP Indonesia Logo"
+        - link "PT Mayora Indah FMCG & F&B PT Mayora Indah PT Mayora Indah Logo" [ref=e1102] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mayora Indah" [ref=e1103]
+          - generic [ref=e1106]:
+            - generic [ref=e1107]: FMCG & F&B
+            - heading "PT Mayora Indah" [level=3] [ref=e1108]
+          - generic:
+            - img "PT Mayora Indah Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e1109] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e1110]
+          - generic [ref=e1113]:
+            - generic [ref=e1114]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e1115]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e1116] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e1117]
+          - generic [ref=e1120]:
+            - generic [ref=e1121]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e1122]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e1123] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e1124]
+          - generic [ref=e1127]:
+            - generic [ref=e1128]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e1129]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Angkasa Pura II Air Logistics PT Angkasa Pura II PT Angkasa Pura II Logo" [ref=e1130] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Angkasa Pura II" [ref=e1131]
+          - generic [ref=e1134]:
+            - generic [ref=e1135]: Air Logistics
+            - heading "PT Angkasa Pura II" [level=3] [ref=e1136]
+          - generic:
+            - img "PT Angkasa Pura II Logo"
+        - link "PT Asahimas Flat Glass Tbk Glass & Solid Materials PT Asahimas Flat Glass Tbk PT Asahimas Flat Glass Tbk Logo" [ref=e1137] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Asahimas Flat Glass Tbk" [ref=e1138]
+          - generic [ref=e1141]:
+            - generic [ref=e1142]: Glass & Solid Materials
+            - heading "PT Asahimas Flat Glass Tbk" [level=3] [ref=e1143]
+          - generic:
+            - img "PT Asahimas Flat Glass Tbk Logo"
+        - link "PT Unilever Indonesia Tbk FMCG & F&B PT Unilever Indonesia Tbk PT Unilever Indonesia Tbk Logo" [ref=e1144] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Unilever Indonesia Tbk" [ref=e1145]
+          - generic [ref=e1148]:
+            - generic [ref=e1149]: FMCG & F&B
+            - heading "PT Unilever Indonesia Tbk" [level=3] [ref=e1150]
+          - generic:
+            - img "PT Unilever Indonesia Tbk Logo"
+        - link "PT. Indonesia Nikka Chemicals Chemical & Pharma PT. Indonesia Nikka Chemicals PT. Indonesia Nikka Chemicals Logo" [ref=e1151] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indonesia Nikka Chemicals" [ref=e1152]
+          - generic [ref=e1155]:
+            - generic [ref=e1156]: Chemical & Pharma
+            - heading "PT. Indonesia Nikka Chemicals" [level=3] [ref=e1157]
+          - generic:
+            - img "PT. Indonesia Nikka Chemicals Logo"
+        - link "PT GS Battery Automotive & Transportation PT GS Battery PT GS Battery Logo" [ref=e1158] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT GS Battery" [ref=e1159]
+          - generic [ref=e1162]:
+            - generic [ref=e1163]: Automotive & Transportation
+            - heading "PT GS Battery" [level=3] [ref=e1164]
+          - generic:
+            - img "PT GS Battery Logo"
+        - link "PT Nestle Indonesia FMCG & F&B PT Nestle Indonesia PT Nestle Indonesia Logo" [ref=e1165] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nestle Indonesia" [ref=e1166]
+          - generic [ref=e1169]:
+            - generic [ref=e1170]: FMCG & F&B
+            - heading "PT Nestle Indonesia" [level=3] [ref=e1171]
+          - generic:
+            - img "PT Nestle Indonesia Logo"
+        - link "PT Hokkan Indonesia Packaging & Plastics PT Hokkan Indonesia PT Hokkan Indonesia Logo" [ref=e1172] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hokkan Indonesia" [ref=e1173]
+          - generic [ref=e1176]:
+            - generic [ref=e1177]: Packaging & Plastics
+            - heading "PT Hokkan Indonesia" [level=3] [ref=e1178]
+          - generic:
+            - img "PT Hokkan Indonesia Logo"
+        - link "PT Taco Anugrah Corporindo Furniture & Interior PT Taco Anugrah Corporindo PT Taco Anugrah Corporindo Logo" [ref=e1179] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Taco Anugrah Corporindo" [ref=e1180]
+          - generic [ref=e1183]:
+            - generic [ref=e1184]: Furniture & Interior
+            - heading "PT Taco Anugrah Corporindo" [level=3] [ref=e1185]
+          - generic:
+            - img "PT Taco Anugrah Corporindo Logo"
+        - link "PT Otsuka Indonesia Chemical & Pharma PT Otsuka Indonesia PT Otsuka Indonesia Logo" [ref=e1186] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Otsuka Indonesia" [ref=e1187]
+          - generic [ref=e1190]:
+            - generic [ref=e1191]: Chemical & Pharma
+            - heading "PT Otsuka Indonesia" [level=3] [ref=e1192]
+          - generic:
+            - img "PT Otsuka Indonesia Logo"
+        - link "PT Mowilex Indonesia Chemical & Pharma PT Mowilex Indonesia PT Mowilex Indonesia Logo" [ref=e1193] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mowilex Indonesia" [ref=e1194]
+          - generic [ref=e1197]:
+            - generic [ref=e1198]: Chemical & Pharma
+            - heading "PT Mowilex Indonesia" [level=3] [ref=e1199]
+          - generic:
+            - img "PT Mowilex Indonesia Logo"
+        - link "PT Yakult Indonesia Persada FMCG & F&B PT Yakult Indonesia Persada PT Yakult Indonesia Persada Logo" [ref=e1200] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Yakult Indonesia Persada" [ref=e1201]
+          - generic [ref=e1204]:
+            - generic [ref=e1205]: FMCG & F&B
+            - heading "PT Yakult Indonesia Persada" [level=3] [ref=e1206]
+          - generic:
+            - img "PT Yakult Indonesia Persada Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e1207] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e1208]
+          - generic [ref=e1211]:
+            - generic [ref=e1212]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e1213]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Nutribev Nabati Indonesia FMCG & F&B PT Nutribev Nabati Indonesia PT Nutribev Nabati Indonesia Logo" [ref=e1214] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutribev Nabati Indonesia" [ref=e1215]
+          - generic [ref=e1218]:
+            - generic [ref=e1219]: FMCG & F&B
+            - heading "PT Nutribev Nabati Indonesia" [level=3] [ref=e1220]
+          - generic:
+            - img "PT Nutribev Nabati Indonesia Logo"
+        - link "PT Cabot Indonesia Chemical & Pharma PT Cabot Indonesia PT Cabot Indonesia Logo" [ref=e1221] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cabot Indonesia" [ref=e1222]
+          - generic [ref=e1225]:
+            - generic [ref=e1226]: Chemical & Pharma
+            - heading "PT Cabot Indonesia" [level=3] [ref=e1227]
+          - generic:
+            - img "PT Cabot Indonesia Logo"
+        - link "PT Kayu Permata Furniture & Interior PT Kayu Permata PT Kayu Permata Logo" [ref=e1228] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kayu Permata" [ref=e1229]
+          - generic [ref=e1232]:
+            - generic [ref=e1233]: Furniture & Interior
+            - heading "PT Kayu Permata" [level=3] [ref=e1234]
+          - generic:
+            - img "PT Kayu Permata Logo"
+        - link "PT Multi Bintang Indonesia Tbk FMCG & F&B PT Multi Bintang Indonesia Tbk PT Multi Bintang Indonesia Tbk Logo" [ref=e1235] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Multi Bintang Indonesia Tbk" [ref=e1236]
+          - generic [ref=e1239]:
+            - generic [ref=e1240]: FMCG & F&B
+            - heading "PT Multi Bintang Indonesia Tbk" [level=3] [ref=e1241]
+          - generic:
+            - img "PT Multi Bintang Indonesia Tbk Logo"
+        - link "PT. DSM Firmenich Aromatics Chemical & Pharma PT. DSM Firmenich Aromatics PT. DSM Firmenich Aromatics Logo" [ref=e1242] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. DSM Firmenich Aromatics" [ref=e1243]
+          - generic [ref=e1246]:
+            - generic [ref=e1247]: Chemical & Pharma
+            - heading "PT. DSM Firmenich Aromatics" [level=3] [ref=e1248]
+          - generic:
+            - img "PT. DSM Firmenich Aromatics Logo"
+        - link "PT. Federal Karyatama Automotive & Transportation PT. Federal Karyatama PT. Federal Karyatama Logo" [ref=e1249] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Federal Karyatama" [ref=e1250]
+          - generic [ref=e1253]:
+            - generic [ref=e1254]: Automotive & Transportation
+            - heading "PT. Federal Karyatama" [level=3] [ref=e1255]
+          - generic:
+            - img "PT. Federal Karyatama Logo"
+        - link "PT. Fukusuke Kogyo Indonesia Packaging & Plastics PT. Fukusuke Kogyo Indonesia PT. Fukusuke Kogyo Indonesia Logo" [ref=e1256] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Fukusuke Kogyo Indonesia" [ref=e1257]
+          - generic [ref=e1260]:
+            - generic [ref=e1261]: Packaging & Plastics
+            - heading "PT. Fukusuke Kogyo Indonesia" [level=3] [ref=e1262]
+          - generic:
+            - img "PT. Fukusuke Kogyo Indonesia Logo"
+        - link "PT. Indofood CBP Sukses Makmur FMCG & F&B PT. Indofood CBP Sukses Makmur PT. Indofood CBP Sukses Makmur Logo" [ref=e1263] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indofood CBP Sukses Makmur" [ref=e1264]
+          - generic [ref=e1267]:
+            - generic [ref=e1268]: FMCG & F&B
+            - heading "PT. Indofood CBP Sukses Makmur" [level=3] [ref=e1269]
+          - generic:
+            - img "PT. Indofood CBP Sukses Makmur Logo"
+        - link "PT. Mars Symbioscience FMCG & F&B PT. Mars Symbioscience PT. Mars Symbioscience Logo" [ref=e1270] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mars Symbioscience" [ref=e1271]
+          - generic [ref=e1274]:
+            - generic [ref=e1275]: FMCG & F&B
+            - heading "PT. Mars Symbioscience" [level=3] [ref=e1276]
+          - generic:
+            - img "PT. Mars Symbioscience Logo"
+        - link "PT. Nufarm Indonesia Chemical & Pharma PT. Nufarm Indonesia PT. Nufarm Indonesia Logo" [ref=e1277] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Nufarm Indonesia" [ref=e1278]
+          - generic [ref=e1281]:
+            - generic [ref=e1282]: Chemical & Pharma
+            - heading "PT. Nufarm Indonesia" [level=3] [ref=e1283]
+          - generic:
+            - img "PT. Nufarm Indonesia Logo"
+        - link "PT. Sakae Riken Indonesia Automotive & Transportation PT. Sakae Riken Indonesia PT. Sakae Riken Indonesia Logo" [ref=e1284] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Sakae Riken Indonesia" [ref=e1285]
+          - generic [ref=e1288]:
+            - generic [ref=e1289]: Automotive & Transportation
+            - heading "PT. Sakae Riken Indonesia" [level=3] [ref=e1290]
+          - generic:
+            - img "PT. Sakae Riken Indonesia Logo"
+        - link "PT. Suntory Garuda FMCG & F&B PT. Suntory Garuda PT. Suntory Garuda Logo" [ref=e1291] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Suntory Garuda" [ref=e1292]
+          - generic [ref=e1295]:
+            - generic [ref=e1296]: FMCG & F&B
+            - heading "PT. Suntory Garuda" [level=3] [ref=e1297]
+          - generic:
+            - img "PT. Suntory Garuda Logo"
+        - link "PT Bredero Shaw Indonesia Heavy Industry & Automation PT Bredero Shaw Indonesia PT Bredero Shaw Indonesia Logo" [ref=e1298] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Bredero Shaw Indonesia" [ref=e1299]
+          - generic [ref=e1302]:
+            - generic [ref=e1303]: Heavy Industry & Automation
+            - heading "PT Bredero Shaw Indonesia" [level=3] [ref=e1304]
+          - generic:
+            - img "PT Bredero Shaw Indonesia Logo"
+        - link "PT Delifood Sentosa Corpindo FMCG & F&B PT Delifood Sentosa Corpindo PT Delifood Sentosa Corpindo Logo" [ref=e1305] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Delifood Sentosa Corpindo" [ref=e1306]
+          - generic [ref=e1309]:
+            - generic [ref=e1310]: FMCG & F&B
+            - heading "PT Delifood Sentosa Corpindo" [level=3] [ref=e1311]
+          - generic:
+            - img "PT Delifood Sentosa Corpindo Logo"
+        - link "PT Diageo Indonesia FMCG & F&B PT Diageo Indonesia PT Diageo Indonesia Logo" [ref=e1312] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Diageo Indonesia" [ref=e1313]
+          - generic [ref=e1316]:
+            - generic [ref=e1317]: FMCG & F&B
+            - heading "PT Diageo Indonesia" [level=3] [ref=e1318]
+          - generic:
+            - img "PT Diageo Indonesia Logo"
+        - link "PT Elangperdana Tyre Industry Automotive & Transportation PT Elangperdana Tyre Industry PT Elangperdana Tyre Industry Logo" [ref=e1319] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Elangperdana Tyre Industry" [ref=e1320]
+          - generic [ref=e1323]:
+            - generic [ref=e1324]: Automotive & Transportation
+            - heading "PT Elangperdana Tyre Industry" [level=3] [ref=e1325]
+          - generic:
+            - img "PT Elangperdana Tyre Industry Logo"
+        - link "PT Hempel Indonesia Building Materials & Infrastructure PT Hempel Indonesia PT Hempel Indonesia Logo" [ref=e1326] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hempel Indonesia" [ref=e1327]
+          - generic [ref=e1330]:
+            - generic [ref=e1331]: Building Materials & Infrastructure
+            - heading "PT Hempel Indonesia" [level=3] [ref=e1332]
+          - generic:
+            - img "PT Hempel Indonesia Logo"
+        - link "PT Industrial Robotic Automation Heavy Industry & Automation PT Industrial Robotic Automation PT Industrial Robotic Automation Logo" [ref=e1333] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Industrial Robotic Automation" [ref=e1334]
+          - generic [ref=e1337]:
+            - generic [ref=e1338]: Heavy Industry & Automation
+            - heading "PT Industrial Robotic Automation" [level=3] [ref=e1339]
+          - generic:
+            - img "PT Industrial Robotic Automation Logo"
+        - link "PT Inoac Polytechno Indonesia Packaging & Plastics PT Inoac Polytechno Indonesia PT Inoac Polytechno Indonesia Logo" [ref=e1340] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Inoac Polytechno Indonesia" [ref=e1341]
+          - generic [ref=e1344]:
+            - generic [ref=e1345]: Packaging & Plastics
+            - heading "PT Inoac Polytechno Indonesia" [level=3] [ref=e1346]
+          - generic:
+            - img "PT Inoac Polytechno Indonesia Logo"
+        - link "PT Kalbe Morinaga Indonesia Chemical & Pharma PT Kalbe Morinaga Indonesia PT Kalbe Morinaga Indonesia Logo" [ref=e1347] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kalbe Morinaga Indonesia" [ref=e1348]
+          - generic [ref=e1351]:
+            - generic [ref=e1352]: Chemical & Pharma
+            - heading "PT Kalbe Morinaga Indonesia" [level=3] [ref=e1353]
+          - generic:
+            - img "PT Kalbe Morinaga Indonesia Logo"
+        - link "PT Kian Mulia Manunggal Glass & Solid Materials PT Kian Mulia Manunggal PT Kian Mulia Manunggal Logo" [ref=e1354] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kian Mulia Manunggal" [ref=e1355]
+          - generic [ref=e1358]:
+            - generic [ref=e1359]: Glass & Solid Materials
+            - heading "PT Kian Mulia Manunggal" [level=3] [ref=e1360]
+          - generic:
+            - img "PT Kian Mulia Manunggal Logo"
+        - link "PT Meiji Food Indonesia FMCG & F&B PT Meiji Food Indonesia PT Meiji Food Indonesia Logo" [ref=e1361] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Meiji Food Indonesia" [ref=e1362]
+          - generic [ref=e1365]:
+            - generic [ref=e1366]: FMCG & F&B
+            - heading "PT Meiji Food Indonesia" [level=3] [ref=e1367]
+          - generic:
+            - img "PT Meiji Food Indonesia Logo"
+        - link "PT Cipta Mortar Utama Building Materials & Infrastructure PT Cipta Mortar Utama PT Cipta Mortar Utama Logo" [ref=e1368] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cipta Mortar Utama" [ref=e1369]
+          - generic [ref=e1372]:
+            - generic [ref=e1373]: Building Materials & Infrastructure
+            - heading "PT Cipta Mortar Utama" [level=3] [ref=e1374]
+          - generic:
+            - img "PT Cipta Mortar Utama Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e1375] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e1376]
+          - generic [ref=e1379]:
+            - generic [ref=e1380]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e1381]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Rinnai Indonesia Elektronik PT Rinnai Indonesia PT Rinnai Indonesia Logo" [ref=e1382] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Rinnai Indonesia" [ref=e1383]
+          - generic [ref=e1386]:
+            - generic [ref=e1387]: Elektronik
+            - heading "PT Rinnai Indonesia" [level=3] [ref=e1388]
+          - generic:
+            - img "PT Rinnai Indonesia Logo"
+        - link "PT Sarihusada Generasi Mahardhika FMCG & F&B PT Sarihusada Generasi Mahardhika PT Sarihusada Generasi Mahardhika Logo" [ref=e1389] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sarihusada Generasi Mahardhika" [ref=e1390]
+          - generic [ref=e1393]:
+            - generic [ref=e1394]: FMCG & F&B
+            - heading "PT Sarihusada Generasi Mahardhika" [level=3] [ref=e1395]
+          - generic:
+            - img "PT Sarihusada Generasi Mahardhika Logo"
+        - link "PT Sri Trang Lingga Indonesia Glass & Solid Materials PT Sri Trang Lingga Indonesia PT Sri Trang Lingga Indonesia Logo" [ref=e1396] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sri Trang Lingga Indonesia" [ref=e1397]
+          - generic [ref=e1400]:
+            - generic [ref=e1401]: Glass & Solid Materials
+            - heading "PT Sri Trang Lingga Indonesia" [level=3] [ref=e1402]
+          - generic:
+            - img "PT Sri Trang Lingga Indonesia Logo"
+        - link "PT Sugity Creatives Automotive & Transportation PT Sugity Creatives PT Sugity Creatives Logo" [ref=e1403] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sugity Creatives" [ref=e1404]
+          - generic [ref=e1407]:
+            - generic [ref=e1408]: Automotive & Transportation
+            - heading "PT Sugity Creatives" [level=3] [ref=e1409]
+          - generic:
+            - img "PT Sugity Creatives Logo"
+        - link "PT Sumi Rubber Indonesia Automotive & Transportation PT Sumi Rubber Indonesia PT Sumi Rubber Indonesia Logo" [ref=e1410] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sumi Rubber Indonesia" [ref=e1411]
+          - generic [ref=e1414]:
+            - generic [ref=e1415]: Automotive & Transportation
+            - heading "PT Sumi Rubber Indonesia" [level=3] [ref=e1416]
+          - generic:
+            - img "PT Sumi Rubber Indonesia Logo"
+        - link "PT URC Indonesia FMCG & F&B PT URC Indonesia PT URC Indonesia Logo" [ref=e1417] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT URC Indonesia" [ref=e1418]
+          - generic [ref=e1421]:
+            - generic [ref=e1422]: FMCG & F&B
+            - heading "PT URC Indonesia" [level=3] [ref=e1423]
+          - generic:
+            - img "PT URC Indonesia Logo"
+        - link "PT. Evoluzione Tyres Automotive & Transportation PT. Evoluzione Tyres PT. Evoluzione Tyres Logo" [ref=e1424] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Evoluzione Tyres" [ref=e1425]
+          - generic [ref=e1428]:
+            - generic [ref=e1429]: Automotive & Transportation
+            - heading "PT. Evoluzione Tyres" [level=3] [ref=e1430]
+          - generic:
+            - img "PT. Evoluzione Tyres Logo"
+        - link "PT. Mura Maha Agung Building Materials & Infrastructure PT. Mura Maha Agung PT. Mura Maha Agung Logo" [ref=e1431] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mura Maha Agung" [ref=e1432]
+          - generic [ref=e1435]:
+            - generic [ref=e1436]: Building Materials & Infrastructure
+            - heading "PT. Mura Maha Agung" [level=3] [ref=e1437]
+          - generic:
+            - img "PT. Mura Maha Agung Logo"
+        - link "PT Suryaraya Rubberindo Industries Automotive & Transportation PT Suryaraya Rubberindo Industries PT Suryaraya Rubberindo Industries Logo" [ref=e1438] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Suryaraya Rubberindo Industries" [ref=e1439]
+          - generic [ref=e1442]:
+            - generic [ref=e1443]: Automotive & Transportation
+            - heading "PT Suryaraya Rubberindo Industries" [level=3] [ref=e1444]
+          - generic:
+            - img "PT Suryaraya Rubberindo Industries Logo"
+        - link "PT Astra Daihatsu Motor Automotive & Transportation PT Astra Daihatsu Motor PT Astra Daihatsu Motor Logo" [ref=e1445] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Astra Daihatsu Motor" [ref=e1446]
+          - generic [ref=e1449]:
+            - generic [ref=e1450]: Automotive & Transportation
+            - heading "PT Astra Daihatsu Motor" [level=3] [ref=e1451]
+          - generic:
+            - img "PT Astra Daihatsu Motor Logo"
+        - link "PT Garuda Food FMCG & F&B PT Garuda Food PT Garuda Food Logo" [ref=e1452] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Garuda Food" [ref=e1453]
+          - generic [ref=e1456]:
+            - generic [ref=e1457]: FMCG & F&B
+            - heading "PT Garuda Food" [level=3] [ref=e1458]
+          - generic:
+            - img "PT Garuda Food Logo"
+        - link "PT YKK AP Indonesia Building Materials & Infrastructure PT YKK AP Indonesia PT YKK AP Indonesia Logo" [ref=e1459] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT YKK AP Indonesia" [ref=e1460]
+          - generic [ref=e1463]:
+            - generic [ref=e1464]: Building Materials & Infrastructure
+            - heading "PT YKK AP Indonesia" [level=3] [ref=e1465]
+          - generic:
+            - img "PT YKK AP Indonesia Logo"
+        - link "PT Mayora Indah FMCG & F&B PT Mayora Indah PT Mayora Indah Logo" [ref=e1466] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mayora Indah" [ref=e1467]
+          - generic [ref=e1470]:
+            - generic [ref=e1471]: FMCG & F&B
+            - heading "PT Mayora Indah" [level=3] [ref=e1472]
+          - generic:
+            - img "PT Mayora Indah Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e1473] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e1474]
+          - generic [ref=e1477]:
+            - generic [ref=e1478]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e1479]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e1480] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e1481]
+          - generic [ref=e1484]:
+            - generic [ref=e1485]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e1486]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Gajah Tunggal Automotive & Transportation PT Gajah Tunggal PT Gajah Tunggal Logo" [ref=e1487] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Gajah Tunggal" [ref=e1488]
+          - generic [ref=e1491]:
+            - generic [ref=e1492]: Automotive & Transportation
+            - heading "PT Gajah Tunggal" [level=3] [ref=e1493]
+          - generic:
+            - img "PT Gajah Tunggal Logo"
+        - link "PT Angkasa Pura II Air Logistics PT Angkasa Pura II PT Angkasa Pura II Logo" [ref=e1494] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Angkasa Pura II" [ref=e1495]
+          - generic [ref=e1498]:
+            - generic [ref=e1499]: Air Logistics
+            - heading "PT Angkasa Pura II" [level=3] [ref=e1500]
+          - generic:
+            - img "PT Angkasa Pura II Logo"
+        - link "PT Asahimas Flat Glass Tbk Glass & Solid Materials PT Asahimas Flat Glass Tbk PT Asahimas Flat Glass Tbk Logo" [ref=e1501] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Asahimas Flat Glass Tbk" [ref=e1502]
+          - generic [ref=e1505]:
+            - generic [ref=e1506]: Glass & Solid Materials
+            - heading "PT Asahimas Flat Glass Tbk" [level=3] [ref=e1507]
+          - generic:
+            - img "PT Asahimas Flat Glass Tbk Logo"
+        - link "PT Unilever Indonesia Tbk FMCG & F&B PT Unilever Indonesia Tbk PT Unilever Indonesia Tbk Logo" [ref=e1508] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Unilever Indonesia Tbk" [ref=e1509]
+          - generic [ref=e1512]:
+            - generic [ref=e1513]: FMCG & F&B
+            - heading "PT Unilever Indonesia Tbk" [level=3] [ref=e1514]
+          - generic:
+            - img "PT Unilever Indonesia Tbk Logo"
+        - link "PT. Indonesia Nikka Chemicals Chemical & Pharma PT. Indonesia Nikka Chemicals PT. Indonesia Nikka Chemicals Logo" [ref=e1515] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indonesia Nikka Chemicals" [ref=e1516]
+          - generic [ref=e1519]:
+            - generic [ref=e1520]: Chemical & Pharma
+            - heading "PT. Indonesia Nikka Chemicals" [level=3] [ref=e1521]
+          - generic:
+            - img "PT. Indonesia Nikka Chemicals Logo"
+        - link "PT GS Battery Automotive & Transportation PT GS Battery PT GS Battery Logo" [ref=e1522] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT GS Battery" [ref=e1523]
+          - generic [ref=e1526]:
+            - generic [ref=e1527]: Automotive & Transportation
+            - heading "PT GS Battery" [level=3] [ref=e1528]
+          - generic:
+            - img "PT GS Battery Logo"
+        - link "PT Nestle Indonesia FMCG & F&B PT Nestle Indonesia PT Nestle Indonesia Logo" [ref=e1529] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nestle Indonesia" [ref=e1530]
+          - generic [ref=e1533]:
+            - generic [ref=e1534]: FMCG & F&B
+            - heading "PT Nestle Indonesia" [level=3] [ref=e1535]
+          - generic:
+            - img "PT Nestle Indonesia Logo"
+        - link "PT Hokkan Indonesia Packaging & Plastics PT Hokkan Indonesia PT Hokkan Indonesia Logo" [ref=e1536] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hokkan Indonesia" [ref=e1537]
+          - generic [ref=e1540]:
+            - generic [ref=e1541]: Packaging & Plastics
+            - heading "PT Hokkan Indonesia" [level=3] [ref=e1542]
+          - generic:
+            - img "PT Hokkan Indonesia Logo"
+        - link "PT Taco Anugrah Corporindo Furniture & Interior PT Taco Anugrah Corporindo PT Taco Anugrah Corporindo Logo" [ref=e1543] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Taco Anugrah Corporindo" [ref=e1544]
+          - generic [ref=e1547]:
+            - generic [ref=e1548]: Furniture & Interior
+            - heading "PT Taco Anugrah Corporindo" [level=3] [ref=e1549]
+          - generic:
+            - img "PT Taco Anugrah Corporindo Logo"
+        - link "PT Otsuka Indonesia Chemical & Pharma PT Otsuka Indonesia PT Otsuka Indonesia Logo" [ref=e1550] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Otsuka Indonesia" [ref=e1551]
+          - generic [ref=e1554]:
+            - generic [ref=e1555]: Chemical & Pharma
+            - heading "PT Otsuka Indonesia" [level=3] [ref=e1556]
+          - generic:
+            - img "PT Otsuka Indonesia Logo"
+        - link "PT Mowilex Indonesia Chemical & Pharma PT Mowilex Indonesia PT Mowilex Indonesia Logo" [ref=e1557] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Mowilex Indonesia" [ref=e1558]
+          - generic [ref=e1561]:
+            - generic [ref=e1562]: Chemical & Pharma
+            - heading "PT Mowilex Indonesia" [level=3] [ref=e1563]
+          - generic:
+            - img "PT Mowilex Indonesia Logo"
+        - link "PT Yakult Indonesia Persada FMCG & F&B PT Yakult Indonesia Persada PT Yakult Indonesia Persada Logo" [ref=e1564] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Yakult Indonesia Persada" [ref=e1565]
+          - generic [ref=e1568]:
+            - generic [ref=e1569]: FMCG & F&B
+            - heading "PT Yakult Indonesia Persada" [level=3] [ref=e1570]
+          - generic:
+            - img "PT Yakult Indonesia Persada Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e1571] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e1572]
+          - generic [ref=e1575]:
+            - generic [ref=e1576]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e1577]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Nutribev Nabati Indonesia FMCG & F&B PT Nutribev Nabati Indonesia PT Nutribev Nabati Indonesia Logo" [ref=e1578] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutribev Nabati Indonesia" [ref=e1579]
+          - generic [ref=e1582]:
+            - generic [ref=e1583]: FMCG & F&B
+            - heading "PT Nutribev Nabati Indonesia" [level=3] [ref=e1584]
+          - generic:
+            - img "PT Nutribev Nabati Indonesia Logo"
+        - link "PT Cabot Indonesia Chemical & Pharma PT Cabot Indonesia PT Cabot Indonesia Logo" [ref=e1585] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cabot Indonesia" [ref=e1586]
+          - generic [ref=e1589]:
+            - generic [ref=e1590]: Chemical & Pharma
+            - heading "PT Cabot Indonesia" [level=3] [ref=e1591]
+          - generic:
+            - img "PT Cabot Indonesia Logo"
+        - link "PT Kayu Permata Furniture & Interior PT Kayu Permata PT Kayu Permata Logo" [ref=e1592] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kayu Permata" [ref=e1593]
+          - generic [ref=e1596]:
+            - generic [ref=e1597]: Furniture & Interior
+            - heading "PT Kayu Permata" [level=3] [ref=e1598]
+          - generic:
+            - img "PT Kayu Permata Logo"
+        - link "PT Multi Bintang Indonesia Tbk FMCG & F&B PT Multi Bintang Indonesia Tbk PT Multi Bintang Indonesia Tbk Logo" [ref=e1599] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Multi Bintang Indonesia Tbk" [ref=e1600]
+          - generic [ref=e1603]:
+            - generic [ref=e1604]: FMCG & F&B
+            - heading "PT Multi Bintang Indonesia Tbk" [level=3] [ref=e1605]
+          - generic:
+            - img "PT Multi Bintang Indonesia Tbk Logo"
+        - link "PT. DSM Firmenich Aromatics Chemical & Pharma PT. DSM Firmenich Aromatics PT. DSM Firmenich Aromatics Logo" [ref=e1606] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. DSM Firmenich Aromatics" [ref=e1607]
+          - generic [ref=e1610]:
+            - generic [ref=e1611]: Chemical & Pharma
+            - heading "PT. DSM Firmenich Aromatics" [level=3] [ref=e1612]
+          - generic:
+            - img "PT. DSM Firmenich Aromatics Logo"
+        - link "PT. Federal Karyatama Automotive & Transportation PT. Federal Karyatama PT. Federal Karyatama Logo" [ref=e1613] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Federal Karyatama" [ref=e1614]
+          - generic [ref=e1617]:
+            - generic [ref=e1618]: Automotive & Transportation
+            - heading "PT. Federal Karyatama" [level=3] [ref=e1619]
+          - generic:
+            - img "PT. Federal Karyatama Logo"
+        - link "PT. Fukusuke Kogyo Indonesia Packaging & Plastics PT. Fukusuke Kogyo Indonesia PT. Fukusuke Kogyo Indonesia Logo" [ref=e1620] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Fukusuke Kogyo Indonesia" [ref=e1621]
+          - generic [ref=e1624]:
+            - generic [ref=e1625]: Packaging & Plastics
+            - heading "PT. Fukusuke Kogyo Indonesia" [level=3] [ref=e1626]
+          - generic:
+            - img "PT. Fukusuke Kogyo Indonesia Logo"
+        - link "PT. Indofood CBP Sukses Makmur FMCG & F&B PT. Indofood CBP Sukses Makmur PT. Indofood CBP Sukses Makmur Logo" [ref=e1627] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Indofood CBP Sukses Makmur" [ref=e1628]
+          - generic [ref=e1631]:
+            - generic [ref=e1632]: FMCG & F&B
+            - heading "PT. Indofood CBP Sukses Makmur" [level=3] [ref=e1633]
+          - generic:
+            - img "PT. Indofood CBP Sukses Makmur Logo"
+        - link "PT. Mars Symbioscience FMCG & F&B PT. Mars Symbioscience PT. Mars Symbioscience Logo" [ref=e1634] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mars Symbioscience" [ref=e1635]
+          - generic [ref=e1638]:
+            - generic [ref=e1639]: FMCG & F&B
+            - heading "PT. Mars Symbioscience" [level=3] [ref=e1640]
+          - generic:
+            - img "PT. Mars Symbioscience Logo"
+        - link "PT. Nufarm Indonesia Chemical & Pharma PT. Nufarm Indonesia PT. Nufarm Indonesia Logo" [ref=e1641] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Nufarm Indonesia" [ref=e1642]
+          - generic [ref=e1645]:
+            - generic [ref=e1646]: Chemical & Pharma
+            - heading "PT. Nufarm Indonesia" [level=3] [ref=e1647]
+          - generic:
+            - img "PT. Nufarm Indonesia Logo"
+        - link "PT. Sakae Riken Indonesia Automotive & Transportation PT. Sakae Riken Indonesia PT. Sakae Riken Indonesia Logo" [ref=e1648] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Sakae Riken Indonesia" [ref=e1649]
+          - generic [ref=e1652]:
+            - generic [ref=e1653]: Automotive & Transportation
+            - heading "PT. Sakae Riken Indonesia" [level=3] [ref=e1654]
+          - generic:
+            - img "PT. Sakae Riken Indonesia Logo"
+        - link "PT. Suntory Garuda FMCG & F&B PT. Suntory Garuda PT. Suntory Garuda Logo" [ref=e1655] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Suntory Garuda" [ref=e1656]
+          - generic [ref=e1659]:
+            - generic [ref=e1660]: FMCG & F&B
+            - heading "PT. Suntory Garuda" [level=3] [ref=e1661]
+          - generic:
+            - img "PT. Suntory Garuda Logo"
+        - link "PT Bredero Shaw Indonesia Heavy Industry & Automation PT Bredero Shaw Indonesia PT Bredero Shaw Indonesia Logo" [ref=e1662] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Bredero Shaw Indonesia" [ref=e1663]
+          - generic [ref=e1666]:
+            - generic [ref=e1667]: Heavy Industry & Automation
+            - heading "PT Bredero Shaw Indonesia" [level=3] [ref=e1668]
+          - generic:
+            - img "PT Bredero Shaw Indonesia Logo"
+        - link "PT Delifood Sentosa Corpindo FMCG & F&B PT Delifood Sentosa Corpindo PT Delifood Sentosa Corpindo Logo" [ref=e1669] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Delifood Sentosa Corpindo" [ref=e1670]
+          - generic [ref=e1673]:
+            - generic [ref=e1674]: FMCG & F&B
+            - heading "PT Delifood Sentosa Corpindo" [level=3] [ref=e1675]
+          - generic:
+            - img "PT Delifood Sentosa Corpindo Logo"
+        - link "PT Diageo Indonesia FMCG & F&B PT Diageo Indonesia PT Diageo Indonesia Logo" [ref=e1676] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Diageo Indonesia" [ref=e1677]
+          - generic [ref=e1680]:
+            - generic [ref=e1681]: FMCG & F&B
+            - heading "PT Diageo Indonesia" [level=3] [ref=e1682]
+          - generic:
+            - img "PT Diageo Indonesia Logo"
+        - link "PT Elangperdana Tyre Industry Automotive & Transportation PT Elangperdana Tyre Industry PT Elangperdana Tyre Industry Logo" [ref=e1683] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Elangperdana Tyre Industry" [ref=e1684]
+          - generic [ref=e1687]:
+            - generic [ref=e1688]: Automotive & Transportation
+            - heading "PT Elangperdana Tyre Industry" [level=3] [ref=e1689]
+          - generic:
+            - img "PT Elangperdana Tyre Industry Logo"
+        - link "PT Hempel Indonesia Building Materials & Infrastructure PT Hempel Indonesia PT Hempel Indonesia Logo" [ref=e1690] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Hempel Indonesia" [ref=e1691]
+          - generic [ref=e1694]:
+            - generic [ref=e1695]: Building Materials & Infrastructure
+            - heading "PT Hempel Indonesia" [level=3] [ref=e1696]
+          - generic:
+            - img "PT Hempel Indonesia Logo"
+        - link "PT Industrial Robotic Automation Heavy Industry & Automation PT Industrial Robotic Automation PT Industrial Robotic Automation Logo" [ref=e1697] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Industrial Robotic Automation" [ref=e1698]
+          - generic [ref=e1701]:
+            - generic [ref=e1702]: Heavy Industry & Automation
+            - heading "PT Industrial Robotic Automation" [level=3] [ref=e1703]
+          - generic:
+            - img "PT Industrial Robotic Automation Logo"
+        - link "PT Inoac Polytechno Indonesia Packaging & Plastics PT Inoac Polytechno Indonesia PT Inoac Polytechno Indonesia Logo" [ref=e1704] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Inoac Polytechno Indonesia" [ref=e1705]
+          - generic [ref=e1708]:
+            - generic [ref=e1709]: Packaging & Plastics
+            - heading "PT Inoac Polytechno Indonesia" [level=3] [ref=e1710]
+          - generic:
+            - img "PT Inoac Polytechno Indonesia Logo"
+        - link "PT Kalbe Morinaga Indonesia Chemical & Pharma PT Kalbe Morinaga Indonesia PT Kalbe Morinaga Indonesia Logo" [ref=e1711] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kalbe Morinaga Indonesia" [ref=e1712]
+          - generic [ref=e1715]:
+            - generic [ref=e1716]: Chemical & Pharma
+            - heading "PT Kalbe Morinaga Indonesia" [level=3] [ref=e1717]
+          - generic:
+            - img "PT Kalbe Morinaga Indonesia Logo"
+        - link "PT Kian Mulia Manunggal Glass & Solid Materials PT Kian Mulia Manunggal PT Kian Mulia Manunggal Logo" [ref=e1718] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Kian Mulia Manunggal" [ref=e1719]
+          - generic [ref=e1722]:
+            - generic [ref=e1723]: Glass & Solid Materials
+            - heading "PT Kian Mulia Manunggal" [level=3] [ref=e1724]
+          - generic:
+            - img "PT Kian Mulia Manunggal Logo"
+        - link "PT Meiji Food Indonesia FMCG & F&B PT Meiji Food Indonesia PT Meiji Food Indonesia Logo" [ref=e1725] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Meiji Food Indonesia" [ref=e1726]
+          - generic [ref=e1729]:
+            - generic [ref=e1730]: FMCG & F&B
+            - heading "PT Meiji Food Indonesia" [level=3] [ref=e1731]
+          - generic:
+            - img "PT Meiji Food Indonesia Logo"
+        - link "PT Cipta Mortar Utama Building Materials & Infrastructure PT Cipta Mortar Utama PT Cipta Mortar Utama Logo" [ref=e1732] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Cipta Mortar Utama" [ref=e1733]
+          - generic [ref=e1736]:
+            - generic [ref=e1737]: Building Materials & Infrastructure
+            - heading "PT Cipta Mortar Utama" [level=3] [ref=e1738]
+          - generic:
+            - img "PT Cipta Mortar Utama Logo"
+        - link "PT Nutrifood Indonesia FMCG & F&B PT Nutrifood Indonesia PT Nutrifood Indonesia Logo" [ref=e1739] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Nutrifood Indonesia" [ref=e1740]
+          - generic [ref=e1743]:
+            - generic [ref=e1744]: FMCG & F&B
+            - heading "PT Nutrifood Indonesia" [level=3] [ref=e1745]
+          - generic:
+            - img "PT Nutrifood Indonesia Logo"
+        - link "PT Rinnai Indonesia Elektronik PT Rinnai Indonesia PT Rinnai Indonesia Logo" [ref=e1746] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Rinnai Indonesia" [ref=e1747]
+          - generic [ref=e1750]:
+            - generic [ref=e1751]: Elektronik
+            - heading "PT Rinnai Indonesia" [level=3] [ref=e1752]
+          - generic:
+            - img "PT Rinnai Indonesia Logo"
+        - link "PT Sarihusada Generasi Mahardhika FMCG & F&B PT Sarihusada Generasi Mahardhika PT Sarihusada Generasi Mahardhika Logo" [ref=e1753] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sarihusada Generasi Mahardhika" [ref=e1754]
+          - generic [ref=e1757]:
+            - generic [ref=e1758]: FMCG & F&B
+            - heading "PT Sarihusada Generasi Mahardhika" [level=3] [ref=e1759]
+          - generic:
+            - img "PT Sarihusada Generasi Mahardhika Logo"
+        - link "PT Sri Trang Lingga Indonesia Glass & Solid Materials PT Sri Trang Lingga Indonesia PT Sri Trang Lingga Indonesia Logo" [ref=e1760] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sri Trang Lingga Indonesia" [ref=e1761]
+          - generic [ref=e1764]:
+            - generic [ref=e1765]: Glass & Solid Materials
+            - heading "PT Sri Trang Lingga Indonesia" [level=3] [ref=e1766]
+          - generic:
+            - img "PT Sri Trang Lingga Indonesia Logo"
+        - link "PT Sugity Creatives Automotive & Transportation PT Sugity Creatives PT Sugity Creatives Logo" [ref=e1767] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sugity Creatives" [ref=e1768]
+          - generic [ref=e1771]:
+            - generic [ref=e1772]: Automotive & Transportation
+            - heading "PT Sugity Creatives" [level=3] [ref=e1773]
+          - generic:
+            - img "PT Sugity Creatives Logo"
+        - link "PT Sumi Rubber Indonesia Automotive & Transportation PT Sumi Rubber Indonesia PT Sumi Rubber Indonesia Logo" [ref=e1774] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Sumi Rubber Indonesia" [ref=e1775]
+          - generic [ref=e1778]:
+            - generic [ref=e1779]: Automotive & Transportation
+            - heading "PT Sumi Rubber Indonesia" [level=3] [ref=e1780]
+          - generic:
+            - img "PT Sumi Rubber Indonesia Logo"
+        - link "PT URC Indonesia FMCG & F&B PT URC Indonesia PT URC Indonesia Logo" [ref=e1781] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT URC Indonesia" [ref=e1782]
+          - generic [ref=e1785]:
+            - generic [ref=e1786]: FMCG & F&B
+            - heading "PT URC Indonesia" [level=3] [ref=e1787]
+          - generic:
+            - img "PT URC Indonesia Logo"
+        - link "PT. Evoluzione Tyres Automotive & Transportation PT. Evoluzione Tyres PT. Evoluzione Tyres Logo" [ref=e1788] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Evoluzione Tyres" [ref=e1789]
+          - generic [ref=e1792]:
+            - generic [ref=e1793]: Automotive & Transportation
+            - heading "PT. Evoluzione Tyres" [level=3] [ref=e1794]
+          - generic:
+            - img "PT. Evoluzione Tyres Logo"
+        - link "PT. Mura Maha Agung Building Materials & Infrastructure PT. Mura Maha Agung PT. Mura Maha Agung Logo" [ref=e1795] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT. Mura Maha Agung" [ref=e1796]
+          - generic [ref=e1799]:
+            - generic [ref=e1800]: Building Materials & Infrastructure
+            - heading "PT. Mura Maha Agung" [level=3] [ref=e1801]
+          - generic:
+            - img "PT. Mura Maha Agung Logo"
+        - link "PT Suryaraya Rubberindo Industries Automotive & Transportation PT Suryaraya Rubberindo Industries PT Suryaraya Rubberindo Industries Logo" [ref=e1802] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Suryaraya Rubberindo Industries" [ref=e1803]
+          - generic [ref=e1806]:
+            - generic [ref=e1807]: Automotive & Transportation
+            - heading "PT Suryaraya Rubberindo Industries" [level=3] [ref=e1808]
+          - generic:
+            - img "PT Suryaraya Rubberindo Industries Logo"
+        - link "PT Astra Daihatsu Motor Automotive & Transportation PT Astra Daihatsu Motor PT Astra Daihatsu Motor Logo" [ref=e1809] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Astra Daihatsu Motor" [ref=e1810]
+          - generic [ref=e1813]:
+            - generic [ref=e1814]: Automotive & Transportation
+            - heading "PT Astra Daihatsu Motor" [level=3] [ref=e1815]
+          - generic:
+            - img "PT Astra Daihatsu Motor Logo"
+        - link "PT Garuda Food FMCG & F&B PT Garuda Food PT Garuda Food Logo" [ref=e1816] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT Garuda Food" [ref=e1817]
+          - generic [ref=e1820]:
+            - generic [ref=e1821]: FMCG & F&B
+            - heading "PT Garuda Food" [level=3] [ref=e1822]
+          - generic:
+            - img "PT Garuda Food Logo"
+        - link "PT YKK AP Indonesia Building Materials & Infrastructure PT YKK AP Indonesia PT YKK AP Indonesia Logo" [ref=e1823] [cursor=pointer]:
+          - /url: /our-projects
+          - img "PT YKK AP Indonesia" [ref=e1824]
+          - generic [ref=e1827]:
+            - generic [ref=e1828]: Building Materials & Infrastructure
+            - heading "PT YKK AP Indonesia" [level=3] [ref=e1829]
+          - generic:
+            - img "PT YKK AP Indonesia Logo"
+    - generic [ref=e1831]:
+      - generic [ref=e1832]:
+        - text: Success Stories from the Factory Floor
+        - heading "Real Results from Automation Transformation" [level=2] [ref=e1833]
+        - paragraph [ref=e1834]:
+          - text: Hear directly from manufacturing leaders on how our
+          - emphasis [ref=e1835]: vacuum handling
+          - text: solutions improve productivity while supporting safer, low-risk operations on the production floor.
+      - generic [ref=e1836]:
+        - generic [ref=e1837]:
+          - generic [ref=e1838]:
+            - img [ref=e1839]
+            - img [ref=e1841]
+            - img [ref=e1843]
+            - img [ref=e1845]
+            - img [ref=e1847]
+          - img [ref=e1849]
+          - paragraph [ref=e1852]: “We now use JumboFlex from PT Dimensi Quantum Wahyudi in our receiving process. It has made heavy lifting much safer and easier for our team, with a clear improvement in operator ergonomics. Beyond the equipment itself, DQW delivered excellent technical guidance during the trial and strong after-sales support. We look forward to expanding similar solutions across our operations.”
+          - generic [ref=e1855]: 0 lifting injuries in 3 months
+          - generic [ref=e1856]:
+            - img "Abdullah Mubarok" [ref=e1858]
+            - generic [ref=e1859]:
+              - paragraph [ref=e1860]: Abdullah Mubarok
+              - paragraph [ref=e1861]: Receiving Team
+              - paragraph [ref=e1862]: PT Toyota Astra Motor
+        - generic [ref=e1863]:
+          - generic [ref=e1864]:
+            - img [ref=e1865]
+            - img [ref=e1867]
+            - img [ref=e1869]
+            - img [ref=e1871]
+            - img [ref=e1873]
+          - img [ref=e1875]
+          - paragraph [ref=e1878]: “We adopted Schmalz vacuum lifters based on guidance from our Italian headquarters, and PT Dimensi Quantum Wahyudi has been a highly reliable local partner. Their technical support is clear, responsive, and collaborative. Commercially, the proposal offered strong value, and operationally the solution has improved both safety and ergonomics. Installation was smooth from start to finish.”
+          - generic [ref=e1881]: +40% handling speed
+          - generic [ref=e1882]:
+            - img "Anang Wahyudi" [ref=e1884]
+            - generic [ref=e1885]:
+              - paragraph [ref=e1886]: Anang Wahyudi
+              - paragraph [ref=e1887]: Project Procurement
+              - paragraph [ref=e1888]: PT Evoluzione Tyres
+        - generic [ref=e1889]:
+          - generic [ref=e1890]:
+            - img [ref=e1891]
+            - img [ref=e1893]
+            - img [ref=e1895]
+            - img [ref=e1897]
+            - img [ref=e1899]
+          - img [ref=e1901]
+          - paragraph [ref=e1904]: “The vacuum lifting solution from PT Dimensi Quantum Wahyudi has helped us significantly reduce work-related strain. Our operators used to handle loads between 20 and 100 kg manually every day. With this setup, heavy tasks are now much safer and more manageable. Their team is also very responsive, often supporting us on the same day.”
+          - generic [ref=e1907]: Installed in 2 weeks
+          - generic [ref=e1908]:
+            - img "Ibnu Abilbari" [ref=e1910]
+            - generic [ref=e1911]:
+              - paragraph [ref=e1912]: Ibnu Abilbari
+              - paragraph [ref=e1913]: Industrial Engineering
+              - paragraph [ref=e1914]: PT Gajah Tunggal
+      - generic [ref=e1915]:
+        - generic [ref=e1916]: "Industries Served:"
+        - generic [ref=e1917]: Automotive
+        - generic [ref=e1918]: Packaging
+        - generic [ref=e1919]: FMCG
+        - generic [ref=e1920]: Pharmaceutical
+        - generic [ref=e1921]: Logistics
+        - generic [ref=e1922]: Steel & Metal
+        - generic [ref=e1923]: Electronics
+        - generic [ref=e1924]: Chemical
+  - contentinfo [ref=e1925]:
+    - generic [ref=e1926]:
+      - generic [ref=e1927]:
+        - generic [ref=e1928]:
+          - link "PT Dimensi Quantum Wahyudi Logo" [ref=e1930] [cursor=pointer]:
+            - /url: /
+            - img "PT Dimensi Quantum Wahyudi Logo" [ref=e1931]
+          - paragraph [ref=e1932]: Your trusted partner for industrial lifting and handling solutions in Indonesia. We combine German precision and Swedish innovation to improve factory productivity.
+          - generic [ref=e1933]:
+            - link [ref=e1934] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/dimensiwahyudi
+              - img [ref=e1935]
+            - link [ref=e1939] [cursor=pointer]:
+              - /url: https://www.instagram.com/nabelsakha/
+              - img [ref=e1940]
+        - generic [ref=e1943]:
+          - heading "Company" [level=4] [ref=e1944]
+          - list [ref=e1945]:
+            - listitem [ref=e1946]:
+              - link "About Us" [ref=e1947] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e1948]:
+              - link "Product Catalog" [ref=e1949] [cursor=pointer]:
+                - /url: /products
+            - listitem [ref=e1950]:
+              - link "Service Support" [ref=e1951] [cursor=pointer]:
+                - /url: /services
+            - listitem [ref=e1952]:
+              - link "Ergonomics Hub" [ref=e1953] [cursor=pointer]:
+                - /url: /news/ergonomics
+            - listitem [ref=e1954]:
+              - link "Careers" [ref=e1955] [cursor=pointer]:
+                - /url: /career
+        - generic [ref=e1956]:
+          - heading "Our Solutions" [level=4] [ref=e1957]
+          - list [ref=e1958]:
+            - listitem [ref=e1959]:
+              - link "Vacuum Lifters" [ref=e1960] [cursor=pointer]:
+                - /url: /products/schmalz/vacuum-tube-lifter
+            - listitem [ref=e1961]:
+              - link "Crane Systems" [ref=e1962] [cursor=pointer]:
+                - /url: /products/schmalz/crane-system
+            - listitem [ref=e1963]:
+              - link "Lift Arms & Grippers" [ref=e1964] [cursor=pointer]:
+                - /url: /products/binar
+            - listitem [ref=e1965]:
+              - link "Service & Support" [ref=e1966] [cursor=pointer]:
+                - /url: /services
+        - generic [ref=e1967]:
+          - heading "Get in Touch" [level=4] [ref=e1968]
+          - list [ref=e1969]:
+            - listitem [ref=e1970]:
+              - img [ref=e1971]
+              - generic [ref=e1974]:
+                - text: BizPark 3 Bekasi, Jl. Sultan Agung No.80 No. C37,
+                - text: Kali Baru, Medan Satria, Bekasi, West Java 17132
+            - listitem [ref=e1975]:
+              - img [ref=e1976]
+              - link "+62 811-1916-8752" [ref=e1978] [cursor=pointer]:
+                - /url: https://wa.me/6281119168752
+            - listitem [ref=e1979]:
+              - img [ref=e1980]
+              - link "sales@dimensiwahyudi.com" [ref=e1983] [cursor=pointer]:
+                - /url: mailto:sales@dimensiwahyudi.com
+      - generic [ref=e1984]:
+        - generic [ref=e1985]:
+          - heading "Indonesia Operations" [level=5] [ref=e1986]
+          - paragraph [ref=e1987]: PT Dimensi Quantum Wahyudi adalah perusahaan penyedia solusi penanganan material (material handling) mutakhir berpusat di Bekasi, Indonesia. Kami merancang instalasi vacuum handling system, alat bantu angkat ergonomis, crane pabrik, dan sistem otomasi berstandar keamanan tinggi untuk mencegah kelelahan pekerja.
+        - generic [ref=e1988]:
+          - heading "Global Engineering Standard" [level=5] [ref=e1989]
+          - paragraph [ref=e1990]: Engineered to deliver maximum productivity and ergonomic safety. Trusted by manufacturing leaders worldwide for reducing physical strain, preventing musculoskeletal disorders (MSD), and improving cycle time efficiency on the production floor.
+      - generic [ref=e1991]:
+        - paragraph [ref=e1992]: © 2026 PT Dimensi Quantum Wahyudi. All rights reserved.
+        - generic [ref=e1993]:
+          - link "Sitemap" [ref=e1994] [cursor=pointer]:
+            - /url: /site-directory
+          - link "FAQ" [ref=e1995] [cursor=pointer]:
+            - /url: /faq
+          - link "Privacy Policy" [ref=e1996] [cursor=pointer]:
+            - /url: /privacy-policy
+          - link "Terms of Service" [ref=e1997] [cursor=pointer]:
+            - /url: /terms-of-service
+  - button "Toggle Virtual Assistant" [ref=e1998]:
+    - img [ref=e2000]
+  - complementary [ref=e2003]:
+    - generic [ref=e2004]:
+      - paragraph [ref=e2005]: We use essential cookies for site functionality and optional analytics cookies to improve performance. You can accept or reject analytics cookies.
+      - generic [ref=e2006]:
+        - button "Reject" [ref=e2007]
+        - button "Accept" [ref=e2008]
+  - alert [ref=e2009]
+```
