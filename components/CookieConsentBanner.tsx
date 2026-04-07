@@ -9,6 +9,10 @@ export default function CookieConsentBanner() {
   const [state, setState] = useState<ConsentState>(() => (readConsentChoice() ? 'done' : 'pending'));
 
   const handleChoice = (choice: 'accepted' | 'rejected') => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.dataset.cookieConsent = choice;
+    }
+
     setState('done');
 
     try {
@@ -23,7 +27,7 @@ export default function CookieConsentBanner() {
   }
 
   return (
-    <aside className="fixed inset-x-0 bottom-0 z-[120] border-t border-slate-200 bg-white/95 backdrop-blur">
+    <aside className="cookie-consent-banner fixed inset-x-0 bottom-0 z-[120] border-t border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <p className="max-w-3xl text-sm leading-relaxed text-slate-700">
           We use essential cookies for site functionality and optional analytics cookies to improve performance.
