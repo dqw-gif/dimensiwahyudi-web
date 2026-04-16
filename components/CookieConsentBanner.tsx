@@ -6,13 +6,7 @@ import { readConsentChoice, writeConsentChoice } from '@/lib/consent';
 type ConsentState = 'loading' | 'pending' | 'done';
 
 export default function CookieConsentBanner() {
-  const [state, setState] = useState<ConsentState>(() => {
-    if (typeof window === 'undefined') {
-      return 'done';
-    }
-
-    return readConsentChoice() ? 'done' : 'pending';
-  });
+  const [state, setState] = useState<ConsentState>('loading');
 
   useEffect(() => {
     const storedChoice = readConsentChoice();
@@ -20,6 +14,8 @@ export default function CookieConsentBanner() {
     if (typeof document !== 'undefined' && storedChoice) {
       document.documentElement.dataset.cookieConsent = storedChoice;
     }
+
+    setState(storedChoice ? 'done' : 'pending');
   }, []);
 
   const handleChoice = (choice: 'accepted' | 'rejected') => {

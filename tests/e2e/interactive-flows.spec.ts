@@ -63,7 +63,7 @@ test('roi calculator updates workload and safety status', async ({ page }) => {
   await setRangeValue(page, 0, 10);
   await setRangeValue(page, 1, 10);
   await page.locator('input[type="number"]').fill('1');
-  await expect(page.getByText(/10\s*kg/i)).toBeVisible();
+  await expect(page.locator('p').filter({ hasText: /^10 kg$/ }).first()).toBeVisible();
 
   await expect(page.getByText(/STATUS: SAFE/i)).toBeVisible();
   await expect(page.getByText(/0.10/)).toBeVisible();
