@@ -51,3 +51,7 @@ posts.json
 recovery.js
 temp_*.json
 *.log
+
+# test result artifacts
+test-results/visual-audit/*.png
+test-results/e2e-stability-summary.md
