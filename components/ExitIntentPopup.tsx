@@ -2,7 +2,8 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, Download, CheckCircle } from 'lucide-react';
+import Image from 'next/image';
+import { X, Download, CheckCircle } from 'lucide-react';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -112,13 +113,18 @@ const openModal = () => {
             <div className="hidden md:flex w-full md:w-5/12 bg-slate-950 p-8 flex-col items-center justify-center relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-blue-500/10 blur-3xl rounded-full translate-x-[-20%] translate-y-[-20%]"></div>
                 <div className="relative z-10 text-center">
-                    <BookOpen size={48} className="text-cyan-400 mx-auto mb-6" />
                     <h3 className="text-2xl font-black text-white mb-2 leading-tight">2026 Material Handling Guide</h3>
                     <p className="text-cyan-400 font-bold uppercase tracking-widest text-xs mb-8">Free PDF Catalog</p>
-                    <div className="relative w-48 h-64 mx-auto bg-slate-800 rounded-lg shadow-2xl border border-slate-700 overflow-hidden transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/50 to-slate-900 flex items-center justify-center p-4 text-center">
-                            <span className="text-white font-black text-xl leading-tight">Ergonomic Solutions Catalog</span>
-                        </div>
+                <div className="relative w-48 h-64 mx-auto rounded-lg shadow-2xl border border-slate-700 overflow-hidden transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                  <Image
+                    src="public/pdf cover.jpg"
+                    alt="Ergonomic Solutions Catalog cover"
+                    fill
+                    sizes="192px"
+                    className="object-cover"
+                    unoptimized
+                    priority
+                  />
                     </div>
                 </div>
             </div>
