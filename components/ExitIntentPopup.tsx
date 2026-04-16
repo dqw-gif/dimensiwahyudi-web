@@ -327,7 +327,7 @@ const openModal = () => {
                         A copy has been sent to your email. You can also download it directly right now.
                     </p>
                     <a 
-                      href="/Ergonomic%20Vacuum%20Lifters.pdf"
+                      href="https://drive.google.com/uc?export=download&id=1bWcblVo0Ps-Dx6aGwL21hrWkfdwhU30K"
                       download
                       target="_blank"
                       rel="noopener noreferrer"
