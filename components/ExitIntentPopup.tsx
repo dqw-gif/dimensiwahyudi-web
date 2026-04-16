@@ -117,7 +117,7 @@ const openModal = () => {
                     <p className="text-cyan-400 font-bold uppercase tracking-widest text-xs mb-8">Free PDF Catalog</p>
                 <div className="relative w-48 h-64 mx-auto rounded-lg shadow-2xl border border-slate-700 overflow-hidden transform -rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="public/pdf cover.jpg"
+                    src="pdf cover.jpg"
                     alt="Ergonomic Solutions Catalog cover"
                     fill
                     sizes="192px"
