@@ -368,7 +368,7 @@ export async function getAllPosts(options?: { revalidate?: number }) {
     };
   }>(query, {
     revalidate: options?.revalidate ?? 300,
-    cacheKey: 'all-posts',
+    cacheKey: 'all-posts-v2',
   });
 
   return data?.posts?.nodes || [];
