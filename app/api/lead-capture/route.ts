@@ -126,6 +126,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Name and company are required' }, { status: 400 });
     }
 
+    const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
     const formId = process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw';
     const formspreeUrl = `https://formspree.io/f/${formId}`;
 
@@ -142,13 +143,28 @@ export async function POST(request: Request) {
       client_ip: clientIp,
     };
 
-    const response = await fetch(formspreeUrl, {
+    const targetUrl = googleSheetsUrl || formspreeUrl;
+    const isGoogleSheets = Boolean(googleSheetsUrl);
+
+    const submissionPayload = isGoogleSheets
+      ? {
+          name: fullName || 'Anonymous Lead',
+          company: company || '-',
+          email,
+          message: body.context ? JSON.stringify(body.context) : `Lead registered: ${kind}`,
+          lead_type: kind,
+        }
+      : forwardedPayload;
+
+    console.info(`Submitting lead capture to: ${isGoogleSheets ? 'Google Sheets' : 'Formspree'}`);
+
+    const response = await fetch(targetUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify(forwardedPayload),
+      body: JSON.stringify(submissionPayload),
       cache: 'no-store',
     });
 

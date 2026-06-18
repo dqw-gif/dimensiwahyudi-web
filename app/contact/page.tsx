@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
@@ -65,7 +65,7 @@ function validateField(name: string, value: string): string {
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', company: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const FORMSPREE_URL = `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw'}`;
+  const CONTACT_API_URL = '/api/contact';
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const formRef = useRef<HTMLFormElement>(null);
@@ -135,7 +135,7 @@ export default function ContactPage() {
     setFormStatus('submitting');
 
     try {
-      const res = await postWithRetry(FORMSPREE_URL, formData);
+      const res = await postWithRetry(CONTACT_API_URL, formData);
       if (res.ok) {
         trackEvent('generate_lead', {
           event_category: 'Contact',
