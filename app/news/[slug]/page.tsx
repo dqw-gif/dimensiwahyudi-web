@@ -122,6 +122,7 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
         '/digital-assistant',
         '/internal',
         '/news',
+        '/services',
     ];
 
     // Prefix news path to single-slug relative links

@@ -55,6 +55,7 @@ export default function proxy(request: NextRequest) {
         '/digital-assistant',
         '/internal',
         '/news',
+        '/services',
     ];
 
     // Match single-level paths like /gantry-crane, but not /news/gantry-crane, /_next/..., files with extension, or api routes
