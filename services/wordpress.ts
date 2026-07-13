@@ -136,6 +136,8 @@ function recordFailure(message: string) {
   reliabilityMetrics.lastError = message;
   reliabilityMetrics.lastErrorAt = Date.now();
 
+  console.error(`[WORDPRESS_API_CRITICAL] WordPress API is unreachable. Next.js is falling back to stale cache. Error details: ${message}`);
+
   if (breaker.failureCount >= BREAKER_FAILURE_THRESHOLD) {
     breaker.state = 'open';
     breaker.openedAt = Date.now();

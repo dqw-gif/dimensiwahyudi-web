@@ -14,7 +14,7 @@ const NewsGrid = dynamic(() => import('../../components/news/NewsGrid'), {
     ),
 });
 
-export const revalidate = 3600; // ISR cache for 1 hour
+export const revalidate = 300; // ISR cache for 5 minutes
 
 export const metadata: Metadata = {
     title: 'Insights Hub | Engineering Articles & Industry Updates | PT Dimensi Quantum Wahyudi',
