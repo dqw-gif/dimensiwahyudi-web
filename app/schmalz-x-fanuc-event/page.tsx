@@ -118,11 +118,10 @@ export default function FanucEventPage() {
     };
 
     try {
-      const response = await fetch(SCRIPT_URL, {
+      const response = await fetch('/api/register-event', {
         method: 'POST',
-        mode: 'cors',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
       });
