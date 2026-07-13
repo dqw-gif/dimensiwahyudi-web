@@ -187,6 +187,21 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function rewriteResponseUrls<T>(data: T): T {
+  if (!data) return data;
+  try {
+    const str = JSON.stringify(data);
+    const replaced = str.replace(
+      /https?:\/\/(www\.)?dimensiwahyudi\.com\/wp-content\//g,
+      'https://wp.dimensiwahyudi.com/wp-content/'
+    );
+    return JSON.parse(replaced) as T;
+  } catch (e) {
+    console.error('Failed to rewrite URLs in WordPress GraphQL response:', e);
+    return data;
+  }
+}
+
 async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T | null> {
   const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
   const {
@@ -205,14 +220,14 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
     if (persistentFallback) {
       reliabilityMetrics.fallbackHits += 1;
       maybeLogReliabilityAlert();
-      return persistentFallback;
+      return rewriteResponseUrls(persistentFallback);
     }
 
     const memoryFallback = staleCache.get(cacheKey) as T | undefined;
     if (memoryFallback) {
       reliabilityMetrics.fallbackHits += 1;
       maybeLogReliabilityAlert();
-      return memoryFallback;
+      return rewriteResponseUrls(memoryFallback);
     }
 
     maybeLogReliabilityAlert();
@@ -250,7 +265,7 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
       persistentCacheSet(cacheKey, json.data, fallbackTtlSec);
       recordSuccess();
       maybeLogReliabilityAlert();
-      return json.data;
+      return rewriteResponseUrls(json.data);
     } catch (error) {
       const isLastAttempt = attempt === retries;
       const message = error instanceof Error ? error.message : String(error);
@@ -262,7 +277,7 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
           reliabilityMetrics.fallbackHits += 1;
           console.warn(`WordPress persistent fallback used for ${cacheKey}: ${message}`);
           maybeLogReliabilityAlert();
-          return persistentFallback;
+          return rewriteResponseUrls(persistentFallback);
         }
 
         const cached = staleCache.get(cacheKey) as T | undefined;
@@ -270,7 +285,7 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
           reliabilityMetrics.fallbackHits += 1;
           console.warn(`WordPress fallback cache used for ${cacheKey}: ${message}`);
           maybeLogReliabilityAlert();
-          return cached;
+          return rewriteResponseUrls(cached);
         }
         console.error(`WordPress fetch failed for ${cacheKey}: ${message}`);
         maybeLogReliabilityAlert();
