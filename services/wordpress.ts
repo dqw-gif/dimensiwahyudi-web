@@ -348,7 +348,7 @@ export async function getHomeData() {
 export async function getAllPosts(options?: { revalidate?: number }) {
   const query = `
     query AllPosts {
-        posts(first: 20, where: { orderby: { field: DATE, order: DESC } }) {
+        posts(first: 1000, where: { orderby: { field: DATE, order: DESC } }) {
             nodes {
                 id
                 slug
