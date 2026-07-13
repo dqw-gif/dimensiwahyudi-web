@@ -122,6 +122,7 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
         '/internal',
         '/news',
         '/services',
+        '/schmalz-x-fanuc-event',
     ];
 
     // Prefix news path to single-slug relative links
