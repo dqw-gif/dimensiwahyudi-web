@@ -15,7 +15,10 @@ export default function CookieConsentBanner() {
       document.documentElement.dataset.cookieConsent = storedChoice;
     }
 
-    setState(storedChoice ? 'done' : 'pending');
+    // Set state asynchronously to avoid synchronous cascading renders warning
+    setTimeout(() => {
+      setState(storedChoice ? 'done' : 'pending');
+    }, 0);
   }, []);
 
   const handleChoice = (choice: 'accepted' | 'rejected') => {

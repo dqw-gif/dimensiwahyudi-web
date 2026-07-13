@@ -38,6 +38,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ['isomorphic-dompurify', 'jsdom'],
   async headers() {
     return [
       {
