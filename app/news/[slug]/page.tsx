@@ -9,8 +9,7 @@ import type { PostSummary } from '../../../types/wordpress';
 import DOMPurify from 'isomorphic-dompurify';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 
-// ISR: Re-generate pages in the background every 30 minutes.
-export const revalidate = 1800;
+export const dynamic = 'force-dynamic';
 
 // Pre-render all article slugs at build time
 export async function generateStaticParams() {
