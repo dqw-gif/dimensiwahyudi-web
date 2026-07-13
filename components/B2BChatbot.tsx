@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, ChevronRight, Calculator, LifeBuoy, Send, Bot } from 'lucide-react';
+import { MessageSquare, X, ChevronRight, Calculator, LifeBuoy, Send, Bot, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -85,6 +85,21 @@ export default function B2BChatbot() {
 
               {/* Quick Replies */}
               <div className="flex flex-col gap-2.5 w-full">
+                {/* Event Registration Card */}
+                <Link 
+                  href="/schmalz-x-fanuc-event"
+                  onClick={() => trackAction('Schmalz X Fanuc Event')}
+                  className="w-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-500 hover:shadow-md hover:shadow-amber-500/10 text-slate-800 p-3 rounded-xl text-sm font-bold flex items-center justify-between transition-all group"
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <Calendar size={14} />
+                    </span>
+                    <span className="text-amber-800 font-extrabold">Register Schmalz x Fanuc Event</span>
+                  </span>
+                  <ChevronRight size={16} className="text-amber-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+                </Link>
+
                 {/* 1. Request Quote -> WhatsApp */}
                 <a 
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WA_QUOTATION_TEXT}`}
@@ -137,6 +152,25 @@ export default function B2BChatbot() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating Teaser speech bubble next to the chat button */}
+      {!isOpen && !hasOpened && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.4, type: "spring", stiffness: 100 }}
+          onClick={toggleChat}
+          className="fixed bottom-[96px] right-6 z-50 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white text-xs font-bold px-4 py-3 rounded-2xl rounded-br-none shadow-[0_10px_30px_rgba(239,68,68,0.4)] border border-amber-400/30 cursor-pointer hover:scale-105 active:scale-95 transition-all select-none max-w-[250px]"
+        >
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+            </span>
+            <span>🔥 Info Event Cikarang 28 Juli: Daftar Schmalz x Fanuc di sini!</span>
+          </div>
+        </motion.div>
+      )}
 
       {/* Floating Toggle Button */}
       <button
