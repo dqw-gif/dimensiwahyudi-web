@@ -5,6 +5,11 @@ export default function proxy(request: NextRequest) {
     const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
     const pathname = request.nextUrl.pathname;
 
+    // A. Proxy relative WordPress assets (images, stylesheets, uploads) to the wp subdomain
+    if (pathname.startsWith('/wp-content/') || pathname.startsWith('/wp-includes/')) {
+        return NextResponse.rewrite(new URL(`https://wp.dimensiwahyudi.com${pathname}`, request.url));
+    }
+
     // 0. Seamless Reverse Proxy Rewrite for the Fanuc event page:
     // Keep the main domain URL in the browser but fetch the content from wp.dimensiwahyudi.com in the background.
     if (pathname.toLowerCase() === '/schmalz-x-fanuc-event') {
