@@ -172,6 +172,10 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
     // Note: getRelatedPosts expects categoryName or slug. Using name as per service implementation.
     const relatedFetch = categorySlug
         ? getRelatedPosts(categorySlug, post.id, { revalidate: isLegacyArticle ? 86400 : 3600 })
+            .catch((err) => {
+                console.error('Error fetching related posts:', err);
+                return [] as PostSummary[];
+            })
         : Promise.resolve([] as PostSummary[]);
     const relatedPosts: PostSummary[] = await Promise.race([
         relatedFetch,

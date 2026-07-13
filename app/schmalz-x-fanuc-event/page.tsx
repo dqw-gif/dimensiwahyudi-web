@@ -183,7 +183,7 @@ export default function FanucEventPage() {
             <div className="sf-logo-separator"></div>
             <Image src="/brands/schmalz.webp" alt="Schmalz" width={110} height={32} className="sf-logo-img sf-logo-schmalz" style={{ height: 'auto', width: 'auto' }} />
           </div>
-          <Image src="/logos/fanuc.png" alt="Fanuc" width={120} height={36} className="sf-logo-img sf-logo-fanuc" style={{ height: 'auto', width: 'auto' }} />
+          <img src="https://i.imgur.com/vk1ayn6.png" alt="Fanuc" className="sf-logo-img sf-logo-fanuc" />
         </header>
 
         {/* HERO BANNER SECTION */}
