@@ -370,7 +370,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                                     ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
                                         'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'figure', 'figcaption', 'table',
                                         'thead', 'tbody', 'tr', 'th', 'td', 'code', 'pre', 'iframe', 'div', 'span'],
-                                    ALLOWED_ATTR: ['href', 'src', 'alt', 'class', 'target', 'rel', 'width', 'height',
+                                    ALLOWED_ATTR: ['id', 'name', 'href', 'src', 'alt', 'class', 'target', 'rel', 'width', 'height',
                                         'allow', 'allowfullscreen', 'frameborder', 'style', 'loading'],
                                     ALLOW_UNKNOWN_PROTOCOLS: false,
                                 })
