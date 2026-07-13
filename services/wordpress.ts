@@ -245,7 +245,7 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
       }
 
       staleCache.set(cacheKey, json.data);
-      await persistentCacheSet(cacheKey, json.data, fallbackTtlSec);
+      persistentCacheSet(cacheKey, json.data, fallbackTtlSec);
       recordSuccess();
       maybeLogReliabilityAlert();
       return json.data;
