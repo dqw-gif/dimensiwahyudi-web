@@ -87,6 +87,73 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
 }
 
+function rewriteWordPressContentLinks(htmlContent: string): string {
+    if (!htmlContent) return '';
+
+    const domains = [
+        'https://dimensiwahyudi.com',
+        'https://wp.dimensiwahyudi.com',
+        'http://dimensiwahyudi.com',
+        'http://wp.dimensiwahyudi.com',
+    ];
+
+    let processed = htmlContent;
+
+    // Convert absolute internal URLs to relative paths first
+    for (const domain of domains) {
+        const escapedDomain = domain.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const regex = new RegExp(`href="${escapedDomain}(/[^"]*)"`, 'g');
+        processed = processed.replace(regex, 'href="$1"');
+    }
+
+    const staticPaths = [
+        '/',
+        '/about',
+        '/contact',
+        '/career',
+        '/industries',
+        '/our-projects',
+        '/products',
+        '/faq',
+        '/privacy-policy',
+        '/terms-of-service',
+        '/site-directory',
+        '/maintenance',
+        '/digital-assistant',
+        '/internal',
+        '/news',
+    ];
+
+    // Prefix news path to single-slug relative links
+    processed = processed.replace(/href="(\/[^"]*)"/g, (match, path: string) => {
+        const lowerPath = path.toLowerCase();
+        
+        if (lowerPath.startsWith('/news/')) {
+            return match;
+        }
+
+        const isStatic = staticPaths.some(staticPath => {
+            if (staticPath === '/') {
+                return path === '/';
+            }
+            return lowerPath === staticPath || lowerPath.startsWith(staticPath + '/');
+        });
+
+        if (isStatic) {
+            return match;
+        }
+
+        if (path.includes('://') || path.startsWith('mailto:') || path.startsWith('tel:') || path.startsWith('#')) {
+            return match;
+        }
+
+        const cleanPath = path.startsWith('/') ? path : '/' + path;
+        return `href="/news${cleanPath}"`;
+    });
+
+    return processed;
+}
+
 export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
@@ -299,7 +366,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                     text-slate-600 [&_p]:text-slate-600 [&_li]:text-slate-600 [&_h2]:text-slate-900 [&_h3]:text-slate-900 [&_strong]:text-slate-900 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5
                     [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-2xl [&_iframe]:my-8"
                             dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(post.content || '', {
+                                __html: DOMPurify.sanitize(rewriteWordPressContentLinks(post.content || ''), {
                                     ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
                                         'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'figure', 'figcaption', 'table',
                                         'thead', 'tbody', 'tr', 'th', 'td', 'code', 'pre', 'iframe', 'div', 'span'],

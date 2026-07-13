@@ -3,25 +3,56 @@ import type { NextRequest } from 'next/server';
 
 export default function proxy(request: NextRequest) {
     const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+    const pathname = request.nextUrl.pathname;
 
-    // Redirect ke /maintenance jika mode maintenance aktif
+    // 1. Redirect to /maintenance if maintenance mode is active
     if (
         isMaintenanceMode &&
-        !request.nextUrl.pathname.startsWith('/maintenance') &&
-        !request.nextUrl.pathname.startsWith('/_next') &&
-        !request.nextUrl.pathname.startsWith('/images') &&
-        !request.nextUrl.pathname.includes('.')
+        !pathname.startsWith('/maintenance') &&
+        !pathname.startsWith('/_next') &&
+        !pathname.startsWith('/images') &&
+        !pathname.includes('.')
     ) {
         const url = request.nextUrl.clone();
         url.pathname = '/maintenance';
         return NextResponse.redirect(url);
     }
 
-    // Kembalikan ke Home jika maintenance mati tapi user akses /maintenance
-    if (!isMaintenanceMode && request.nextUrl.pathname.startsWith('/maintenance')) {
+    // 2. Return to Home if maintenance is inactive but user tries to access /maintenance
+    if (!isMaintenanceMode && pathname.startsWith('/maintenance')) {
         const url = request.nextUrl.clone();
         url.pathname = '/';
         return NextResponse.redirect(url);
+    }
+
+    // 3. SEO Legacy URL Redirection:
+    // If a request is for a single-level slug (e.g. /overhead-crane), and it's not a static route or file,
+    // permanently redirect (301) to /news/[slug] to maintain search engine ranking and prevent 404s.
+    const staticPaths = [
+        '/',
+        '/about',
+        '/contact',
+        '/career',
+        '/industries',
+        '/our-projects',
+        '/products',
+        '/faq',
+        '/privacy-policy',
+        '/terms-of-service',
+        '/site-directory',
+        '/maintenance',
+        '/digital-assistant',
+        '/internal',
+        '/news',
+    ];
+
+    // Match single-level paths like /gantry-crane, but not /news/gantry-crane, /_next/..., files with extension, or api routes
+    const isSingleSlug = /^\/[a-zA-Z0-9_-]+$/.test(pathname);
+
+    if (isSingleSlug && !staticPaths.includes(pathname.toLowerCase())) {
+        const url = request.nextUrl.clone();
+        url.pathname = `/news${pathname}`;
+        return NextResponse.redirect(url, 301); // 301 Permanent Redirect
     }
 
     return NextResponse.next();
