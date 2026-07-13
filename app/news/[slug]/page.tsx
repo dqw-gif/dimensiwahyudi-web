@@ -284,7 +284,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                             <div className="mb-6 -mt-4 opacity-80 mix-blend-screen overflow-hidden">
                                 <Breadcrumbs items={[
                                     { label: 'Insights', href: '/news' },
-                                    { label: post.categories?.nodes[0]?.name || 'Article', href: '/news' },
+                                    { label: post.categories?.nodes?.[0]?.name || 'Article', href: '/news' },
                                     { label: post.title, href: `/news/${post.slug}` },
                                 ]} />
                             </div>
@@ -293,7 +293,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                             </Link>
 
                             <div className="flex flex-wrap items-center gap-4 mb-6">
-                                {post.categories?.nodes[0] && (
+                                {post.categories?.nodes?.[0] && (
                                     <span className="px-4 py-1.5 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-900/20">
                                         {post.categories.nodes[0].name}
                                     </span>
@@ -439,7 +439,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                                         </div>
                                     )}
                                     <div className="absolute top-4 left-4">
-                                        {related.categories?.nodes[0] && (
+                                        {related.categories?.nodes?.[0] && (
                                             <span className="bg-white/90 backdrop-blur-sm text-slate-900 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm">
                                                 {related.categories.nodes[0].name}
                                             </span>

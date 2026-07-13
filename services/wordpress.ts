@@ -1,6 +1,7 @@
 // services/wordpress.ts
 import fs from 'fs';
 import path from 'path';
+import postsBackup from '../data/wordpress-posts.json';
 
 type GraphQLResponse<T> = {
   data?: T;
@@ -205,11 +206,7 @@ function rewriteResponseUrls<T>(data: T): T {
 
 function getLocalFallback(cacheKey: string): any {
   try {
-    const cachePath = path.join(process.cwd(), 'data/wordpress-posts.json');
-    if (!fs.existsSync(cachePath)) {
-      return null;
-    }
-    const posts = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
+    const posts = postsBackup;
     
     if (cacheKey === 'posts:all') {
       return { posts: { nodes: posts } };
