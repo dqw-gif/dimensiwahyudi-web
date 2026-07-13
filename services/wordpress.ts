@@ -1,5 +1,6 @@
-
 // services/wordpress.ts
+import fs from 'fs';
+import path from 'path';
 
 type GraphQLResponse<T> = {
   data?: T;
@@ -202,6 +203,52 @@ function rewriteResponseUrls<T>(data: T): T {
   }
 }
 
+function getLocalFallback(cacheKey: string): any {
+  try {
+    const cachePath = path.join(process.cwd(), 'data/wordpress-posts.json');
+    if (!fs.existsSync(cachePath)) {
+      return null;
+    }
+    const posts = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
+    
+    if (cacheKey === 'posts:all') {
+      return { posts: { nodes: posts } };
+    }
+    
+    if (cacheKey.startsWith('post:')) {
+      const slug = cacheKey.substring(5);
+      const post = posts.find((p: any) => p.slug === slug);
+      return post ? { post } : null;
+    }
+    
+    if (cacheKey.startsWith('related:')) {
+      const parts = cacheKey.split(':');
+      const categoryName = parts[1] || '';
+      const excludeId = parts[2] || '';
+      
+      const filtered = posts
+        .filter((p: any) => {
+          if (p.id === excludeId) return false;
+          return p.categories?.nodes?.some((c: any) => c.name === categoryName);
+        })
+        .slice(0, 3);
+      return { posts: { nodes: filtered } };
+    }
+    
+    if (cacheKey.startsWith('posts:page:')) {
+      const parts = cacheKey.split(':');
+      const page = parseInt(parts[2] || '1', 10);
+      const limit = parseInt(parts[3] || '9', 10);
+      const start = (page - 1) * limit;
+      const sliced = posts.slice(start, start + limit);
+      return { posts: { nodes: sliced } };
+    }
+  } catch (e) {
+    console.error('Failed to resolve from local WordPress cache:', e);
+  }
+  return null;
+}
+
 async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T | null> {
   const wpUrl = process.env.WORDPRESS_API_URL || 'https://dimensiwahyudi.com/graphql';
   const {
@@ -228,6 +275,13 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
       reliabilityMetrics.fallbackHits += 1;
       maybeLogReliabilityAlert();
       return rewriteResponseUrls(memoryFallback);
+    }
+
+    const localFallback = getLocalFallback(cacheKey) as T | null;
+    if (localFallback) {
+      reliabilityMetrics.fallbackHits += 1;
+      maybeLogReliabilityAlert();
+      return rewriteResponseUrls(localFallback);
     }
 
     maybeLogReliabilityAlert();
@@ -287,6 +341,15 @@ async function fetchGraphQL<T>(query: string, options: FetchOptions): Promise<T 
           maybeLogReliabilityAlert();
           return rewriteResponseUrls(cached);
         }
+
+        const localFallback = getLocalFallback(cacheKey) as T | null;
+        if (localFallback) {
+          reliabilityMetrics.fallbackHits += 1;
+          console.warn(`WordPress local file cache fallback used for ${cacheKey}: ${message}`);
+          maybeLogReliabilityAlert();
+          return rewriteResponseUrls(localFallback);
+        }
+
         console.error(`WordPress fetch failed for ${cacheKey}: ${message}`);
         maybeLogReliabilityAlert();
         return null;

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node -e \"try { require('fs').rmSync('.next/cache', { recursive: true, force: true }); } catch (e) {}\" && next build",
+    "build": "node scripts/fetch-wp-posts.js && node -e \"try { require('fs').rmSync('.next/cache', { recursive: true, force: true }); } catch (e) {}\" && next build",
     "start": "next start",
     "analyze": "set ANALYZE=true&& next build",
     "lint": "eslint",
