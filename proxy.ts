@@ -10,12 +10,6 @@ export default function proxy(request: NextRequest) {
         return NextResponse.rewrite(new URL(`https://wp.dimensiwahyudi.com${pathname}`, request.url));
     }
 
-    // 0. Seamless Reverse Proxy Rewrite for the Fanuc event page:
-    // Keep the main domain URL in the browser but fetch the content from wp.dimensiwahyudi.com in the background.
-    if (pathname.toLowerCase() === '/schmalz-x-fanuc-event') {
-        return NextResponse.rewrite(new URL('https://wp.dimensiwahyudi.com/schmalz-x-fanuc-event', request.url));
-    }
-
     // 1. Redirect to /maintenance if maintenance mode is active
     if (
         isMaintenanceMode &&
