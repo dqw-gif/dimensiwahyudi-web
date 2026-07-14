@@ -9,7 +9,7 @@ import type { PostSummary } from '../../../types/wordpress';
 import DOMPurify from 'isomorphic-dompurify';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 86400; // Incremental Static Regeneration: 1 day
 
 // Pre-render all article slugs at build time
 export async function generateStaticParams() {
@@ -177,10 +177,10 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                 return [] as PostSummary[];
             })
         : Promise.resolve([] as PostSummary[]);
-    const relatedPosts: PostSummary[] = await Promise.race([
+    const relatedPosts: PostSummary[] = (await Promise.race([
         relatedFetch,
         new Promise<PostSummary[]>((resolve) => setTimeout(() => resolve([]), 1200)),
-    ]);
+    ])) || [];
 
 
     // Calculate Read Time safely

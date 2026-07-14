@@ -17,8 +17,8 @@ type FetchOptions = {
   fallbackTtlSec?: number;
 };
 
-const DEFAULT_RETRIES = 2;
-const DEFAULT_TIMEOUT_MS = 12000;
+const DEFAULT_RETRIES = 0;
+const DEFAULT_TIMEOUT_MS = 1500;
 const RETRY_BASE_DELAY_MS = 350;
 const DEFAULT_FALLBACK_TTL_SEC = 60 * 60 * 6;
 

@@ -14,7 +14,7 @@ const NewsGrid = nextDynamic(() => import('../../components/news/NewsGrid'), {
     ),
 });
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 86400; // Incremental Static Regeneration: 1 day
 
 export const metadata: Metadata = {
     title: 'Insights Hub | Engineering Articles & Industry Updates | PT Dimensi Quantum Wahyudi',
