@@ -208,7 +208,7 @@ function getLocalFallback(cacheKey: string): any {
   try {
     const posts = postsBackup;
     
-    if (cacheKey === 'posts:all') {
+    if (cacheKey === 'posts:all' || cacheKey === 'all-posts-v2') {
       return { posts: { nodes: posts } };
     }
     
