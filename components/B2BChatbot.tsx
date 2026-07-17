@@ -87,7 +87,7 @@ export default function B2BChatbot() {
               <div className="flex flex-col gap-2.5 w-full">
                 {/* Event Registration Card */}
                 <Link 
-                  href="/schmalz-x-fanuc-event"
+                  href="/schmalz-fanuc-event"
                   onClick={() => trackAction('Schmalz X Fanuc Event')}
                   className="w-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-500 hover:shadow-md hover:shadow-amber-500/10 text-slate-800 p-3 rounded-xl text-sm font-bold flex items-center justify-between transition-all group"
                 >
