@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import './event.css';
 
@@ -20,7 +20,6 @@ export default function EventPageClient() {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [ticketId, setTicketId] = useState('');
 
   // Validate fields dynamically
   const validateField = (name: string, value: string): boolean => {
@@ -126,7 +125,6 @@ export default function EventPageClient() {
 
       const result = await response.json();
       if (result && result.status === 'success') {
-        setTicketId(generatedTicketId);
         setIsSuccess(true);
       } else {
         alert(result.message || 'Gagal menyimpan pendaftaran ke database. Silakan coba kembali.');
@@ -153,21 +151,6 @@ export default function EventPageClient() {
     setErrors({});
     setTouched({});
     setIsSuccess(false);
-    setTicketId('');
-  };
-
-  // Google Calendar Integration
-  const getGoogleCalendarUrl = () => {
-    const eventTitle = encodeURIComponent('Schmalz X Fanuc Event');
-    const eventDates = '20260728T020000Z/20260728T080000Z';
-    const eventDetails = encodeURIComponent(
-      'Improving Precision, Efficiency and Productivity in modern Manufacturing.\n\n' +
-      'Penyelenggara: PT Dimensi Quantum Wahyudi\n' +
-      'Nomor Tiket Registrasi: ' + ticketId + '\n' +
-      'Kontak Informasi: +62 811-1916-8752 / marketing@dimensiwahyudi.com'
-    );
-    const eventLocation = encodeURIComponent('PT. FANUC INDONESIA CIKARANG OFFICE, A1 C1, Jl. Science Boulevard, Jayamukti, Central Cikarang');
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDates}&details=${eventDetails}&location=${eventLocation}&sf=true&output=xml`;
   };
 
   return (
@@ -278,6 +261,16 @@ export default function EventPageClient() {
                     <span className="sf-form-badge">Free Registration</span>
                     <h2 className="sf-form-title">Daftar Sekarang</h2>
                     <p className="sf-form-desc">Isi form di bawah ini dengan lengkap untuk mengamankan kursi Anda.</p>
+                  </div>
+
+                  {/* Pre-Form Warning Info Box */}
+                  <div className="sf-info-alert-banner">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, marginTop: '2px' }}>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <span>
+                      <strong>Informasi Kuota:</strong> Pendaftaran umum ini masuk dalam daftar tunggu (waiting list). Kuota kursi terbatas dan panitia akan melakukan verifikasi sebelum mengirim undangan tiket resmi.
+                    </span>
                   </div>
 
                   {/* Form */}
@@ -486,45 +479,42 @@ export default function EventPageClient() {
                   </form>
                 </>
               ) : (
-                /* Success State Container */
-                <div className="sf-success-state" style={{ display: 'block' }}>
-                  <div className="sf-success-icon-box">
-                    <svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                /* Success State Container with warning colors and shake animation (Identical to Ads) */
+                <div className="sf-success-state sf-shake-animation" style={{ display: 'block' }}>
+                  <div className="sf-success-icon-box" style={{ backgroundColor: 'rgba(242, 169, 0, 0.1)', color: 'var(--sf-accent)' }}>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                     </svg>
                   </div>
                   
-                  <h2 className="sf-success-title">Registrasi Berhasil!</h2>
-                  <p className="sf-success-desc">Terima kasih telah mendaftar. Data pendaftaran Anda telah tercatat dengan aman di database kami.</p>
+                  <h2 className="sf-success-title" style={{ color: 'var(--sf-accent)' }}>Antrean Registrasi Terkirim</h2>
                   
-                  <div className="sf-ticket-box">
-                    <div className="sf-ticket-label">ID Tiket Registrasi Anda</div>
-                    <div className="sf-ticket-id">{ticketId}</div>
+                  {/* Warning Highlight Card */}
+                  <div style={{
+                    backgroundColor: 'rgba(242, 169, 0, 0.05)',
+                    border: '1.5px solid var(--sf-accent)',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    marginBottom: '24px',
+                    textAlign: 'left',
+                    fontSize: '0.92rem',
+                    lineHeight: '1.6',
+                    color: '#334155'
+                  }}>
+                    <strong>⚠️ PENTING: HARAP BACA STATUS ANDA</strong>
+                    <p style={{ marginTop: '8px' }}>
+                      Data Anda telah kami catat secara aman. Kami akan segera mengirimkan email konfirmasi resmi beserta undangan keikutsertaan Anda apabila kuota/slot peserta masih tersedia. Terima kasih atas ketertarikan Anda.
+                    </p>
                   </div>
-
+                  
                   <div className="sf-success-actions">
-                    <a 
-                      href={getGoogleCalendarUrl()} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="sf-btn-action sf-btn-calendar"
-                    >
-                      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                      </svg>
-                      Simpan ke Google Calendar
-                    </a>
-                    
                     <button 
                       type="button" 
                       className="sf-btn-action sf-btn-reset"
                       onClick={handleReset}
+                      style={{ background: 'var(--sf-primary)', color: '#ffffff', border: 'none' }}
                     >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M3 3v5h5" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                      Daftar Lagi (Register Another)
+                      Saya Mengerti & Akan Menunggu Konfirmasi
                     </button>
                   </div>
                 </div>
