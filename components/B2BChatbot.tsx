@@ -85,20 +85,7 @@ export default function B2BChatbot() {
 
               {/* Quick Replies */}
               <div className="flex flex-col gap-2.5 w-full">
-                {/* Event Registration Card */}
-                <Link 
-                  href="/schmalz-fanuc-event"
-                  onClick={() => trackAction('Schmalz X Fanuc Event')}
-                  className="w-full bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-500 hover:shadow-md hover:shadow-amber-500/10 text-slate-800 p-3 rounded-xl text-sm font-bold flex items-center justify-between transition-all group"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                      <Calendar size={14} />
-                    </span>
-                    <span className="text-amber-800 font-extrabold">Register Schmalz x Fanuc Event</span>
-                  </span>
-                  <ChevronRight size={16} className="text-amber-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
-                </Link>
+
 
                 {/* 1. Request Quote -> WhatsApp */}
                 <a 
