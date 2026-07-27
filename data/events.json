@@ -10,7 +10,7 @@
     "status": "closed",
     "statusLabel": "Registration Closed",
     "link": "/schmalz-fanuc-event",
-    "image": "https://i.imgur.com/zvwgCiy.png"
+    "image": "/brands/schmalz.webp"
   },
   {
     "id": "manufacturing-batam",
@@ -23,7 +23,7 @@
     "status": "upcoming",
     "statusLabel": "Upcoming",
     "link": "/contact?ref=manufacturing-batam",
-    "image": "https://i.imgur.com/RMjGMRg.jpeg"
+    "image": "https://i.imgur.com/92OhlM4.png"
   },
   {
     "id": "allpack-jakarta",
@@ -36,6 +36,6 @@
     "status": "upcoming",
     "statusLabel": "Upcoming",
     "link": "/contact?ref=allpack-jakarta",
-    "image": "https://i.imgur.com/vk1ayn6.png"
+    "image": "https://i.imgur.com/XK8WqKv.jpeg"
   }
 ]
