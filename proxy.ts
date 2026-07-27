@@ -52,6 +52,8 @@ export default function proxy(request: NextRequest) {
         '/services',
         '/schmalz-x-fanuc-event',
         '/schmalz-fanuc-event',
+        '/events',
+        '/nsg-login',
     ];
 
     // Match single-level paths like /gantry-crane, but not /news/gantry-crane, /_next/..., files with extension, or api routes

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse, BarChart3 } from 'lucide-react';
+import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse, BarChart3, Calendar } from 'lucide-react';
 import { useLanguage } from './LanguageProvider';
 
 export default function Navbar() {
@@ -86,6 +86,17 @@ export default function Navbar() {
                       <div>
                         <p className="text-sm font-bold text-slate-800">Ergonomics Hub</p>
                         <p className="text-xs text-slate-500">Health, productivity, and safety insights</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/events" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-cyan-50 p-2 rounded-lg group-hover/item:bg-cyan-100 transition-colors mr-3 text-cyan-600">
+                        <Calendar size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">Industrial Events</p>
+                        <p className="text-xs text-slate-500">Upcoming seminars, expos &amp; exhibitions</p>
                       </div>
                     </Link>
                   </div>
@@ -261,9 +272,6 @@ export default function Navbar() {
             <Link href="/services" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
               {t.navbar.services}
             </Link>
-            <Link href="/events" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
-              Events
-            </Link>
             <Link href="/contact" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
               {t.navbar.contact}
             </Link>
@@ -342,6 +350,9 @@ export default function Navbar() {
               <Link href="/news/ergonomics" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <HeartPulse size={18} className="text-blue-700" /><span>Ergonomics Hub</span>
               </Link>
+              <Link href="/events" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+                <Calendar size={18} className="text-cyan-600" /><span>Industrial Events</span>
+              </Link>
             </div>
 
             {/* Mobile Products Section */}
@@ -365,7 +376,6 @@ export default function Navbar() {
             </div>
 
             <Link href="/services" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.services}</Link>
-            <Link href="/events" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>Events</Link>
             <Link href="/contact" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.contact}</Link>
 
             <div className="pt-4">

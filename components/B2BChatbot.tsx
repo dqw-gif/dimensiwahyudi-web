@@ -85,6 +85,20 @@ export default function B2BChatbot() {
 
               {/* Quick Replies */}
               <div className="flex flex-col gap-2.5 w-full">
+                {/* Event Calendar Link */}
+                <Link 
+                  href="/events"
+                  onClick={() => trackAction('View Events Page')}
+                  className="w-full bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 hover:border-cyan-500 hover:shadow-md hover:shadow-cyan-500/10 text-slate-800 p-3 rounded-xl text-sm font-bold flex items-center justify-between transition-all group"
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <Calendar size={14} />
+                    </span>
+                    <span className="text-cyan-800 font-extrabold">Exhibitions &amp; Events 2026</span>
+                  </span>
+                  <ChevronRight size={16} className="text-cyan-400 group-hover:text-cyan-600 group-hover:translate-x-1 transition-all" />
+                </Link>
 
 
                 {/* 1. Request Quote -> WhatsApp */}
@@ -154,7 +168,7 @@ export default function B2BChatbot() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
             </span>
-            <span>🔥 Info Event Cikarang 28 Juli: Daftar Schmalz x Fanuc di sini!</span>
+            <span>📍 Pameran Batam (29 Sep): Manufacturing Indonesia 2026. Info lengkap di sini!</span>
           </div>
         </motion.div>
       )}
