@@ -1,0 +1,41 @@
+[
+  {
+    "id": "schmalz-fanuc",
+    "title": "Schmalz x Fanuc Seminar Cikarang",
+    "date": "Tuesday, 28 July 2026",
+    "dateRaw": "2026-07-28",
+    "location": "PT. Fanuc Indonesia Cikarang Office",
+    "locationCity": "Cikarang, West Java",
+    "description": "Improving Precision, Efficiency, and Productivity in Modern Manufacturing with advanced vacuum handling and robotic systems.",
+    "status": "closed",
+    "statusLabel": "Registration Closed",
+    "link": "/schmalz-fanuc-event",
+    "image": "https://i.imgur.com/zvwgCiy.png"
+  },
+  {
+    "id": "manufacturing-batam",
+    "title": "Manufacturing Indonesia - Batam",
+    "date": "29 Sept - 1 Oct 2026",
+    "dateRaw": "2026-09-29",
+    "location": "Batam International Exhibition Centre",
+    "locationCity": "Batam, Riau Islands",
+    "description": "The premier manufacturing exhibition in the region. Visit our booth to consult on pneumatic suction systems and crane lifts.",
+    "status": "upcoming",
+    "statusLabel": "Upcoming",
+    "link": "/contact?ref=manufacturing-batam",
+    "image": "https://i.imgur.com/RMjGMRg.jpeg"
+  },
+  {
+    "id": "allpack-jakarta",
+    "title": "All Pack Indonesia 2026",
+    "date": "20 - 23 October 2026",
+    "dateRaw": "2026-10-20",
+    "location": "Jakarta International Expo (JIExpo) Kemayoran",
+    "locationCity": "Jakarta",
+    "description": "Indonesian packaging, processing, automation, and handling exhibition. Discover ergonomic bag lifters and vacuum components.",
+    "status": "upcoming",
+    "statusLabel": "Upcoming",
+    "link": "/contact?ref=allpack-jakarta",
+    "image": "https://i.imgur.com/vk1ayn6.png"
+  }
+]

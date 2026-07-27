@@ -261,6 +261,9 @@ export default function Navbar() {
             <Link href="/services" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
               {t.navbar.services}
             </Link>
+            <Link href="/events" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
+              Events
+            </Link>
             <Link href="/contact" className="text-slate-600 hover:text-cyan-600 transition-colors text-sm font-semibold tracking-wide">
               {t.navbar.contact}
             </Link>
@@ -362,6 +365,7 @@ export default function Navbar() {
             </div>
 
             <Link href="/services" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.services}</Link>
+            <Link href="/events" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>Events</Link>
             <Link href="/contact" className="block px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>{t.navbar.contact}</Link>
 
             <div className="pt-4">

@@ -162,6 +162,70 @@ export default async function Home() {
 
       <ProjectMarquee projects={projects} />
 
+      {/* 7. EVENTS TEASER SECTION */}
+      <section className="py-20 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+            <div>
+              <span className="text-cyan-500 font-bold text-xs tracking-widest uppercase block mb-3">
+                Kalender Acara DQW
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
+                Agenda Kegiatan & Pameran 2026
+              </h2>
+            </div>
+            <a 
+              href="/events" 
+              className="mt-4 md:mt-0 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold transition-colors group"
+            >
+              <span>Lihat Semua Event</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase mb-4">
+                  28 Jul 2026
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2">Schmalz x Fanuc Seminar</h3>
+                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                  Seminar otomasi vacuum lifting & sistem robotik manufaktur di Cikarang.
+                </p>
+              </div>
+              <span className="text-xs text-slate-500 font-semibold">Cikarang, Jawa Barat</span>
+            </div>
+
+            <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 uppercase mb-4">
+                  29 Sep - 1 Oct 2026
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2">Manufacturing Indonesia</h3>
+                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                  Konsultasikan solusi penanganan material pneumatik Anda di pameran Batam.
+                </p>
+              </div>
+              <span className="text-xs text-slate-500 font-semibold">Batam, Kepulauan Riau</span>
+            </div>
+
+            <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 uppercase mb-4">
+                  20 - 23 Oct 2026
+                </span>
+                <h3 className="text-lg font-bold text-white mb-2">All Pack Indonesia 2026</h3>
+                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                  Temukan lifter bag ergonomis dan generator vakum di pameran JIExpo Kemayoran.
+                </p>
+              </div>
+              <span className="text-xs text-slate-500 font-semibold">JIExpo Kemayoran, Jakarta</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <TestimonialsSection />
 
     </main>
