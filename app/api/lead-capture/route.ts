@@ -129,12 +129,30 @@ export async function POST(request: Request) {
     // Direct Google Sheets Web App URL (100% Full Google Sheets)
     const googleSheetsUrl = 'https://script.google.com/macros/s/AKfycbzOVLGii1B5ZiHHIgqehgi8zeyz8SibowHogFzWKE1TvQ6N6Xtqty_E-FReLRQVE2rg/exec';
 
+    // Format human-readable message and lead_type for Google Sheets
+    let leadTypeFormatted = 'ROI Calculator';
+    let formattedMessage = `Lead registered: ${kind}`;
+
+    if (kind === 'roi_unlock' && body.context) {
+      leadTypeFormatted = 'ROI Calculator';
+      const ctx = body.context;
+      const weight = ctx.weight_kg ?? '-';
+      const freq = ctx.frequency_per_hr ?? '-';
+      const hours = ctx.hours_per_day ?? '-';
+      const totalTons = ctx.total_load_tons ?? '-';
+      const status = ctx.status ?? '-';
+      const rec = ctx.recommendation ?? '-';
+      formattedMessage = `Beban: ${weight} kg | Frekuensi: ${freq}x/jam | Shift: ${hours} jam | Total Beban: ${totalTons} Ton/hari | Status: ${status} | Rekomendasi: ${rec}`;
+    } else if (body.context) {
+      formattedMessage = typeof body.context === 'string' ? body.context : JSON.stringify(body.context);
+    }
+
     const submissionPayload = {
       name: fullName || 'Anonymous Lead',
       company: company || '-',
       email,
-      message: body.context ? JSON.stringify(body.context) : `Lead registered: ${kind}`,
-      lead_type: kind,
+      message: formattedMessage,
+      lead_type: leadTypeFormatted,
     };
 
     console.info('Submitting lead capture directly to Google Sheets Web App');
