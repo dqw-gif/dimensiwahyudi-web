@@ -19,8 +19,45 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
+  const eventsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: eventsData.map((ev, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Event',
+        name: ev.title,
+        description: ev.description,
+        startDate: ev.id === 'fanuc-schmalz-2026' ? '2026-03-12' : ev.id === 'mfg-indo-batam-2026' ? '2026-07-08' : '2026-10-07',
+        endDate: ev.id === 'fanuc-schmalz-2026' ? '2026-03-12' : ev.id === 'mfg-indo-batam-2026' ? '2026-07-11' : '2026-10-10',
+        eventStatus: ev.status === 'closed' ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location: {
+          '@type': 'Place',
+          name: ev.location,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: ev.location.split(',')[1]?.trim() || ev.location,
+            addressCountry: 'ID',
+          },
+        },
+        image: ev.image.startsWith('http') ? ev.image : `https://dimensiwahyudi.com${ev.image}`,
+        organizer: {
+          '@type': 'Organization',
+          name: 'PT Dimensi Quantum Wahyudi',
+          url: 'https://dimensiwahyudi.com',
+        },
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-cyan-500 selection:text-white relative pt-24 pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventsSchema) }}
+      />
       {/* BACKGROUND GRID ACCENT */}
       <div
         className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none"
