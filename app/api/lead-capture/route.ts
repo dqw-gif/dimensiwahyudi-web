@@ -126,7 +126,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Name and company are required' }, { status: 400 });
     }
 
-    const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+    const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzOVLGii1B5ZiHHIgqehgi8zeyz8SibowHogFzWKE1TvQ6N6Xtqty_E-FReLRQVE2rg/exec';
     const formId = process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw';
     const formspreeUrl = `https://formspree.io/f/${formId}`;
 

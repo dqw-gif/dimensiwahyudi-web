@@ -24,6 +24,7 @@ export default function Footer() {
                   alt="PT Dimensi Quantum Wahyudi Logo"
                   fill
                   className="object-contain object-left"
+                  unoptimized
                 />
               </Link>
             </div>

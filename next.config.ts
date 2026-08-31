@@ -106,7 +106,10 @@ const nextConfig: NextConfig = {
         hostname: 'img.youtube.com',
       },
     ],
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'],
+    minimumCacheTTL: 31536000,
+    deviceSizes: [384, 512, 640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 };
 

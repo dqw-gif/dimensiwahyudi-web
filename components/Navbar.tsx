@@ -29,6 +29,7 @@ export default function Navbar() {
                 fill
                 className="object-contain object-left"
                 priority
+                unoptimized
               />
             </Link>
           </div>
@@ -363,13 +364,13 @@ export default function Navbar() {
               </Link>
               <Link href="/products/schmalz" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-blue-100 rounded-md p-1 shrink-0">
-                  <Image src="/brands/schmalz.webp" alt="Schmalz" width={40} height={18} className="object-contain h-[18px] w-10" />
+                  <Image src="/brands/schmalz.webp" alt="Schmalz" width={40} height={18} className="object-contain h-[18px] w-10" unoptimized />
                 </div>
                 <span>Schmalz</span>
               </Link>
               <Link href="/products/binar" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <div className="bg-white border border-red-100 rounded-md p-1 shrink-0">
-                  <Image src="/brands/binar.webp" alt="Binar Handling" width={40} height={18} className="object-contain h-[18px] w-10" />
+                  <Image src="/brands/binar.webp" alt="Binar Handling" width={40} height={18} className="object-contain h-[18px] w-10" unoptimized />
                 </div>
                 <span>Binar Handling</span>
               </Link>
