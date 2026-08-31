@@ -204,9 +204,18 @@ function rewriteResponseUrls<T>(data: T): T {
   }
 }
 
-function getLocalFallback(cacheKey: string): any {
+type FallbackPost = {
+  id?: string;
+  slug?: string;
+  categories?: {
+    nodes?: Array<{ name?: string }>;
+  };
+  [key: string]: unknown;
+};
+
+function getLocalFallback(cacheKey: string): unknown {
   try {
-    const posts = postsBackup;
+    const posts = postsBackup as FallbackPost[];
     
     if (cacheKey === 'posts:all' || cacheKey === 'all-posts-v2') {
       return { posts: { nodes: posts } };
@@ -214,7 +223,7 @@ function getLocalFallback(cacheKey: string): any {
     
     if (cacheKey.startsWith('post:')) {
       const slug = cacheKey.substring(5);
-      const post = posts.find((p: any) => p.slug === slug);
+      const post = posts.find((p: FallbackPost) => p.slug === slug);
       return post ? { post } : null;
     }
     
@@ -224,9 +233,9 @@ function getLocalFallback(cacheKey: string): any {
       const excludeId = parts[2] || '';
       
       const filtered = posts
-        .filter((p: any) => {
+        .filter((p: FallbackPost) => {
           if (p.id === excludeId) return false;
-          return p.categories?.nodes?.some((c: any) => c.name === categoryName);
+          return p.categories?.nodes?.some((c) => c.name === categoryName);
         })
         .slice(0, 3);
       return { posts: { nodes: filtered } };

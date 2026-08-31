@@ -122,7 +122,6 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
         '/internal',
         '/news',
         '/services',
-        '/schmalz-x-fanuc-event',
         '/schmalz-fanuc-event',
         '/events',
         '/nsg-login',

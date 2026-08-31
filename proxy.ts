@@ -50,7 +50,6 @@ export default function proxy(request: NextRequest) {
         '/internal',
         '/news',
         '/services',
-        '/schmalz-x-fanuc-event',
         '/schmalz-fanuc-event',
         '/events',
         '/nsg-login',

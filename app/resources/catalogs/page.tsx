@@ -69,24 +69,15 @@ export default function CatalogsGatePage() {
                 <motion.div 
                    className="relative bg-white p-2 rounded-3xl border border-slate-200 shadow-2xl transform-style-3d group-hover:-rotate-y-12 group-hover:rotate-x-6 transition-transform duration-700"
                 >
-                    <div className="bg-slate-950 rounded-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-center p-8 relative">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl mix-blend-screen"></div>
-                        <Image src="/logo.webp" alt="DQW Logo" width={200} height={50} className="opacity-50 object-contain mb-8 invert filter grayscale" />
-                        
-                        <h2 className="text-4xl font-black text-white text-center mb-4 leading-none tracking-tighter">
-                            INDUSTRIAL<br/>HANDLING<br/><span className="text-cyan-400">2026</span>
-                        </h2>
-                        <div className="w-16 h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-8"></div>
-                        
-                        <div className="flex flex-col gap-3 w-full max-w-[200px]">
-                            <div className="h-2 w-full bg-white/10 rounded-full"></div>
-                            <div className="h-2 w-3/4 bg-white/10 rounded-full"></div>
-                            <div className="h-2 w-1/2 bg-white/10 rounded-full"></div>
-                        </div>
-
-                        <div className="absolute bottom-6 right-6">
-                            <span className="text-slate-500 text-xs font-mono">1.2.0-REV</span>
-                        </div>
+                    <div className="rounded-2xl overflow-hidden aspect-[3/4] relative bg-slate-100 flex items-center justify-center">
+                        <Image
+                            src="/pdf%20cover.jpg"
+                            alt="DQW Industrial Handling E-Katalog 2026"
+                            fill
+                            className="object-cover rounded-2xl"
+                            priority
+                            sizes="(max-width: 768px) 100vw, 500px"
+                        />
                     </div>
                 </motion.div>
             </div>

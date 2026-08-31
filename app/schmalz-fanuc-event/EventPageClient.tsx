@@ -17,7 +17,7 @@ export default function EventPageClient() {
             <div className="sf-logo-separator"></div>
             <Image src="/brands/schmalz.webp" alt="Schmalz" width={110} height={32} className="sf-logo-img sf-logo-schmalz" style={{ height: 'auto', width: 'auto' }} />
           </div>
-          <img src="https://i.imgur.com/vk1ayn6.png" alt="Fanuc" className="sf-logo-img sf-logo-fanuc" />
+          <Image src="https://i.imgur.com/vk1ayn6.png" alt="Fanuc" width={110} height={32} className="sf-logo-img sf-logo-fanuc" style={{ height: 'auto', width: 'auto' }} unoptimized />
         </header>
 
         {/* HERO BANNER SECTION */}

@@ -81,7 +81,7 @@ test('contact form shows validation errors on invalid submit', async ({ page }) 
 });
 
 test('contact form submit success flow', async ({ page }) => {
-  await page.route('https://formspree.io/f/**', async (route) => {
+  await page.route('**/api/contact', async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -98,7 +98,7 @@ test('contact form submit success flow', async ({ page }) => {
 });
 
 test('contact form submit error state for upstream failure', async ({ page }) => {
-  await page.route('https://formspree.io/f/**', async (route) => {
+  await page.route('**/api/contact', async (route) => {
     await route.fulfill({
       status: 500,
       contentType: 'application/json',
