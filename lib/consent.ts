@@ -10,7 +10,7 @@ function isValidConsentChoice(value: string | null): value is ConsentChoice {
 }
 
 function toConsentState(choice: ConsentChoice | null): ConsentState {
-  return choice === 'accepted' ? 'granted' : 'denied';
+  return choice === 'rejected' ? 'denied' : 'granted';
 }
 
 function readConsentCookie(): ConsentChoice | null {
@@ -39,6 +39,7 @@ export function updateGtagConsent(choice: ConsentChoice | null, command: 'defaul
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
+    wait_for_update: 500
   });
 }
 
@@ -60,7 +61,7 @@ export function readConsentChoice(): ConsentChoice | null {
 }
 
 export function hasAnalyticsConsent(): boolean {
-  return readConsentChoice() === 'accepted';
+  return readConsentChoice() !== 'rejected';
 }
 
 export function writeConsentChoice(choice: ConsentChoice) {

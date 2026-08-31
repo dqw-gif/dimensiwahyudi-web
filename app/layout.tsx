@@ -31,7 +31,7 @@ const consentModeBootstrap = `
     storedChoice = null;
   }
 
-  var analyticsState = storedChoice === 'accepted' ? 'granted' : 'denied';
+  var analyticsState = storedChoice === 'rejected' ? 'denied' : 'granted';
 
   window.gtag('consent', 'default', {
     analytics_storage: analyticsState,
@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   applicationName: "PT Dimensi Quantum Wahyudi",
   category: "Industrial Equipment",
+  verification: {
+    google: "Xbwu5OWj1B66ZpDU7pbOEZ0f5DaDnb2LuJi8NqIhp_E",
+  },
   title: {
     default: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting & Ergonomic Handling Solutions",
     template: "%s | PT Dimensi Quantum Wahyudi",
