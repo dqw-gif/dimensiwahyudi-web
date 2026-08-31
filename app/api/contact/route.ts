@@ -58,34 +58,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Message description is too short' }, { status: 400 });
     }
 
-    // Determine target URL: Google Sheets Webhook or Formspree
-    const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzOVLGii1B5ZiHHIgqehgi8zeyz8SibowHogFzWKE1TvQ6N6Xtqty_E-FReLRQVE2rg/exec';
-    const formspreeId = process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw';
-    const formspreeUrl = `https://formspree.io/f/${formspreeId}`;
+    // Direct Google Sheets Web App URL (100% Full Google Sheets)
+    const googleSheetsUrl = 'https://script.google.com/macros/s/AKfycbzOVLGii1B5ZiHHIgqehgi8zeyz8SibowHogFzWKE1TvQ6N6Xtqty_E-FReLRQVE2rg/exec';
 
-    const targetUrl = googleSheetsUrl || formspreeUrl;
-    const isGoogleSheets = Boolean(googleSheetsUrl);
+    const payload = {
+      name,
+      company,
+      email,
+      message,
+      lead_type: 'Contact Form',
+    };
 
-    // Format the payload to match what the receiving API expects
-    const payload = isGoogleSheets 
-      ? {
-          name,
-          company,
-          email,
-          message,
-          lead_type: 'Contact Form',
-        }
-      : {
-          name,
-          company,
-          email,
-          message,
-          subject: `Contact Form Lead: ${name} (${company})`,
-        };
+    console.info('Submitting contact form lead directly to Google Sheets Web App');
 
-    console.info(`Submitting contact form lead to: ${isGoogleSheets ? 'Google Sheets Web App' : 'Formspree'}`);
-
-    const res = await fetch(targetUrl, {
+    const res = await fetch(googleSheetsUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

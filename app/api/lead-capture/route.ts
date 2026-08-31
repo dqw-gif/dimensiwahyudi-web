@@ -126,39 +126,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'Name and company are required' }, { status: 400 });
     }
 
-    const googleSheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbzOVLGii1B5ZiHHIgqehgi8zeyz8SibowHogFzWKE1TvQ6N6Xtqty_E-FReLRQVE2rg/exec';
-    const formId = process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xrearydw';
-    const formspreeUrl = `https://formspree.io/f/${formId}`;
+    // Direct Google Sheets Web App URL (100% Full Google Sheets)
+    const googleSheetsUrl = 'https://script.google.com/macros/s/AKfycbzOVLGii1B5ZiHHIgqehgi8zeyz8SibowHogFzWKE1TvQ6N6Xtqty_E-FReLRQVE2rg/exec';
 
-    const forwardedPayload = {
-      subject: buildSubject(kind),
-      lead_type: kind,
+    const submissionPayload = {
+      name: fullName || 'Anonymous Lead',
+      company: company || '-',
       email,
-      full_name: fullName,
-      company,
-      context: body.context ?? {},
-      source_path: request.headers.get('referer') ?? '',
-      user_agent: request.headers.get('user-agent') ?? '',
-      forwarded_for: request.headers.get('x-forwarded-for') ?? '',
-      client_ip: clientIp,
+      message: body.context ? JSON.stringify(body.context) : `Lead registered: ${kind}`,
+      lead_type: kind,
     };
 
-    const targetUrl = googleSheetsUrl || formspreeUrl;
-    const isGoogleSheets = Boolean(googleSheetsUrl);
+    console.info('Submitting lead capture directly to Google Sheets Web App');
 
-    const submissionPayload = isGoogleSheets
-      ? {
-          name: fullName || 'Anonymous Lead',
-          company: company || '-',
-          email,
-          message: body.context ? JSON.stringify(body.context) : `Lead registered: ${kind}`,
-          lead_type: kind,
-        }
-      : forwardedPayload;
-
-    console.info(`Submitting lead capture to: ${isGoogleSheets ? 'Google Sheets' : 'Formspree'}`);
-
-    const response = await fetch(targetUrl, {
+    const response = await fetch(googleSheetsUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

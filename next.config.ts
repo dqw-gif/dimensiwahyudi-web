@@ -29,7 +29,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://formspree.io https://dimensiwahyudi.com https://vitals.vercel-insights.com",
+      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://dimensiwahyudi.com https://vitals.vercel-insights.com https://script.google.com https://script.googleusercontent.com",
       "frame-src 'self' https://www.google.com https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com",
       "object-src 'none'",
       "base-uri 'self'",
