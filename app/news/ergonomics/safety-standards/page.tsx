@@ -28,11 +28,11 @@ export const metadata: Metadata = {
 const standardsMap = [
   {
     stage: '01',
-    label: 'PLANNING & AUDIT',
-    title: 'ISO 45001 (OHS Management)',
-    focus: 'System-level safety governance and risk reduction',
-    kpi: 'Audit Readiness',
-    val: 'High',
+    label: 'NATIONAL REGULATION',
+    title: 'Permenaker No. 5/2018',
+    focus: 'Standar baku mutu batas angkat beban manual dan faktor ergonomi di tempat kerja Indonesia',
+    kpi: 'Legal Compliance',
+    val: 'Mandatory',
     icon: CheckCircle,
     ring: 'border-blue-600 text-blue-700 bg-blue-50',
     bar: 'bg-blue-600',
@@ -40,11 +40,11 @@ const standardsMap = [
   },
   {
     stage: '02',
-    label: 'PROCESS DESIGN',
-    title: 'Manual Handling Rules',
-    focus: 'Task design to minimize lifting, carrying, pushing, and pulling risks',
-    kpi: 'Handling Load',
-    val: 'Optimized',
+    label: 'INTERNATIONAL STANDARD',
+    title: 'ISO 11228-1 & ISO 45001',
+    focus: 'Manual handling evaluation, repetitive lifting limits, and occupational health management',
+    kpi: 'Handling Safety',
+    val: 'Certified',
     icon: Activity,
     ring: 'border-sky-500 text-sky-700 bg-sky-50',
     bar: 'bg-sky-500',
@@ -52,11 +52,11 @@ const standardsMap = [
   },
   {
     stage: '03',
-    label: 'SUSTAINMENT',
-    title: 'Ergonomic Design',
-    focus: 'Workstation and tool design aligned to human capability',
-    kpi: 'Compliance',
-    val: 'Sustained',
+    label: 'HEALTH BOARD CERTIFICATION',
+    title: 'AGR Germany Certification',
+    focus: 'Aktion Gesunder Rücken e.V. certified vacuum lifters ensuring verified spinal protection',
+    kpi: 'Spine Protection',
+    val: 'Approved',
     icon: TrendingDown,
     ring: 'border-blue-700 text-blue-800 bg-blue-50',
     bar: 'bg-blue-500',
@@ -107,8 +107,49 @@ const principles = [
 ];
 
 export default function ErgonomicsSafetyStandardsPage() {
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Occupational Safety and Ergonomics Standards for Industrial Handling',
+    description: 'Panduan standar keselamatan kerja ergonomi industri: Permenaker No. 5/2018, ISO 11228-1, ISO 45001, dan sertifikasi AGR Jerman.',
+    author: {
+      '@type': 'Organization',
+      name: 'PT Dimensi Quantum Wahyudi',
+      url: 'https://dimensiwahyudi.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'PT Dimensi Quantum Wahyudi',
+      url: 'https://dimensiwahyudi.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://dimensiwahyudi.com/opengraph-image',
+      },
+    },
+    mainEntityOfPage: 'https://dimensiwahyudi.com/news/ergonomics/safety-standards',
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://dimensiwahyudi.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://dimensiwahyudi.com/news' },
+      { '@type': 'ListItem', position: 3, name: 'Ergonomics', item: 'https://dimensiwahyudi.com/news/ergonomics' },
+      { '@type': 'ListItem', position: 4, name: 'Safety Standards', item: 'https://dimensiwahyudi.com/news/ergonomics/safety-standards' },
+    ],
+  };
+
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+    <main className="min-h-screen bg-slate-50 selection:bg-cyan-500 selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className={`${spacingTokens.page.shell} ${spacingTokens.page.containerNarrow} ${spacingTokens.page.stack}`}>
         <nav>
           <Link href="/news/ergonomics" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">

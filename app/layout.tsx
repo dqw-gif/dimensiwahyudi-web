@@ -129,10 +129,36 @@ const seoStructuredData = {
       url: BASE_URL,
       telephone: "+62811-1916-8752",
       email: "sales@dimensiwahyudi.com",
-      areaServed: {
-        "@type": "Country",
-        name: "Indonesia",
-      },
+      areaServed: [
+        {
+          "@type": "Country",
+          name: "Indonesia",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Bekasi & Cikarang Industrial Area (MM2100, Jababeka, GIIC, EJIP, Delta Silicon)",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Karawang Industrial Estate (KIIC, Suryacipta, KNIC)",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Jakarta & Tangerang Industrial Hub",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Surabaya, Gresik & Sidoarjo Industrial Belt",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Batam & Riau Islands Special Economic Zone",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Cilegon & Serang Heavy Industrial Zone",
+        },
+      ],
       address: {
         "@type": "PostalAddress",
         streetAddress: "BizPark 3 Bekasi, Jl. Sultan Agung No.80 No. C37, Kali Baru, Medan Satria",
@@ -181,6 +207,11 @@ export default async function RootLayout({
 
   return (
     <html lang={htmlLang} className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://dimensiwahyudi.com" />
+      </head>
       <body className={`${barlow.variable} font-sans antialiased`}>
         <Script id="consent-mode-bootstrap" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: consentModeBootstrap }} />
         <script

@@ -174,8 +174,38 @@ export default function VideoLibraryPage() {
         return byKeyword;
     }, [activeInd, searchQuery, sortBy]);
 
+    const videoLibrarySchema = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: videos.map((v, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+                '@type': 'VideoObject',
+                name: v.title,
+                description: v.desc || `Video demonstrasi ${v.title} untuk aplikasi industri oleh PT Dimensi Quantum Wahyudi.`,
+                thumbnailUrl: [
+                    `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`,
+                    `https://img.youtube.com/vi/${v.id}/mqdefault.jpg`,
+                ],
+                uploadDate: '2026-01-01T08:00:00+07:00',
+                contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
+                embedUrl: `https://www.youtube-nocookie.com/embed/${v.id}`,
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'PT Dimensi Quantum Wahyudi',
+                    url: 'https://dimensiwahyudi.com',
+                },
+            },
+        })),
+    };
+
     return (
         <main className="min-h-screen bg-slate-50">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLibrarySchema) }}
+            />
 
             {/* HERO */}
             <section className={`${spacingTokens.hero.standard} bg-slate-950 relative overflow-hidden`}>
