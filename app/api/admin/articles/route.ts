@@ -24,6 +24,7 @@ export type ArticleItem = {
   tags?: string[];
   author?: string;
   status: 'published' | 'draft';
+  featured?: boolean;
   publishedAt: string;
   updatedAt: string;
 };
@@ -66,7 +67,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { title, excerpt, content, category, featuredImage, tags, author, status, customSlug } = body;
+    const { title, excerpt, content, category, featuredImage, tags, author, status, customSlug, featured } = body;
 
     if (!title || !content) {
       return NextResponse.json({ error: 'Title and content are required' }, { status: 400 });
@@ -94,6 +95,7 @@ export async function POST(request: NextRequest) {
       tags: Array.isArray(tags) ? tags : [],
       author: author || 'Tim Teknis PT Dimensi Quantum Wahyudi',
       status: status === 'draft' ? 'draft' : 'published',
+      featured: Boolean(featured),
       publishedAt: nowIso,
       updatedAt: nowIso,
     };
@@ -114,7 +116,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// PUT: Update an existing article
+// PUT: Update an existing article or bulk status
 export async function PUT(request: NextRequest) {
   const isAuth = await checkAuth(request);
   if (!isAuth) {
@@ -123,7 +125,21 @@ export async function PUT(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { id, title, excerpt, content, category, featuredImage, tags, author, status, slug } = body;
+
+    // Bulk status update support
+    if (Array.isArray(body.ids) && body.ids.length > 0 && body.status) {
+      const nowIso = new Date().toISOString();
+      const updates = body.ids.map(async (id: string) => {
+        const docRef = doc(db, 'articles', id);
+        return setDoc(docRef, { status: body.status, updatedAt: nowIso }, { merge: true });
+      });
+      await Promise.all(updates);
+      revalidatePath('/news');
+      revalidatePath('/');
+      return NextResponse.json({ success: true, message: `Updated ${body.ids.length} articles` });
+    }
+
+    const { id, title, excerpt, content, category, featuredImage, tags, author, status, slug, featured } = body;
 
     if (!id) {
       return NextResponse.json({ error: 'Article ID is required' }, { status: 400 });
@@ -150,6 +166,7 @@ export async function PUT(request: NextRequest) {
       tags: Array.isArray(tags) ? tags : existingData.tags,
       author: author || existingData.author,
       status: status || existingData.status,
+      featured: featured !== undefined ? Boolean(featured) : existingData.featured,
       updatedAt: nowIso,
     };
 
@@ -168,7 +185,7 @@ export async function PUT(request: NextRequest) {
   }
 }
 
-// DELETE: Delete an article
+// DELETE: Delete an article (single or bulk comma-separated)
 export async function DELETE(request: NextRequest) {
   const isAuth = await checkAuth(request);
   if (!isAuth) {
@@ -177,27 +194,31 @@ export async function DELETE(request: NextRequest) {
 
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
+    const rawId = searchParams.get('id');
 
-    if (!id) {
+    if (!rawId) {
       return NextResponse.json({ error: 'Article ID is required' }, { status: 400 });
     }
 
-    const docRef = doc(db, 'articles', id);
-    const snap = await getDoc(docRef);
-    const data = snap.exists() ? (snap.data() as ArticleItem) : null;
+    const ids = rawId.split(',').map((s) => s.trim()).filter(Boolean);
 
-    await deleteDoc(docRef);
+    for (const id of ids) {
+      const docRef = doc(db, 'articles', id);
+      const snap = await getDoc(docRef);
+      const data = snap.exists() ? (snap.data() as ArticleItem) : null;
 
-    // Revalidate
-    revalidatePath('/news');
-    if (data?.slug) {
-      revalidatePath(`/news/${data.slug}`);
+      await deleteDoc(docRef);
+
+      if (data?.slug) {
+        revalidatePath(`/news/${data.slug}`);
+      }
     }
+
+    revalidatePath('/news');
     revalidatePath('/');
     revalidatePath('/sitemap.xml');
 
-    return NextResponse.json({ success: true, message: 'Article deleted successfully' });
+    return NextResponse.json({ success: true, message: `Deleted ${ids.length} article(s) successfully` });
   } catch (error) {
     const err = error instanceof Error ? error.message : String(error);
     return NextResponse.json({ success: false, error: err }, { status: 500 });
