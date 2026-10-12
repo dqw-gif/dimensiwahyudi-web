@@ -11,8 +11,14 @@ type AnalyticsGateProps = {
 
 export default function AnalyticsGate({ gaId }: AnalyticsGateProps) {
   const [enabled, setEnabled] = useState(() => hasAnalyticsConsent());
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    // Defer analytics to after initial paint and critical resource loading
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 2500);
+
     const onConsentChanged = (event: Event) => {
       const customEvent = event as CustomEvent<ConsentChoice>;
       setEnabled(customEvent.detail === 'accepted');
@@ -20,18 +26,21 @@ export default function AnalyticsGate({ gaId }: AnalyticsGateProps) {
 
     window.addEventListener(CONSENT_CHANGE_EVENT, onConsentChanged);
     return () => {
+      clearTimeout(timer);
       window.removeEventListener(CONSENT_CHANGE_EVENT, onConsentChanged);
     };
   }, []);
 
-  if (!gaId && !enabled) {
+  if (!isReady || (!gaId && !enabled)) {
     return null;
   }
+
+  const isProduction = process.env.NODE_ENV === 'production' && typeof window !== 'undefined' && !window.location.hostname.includes('localhost');
 
   return (
     <>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
-      {enabled ? <Analytics /> : null}
+      {enabled && isProduction ? <Analytics /> : null}
     </>
   );
 }

@@ -35,8 +35,9 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
     // Parallax effect for the background text "OUR PROJECTS"
     const bgTextX = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
-    // Duplikasi array besar untuk efek infinite seamless
-    const duplicatedProjects = [...projects, ...projects, ...projects, ...projects];
+    // Ambil 10 proyek unggulan terkurasi dan duplikasi sekali (total 20 item) agar DOM sangat ringan dan smooth
+    const curatedProjects = projects.slice(0, 10);
+    const duplicatedProjects = [...curatedProjects, ...curatedProjects];
 
     // Gunakan ref untuk melacak posisi presisi floating-point
     const exactScrollX = useRef(0);
@@ -51,9 +52,9 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
 
         // Cek jika sudah scroll sejauh 1 set original projects, reset ke awal untuk efek infinite looping
         const container = trackRef.current;
-        const oneSetWidth = container.scrollWidth / 4;
+        const oneSetWidth = container.scrollWidth / 2;
 
-        if (container.scrollLeft >= oneSetWidth * 2) {
+        if (container.scrollLeft >= oneSetWidth) {
             exactScrollX.current -= oneSetWidth;
             container.scrollLeft -= oneSetWidth;
         }
@@ -88,9 +89,9 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
 
         // Handle boundary saat di-drag secara paksa ke ujung
         const container = trackRef.current;
-        const oneSetWidth = container.scrollWidth / 4;
+        const oneSetWidth = container.scrollWidth / 2;
 
-        if (container.scrollLeft >= oneSetWidth * 3) {
+        if (container.scrollLeft >= oneSetWidth) {
             container.scrollLeft -= oneSetWidth;
             exactScrollX.current -= oneSetWidth;
         } else if (container.scrollLeft <= 0) {
@@ -181,6 +182,7 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                                     src={p.image}
                                     alt={p.client}
                                     fill
+                                    loading="lazy"
                                     className="object-cover opacity-50 grayscale group-hover/card:grayscale-0 group-hover/card:opacity-80 transition-all duration-700 group-hover/card:scale-110"
                                     sizes="(max-width: 768px) 300px, 400px"
                                 />
@@ -211,6 +213,7 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                                             alt={`${p.client} Logo`}
                                             width={140}
                                             height={44}
+                                            loading="lazy"
                                             className="h-full w-auto object-contain"
                                             unoptimized
                                         />

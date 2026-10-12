@@ -33,10 +33,10 @@ export default function Footer() {
               {t.footer.tagline}
             </p>
             <div className="flex gap-4">
-              <a href="https://www.linkedin.com/company/dimensiwahyudi" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-700 hover:text-white transition-all shadow-sm">
+              <a href="https://www.linkedin.com/company/dimensiwahyudi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn PT Dimensi Quantum Wahyudi" className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-700 hover:text-white transition-all shadow-sm">
                 <Linkedin size={18} />
               </a>
-              <a href="https://www.instagram.com/nabelsakha/" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-pink-600 hover:text-white transition-all shadow-sm">
+              <a href="https://www.instagram.com/nabelsakha/" target="_blank" rel="noopener noreferrer" aria-label="Instagram PT Dimensi Quantum Wahyudi" className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-pink-600 hover:text-white transition-all shadow-sm">
                 <Instagram size={18} />
               </a>
             </div>
@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Kolom 2: Quick Links */}
           <div>
-            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.company}</h4>
+            <h3 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.company}</h3>
             <ul className="space-y-4 text-sm font-medium">
               <li><Link href="/about" className="hover:text-cyan-600 transition-colors">{t.footer.about}</Link></li>
               <li><Link href="/products" className="hover:text-cyan-600 transition-colors">{t.footer.catalog}</Link></li>
@@ -56,7 +56,7 @@ export default function Footer() {
 
           {/* Column 3: Products */}
           <div>
-            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.solutions}</h4>
+            <h3 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.solutions}</h3>
             <ul className="space-y-4 text-sm font-medium">
               <li><Link href="/products/schmalz/vacuum-tube-lifter" className="hover:text-cyan-600 transition-colors">Vacuum Lifters</Link></li>
               <li><Link href="/products/schmalz/crane-system" className="hover:text-cyan-600 transition-colors">Crane Systems</Link></li>
@@ -67,7 +67,7 @@ export default function Footer() {
 
           {/* Column 4: Contact */}
           <div>
-            <h4 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.contactUs}</h4>
+            <h3 className="text-slate-900 font-bold mb-6 uppercase tracking-wider text-xs">{t.footer.contactUs}</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-cyan-600 mt-1 shrink-0" />
@@ -92,11 +92,11 @@ export default function Footer() {
         {/* Localized SEO Block */}
         <div className="border-t border-slate-200 py-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-xs text-slate-500 leading-relaxed mt-4">
           <div>
-            <h5 className="font-bold text-slate-700 uppercase tracking-widest mb-3">Indonesia Operations</h5>
+            <h4 className="font-bold text-slate-700 uppercase tracking-widest mb-3">Indonesia Operations</h4>
             <p>PT Dimensi Quantum Wahyudi adalah perusahaan penyedia solusi penanganan material (material handling) mutakhir berpusat di Bekasi, Indonesia. Kami merancang instalasi vacuum handling system, alat bantu angkat ergonomis, crane pabrik, dan sistem otomasi berstandar keamanan tinggi untuk mencegah kelelahan pekerja.</p>
           </div>
           <div>
-            <h5 className="font-bold text-slate-700 uppercase tracking-widest mb-3">Global Engineering Standard</h5>
+            <h4 className="font-bold text-slate-700 uppercase tracking-widest mb-3">Global Engineering Standard</h4>
             <p>Engineered to deliver maximum productivity and ergonomic safety. Trusted by manufacturing leaders worldwide for reducing physical strain, preventing musculoskeletal disorders (MSD), and improving cycle time efficiency on the production floor.</p>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function Footer() {
             <Link href="/site-directory" className="hover:text-cyan-600">Sitemap</Link>
             <Link href="/faq" className="hover:text-cyan-600">FAQ</Link>
             <Link href="/privacy-policy" className="hover:text-cyan-600">Privacy Policy</Link>
-            <Link href="/terms-of-service" className="hover:text-white px-3 py-1 bg-slate-900 rounded-md transition-colors hover:bg-cyan-600">Terms of Service</Link>
+            <Link href="/terms-of-service" className="text-slate-200 hover:text-white px-3 py-1 bg-slate-900 rounded-md transition-colors hover:bg-cyan-600 font-semibold">Terms of Service</Link>
           </div>
         </div>
       </div>

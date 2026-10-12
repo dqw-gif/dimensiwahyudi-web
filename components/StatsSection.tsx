@@ -54,7 +54,7 @@ export default function StatsSection() {
 
         {/* Client Logos Section (Tetap di atas Background Putih) */}
         <div className="text-center mb-12">
-          <p className="text-slate-400 uppercase text-xs tracking-[0.4em] font-bold">
+          <p className="text-slate-700 uppercase text-xs tracking-[0.4em] font-bold">
             Trusted by Leading Manufacturers
           </p>
         </div>

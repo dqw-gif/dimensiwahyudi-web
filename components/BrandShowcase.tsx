@@ -10,7 +10,7 @@ const brands = [
     name: 'SCHMALZ',
     country: 'Germany',
     desc: 'Global market leader in vacuum automation and ergonomic handling systems.',
-    logoUrl: 'https://i.imgur.com/6ns1gwx.png',
+    logoUrl: '/brands/schmalz.webp',
     website: 'https://www.schmalz.com/',
     internalLink: '/products/schmalz',
 
@@ -61,7 +61,7 @@ const brands = [
     name: 'BINAR HANDLING',
     country: 'Sweden',
     desc: 'Pioneer of smart lifting and manipulator arm systems with precision control.',
-    logoUrl: 'https://i.imgur.com/OOBgQpe.png',
+    logoUrl: '/brands/binar.webp',
     website: 'https://www.binarhandling.com',
     internalLink: '/products/binar',
 
@@ -139,6 +139,7 @@ export default function BrandShowcase() {
                       src={brand.logoUrl}
                       alt={`${brand.name} Logo`}
                       fill
+                      loading="lazy"
                       className="object-contain object-left md:object-right"
                       unoptimized
                     />
@@ -174,6 +175,7 @@ export default function BrandShowcase() {
                         src={feat.img}
                         alt={feat.title}
                         fill
+                        loading="lazy"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                         unoptimized
                       />

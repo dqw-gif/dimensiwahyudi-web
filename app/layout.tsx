@@ -9,8 +9,9 @@ import CookieConsentBanner from "../components/CookieConsentBanner";
 
 const barlow = Barlow({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-barlow",
+  display: "swap",
 });
 
 const BASE_URL = "https://dimensiwahyudi.com";
@@ -208,8 +209,8 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang} className="scroll-smooth">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href="/hero-poster-mobile.webp" media="(max-width: 767px)" fetchPriority="high" type="image/webp" />
+        <link rel="preload" as="image" href="/hero-poster.webp" media="(min-width: 768px)" fetchPriority="high" type="image/webp" />
         <link rel="dns-prefetch" href="https://dimensiwahyudi.com" />
       </head>
       <body className={`${barlow.variable} font-sans antialiased`}>

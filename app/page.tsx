@@ -1,13 +1,23 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import nextDynamic from 'next/dynamic';
 import HeroSection from '../components/HeroSection';
 import StatsSection from '../components/StatsSection';
 import BenefitsSection from '../components/BenefitsSection';
 import BrandShowcase from '../components/BrandShowcase';
-import SmartCalculator from '../components/Calculator';
-import ProjectMarquee from '../components/ProjectMarquee';
-import TestimonialsSection from '../components/TestimonialsSection';
 import { projects } from '../data/projects';
+
+const SmartCalculator = nextDynamic(() => import('../components/Calculator'), {
+  loading: () => <div className="h-96 w-full animate-pulse rounded-3xl bg-slate-100" />,
+});
+
+const ProjectMarquee = nextDynamic(() => import('../components/ProjectMarquee'), {
+  loading: () => <div className="h-48 w-full bg-slate-900" />,
+});
+
+const TestimonialsSection = nextDynamic(() => import('../components/TestimonialsSection'), {
+  loading: () => <div className="h-64 w-full bg-slate-950" />,
+});
 
 export const metadata: Metadata = {
   title: "Vacuum Lifter Indonesia | Premium Ergonomic Lifting Solutions",
@@ -186,15 +196,15 @@ export default async function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
               <div>
-                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase mb-4">
+                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-slate-800 text-slate-300 uppercase mb-4">
                   28 Jul 2026
                 </span>
                 <h3 className="text-lg font-bold text-white mb-2">Schmalz x Fanuc Seminar</h3>
-                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                <p className="text-slate-300 text-sm mb-4 line-clamp-2">
                   Seminar otomasi vacuum lifting & sistem robotik manufaktur di Cikarang.
                 </p>
               </div>
-              <span className="text-xs text-slate-500 font-semibold">Cikarang, Jawa Barat</span>
+              <span className="text-xs text-slate-400 font-semibold">Cikarang, Jawa Barat</span>
             </div>
 
             <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
@@ -203,11 +213,11 @@ export default async function Home() {
                   29 Sep - 1 Oct 2026
                 </span>
                 <h3 className="text-lg font-bold text-white mb-2">Manufacturing Indonesia</h3>
-                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                <p className="text-slate-300 text-sm mb-4 line-clamp-2">
                   Konsultasikan solusi penanganan material pneumatik Anda di pameran Batam.
                 </p>
               </div>
-              <span className="text-xs text-slate-500 font-semibold">Batam, Kepulauan Riau</span>
+              <span className="text-xs text-slate-400 font-semibold">Batam, Kepulauan Riau</span>
             </div>
 
             <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
@@ -216,11 +226,11 @@ export default async function Home() {
                   20 - 23 Oct 2026
                 </span>
                 <h3 className="text-lg font-bold text-white mb-2">All Pack Indonesia 2026</h3>
-                <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+                <p className="text-slate-300 text-sm mb-4 line-clamp-2">
                   Temukan lifter bag ergonomis dan generator vakum di pameran JIExpo Kemayoran.
                 </p>
               </div>
-              <span className="text-xs text-slate-500 font-semibold">JIExpo Kemayoran, Jakarta</span>
+              <span className="text-xs text-slate-400 font-semibold">JIExpo Kemayoran, Jakarta</span>
             </div>
           </div>
         </div>

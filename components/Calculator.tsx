@@ -70,12 +70,14 @@ export default function SmartCalculator() {
               <div className="space-y-6">
                 <div className="space-y-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
                   <div className="flex items-end justify-between gap-4">
-                    <label className="text-sm font-bold text-slate-700 md:text-base">Unit material weight (payload)</label>
+                    <label htmlFor="material-weight-slider" className="text-sm font-bold text-slate-700 md:text-base">Unit material weight (payload)</label>
                     <span className={`font-mono text-2xl font-black transition-colors ${weight > 25 ? 'text-rose-600' : 'text-cyan-600'}`}>
-                      {weight} <span className="text-xs font-semibold text-slate-400">kg</span>
+                      {weight} <span className="text-xs font-semibold text-slate-600">kg</span>
                     </span>
                   </div>
                   <input
+                    id="material-weight-slider"
+                    aria-label="Unit material weight payload in kilograms"
                     type="range"
                     min="0"
                     max="200"
@@ -93,12 +95,14 @@ export default function SmartCalculator() {
 
                 <div className="space-y-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
                   <div className="flex items-end justify-between gap-4">
-                    <label className="text-sm font-bold text-slate-700 md:text-base">Lifting intensity (cycle time)</label>
+                    <label htmlFor="lifting-intensity-slider" className="text-sm font-bold text-slate-700 md:text-base">Lifting intensity (cycle time)</label>
                     <span className="font-mono text-2xl font-black text-cyan-600">
-                      {frequency} <span className="text-xs font-semibold text-slate-400">times/hour</span>
+                      {frequency} <span className="text-xs font-semibold text-slate-600">times/hour</span>
                     </span>
                   </div>
                   <input
+                    id="lifting-intensity-slider"
+                    aria-label="Lifting intensity cycle time in times per hour"
                     type="range"
                     min="0"
                     max="500"
@@ -114,9 +118,11 @@ export default function SmartCalculator() {
                 </div>
 
                 <div className="rounded-2xl border border-white bg-white p-4 shadow-sm">
-                  <label className="mb-3 block text-sm font-bold text-slate-700 md:text-base">Work shift duration</label>
+                  <label htmlFor="shift-duration-number" className="mb-3 block text-sm font-bold text-slate-700 md:text-base">Work shift duration</label>
                   <div className="relative">
                     <input
+                      id="shift-duration-number"
+                      aria-label="Work shift duration in hours per day"
                       type="number"
                       min="1"
                       max="24"
@@ -125,7 +131,7 @@ export default function SmartCalculator() {
                       suppressHydrationWarning
                       className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-28 text-lg font-black text-slate-950 outline-none transition focus:border-cyan-500 focus:bg-white"
                     />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-[0.18em] text-slate-400">hours/day</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-[0.18em] text-slate-600">hours/day</span>
                   </div>
                 </div>
               </div>

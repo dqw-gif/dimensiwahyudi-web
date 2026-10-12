@@ -45,21 +45,43 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
 
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      setIsDesktop(true);
+    }
+  }, []);
+
   return (
     <section className="relative min-h-[86svh] md:h-screen w-full overflow-hidden bg-slate-950">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/hero-poster.webp"
-        suppressHydrationWarning
-        className="absolute inset-0 w-full h-full object-cover opacity-35 md:opacity-50"
-      >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </video>
+      {/* Responsive Poster Background (Instant LCP) */}
+      <picture className="absolute inset-0 pointer-events-none">
+        <source media="(max-width: 767px)" srcSet="/hero-poster-mobile.webp" />
+        <source media="(min-width: 768px)" srcSet="/hero-poster.webp" />
+        <img
+          src="/hero-poster-mobile.webp"
+          alt="PT Dimensi Quantum Wahyudi Industrial Lifting Background"
+          fetchPriority="high"
+          decoding="async"
+          className="object-cover w-full h-full opacity-35"
+        />
+      </picture>
+
+      {/* Desktop Video Background: Mounted once hydrated on desktop screens */}
+      {isDesktop && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/hero-poster.webp"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+      )}
 
       {/* Gradient Overlay (Nuansa Biru Gelap/Cyberpunk) */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950"></div>
@@ -145,7 +167,7 @@ export default function HeroSection() {
             <Link
               href="/services"
               className="group relative w-full sm:w-auto px-5 sm:px-6 md:px-8 py-3.5 md:py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm sm:text-base md:text-lg font-bold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/60 flex items-center justify-center gap-3"
-              aria-label="Explore technical services and lifting solutions"
+              aria-label="Explore Engineering Solutions"
             >
               Explore Engineering Solutions
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
