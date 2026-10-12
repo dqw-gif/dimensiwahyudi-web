@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import postsBackup from '../data/wordpress-posts.json';
+import { getFirestoreArticles, getFirestoreArticleBySlug } from './articles';
 
 type GraphQLResponse<T> = {
   data?: T;
@@ -457,10 +458,51 @@ export async function getAllPosts(options?: { revalidate?: number }) {
     cacheKey: 'all-posts-v2',
   });
 
-  return data?.posts?.nodes || [];
+  const rawWpPosts = data?.posts?.nodes || [];
+
+  // Merge Firestore published articles
+  try {
+    const firestoreArticles = await getFirestoreArticles();
+    if (firestoreArticles.length > 0) {
+      const map = new Map<string, (typeof rawWpPosts)[0]>();
+      for (const fa of firestoreArticles) {
+        map.set(fa.slug, {
+          id: fa.id,
+          slug: fa.slug,
+          title: fa.title,
+          excerpt: fa.excerpt,
+          date: fa.date,
+          featuredImage: fa.featuredImage,
+          categories: fa.categories,
+        });
+      }
+      for (const wp of rawWpPosts) {
+        if (!map.has(wp.slug)) {
+          map.set(wp.slug, wp);
+        }
+      }
+      return Array.from(map.values()).sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+    }
+  } catch (err) {
+    console.warn('Error fetching Firestore articles in getAllPosts:', err);
+  }
+
+  return rawWpPosts;
 }
 
 export async function getPostBySlug(slug: string, options?: { revalidate?: number }) {
+  // 1. Check Firestore first for instant response
+  try {
+    const fsPost = await getFirestoreArticleBySlug(slug);
+    if (fsPost) {
+      return fsPost;
+    }
+  } catch (err) {
+    console.warn(`Error fetching Firestore article for slug ${slug}:`, err);
+  }
+
   const query = `
     query PostBySlug($slug: ID!) {
         post(id: $slug, idType: SLUG) {
