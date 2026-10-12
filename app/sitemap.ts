@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
-import { getAllPosts } from '../services/wordpress';
+import { getAllUnifiedArticles } from '@/services/articles';
 import { projects } from '../data/projects';
+
+export const revalidate = 86400; // 24 hours
 
 const BASE_URL = 'https://dimensiwahyudi.com';
 
@@ -179,10 +181,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             .map(slug => ({ url: `${BASE_URL}/products/binar/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
     ];
 
-    // Dynamic post pages — fetch all articles from WordPress
+    // Dynamic post pages — fetch all articles from Firebase/unified source
     let postEntries: MetadataRoute.Sitemap = [];
     try {
-        const posts = await getAllPosts();
+        const posts = await getAllUnifiedArticles();
         postEntries = posts.map((post: { slug: string; date: string }) => ({
             url: `${BASE_URL}/news/${post.slug}`,
             lastModified: new Date(post.date),
@@ -190,7 +192,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.7,
         }));
     } catch (error) {
-        console.error('Sitemap: Failed to fetch posts from WordPress', error);
+        console.error('Sitemap: Failed to fetch posts from articles service', error);
     }
 
     return [...staticPages, ...productEntries, ...postEntries];

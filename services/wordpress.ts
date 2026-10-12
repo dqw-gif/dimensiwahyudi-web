@@ -454,7 +454,7 @@ export async function getAllPosts(options?: { revalidate?: number }) {
       }>;
     };
   }>(query, {
-    revalidate: options?.revalidate ?? 300,
+    revalidate: options?.revalidate ?? 86400,
     cacheKey: 'all-posts-v2',
   });
 
@@ -546,7 +546,7 @@ export async function getPostBySlug(slug: string, options?: { revalidate?: numbe
     };
   }>(query, {
     variables: { slug },
-    revalidate: options?.revalidate ?? 900,
+    revalidate: options?.revalidate ?? 604800,
     cacheKey: `post:${slug}`,
   });
 
@@ -593,7 +593,7 @@ export async function getRelatedPosts(categoryName: string, excludeId: string, o
     };
   }>(query, {
     variables: { categoryName },
-    revalidate: options?.revalidate ?? 3600,
+    revalidate: options?.revalidate ?? 604800,
     cacheKey: `related:${categoryName}`,
   });
 

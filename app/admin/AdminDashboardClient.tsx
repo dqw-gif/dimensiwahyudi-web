@@ -33,6 +33,29 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
   const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft'>('all');
   const [deleteTarget, setDeleteTarget] = useState<ArticleItem | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncMessage, setSyncMessage] = useState<string | null>(null);
+
+  const handleSyncWordPress = async () => {
+    if (!confirm('Apakah Anda ingin menarik artikel terbaru dari WordPress dan menyimpannya ke Firebase?')) return;
+    setIsSyncing(true);
+    setSyncMessage(null);
+    try {
+      const res = await fetch('/api/admin/sync-wordpress', { method: 'POST' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSyncMessage(`✓ ${data.message}`);
+        fetchArticles();
+      } else {
+        setSyncMessage(`✕ ${data.error || 'Gagal sinkronisasi'}`);
+      }
+    } catch {
+      setSyncMessage('✕ Terjadi kesalahan koneksi');
+    } finally {
+      setIsSyncing(false);
+      setTimeout(() => setSyncMessage(null), 6000);
+    }
+  };
 
   const fetchArticles = async () => {
     setLoading(true);
@@ -108,6 +131,16 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
           </div>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={handleSyncWordPress}
+              disabled={isSyncing}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-semibold text-xs border border-slate-700 transition-all disabled:opacity-50"
+              title="Tarik artikel dari WordPress ke Firebase secara manual"
+            >
+              <RefreshCw size={14} className={isSyncing ? 'animate-spin text-cyan-400' : ''} />
+              <span className="hidden sm:inline">{isSyncing ? 'Menyinkronkan...' : 'Sync WP'}</span>
+            </button>
+
             <Link
               href="/admin/editor"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-md shadow-cyan-500/20 transition-all"
@@ -126,6 +159,12 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
           </div>
         </div>
       </header>
+
+      {syncMessage && (
+        <div className="bg-cyan-950/80 border-b border-cyan-800 px-4 py-2.5 text-center text-xs font-semibold text-cyan-300">
+          {syncMessage}
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

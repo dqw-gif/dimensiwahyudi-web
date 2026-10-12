@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import nextDynamic from 'next/dynamic';
-import { getAllPosts } from '../../services/wordpress';
+import { getAllUnifiedArticles } from '@/services/articles';
 import { Zap, ArrowRight, HeartPulse } from 'lucide-react';
 
 const NewsGrid = nextDynamic(() => import('../../components/news/NewsGrid'), {
@@ -14,7 +14,7 @@ const NewsGrid = nextDynamic(() => import('../../components/news/NewsGrid'), {
     ),
 });
 
-export const revalidate = 86400; // Incremental Static Regeneration: 1 day
+export const revalidate = 604800; // Incremental Static Regeneration: 7 days (On-Demand revalidation via Admin)
 
 export const metadata: Metadata = {
     title: 'Insights Hub | Engineering Articles & Industry Updates | PT Dimensi Quantum Wahyudi',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-    const posts = await getAllPosts();
+    const posts = await getAllUnifiedArticles();
     const collectionSchema = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',

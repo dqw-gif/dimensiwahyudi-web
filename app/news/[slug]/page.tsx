@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getPostBySlug, getRelatedPosts, getAllPosts } from '../../../services/wordpress';
+import { getUnifiedArticleBySlug, getRelatedArticles, getAllUnifiedArticles } from '@/services/articles';
 import { Calendar, ChevronLeft, Clock, Tag, ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import ShareButton from '../../../components/news/ShareButton';
@@ -9,22 +9,20 @@ import type { PostSummary } from '../../../types/wordpress';
 import DOMPurify from 'isomorphic-dompurify';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 
-export const revalidate = 86400; // Incremental Static Regeneration: 1 day
+export const revalidate = 604800; // Incremental Static Regeneration: 7 days (On-Demand revalidation via Admin)
 
 // Pre-render all article slugs at build time
 export async function generateStaticParams() {
-    const posts = await getAllPosts();
+    const posts = await getAllUnifiedArticles();
     return posts.map((post: { slug: string }) => ({
         slug: post.slug,
     }));
 }
 
-
-
 // Generate Metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const post = await getPostBySlug(slug);
+    const post = await getUnifiedArticleBySlug(slug);
 
     if (!post) {
         return {
@@ -162,27 +160,15 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
 
     // Decode URI component properly just in case the slug has special characters
     const decodedSlug = decodeURIComponent(slug);
-    const post = await getPostBySlug(decodedSlug);
+    const post = await getUnifiedArticleBySlug(decodedSlug);
 
     if (!post) notFound();
 
-    const articleDate = new Date(post.date);
-    const isLegacyArticle = articleDate.getFullYear() <= 2024;
-
-    // Fetch Related Posts
-    const categorySlug = post.categories?.nodes?.[0]?.name || '';
-    // Note: getRelatedPosts expects categoryName or slug. Using name as per service implementation.
-    const relatedFetch = categorySlug
-        ? getRelatedPosts(categorySlug, post.id, { revalidate: isLegacyArticle ? 86400 : 3600 })
-            .catch((err) => {
-                console.error('Error fetching related posts:', err);
-                return [] as PostSummary[];
-            })
-        : Promise.resolve([] as PostSummary[]);
-    const relatedPosts: PostSummary[] = (await Promise.race([
-        relatedFetch,
-        new Promise<PostSummary[]>((resolve) => setTimeout(() => resolve([]), 1200)),
-    ])) || [];
+    // Fetch Related Posts from unified articles in memory
+    const categoryName = post.categories?.nodes?.[0]?.name || '';
+    const relatedPosts: PostSummary[] = categoryName
+        ? await getRelatedArticles(categoryName, post.slug)
+        : [];
 
 
     // Calculate Read Time safely
