@@ -795,7 +795,7 @@ export default function EditorClient() {
       )}
 
       {/* Main Workspace (Wide, Spacious Container) */}
-      <main className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 space-y-6">
         {/* Recovery Notification */}
         {hasRecoverableDraft && (
           <div className="mb-4 p-4 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900 flex items-center justify-between gap-4 text-xs font-semibold animate-in fade-in">

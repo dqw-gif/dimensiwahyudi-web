@@ -12,9 +12,9 @@ type LayoutChromeProps = {
 
 export default function LayoutChrome({ children }: LayoutChromeProps) {
   const pathname = usePathname();
-  const isInternal = pathname?.startsWith('/internal');
+  const isExcluded = pathname?.startsWith('/internal') || pathname?.startsWith('/admin');
 
-  if (isInternal) {
+  if (isExcluded) {
     return <>{children}</>;
   }
 
