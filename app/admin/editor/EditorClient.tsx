@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   ArrowLeft,
@@ -52,6 +51,10 @@ import {
   Check,
   X,
   Upload,
+  PanelRightClose,
+  PanelRightOpen,
+  Settings2,
+  Share2,
 } from 'lucide-react';
 import type { ArticleItem } from '@/app/api/admin/articles/route';
 
@@ -80,13 +83,13 @@ export default function EditorClient() {
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('Tim Teknis PT Dimensi Quantum Wahyudi');
   const [isFeatured, setIsFeatured] = useState(false);
-  const [focusKeyword, setFocusKeyword] = useState('');
 
-  // UI Modes
-  const [viewMode, setViewMode] = useState<'editor' | 'split' | 'preview'>('split');
+  // UI Modes & Layout
+  const [viewMode, setViewMode] = useState<'editor' | 'split' | 'preview'>('editor');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [sidebarTab, setSidebarTab] = useState<'general' | 'seo' | 'export'>('general');
   const [devicePreview, setDevicePreview] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [isZenMode, setIsZenMode] = useState(false);
-  const [activeSerpTab, setActiveSerpTab] = useState<'google' | 'social'>('google');
 
   // Undo/Redo History Stack
   const [history, setHistory] = useState<string[]>(['']);
@@ -97,7 +100,7 @@ export default function EditorClient() {
   const [lastAutoSaved, setLastAutoSaved] = useState<string | null>(null);
   const [hasRecoverableDraft, setHasRecoverableDraft] = useState(false);
 
-  // Modals & Popovers
+  // Modals
   const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
   const [linkText, setLinkText] = useState('');
   const [linkUrl, setLinkUrl] = useState('');
@@ -105,17 +108,6 @@ export default function EditorClient() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [modalImageUrl, setModalImageUrl] = useState('');
   const [modalImageAlt, setModalImageAlt] = useState('');
-
-  const [isSlashMenuOpen, setIsSlashMenuOpen] = useState(false);
-  const [slashSearch, setSlashSearch] = useState('');
-  const [slashPos, setSlashPos] = useState({ top: 0, left: 0 });
-
-  // Floating Bubble Toolbar
-  const [bubbleToolbar, setBubbleToolbar] = useState<{ visible: boolean; top: number; left: number }>({
-    visible: false,
-    top: 0,
-    left: 0,
-  });
 
   // Loading & Notifications
   const [loading, setLoading] = useState(false);
@@ -128,7 +120,6 @@ export default function EditorClient() {
   } | null>(null);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const editorContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-slug generator
   useEffect(() => {
@@ -257,7 +248,7 @@ export default function EditorClient() {
     }
   };
 
-  // Keyboard Shortcuts (Ctrl+S, Ctrl+B, Ctrl+I, Ctrl+K, Undo/Redo)
+  // Keyboard Shortcuts (Ctrl+S, Ctrl+B, Ctrl+I, Ctrl+K)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey) {
@@ -287,10 +278,8 @@ export default function EditorClient() {
         }
       }
       if (e.key === 'Escape') {
-        setIsSlashMenuOpen(false);
         setIsLinkModalOpen(false);
         setIsImageModalOpen(false);
-        setBubbleToolbar({ visible: false, top: 0, left: 0 });
       }
     };
 
@@ -358,7 +347,7 @@ export default function EditorClient() {
 
   const confirmInsertImage = () => {
     if (!modalImageUrl) return;
-    const tag = `<figure class="my-6 text-center"><img src="${modalImageUrl}" alt="${modalImageAlt || 'Foto Produk Industri'}" class="rounded-2xl w-full object-cover max-h-[500px] shadow-md border border-slate-200" /><figcaption class="text-xs text-slate-500 mt-2 italic">${modalImageAlt || ''}</figcaption></figure>\n`;
+    const tag = `\n<figure class="my-6 text-center"><img src="${modalImageUrl}" alt="${modalImageAlt || 'Foto Produk Industri'}" class="rounded-2xl w-full object-cover max-h-[500px] shadow-md border border-slate-200" /><figcaption class="text-xs text-slate-500 mt-2 italic">${modalImageAlt || ''}</figcaption></figure>\n`;
     insertSnippet(tag, '');
     setIsImageModalOpen(false);
     setModalImageUrl('');
@@ -408,7 +397,7 @@ export default function EditorClient() {
     insertSnippet(ctaSnippet, '');
   };
 
-  // FAQ Accordion Generator (Schema.org ready)
+  // FAQ Accordion Generator
   const insertFaqAccordion = () => {
     const faqSnippet = `\n<div class="my-8 space-y-3">
   <h3 class="text-lg font-bold text-slate-900 mb-3">Pertanyaan Sering Diajukan (FAQ)</h3>
@@ -428,27 +417,7 @@ export default function EditorClient() {
     insertSnippet(faqSnippet, '');
   };
 
-  // Callout Box
-  const insertCallout = (type: 'tip' | 'warning' | 'note') => {
-    if (type === 'tip') {
-      insertSnippet(
-        `\n<div class="my-6 p-4 rounded-xl bg-cyan-50 border-l-4 border-cyan-500 text-cyan-950 text-sm">💡 <strong>Tips Teknis:</strong> Pastikan ruang bebas vertikal (headroom) di pabrik telah diukur secara akurat sebelum instalasi.</div>\n`,
-        ''
-      );
-    } else if (type === 'warning') {
-      insertSnippet(
-        `\n<div class="my-6 p-4 rounded-xl bg-amber-50 border-l-4 border-amber-500 text-amber-950 text-sm">⚠️ <strong>Peringatan K3:</strong> Wajib melakukan pemeriksaan berkala pada kawat seling dan sistem rem sebelum pengoperasian harian.</div>\n`,
-        ''
-      );
-    } else {
-      insertSnippet(
-        `\n<div class="my-6 p-4 rounded-xl bg-blue-50 border-l-4 border-blue-500 text-blue-950 text-sm">📘 <strong>Catatan Rekayasa:</strong> Penggunaan material paduan baja khusus memberikan durabilitas optimal pada lingkungan korosif.</div>\n`,
-        ''
-      );
-    }
-  };
-
-  // YouTube Lazy Video Embedder
+  // YouTube Video Embedder
   const insertYouTubeVideo = () => {
     const url = prompt('Masukkan URL Video YouTube (contoh: https://www.youtube.com/watch?v=dQw4w9WgXcQ):');
     if (!url) return;
@@ -481,7 +450,7 @@ export default function EditorClient() {
     insertSnippet(snippet, '');
   };
 
-  // Client-Side Image WebP Compression & Drag-and-Drop file picker
+  // WebP Image Compressor
   const handleImageFileSelect = async (file: File) => {
     if (!file.type.startsWith('image/')) {
       alert('Mohon pilih file gambar (JPG, PNG, atau WebP).');
@@ -651,7 +620,6 @@ export default function EditorClient() {
           slug: publishedSlug,
         });
 
-        // Clean draft in localStorage
         localStorage.removeItem(`dwq_draft_${editId || 'new'}`);
 
         if (!editId) {
@@ -706,43 +674,43 @@ export default function EditorClient() {
 
   return (
     <div
-      ref={editorContainerRef}
-      className={`min-h-screen bg-slate-50 text-slate-800 selection:bg-cyan-500 selection:text-white ${
-        isZenMode ? 'fixed inset-0 z-50 overflow-y-auto bg-white p-6 sm:p-12' : 'pb-24'
+      className={`min-h-screen bg-slate-100/70 text-slate-800 selection:bg-cyan-500 selection:text-white ${
+        isZenMode ? 'fixed inset-0 z-50 overflow-y-auto bg-white p-6 sm:p-12' : 'pb-16'
       }`}
     >
-      {/* Top Action Bar */}
+      {/* Top Action Bar (Full Width & Clean) */}
       {!isZenMode && (
-        <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-3">
+        <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
+          <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            {/* Left: Back & Title info */}
+            <div className="flex items-center gap-3 min-w-0">
               <Link
                 href="/admin"
-                className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
+                className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors shrink-0"
                 title="Kembali ke Dashboard"
               >
                 <ArrowLeft size={16} />
               </Link>
-              <div>
-                <span className="font-extrabold text-slate-900 text-sm sm:text-base">
-                  {editId ? 'Edit Artikel' : 'Tulis Artikel Baru'}
+              <div className="truncate">
+                <span className="font-extrabold text-slate-900 text-sm sm:text-base block truncate">
+                  {title || (editId ? 'Edit Artikel' : 'Tulis Artikel Baru')}
                 </span>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-[10px] font-semibold text-slate-400">
-                    {lastAutoSaved ? `Tersimpan draf lokal pukul ${lastAutoSaved}` : 'Auto-Save Aktif'}
-                  </span>
+                <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400">
+                  <span>{lastAutoSaved ? `Auto-save ${lastAutoSaved}` : 'Auto-save siap'}</span>
                   {isDirty && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" title="Ada perubahan belum disimpan" />
+                    <span className="px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold">
+                      Belum disimpan
+                    </span>
                   )}
                 </div>
               </div>
             </div>
 
             {/* Center: View Mode Switcher */}
-            <div className="hidden md:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold">
+            <div className="hidden md:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold shrink-0">
               <button
                 onClick={() => setViewMode('editor')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
                   viewMode === 'editor' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
@@ -750,7 +718,7 @@ export default function EditorClient() {
               </button>
               <button
                 onClick={() => setViewMode('split')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
                   viewMode === 'split' ? 'bg-white text-cyan-700 shadow-xs' : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
@@ -758,7 +726,7 @@ export default function EditorClient() {
               </button>
               <button
                 onClick={() => setViewMode('preview')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
                   viewMode === 'preview' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
@@ -766,13 +734,27 @@ export default function EditorClient() {
               </button>
             </div>
 
-            {/* Right: Actions */}
-            <div className="flex items-center gap-2">
+            {/* Right: Sidebar Toggle, Zen, and Save Buttons */}
+            <div className="flex items-center gap-2 shrink-0">
+              {/* Toggle Sidebar Button */}
+              <button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 cursor-pointer ${
+                  isSidebarOpen
+                    ? 'bg-cyan-50 text-cyan-700 border-cyan-200'
+                    : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
+                }`}
+                title="Buka / Tutup Panel Pengaturan & SEO"
+              >
+                <Settings2 size={14} />
+                <span className="hidden xl:inline">{isSidebarOpen ? 'Tutup Panel' : 'Panel Pengaturan'}</span>
+              </button>
+
               {/* Zen Fullscreen */}
               <button
                 onClick={() => setIsZenMode(true)}
                 className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
-                title="Zen Mode / Layar Penuh Bebas Gangguan"
+                title="Zen Mode / Layar Penuh"
               >
                 <Maximize2 size={15} />
               </button>
@@ -781,7 +763,7 @@ export default function EditorClient() {
               <button
                 onClick={() => handleSave('draft')}
                 disabled={loading}
-                className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+                className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
               >
                 <Save size={14} />
                 <span className="hidden sm:inline">Simpan Draft</span>
@@ -805,18 +787,18 @@ export default function EditorClient() {
       {isZenMode && (
         <button
           onClick={() => setIsZenMode(false)}
-          className="fixed top-6 right-6 z-50 p-3 rounded-2xl bg-slate-900 text-white shadow-xl hover:bg-slate-800 transition-all flex items-center gap-2 text-xs font-bold"
+          className="fixed top-6 right-6 z-50 p-3 rounded-2xl bg-slate-900 text-white shadow-xl hover:bg-slate-800 transition-all flex items-center gap-2 text-xs font-bold cursor-pointer"
         >
           <Minimize2 size={16} />
           <span>Keluar Zen Mode</span>
         </button>
       )}
 
-      {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Main Workspace (Wide, Spacious Container) */}
+      <main className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Recovery Notification */}
         {hasRecoverableDraft && (
-          <div className="p-4 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900 flex items-center justify-between gap-4 text-xs font-semibold animate-in fade-in">
+          <div className="mb-4 p-4 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900 flex items-center justify-between gap-4 text-xs font-semibold animate-in fade-in">
             <div className="flex items-center gap-2">
               <Sparkles size={16} className="text-cyan-600" />
               <span>Ditemukan naskah draf otomatis yang belum sempat Anda simpan ke server.</span>
@@ -824,13 +806,13 @@ export default function EditorClient() {
             <div className="flex items-center gap-2">
               <button
                 onClick={restoreDraft}
-                className="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold hover:bg-cyan-700 transition-all"
+                className="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold hover:bg-cyan-700 transition-all cursor-pointer"
               >
                 Pulihkan Draf
               </button>
               <button
                 onClick={() => setHasRecoverableDraft(false)}
-                className="px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100"
+                className="px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 cursor-pointer"
               >
                 Abaikan
               </button>
@@ -841,7 +823,7 @@ export default function EditorClient() {
         {/* Status Notification */}
         {notification && (
           <div
-            className={`p-4 rounded-2xl border flex items-center justify-between gap-4 animate-in fade-in ${
+            className={`mb-4 p-4 rounded-2xl border flex items-center justify-between gap-4 animate-in fade-in ${
               notification.type === 'success'
                 ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
                 : 'bg-red-50 border-red-200 text-red-800'
@@ -865,72 +847,65 @@ export default function EditorClient() {
           </div>
         )}
 
-        {/* Title & Slug Section */}
-        <section className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4">
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-              Judul Artikel (H1) *
-            </label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-                setIsDirty(true);
-              }}
-              placeholder="Contoh: Keunggulan Vacuum Tube Lifter untuk Industri Logam & Manufaktur"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 text-base sm:text-xl font-extrabold placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-500/20 transition-all"
-            />
-          </div>
-
-          {/* Slug & Conflict Warning */}
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-            <div className="flex items-center gap-1.5 font-mono text-slate-500">
-              <span>Permalink:</span>
-              <span className="text-slate-400">/news/</span>
+        {/* Flex Layout: Main Canvas + Collapsible Inspector Sidebar */}
+        <div className="flex items-start gap-6">
+          {/* Main Writing Canvas (Full Remaining Width) */}
+          <div className="flex-1 min-w-0 space-y-4">
+            {/* Title & Document Header Card (Seamless Canvas Style) */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-3">
               <input
                 type="text"
-                value={slug}
+                value={title}
                 onChange={(e) => {
-                  setSlug(e.target.value);
-                  setIsSlugManual(true);
+                  setTitle(e.target.value);
                   setIsDirty(true);
                 }}
-                className={`bg-slate-50 px-2.5 py-1 rounded-lg border font-mono font-semibold focus:outline-none focus:bg-white ${
-                  isSlugConflict
-                    ? 'border-red-400 text-red-600'
-                    : 'border-slate-200 text-cyan-700 focus:border-cyan-600'
-                }`}
+                placeholder="Ketik Judul Artikel di Sini..."
+                className="w-full bg-transparent text-slate-900 text-xl sm:text-2xl lg:text-3xl font-extrabold placeholder-slate-300 focus:outline-none tracking-tight leading-snug"
               />
-            </div>
-            {isSlugConflict ? (
-              <span className="text-red-600 font-bold flex items-center gap-1">
-                <AlertTriangle size={13} /> Slug ini sudah dipakai artikel lain!
-              </span>
-            ) : (
-              <span className="text-emerald-600 font-bold flex items-center gap-1">
-                <Check size={13} /> Permalink Tersedia
-              </span>
-            )}
-          </div>
-        </section>
 
-        {/* Main Grid Workspace */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Columns (Editor / Split / Preview) */}
-          <div className={`space-y-6 ${viewMode === 'preview' ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
-            {/* Editor Workspace Box */}
+              {/* Permalink bar */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs text-slate-500">
+                <div className="flex items-center gap-1.5 font-mono">
+                  <span className="text-slate-400">/news/</span>
+                  <input
+                    type="text"
+                    value={slug}
+                    onChange={(e) => {
+                      setSlug(e.target.value);
+                      setIsSlugManual(true);
+                      setIsDirty(true);
+                    }}
+                    className={`bg-slate-50 px-2.5 py-0.5 rounded-lg border font-mono font-semibold focus:outline-none focus:bg-white ${
+                      isSlugConflict
+                        ? 'border-red-400 text-red-600'
+                        : 'border-slate-200 text-cyan-700 focus:border-cyan-600'
+                    }`}
+                  />
+                  {isSlugConflict && (
+                    <span className="text-red-600 font-bold ml-1">⚠️ Sudah dipakai</span>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-3 text-[11px] text-slate-400">
+                  <span>Kategori: <strong className="text-slate-700 font-bold">{category}</strong></span>
+                  <span>·</span>
+                  <span>Penulis: <strong className="text-slate-700 font-bold">{author}</strong></span>
+                </div>
+              </div>
+            </div>
+
+            {/* Document Editor Canvas */}
             <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xs">
-              {/* Comprehensive Toolbar */}
-              <div className="bg-slate-50 border-b border-slate-200 p-2.5 flex flex-wrap items-center justify-between gap-2">
-                {/* Formatting Tools */}
+              {/* Toolbar */}
+              <div className="sticky top-16 z-30 bg-slate-50/95 backdrop-blur-md border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+                {/* Formats */}
                 <div className="flex items-center flex-wrap gap-1 text-slate-700">
-                  {/* Undo / Redo */}
                   <button
                     type="button"
                     onClick={handleUndo}
                     disabled={historyIndex <= 0}
-                    className="p-2 rounded-lg hover:bg-slate-200 disabled:opacity-30 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 disabled:opacity-30 cursor-pointer"
                     title="Undo (Ctrl + Z)"
                   >
                     <Undo2 size={15} />
@@ -939,7 +914,7 @@ export default function EditorClient() {
                     type="button"
                     onClick={handleRedo}
                     disabled={historyIndex >= history.length - 1}
-                    className="p-2 rounded-lg hover:bg-slate-200 disabled:opacity-30 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 disabled:opacity-30 cursor-pointer"
                     title="Redo (Ctrl + Y)"
                   >
                     <Redo2 size={15} />
@@ -947,31 +922,31 @@ export default function EditorClient() {
 
                   <div className="w-[1px] h-5 bg-slate-200 mx-1" />
 
-                  {/* Headings */}
                   <button
                     type="button"
                     onClick={() => insertSnippet('## ', '\n', 'Subjudul H2')}
-                    className="p-2 rounded-lg hover:bg-slate-200 font-bold text-xs cursor-pointer"
+                    className="px-2 py-1 rounded-lg hover:bg-slate-200 font-bold text-xs cursor-pointer flex items-center gap-0.5"
                     title="Heading 2"
                   >
-                    <Heading2 size={15} />
+                    <Heading2 size={14} />
+                    <span>H2</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => insertSnippet('### ', '\n', 'Subjudul H3')}
-                    className="p-2 rounded-lg hover:bg-slate-200 font-bold text-xs cursor-pointer"
+                    className="px-2 py-1 rounded-lg hover:bg-slate-200 font-bold text-xs cursor-pointer flex items-center gap-0.5"
                     title="Heading 3"
                   >
-                    <Heading3 size={15} />
+                    <Heading3 size={14} />
+                    <span>H3</span>
                   </button>
 
                   <div className="w-[1px] h-5 bg-slate-200 mx-1" />
 
-                  {/* Inline Formats */}
                   <button
                     type="button"
                     onClick={() => insertSnippet('**', '**')}
-                    className="p-2 rounded-lg hover:bg-slate-200 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 cursor-pointer"
                     title="Tebal (Ctrl + B)"
                   >
                     <Bold size={15} />
@@ -979,7 +954,7 @@ export default function EditorClient() {
                   <button
                     type="button"
                     onClick={() => insertSnippet('*', '*')}
-                    className="p-2 rounded-lg hover:bg-slate-200 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 cursor-pointer"
                     title="Miring (Ctrl + I)"
                   >
                     <Italic size={15} />
@@ -987,19 +962,18 @@ export default function EditorClient() {
                   <button
                     type="button"
                     onClick={() => insertSnippet('~~', '~~')}
-                    className="p-2 rounded-lg hover:bg-slate-200 cursor-pointer"
-                    title="Coret (Strikethrough)"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 cursor-pointer"
+                    title="Coret"
                   >
                     <Strikethrough size={15} />
                   </button>
 
                   <div className="w-[1px] h-5 bg-slate-200 mx-1" />
 
-                  {/* Lists & Quotes */}
                   <button
                     type="button"
                     onClick={() => insertSnippet('- ', '\n')}
-                    className="p-2 rounded-lg hover:bg-slate-200 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 cursor-pointer"
                     title="Bullet List"
                   >
                     <List size={15} />
@@ -1007,7 +981,7 @@ export default function EditorClient() {
                   <button
                     type="button"
                     onClick={() => insertSnippet('1. ', '\n')}
-                    className="p-2 rounded-lg hover:bg-slate-200 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 cursor-pointer"
                     title="Numbered List"
                   >
                     <ListOrdered size={15} />
@@ -1015,19 +989,18 @@ export default function EditorClient() {
                   <button
                     type="button"
                     onClick={() => insertSnippet('> ', '\n')}
-                    className="p-2 rounded-lg hover:bg-slate-200 cursor-pointer"
-                    title="Kutipan / Blockquote"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 cursor-pointer"
+                    title="Kutipan"
                   >
                     <Quote size={15} />
                   </button>
 
                   <div className="w-[1px] h-5 bg-slate-200 mx-1" />
 
-                  {/* Links & Media Modals */}
                   <button
                     type="button"
                     onClick={openLinkModal}
-                    className="p-2 rounded-lg hover:bg-slate-200 text-cyan-700 cursor-pointer"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 text-cyan-700 cursor-pointer"
                     title="Sisipkan Tautan (Ctrl + K)"
                   >
                     <Link2 size={15} />
@@ -1035,50 +1008,50 @@ export default function EditorClient() {
                   <button
                     type="button"
                     onClick={() => setIsImageModalOpen(true)}
-                    className="p-2 rounded-lg hover:bg-slate-200 text-cyan-700 cursor-pointer"
-                    title="Sisipkan Gambar di Dalam Teks"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 text-cyan-700 cursor-pointer"
+                    title="Sisipkan Gambar dalam Konten"
                   >
                     <ImageIcon size={15} />
                   </button>
 
                   <div className="w-[1px] h-5 bg-slate-200 mx-1" />
 
-                  {/* Industrial Modules */}
+                  {/* Modules */}
                   <button
                     type="button"
                     onClick={insertIndustrialTable}
-                    className="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center gap-1 cursor-pointer"
-                    title="Sisipkan Tabel Spesifikasi Mesin"
+                    className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold flex items-center gap-1 cursor-pointer"
+                    title="Tabel Spesifikasi Teknis"
                   >
-                    <TableIcon size={14} className="text-cyan-600" />
+                    <TableIcon size={13} className="text-cyan-600" />
                     <span>Tabel Spek</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={insertWhatsAppCTA}
-                    className="px-2.5 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1 cursor-pointer"
-                    title="Sisipkan Box Konsultasi WhatsApp"
+                    className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center gap-1 cursor-pointer"
+                    title="Box WhatsApp Engineering"
                   >
-                    <PhoneCall size={14} className="text-emerald-600" />
+                    <PhoneCall size={13} className="text-emerald-600" />
                     <span>Box WhatsApp</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={insertFaqAccordion}
-                    className="px-2.5 py-1.5 rounded-lg bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800 text-xs font-bold flex items-center gap-1 cursor-pointer"
-                    title="Sisipkan Tanya Jawab (FAQ Schema)"
+                    className="px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800 text-xs font-bold flex items-center gap-1 cursor-pointer"
+                    title="FAQ Schema"
                   >
-                    <HelpCircle size={14} className="text-blue-600" />
+                    <HelpCircle size={13} className="text-blue-600" />
                     <span>FAQ</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={insertYouTubeVideo}
-                    className="p-2 rounded-lg hover:bg-slate-200 text-red-600 cursor-pointer"
-                    title="Sisipkan Video YouTube Demo"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 text-red-600 cursor-pointer"
+                    title="Video YouTube"
                   >
                     <Video size={15} />
                   </button>
@@ -1086,52 +1059,50 @@ export default function EditorClient() {
                   <button
                     type="button"
                     onClick={insertLeadMagnet}
-                    className="p-2 rounded-lg hover:bg-slate-200 text-blue-600 cursor-pointer"
-                    title="Sisipkan Box Unduh Katalog Brosur"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 text-blue-600 cursor-pointer"
+                    title="Box Unduh Brosur"
                   >
                     <FileDown size={15} />
                   </button>
                 </div>
 
-                {/* Word Stats Badge */}
-                <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 bg-white px-2.5 py-1 rounded-xl border border-slate-200">
-                  <span>⏱️ {stats.readingTime} mnt baca</span>
-                  <span>·</span>
-                  <span>{stats.words} kata</span>
+                {/* Word Stats */}
+                <div className="text-[11px] font-semibold text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shrink-0">
+                  ⏱️ {stats.readingTime} mnt baca · {stats.words} kata
                 </div>
               </div>
 
-              {/* Editor & Preview Area */}
+              {/* Editor Workspace Views */}
               <div
                 className={`grid ${
-                  viewMode === 'split' ? 'grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200' : 'grid-cols-1'
+                  viewMode === 'split' ? 'grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-200' : 'grid-cols-1'
                 }`}
               >
-                {/* Textarea Editor */}
+                {/* Editor Textarea */}
                 {(viewMode === 'editor' || viewMode === 'split') && (
-                  <div className="p-4 sm:p-6 bg-white relative">
+                  <div className="p-6 sm:p-8 bg-white min-h-[580px]">
                     <textarea
                       ref={textareaRef}
                       value={content}
                       onChange={(e) => {
                         updateContentWithHistory(e.target.value);
                       }}
-                      rows={22}
-                      placeholder="Mulai ketik artikel Anda di sini... (Ketik ## untuk subjudul, atau klik tombol di toolbar atas)"
-                      className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-sm font-sans leading-relaxed focus:outline-none resize-y min-h-[480px]"
+                      rows={26}
+                      placeholder="Mulai tulis naskah artikel Anda di sini... (Gunakan tombol toolbar di atas atau ketik langsung format Markdown / HTML)"
+                      className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-base font-sans leading-relaxed focus:outline-none resize-y min-h-[540px]"
                     />
                   </div>
                 )}
 
-                {/* Live Preview Pane */}
+                {/* Live Preview View */}
                 {(viewMode === 'preview' || viewMode === 'split') && (
-                  <div className="p-4 sm:p-6 bg-slate-50/60 overflow-y-auto max-h-[650px]">
-                    {/* Device Switcher (Preview Mode) */}
+                  <div className="p-6 sm:p-8 bg-slate-50/70 overflow-y-auto max-h-[780px]">
+                    {/* Device Switcher (Full Preview Mode) */}
                     {viewMode === 'preview' && (
                       <div className="flex items-center justify-center gap-2 mb-6">
                         <button
                           onClick={() => setDevicePreview('desktop')}
-                          className={`p-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                             devicePreview === 'desktop'
                               ? 'bg-cyan-600 text-white shadow-xs'
                               : 'bg-white border border-slate-200 text-slate-600'
@@ -1141,7 +1112,7 @@ export default function EditorClient() {
                         </button>
                         <button
                           onClick={() => setDevicePreview('tablet')}
-                          className={`p-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                             devicePreview === 'tablet'
                               ? 'bg-cyan-600 text-white shadow-xs'
                               : 'bg-white border border-slate-200 text-slate-600'
@@ -1151,18 +1122,18 @@ export default function EditorClient() {
                         </button>
                         <button
                           onClick={() => setDevicePreview('mobile')}
-                          className={`p-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                             devicePreview === 'mobile'
                               ? 'bg-cyan-600 text-white shadow-xs'
                               : 'bg-white border border-slate-200 text-slate-600'
                           }`}
                         >
-                          <Smartphone size={14} /> HP Frame (375px)
+                          <Smartphone size={14} /> Mobile (375px)
                         </button>
                       </div>
                     )}
 
-                    {/* Article Container Preview */}
+                    {/* Rendered Container */}
                     <div
                       className={`mx-auto bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm transition-all ${
                         devicePreview === 'mobile' && viewMode === 'preview'
@@ -1172,19 +1143,16 @@ export default function EditorClient() {
                           : 'max-w-none'
                       }`}
                     >
-                      {/* Featured Image */}
                       {featuredImage && (
                         <div className="relative aspect-video w-full mb-6 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
                           <img src={featuredImage} alt={title} className="w-full h-full object-cover" />
                         </div>
                       )}
 
-                      {/* Title */}
                       <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">
-                        {title || 'Judul Artikel Anda'}
+                        {title || 'Judul Artikel'}
                       </h1>
 
-                      {/* Meta info */}
                       <div className="flex items-center gap-3 text-xs text-slate-500 mb-6 border-b border-slate-100 pb-4">
                         <span className="px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 font-bold uppercase tracking-wider">
                           {category}
@@ -1194,7 +1162,6 @@ export default function EditorClient() {
                         <span>{stats.readingTime} mnt baca</span>
                       </div>
 
-                      {/* Content Preview Render */}
                       <div
                         className="text-slate-800 leading-relaxed space-y-4 text-sm"
                         dangerouslySetInnerHTML={{
@@ -1215,312 +1182,351 @@ export default function EditorClient() {
               </div>
             </div>
 
-            {/* Quick Internal Product Links Box */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
-                🔗 Sisipkan Internal Link Produk Dimensi Wahyudi:
+            {/* Quick Product Links (Bottom Helper) */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs flex flex-wrap items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 mr-2">
+                🔗 Tautan Cepat Produk:
               </span>
-              <div className="flex flex-wrap gap-2">
-                {INTERNAL_PRODUCTS.map((prod) => (
-                  <button
-                    key={prod.url}
-                    type="button"
-                    onClick={() => insertSnippet(`[${prod.name}](${prod.url})`, '')}
-                    className="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-200 text-xs font-semibold text-slate-700 hover:text-cyan-800 transition-all cursor-pointer flex items-center gap-1.5"
-                  >
-                    <span>+ {prod.name}</span>
-                  </button>
-                ))}
-              </div>
+              {INTERNAL_PRODUCTS.map((prod) => (
+                <button
+                  key={prod.url}
+                  type="button"
+                  onClick={() => insertSnippet(`[${prod.name}](${prod.url})`, '')}
+                  className="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-200 text-xs font-semibold text-slate-700 hover:text-cyan-800 transition-all cursor-pointer"
+                >
+                  + {prod.name}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Right Column: Sidebar Settings, Media & SEO (1 Col) */}
-          <div className="space-y-6">
-            {/* Category & Featured Pin */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Kategori Artikel
-                </label>
+          {/* Right Inspector Sidebar (Collapsible & Tabbed for ZERO Clutter) */}
+          {isSidebarOpen && (
+            <aside className="w-80 lg:w-96 shrink-0 space-y-4 animate-in fade-in slide-in-from-right-4 duration-200">
+              {/* Tab Selector */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-1 shadow-xs flex items-center gap-1 text-xs font-bold">
                 <button
-                  type="button"
-                  onClick={() => setIsFeatured(!isFeatured)}
-                  className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                    isFeatured
-                      ? 'bg-amber-100 text-amber-800 border border-amber-300'
-                      : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                  onClick={() => setSidebarTab('general')}
+                  className={`flex-1 py-2 rounded-xl transition-all cursor-pointer text-center ${
+                    sidebarTab === 'general'
+                      ? 'bg-cyan-50 text-cyan-700 font-extrabold shadow-2xs'
+                      : 'text-slate-500 hover:text-slate-800'
                   }`}
-                  title="Tandai sebagai artikel Featured di halaman depan"
                 >
-                  <Star size={13} className={isFeatured ? 'fill-amber-500 text-amber-500' : ''} />
-                  <span>{isFeatured ? 'Featured ⭐' : 'Jadikan Featured'}</span>
+                  Umum
+                </button>
+                <button
+                  onClick={() => setSidebarTab('seo')}
+                  className={`flex-1 py-2 rounded-xl transition-all cursor-pointer text-center ${
+                    sidebarTab === 'seo'
+                      ? 'bg-cyan-50 text-cyan-700 font-extrabold shadow-2xs'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  SEO & Social
+                </button>
+                <button
+                  onClick={() => setSidebarTab('export')}
+                  className={`flex-1 py-2 rounded-xl transition-all cursor-pointer text-center ${
+                    sidebarTab === 'export'
+                      ? 'bg-cyan-50 text-cyan-700 font-extrabold shadow-2xs'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Alat & Cetak
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {CATEGORIES.map((cat) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => {
-                      setCategory(cat);
-                      setIsDirty(true);
-                    }}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      category === cat
-                        ? 'bg-cyan-600 text-white shadow-xs'
-                        : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Featured Image & WebP Compressor */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
-                Featured Cover Image
-              </label>
-
-              {/* Direct Upload / Drag & Drop */}
-              <label className="block p-4 rounded-2xl border-2 border-dashed border-slate-200 hover:border-cyan-500 bg-slate-50 hover:bg-cyan-50/50 transition-all text-center cursor-pointer">
-                <Upload size={20} className="mx-auto mb-1.5 text-slate-400" />
-                <span className="text-xs font-bold text-slate-700 block">Pilih / Drag Foto dari Komputer</span>
-                <span className="text-[11px] text-slate-400 block mt-0.5">Otomatis dikonversi & kompres ke WebP ringan</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) handleImageFileSelect(file);
-                  }}
-                  className="hidden"
-                />
-              </label>
-
-              <div className="relative">
-                <input
-                  type="text"
-                  value={featuredImage}
-                  onChange={(e) => {
-                    setFeaturedImage(e.target.value);
-                    setIsDirty(true);
-                  }}
-                  placeholder="Atau tempel URL gambar eksternal di sini..."
-                  className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600"
-                />
-              </div>
-
-              {featuredImage ? (
-                <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
-                  <img src={featuredImage} alt="Cover Preview" className="w-full h-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => setFeaturedImage('')}
-                    className="absolute top-2 right-2 p-1.5 rounded-lg bg-white/90 text-red-600 hover:bg-red-50 text-xs shadow-xs"
-                    title="Hapus gambar"
-                  >
-                    <X size={14} />
-                  </button>
-                </div>
-              ) : null}
-            </div>
-
-            {/* SEO Excerpt & Google Snippet */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Ringkasan Meta (SEO)
-                </label>
-                <button
-                  type="button"
-                  onClick={generateAutoExcerpt}
-                  className="text-[11px] font-bold text-cyan-600 hover:text-cyan-700 flex items-center gap-1 cursor-pointer"
-                  title="Generate otomatis dari paragraf pertama artikel"
-                >
-                  <Sparkles size={12} />
-                  <span>Auto Generate</span>
-                </button>
-              </div>
-
-              <textarea
-                value={excerpt}
-                onChange={(e) => {
-                  setExcerpt(e.target.value);
-                  setIsDirty(true);
-                }}
-                rows={3}
-                placeholder="Deskripsi singkat artikel untuk cuplikan Google Search..."
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600"
-              />
-
-              <div className="flex justify-between text-[11px] text-slate-400">
-                <span>Panjang ideal: 120-160 karakter</span>
-                <span className={excerpt.length > 160 ? 'text-amber-600 font-bold' : ''}>
-                  {excerpt.length}/160
-                </span>
-              </div>
-
-              {/* SERP Preview */}
-              <div className="mt-3 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-1">
-                <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
-                  <span className="w-4 h-4 rounded-full bg-cyan-600 text-white flex items-center justify-center text-[9px] font-bold">
-                    D
-                  </span>
-                  <span className="font-semibold text-slate-700">dimensiwahyudi.com</span>
-                  <span>› news › {slug || 'artikel'}</span>
-                </div>
-                <div className="text-sm font-bold text-blue-800 line-clamp-1">
-                  {title || 'Judul Artikel Anda di Google'} | Insights Dimensi Wahyudi
-                </div>
-                <div className="text-xs text-slate-600 line-clamp-2">
-                  {excerpt || 'Teks ringkasan meta artikel Anda akan muncul di hasil pencarian Google seperti ini.'}
-                </div>
-              </div>
-            </div>
-
-            {/* SEO Auditor Checklist */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Skor Kesiapan SEO
-                </label>
-                <span
-                  className={`text-xs font-extrabold px-2.5 py-0.5 rounded-full ${
-                    seoAudit.score >= 80
-                      ? 'bg-emerald-100 text-emerald-800'
-                      : seoAudit.score >= 60
-                      ? 'bg-amber-100 text-amber-800'
-                      : 'bg-red-100 text-red-800'
-                  }`}
-                >
-                  {seoAudit.score}/100
-                </span>
-              </div>
-
-              <div className="space-y-2 text-xs">
-                <div className="flex items-center gap-2">
-                  {seoAudit.hasGoodTitle ? (
-                    <CheckCircle size={14} className="text-emerald-500 shrink-0" />
-                  ) : (
-                    <AlertCircle size={14} className="text-slate-300 shrink-0" />
-                  )}
-                  <span className={seoAudit.hasGoodTitle ? 'text-slate-700' : 'text-slate-400'}>
-                    Panjang judul ideal (35-70 karakter)
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {seoAudit.hasExcerpt ? (
-                    <CheckCircle size={14} className="text-emerald-500 shrink-0" />
-                  ) : (
-                    <AlertCircle size={14} className="text-slate-300 shrink-0" />
-                  )}
-                  <span className={seoAudit.hasExcerpt ? 'text-slate-700' : 'text-slate-400'}>
-                    Ringkasan Meta SEO lengkap
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {seoAudit.hasImage ? (
-                    <CheckCircle size={14} className="text-emerald-500 shrink-0" />
-                  ) : (
-                    <AlertCircle size={14} className="text-slate-300 shrink-0" />
-                  )}
-                  <span className={seoAudit.hasImage ? 'text-slate-700' : 'text-slate-400'}>
-                    Featured Cover Image terpasang
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {seoAudit.hasH2 ? (
-                    <CheckCircle size={14} className="text-emerald-500 shrink-0" />
-                  ) : (
-                    <AlertCircle size={14} className="text-slate-300 shrink-0" />
-                  )}
-                  <span className={seoAudit.hasH2 ? 'text-slate-700' : 'text-slate-400'}>
-                    Memiliki Subjudul (Heading H2)
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {seoAudit.hasWordCount ? (
-                    <CheckCircle size={14} className="text-emerald-500 shrink-0" />
-                  ) : (
-                    <AlertCircle size={14} className="text-slate-300 shrink-0" />
-                  )}
-                  <span className={seoAudit.hasWordCount ? 'text-slate-700' : 'text-slate-400'}>
-                    Panjang artikel memadai (&gt; 250 kata)
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Table of Contents Dynamic Preview */}
-            {tableOfContents.length > 0 && (
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
-                  Daftar Isi Otomatis
-                </label>
-                <div className="space-y-1 text-xs">
-                  {tableOfContents.map((h, i) => (
-                    <div
-                      key={i}
-                      className={`text-slate-600 line-clamp-1 ${h.level === 3 ? 'pl-4 text-slate-500' : 'font-medium'}`}
-                    >
-                      • {h.text}
+              {/* TAB 1: UMUM */}
+              {sidebarTab === 'general' && (
+                <div className="space-y-4">
+                  {/* Category & Featured */}
+                  <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                        Kategori
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setIsFeatured(!isFeatured)}
+                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                          isFeatured
+                            ? 'bg-amber-100 text-amber-800 border border-amber-300'
+                            : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                        }`}
+                      >
+                        <Star size={13} className={isFeatured ? 'fill-amber-500 text-amber-500' : ''} />
+                        <span>{isFeatured ? 'Featured ⭐' : 'Set Featured'}</span>
+                      </button>
                     </div>
-                  ))}
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {CATEGORIES.map((cat) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => {
+                            setCategory(cat);
+                            setIsDirty(true);
+                          }}
+                          className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                            category === cat
+                              ? 'bg-cyan-600 text-white shadow-xs'
+                              : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
+                          }`}
+                        >
+                          {cat}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Featured Image */}
+                  <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Cover Image Artikel
+                    </label>
+
+                    <label className="block p-3.5 rounded-2xl border-2 border-dashed border-slate-200 hover:border-cyan-500 bg-slate-50 hover:bg-cyan-50/50 transition-all text-center cursor-pointer">
+                      <Upload size={18} className="mx-auto mb-1 text-slate-400" />
+                      <span className="text-xs font-bold text-slate-700 block">Pilih / Drag Foto</span>
+                      <span className="text-[10px] text-slate-400 block">Auto WebP Converter</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleImageFileSelect(file);
+                        }}
+                        className="hidden"
+                      />
+                    </label>
+
+                    <input
+                      type="text"
+                      value={featuredImage}
+                      onChange={(e) => {
+                        setFeaturedImage(e.target.value);
+                        setIsDirty(true);
+                      }}
+                      placeholder="Atau tempel URL gambar..."
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600"
+                    />
+
+                    {featuredImage && (
+                      <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+                        <img src={featuredImage} alt="Cover Preview" className="w-full h-full object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => setFeaturedImage('')}
+                          className="absolute top-2 right-2 p-1 rounded-lg bg-white/90 text-red-600 hover:bg-red-50 text-xs shadow-xs"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Author */}
+                  <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-2">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Penulis (Author)
+                    </label>
+                    <input
+                      type="text"
+                      value={author}
+                      onChange={(e) => {
+                        setAuthor(e.target.value);
+                        setIsDirty(true);
+                      }}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:bg-white focus:outline-none focus:border-cyan-600"
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Export & Print Options */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-2.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
-                Ekspor & Cetak Brosur
-              </label>
-              <button
-                type="button"
-                onClick={handlePrintBrochure}
-                className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Printer size={14} className="text-cyan-600" />
-                <span>Cetak Brosur PDF Resmi</span>
-              </button>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => downloadSourceFile('md')}
-                  className="flex-1 py-2 px-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-semibold cursor-pointer"
-                >
-                  Unduh .MD
-                </button>
-                <button
-                  type="button"
-                  onClick={() => downloadSourceFile('html')}
-                  className="flex-1 py-2 px-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-semibold cursor-pointer"
-                >
-                  Unduh .HTML
-                </button>
-              </div>
-            </div>
+              {/* TAB 2: SEO & SOCIAL */}
+              {sidebarTab === 'seo' && (
+                <div className="space-y-4">
+                  {/* SEO Excerpt */}
+                  <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                        Meta Description
+                      </label>
+                      <button
+                        type="button"
+                        onClick={generateAutoExcerpt}
+                        className="text-[11px] font-bold text-cyan-600 hover:text-cyan-700 flex items-center gap-1 cursor-pointer"
+                      >
+                        <Sparkles size={12} />
+                        <span>Auto</span>
+                      </button>
+                    </div>
 
-            {/* Author */}
-            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-                Penulis (Author)
-              </label>
-              <input
-                type="text"
-                value={author}
-                onChange={(e) => {
-                  setAuthor(e.target.value);
-                  setIsDirty(true);
-                }}
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:bg-white focus:outline-none focus:border-cyan-600"
-              />
-            </div>
-          </div>
+                    <textarea
+                      value={excerpt}
+                      onChange={(e) => {
+                        setExcerpt(e.target.value);
+                        setIsDirty(true);
+                      }}
+                      rows={3}
+                      placeholder="Deskripsi singkat untuk cuplikan Google..."
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600"
+                    />
+                    <div className="flex justify-between text-[11px] text-slate-400">
+                      <span>Ideal: 120-160 kark.</span>
+                      <span className={excerpt.length > 160 ? 'text-amber-600 font-bold' : ''}>
+                        {excerpt.length}/160
+                      </span>
+                    </div>
+
+                    {/* Google SERP Card */}
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-1">
+                      <div className="flex items-center gap-1 text-[10px] text-slate-500">
+                        <span className="font-semibold text-slate-700">dimensiwahyudi.com</span>
+                        <span>› news › {slug || 'artikel'}</span>
+                      </div>
+                      <div className="text-xs font-bold text-blue-800 line-clamp-1">
+                        {title || 'Judul Artikel'} | Dimensi Wahyudi
+                      </div>
+                      <div className="text-[11px] text-slate-600 line-clamp-2">
+                        {excerpt || 'Cuplikan ringkasan artikel Anda di Google Search.'}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SEO Auditor Checklist */}
+                  <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                        Skor SEO
+                      </label>
+                      <span
+                        className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${
+                          seoAudit.score >= 80
+                            ? 'bg-emerald-100 text-emerald-800'
+                            : seoAudit.score >= 60
+                            ? 'bg-amber-100 text-amber-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}
+                      >
+                        {seoAudit.score}/100
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5 text-xs">
+                      <div className="flex items-center gap-2">
+                        {seoAudit.hasGoodTitle ? (
+                          <CheckCircle size={14} className="text-emerald-500 shrink-0" />
+                        ) : (
+                          <AlertCircle size={14} className="text-slate-300 shrink-0" />
+                        )}
+                        <span className={seoAudit.hasGoodTitle ? 'text-slate-700' : 'text-slate-400'}>
+                          Panjang judul ideal (35-70 kark.)
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {seoAudit.hasExcerpt ? (
+                          <CheckCircle size={14} className="text-emerald-500 shrink-0" />
+                        ) : (
+                          <AlertCircle size={14} className="text-slate-300 shrink-0" />
+                        )}
+                        <span className={seoAudit.hasExcerpt ? 'text-slate-700' : 'text-slate-400'}>
+                          Meta Description terisi
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {seoAudit.hasImage ? (
+                          <CheckCircle size={14} className="text-emerald-500 shrink-0" />
+                        ) : (
+                          <AlertCircle size={14} className="text-slate-300 shrink-0" />
+                        )}
+                        <span className={seoAudit.hasImage ? 'text-slate-700' : 'text-slate-400'}>
+                          Cover Image terpasang
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {seoAudit.hasH2 ? (
+                          <CheckCircle size={14} className="text-emerald-500 shrink-0" />
+                        ) : (
+                          <AlertCircle size={14} className="text-slate-300 shrink-0" />
+                        )}
+                        <span className={seoAudit.hasH2 ? 'text-slate-700' : 'text-slate-400'}>
+                          Memiliki Heading H2
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {seoAudit.hasWordCount ? (
+                          <CheckCircle size={14} className="text-emerald-500 shrink-0" />
+                        ) : (
+                          <AlertCircle size={14} className="text-slate-300 shrink-0" />
+                        )}
+                        <span className={seoAudit.hasWordCount ? 'text-slate-700' : 'text-slate-400'}>
+                          Panjang konten (&gt; 250 kata)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 3: ALAT & EKSPOR */}
+              {sidebarTab === 'export' && (
+                <div className="space-y-4">
+                  {/* Table of Contents */}
+                  {tableOfContents.length > 0 && (
+                    <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
+                        Daftar Isi Otomatis
+                      </label>
+                      <div className="space-y-1 text-xs">
+                        {tableOfContents.map((h, i) => (
+                          <div
+                            key={i}
+                            className={`text-slate-600 line-clamp-1 ${h.level === 3 ? 'pl-4 text-slate-500' : 'font-medium'}`}
+                          >
+                            • {h.text}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Export and Print */}
+                  <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-2.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
+                      Ekspor & Cetak
+                    </label>
+                    <button
+                      type="button"
+                      onClick={handlePrintBrochure}
+                      className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <Printer size={14} className="text-cyan-600" />
+                      <span>Cetak Brosur PDF Resmi</span>
+                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => downloadSourceFile('md')}
+                        className="flex-1 py-2 px-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-semibold cursor-pointer"
+                      >
+                        Unduh .MD
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => downloadSourceFile('html')}
+                        className="flex-1 py-2 px-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-semibold cursor-pointer"
+                      >
+                        Unduh .HTML
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </aside>
+          )}
         </div>
       </main>
 

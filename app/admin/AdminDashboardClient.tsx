@@ -379,7 +379,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
 
       {/* Top Navbar (Light Corporate Style) */}
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo & Identity */}
           <div className="flex items-center gap-3">
             <Link href="/" className="block relative h-10 w-36 sm:w-44 hover:opacity-85 transition-opacity">
@@ -470,7 +470,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
       </header>
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Metric Cards Banner */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex items-center justify-between">
