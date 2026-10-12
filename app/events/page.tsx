@@ -19,37 +19,45 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
+  const now = new Date();
+
   const eventsSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: eventsData.map((ev, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'Event',
-        name: ev.title,
-        description: ev.description,
-        startDate: ev.id === 'fanuc-schmalz-2026' ? '2026-03-12' : ev.id === 'mfg-indo-batam-2026' ? '2026-07-08' : '2026-10-07',
-        endDate: ev.id === 'fanuc-schmalz-2026' ? '2026-03-12' : ev.id === 'mfg-indo-batam-2026' ? '2026-07-11' : '2026-10-10',
-        eventStatus: ev.status === 'closed' ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        location: {
-          '@type': 'Place',
-          name: ev.location,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: ev.location.split(',')[1]?.trim() || ev.location,
-            addressCountry: 'ID',
+    itemListElement: eventsData.map((ev, index) => {
+      const targetEndStr = ('endDateRaw' in ev && ev.endDateRaw) ? ev.endDateRaw : ev.dateRaw;
+      const isPast = now > new Date(`${targetEndStr}T23:59:59+07:00`);
+      const isClosed = ev.status === 'closed' || isPast;
+
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Event',
+          name: ev.title,
+          description: ev.description,
+          startDate: ev.dateRaw,
+          endDate: targetEndStr,
+          eventStatus: isClosed ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          location: {
+            '@type': 'Place',
+            name: ev.location,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: ev.location.split(',')[1]?.trim() || ev.location,
+              addressCountry: 'ID',
+            },
+          },
+          image: ev.image.startsWith('http') ? ev.image : `https://dimensiwahyudi.com${ev.image}`,
+          organizer: {
+            '@type': 'Organization',
+            name: 'PT Dimensi Quantum Wahyudi',
+            url: 'https://dimensiwahyudi.com',
           },
         },
-        image: ev.image.startsWith('http') ? ev.image : `https://dimensiwahyudi.com${ev.image}`,
-        organizer: {
-          '@type': 'Organization',
-          name: 'PT Dimensi Quantum Wahyudi',
-          url: 'https://dimensiwahyudi.com',
-        },
-      },
-    })),
+      };
+    }),
   };
 
   return (
@@ -88,7 +96,14 @@ export default function EventsPage() {
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {eventsData.map((event) => {
-            const isClosed = event.status === 'closed';
+            // Cek otomatis: jika tanggal akhir acara sudah lewat dari hari ini
+            const targetEndDateStr = ('endDateRaw' in event && event.endDateRaw) ? event.endDateRaw : event.dateRaw;
+            const eventEndDate = new Date(`${targetEndDateStr}T23:59:59+07:00`);
+            const isAutoExpired = now > eventEndDate;
+            const isClosed = event.status === 'closed' || isAutoExpired;
+            const displayLabel = isClosed
+              ? (event.status === 'closed' && event.statusLabel ? event.statusLabel : 'Event Ended')
+              : event.statusLabel;
 
             return (
               <div 
@@ -109,7 +124,7 @@ export default function EventsPage() {
                       ? 'bg-slate-100 text-slate-600' 
                       : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
                   }`}>
-                    {event.statusLabel}
+                    {displayLabel}
                   </span>
                 </div>
 
