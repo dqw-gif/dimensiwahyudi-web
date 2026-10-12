@@ -16,13 +16,13 @@ export async function createAdminToken(pin: string): Promise<string> {
 }
 
 export async function isValidAdminPin(inputPin: string): Promise<boolean> {
-  const validPin = process.env.ADMIN_SECRET_PIN || '202688';
+  const validPin = process.env.ADMIN_SECRET_PIN || '241353';
   return inputPin.trim() === validPin.trim();
 }
 
 export async function verifyAdminToken(token?: string | null): Promise<boolean> {
   if (!token) return false;
-  const validPin = process.env.ADMIN_SECRET_PIN || '202688';
+  const validPin = process.env.ADMIN_SECRET_PIN || '241353';
   const expectedToken = await createAdminToken(validPin);
   return token === expectedToken;
 }
