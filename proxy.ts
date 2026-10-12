@@ -30,11 +30,17 @@ export default function proxy(request: NextRequest) {
         return NextResponse.redirect(url);
     }
 
+    // Bypass admin routes from legacy news redirection
+    if (pathname.startsWith('/admin')) {
+        return NextResponse.next();
+    }
+
     // 3. SEO Legacy URL Redirection:
     // If a request is for a single-level slug (e.g. /overhead-crane), and it's not a static route or file,
     // permanently redirect (301) to /news/[slug] to maintain search engine ranking and prevent 404s.
     const staticPaths = [
         '/',
+        '/admin',
         '/about',
         '/contact',
         '/career',
