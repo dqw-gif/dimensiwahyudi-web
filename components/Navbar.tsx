@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse, BarChart3, Calendar } from 'lucide-react';
+import { Menu, X, ChevronDown, Calculator, Cpu, Newspaper, Briefcase, Package, Play, HeartPulse, BarChart3, Calendar, FileText } from 'lucide-react';
 import { useLanguage } from './LanguageProvider';
 
 export default function Navbar() {
@@ -98,6 +98,17 @@ export default function Navbar() {
                       <div>
                         <p className="text-sm font-bold text-slate-800">Industrial Events</p>
                         <p className="text-xs text-slate-500">Upcoming seminars, expos &amp; exhibitions</p>
+                      </div>
+                    </Link>
+
+                    <Link href="/brosur" onClick={closeDropdown}
+                      className="flex items-start p-3 rounded-xl hover:bg-slate-50 transition-all group/item">
+                      <div className="bg-emerald-50 p-2 rounded-lg group-hover/item:bg-emerald-100 transition-colors mr-3 text-emerald-600">
+                        <FileText size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-800">E-Katalog &amp; Brosur</p>
+                        <p className="text-xs text-slate-500">Download brosur resmi produk</p>
                       </div>
                     </Link>
                   </div>
@@ -353,6 +364,9 @@ export default function Navbar() {
               </Link>
               <Link href="/events" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
                 <Calendar size={18} className="text-cyan-600" /><span>Industrial Events</span>
+              </Link>
+              <Link href="/brosur" className="flex items-center space-x-3 px-3 py-2.5 rounded-md text-base font-semibold text-slate-600 hover:text-cyan-600 hover:bg-slate-50" onClick={() => setIsOpen(false)}>
+                <FileText size={18} className="text-emerald-600" /><span>E-Katalog &amp; Brosur</span>
               </Link>
             </div>
 
