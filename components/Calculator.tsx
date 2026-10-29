@@ -1,14 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import Link from 'next/link';
-import { Zap, CheckCircle, AlertTriangle, ArrowDown, Mail, Lock } from 'lucide-react';
-import { calculateTotalLoad, checkSafetyStatus, getRecommendation, getSafetyMessage } from '../utils/calculatorLogic';
+import {
+  ShieldCheck,
+  TrendingUp,
+  Scale,
+  Clock,
+  Users,
+  ArrowRight,
+  AlertTriangle,
+  CheckCircle2,
+  FileSpreadsheet,
+  Info,
+  Check,
+} from 'lucide-react';
+import { calculateErgonomicsAndROI } from '../utils/calculatorLogic';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function SmartCalculator() {
-  const [weight, setWeight] = useState(50); // kg
-  const [frequency, setFrequency] = useState(100); // times/hour
-  const [workHours, setWorkHours] = useState(8); // hours
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
+
+  const [weight, setWeight] = useState(45); // kg
+  const [frequency, setFrequency] = useState(80); // cycles/hour
+  const [workHours, setWorkHours] = useState(8); // hours/day
+  const [operatorCount, setOperatorCount] = useState(2); // operators on line
+  const [activeTab, setActiveTab] = useState<'ergonomics' | 'financial'>('ergonomics');
+
+  // Consultation modal / lead form state
+  const [showConsultForm, setShowConsultForm] = useState(false);
   const [fullName, setFullName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
@@ -16,308 +37,680 @@ export default function SmartCalculator() {
   const [startedAt] = useState(() => Date.now());
   const [leadError, setLeadError] = useState('');
   const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [isUnlocked, setIsUnlocked] = useState(false);
 
-  const { tons: totalLoadTons } = calculateTotalLoad(weight, frequency, workHours);
-  const isDangerous = checkSafetyStatus(totalLoadTons, weight);
-  const recommendation = getRecommendation(weight);
-  const safetyMessage = getSafetyMessage(isDangerous, weight);
+  const weightInputId = useId();
+  const freqInputId = useId();
+  const hoursInputId = useId();
+  const operatorInputId = useId();
+
+  const calc = calculateErgonomicsAndROI(weight, frequency, workHours, operatorCount, lang);
+
+  // Currency formatter
+  const formatIDR = (value: number) => {
+    return `IDR ${value.toLocaleString('en-US')}`;
+  };
+
+  const handleSubmitLead = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !fullName || !company) return;
+    setLeadStatus('loading');
+    setLeadError('');
+
+    try {
+      const res = await fetch('/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kind: 'roi_unlock',
+          fullName,
+          company,
+          email,
+          honeypot,
+          startedAt,
+          context: {
+            weight_kg: weight,
+            frequency_per_hr: frequency,
+            hours_per_day: workHours,
+            operator_count: operatorCount,
+            total_load_tons: calc.dailyTotalTons.toFixed(2),
+            annual_load_tons: calc.annualTotalTons.toFixed(1),
+            status: calc.riskLevel,
+            recommendation: `${calc.recommendation.title} (${calc.recommendation.series})`,
+            annual_medical_saving: formatIDR(calc.annualMedicalSavingRp),
+            payback_period: calc.paybackPeriodMonths,
+          },
+        }),
+      });
+
+      if (res.ok) {
+        setLeadStatus('success');
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'Calculator',
+            event_label: 'ROI Technical Request',
+          });
+          window.gtag('event', 'lead_funnel_step1_complete', {
+            event_category: 'LeadFunnel',
+            event_label: 'ROI Form Completed',
+          });
+        }
+      } else {
+        const payload = await res.json().catch(() => ({}));
+        setLeadError(
+          typeof payload?.error === 'string'
+            ? payload.error
+            : isId
+            ? 'Gagal mengirim formulir. Silakan coba lagi.'
+            : 'Failed to submit form. Please try again.'
+        );
+        setLeadStatus('error');
+      }
+    } catch {
+      setLeadError(
+        isId
+          ? 'Kendala koneksi jaringan. Silakan periksa koneksi internet Anda.'
+          : 'Network connection issue. Please verify your connection.'
+      );
+      setLeadStatus('error');
+    }
+  };
+
+  const riskLabelDisplay =
+    calc.riskLevel === 'CRITICAL'
+      ? isId
+        ? 'KRITIS'
+        : 'CRITICAL'
+      : calc.riskLevel === 'WARNING'
+      ? isId
+        ? 'WASPADA'
+        : 'WARNING'
+      : isId
+      ? 'AMAN'
+      : 'COMPLIANT';
 
   return (
-    <div className="relative mx-auto w-full max-w-6xl overflow-hidden rounded-[1.5rem] md:rounded-[2rem] border border-slate-200 bg-white/90 p-4 sm:p-6 shadow-[0_30px_100px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-8 lg:p-10">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.12),transparent_30%)]" aria-hidden="true" />
-      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-cyan-200/50 blur-3xl" aria-hidden="true" />
+    <div className="w-full bg-white/75 backdrop-blur-2xl backdrop-saturate-150 border border-white/95 ring-1 ring-[#005596]/12 shadow-[0_20px_50px_-12px_rgba(0,85,150,0.10),inset_0_1px_0_0_rgba(255,255,255,0.95)] rounded-3xl p-4 sm:p-6 lg:p-8">
+      {/* Top Header Bar */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200/80">
+        <div className="space-y-1.5">
+          <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-xs">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+              {isId
+                ? 'Instrumen Analisis Teknik Ergonomi & ROI Finansial'
+                : 'Ergonomic Engineering & Financial Analysis Instrument'}
+            </span>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed font-normal">
+            {isId
+              ? 'Atur parameter lini produksi di bawah ini untuk mensimulasikan beban tekan cakram tulang belakang dan estimasi waktu balik modal ROI (standar ISO 11228-1 dan K3 industri).'
+              : 'Adjust line parameters below to simulate spinal biomechanical disc compression and return-on-investment timelines (ISO 11228-1 and occupational safety standards).'}
+          </p>
+        </div>
 
-      <div className="relative">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-6">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-cyan-700">
-              <Zap size={12} />
-              Interactive estimator
-            </div>
-            <h2 className="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
-              ROI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">& Ergonomic Workload</span>
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
-              Adjust the operational inputs to see how cumulative load, safety status, and handling recommendations shift in real time.
-            </p>
+        {/* Live Metric Pills */}
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="bg-white/90 backdrop-blur-xl border border-white/95 ring-1 ring-[#005596]/12 shadow-xs px-4 py-2 rounded-2xl text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 block">
+              {isId ? 'Total Harian' : 'Daily Total'}
+            </span>
+            <span className="text-base sm:text-lg font-mono font-black text-slate-900 tracking-tight">
+              {calc.dailyTotalTons.toFixed(2)}{' '}
+              <span className="text-xs font-sans font-medium text-slate-600">{isId ? 'Ton' : 'Tons'}</span>
+            </span>
+          </div>
+          <div className="bg-white/90 backdrop-blur-xl border border-white/95 ring-1 ring-[#005596]/12 shadow-xs px-4 py-2 rounded-2xl text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 block">
+              {isId ? 'Status Keamanan' : 'Safety Status'}
+            </span>
+            <span
+              className={`text-base sm:text-lg font-mono font-black flex items-center gap-1 tracking-tight ${
+                calc.riskLevel === 'CRITICAL'
+                  ? 'text-red-600'
+                  : calc.riskLevel === 'WARNING'
+                  ? 'text-amber-600'
+                  : 'text-emerald-700'
+              }`}
+            >
+              {riskLabelDisplay}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Main 2-Column Industrial Workbench */}
+      <div className="mt-8 grid lg:grid-cols-12 gap-8 items-start">
+        {/* LEFT COLUMN: Operational Parameters (Inputs) */}
+        <div className="lg:col-span-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600">
+              {isId ? 'Parameter Operasional Lini' : 'Operational Line Parameters'}
+            </span>
+            <span className="text-xs text-slate-600">
+              {isId ? 'Geser slider untuk mengubah variabel' : 'Drag sliders to modify variables'}
+            </span>
           </div>
 
-          <div className="grid min-w-full gap-3 sm:min-w-0 sm:grid-cols-3 lg:grid-cols-1">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Payload</p>
-              <p className="mt-1 text-lg font-black text-slate-950">{weight} kg</p>
+          {/* Input 1: Payload Weight */}
+          <div className="bg-white border border-slate-200 p-4 sm:p-5 rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <label htmlFor={weightInputId} className="flex items-center gap-2 text-sm font-bold text-slate-800">
+                <Scale className="w-4 h-4 text-[#005596]" />
+                <span>{isId ? 'Berat Material (Payload)' : 'Workpiece Weight (Payload)'}</span>
+              </label>
+              <span className={`font-mono text-xl sm:text-2xl font-bold ${weight > 25 ? 'text-red-600' : 'text-[#005596]'}`}>
+                {weight} <span className="text-xs font-medium text-slate-600">kg</span>
+              </span>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Cycles</p>
-              <p className="mt-1 text-lg font-black text-slate-950">{frequency}/hr</p>
+
+            <input
+              id={weightInputId}
+              type="range"
+              min="5"
+              max="250"
+              step="5"
+              value={weight}
+              onChange={(e) => setWeight(Number(e.target.value))}
+              aria-label="Workpiece weight in kilograms"
+              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#005596]"
+            />
+
+            <div className="flex justify-between items-center text-[11px] font-mono text-slate-600">
+              <span>5 kg</span>
+              <span className={`font-sans font-semibold flex items-center gap-1 ${weight > 25 ? 'text-red-600' : 'text-slate-600'}`}>
+                {weight > 25 && <AlertTriangle className="w-3 h-3 text-red-600" />}
+                {isId ? 'Batas Aman Angkat Manual: 25 kg' : 'Safe Manual Lifting Threshold: 25 kg'}
+              </span>
+              <span>250 kg</span>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Shift</p>
-              <p className="mt-1 text-lg font-black text-slate-950">{workHours} h</p>
+          </div>
+
+          {/* Input 2: Lifting Frequency */}
+          <div className="bg-white border border-slate-200 p-4 sm:p-5 rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <label htmlFor={freqInputId} className="flex items-center gap-2 text-sm font-bold text-slate-800">
+                <Clock className="w-4 h-4 text-[#005596]" />
+                <span>{isId ? 'Frekuensi Angkat (Cycle Rate)' : 'Lifting Frequency'}</span>
+              </label>
+              <span className="font-mono text-xl sm:text-2xl font-bold text-[#005596]">
+                {frequency} <span className="text-xs font-medium text-slate-600">{isId ? 'siklus/jam' : 'cycles/hour'}</span>
+              </span>
             </div>
+
+            <input
+              id={freqInputId}
+              type="range"
+              min="10"
+              max="300"
+              step="10"
+              value={frequency}
+              onChange={(e) => setFrequency(Number(e.target.value))}
+              aria-label="Lifting frequency in cycles per hour"
+              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#005596]"
+            />
+
+            <div className="flex justify-between items-center text-[11px] font-mono text-slate-600">
+              <span>{isId ? '10 siklus/jam (Ringan)' : '10 cycles/hr (Intermittent)'}</span>
+              <span>{isId ? '150 (Padat)' : '150 (Dense)'}</span>
+              <span>{isId ? '300 (Lini Cepat)' : '300 (High-Speed Line)'}</span>
+            </div>
+          </div>
+
+          {/* Dual Row: Shift Hours & Operator Count */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {/* Shift Duration */}
+            <div className="bg-white border border-slate-200 p-4 rounded-xl space-y-2">
+              <div className="flex items-center justify-between">
+                <label htmlFor={hoursInputId} className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-600" />
+                  <span>{isId ? 'Durasi Kerja' : 'Shift Duration'}</span>
+                </label>
+                <span className="font-mono text-lg font-bold text-slate-900">
+                  {workHours} {isId ? 'Jam' : 'Hours'}
+                </span>
+              </div>
+              <input
+                id={hoursInputId}
+                type="range"
+                min="4"
+                max="16"
+                step="1"
+                value={workHours}
+                onChange={(e) => setWorkHours(Number(e.target.value))}
+                aria-label="Work shift duration in hours"
+                className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#005596]"
+              />
+              <div className="flex justify-between text-[10px] font-mono text-slate-600">
+                <span>{isId ? '4 Jam' : '4 Hours'}</span>
+                <span>{isId ? '8 Jam (1 Shift)' : '8 Hours (1 Shift)'}</span>
+                <span>{isId ? '16 Jam (2 Shift)' : '16 Hours (2 Shifts)'}</span>
+              </div>
+            </div>
+
+            {/* Operator Count */}
+            <div className="bg-white border border-slate-200 p-4 rounded-xl space-y-2">
+              <div className="flex items-center justify-between">
+                <label htmlFor={operatorInputId} className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                  <Users className="w-3.5 h-3.5 text-slate-600" />
+                  <span>{isId ? 'Operator Lini' : 'Line Operators'}</span>
+                </label>
+                <span className="font-mono text-lg font-bold text-slate-900">
+                  {operatorCount} {isId ? 'Orang' : 'Crew'}
+                </span>
+              </div>
+              <input
+                id={operatorInputId}
+                type="range"
+                min="1"
+                max="8"
+                step="1"
+                value={operatorCount}
+                onChange={(e) => setOperatorCount(Number(e.target.value))}
+                aria-label="Number of line operators"
+                className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#005596]"
+              />
+              <div className="flex justify-between text-[10px] font-mono text-slate-600">
+                <span>{isId ? '1 Orang' : '1 Crew'}</span>
+                <span>{isId ? '4 Orang' : '4 Crew'}</span>
+                <span>{isId ? '8 Orang' : '8 Crew'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Regulatory Note */}
+          <div className="p-3 bg-slate-100 border border-slate-200 rounded-xl flex items-start gap-2.5 text-xs text-slate-600">
+            <Info className="w-4 h-4 text-[#005596] shrink-0 mt-0.5" />
+            <p className="leading-relaxed">
+              <strong>{isId ? 'Acuan Standar K3:' : 'Occupational Standard Reference:'}</strong>{' '}
+              {isId ? (
+                <>
+                  ISO 11228-1 dan pedoman K3 industri menetapkan bahwa pengangkatan manual tanpa alat bantu tidak boleh melebihi{' '}
+                  <strong>25 kg</strong> pada kondisi ergonomi ideal.
+                </>
+              ) : (
+                <>
+                  ISO 11228-1 and national industrial guidelines specify that unassisted manual lifting must not exceed{' '}
+                  <strong>25 kg</strong> under optimal ergonomic conditions.
+                </>
+              )}
+            </p>
           </div>
         </div>
 
-        <div className="mt-6 md:mt-8 grid gap-6 md:gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:gap-10">
-          <div className="order-2 lg:order-1 space-y-6">
-            <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 md:p-6">
-              <div className="mb-5 flex items-center gap-2">
-                <Zap className="text-cyan-600" size={20} />
-                <h3 className="text-lg font-black text-slate-950 md:text-xl">Operational parameters</h3>
-              </div>
+        {/* RIGHT COLUMN: Engineering Results & Simulation Tabs */}
+        <div className="lg:col-span-6 space-y-6">
+          {/* Tab Selector */}
+          <div className="flex bg-slate-100/90 p-1 rounded-full border border-slate-200/80">
+            <button
+              onClick={() => setActiveTab('ergonomics')}
+              className={`flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                activeTab === 'ergonomics'
+                  ? 'bg-[#005596] text-white shadow-[0_2px_8px_rgba(0,85,150,0.25)]'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+              }`}
+            >
+              <ShieldCheck className="w-4 h-4" />
+              <span>{isId ? 'Analisis Ergonomi & Medis' : 'Ergonomic & Medical Analysis'}</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('financial')}
+              className={`flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 ${
+                activeTab === 'financial'
+                  ? 'bg-[#005596] text-white shadow-[0_2px_8px_rgba(0,85,150,0.25)]'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+              }`}
+            >
+              <TrendingUp className="w-4 h-4" />
+              <span>{isId ? 'Simulasi Finansial (ROI)' : 'Financial Simulation (ROI)'}</span>
+            </button>
+          </div>
 
-              <div className="space-y-6">
-                <div className="space-y-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
-                  <div className="flex items-end justify-between gap-4">
-                    <label htmlFor="material-weight-slider" className="text-sm font-bold text-slate-700 md:text-base">Unit material weight (payload)</label>
-                    <span className={`font-mono text-2xl font-black transition-colors ${weight > 25 ? 'text-rose-600' : 'text-cyan-600'}`}>
-                      {weight} <span className="text-xs font-semibold text-slate-600">kg</span>
+          {/* TAB 1: ERGONOMICS & MEDICAL ANALYSIS */}
+          {activeTab === 'ergonomics' && (
+            <div className="space-y-4">
+              {/* Primary Ergonomic Card */}
+              <div className="bg-white border border-slate-200 p-5 rounded-2xl space-y-4">
+                <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-100">
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-600 block">
+                      {isId ? 'Akumulasi Beban Harian' : 'Daily Cumulative Load'}
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-mono font-bold text-slate-900">
+                      {calc.dailyTotalTons.toFixed(2)}
+                      <span className="text-sm font-sans font-medium text-slate-600 ml-1">
+                        {isId ? 'Ton/hari' : 'Tons/day'}
+                      </span>
+                    </span>
+                    <span className="text-[11px] text-slate-600 block mt-0.5">
+                      ({calc.dailyPerOperatorTons.toFixed(2)} {isId ? 'Ton per operator' : 'Tons per operator'})
                     </span>
                   </div>
-                  <input
-                    id="material-weight-slider"
-                    aria-label="Unit material weight payload in kilograms"
-                    type="range"
-                    min="0"
-                    max="200"
-                    value={weight}
-                    onChange={(e) => setWeight(Number(e.target.value))}
-                    suppressHydrationWarning
-                    className={`w-full appearance-none rounded-full ${weight > 25 ? 'bg-rose-200 accent-rose-600' : 'bg-slate-200 accent-cyan-600'}`}
-                  />
-                  <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
-                    <span>0 kg</span>
-                    <span className="text-rose-600">Manual safety limit: 25 kg</span>
-                    <span>200 kg</span>
+
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-600 block">
+                      {isId ? 'Akumulasi Beban Tahunan' : 'Annual Cumulative Load'}
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-mono font-bold text-slate-900">
+                      {calc.annualTotalTons.toFixed(1)}
+                      <span className="text-sm font-sans font-medium text-slate-600 ml-1">
+                        {isId ? 'Ton/tahun' : 'Tons/year'}
+                      </span>
+                    </span>
+                    <span className="text-[11px] text-slate-600 block mt-0.5">
+                      {isId ? '(Asumsi 250 hari kerja aktif)' : '(Assuming 250 active operating days)'}
+                    </span>
                   </div>
                 </div>
 
-                <div className="space-y-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
-                  <div className="flex items-end justify-between gap-4">
-                    <label htmlFor="lifting-intensity-slider" className="text-sm font-bold text-slate-700 md:text-base">Lifting intensity (cycle time)</label>
-                    <span className="font-mono text-2xl font-black text-cyan-600">
-                      {frequency} <span className="text-xs font-semibold text-slate-600">times/hour</span>
+                {/* Biomechanical Spine Pressure Comparison (AGR e.V. Validated) */}
+                <div className="pt-1 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-700">
+                      {isId
+                        ? 'Gaya Tekan pada Cakram Tulang Belakang L4/L5 per Angkatan:'
+                        : 'Compressive Force on Intervertebral Disc L4/L5 per Lift:'}
+                    </span>
+                    <span className="text-[11px] font-mono text-[#005596] font-semibold">
+                      {isId ? 'Validasi Medis AGR Jerman' : 'German AGR Validation'}
                     </span>
                   </div>
-                  <input
-                    id="lifting-intensity-slider"
-                    aria-label="Lifting intensity cycle time in times per hour"
-                    type="range"
-                    min="0"
-                    max="500"
-                    value={frequency}
-                    onChange={(e) => setFrequency(Number(e.target.value))}
-                    suppressHydrationWarning
-                    className="w-full appearance-none rounded-full bg-slate-200 accent-cyan-600"
-                  />
-                  <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
-                    <span>Low</span>
-                    <span>High frequency</span>
+
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <div className="p-3 bg-red-50/70 border border-red-200/80 rounded-xl">
+                      <span className="text-[11px] font-medium text-red-700 block">
+                        {isId ? 'Manual (Tanpa Alat)' : 'Manual (Unassisted)'}
+                      </span>
+                      <span className="text-xl font-mono font-bold text-red-700 block mt-1">
+                        ~{calc.spineCompressionManualKg} kg
+                      </span>
+                      <span className="text-[10px] text-red-600 block mt-0.5">
+                        {isId ? 'Tekanan kompresi berisiko tinggi' : 'Destructive compression force'}
+                      </span>
+                    </div>
+
+                    <div className="p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-xl">
+                      <span className="text-[11px] font-medium text-emerald-800 block">
+                        {isId ? 'Dengan Schmalz atau Binar' : 'With Schmalz or Binar'}
+                      </span>
+                      <span className="text-xl font-mono font-bold text-emerald-700 block mt-1">
+                        0 kg
+                      </span>
+                      <span className="text-[10px] text-emerald-600 block mt-0.5">
+                        {isId ? '100% beban ditahan sistem vakum/servo' : '100% sustained by vacuum tube'}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-white bg-white p-4 shadow-sm">
-                  <label htmlFor="shift-duration-number" className="mb-3 block text-sm font-bold text-slate-700 md:text-base">Work shift duration</label>
-                  <div className="relative">
-                    <input
-                      id="shift-duration-number"
-                      aria-label="Work shift duration in hours per day"
-                      type="number"
-                      min="1"
-                      max="24"
-                      value={workHours}
-                      onChange={(e) => setWorkHours(Number(e.target.value))}
-                      suppressHydrationWarning
-                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-28 text-lg font-black text-slate-950 outline-none transition focus:border-cyan-500 focus:bg-white"
-                    />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-[0.18em] text-slate-600">hours/day</span>
+                {/* Safety Assessment Alert Box */}
+                <div
+                  className={`p-3.5 rounded-xl border flex items-start gap-3 ${
+                    calc.riskLevel === 'CRITICAL'
+                      ? 'bg-red-50 border-red-200 text-red-900'
+                      : calc.riskLevel === 'WARNING'
+                      ? 'bg-amber-50 border-amber-200 text-amber-900'
+                      : 'bg-emerald-50 border-emerald-200 text-emerald-900'
+                  }`}
+                >
+                  {calc.riskLevel === 'CRITICAL' ? (
+                    <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                  ) : calc.riskLevel === 'WARNING' ? (
+                    <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                  ) : (
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  )}
+                  <div className="text-xs leading-relaxed">
+                    <span className="font-bold uppercase tracking-wider block mb-0.5">
+                      {isId ? 'Evaluasi Keamanan:' : 'Safety Evaluation:'}{' '}
+                      {calc.riskLevel === 'CRITICAL'
+                        ? isId
+                          ? 'Beban Kritis (Risiko Tinggi Cedera Tulang Belakang)'
+                          : 'Critical Load (High Spinal Injury Risk)'
+                        : calc.riskLevel === 'WARNING'
+                        ? isId
+                          ? 'Peringatan Kelelahan Otot Kronis'
+                          : 'Chronic Muscular Fatigue Warning'
+                        : isId
+                        ? 'Dalam Batas Ergonomi Aman'
+                        : 'Within Ergonomic Limits'}
+                    </span>
+                    <p>{calc.safetyMessage}</p>
                   </div>
                 </div>
               </div>
             </div>
+          )}
 
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Risk lens</p>
-                <p className="mt-2 text-sm font-semibold text-slate-700">Body load accumulation</p>
+          {/* TAB 2: FINANCIAL & ROI SIMULATION */}
+          {activeTab === 'financial' && (
+            <div className="space-y-4">
+              {/* Financial Metrics Card */}
+              <div className="bg-white border border-slate-200 p-5 rounded-2xl space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4 pb-4 border-b border-slate-100">
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-600 block">
+                      {isId ? 'Penghematan Biaya Cedera & Absensi' : 'Annual Injury & Sickness Savings'}
+                    </span>
+                    <span className="text-xl sm:text-2xl font-mono font-bold text-emerald-700">
+                      {formatIDR(calc.annualMedicalSavingRp)}
+                    </span>
+                    <span className="text-[11px] text-slate-600 block mt-0.5">
+                      {isId
+                        ? `per tahun (${calc.operatorCount} operator)`
+                        : `per year (${calc.operatorCount} operators)`}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-600 block">
+                      {isId ? 'Estimasi Waktu Balik Modal (ROI)' : 'Projected Payback Period'}
+                    </span>
+                    <span className="text-xl sm:text-2xl font-mono font-bold text-[#005596]">
+                      {calc.paybackPeriodMonths}
+                    </span>
+                    <span className="text-[11px] text-slate-600 block mt-0.5">
+                      {isId
+                        ? 'berdasarkan efisiensi jam kerja dan throughput'
+                        : 'based on labor recovery and throughput'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Productivity Boost Metrics */}
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="text-[11px] font-medium text-slate-600 block">
+                      {isId ? 'Kenaikan Throughput' : 'Throughput Increase'}
+                    </span>
+                    <span className="text-xl font-mono font-bold text-slate-900 block mt-1">
+                      +{calc.throughputGainPercent}%
+                    </span>
+                    <span className="text-[10px] text-slate-600 block mt-0.5">
+                      {isId ? 'Kecepatan stabil hingga akhir shift' : 'Consistent pace through shift end'}
+                    </span>
+                  </div>
+
+                  <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
+                    <span className="text-[11px] font-medium text-slate-600 block">
+                      {isId ? 'Tambahan Output / Hari' : 'Additional Output / Day'}
+                    </span>
+                    <span className="text-xl font-mono font-bold text-slate-900 block mt-1">
+                      +{calc.addedCyclesDaily.toLocaleString('en-US')}
+                    </span>
+                    <span className="text-[10px] text-slate-600 block mt-0.5">
+                      {isId ? 'Siklus angkat ekstra per hari' : 'Additional completed lift cycles'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-blue-50/60 border border-blue-200/70 rounded-xl text-xs text-slate-700 leading-relaxed">
+                  <strong>{isId ? 'Catatan Metodologi:' : 'Methodology Note:'}</strong>{' '}
+                  {isId
+                    ? 'Estimasi dihitung berdasarkan pengurangan 5 hingga 8 hari izin sakit per operator tiap tahun akibat keluhan nyeri punggung bawah, penghapusan biaya lembur pengganti, serta kestabilan cycle time per jam.'
+                    : 'Estimates modeled on recovering 5 to 8 sick days per operator annually from lower back pain complaints, eliminating overtime backfill, and maintaining hourly cycle consistency.'}
+                </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Use case</p>
-                <p className="mt-2 text-sm font-semibold text-slate-700">Manual material handling</p>
+            </div>
+          )}
+
+          {/* Machine Recommendation Block */}
+          <div className="bg-gradient-to-br from-[#002244] via-[#003b6d] to-[#005596] text-white p-6 rounded-2xl sm:rounded-3xl border border-white/20 space-y-4 shadow-[0_16px_36px_-10px_rgba(0,85,150,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)] relative overflow-hidden">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-blue-100 bg-white/15 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                {isId ? 'Rekomendasi Sistem Alat Angkat' : 'Recommended Equipment Solution'}
+              </span>
+              <span className="text-xs text-blue-100 font-mono">
+                {isId ? `Sesuai payload ${weight} kg` : `Matched to ${weight} kg payload`}
+              </span>
+            </div>
+
+            <div>
+              <div className="text-xs font-mono font-bold text-blue-200 uppercase tracking-wider">
+                {calc.recommendation.series}
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Outcome</p>
-                <p className="mt-2 text-sm font-semibold text-slate-700">Solution direction</p>
+              <h4 className="text-xl sm:text-2xl font-black text-white mt-1 tracking-tight">
+                {calc.recommendation.title}
+              </h4>
+              <p className="text-xs sm:text-sm text-blue-100/90 mt-2 leading-relaxed font-normal">
+                {calc.recommendation.description}
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-white/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <div className="text-xs text-blue-100 flex items-center gap-1.5 font-medium">
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{calc.recommendation.keyFeature}</span>
               </div>
+
+              <Link
+                href={calc.recommendation.productUrl}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-blue-50 text-[#005596] text-xs font-bold shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all shrink-0 cursor-pointer"
+              >
+                <span>{isId ? 'Spesifikasi Produk' : 'Product Specifications'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 relative overflow-hidden rounded-3xl border border-slate-900 bg-slate-950 p-4 sm:p-5 text-white shadow-[0_24px_80px_rgba(15,23,42,0.28)] md:p-6">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_35%)]" aria-hidden="true" />
-
-            <div className={`relative space-y-5 transition-all duration-700 ${!isUnlocked ? 'blur-[8px] opacity-30 select-none pointer-events-none grayscale-[30%]' : ''}`}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">Daily cumulative body load</p>
-                <div className="mt-3 flex items-end gap-2">
-                  <p className="text-4xl sm:text-5xl font-black tracking-tight md:text-6xl">{totalLoadTons.toFixed(2)}</p>
-                  <span className="pb-2 text-lg font-semibold text-cyan-300/80">Ton</span>
-                </div>
-              </div>
-
-              <div className={`rounded-2xl border p-5 ${isDangerous ? 'border-rose-400/40 bg-rose-500/10' : 'border-emerald-400/40 bg-emerald-500/10'}`}>
-                <div className="flex items-start gap-4">
-                  {isDangerous ? (
-                    <div className="rounded-xl bg-rose-500/20 p-2 text-rose-300">
-                      <AlertTriangle size={24} />
-                    </div>
-                  ) : (
-                    <div className="rounded-xl bg-emerald-500/20 p-2 text-emerald-300">
-                      <CheckCircle size={24} />
-                    </div>
-                  )}
-
-                  <div>
-                    <h4 className={`text-sm font-black uppercase tracking-[0.18em] ${isDangerous ? 'text-rose-200' : 'text-emerald-200'}`}>
-                      {isDangerous ? 'Warning: ergonomic overload' : 'Status: safe'}
-                    </h4>
-                    <p className={`mt-2 text-sm leading-relaxed ${isDangerous ? 'text-rose-100/80' : 'text-emerald-100/80'}`}>
-                      {safetyMessage}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-slate-900 to-slate-950 p-5 shadow-inner">
-                <div className="absolute -right-12 -bottom-12 h-40 w-40 rounded-full bg-cyan-500/15 blur-3xl" aria-hidden="true" />
-                <h4 className="relative text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">Recommended handling solution</h4>
-                <p className="relative mt-3 text-xl font-black leading-tight text-white md:text-2xl">
-                  {recommendation.label}
+          {/* Call to Action: Official Study / Lead Request */}
+          <div className="bg-white/85 backdrop-blur-2xl border border-white/95 ring-1 ring-[#005596]/12 shadow-[0_16px_40px_-10px_rgba(0,85,150,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)] p-6 rounded-2xl sm:rounded-3xl text-left space-y-4">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h4 className="text-base font-black text-slate-900 tracking-tight">
+                  {isId
+                    ? 'Butuh Studi Kelayakan Pabrik & Simulasi Layout CAD 3D?'
+                    : 'Require a Formal Plant Feasibility Study & 3D CAD Simulation?'}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed font-normal">
+                  {isId
+                    ? 'Tim engineer aplikasi PT Dimensi Quantum Wahyudi siap mengevaluasi layout area kerja Anda, menyiapkan unit trial onsite, dan menyusun gambar kerja CAD 3D sesuai kebutuhan.'
+                    : 'Dimensi Quantum Wahyudi application engineers analyze your floor layout, provide lifting trial rigs, and deliver custom CAD drawings without commitment.'}
                 </p>
-                <Link href={recommendation.productUrl} className="relative mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-500 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-950 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400">
-                  View Product <ArrowDown size={16} />
-                </Link>
               </div>
             </div>
 
-            {!isUnlocked && (
-              <div className="absolute inset-0 z-20 flex items-center justify-center p-3 sm:p-5">
-                <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-slate-950/95 p-4 sm:p-6 text-center shadow-2xl backdrop-blur-md">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
-                    <Lock size={20} className="text-white" />
-                  </div>
-                  <h4 className="text-xl sm:text-2xl font-black tracking-tight text-white">Unlock full analysis</h4>
-                  <p className="mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed text-slate-400">
-                    Use your corporate contact details so our engineers can send recommendations aligned with your facility context.
+            {!showConsultForm && leadStatus !== 'success' && (
+              <button
+                onClick={() => setShowConsultForm(true)}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#005596] hover:bg-[#004276] text-white rounded-full text-xs sm:text-sm font-bold shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_8px_24px_rgba(0,85,150,0.35)] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+              >
+                <FileSpreadsheet className="w-4 h-4" />
+                <span>{isId ? 'Ajukan Studi Kelayakan Pabrik' : 'Request Plant Feasibility Study'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
+
+            {showConsultForm && leadStatus !== 'success' && (
+              <form onSubmit={handleSubmitLead} className="pt-3 border-t border-slate-200/80 space-y-3">
+                <div className="grid sm:grid-cols-3 gap-3">
+                  <input
+                    type="text"
+                    required
+                    placeholder={isId ? 'Nama Lengkap (PIC)' : 'Full Name (Lead PIC)'}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200/90 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 bg-white text-slate-900 transition-all"
+                  />
+                  <input
+                    type="text"
+                    required
+                    placeholder={isId ? 'Nama Perusahaan / Pabrik' : 'Company / Plant Name'}
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200/90 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 bg-white text-slate-900 transition-all"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="corporate.email@company.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200/90 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 bg-white text-slate-900 transition-all"
+                  />
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    className="hidden"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                  <p className="text-[11px] text-slate-500 font-normal">
+                    {isId
+                      ? 'Data Anda dijaga kerahasiaannya khusus untuk evaluasi engineering B2B internal.'
+                      : 'Your details are held strictly confidential for internal B2B engineering evaluation.'}
                   </p>
-                  <form
-                    onSubmit={async (e) => {
-                      e.preventDefault();
-                      if (!email || !fullName || !company) return;
-                      setLeadStatus('loading');
-                      setLeadError('');
-                      try {
-                        const res = await fetch('/api/lead-capture', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({
-                            kind: 'roi_unlock',
-                            fullName,
-                            company,
-                            email,
-                            honeypot,
-                            startedAt,
-                            context: {
-                              weight_kg: weight,
-                              frequency_per_hr: frequency,
-                              hours_per_day: workHours,
-                              total_load_tons: totalLoadTons.toFixed(2),
-                              status: isDangerous ? 'DANGEROUS' : 'SAFE',
-                              recommendation: recommendation.label,
-                            },
-                          }),
-                        });
-                        if (res.ok) {
-                          setLeadStatus('success');
-                          setIsUnlocked(true);
-                          if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-                            window.gtag('event', 'generate_lead', { event_category: 'Calculator', event_label: 'ROI Request' });
-                            window.gtag('event', 'lead_funnel_step1_complete', {
-                              event_category: 'LeadFunnel',
-                              event_label: 'ROI Unlock Form',
-                            });
-                          }
-                        } else {
-                          const payload = await res.json().catch(() => ({}));
-                          setLeadError(typeof payload?.error === 'string' ? payload.error : 'Failed to unlock. Please try again.');
-                          setLeadStatus('error');
-                        }
-                      } catch (err) {
-                        setLeadError('Failed to unlock. Please try again.');
-                        setLeadStatus('error');
-                      }
-                    }}
-                    className="mt-6 flex flex-col gap-3"
-                  >
-                    <input
-                      type="text"
-                      required
-                      placeholder="Full name (PIC)"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
-                    />
-                    <input
-                      type="text"
-                      required
-                      placeholder="Company or plant name"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
-                    />
-                    <input
-                      type="email"
-                      required
-                      placeholder="name@company.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-white/10"
-                    />
-                    <input
-                      type="text"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={honeypot}
-                      onChange={(e) => setHoneypot(e.target.value)}
-                      className="hidden"
-                      aria-hidden="true"
-                    />
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowConsultForm(false)}
+                      className="px-3.5 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+                    >
+                      {isId ? 'Batal' : 'Cancel'}
+                    </button>
                     <button
                       type="submit"
                       disabled={leadStatus === 'loading'}
-                      className="inline-flex items-center justify-center rounded-2xl bg-cyan-500 px-4 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-950 transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#005596] hover:bg-[#004276] text-white rounded-full text-xs font-bold shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_8px_24px_rgba(0,85,150,0.35)] hover:-translate-y-0.5 active:translate-y-0 transition-all disabled:opacity-50 cursor-pointer"
                     >
-                      {leadStatus === 'loading' ? 'Unlocking...' : 'Unlock engineered results'}
+                      {leadStatus === 'loading'
+                        ? isId
+                          ? 'Mengirim...'
+                          : 'Submitting...'
+                        : isId
+                        ? 'Kirim Permintaan'
+                        : 'Submit Request'}
                     </button>
-                  </form>
-                  {leadStatus === 'error' && <p className="mt-3 text-xs font-medium text-rose-300">{leadError || 'Failed to unlock. Please try again.'}</p>}
-                  <p className="mt-4 flex items-center justify-center gap-1 text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                    <Lock size={10} /> Secure and confidential calculation
-                  </p>
+                  </div>
                 </div>
-              </div>
+
+                {leadStatus === 'error' && <p className="text-xs text-red-600 font-medium">{leadError}</p>}
+              </form>
             )}
 
-            {isUnlocked && (
-              <div className="relative mt-5 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-4 text-emerald-100">
-                <div className="flex items-start gap-3">
-                  <CheckCircle size={20} className="mt-0.5 shrink-0 text-emerald-300" />
-                  <div className="text-sm">
-                    <p className="font-bold text-emerald-100">Analysis unlocked successfully</p>
-                    <p className="mt-1 text-xs leading-relaxed text-emerald-100/75">
-                      Our engineering team has sent a copy of these recommendations to <span className="font-semibold text-emerald-200">{email}</span>.
-                    </p>
-                  </div>
+            {leadStatus === 'success' && (
+              <div className="p-4 bg-emerald-50/90 border border-emerald-200 rounded-2xl text-xs text-emerald-800 flex items-start gap-2.5">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold block text-sm">
+                    {isId ? 'Permintaan Studi Kelayakan Diterima' : 'Feasibility Study Request Received'}
+                  </span>
+                  <p className="mt-1 text-emerald-700 leading-relaxed font-normal">
+                    {isId ? (
+                      <>
+                        Tim engineer aplikasi kami akan mengirimkan dokumen kalkulasi teknis serta jadwal survei ke{' '}
+                        <strong>{email}</strong>.
+                      </>
+                    ) : (
+                      <>
+                        Our application engineering team will send the technical calculation dossier and scheduling options to{' '}
+                        <strong>{email}</strong>.
+                      </>
+                    )}
+                  </p>
                 </div>
               </div>
             )}

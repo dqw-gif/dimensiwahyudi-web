@@ -2,27 +2,26 @@ import { Metadata } from 'next';
 import BrochuresClient from './BrochuresClient';
 
 export const metadata: Metadata = {
-  title: 'E-Katalog & Brosur Digital Resmi | PT Dimensi Quantum Wahyudi',
+  title: 'Official Technical Catalogs & Product Brochures | PT Dimensi Quantum Wahyudi',
   description:
-    'Download dan baca langsung e-katalog dan brosur resmi Vacuum Lifters (JumboFlex, JumboErgo, VacuMaster), Crane Systems, Area Gripping Robotik, dan Komponen Otomasi Schmalz Germany & Binar Handling Sweden.',
+    'Download official technical catalogs and engineering brochures for Vacuum Lifters (JumboFlex, JumboErgo, VacuMaster), Crane Systems, Robotic Area Grippers, and Automation Components from Schmalz Germany and Binar Handling Sweden.',
   keywords: [
-    'Katalog Schmalz Indonesia',
-    'Brosur Vacuum Lifter',
-    'Brosur Crane Systems',
-    'Katalog JumboFlex',
-    'Katalog JumboErgo',
-    'Area Gripping Schmalz',
+    'Schmalz Catalog Indonesia',
+    'Vacuum Lifter Brochure',
+    'Industrial Crane Systems PDF',
+    'JumboFlex Catalog',
+    'JumboErgo Technical Specs',
+    'Schmalz Area Gripping',
     'Vacuum Automation Components',
     'PT Dimensi Quantum Wahyudi',
-    'Brosur Digital Pameran',
   ],
   alternates: {
     canonical: 'https://dimensiwahyudi.com/brosur',
   },
   openGraph: {
-    title: 'E-Katalog & Brosur Digital Resmi | PT Dimensi Quantum Wahyudi',
+    title: 'Official Technical Catalogs & Product Brochures | PT Dimensi Quantum Wahyudi',
     description:
-      'Akses instan spesifikasi teknis, kapasitas beban, dan panduan integrasi sistem penanganan vakum ergonomis dan komponen otomasi industri Schmalz Germany & Binar Handling.',
+      'Direct access to engineering specifications, lifting capacities, and CAD integration guidelines for Schmalz Germany and Binar Handling Sweden.',
     url: 'https://dimensiwahyudi.com/brosur',
     siteName: 'PT Dimensi Quantum Wahyudi',
     images: [
@@ -30,10 +29,10 @@ export const metadata: Metadata = {
         url: 'https://dimensiwahyudi.com/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Katalog & Brosur Digital PT Dimensi Quantum Wahyudi',
+        alt: 'Technical Catalogs & Product Brochures: PT Dimensi Quantum Wahyudi',
       },
     ],
-    locale: 'id_ID',
+    locale: 'en_ID',
     type: 'website',
   },
 };
@@ -42,9 +41,9 @@ export default function BrosurPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'E-Katalog & Brosur Digital Resmi PT Dimensi Quantum Wahyudi',
+    name: 'Official Technical Catalogs & Digital Brochures: PT Dimensi Quantum Wahyudi',
     description:
-      'Kumpulan brosur digital resmi untuk solusi penanganan vakum ergonomis, robotika area gripping, dan komponen otomasi Schmalz Germany & Binar Handling Sweden di Indonesia.',
+      'Official technical digital brochures for ergonomic vacuum handling systems, robotic area gripping, and automation components from Schmalz Germany and Binar Handling Sweden in Indonesia.',
     url: 'https://dimensiwahyudi.com/brosur',
     publisher: {
       '@type': 'Organization',
@@ -56,7 +55,7 @@ export default function BrosurPage() {
         telephone: '+62-21-5596-6124',
         contactType: 'sales',
         areaServed: 'ID',
-        availableLanguage: ['Indonesian', 'English'],
+        availableLanguage: ['English', 'Indonesian'],
       },
     },
     hasPart: [

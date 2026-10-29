@@ -49,7 +49,7 @@ export const vacuumGeneratorVariants: VacuumGeneratorVariant[] = [
             'Optimized for high-frequency pick-and-place applications',
         ],
         applications: ['Pick-and-place automation', 'Robotic palletizing', 'Packaging lines', 'Semiconductor handling'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/046/04637/ef70e26a0b5d_PF_PGE-04637_000.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-compact-ejector-scps.webp',
     },
     {
         slug: 'sbp-basic-ejector',
@@ -77,7 +77,7 @@ export const vacuumGeneratorVariants: VacuumGeneratorVariant[] = [
             'SBP-C variant extends pneumatic control functionality',
         ],
         applications: ['Standard automation systems', 'Industrial robots', 'Vacuum fixtures', 'Conveyor sorting'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/032/03270/2ad9e5e943e4_PF_PGE-03270_000.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-basic-ejector-sbp.webp',
     },
     {
         slug: 'sbpl-high-flow-ejector',
@@ -106,7 +106,7 @@ export const vacuumGeneratorVariants: VacuumGeneratorVariant[] = [
             'Plug-and-play installation concept',
         ],
         applications: ['Carton palletizing', 'Wood and MDF panel handling', 'Foam handling', 'Bag and sack handling'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/050/05050/4172f3101212_PF_PGE-05050_000.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-basic-ejector-sbpl.webp',
     },
     {
         slug: 'sxpi-x-pump',
@@ -135,7 +135,7 @@ export const vacuumGeneratorVariants: VacuumGeneratorVariant[] = [
             'Well-suited for connected modern automation systems',
         ],
         applications: ['Smart factory and Industry 4.0', 'Collaborative robotics', 'Connected production lines', 'SCADA and MES integrated systems'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/050/05050/4172f3101212_PF_PGE-05050_000.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-basic-ejector-sbpl.webp',
     },
     {
         slug: 'ecbpm-electric-pump',
@@ -164,7 +164,7 @@ export const vacuumGeneratorVariants: VacuumGeneratorVariant[] = [
             'Compact form factor for easy machine integration',
         ],
         applications: ['AGV and mobile robots', 'Clean-room handling', 'Compressor-free systems', 'Collaborative robot applications'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/056/05632/739c35833688_PF_PGE-05632_005.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-regulated-vacuum-pump-ecbpmi.webp',
     },
     {
         slug: 'sbg-vacuum-blower',
@@ -192,6 +192,6 @@ export const vacuumGeneratorVariants: VacuumGeneratorVariant[] = [
             'Lower noise potential versus pneumatic ejector setups',
         ],
         applications: ['Thick foam handling', 'Industrial textile handling', 'Non-woven materials', 'High-porosity woodworking'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/054/05449/b165bafed617_PF_PGE-05449_000.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-vacuum-blower-sbg.webp',
     },
 ];

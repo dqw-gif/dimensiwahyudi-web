@@ -45,7 +45,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'General flat-part automation',
             'Printing & CNC machining',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00191/f03704cb51f0_PUG_PGE-00191_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-flat-suction-cups-round.webp',
     },
     {
         slug: 'bellows-round',
@@ -78,7 +78,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Food industry (with silicone grade)',
             'Automotive body panels',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00188/b1b20d090412_PUG_PGE-00188_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-bellows-suction-cups-round.webp',
     },
     {
         slug: 'flat-oval',
@@ -111,7 +111,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Strip and bar stock automation',
             'Solar panel manufacturing',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00190/3d41a69d8700_PUG_PGE-00190_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-flat-suction-cups-oval.webp',
     },
     {
         slug: 'bellows-oval',
@@ -144,7 +144,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Profiles and structural members',
             'Delicate narrow-part automation',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00187/a4df48d0b713_PUG_PGE-00187_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-bellows-suction-cups-oval.webp',
     },
     {
         slug: 'sheet-metal',
@@ -177,7 +177,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Laser cutting feed systems',
             'Steel service center automation',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/002/00218/3e55526969e8_PUG_PGE-00218_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-sheet-metal.webp',
     },
     {
         slug: 'packaging',
@@ -210,7 +210,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Blister pack palletizing',
             'Film and bag pick & place',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/038/03884/c0e2bf725db7_PUG_PGE-03884_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-packaging.webp',
     },
     {
         slug: 'electronics',
@@ -243,14 +243,14 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'SMD component placement',
             'Display and glass substrate handling',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/0_/056/05664/dd65cffc2b0d_PUG_PGE-05664_001.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-electronics.webp',
     },
     {
         slug: 'bag-handling',
         name: 'Grippers for Bag Handling',
         tagline: 'Porous and low-fill bag handling made reliable',
         description:
-            'Purpose-built grippers for paper, plastic, and fabric bags — including porous and bag-like workpieces and bags with low fill levels. The specialized sealing geometry and internal channels create reliable grip even on difficult porous surfaces.',
+            'Purpose-built grippers for paper, plastic, and fabric bags - including porous and bag-like workpieces and bags with low fill levels. The specialized sealing geometry and internal channels create reliable grip even on difficult porous surfaces.',
         shape: 'Special',
         application: 'Bags',
         heroColor: 'from-amber-500 to-orange-600',
@@ -276,7 +276,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Paper sack automation',
             'Fertilizer and cement bag lines',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/0_/062/06281/bdeed794c67c_PUG_PGE-06281.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-grippers-for-bag-handling.webp',
     },
     {
         slug: 'plastic-film-paper',
@@ -309,7 +309,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Plastic film palletizing',
             'Label and foil automation',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00192/75d35cbc5f99_PUG_PGE-00192_002.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-plastic-films-paper.webp',
     },
     {
         slug: 'wood',
@@ -342,7 +342,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'MDF board handling',
             'Veneer and panel pressing',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/037/03730/2c3587935e1f_PUG_PGE-03730_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-handling-wood.webp',
     },
     {
         slug: 'glass',
@@ -375,7 +375,7 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Automotive windshield automation',
             'Solar panel glass handling',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/042/04293/afeae7504d21_PUG_PGE-04293_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-handling-glass.webp',
     },
     {
         slug: 'high-temperature',
@@ -408,6 +408,6 @@ export const suctionCupVariants: SuctionCupVariant[] = [
             'Paint shop oven loading/unloading',
             'Ceramic kiln automation',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/001/00198/d6d46a8525c3_PUG_PGE-00198_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-suction-cups-for-high-temperature-applications.webp',
     },
 ];

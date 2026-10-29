@@ -1,51 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
-// Using Lucide icons for a cleaner visual style
-import { ArrowRight, MessageSquare } from 'lucide-react';
-
-const words = ['Vacuum Lifters', 'Industrial Automation', 'Material Handling', 'Robotics & Cobots', 'Ergonomic Lifting'];
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck, Hand } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
-
-  useEffect(() => {
-    const currentWord = words[currentWordIndex];
-
-    const handleTyping = () => {
-      if (!isDeleting) {
-        // Typing
-        if (currentText.length < currentWord.length) {
-          setCurrentText(currentWord.substring(0, currentText.length + 1));
-          setTypingSpeed(150);
-        } else {
-          // Pause before deleting
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        // Deleting
-        if (currentText.length > 0) {
-          setCurrentText(currentWord.substring(0, currentText.length - 1));
-          setTypingSpeed(100);
-        } else {
-          // Move to next word
-          setIsDeleting(false);
-          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-        }
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
-
   const [isDesktop, setIsDesktop] = useState(false);
+  const [heroMode, setHeroMode] = useState<'rig' | 'video'>('rig');
+  const [isLifted, setIsLifted] = useState(true);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.innerWidth >= 768) {
@@ -54,160 +18,278 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[86svh] md:h-screen w-full overflow-hidden bg-slate-950">
-      {/* Responsive Poster Background (Instant LCP) */}
-      <picture className="absolute inset-0 pointer-events-none">
-        <source media="(max-width: 767px)" srcSet="/hero-poster-mobile.webp" />
-        <source media="(min-width: 768px)" srcSet="/hero-poster.webp" />
-        <img
-          src="/hero-poster-mobile.webp"
-          alt="PT Dimensi Quantum Wahyudi Industrial Lifting Background"
-          fetchPriority="high"
-          decoding="async"
-          className="object-cover w-full h-full opacity-35"
-        />
-      </picture>
+    <section className="relative w-full bg-gradient-to-b from-slate-50 via-white to-slate-50/50 pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden border-b border-slate-200/70">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: 'easeOut' }}
+        className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute -top-12 left-1/3 w-[400px] h-[300px] bg-[#005596]/5 rounded-full blur-[120px] pointer-events-none"
+        aria-hidden="true"
+      />
 
-      {/* Desktop Video Background: Mounted once hydrated on desktop screens */}
-      {isDesktop && (
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster="/hero-poster.webp"
-          className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
-      )}
-
-      {/* Gradient Overlay (Nuansa Biru Gelap/Cyberpunk) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950"></div>
-
-      {/* Content */}
-      <div className="relative z-10 flex h-full items-start justify-center pt-20 pb-12 sm:items-center sm:pt-0">
-        <div className="mx-auto w-full max-w-6xl px-4 text-center sm:px-6">
-
-          {/* H1 for SEO (Visually Hidden) */}
-          <h1 className="sr-only">PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting Solutions in Indonesia</h1>
-
-          {/* Tagline Kecil di Atas */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left Column: Human Story & Precision Engineering (7 Cols) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-3 sm:mb-4"
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-6 text-left"
           >
-            <span className="inline-flex max-w-[92vw] items-center justify-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-cyan-400 backdrop-blur-md sm:text-xs md:text-sm md:tracking-widest">
-              Trusted Partner for Vacuum Lifting Excellence
-            </span>
-          </motion.div>
-
-          {/* Company Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="mb-3 md:mb-6 flex justify-center"
-          >
-            <Image
-              src="/logo_dqw_putih.webp"
-              alt="PT Dimensi Quantum Wahyudi"
-              width={1100}
-              height={220}
-              priority
-              className="w-full max-w-[240px] sm:max-w-sm md:max-w-3xl h-auto"
-            />
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.28 }}
-            className="text-cyan-300 text-[11px] sm:text-sm md:text-base font-semibold uppercase tracking-[0.16em] sm:tracking-[0.18em] mb-3 sm:mb-4"
-          >
-            Market Leader in Vacuum Lifting Solutions in Indonesia
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="text-slate-200 text-sm sm:text-base md:text-xl max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed"
-          >
-            Since 2009, PT Dimensi Quantum Wahyudi has helped Indonesian manufacturers improve safety, throughput, and operator ergonomics through high-performance vacuum lifting systems.
-          </motion.p>
-
-          {/* Typewriter Effect (Warna Cyan) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mb-7 md:mb-12 min-h-[3.5rem] md:min-h-[5rem] flex flex-col items-center justify-center gap-1.5 sm:gap-2"
-          >
-            <span className="text-base sm:text-lg md:text-3xl lg:text-4xl text-slate-300 font-light text-center">
-              Built For
-            </span>
-            <span className="text-lg sm:text-2xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-center min-h-[2.5rem] md:min-h-[3rem] leading-none">
-              {currentText}
-              <span className="animate-pulse text-cyan-400">|</span>
-            </span>
-          </motion.div>
-
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-stretch sm:items-center"
-          >
-            {/* Tombol 1: Primary (Biru Solid) */}
-            <Link
-              href="/services"
-              className="group relative w-full sm:w-auto px-5 sm:px-6 md:px-8 py-3.5 md:py-4 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm sm:text-base md:text-lg font-bold transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/60 flex items-center justify-center gap-3"
-              aria-label="Explore Engineering Solutions"
+            <motion.div 
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center gap-2.5 text-xs font-mono font-bold tracking-wider text-[#005596] uppercase"
             >
-              Explore Engineering Solutions
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+              <div className="inline-flex items-center gap-1.5">
+                <Image src="/images/flags/germany.svg" alt="Germany" width={16} height={10} className="w-4 h-2.5 rounded-[1px] object-cover border border-slate-300/80 shrink-0" />
+                <span>Schmalz Germany</span>
+              </div>
+              <span className="text-slate-300">&bull;</span>
+              <div className="inline-flex items-center gap-1.5">
+                <Image src="/images/flags/sweden.svg" alt="Sweden" width={16} height={10} className="w-4 h-2.5 rounded-[1px] object-cover border border-slate-300/80 shrink-0" />
+                <span>Binar Sweden</span>
+              </div>
+              <span className="text-slate-300">|</span>
+              <span className="text-slate-500 font-medium normal-case font-sans tracking-normal">Official Distributor in Indonesia</span>
+            </motion.div>
 
-            {/* Tombol 2: Secondary (Outline Cyan/Glass) */}
-            <Link
-              href="/contact"
-              className="relative w-full sm:w-auto px-5 sm:px-6 md:px-8 py-3.5 md:py-4 border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-400 font-semibold text-sm sm:text-base md:text-lg rounded-lg transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-3 hover:border-cyan-400"
+            <motion.h1 
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.14]"
             >
-              Talk to Our Engineers
-              <MessageSquare className="w-5 h-5" />
-            </Link>
-          </motion.div>
+              Lifting 50 kg Feels Weightless.<br />
+              <span className="text-[#005596]">Protect Operators. Accelerate Line Throughput.</span>
+            </motion.h1>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="hidden md:block absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="text-cyan-500/50"
+            <motion.p 
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal"
             >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
+              The human lumbar spine cannot sustain repetitive heavy lifting. Transferring cartons, sacks, and steel sheets hundreds of times daily leads to chronic disc injuries, absenteeism, and production bottlenecks. Schmalz vacuum handling systems eliminate physical strain by transferring load weight to pneumatic lift tubes, managed effortlessly with intuitive single-finger controls.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col sm:flex-row gap-3 pt-2 sm:items-center"
+            >
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#005596] hover:bg-[#004277] text-white text-sm sm:text-base font-bold rounded-xl shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_6px_22px_rgba(0,85,150,0.35)] transition-all duration-200 text-center w-full sm:w-auto"
+                >
+                  <span>Request On-Site Workpiece Trial</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="/brosur"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white/80 hover:bg-white text-slate-800 text-sm sm:text-base font-semibold rounded-xl border border-slate-200/90 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:border-[#005596]/40 transition-all duration-200 text-center backdrop-blur-md w-full sm:w-auto"
+                >
+                  <span>Download 2026 Catalogs &amp; Brochures</span>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="pt-4 border-t border-slate-200/70 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-slate-500"
+            >
+              <span className="font-semibold text-slate-800">17+ Years Engineering Experience</span>
+              <span className="text-slate-300">•</span>
+              <span className="font-semibold text-slate-800">German AGR Medical Certification</span>
+              <span className="text-slate-300">•</span>
+              <span className="font-semibold text-slate-800">Stocked Spare Parts Hub in Cikarang</span>
             </motion.div>
           </motion.div>
+
+          {/* Right Column: Interactive Rig (5 Cols) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
+            <div className="relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/10 via-blue-500/10 to-blue-500/5 rounded-3xl blur-2xl opacity-80 pointer-events-none" />
+
+              <div className="flex items-center justify-end gap-2 mb-3">
+                <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider font-semibold">Mode:</span>
+                <div className="inline-flex p-0.5 bg-slate-100/90 backdrop-blur-md border border-slate-200/80 rounded-lg text-[10px] font-bold">
+                  <button
+                    type="button"
+                    onClick={() => setHeroMode('rig')}
+                    className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                      heroMode === 'rig' ? 'bg-white text-[#005596] shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    Interactive Rig
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setHeroMode('video')}
+                    className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                      heroMode === 'video' ? 'bg-white text-[#005596] shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    Plant Video
+                  </button>
+                </div>
+              </div>
+
+              {heroMode === 'rig' ? (
+                <div className="relative w-full max-w-sm sm:max-w-md mx-auto aspect-[4/5] flex flex-col items-center justify-between py-2">
+                  <div className="w-56 h-3 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 rounded-full shadow-xs border border-slate-300/80 flex items-center justify-center relative z-20">
+                    <span className="w-3 h-3 rounded-full bg-slate-400 border border-slate-500/40 shadow-xs" />
+                  </div>
+
+                  <div 
+                    onClick={() => setIsLifted(!isLifted)}
+                    className="relative w-full flex-1 flex flex-col items-center justify-center cursor-pointer select-none group"
+                    title="Click to raise / lower payload"
+                  >
+                    <motion.div
+                      animate={{
+                        y: isLifted ? [0, -10, 0] : [20, 24, 20],
+                        scaleY: isLifted ? [1, 0.98, 1] : [1.06, 1.08, 1.06],
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: isLifted ? 3.5 : 2.5,
+                        ease: 'easeInOut',
+                      }}
+                      style={{ transformOrigin: 'top center' }}
+                      className="relative w-44 sm:w-52 aspect-[603/795] z-10 drop-shadow-[0_15px_30px_rgba(0,85,150,0.18)]"
+                    >
+                      <Image
+                        src="/hero-lifter-clean.png"
+                        alt="Schmalz JumboFlex Vacuum Lifter"
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      animate={{
+                        y: isLifted ? [0, -10, 0] : [28, 30, 28],
+                        rotate: isLifted ? [0, -0.5, 0.5, 0] : [0, 0, 0],
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: isLifted ? 3.5 : 2.5,
+                        ease: 'easeInOut',
+                      }}
+                      className="relative w-52 sm:w-60 aspect-[603/393] -mt-7 sm:-mt-8 z-20 drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                    >
+                      <Image
+                        src="/hero-box.png"
+                        alt="Workpiece Carton Handled by Schmalz"
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    </motion.div>
+
+                    <div className="w-56 h-2 bg-gradient-to-r from-transparent via-slate-300/80 to-transparent rounded-full mt-2" />
+                  </div>
+
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full bg-white/90 backdrop-blur-xl border border-white/90 p-3 sm:p-3.5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] flex items-center justify-between text-slate-800"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-[#005596]/10 flex items-center justify-center shrink-0">
+                        <ShieldCheck className="w-4 h-4 text-[#005596]" />
+                      </div>
+                      <div className="text-left">
+                        <div className="text-xs font-bold text-slate-900 leading-tight">
+                          {isLifted ? 'Schmalz JumboFlex 35 (Levitating)' : 'Approaching Workpiece Position'}
+                        </div>
+                        <div className="text-[10px] text-slate-500 font-medium">
+                          {isLifted ? '35 kg payload feels weightless' : 'Suction pad ready for engagement'}
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setIsLifted(!isLifted)}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-[#005596] rounded-lg text-[10px] font-bold transition-colors cursor-pointer border border-blue-200/80"
+                    >
+                      <Hand className="w-3 h-3 animate-bounce" />
+                      <span>{isLifted ? 'Lower Load' : 'Lift Load'}</span>
+                    </button>
+                  </motion.div>
+
+                </div>
+              ) : (
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,85,150,0.1)] border border-slate-200/80 bg-slate-900">
+                  <picture>
+                    <source media="(max-width: 767px)" srcSet="/hero-poster-mobile.webp" />
+                    <source media="(min-width: 768px)" srcSet="/hero-poster.webp" />
+                    <img
+                      src="/hero-poster.webp"
+                      alt="Schmalz Vacuum Tube Lifter Plant Operation"
+                      className="w-full h-full object-cover"
+                      fetchPriority="high"
+                    />
+                  </picture>
+
+                  {isDesktop && (
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                      poster="/hero-poster.webp"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    >
+                      <source src="/hero-video.mp4" type="video/mp4" />
+                    </video>
+                  )}
+
+                  <div className="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-xl border border-white/90 p-3 sm:p-3.5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] flex items-center justify-between text-slate-800">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-[#005596]/10 flex items-center justify-center shrink-0">
+                        <ShieldCheck className="w-4 h-4 text-[#005596]" />
+                      </div>
+                      <div className="text-left">
+                        <div className="text-xs font-bold text-slate-900 leading-tight">Schmalz JumboFlex 35</div>
+                        <div className="text-[10px] text-slate-500 font-medium">German AGR Medical Certification</div>
+                      </div>
+                    </div>
+
+                    <div className="text-right border-l border-slate-200/80 pl-3">
+                      <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">Vacuum Response</span>
+                      <span className="text-xs font-black text-[#005596] font-mono">0.2 Sec</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

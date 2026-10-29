@@ -1,242 +1,60 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import nextDynamic from 'next/dynamic';
-import HeroSection from '../components/HeroSection';
+import HeroScrollStory from '../components/HeroScrollStory';
+import VisualApplicationShowcase from '../components/VisualApplicationShowcase';
 import StatsSection from '../components/StatsSection';
-import BenefitsSection from '../components/BenefitsSection';
+import TestimonialsSection from '../components/TestimonialsSection';
 import BrandShowcase from '../components/BrandShowcase';
-import { projects } from '../data/projects';
-
-const SmartCalculator = nextDynamic(() => import('../components/Calculator'), {
-  loading: () => <div className="h-96 w-full animate-pulse rounded-3xl bg-slate-100" />,
-});
-
-const ProjectMarquee = nextDynamic(() => import('../components/ProjectMarquee'), {
-  loading: () => <div className="h-48 w-full bg-slate-900" />,
-});
-
-const TestimonialsSection = nextDynamic(() => import('../components/TestimonialsSection'), {
-  loading: () => <div className="h-64 w-full bg-slate-950" />,
-});
+import HomeAgrRoiSection from '../components/HomeAgrRoiSection';
+import PreFooterCTA from '../components/PreFooterCTA';
 
 export const metadata: Metadata = {
-  title: "Vacuum Lifter Indonesia | Premium Ergonomic Lifting Solutions",
-  description: "PT Dimensi Quantum Wahyudi helps Indonesian manufacturers improve safety, throughput, and ergonomics with premium vacuum lifting and handling solutions.",
+  title: "Industrial Vacuum Lifters Indonesia | Official Partner for Schmalz & Binar",
+  description: "PT Dimensi Quantum Wahyudi is the authorized distributor for Schmalz Germany and Binar Handling Sweden in Indonesia. Certified ergonomic vacuum lifters engineered for operator safety and manufacturing throughput.",
   keywords: [
-    "Vacuum Lifter Indonesia",
-    "Ergonomic Lifting System Indonesia",
-    "Industrial Lift Assist",
-    "Schmalz Indonesia",
+    "Industrial Vacuum Lifter Indonesia",
+    "Schmalz Indonesia distributor",
     "Binar Handling Indonesia",
-    "Material Handling Indonesia",
-    "Vacuum Tube Lifter Indonesia",
-    "Vacuum Generator Indonesia",
-    "Alat Bantu Angkat Ergonomis",
+    "Vacuum Tube Lifter",
+    "Ergonomic Material Handling Indonesia",
+    "JumboFlex Schmalz",
+    "VacuMaster Indonesia",
+    "Factory Lifting Equipment Cikarang",
     "PT Dimensi Quantum Wahyudi"
   ],
   openGraph: {
-    title: "PT Dimensi Quantum Wahyudi | Premium Vacuum Lifting for Indonesian Industry",
-    description: "Since 2009, we have supported Indonesian manufacturers with premium vacuum lifting and ergonomic handling systems that improve safety and throughput.",
+    title: "PT Dimensi Quantum Wahyudi | Industrial Vacuum Lifting & Ergonomic Systems",
+    description: "Supporting more than 500 manufacturing production lines across Indonesia since 2009 with certified German and Swedish handling systems.",
     url: "https://dimensiwahyudi.com",
     siteName: "PT Dimensi Quantum Wahyudi",
-    locale: "en_ID",
+    locale: "en_US",
     type: "website",
   },
 };
 
-// --- MAIN PAGE COMPONENT ---
-export default async function Home() {
-  const copy = {
-    certBadge: 'AGR International Ergonomics Certification',
-    certTitle1: 'Ergonomic Vacuum Lifting',
-    certTitle2: 'Solutions with German AGR Certification',
-    certDesc:
-      'Our handling systems are clinically validated by Aktion Gesunder Rücken e. V. (AGR) to support operator spinal health. The right lifting system protects your people while unlocking better operational performance.',
-    point1Title: 'Optimized Workplace Ergonomics',
-    point1Desc: 'Reduces back-injury risks and physical fatigue for line operators.',
-    point2Title: 'Global Safety Compliance',
-    point2Desc: 'Aligned with international occupational health and manufacturing safety standards.',
-    certDownload: 'Download the Official AGR Certificate (PDF)',
-    calcTitle: 'ROI & Ergonomic Efficiency Calculator',
-    calcDesc: 'Estimate potential healthcare cost savings and productivity improvement for your team.',
-  };
-
+export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-white">
+    <main className="min-h-screen bg-white text-slate-900 selection:bg-[#005596] selection:text-white">
+      
+      {/* 1 & 2. HERO & WORKPIECE DOCKING: Continuous Scroll-Driven Storytelling */}
+      <HeroScrollStory />
 
-
-      <HeroSection />
+      {/* 3. PERFORMANCE RIBBON & PRESTIGIOUS CLIENT LOGOS */}
       <StatsSection />
-      <BenefitsSection />
+
+      {/* 4. TWO EUROPEAN GIANTS: Unified Schmalz Germany & Binar Handling Sweden Showcase */}
       <BrandShowcase />
 
-      {/* MID-PAGE CTA */}
-      <section className="bg-blue-600 text-white py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent_50%)] pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4">Ready to improve your production floor safety?</h2>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">Get a free site assessment from our ergonomic lifting experts to evaluate your material handling processes.</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="/contact" className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-lg border-2 border-transparent hover:border-white hover:bg-transparent hover:text-white transition-all">Schedule a Demo</a>
-          </div>
-        </div>
-      </section>
+      {/* 5. VISUAL APPLICATION SHOWCASE */}
+      <VisualApplicationShowcase />
 
-      {/* 6. CALCULATOR & AGR CERTIFICATION SECTION (SEO OPTIMIZED) */}
-      <section id="roi-calculator" className="py-20 md:py-24 bg-white border-t border-slate-100 relative overflow-hidden">
-
-        {/* Background Pattern Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-          {/* BAGIAN ATAS: AGR CERTIFICATION */}
-          <div className="text-center mb-16 md:mb-20 space-y-8">
-            <div className="inline-block px-4 py-2 bg-blue-100 border border-blue-200 rounded-full">
-              <span className="text-blue-700 font-bold text-xs tracking-widest uppercase">
-                {copy.certBadge}
-              </span>
-            </div>
-
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight mx-auto max-w-3xl">
-              <span className="text-blue-600">{copy.certTitle1}</span> {copy.certTitle2}
-            </h2>
-
-            <p className="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto">
-              {copy.certDesc}
-            </p>
-
-            {/* List Keunggulan Medis (Lengkap dengan Icon) */}
-            <div className="flex flex-col md:flex-row justify-center gap-8 pt-4">
-              <div className="flex items-start gap-3 text-left max-w-xs">
-                <div className="bg-emerald-100 p-1 rounded text-emerald-600 mt-1 shrink-0">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                </div>
-                <div>
-                  <strong className="text-slate-900 block font-bold">{copy.point1Title}</strong>
-                  <span className="text-sm text-slate-600">{copy.point1Desc}</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 text-left max-w-xs">
-                <div className="bg-emerald-100 p-1 rounded text-emerald-600 mt-1 shrink-0">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                </div>
-                <div>
-                  <strong className="text-slate-900 block font-bold">{copy.point2Title}</strong>
-                  <span className="text-sm text-slate-600">{copy.point2Desc}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Gambar Sertifikat AGR */}
-            <div className="pt-10">
-              <p className="text-xs text-slate-500 uppercase tracking-widest mb-4">
-                {copy.certDownload}
-              </p>
-              <a
-                href="https://media.schmalz.com/MAM_Library/Dokumente/Publikation/Flyer/2a273ef199be_Flyer_AGR-Seal-of-Approval_Schmalz_2022_en-EN.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                download
-                className="inline-block transition-transform hover:scale-105"
-              >
-                <div className="relative w-full flex justify-center">
-                  <Image
-                    src="/agr.svg"
-                    alt="German AGR certification for Schmalz vacuum lifting solutions"
-                    width={200}
-                    height={176}
-                    className="drop-shadow-md cursor-pointer"
-                    unoptimized
-                  />
-                </div>
-              </a>
-            </div>
-          </div>
-
-          {/* Garis Pembatas */}
-          <div className="w-full h-px bg-slate-100 mb-16 md:mb-20"></div>
-
-          {/* BAGIAN BAWAH: SMART CALCULATOR */}
-          <div className="w-full">
-            <div className="text-center mb-10">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">{copy.calcTitle}</h3>
-              <p className="text-slate-500 text-sm italic">{copy.calcDesc}</p>
-            </div>
-            <SmartCalculator />
-          </div>
-
-        </div>
-      </section>
-
-      <ProjectMarquee projects={projects} />
-
-      {/* 7. EVENTS TEASER SECTION */}
-      <section className="py-20 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-            <div>
-              <span className="text-cyan-500 font-bold text-xs tracking-widest uppercase block mb-3">
-                Kalender Acara DQW
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
-                Agenda Kegiatan & Pameran 2026
-              </h2>
-            </div>
-            <a 
-              href="/events" 
-              className="mt-4 md:mt-0 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-bold transition-colors group"
-            >
-              <span>Lihat Semua Event</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
-              <div>
-                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-slate-800 text-slate-300 uppercase mb-4">
-                  28 Jul 2026
-                </span>
-                <h3 className="text-lg font-bold text-white mb-2">Schmalz x Fanuc Seminar</h3>
-                <p className="text-slate-300 text-sm mb-4 line-clamp-2">
-                  Seminar otomasi vacuum lifting & sistem robotik manufaktur di Cikarang.
-                </p>
-              </div>
-              <span className="text-xs text-slate-400 font-semibold">Cikarang, Jawa Barat</span>
-            </div>
-
-            <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
-              <div>
-                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 uppercase mb-4">
-                  29 Sep - 1 Oct 2026
-                </span>
-                <h3 className="text-lg font-bold text-white mb-2">Manufacturing Indonesia</h3>
-                <p className="text-slate-300 text-sm mb-4 line-clamp-2">
-                  Konsultasikan solusi penanganan material pneumatik Anda di pameran Batam.
-                </p>
-              </div>
-              <span className="text-xs text-slate-400 font-semibold">Batam, Kepulauan Riau</span>
-            </div>
-
-            <div className="bg-slate-950/40 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
-              <div>
-                <span className="inline-block text-[10px] font-bold px-2 py-1 rounded bg-cyan-950/60 border border-cyan-800/40 text-cyan-400 uppercase mb-4">
-                  20 - 23 Oct 2026
-                </span>
-                <h3 className="text-lg font-bold text-white mb-2">All Pack Indonesia 2026</h3>
-                <p className="text-slate-300 text-sm mb-4 line-clamp-2">
-                  Temukan lifter bag ergonomis dan generator vakum di pameran JIExpo Kemayoran.
-                </p>
-              </div>
-              <span className="text-xs text-slate-400 font-semibold">JIExpo Kemayoran, Jakarta</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* 6. EXECUTIVE CASE STUDIES */}
       <TestimonialsSection />
+
+      {/* 7. MEDICAL SCIENCE & ECONOMIC PROOF: AGR Seal + Smart ROI Calculator */}
+      <HomeAgrRoiSection />
+
+      {/* 8. CLOSING ZERO-RISK ENGINEERING INVITATION */}
+      <PreFooterCTA />
 
     </main>
   );

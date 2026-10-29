@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import { invalidateArticlesCache } from '@/services/articles';
 
 /**
  * API Route to programmatically revalidate Next.js cache.
@@ -42,6 +43,7 @@ export async function POST(request: NextRequest) {
     console.info(`Triggering revalidation. Post slug to update: ${slug || 'None (Listing page and Home page only)'}`);
 
     // 3. Clear Cache
+    invalidateArticlesCache();
     // Revalidate home page, news directory page, and sitemap
     revalidatePath('/');
     revalidatePath('/news');

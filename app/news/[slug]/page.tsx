@@ -1,15 +1,12 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getUnifiedArticleBySlug, getRelatedArticles, getAllUnifiedArticles } from '@/services/articles';
-import { Calendar, ChevronLeft, Clock, Tag, ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
-import ShareButton from '../../../components/news/ShareButton';
 import type { PostSummary } from '../../../types/wordpress';
-import DOMPurify from 'isomorphic-dompurify';
-import Breadcrumbs from '../../../components/Breadcrumbs';
+import { sanitizeEditorialHtml, sanitizeExcerptHtml } from '@/utils/sanitizeHtml';
+import ReadingProgressBar from '@/components/news/ReadingProgressBar';
+import PostDetailClient from './PostDetailClient';
 
-export const revalidate = 604800; // Incremental Static Regeneration: 7 days (On-Demand revalidation via Admin)
+export const revalidate = 604800; // Incremental Static Regeneration: 7 days
 
 // Pre-render all article slugs at build time
 export async function generateStaticParams() {
@@ -17,6 +14,15 @@ export async function generateStaticParams() {
     return posts.map((post: { slug: string }) => ({
         slug: post.slug,
     }));
+}
+
+function getFeaturedImageUrl(post: { featuredImage?: unknown }): string {
+    if (!post.featuredImage) return '';
+    if (typeof post.featuredImage === 'string') return post.featuredImage;
+    const node = (post.featuredImage as { node?: { sourceUrl?: string } }).node;
+    if (node?.sourceUrl) return node.sourceUrl;
+    const direct = post.featuredImage as { sourceUrl?: string; url?: string };
+    return direct?.sourceUrl || direct?.url || '';
 }
 
 // Generate Metadata for SEO
@@ -32,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     const excerpt = post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160) || `Read more about ${post.title}`;
     const canonicalUrl = `https://dimensiwahyudi.com/news/${slug}`;
-    const featuredImage = post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image';
+    const featuredImage = getFeaturedImageUrl(post) || 'https://dimensiwahyudi.com/opengraph-image';
     const categoryNames = post.categories?.nodes?.map((category) => category.name) || [];
 
     return {
@@ -45,6 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             'material handling best practice',
             'ergonomic handling Indonesia',
         ],
+        authors: [{ name: 'DQW Technical Editorial', url: 'https://dimensiwahyudi.com/about' }],
         alternates: {
             canonical: canonicalUrl,
             languages: {
@@ -84,8 +91,86 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
 }
 
-function rewriteWordPressContentLinks(htmlContent: string): string {
+// Topical Silo Architecture for Contextual Internal Linking (SEO)
+interface InternalLinkRule {
+    keyword: string;
+    slug?: string;
+    href: string;
+}
+
+const TOPICAL_LINK_RULES: InternalLinkRule[] = [
+    { keyword: 'gantry crane', slug: 'gantry-crane', href: '/news/gantry-crane' },
+    { keyword: 'overhead crane', slug: 'overhead-crane', href: '/news/overhead-crane' },
+    { keyword: 'suction cup vacuum', slug: 'suction-cup-vacuum', href: '/news/suction-cup-vacuum' },
+    { keyword: 'suction cup', slug: 'suction-cup-vacuum', href: '/news/suction-cup-vacuum' },
+    { keyword: 'vacuum tube lifter', href: '/products/schmalz/vacuum-tube-lifter' },
+    { keyword: 'jumboflex', href: '/products/schmalz/vacuum-tube-lifter/jumboflex' },
+    { keyword: 'jumboergo', href: '/products/schmalz/vacuum-tube-lifter/jumboergo' },
+    { keyword: 'vacumaster', href: '/products/schmalz/vacumaster' },
+    { keyword: 'jib crane', href: '/products/schmalz/crane-system/jib-cranes' },
+    { keyword: 'chain hoist', href: '/products/schmalz/crane-system/chain-hoists' },
+    { keyword: 'quick lift arm', href: '/products/binar/qla-50i-om' },
+    { keyword: 'electric manipulator', href: '/products/binar' },
+    { keyword: 'ergonomi industri', href: '/news/ergonomics' },
+    { keyword: 'cedera muskuloskeletal', href: '/news/ergonomics/health-risks' },
+    { keyword: 'sertifikasi agr', href: '/news/ergonomics/safety-standards' },
+    { keyword: 'kalkulator roi', href: '/digital-assistant/roi-calculator' },
+    { keyword: 'selection aids', href: '/digital-assistant/selection-aids' },
+];
+
+function injectContextualInternalLinks(html: string, currentSlug: string): string {
+    if (!html) return '';
+
+    // Split HTML so we never inject links inside existing <a>, <h1-h6>, or attributes
+    const tokenRegex = /(<a\b[^>]*>[\s\S]*?<\/a>|<h[1-6]\b[^>]*>[\s\S]*?<\/h[1-6]>|<[^>]+>)|([^<]+)/gi;
+    const linkedKeywords = new Set<string>();
+
+    return html.replace(tokenRegex, (match, tagOrAnchor: string, textContent: string) => {
+        if (tagOrAnchor) return tagOrAnchor;
+        if (!textContent) return '';
+
+        let processedText = textContent;
+
+        for (const rule of TOPICAL_LINK_RULES) {
+            if (rule.slug && rule.slug === currentSlug) continue; // Don't self-link to current article
+            if (linkedKeywords.has(rule.keyword)) continue; // Max 1 internal link per keyword per article
+
+            const regex = new RegExp(`\\b(${rule.keyword})\\b`, 'i');
+            const found = processedText.match(regex);
+            if (found) {
+                linkedKeywords.add(rule.keyword);
+                processedText = processedText.replace(
+                    regex,
+                    `<a href="${rule.href}" class="text-[#005596] font-bold underline decoration-blue-200 underline-offset-4 hover:decoration-[#005596] transition-colors" title="${found[0]}">$1</a>`
+                );
+            }
+        }
+
+        return processedText;
+    });
+}
+
+function rewriteWordPressContentLinks(htmlContent: string, currentSlug: string): string {
     if (!htmlContent) return '';
+
+    let processed = htmlContent;
+
+    // Decode leaked escaped headings like &lt;h2 id=&#8221;cara-kerja&#8221;&gt;...&lt;/h2&gt; whether wrapped in <p> or standalone
+    processed = processed.replace(
+        /(?:<p\b[^>]*>\s*)?&lt;(h[1-6])([\s\S]*?)&gt;([\s\S]*?)&lt;\/\1&gt;(?:\s*<\/p>)?/gi,
+        (_, tag, attrs, content) => {
+            const cleanAttrs = attrs
+                .replace(/&#8220;|&#8221;|&quot;/g, '"')
+                .replace(/&#8216;|&#8217;/g, "'");
+            return `<${tag}${cleanAttrs}>${content}</${tag}>`;
+        }
+    );
+
+    // Strip redundant legacy byline and separators imported from WordPress
+    processed = processed.replace(
+        /<p\b[^>]*>\s*<em>\s*Oleh Tim Teknis[\s\S]*?Estimasi baca:[^<]*<\/em>\s*<\/p>(?:\s*<hr\b[^>]*\/?>)?/gi,
+        ''
+    );
 
     const domains = [
         'https://dimensiwahyudi.com',
@@ -94,13 +179,15 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
         'http://wp.dimensiwahyudi.com',
     ];
 
-    let processed = htmlContent;
-
     // Convert absolute internal URLs to relative paths first
     for (const domain of domains) {
         const escapedDomain = domain.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         const regex = new RegExp(`href="${escapedDomain}(/[^"]*)"`, 'g');
         processed = processed.replace(regex, 'href="$1"');
+
+        // Also clean up image sources
+        const imgRegex = new RegExp(`src="${escapedDomain}(/wp-content/uploads/[^"]*)"`, 'g');
+        processed = processed.replace(imgRegex, 'src="$1"');
     }
 
     const staticPaths = [
@@ -123,6 +210,8 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
         '/schmalz-fanuc-event',
         '/events',
         '/nsg-login',
+        '/brosur',
+        '/katalog',
     ];
 
     // Prefix news path to single-slug relative links
@@ -144,7 +233,7 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
             return match;
         }
 
-        if (path.includes('://') || path.startsWith('mailto:') || path.startsWith('tel:') || path.startsWith('#')) {
+        if (path.includes('://') || path.startsWith('mailto:') || path.startsWith('tel:') || path.startsWith('#') || path.startsWith('/wp-content/')) {
             return match;
         }
 
@@ -152,41 +241,47 @@ function rewriteWordPressContentLinks(htmlContent: string): string {
         return `href="/news${cleanPath}"`;
     });
 
+    // Inject smart contextual internal links for SEO
+    processed = injectContextualInternalLinks(processed, currentSlug);
+
     return processed;
 }
 
 export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-
-    // Decode URI component properly just in case the slug has special characters
     const decodedSlug = decodeURIComponent(slug);
     const post = await getUnifiedArticleBySlug(decodedSlug);
 
     if (!post) notFound();
 
-    // Fetch Related Posts from unified articles in memory
-    const categoryName = post.categories?.nodes?.[0]?.name || '';
+    const categoryName = post.categories?.nodes?.[0]?.name || 'Teknologi';
     const relatedPosts: PostSummary[] = categoryName
         ? await getRelatedArticles(categoryName, post.slug)
         : [];
 
-
-    // Calculate Read Time safely
     const contentStr = post.content || '';
     const words = contentStr.replace(/<[^>]+>/g, '').split(/\s+/).length;
     const readTime = Math.ceil(words / 200) || 1;
 
-    // Format Date (server-side, consistent string)
-    function formatDateString(dateString: string) {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('en-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        }).format(date);
-    }
+    const rawAuthor = post.author?.node?.name;
+    const authorName = rawAuthor && !rawAuthor.toLowerCase().includes('dimensi quantum') && !rawAuthor.toLowerCase().includes('tim teknis') && !rawAuthor.toLowerCase().includes('admin')
+        ? rawAuthor
+        : 'DQW Technical Editorial';
 
-    const formattedDate = formatDateString(post.date);
+    const featuredImgUrl = getFeaturedImageUrl(post);
+
+    const sanitizedHtml = sanitizeEditorialHtml(rewriteWordPressContentLinks(contentStr, post.slug));
+
+    const sanitizedRelatedPosts = relatedPosts.map((related) => ({
+        id: related.id,
+        slug: related.slug,
+        title: related.title,
+        date: related.date,
+        excerptHtml: sanitizeExcerptHtml(related.excerpt || ''),
+        categoryName: related.categories?.nodes?.[0]?.name,
+        imgUrl: getFeaturedImageUrl(related),
+    }));
+
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -194,7 +289,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
             {
                 '@type': 'ListItem',
                 position: 1,
-                name: 'Home',
+                name: 'Beranda',
                 item: 'https://dimensiwahyudi.com/',
             },
             {
@@ -211,18 +306,20 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
             },
         ],
     };
+
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: post.title,
         description: post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160) || post.title,
-        inLanguage: 'en-ID',
+        inLanguage: 'id-ID',
         datePublished: post.date,
         dateModified: (post as { modified?: string }).modified || post.date,
         mainEntityOfPage: `https://dimensiwahyudi.com/news/${post.slug}`,
         author: {
             '@type': 'Organization',
-            name: 'PT Dimensi Quantum Wahyudi',
+            name: authorName,
+            url: 'https://dimensiwahyudi.com/about',
         },
         publisher: {
             '@type': 'Organization',
@@ -232,232 +329,31 @@ export default async function PostDetailPage({ params }: { params: Promise<{ slu
                 url: 'https://dimensiwahyudi.com/logo.webp',
             },
         },
-        image: post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image',
-        articleSection: post.categories?.nodes?.[0]?.name || 'Insights',
+        image: featuredImgUrl || 'https://dimensiwahyudi.com/opengraph-image',
+        articleSection: categoryName,
         keywords: (post.categories?.nodes || []).map((category) => category.name).join(', '),
     };
 
     return (
-        <article className="min-h-screen bg-slate-50 font-sans pb-24 selection:bg-blue-100 selection:text-blue-900">
+        <article className="min-h-screen bg-slate-50 font-sans pb-16 selection:bg-blue-100 selection:text-blue-900 relative">
+            <ReadingProgressBar />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-            {/* Background Decor - Clean Lab Style */}
-            <div className="fixed inset-0 z-0 pointer-events-none opacity-50">
-                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-50 rounded-full blur-[100px]"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-            </div>
 
-            {/* Immersive Hero Header */}
-            <div className="relative h-[60vh] md:h-[70vh] w-full bg-slate-900 overflow-hidden">
-                {post.featuredImage ? (
-                    <div className="absolute inset-0 animate-in fade-in duration-1000">
-                        <Image
-                            src={post.featuredImage.node.sourceUrl}
-                            alt={post.title}
-                            fill
-                            className="object-cover opacity-80"
-                            priority
-                        />
-                    </div>
-                ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 opacity-80"></div>
-                )}
+            {/* Subtle Engineering Blueprint Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none -z-10" />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-900/60 to-slate-900/30"></div>
-
-                <div className="absolute inset-0 flex flex-col justify-end pb-32 md:pb-40">
-                    <div className="max-w-4xl mx-auto px-4 sm:px-6 w-full relative z-10">
-                        <div className="animate-in slide-in-from-bottom-5 fade-in duration-700">
-                            <div className="mb-6 -mt-4 opacity-80 mix-blend-screen overflow-hidden">
-                                <Breadcrumbs items={[
-                                    { label: 'Insights', href: '/news' },
-                                    { label: post.categories?.nodes?.[0]?.name || 'Article', href: '/news' },
-                                    { label: post.title, href: `/news/${post.slug}` },
-                                ]} />
-                            </div>
-                            <Link href="/news" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 uppercase tracking-widest text-xs font-bold transition-all hover:gap-3 group">
-                                <ChevronLeft size={16} /> Back to Insights
-                            </Link>
-
-                            <div className="flex flex-wrap items-center gap-4 mb-6">
-                                {post.categories?.nodes?.[0] && (
-                                    <span className="px-4 py-1.5 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-blue-900/20">
-                                        {post.categories.nodes[0].name}
-                                    </span>
-                                )}
-                                <span className="flex items-center gap-2 text-white/90 text-sm font-medium bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                                    <Calendar size={14} /> {formattedDate}
-                                </span>
-                            </div>
-
-                            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6 drop-shadow-lg">
-                                {post.title}
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Content Body - Floating Paper Concept */}
-            <div className="relative z-10 -mt-24 px-4 sm:px-6 mb-24">
-                <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] p-8 md:p-16 border border-slate-100 flex flex-col md:flex-row gap-12 animate-in slide-in-from-bottom-10 fade-in duration-1000 fill-mode-backwards delay-300">
-
-                    {/* Sidebar / Meta Info (Desktop) */}
-                    <div className="hidden md:block w-48 shrink-0 space-y-8 sticky top-32 h-fit border-r border-slate-100 pr-8">
-                        <div>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Author</p>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center overflow-hidden">
-                                    <Image src="/favicon.ico" alt="Author" width={32} height={32} className="w-8 h-8 object-contain" />
-                                </div>
-                                <span className="font-bold text-slate-900 text-sm">Dimensi Quantum Wahyudi</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Read Time</p>
-                            <div className="flex items-center gap-2 text-slate-600 font-medium text-sm">
-                                <Clock size={16} className="text-blue-500" /> {readTime} min read
-                            </div>
-                        </div>
-                        <div className="pt-8 border-t border-slate-100">
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Share</p>
-                            <div className="flex gap-2">
-                                <ShareButton title={post.title} slug={post.slug} />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Main Content */}
-                    <div className="flex-1 min-w-0">
-
-                        {/* Mobile Meta Info */}
-                        <div className="md:hidden flex items-center justify-between py-6 border-b border-slate-100 mb-8">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center overflow-hidden">
-                                    <Image src="/favicon.ico" alt="Author" width={32} height={32} className="w-8 h-8 object-contain" />
-                                </div>
-                                <div>
-                                    <p className="text-xs text-slate-400 font-bold uppercase">Written by</p>
-                                    <span className="font-bold text-slate-900 text-sm">Dimensi Quantum Wahyudi</span>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-1 text-slate-500 text-xs font-bold bg-slate-50 px-3 py-1 rounded-full">
-                                <Clock size={14} /> {readTime} min
-                            </div>
-                            {/* Share Button Mobile */}
-                            <ShareButton title={post.title} slug={post.slug} />
-                        </div>
-
-                        <div
-                            className="prose prose-lg md:prose-xl prose-slate mx-auto prose-headless 
-                    prose-headings:font-bold prose-headings:text-slate-900 prose-headings:tracking-tight
-                    prose-p:text-slate-600 prose-p:leading-relaxed
-                    prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-                    prose-img:rounded-3xl prose-img:shadow-xl prose-img:my-10
-                    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50/50 prose-blockquote:py-4 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-slate-700
-                    text-slate-600 [&_p]:text-slate-600 [&_li]:text-slate-600 [&_h2]:text-slate-900 [&_h3]:text-slate-900 [&_strong]:text-slate-900 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5
-                    [&_iframe]:w-full [&_iframe]:aspect-video [&_iframe]:rounded-2xl [&_iframe]:my-8"
-                            dangerouslySetInnerHTML={{
-                                __html: DOMPurify.sanitize(rewriteWordPressContentLinks(post.content || ''), {
-                                    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'b', 'i', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-                                        'ul', 'ol', 'li', 'blockquote', 'a', 'img', 'figure', 'figcaption', 'table',
-                                        'thead', 'tbody', 'tr', 'th', 'td', 'code', 'pre', 'iframe', 'div', 'span', 'details', 'summary'],
-                                    ALLOWED_ATTR: ['id', 'name', 'href', 'src', 'alt', 'class', 'target', 'rel', 'width', 'height',
-                                        'allow', 'allowfullscreen', 'frameborder', 'style', 'loading'],
-                                    ALLOW_UNKNOWN_PROTOCOLS: false,
-                                })
-                            }}
-                        />
-                    </div>
-
-                </div>
-            </div>
-
-            {/* Contextual B2B CTA Banner */}
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 mb-24 animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-500">
-                <div className="bg-gradient-to-br from-blue-900 via-slate-900 to-blue-950 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative border border-blue-500/20">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-3xl rounded-full"></div>
-                    <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                        <div className="flex-1">
-                            <h3 className="text-2xl md:text-3xl font-black text-white mb-3">Ready to transform your production line?</h3>
-                            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                                Calculate the potential medical cost savings and productivity increase you could achieve using our handling solutions.
-                            </p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
-                            <Link href="/#roi-calculator" className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-6 py-4 rounded-xl text-sm transition-all shadow-lg hover:shadow-cyan-500/25 flex items-center justify-center gap-2 uppercase tracking-wide">
-                                Calculate ROI <ArrowRight size={16} />
-                            </Link>
-                            <Link href="/products" className="bg-transparent hover:bg-white/5 border border-white/20 text-white font-bold px-6 py-4 rounded-xl text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-wide">
-                                View Products
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Related Posts Section */}
-            {relatedPosts.length > 0 ? (
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
-                    <div className="mb-10 flex items-end justify-between border-b border-slate-200 pb-4">
-                        <div>
-                            <p className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-1">More to Explore</p>
-                            <h2 className="text-3xl font-black text-slate-900">Related Insights</h2>
-                        </div>
-                        <Link href="/news" className="hidden md:flex items-center gap-2 text-slate-500 hover:text-blue-600 font-bold text-sm transition-colors">
-                            View All <ArrowRight size={16} />
-                        </Link>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {relatedPosts.map((related) => (
-                            <Link key={related.id} href={`/news/${related.slug}`} className="group block bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                                <div className="relative h-48 overflow-hidden">
-                                    {related.featuredImage ? (
-                                        <Image
-                                            src={related.featuredImage.node.sourceUrl}
-                                            alt={related.title}
-                                            fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
-                                            <Tag size={32} />
-                                        </div>
-                                    )}
-                                    <div className="absolute top-4 left-4">
-                                        {related.categories?.nodes?.[0] && (
-                                            <span className="bg-white/90 backdrop-blur-sm text-slate-900 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                                                {related.categories.nodes[0].name}
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <div className="flex items-center gap-2 text-slate-400 text-xs font-mono mb-3">
-                                        <Calendar size={12} /> {formatDateString(related.date)}
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-3">
-                                        {related.title}
-                                    </h3>
-                                    <div className="text-slate-500 text-xs line-clamp-2 leading-relaxed" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(related.excerpt || '') }} />
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            ) : (
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
-                    <div className="rounded-3xl border border-slate-200 bg-white px-6 py-8 text-center shadow-sm">
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">Insights Update</p>
-                        <p className="text-slate-600 text-sm md:text-base">Related insights are being refreshed. You can continue browsing the full insights library.</p>
-                        <Link href="/news" className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-500 transition-colors">
-                            Explore All Insights <ArrowRight size={14} />
-                        </Link>
-                    </div>
-                </div>
-            )}
+            <PostDetailClient
+                title={post.title}
+                slug={post.slug}
+                categoryName={categoryName}
+                authorName={authorName}
+                dateStr={post.date}
+                readTime={readTime}
+                featuredImgUrl={featuredImgUrl}
+                sanitizedHtml={sanitizedHtml}
+                relatedPosts={sanitizedRelatedPosts}
+            />
         </article>
     );
 }

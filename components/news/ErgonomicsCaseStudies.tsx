@@ -1,11 +1,16 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ergonomicsCasesByTopic } from '../../data/ergonomicsCases';
 import { SolidCaseIcon } from '../icons/ErgonomicsSolidIcons';
+import { useLanguage } from '../LanguageProvider';
 
 type TopicKey = 'health' | 'productivity' | 'safety';
 
 export default function ErgonomicsCaseStudies({ topic }: { topic: TopicKey }) {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
   const cases = ergonomicsCasesByTopic[topic] || [];
 
   if (cases.length === 0) return null;
@@ -17,27 +22,37 @@ export default function ErgonomicsCaseStudies({ topic }: { topic: TopicKey }) {
           <SolidCaseIcon className="w-4.5 h-4.5" />
         </div>
         <div>
-          <p className="text-xs font-bold text-amber-600 uppercase tracking-[0.2em] mb-1">Implementation Snapshot</p>
-          <h2 className="text-2xl font-black text-slate-900">Case-style examples</h2>
+          <p className="text-xs font-bold text-amber-600 uppercase tracking-[0.2em] mb-1">
+            {isId ? 'GAMBARAN IMPLEMENTASI' : 'Implementation Snapshot'}
+          </p>
+          <h2 className="text-2xl font-black text-slate-900">
+            {isId ? 'Contoh Studi Kasus Lapangan' : 'Case-style examples'}
+          </h2>
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
         {cases.map((item) => (
           <article key={item.title} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.16em] mb-2">{item.industry}</p>
-            <h3 className="text-lg font-black text-slate-900 mb-2">{item.title}</h3>
-            <p className="text-slate-600 text-sm leading-relaxed mb-3">{item.summary}</p>
-            <p className="text-slate-800 text-sm font-medium mb-4">{item.impact}</p>
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.16em] mb-2">
+              {isId ? item.industryId : item.industry}
+            </p>
+            <h3 className="text-lg font-black text-slate-900 mb-2">
+              {isId ? item.titleId : item.title}
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed mb-3">
+              {isId ? item.summaryId : item.summary}
+            </p>
+            <p className="text-slate-800 text-sm font-medium mb-4">
+              {isId ? item.impactId : item.impact}
+            </p>
             <Link href={item.href} className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:text-blue-500 transition-colors">
-              Discuss this scenario
+              {isId ? 'Diskusikan Skenario Ini' : 'Discuss this scenario'}
               <ArrowRight size={14} />
             </Link>
           </article>
         ))}
       </div>
-
-
     </section>
   );
 }

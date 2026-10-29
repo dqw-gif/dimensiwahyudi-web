@@ -12,7 +12,6 @@ import {
   Edit3,
   Trash2,
   LogOut,
-  Sparkles,
   Layers,
   CheckCircle2,
   Clock,
@@ -40,7 +39,7 @@ interface Props {
 }
 
 const ITEMS_PER_PAGE = 15;
-const CATEGORIES = ['Semua', 'Produk', 'Tips', 'Ergonomi', 'News', 'Blog'];
+const CATEGORIES = ['All', 'Products', 'Tips', 'Ergonomics', 'News', 'Blog'];
 
 export default function AdminDashboardClient({ initialLegacyCount }: Props) {
   const router = useRouter();
@@ -48,7 +47,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'featured'>('all');
-  const [categoryFilter, setCategoryFilter] = useState('Semua');
+  const [categoryFilter, setCategoryFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
 
   // Bulk actions selection
@@ -82,7 +81,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
       }
     } catch (e) {
       console.error('Failed to load articles:', e);
-      showToast('error', 'Gagal memuat artikel dari database.');
+      showToast('error', 'Failed to load articles from database.');
     } finally {
       setLoading(false);
     }
@@ -119,7 +118,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
 
   // Sync WordPress
   const handleSyncWordPress = async () => {
-    if (!confirm('Apakah Anda ingin menarik artikel terbaru dari WordPress dan menyimpannya ke Firebase?')) return;
+    if (!confirm('Sync the latest articles from WordPress to Firebase Firestore?')) return;
     setIsSyncing(true);
     try {
       const res = await fetch('/api/admin/sync-wordpress', { method: 'POST' });
@@ -128,7 +127,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
         showToast('success', data.message || 'Sinkronisasi berhasil!');
         fetchArticles();
       } else {
-        showToast('error', data.error || 'Gagal sinkronisasi');
+        showToast('error', data.error || 'Sync failed');
       }
     } catch {
       showToast('error', 'Terjadi kesalahan koneksi saat sinkronisasi');
@@ -150,10 +149,10 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
         setFirestoreArticles((prev) =>
           prev.map((a) => (a.id === article.id ? { ...a, status: nextStatus } : a))
         );
-        showToast('success', `Status artikel diubah menjadi ${nextStatus.toUpperCase()}`);
+        showToast('success', `Article status changed to ${nextStatus.toUpperCase()}`);
       }
     } catch {
-      showToast('error', 'Gagal memperbarui status artikel');
+      showToast('error', 'Failed to update article status');
     }
   };
 
@@ -170,17 +169,17 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
         setFirestoreArticles((prev) =>
           prev.map((a) => (a.id === article.id ? { ...a, featured: nextFeatured } : a))
         );
-        showToast('success', nextFeatured ? 'Artikel ditandai Unggulan ⭐' : 'Tanda Unggulan dicabut');
+        showToast('success', nextFeatured ? 'Article marked as Featured' : 'Featured flag removed');
       }
     } catch {
-      showToast('error', 'Gagal memperbarui tanda unggulan');
+      showToast('error', 'Failed to update featured flag');
     }
   };
 
   // Duplicate Article (Clone as Template)
   const handleDuplicate = async (article: ArticleItem) => {
-    const newTitle = `Salinan - ${article.title}`;
-    const newSlug = `salinan-${article.slug}-${Date.now().toString().slice(-4)}`;
+    const newTitle = `Copy - ${article.title}`;
+    const newSlug = `copy-${article.slug}-${Date.now().toString().slice(-4)}`;
     try {
       const res = await fetch('/api/admin/articles', {
         method: 'POST',
@@ -200,11 +199,11 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
         const data = await res.json();
         if (data.success && data.article) {
           setFirestoreArticles((prev) => [data.article, ...prev]);
-          showToast('success', 'Artikel berhasil diduplikat menjadi draf!');
+          showToast('success', 'Article successfully duplicated as draft.');
         }
       }
     } catch {
-      showToast('error', 'Gagal menduplikat artikel');
+      showToast('error', 'Failed to duplicate article');
     }
   };
 
@@ -218,14 +217,14 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
       downloadAnchor.setAttribute('href', jsonString);
       downloadAnchor.setAttribute(
         'download',
-        `backup-artikel-dimensiwahyudi-${new Date().toISOString().slice(0, 10)}.json`
+        `backup-articles-dimensiwahyudi-${new Date().toISOString().slice(0, 10)}.json`
       );
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
-      showToast('success', 'Cadangan artikel (JSON) berhasil diunduh!');
+      showToast('success', 'Article backup (JSON) successfully downloaded.');
     } catch {
-      showToast('error', 'Gagal mengekspor data artikel.');
+      showToast('error', 'Failed to export article data.');
     }
   };
 
@@ -241,10 +240,10 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
         setFirestoreArticles((prev) => prev.filter((a) => a.id !== deleteTarget.id));
         setSelectedIds((prev) => prev.filter((id) => id !== deleteTarget.id));
         setDeleteTarget(null);
-        showToast('success', 'Artikel berhasil dihapus permanen.');
+        showToast('success', 'Article permanently deleted.');
       }
     } catch {
-      showToast('error', 'Gagal menghapus artikel');
+      showToast('error', 'Failed to delete article');
     } finally {
       setIsDeleting(false);
     }
@@ -265,10 +264,10 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
           prev.map((a) => (selectedIds.includes(a.id) ? { ...a, status } : a))
         );
         setSelectedIds([]);
-        showToast('success', `${selectedIds.length} artikel diubah ke ${status.toUpperCase()}!`);
+        showToast('success', `${selectedIds.length} articles updated to ${status.toUpperCase()}.`);
       }
     } catch {
-      showToast('error', 'Gagal memperbarui artikel secara massal.');
+      showToast('error', 'Failed to update articles in batch.');
     } finally {
       setIsBulkProcessing(false);
     }
@@ -276,7 +275,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
 
   const handleBulkDelete = async () => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`Yakin ingin menghapus ${selectedIds.length} artikel yang dipilih secara permanen?`)) return;
+    if (!confirm(`Permanently delete ${selectedIds.length} selected articles?`)) return;
     setIsBulkProcessing(true);
     try {
       const res = await fetch(`/api/admin/articles?id=${selectedIds.join(',')}`, {
@@ -285,10 +284,10 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
       if (res.ok) {
         setFirestoreArticles((prev) => prev.filter((a) => !selectedIds.includes(a.id)));
         setSelectedIds([]);
-        showToast('success', 'Artikel terpilih berhasil dihapus!');
+        showToast('success', 'Selected articles successfully deleted.');
       }
     } catch {
-      showToast('error', 'Gagal menghapus artikel terpilih.');
+      showToast('error', 'Failed to delete selected articles.');
     } finally {
       setIsBulkProcessing(false);
     }
@@ -309,7 +308,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
           ? Boolean(article.featured)
           : article.status === statusFilter;
 
-      const matchesCategory = categoryFilter === 'Semua' || article.category === categoryFilter;
+      const matchesCategory = categoryFilter === 'All' || article.category === categoryFilter;
 
       return matchesSearch && matchesStatus && matchesCategory;
     });
@@ -420,7 +419,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
               onClick={handleSyncWordPress}
               disabled={isSyncing}
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all disabled:opacity-50 cursor-pointer"
-              title="Tarik artikel baru dari WordPress"
+              title="Sync new articles from WordPress"
             >
               <RefreshCw size={13} className={isSyncing ? 'animate-spin text-cyan-600' : 'text-slate-500'} />
               <span className="hidden sm:inline">{isSyncing ? 'Syncing...' : 'Sync WP'}</span>
@@ -430,7 +429,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
             <button
               onClick={handleExportJson}
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all cursor-pointer"
-              title="Export backup database artikel ke format JSON"
+              title="Export article database backup to JSON"
             >
               <Download size={13} className="text-slate-500" />
               <span className="hidden md:inline">Backup JSON</span>
@@ -442,10 +441,10 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-all"
-              title="Lihat halaman publik berita"
+              title="View public insights page"
             >
               <Globe size={13} className="text-cyan-600" />
-              <span className="hidden md:inline">Lihat Web</span>
+              <span className="hidden md:inline">View Website</span>
             </Link>
 
             {/* Create Article Button */}
@@ -454,14 +453,14 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs shadow-md shadow-cyan-600/20 transition-all"
             >
               <Plus size={15} />
-              <span>Tulis Artikel</span>
+              <span>Write Article</span>
             </Link>
 
             {/* Logout */}
             <button
               onClick={handleLogout}
               className="p-2 rounded-xl text-slate-400 hover:text-red-600 hover:bg-red-50 border border-transparent hover:border-red-200 transition-all cursor-pointer"
-              title="Keluar dari Admin"
+              title="Sign out of Admin"
             >
               <LogOut size={16} />
             </button>
@@ -475,7 +474,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex items-center justify-between">
             <div>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Artikel</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Articles</span>
               <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 block">
                 {firestoreArticles.length}
               </span>
@@ -535,7 +534,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                placeholder="Cari judul artikel, slug, topik..."
+                placeholder="Search article title, slug, topic..."
                 className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-500/20 transition-all"
               />
               {searchQuery && (
@@ -561,7 +560,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                     : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
-                Semua ({firestoreArticles.length})
+                All ({firestoreArticles.length})
               </button>
               <button
                 onClick={() => {
@@ -634,7 +633,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
           <div className="bg-cyan-50 border border-cyan-200 rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-3 animate-in fade-in">
             <div className="flex items-center gap-2 text-xs font-bold text-cyan-900">
               <CheckSquare size={16} className="text-cyan-600" />
-              <span>{selectedIds.length} artikel terpilih</span>
+              <span>{selectedIds.length} articles selected</span>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -663,7 +662,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                 onClick={() => setSelectedIds([])}
                 className="px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-100 cursor-pointer"
               >
-                Batal
+                Cancel
               </button>
             </div>
           </div>
@@ -674,12 +673,12 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
           {loading ? (
             <div className="p-16 text-center text-slate-400">
               <RefreshCw size={24} className="animate-spin mx-auto mb-3 text-cyan-600" />
-              <p className="text-sm font-semibold">Memuat database artikel Firestore...</p>
+              <p className="text-sm font-semibold">Loading Firestore article database...</p>
             </div>
           ) : paginatedArticles.length === 0 ? (
             <div className="p-16 text-center text-slate-400">
               <AlertTriangle size={32} className="mx-auto mb-3 text-slate-300" />
-              <h3 className="text-slate-700 font-bold text-base">Tidak ada artikel yang cocok</h3>
+              <h3 className="text-slate-700 font-bold text-base">No matching articles found</h3>
               <p className="text-xs text-slate-400 mt-1">Coba sesuaikan kata kunci pencarian atau filter status Anda.</p>
             </div>
           ) : (
@@ -723,7 +722,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                           <button
                             onClick={() => handleToggleFeatured(article)}
                             className="cursor-pointer text-slate-300 hover:text-amber-500 transition-colors"
-                            title={article.featured ? 'Cabut tanda Featured' : 'Jadikan artikel Featured'}
+                            title={article.featured ? 'Remove featured flag' : 'Mark article as featured'}
                           >
                             <Star
                               size={16}
@@ -747,7 +746,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-slate-400 hover:text-cyan-600"
-                              title="Buka artikel langsung di website"
+                              title="Open article on live website"
                             >
                               <ExternalLink size={12} />
                             </Link>
@@ -770,7 +769,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                                 ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200'
                                 : 'bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200'
                             }`}
-                            title="Klik untuk mengubah status"
+                            title="Click to toggle status"
                           >
                             <span
                               className={`w-1.5 h-1.5 rounded-full ${
@@ -797,7 +796,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                             <button
                               onClick={() => handleDuplicate(article)}
                               className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
-                              title="Duplikat artikel ini sebagai template baru"
+                              title="Duplicate article as template"
                             >
                               <Copy size={15} />
                             </button>
@@ -806,7 +805,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                             <Link
                               href={`/admin/editor?id=${article.id}`}
                               className="p-1.5 rounded-lg text-slate-500 hover:text-cyan-600 hover:bg-cyan-50 transition-colors"
-                              title="Edit artikel"
+                              title="Edit article"
                             >
                               <Edit3 size={15} />
                             </Link>
@@ -815,7 +814,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                             <button
                               onClick={() => setDeleteTarget(article)}
                               className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
-                              title="Hapus artikel"
+                              title="Delete article"
                             >
                               <Trash2 size={15} />
                             </button>
@@ -841,7 +840,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                 <span className="font-bold text-slate-900">
                   {Math.min(currentPage * ITEMS_PER_PAGE, filteredArticles.length)}
                 </span>{' '}
-                dari <span className="font-bold text-slate-900">{filteredArticles.length}</span> artikel
+                of <span className="font-bold text-slate-900">{filteredArticles.length}</span> articles
               </div>
 
               <div className="flex items-center gap-1.5">
@@ -902,9 +901,9 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
               <AlertTriangle size={24} />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-900">Hapus Artikel Ini?</h3>
+              <h3 className="text-lg font-bold text-slate-900">Delete This Article?</h3>
               <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                Artikel <span className="font-semibold text-slate-800">"{deleteTarget.title}"</span> akan dihapus permanen dari database Firebase Firestore.
+                Article <span className="font-semibold text-slate-800">"{deleteTarget.title}"</span> will be permanently deleted from Firestore database.
               </p>
             </div>
             <div className="flex items-center justify-end gap-2 pt-2">
@@ -913,7 +912,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                 disabled={isDeleting}
                 className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold cursor-pointer"
               >
-                Batal
+                Cancel
               </button>
               <button
                 onClick={confirmDelete}
@@ -938,7 +937,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                 autoFocus
                 value={cmdSearch}
                 onChange={(e) => setCmdSearch(e.target.value)}
-                placeholder="Ketik judul artikel, atau perintah (tulis, sync, backup)..."
+                placeholder="Type article title, or command (write, sync, backup)..."
                 className="w-full bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none"
               />
               <button
@@ -962,7 +961,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                 className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 flex items-center gap-2.5 font-semibold text-slate-700 cursor-pointer"
               >
                 <Plus size={15} className="text-cyan-600" />
-                <span>Tulis Artikel Baru</span>
+                <span>Write New Article</span>
               </button>
               <button
                 onClick={() => {
@@ -972,7 +971,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
                 className="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 flex items-center gap-2.5 font-semibold text-slate-700 cursor-pointer"
               >
                 <RefreshCw size={15} className="text-cyan-600" />
-                <span>Sinkronisasi Artikel WordPress</span>
+                <span>Sync WordPress Articles</span>
               </button>
               <button
                 onClick={() => {
@@ -987,7 +986,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
 
               {/* Matching Articles */}
               <div className="px-3 pt-3 pb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                Artikel
+                Articles
               </div>
               {firestoreArticles
                 .filter((a) => a.title.toLowerCase().includes(cmdSearch.toLowerCase()))

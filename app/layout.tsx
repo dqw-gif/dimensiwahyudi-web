@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Barlow } from "next/font/google";
+import { cookies } from "next/headers";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import LayoutChrome from "../components/LayoutChrome";
@@ -7,10 +8,10 @@ import { LanguageProvider } from "../components/LanguageProvider";
 import AnalyticsGate from "../components/AnalyticsGate";
 import CookieConsentBanner from "../components/CookieConsentBanner";
 
-const barlow = Barlow({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-barlow",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta",
   display: "swap",
 });
 
@@ -97,7 +98,7 @@ export const metadata: Metadata = {
         url: `${BASE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "PT Dimensi Quantum Wahyudi — Industrial Lifting Solutions",
+        alt: "PT Dimensi Quantum Wahyudi Industrial Lifting Solutions",
       },
     ],
   },
@@ -116,7 +117,7 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD: LocalBusiness + WebSite graph untuk memperkuat entity SEO Indonesia.
+// JSON-LD: LocalBusiness + WebSite graph for verified entity SEO.
 const seoStructuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -203,17 +204,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialLang = "en";
-  const htmlLang = "en-ID";
+  const cookieStore = await cookies();
+  const langCookie = cookieStore.get("site-lang")?.value;
+  const initialLang = (langCookie === "id" ? "id" : "en") as "en" | "id";
+  const htmlLang = initialLang === "id" ? "id-ID" : "en-ID";
 
   return (
-    <html lang={htmlLang} className="scroll-smooth">
+    <html lang={htmlLang} className={`scroll-smooth ${plusJakartaSans.className} ${plusJakartaSans.variable}`}>
       <head>
         <link rel="preload" as="image" href="/hero-poster-mobile.webp" media="(max-width: 767px)" fetchPriority="high" type="image/webp" />
         <link rel="preload" as="image" href="/hero-poster.webp" media="(min-width: 768px)" fetchPriority="high" type="image/webp" />
         <link rel="dns-prefetch" href="https://dimensiwahyudi.com" />
       </head>
-      <body className={`${barlow.variable} font-sans antialiased`}>
+      <body className={`${plusJakartaSans.className} font-sans antialiased`}>
         <Script id="consent-mode-bootstrap" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: consentModeBootstrap }} />
         <script
           type="application/ld+json"

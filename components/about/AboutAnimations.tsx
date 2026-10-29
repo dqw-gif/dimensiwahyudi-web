@@ -1,372 +1,564 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Award, Target, Users, Factory, Truck, Box, Sofa, FlaskConical, Monitor, Hammer, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import {
+  Target,
+  CheckCircle2,
+  ShieldCheck,
+  ArrowRight,
+} from 'lucide-react';
+import { useLanguage } from '../LanguageProvider';
 
-/* ─── Hero Fade-in ─── */
+/* ─── 1. Hero Section ─── */
 export function AboutHero() {
-    return (
-        <div className="relative z-10 text-center px-6 max-w-4xl">
-            <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-cyan-600 font-bold tracking-widest text-sm uppercase mb-4 block"
-            >
-                Raising New Standards Since 2009
-            </motion.span>
-            <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight"
-            >
-                Smart Solutions for <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                    Industrial Productivity
-                </span>
-            </motion.h1>
-            <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed"
-            >
-                PT Dimensi Quantum Wahyudi (DQW) is a strategic partner in material handling and industrial automation, focused on safer operations and measurable efficiency gains.
-            </motion.p>
-        </div>
-    );
-}
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
 
-/* ─── Client Logos ─── */
-const projectLogos = [
-    { "client": "PT Mayora Indah", "industry": "FMCG & F&B", "logo": "https://www.mayoraindah.co.id/assets/frontend/images/logo.png" },
-    { "client": "PT Gajah Tunggal", "industry": "Automotive & Mobility", "logo": "https://www.gt-tires.com/wp-content/themes/gajahtunggal/images/corporate_logo.png" },
-    { "client": "PT Angkasa Pura II", "industry": "Air Logistics", "logo": "https://upload.wikimedia.org/wikipedia/id/thumb/a/a6/Angkasa_Pura_II_logo_2014.svg/3840px-Angkasa_Pura_II_logo_2014.svg.png" },
-    { "client": "PT Asahimas Flat Glass Tbk", "industry": "Glass & Solid Materials", "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_Asahimas_Flat_Glass_Tbk.png" },
-    { "client": "PT Unilever Indonesia Tbk", "industry": "FMCG & F&B", "logo": "https://upload.wikimedia.org/wikipedia/id/3/37/Unilever.png" },
-    { "client": "PT. Indonesia Nikka Chemicals", "industry": "Chemical & Pharmaceutical", "logo": "https://img2.lokercepat.id/files/2023-11-11/pt-indonesia-nikka-chemicals-inkali-382.jpg" },
-    { "client": "PT GS Battery", "industry": "Automotive & Mobility", "logo": "https://www.gs.astra.co.id/media/dzpc02gq/gs-battery-logo.png" },
-    { "client": "PT Nestle Indonesia", "industry": "FMCG & F&B", "logo": "https://www.nestle.co.id/themes/custom/da_vinci_code/logo.svg" },
-    { "client": "PT Hokkan Indonesia", "industry": "Packaging & Plastics", "logo": "https://www.hokkan.co.id/images/logo.jpg" },
-    { "client": "PT Taco Anugrah Corporindo", "industry": "Furniture & Interior", "logo": "https://manage.taco.co.id/asset-images/logo.svg" },
-    { "client": "PT Otsuka Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://www.otsuka.co.id/themes/otsuka/assets/img/otsuka.png" },
-    { "client": "PT Mowilex Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://mowilex.com/wp-content/themes/movi/images/MowilexPremiumPaints.webp" },
-    { "client": "PT Yakult Indonesia Persada", "industry": "FMCG & F&B", "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Yakult-Logo.svg" },
-    { "client": "PT Nutrifood Indonesia", "industry": "FMCG & F&B", "logo": "https://www.nutrifood.co.id/wp-content/themes/nutrifood/images/logo-nutrifood.png" },
-    { "client": "PT Nutribev Nabati Indonesia", "industry": "FMCG & F&B", "logo": "https://www.nabatisnack.co.id/assets/icons/ic-nabati.png" },
-    { "client": "PT Cabot Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://companieslogo.com/img/orig/CBT_BIG-f438266d.png?t=1720244491" },
-    { "client": "PT Kayu Permata", "industry": "Furniture & Interior", "logo": "https://www.permatadoor.com/wp-content/themes/permata_door/assets/images/svg/permata_door.svg" },
-    { "client": "PT Multi Bintang Indonesia Tbk", "industry": "FMCG & F&B", "logo": "https://cdn.cookielaw.org/logos/00afdec3-358f-4f2d-8b63-0c71e6f49172/019808a1-d0bd-747f-b424-020636e1ab33/8a3915b9-9563-470f-8efd-2af699d3f08e/multibintang.png" },
-    { "client": "PT. DSM Firmenich Aromatics", "industry": "Chemical & Pharmaceutical", "logo": "https://www.dsm-firmenich.com/content/dam/dsm-firmenich/logos/logo-black.svg" },
-    { "client": "PT. Federal Karyatama", "industry": "Automotive & Mobility", "logo": "https://federaloil.co.id/themes/web/desktop2020/new/assets/collections/default/fo-logo-2.png" },
-    { "client": "PT. Fukusuke Kogyo Indonesia", "industry": "Packaging & Plastics", "logo": "https://kemindogroup.id/wp-content/uploads/2020/09/logo-client-kemindo-8.png" },
-    { "client": "PT. Indofood CBP Sukses Makmur", "industry": "FMCG & F&B", "logo": "https://www.indofoodcbp.com/images/btn/logo-indofoodcbp.png" },
-    { "client": "PT. Mars Symbioscience", "industry": "FMCG & F&B", "logo": "https://wikiexport.ai/wp-content/uploads/2022/10/15-1170x600.png" },
-    { "client": "PT. Nufarm Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://nufarm.com/id/wp-content/themes/nufarm/images/site-logo.svg" },
-    { "client": "PT. Sakae Riken Indonesia", "industry": "Automotive & Mobility", "logo": "https://www.sakaeriken.co.jp/assets/img/common/logo/logo-site.png" },
-    { "client": "PT Garuda Food", "industry": "FMCG & F&B", "logo": "https://www.vhv.rs/dpng/d/73-737965_garudafood-logo-png-transparent-png.png" },
-    { "client": "PT Bredero Shaw Indonesia", "industry": "Heavy Industry & Automation", "logo": "https://karir-production.nos.jkt-1.neo.id/logos/22/1264222/Bredero_Shaw_Indonesia_01.png" },
-    { "client": "PT Delifood Sentosa Corpindo", "industry": "FMCG & F&B", "logo": "https://cdn0-production-images-kly.akamaized.net/TpRMBHzC6SCc6V4oTvo3-KIt8kE=/2560x1440/smart/filters:quality(75):strip_icc()/kly-media-production/medias/4243444/original/067506700_1669705672-logo_mayora.jpg" },
-    { "client": "PT Diageo Indonesia", "industry": "FMCG & F&B", "logo": "https://cdn.getamigo.io/ggr/rebuild/client-story-imgs/diageo-hero.webp" },
-    { "client": "PT Elangperdana Tyre Industry", "industry": "Automotive & Mobility", "logo": "https://admin.zeetex-radial.com/storage/page-contents/February2021/hcwzrhzeJOolozrpB7p5.png" },
-    { "client": "PT Hempel Indonesia", "industry": "Building Materials & Infrastructure", "logo": "https://image1ws.indotrading.com/s3/webp/co19822/companylogo/w400-h220/logo.jpg" },
-    { "client": "PT Industrial Robotic Automation", "industry": "Heavy Industry & Automation", "logo": "https://i.imgur.com/7Jpv5Qg.jpeg" },
-    { "client": "PT Inoac Polytechno Indonesia", "industry": "Packaging & Plastics", "logo": "https://www.inoac.co.jp/common/img/logo.svg" },
-    { "client": "PT Kalbe Morinaga Indonesia", "industry": "Chemical & Pharmaceutical", "logo": "https://kalbenutritionals.com/images/kalbe-nutritionals-logo.png" },
-    { "client": "PT Kian Mulia Manunggal", "industry": "Glass & Solid Materials", "logo": "https://www.temposcangroup.com/public/images/LOGO_TEMPO_SCAN_100_INDONESIA.png" },
-    { "client": "PT Meiji Food Indonesia", "industry": "FMCG & F&B", "logo": "https://meiji.co.id/storage/public/generals/eY0Fj5yMvi7ZPSz9zNcI9RSoYvYQIuQb2cMEKCTl.png" },
-    { "client": "PT Cipta Mortar Utama", "industry": "Building Materials & Infrastructure", "logo": "https://www.mortarutama.com/wp-content/uploads/2023/12/logo-MU-new-hires-01-1536x635.png" },
-    { "client": "PT Rinnai Indonesia", "industry": "Electronics", "logo": "https://www.rinnai.co.id/wp-content/uploads/2019/04/logo-395x100.png" },
-    { "client": "PT Sarihusada Generasi Mahardhika", "industry": "FMCG & F&B", "logo": "https://www.sarihusada.co.id/assets/img/logo.png" },
-    { "client": "PT Sri Trang Lingga Indonesia", "industry": "Glass & Solid Materials", "logo": "https://axeoneverest.com/wp-content/uploads/2011/04/sri-trang-group-everest-logo-1.jpg" },
-    { "client": "PT Sugity Creatives", "industry": "Automotive & Mobility", "logo": "https://uccareer.id/assets/upload/company/thumbs/thumb300px-20251007-100131-a1262.jpg" },
-    { "client": "PT Sumi Rubber Indonesia", "industry": "Automotive & Mobility", "logo": "https://dunlop.co.id/logo-default.svg" },
-    { "client": "PT URC Indonesia", "industry": "FMCG & F&B", "logo": "https://www.urc.co.id/wp-content/uploads/2021/01/2.jpg" },
-    { "client": "PT. Evoluzione Tyres", "industry": "Automotive & Mobility", "logo": "https://csr.subang.go.id/assets/upload/company/pt-evoluzione-tyres-768x576.jpg" },
-    { "client": "PT. Mura Maha Agung", "industry": "Building Materials & Infrastructure", "logo": "https://www.muramaha.com/wp-content/uploads/2017/01/cropped-logo-muramaha3.png" },
-    { "client": "PT Suryaraya Rubberindo Industries", "industry": "Automotive & Mobility", "logo": "https://fdrtire.com/assets/frontend/img/logo.jpg" },
-    { "client": "PT Astra Daihatsu Motor", "industry": "Automotive & Mobility", "logo": "https://medias.astra-daihatsu.id/sys-master-media/h70/hc8/8819719208990/astraDaihatsulogo.svg" },
-    { "client": "PT YKK AP Indonesia", "industry": "Building Materials & Infrastructure", "logo": "https://www.ykkap.co.id/assets/img/header_logo01.svg" }
-];
+  return (
+    <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+      {/* Pill Badge */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-[0_2px_10px_rgba(0,85,150,0.06)] mb-6"
+      >
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+          {isId ? 'TENTANG KAMI • BERDIRI SEJAK 2009' : 'ABOUT US • ESTABLISHED 2009'}
+        </span>
+      </motion.div>
 
-// Define Industry categories, icons, and priority
-const industriesConfig = [
-    { name: "FMCG & F&B", icon: Factory, color: "text-blue-600", bg: "bg-blue-50/80", border: "border-blue-200" },
-    { name: "Automotive & Mobility", icon: Truck, color: "text-red-600", bg: "bg-red-50/80", border: "border-red-200" },
-    { name: "Chemical & Pharmaceutical", icon: FlaskConical, color: "text-emerald-600", bg: "bg-emerald-50/80", border: "border-emerald-200" },
-    { name: "Glass & Solid Materials", icon: Box, color: "text-slate-600", bg: "bg-slate-50/80", border: "border-slate-200" },
-    { name: "Packaging & Plastics", icon: Box, color: "text-indigo-600", bg: "bg-indigo-50/80", border: "border-indigo-200" },
-    { name: "Furniture & Interior", icon: Sofa, color: "text-amber-600", bg: "bg-amber-50/80", border: "border-amber-200" },
-    { name: "Building Materials & Infrastructure", icon: Hammer, color: "text-stone-600", bg: "bg-stone-50/80", border: "border-stone-200" },
-    { name: "Heavy Industry & Automation", icon: Factory, color: "text-slate-700", bg: "bg-slate-100/80", border: "border-slate-300" },
-    { name: "Electronics", icon: Monitor, color: "text-cyan-600", bg: "bg-cyan-50/80", border: "border-cyan-200" },
-    { name: "Air Logistics", icon: Truck, color: "text-sky-600", bg: "bg-sky-50/80", border: "border-sky-200" }
-];
+      {/* Monumental Heading */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15, duration: 0.6 }}
+        className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-[1.15] tracking-tight"
+      >
+        {isId ? 'Spesialis Ergonomic Handling & ' : 'Pioneering Ergonomic Handling & '}<br className="hidden sm:inline" />
+        <span className="bg-gradient-to-r from-[#005596] to-[#1d4ed8] bg-clip-text text-transparent">
+          {isId ? 'Sistem Otomasi Vakum Industri' : 'Vacuum Automation Systems'}
+        </span>
+      </motion.h1>
 
-export function AboutClientLogos() {
-    // 1. Group the project logos by industry
-    const groupedLogos: Record<string, typeof projectLogos> = {};
+      {/* Lead Paragraph */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8"
+      >
+        {isId
+          ? 'PT Dimensi Quantum Wahyudi (DQW), bagian dari Nabel Sakha Group, menghadirkan sistem Vacuum Handling bersertifikat dari Schmalz Jerman dan manipulator lengan elektrik dari Binar Swedia langsung ke pabrik manufaktur di seluruh Indonesia.'
+          : 'PT Dimensi Quantum Wahyudi (DQW), a member of Nabel Sakha Group, delivers certified vacuum handling equipment from Schmalz Germany and electric manipulator arms from Binar Sweden directly to manufacturing facilities across Indonesia.'}
+      </motion.p>
 
-    // Group remote logos
-    projectLogos.forEach(logo => {
-        if (!groupedLogos[logo.industry]) {
-            groupedLogos[logo.industry] = [];
-        }
-        groupedLogos[logo.industry].push(logo);
-    });
-
-    const [expandedIndustry, setExpandedIndustry] = useState<string | null>("FMCG & F&B");
-
-    return (
-        <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full px-4">
-            {industriesConfig.map((industry, catIndex) => {
-                const logos = groupedLogos[industry.name];
-                if (!logos || logos.length === 0) return null;
-
-                const Icon = industry.icon;
-                const isExpanded = expandedIndustry === industry.name;
-
-                return (
-                    <motion.div
-                        key={industry.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: catIndex * 0.05 }}
-                        className="flex flex-col bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md"
-                    >
-                        {/* Interactive Accordion Header */}
-                        <button
-                            onClick={() => setExpandedIndustry(isExpanded ? null : industry.name)}
-                            className="w-full flex items-center justify-between p-5 md:p-6 outline-none hover:bg-slate-50 transition-colors group"
-                        >
-                            <div className="flex items-center gap-4 mx-auto">
-                                <div className={`p-2.5 rounded-xl border ${industry.border} ${industry.bg} transition-transform group-hover:scale-110`}>
-                                    <Icon size={20} className={industry.color} />
-                                </div>
-                                <div className="text-left flex-1 min-w-[200px]">
-                                    <h3 className="text-lg md:text-xl font-bold text-slate-800 tracking-tight">{industry.name}</h3>
-                                    <p className="text-sm text-slate-500 font-medium">{logos.length} Multinational Clients</p>
-                                </div>
-                            </div>
-                            <div className={`w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 text-slate-500 transition-transform duration-300 ${isExpanded ? 'rotate-180 bg-slate-200 text-slate-800' : 'group-hover:bg-slate-200'}`}>
-                                <ChevronDown size={20} />
-                            </div>
-                        </button>
-
-                        {/* Collapsible Logos Grid */}
-                        <AnimatePresence initial={false}>
-                            {isExpanded && (
-                                <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                >
-                                    {/* Using grid-flow-dense and varying spans for a more dynamic "bento/masonry" style */}
-                                    <div className="p-6 pt-2 bg-slate-50/50 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 auto-rows-[100px] grid-flow-dense gap-4">
-                                        {logos.map((logo, index) => {
-                                            // Make every 5th logo slightly larger (span 2 columns, span 2 rows)
-                                            // and every 3rd logo span 2 columns but 1 row
-                                            // Normal logos span 1 column, 1 row using Tailwind breakpoints instead of window size
-                                            let spanClass = "col-span-1 row-span-1";
-                                            let imgSizeClass = "max-h-12 max-w-full";
-                                            if (index % 5 === 0 && logos.length > 3) {
-                                                spanClass = "md:col-span-2 md:row-span-2";
-                                                imgSizeClass = "max-h-12 md:max-h-20 max-w-[80%]";
-                                            } else if (index % 3 === 0 && logos.length > 2) {
-                                                spanClass = "sm:col-span-2 row-span-1";
-                                            }
-
-                                            return (
-                                                <motion.div
-                                                    key={logo.client}
-                                                    initial={{ opacity: 0, scale: 0.9 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    transition={{ delay: index * 0.03, duration: 0.3 }}
-                                                    className={`relative w-full h-full flex flex-col items-center justify-center p-4 group bg-white rounded-2xl border border-slate-200 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.02)] hover:shadow-lg hover:border-slate-300 hover:-translate-y-1 hover:z-10 transition-all duration-300 ${spanClass}`}
-                                                >
-                                                    {/* Tooltip on Hover */}
-                                                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none drop-shadow-md z-20">
-                                                        {logo.client}
-                                                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rotate-45"></div>
-                                                    </div>
-
-                                                    <Image
-                                                        src={logo.logo}
-                                                        alt={logo.client}
-                                                        width={180}
-                                                        height={80}
-                                                        className={`object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 mx-auto drop-shadow-sm group-hover:drop-shadow-md relative z-10 ${imgSizeClass}`}
-                                                        unoptimized
-                                                    />
-                                                </motion.div>
-                                            );
-                                        })}
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </motion.div>
-                );
-            })}
-        </div>
-    );
-}
-
-
-/* ─── Story Section ─── */
-export function AboutStoryImage() {
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative h-[500px] rounded-2xl overflow-hidden border border-slate-200 group shadow-2xl shadow-slate-200/50"
+      {/* Quick Action Pill Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.45, duration: 0.6 }}
+        className="flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+      >
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#005596] hover:bg-[#004276] active:scale-[0.98] text-white text-sm font-bold rounded-full shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_8px_24px_rgba(0,85,150,0.35)] hover:-translate-y-0.5 transition-all"
         >
-            <Image
-                src="https://i.imgur.com/RMjGMRg.jpeg"
-                alt="PT Dimensi Quantum Wahyudi Professional Team"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md border border-slate-200 p-6 rounded-xl shadow-xl">
-                <p className="text-slate-500 font-bold text-xs uppercase tracking-widest mb-3">Official Partners</p>
-                <div className="flex items-center gap-6">
-                    <Image
-                        src="/brands/schmalz.webp"
-                        alt="Schmalz Germany"
-                        width={120}
-                        height={40}
-                        className="object-contain"
-                    />
-                    <div className="w-px h-8 bg-slate-200"></div>
-                    <Image
-                        src="/brands/binar.webp"
-                        alt="Binar Sweden"
-                        width={100}
-                        height={40}
-                        className="object-contain"
-                    />
-                </div>
-            </div>
-        </motion.div>
-    );
+          <span>{isId ? 'Konsultasi dengan Tim Engineer' : 'Speak with Our Engineers'}</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+        <Link
+          href="/products"
+          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/90 hover:bg-white active:scale-[0.98] border border-slate-200/90 hover:border-[#005596]/40 shadow-xs hover:shadow-md text-sm font-bold text-[#005596] transition-all"
+        >
+          <span>{isId ? 'Lihat Solusi Produk' : 'Explore Handling Solutions'}</span>
+        </Link>
+      </motion.div>
+    </div>
+  );
 }
 
-/* ─── Vision & Mission ─── */
+/* ─── 2. Story Image & Credential Badges ─── */
+export function AboutStoryImage() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+      className="relative h-[380px] sm:h-[480px] rounded-3xl overflow-hidden border border-white/95 ring-1 ring-[#005596]/15 shadow-[0_20px_50px_-15px_rgba(0,85,150,0.12)] group bg-slate-100"
+    >
+      <Image
+        src="/about/team-facility.jpg"
+        alt="Engineering Facility and Team of PT Dimensi Quantum Wahyudi"
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        priority
+      />
+
+      {/* Subtle overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent pointer-events-none" />
+
+      {/* Official Partners Floating Card */}
+      <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 bg-white/90 backdrop-blur-2xl border border-white/95 ring-1 ring-[#005596]/15 p-4 sm:p-5 rounded-2xl shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-4">
+          <div className="h-8 flex items-center">
+            <Image
+              src="/brands/schmalz.webp"
+              alt="Schmalz Germany"
+              width={105}
+              height={32}
+              className="object-contain"
+            />
+          </div>
+          <div className="w-px h-7 bg-slate-200" />
+          <div className="h-8 flex items-center">
+            <Image
+              src="/brands/binar.webp"
+              alt="Binar Sweden"
+              width={85}
+              height={32}
+              className="object-contain"
+            />
+          </div>
+        </div>
+
+        <div className="text-left sm:text-right border-t sm:border-t-0 sm:border-l border-slate-200 pt-2 sm:pt-0 sm:pl-4">
+          <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#005596]">
+            {isId ? 'Distributor Resmi di Indonesia' : 'Authorized Indonesian Partner'}
+          </p>
+          <p className="text-xs text-slate-500 font-medium">
+            {isId ? 'Suku Cadang OEM Asli & Teknisi Bersertifikat' : 'Genuine OEM Spare Parts & Factory Certified Support'}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── 3. Core Values (Vision & Mission) ─── */
 const values = [
-    {
-        icon: <Target className="w-8 h-8" />,
-        title: 'Our Vision',
-        color: 'blue',
-        desc: 'To be the most trusted provider of vacuum automation and ergonomic handling systems in Indonesia, leading through product quality, technical support, and long-term customer value.',
-        bgImage: 'https://dimensiwahyudi.com/wp-content/uploads/2025/11/pameran-allpack-indonesia-2025-dqw-dukung-industri-manufaktur-berkelanjutan-jsn.webp' // Modern factory/tech image
-    },
-    {
-        icon: <Users className="w-8 h-8" />,
-        title: 'Our Mission',
-        color: 'cyan',
-        desc: 'To continuously develop practical and innovative vacuum handling solutions that improve customer outcomes while creating meaningful value for everyone who contributes to our growth.',
-        bgImage: 'https://dimensiwahyudi.com/wp-content/uploads/2025/05/0509_24-scaled.jpg' // Team collaboration image
-    }
+  {
+    badge: 'STRATEGIC VISION',
+    badgeId: 'VISI STRATEGIS',
+    title: 'Corporate Vision',
+    titleId: 'Visi Perusahaan',
+    icon: <Target className="w-7 h-7 text-[#005596]" />,
+    desc: 'Deliver reliable vacuum automation and ergonomic handling systems across Indonesian industry, backed by German AGR health certification, immediate local spare parts, and dedicated field engineering.',
+    descId: 'Menghadirkan sistem otomasi vakum dan ergonomic handling yang andal di seluruh industri manufaktur Indonesia, didukung sertifikasi kesehatan AGR Jerman, ketersediaan sparepart lokal, serta tim teknisi lapangan berdedikasi.',
+    commitments: [
+      'International Ergonomic Standards (German AGR Certified)',
+      'Operational Testing Rig & Sample Trials in Cikarang',
+      'Guaranteed OEM Spare Parts & Local Field Engineering',
+    ],
+    commitmentsId: [
+      'Standar Ergonomi Internasional (Bersertifikasi Medis AGR Jerman)',
+      'Fasilitas Uji Workpiece & Simulasi Aktual di Workshop Cikarang',
+      'Jaminan Sparepart OEM Asli & Dukungan Teknisi Lapangan',
+    ],
+  },
+  {
+    badge: 'OPERATIONAL MISSION',
+    badgeId: 'MISI OPERASIONAL',
+    title: 'Corporate Mission',
+    titleId: 'Misi Perusahaan',
+    icon: <ShieldCheck className="w-7 h-7 text-[#005596]" />,
+    desc: 'Engineer and deploy industrial lifting systems that reliably eliminate lower-back strain on factory floors, shorten cycle times by up to 40%, and deliver verifiable ROI for manufacturing plants.',
+    descId: 'Merancang dan menginstalasi sistem pengangkat industri yang menghilangkan risiko cedera punggung bawah di lantai pabrik, mempercepat cycle time hingga 40%, serta memberikan ROI terukur bagi perusahaan manufaktur.',
+    commitments: [
+      'Elimination of Musculoskeletal Strain and Spinal Injury Risks',
+      'Cycle Time Reductions up to 40% on Heavy Assembly Lines',
+      'Hands-on Operator Safety Training and Rig Certification',
+    ],
+    commitmentsId: [
+      'Eliminasi Risiko Cedera Otot Rangka dan Tulang Belakang Operator',
+      'Pemangkasan Cycle Time hingga 40% pada Lini Produksi Berat',
+      'Pelatihan Pengoperasian Aman & Sertifikasi Unit di Pabrik',
+    ],
+  },
 ];
 
 export function AboutCoreValues() {
-    return (
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {values.map((item, i) => (
-                <div key={i} className="bg-white border border-slate-200 p-10 rounded-3xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group shadow-lg flex flex-col items-center text-center relative overflow-hidden">
-                    {/* Background Image that fades in on hover */}
-                    <div
-                        className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ backgroundImage: `url(${item.bgImage})` }}
-                    />
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
 
-                    {/* Dark overlay when image is showing to make text readable */}
-                    <div className={`absolute inset-0 bg-slate-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+  return (
+    <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+      {values.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: i * 0.15 }}
+          className="bg-white/85 backdrop-blur-2xl border border-white/95 ring-1 ring-[#005596]/12 shadow-[0_16px_40px_-10px_rgba(0,85,150,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)] rounded-3xl p-7 sm:p-9 hover:shadow-xl hover:ring-[#005596]/25 transition-all flex flex-col justify-between group relative overflow-hidden"
+        >
+          {/* Subtle ambient light corner accent */}
+          <div className="absolute top-0 right-0 w-44 h-44 bg-[#005596]/5 rounded-bl-full pointer-events-none group-hover:bg-[#005596]/8 transition-colors" />
 
-                    {/* Top gradient accent */}
-                    <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-500"></div>
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-[#005596]/10 text-[#005596] ring-1 ring-[#005596]/20 flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
+                {item.icon}
+              </div>
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#005596]/8 text-[#005596] border border-[#005596]/15">
+                {isId ? item.badgeId : item.badge}
+              </span>
+            </div>
 
-                    {/* Content (Z-10 so it stays above the background image and overlay) */}
-                    <div className={`relative z-10 w-20 h-20 bg-${item.color}-50 rounded-2xl flex items-center justify-center text-${item.color}-600 mb-8 group-hover:bg-transparent group-hover:text-white transition-all shadow-sm border border-${item.color}-100 group-hover:border-transparent scale-100 group-hover:scale-110 duration-500`}>
-                        {item.icon}
-                    </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mb-3 tracking-tight">
+              {isId ? item.titleId : item.title}
+            </h3>
 
-                    <h3 className="relative z-10 text-2xl font-black text-slate-900 mb-4 group-hover:text-white transition-colors duration-500">
-                        {item.title}
-                    </h3>
+            <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-6 font-normal">
+              {isId ? item.descId : item.desc}
+            </p>
+          </div>
 
-                    <p className="relative z-10 text-slate-600 leading-relaxed text-base group-hover:text-slate-200 transition-colors duration-500">
-                        {item.desc}
-                    </p>
-                </div>
+          {/* Concrete Commitments */}
+          <div className="pt-6 border-t border-slate-100 space-y-3">
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-slate-400">
+              {isId ? 'Pilar Eksekusi Utama:' : 'Key Execution Pillars:'}
+            </p>
+            {(isId ? item.commitmentsId : item.commitments).map((c, idx) => (
+              <div key={idx} className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-[#005596] shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-slate-700 font-medium leading-snug">
+                  {c}
+                </span>
+              </div>
             ))}
-        </div>
-    );
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
 }
 
-/* ─── Process Steps ─── */
-const steps = [
-    { step: '01', title: 'Site Audit', desc: 'Our engineering team surveys your production area to map flow requirements and technical constraints.' },
-    { step: '02', title: 'Ergonomic Assessment', desc: 'We evaluate load profiles and operator movement to identify the safest and most efficient handling approach.' },
-    { step: '03', title: 'Custom System Design', desc: 'We configure the lifting system to match your exact process, product, and cycle-time requirements.' },
-    { step: '04', title: 'Installation & Training', desc: 'Certified technicians install the system and train operators for safe, consistent, high-performance use.' },
+/* ─── 4. Client Showcase: 3 Smooth Infinite Marquee Tracks (48 Industry Leaders) ─── */
+interface ClientBrand {
+  name: string;
+  logo: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const sizeClasses: Record<'sm' | 'md' | 'lg', string> = {
+  sm: 'max-h-5 sm:max-h-6 max-w-[100px] sm:max-w-[120px]',  // Chunky/bold uppercase wordmarks (MARS, CABOT, INOAC)
+  md: 'max-h-7 sm:max-h-8 max-w-[125px] sm:max-w-[145px]',  // Standard horizontal balanced logos
+  lg: 'max-h-10 sm:max-h-12 max-w-[125px] sm:max-w-[145px]', // Vertical, circular, or fine-detail marks (Unilever, Nutrifood, Kalbe, YKK, Hempel)
+};
+
+const row1Clients: ClientBrand[] = [
+  { name: 'PT Astra Daihatsu Motor', logo: '/clients/astra-daihatsu.svg', size: 'md' },
+  { name: 'PT Unilever Indonesia Tbk', logo: '/clients/unilever.svg', size: 'lg' },
+  { name: 'PT Mayora Indah Tbk', logo: '/clients/mayora.png', size: 'md' },
+  { name: 'PT Indofood CBP Sukses Makmur', logo: '/clients/indofood.png', size: 'md' },
+  { name: 'PT Nestle Indonesia', logo: '/clients/nestle.svg', size: 'md' },
+  { name: 'PT Gajah Tunggal Tbk', logo: '/clients/gajah-tunggal.png', size: 'md' },
+  { name: 'PT GS Battery', logo: '/clients/gs-battery.png', size: 'md' },
+  { name: 'PT Evoluzione Tyres (Pirelli Group)', logo: '/clients/pirelli.svg', size: 'md' },
+  { name: 'PT Sumi Rubber Indonesia (Dunlop)', logo: '/clients/dunlop.svg', size: 'md' },
+  { name: 'PT Asahimas Flat Glass Tbk', logo: '/clients/asahimas.png', size: 'md' },
+  { name: 'PT Yakult Indonesia Persada', logo: '/clients/yakult.svg', size: 'md' },
+  { name: 'PT Garudafood Putra Putri Jaya Tbk', logo: '/clients/garudafood.png', size: 'md' },
+  { name: 'PT Rinnai Indonesia', logo: '/clients/rinnai.svg', size: 'md' },
+  { name: 'PT YKK AP Indonesia', logo: '/clients/ykk-ap.svg', size: 'lg' },
+  { name: 'PT Otsuka Indonesia', logo: '/clients/otsuka.png', size: 'md' },
+  { name: 'PT Angkasa Pura II', logo: '/clients/angkasa-pura-2.svg', size: 'lg' },
 ];
 
-export function AboutProcess() {
-    return (
-        <div className="space-y-10">
-            {steps.map((item, idx) => (
-                <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex gap-6 group items-start"
-                >
-                    <span className="text-4xl font-black text-slate-100 group-hover:text-cyan-400 transition-colors duration-300 shrink-0">
-                        {item.step}
-                    </span>
-                    <div className="pt-1">
-                        <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h4>
-                        <p className="text-slate-500 leading-relaxed text-sm">{item.desc}</p>
-                    </div>
-                </motion.div>
-            ))}
+const row2Clients: ClientBrand[] = [
+  { name: 'PT Taco Anugrah Corporindo', logo: '/clients/taco.svg', size: 'md' },
+  { name: 'PT Mowilex Indonesia', logo: '/clients/mowilex.webp', size: 'md' },
+  { name: 'PT Cabot Indonesia', logo: '/clients/cabot.png', size: 'sm' },
+  { name: 'PT Nutribev Nabati Indonesia', logo: '/clients/nabati.png', size: 'md' },
+  { name: 'PT Nutrifood Indonesia', logo: '/clients/nutrifood.png', size: 'lg' },
+  { name: 'PT Multi Bintang Indonesia Tbk', logo: '/images/clients/logo-pt-multi-bintang-indonesia-tbk.webp', size: 'lg' },
+  { name: 'PT Kalbe Morinaga Indonesia', logo: '/images/clients/logo-pt-kalbe-morinaga-indonesia.webp', size: 'lg' },
+  { name: 'PT Meiji Food Indonesia', logo: '/images/clients/meiji-logo.webp', size: 'md' },
+  { name: 'PT Sarihusada Generasi Mahardhika', logo: '/images/clients/logo-pt-sarihusada-generasi-mahardhika.webp', size: 'md' },
+  { name: 'PT URC Indonesia', logo: '/images/clients/logo-pt-urc-indonesia.webp', size: 'md' },
+  { name: 'PT Suryaraya Rubberindo Industries', logo: '/images/clients/logo-pt-suryaraya-rubberindo-industries.webp', size: 'md' },
+  { name: 'PT Sugity Creatives', logo: '/images/clients/sugity-logo.webp', size: 'md' },
+  { name: 'PT Hokkan Indonesia', logo: '/images/clients/logo-pt-hokkan-indonesia.webp', size: 'md' },
+  { name: 'PT Bredero Shaw Indonesia', logo: '/images/clients/logo-pt-bredero-shaw-indonesia.webp', size: 'md' },
+  { name: 'PT Cipta Mortar Utama', logo: '/images/clients/logo-pt-cipta-mortar-utama.webp', size: 'md' },
+  { name: 'PT Delifood Sentosa Corpindo', logo: '/images/clients/logo-pt-delifood-sentosa-corpindo.webp', size: 'lg' },
+];
+
+const row3Clients: ClientBrand[] = [
+  { name: 'PT Diageo Indonesia', logo: '/images/clients/logo-pt-diageo-indonesia.webp', size: 'sm' },
+  { name: 'PT DSM-Firmenich Aromatics', logo: '/images/clients/logo-pt-dsm-firmenich-aromatics.svg', size: 'md' },
+  { name: 'PT Elangperdana Tyre Industry', logo: '/images/clients/logo-pt-elangperdana-tyre-industry.webp', size: 'md' },
+  { name: 'PT Federal Karyatama', logo: '/images/clients/logo-pt-federal-karyatama.webp', size: 'lg' },
+  { name: 'PT Fukusuke Kogyo Indonesia', logo: '/images/clients/logo-pt-fukusuke-kogyo-indonesia.webp', size: 'md' },
+  { name: 'PT Hempel Indonesia', logo: '/images/clients/logo-pt-hempel-indonesia.webp', size: 'lg' },
+  { name: 'PT Indonesia Nikka Chemicals', logo: '/images/clients/logo-pt-indonesia-nikka-chemicals.webp', size: 'lg' },
+  { name: 'PT Industrial Robotic Automation', logo: '/images/clients/logo-pt-industrial-robotic-automation.webp', size: 'lg' },
+  { name: 'PT Inoac Polytechno Indonesia', logo: '/images/clients/logo-pt-inoac-polytechno-indonesia.svg', size: 'sm' },
+  { name: 'PT Kayu Permata', logo: '/images/clients/logo-pt-kayu-permata.svg', size: 'md' },
+  { name: 'PT Kian Mulia Manunggal', logo: '/images/clients/logo-pt-kian-mulia-manunggal.webp', size: 'lg' },
+  { name: 'PT Mars Symbioscience', logo: '/images/clients/logo-pt-mars-symbioscience.webp', size: 'sm' },
+  { name: 'PT Mura Maha Agung', logo: '/images/clients/logo-pt-mura-maha-agung.webp', size: 'sm' },
+  { name: 'PT Nufarm Indonesia', logo: '/images/clients/logo-pt-nufarm-indonesia.svg', size: 'md' },
+  { name: 'PT Sakae Riken Indonesia', logo: '/images/clients/logo-pt-sakae-riken-indonesia.webp', size: 'md' },
+  { name: 'PT Sri Trang Lingga Indonesia', logo: '/images/clients/logo-pt-sri-trang-lingga-indonesia.webp', size: 'md' },
+];
+
+function ClientLogoItem({ client }: { client: ClientBrand }) {
+  const sizeClass = sizeClasses[client.size || 'md'];
+
+  return (
+    <div
+      className="w-40 sm:w-52 h-16 sm:h-20 shrink-0 flex items-center justify-center px-4 py-2 group transition-all duration-300"
+      title={client.name}
+    >
+      <Image
+        src={client.logo}
+        alt={client.name}
+        width={160}
+        height={60}
+        className={`${sizeClass} w-auto h-auto object-contain grayscale contrast-125 opacity-85 group-hover:grayscale-0 group-hover:contrast-100 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300`}
+      />
+    </div>
+  );
+}
+
+export function AboutClientLogos() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
+
+  return (
+    <div className="w-full">
+      {/* 3 Continuous Sliding Rows with Smooth Leftward Scroll */}
+      <div className="relative w-full overflow-hidden py-4 space-y-3 sm:space-y-5">
+        {/* Left & Right Gradient Fade Masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+
+        {/* Row 1: Sliding Left */}
+        <div className="flex w-max animate-marquee-row-1 gap-4 sm:gap-6 items-center">
+          {[...row1Clients, ...row1Clients].map((client, idx) => (
+            <ClientLogoItem key={`r1-${client.name}-${idx}`} client={client} />
+          ))}
         </div>
-    );
-}
 
-/* ─── Process Image ─── */
-export function AboutProcessImage() {
-    return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative h-[550px] bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden flex items-center justify-center p-12 shadow-inner"
+        {/* Row 2: Sliding Left with Subtle Offset Speed */}
+        <div className="flex w-max animate-marquee-row-2 gap-4 sm:gap-6 items-center">
+          {[...row2Clients, ...row2Clients].map((client, idx) => (
+            <ClientLogoItem key={`r2-${client.name}-${idx}`} client={client} />
+          ))}
+        </div>
+
+        {/* Row 3: Sliding Left */}
+        <div className="flex w-max animate-marquee-row-3 gap-4 sm:gap-6 items-center">
+          {[...row3Clients, ...row3Clients].map((client, idx) => (
+            <ClientLogoItem key={`r3-${client.name}-${idx}`} client={client} />
+          ))}
+        </div>
+      </div>
+
+      {/* Executive Footnote & Link to Case Studies */}
+      <div className="mt-12 sm:mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left max-w-6xl mx-auto">
+        <div className="space-y-1">
+          <p className="text-sm font-bold text-slate-800">
+            {isId
+              ? 'Dipercaya di 50+ Pabrik Manufaktur Utama di Indonesia'
+              : 'Trusted across 50+ Major Manufacturing Plants in Indonesia'}
+          </p>
+          <p className="text-xs text-slate-500 font-medium">
+            {isId
+              ? 'Kawasan Industri Cikarang (Jababeka, EJIP, MM2100, GIIC), Karawang (KIIC, Suryacipta), hingga Jawa Timur.'
+              : 'Cikarang Industrial Corridors (Jababeka, EJIP, MM2100, GIIC), Karawang (KIIC, Suryacipta), and East Java hubs.'}
+          </p>
+        </div>
+
+        <Link
+          href="/our-projects"
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/90 hover:bg-white border border-slate-200/90 hover:border-[#005596]/40 shadow-xs hover:shadow-md text-xs font-bold text-[#005596] transition-all shrink-0 active:scale-[0.98]"
         >
-            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '20px 20px' }} />
-            <div className="relative z-10 text-center group">
-                <Image
-                    src="https://i.imgur.com/N3cXzid.jpeg"
-                    alt="Precision Engineering Plan and Blueprint"
-                    width={450}
-                    height={350}
-                    className="rounded-xl shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700 rotate-2 group-hover:rotate-0"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg border border-slate-100 max-w-[180px] text-left">
-                    <p className="text-[10px] uppercase font-bold text-cyan-600 mb-1">Expertise</p>
-                        <p className="text-[11px] leading-snug text-slate-500 font-medium italic">&quot;Precision is not just a number, but a guarantee of operational safety.&quot;</p>
-                </div>
-            </div>
-        </motion.div>
-    );
+          <span>{isId ? 'Lihat Studi Kasus Proyek' : 'View Project Case Studies'}</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+    </div>
+  );
 }
 
-/* ─── Client Logos ─── */
+export function AboutStoryContent() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
 
+  return (
+    <div className="space-y-6 sm:space-y-8">
+      <div>
+        <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-[0_2px_10px_rgba(0,85,150,0.06)] mb-3">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+            {isId ? 'REKAM JEJAK TERUJI' : 'PROVEN TRACK RECORD'}
+          </span>
+        </div>
+
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          {isId ? 'Menghubungkan Presisi Eropa dengan ' : 'Connecting European Precision with '}
+          <span className="bg-gradient-to-r from-[#005596] to-[#1d4ed8] bg-clip-text text-transparent">
+            {isId ? 'Kebutuhan Lini Pabrik Indonesia' : 'Indonesian Factory Demands'}
+          </span>
+        </h2>
+      </div>
+
+      <div className="space-y-4 sm:space-y-5 text-slate-600 leading-relaxed text-sm sm:text-base">
+        {isId ? (
+          <>
+            <p>
+              Didirikan pada tahun 2009 di Bekasi, <strong>PT Dimensi Quantum Wahyudi (DQW)</strong> beroperasi sebagai perusahaan anggota <strong>Nabel Sakha Group</strong>. Selama lebih dari 17 tahun, kami berkembang menjadi mitra engineering spesialis untuk sistem otomasi vakum dan ergonomic material handling di berbagai koridor industri Indonesia.
+            </p>
+            <p>
+              Berfokus penuh pada penanganan beban presisi, kami menyuplai unit bersertifikat dari <strong>Schmalz Jerman</strong> dan <strong>Binar Swedia</strong>, didukung layanan teknis lapangan yang disesuaikan dengan ritme operasional pabrik lokal.
+            </p>
+            <div className="border-l-4 border-[#005596] pl-4 py-2.5 bg-blue-50/50 rounded-r-xl">
+              <p className="font-semibold text-slate-800 text-sm sm:text-base italic">
+                &ldquo;Fokus kami adalah merancang sistem handling yang mengalihkan beban fisik dari tulang belakang operator dan menjaga kestabilan cycle time sepanjang shift kerja.&rdquo;
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <p>
+              Founded in 2009 in Bekasi, <strong>PT Dimensi Quantum Wahyudi (DQW)</strong> operates as a member company of <strong>Nabel Sakha Group</strong>. Over the past 17 years, we have grown into a specialized engineering partner for vacuum automation and ergonomic material handling throughout Indonesian industrial corridors.
+            </p>
+            <p>
+              Focusing strictly on precision load handling, we supply certified equipment from <strong>Schmalz Germany</strong> and <strong>Binar Sweden</strong>, paired with on-the-ground engineering support tailored to local plant floor dynamics.
+            </p>
+            <div className="border-l-4 border-[#005596] pl-4 py-2.5 bg-blue-50/50 rounded-r-xl">
+              <p className="font-semibold text-slate-800 text-sm sm:text-base italic">
+                &ldquo;Our engineering focus is building handling systems that remove physical loads from operator spines and sustain consistent cycle speeds through entire work shifts.&rdquo;
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Standard Metrics Row */}
+      <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-4 border-t border-slate-100">
+        <div className="group">
+          <h4 className="text-3xl sm:text-4xl font-black text-slate-900 group-hover:text-[#005596] transition-colors">
+            17+
+          </h4>
+          <p className="text-slate-500 text-xs sm:text-sm font-semibold tracking-wide mt-1">
+            {isId ? 'Tahun Pengalaman (Sejak 2009)' : 'Years of Experience (Since 2009)'}
+          </p>
+        </div>
+        <div className="group">
+          <h4 className="text-3xl sm:text-4xl font-black text-slate-900 group-hover:text-[#005596] transition-colors">
+            500+
+          </h4>
+          <p className="text-slate-500 text-xs sm:text-sm font-semibold tracking-wide mt-1">
+            {isId ? 'Sistem Terpasang di Indonesia' : 'Systems Installed in Indonesia'}
+          </p>
+        </div>
+        <div className="group">
+          <h4 className="text-3xl sm:text-4xl font-black text-slate-900 group-hover:text-[#005596] transition-colors">
+            50+
+          </h4>
+          <p className="text-slate-500 text-xs sm:text-sm font-semibold tracking-wide mt-1">
+            {isId ? 'Klien Manufaktur Terverifikasi' : 'Verified Enterprise Clients'}
+          </p>
+        </div>
+      </div>
+
+      {/* Nabel Sakha Group Strategic Membership Card */}
+      <div className="p-5 sm:p-6 rounded-2xl bg-slate-50/90 border border-slate-200/90 shadow-2xs mt-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="relative h-8 w-14 shrink-0">
+              <Image
+                src="/nsg-ico.png"
+                alt="Nabel Sakha Group Icon"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <span className="text-base sm:text-lg font-black tracking-tight text-slate-900">
+              Nabel Sakha Group
+            </span>
+          </div>
+          <div className="border-t sm:border-t-0 sm:border-l border-slate-200/90 pt-3 sm:pt-0 sm:pl-6">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#005596] block">
+              {isId ? 'Bagian dari Nabel Sakha Group' : 'A Member of Nabel Sakha Group'}
+            </span>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              {isId ? (
+                <>
+                  Sebagai unit bisnis spesialis ergonomic handling dari <strong>Nabel Sakha Group</strong>, kami beroperasi dengan dukungan rantai pasok langsung dan jangkauan layanan teknis di seluruh Indonesia.
+                </>
+              ) : (
+                <>
+                  As the dedicated ergonomic handling business unit of <strong>Nabel Sakha Group</strong>, we operate with direct supply chain backing and nationwide service coverage across Indonesia.
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function AboutPhilosophyHeader() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
+
+  return (
+    <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-[0_2px_10px_rgba(0,85,150,0.06)] mb-3">
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+          {isId ? 'FILOSOFI ENGINEERING' : 'ENGINEERING PHILOSOPHY'}
+        </span>
+      </div>
+      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+        {isId ? 'Komitmen terhadap Kualitas Engineering & ' : 'Commitment to Engineering Quality & '}
+        <span className="bg-gradient-to-r from-[#005596] to-[#1d4ed8] bg-clip-text text-transparent">
+          {isId ? 'Keselamatan Operator' : 'Operator Safety'}
+        </span>
+      </h2>
+      <p className="text-sm sm:text-base text-slate-600 mt-4 leading-relaxed max-w-2xl mx-auto">
+        {isId
+          ? 'Pekerjaan kami berfokus pada pencegahan cedera otot rangka bagi pekerja pabrik sekaligus memastikan kepatuhan terhadap standar keselamatan angkat internasional.'
+          : 'Our work focuses on preventing musculoskeletal disorders among factory staff while complying with international lifting safety standards.'}
+      </p>
+    </div>
+  );
+}
+
+export function AboutClientsHeader() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
+
+  return (
+    <>
+      <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-[0_2px_10px_rgba(0,85,150,0.06)] mb-3">
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+          {isId ? 'KLIEN MANUFAKTUR TERPERCAYA' : 'TRUSTED ENTERPRISE CLIENTS'}
+        </span>
+      </div>
+
+      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+        {isId ? 'Dipilih oleh Perusahaan Manufaktur ' : "Selected by Indonesia's Leading "}
+        <span className="bg-gradient-to-r from-[#005596] to-[#1d4ed8] bg-clip-text text-transparent">
+          {isId ? 'Terkemuka di Indonesia' : 'Manufacturers'}
+        </span>
+      </h2>
+
+      <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-12 sm:mb-16">
+        {isId
+          ? 'Unit Vacuum Lifter dan manipulator lengan elektrik kami beroperasi setiap hari di berbagai lini produksi otomotif, makanan & minuman, farmasi, hingga kimia.'
+          : 'Our vacuum lifters and electric manipulator arms operate daily across automotive, food, pharmaceutical, and chemical production lines.'}
+      </p>
+    </>
+  );
+}

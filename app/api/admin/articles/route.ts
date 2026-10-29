@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { ADMIN_COOKIE_NAME, verifyAdminToken } from '@/lib/admin-auth';
 import { db } from '@/lib/firebase';
+import { invalidateArticlesCache } from '@/services/articles';
 import {
   collection,
   getDocs,
@@ -93,7 +94,7 @@ export async function POST(request: NextRequest) {
       featuredImage: featuredImage || 'https://dimensiwahyudi.com/opengraph-image',
       category: category || 'News',
       tags: Array.isArray(tags) ? tags : [],
-      author: author || 'Tim Teknis PT Dimensi Quantum Wahyudi',
+      author: author || 'DQW Technical Editorial',
       status: status === 'draft' ? 'draft' : 'published',
       featured: Boolean(featured),
       publishedAt: nowIso,
@@ -104,6 +105,7 @@ export async function POST(request: NextRequest) {
     await setDoc(docRef, articleData);
 
     // Instant On-Demand Revalidation
+    invalidateArticlesCache();
     revalidatePath('/news');
     revalidatePath(`/news/${cleanSlug}`);
     revalidatePath('/');
@@ -134,6 +136,7 @@ export async function PUT(request: NextRequest) {
         return setDoc(docRef, { status: body.status, updatedAt: nowIso }, { merge: true });
       });
       await Promise.all(updates);
+      invalidateArticlesCache();
       revalidatePath('/news');
       revalidatePath('/');
       return NextResponse.json({ success: true, message: `Updated ${body.ids.length} articles` });
@@ -173,6 +176,7 @@ export async function PUT(request: NextRequest) {
     await setDoc(docRef, updatedData, { merge: true });
 
     // Instant Revalidation
+    invalidateArticlesCache();
     revalidatePath('/news');
     revalidatePath(`/news/${updatedData.slug}`);
     revalidatePath('/');
@@ -214,6 +218,7 @@ export async function DELETE(request: NextRequest) {
       }
     }
 
+    invalidateArticlesCache();
     revalidatePath('/news');
     revalidatePath('/');
     revalidatePath('/sitemap.xml');

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { VacuumIcons } from '../components/icons/VacuumIcons';
 
@@ -19,14 +18,84 @@ export const UNITS: Record<string, {
 };
 
 export const MENU_ITEMS = [
-    { id: 'num_cups', title: 'Number of Suction Cups', icon: <VacuumIcons.NumCups className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Calculate required cup units based on load' },
-    { id: 'cup_diameter', title: 'Cup Diameter', icon: <VacuumIcons.CupDiameter className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Determine the ideal cup dimension' },
-    { id: 'suction_force', title: 'Suction Force', icon: <VacuumIcons.SuctionForce className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Pulling force per cup unit' },
-    { id: 'holding_force', title: 'Holding Force', icon: <VacuumIcons.HoldingForce className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Total holding force of the safety system' },
-    { id: 'hose_dist', title: 'Hose Distribution', icon: <VacuumIcons.HoseDist className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Optimize hose flow distribution' },
-    { id: 'evac_time', title: 'Evacuation Time', icon: <VacuumIcons.EvacTime className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Time to reach the target vacuum' },
-    { id: 'suction_cap', title: 'Suction Capacity', icon: <VacuumIcons.SuctionCap className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Required pump capacity' },
-    { id: 'hose_dia_vac', title: 'Hose Diameter', icon: <VacuumIcons.HoseDia className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Hose size for efficient flow' },
-    { id: 'ambient_pressure', title: 'Ambient Pressure', icon: <VacuumIcons.AmbientPressure className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Air pressure based on elevation' },
-    { id: 'air_flow', title: 'Air Flow Rate', icon: <VacuumIcons.AirFlow className="w-10 h-10 md:w-16 md:h-16" />, desc: 'Flow rate through restrictions' },
+    {
+        id: 'num_cups',
+        title: 'Number of Suction Cups',
+        titleId: 'Jumlah Suction Cup',
+        icon: <VacuumIcons.NumCups className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Calculate required cup units based on load',
+        descId: 'Hitung jumlah unit suction cup berdasarkan beban',
+    },
+    {
+        id: 'cup_diameter',
+        title: 'Cup Diameter',
+        titleId: 'Diameter Suction Cup',
+        icon: <VacuumIcons.CupDiameter className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Determine the ideal cup dimension',
+        descId: 'Tentukan dimensi suction cup yang ideal',
+    },
+    {
+        id: 'suction_force',
+        title: 'Suction Force',
+        titleId: 'Gaya Hisap (Suction Force)',
+        icon: <VacuumIcons.SuctionForce className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Pulling force per cup unit',
+        descId: 'Gaya tarik per unit suction cup',
+    },
+    {
+        id: 'holding_force',
+        title: 'Holding Force',
+        titleId: 'Gaya Tahan (Holding Force)',
+        icon: <VacuumIcons.HoldingForce className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Total holding force of the safety system',
+        descId: 'Total gaya tahan sistem keselamatan',
+    },
+    {
+        id: 'hose_dist',
+        title: 'Hose Distribution',
+        titleId: 'Distribusi Selang (Hose)',
+        icon: <VacuumIcons.HoseDist className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Optimize hose flow distribution',
+        descId: 'Optimalkan distribusi aliran selang vakum',
+    },
+    {
+        id: 'evac_time',
+        title: 'Evacuation Time',
+        titleId: 'Waktu Evakuasi Vakum',
+        icon: <VacuumIcons.EvacTime className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Time to reach the target vacuum',
+        descId: 'Waktu untuk mencapai target level vakum',
+    },
+    {
+        id: 'suction_cap',
+        title: 'Suction Capacity',
+        titleId: 'Kapasitas Hisap Pompa',
+        icon: <VacuumIcons.SuctionCap className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Required pump capacity',
+        descId: 'Kapasitas pompa vakum yang dibutuhkan',
+    },
+    {
+        id: 'hose_dia_vac',
+        title: 'Hose Diameter',
+        titleId: 'Diameter Selang Vakum',
+        icon: <VacuumIcons.HoseDia className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Hose size for efficient flow',
+        descId: 'Ukuran selang untuk aliran vakum optimal',
+    },
+    {
+        id: 'ambient_pressure',
+        title: 'Ambient Pressure',
+        titleId: 'Tekanan Udara Ambien',
+        icon: <VacuumIcons.AmbientPressure className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Air pressure based on elevation',
+        descId: 'Tekanan udara berdasarkan ketinggian lokasi',
+    },
+    {
+        id: 'air_flow',
+        title: 'Air Flow Rate',
+        titleId: 'Laju Aliran Udara',
+        icon: <VacuumIcons.AirFlow className="w-10 h-10 md:w-16 md:h-16" />,
+        desc: 'Flow rate through restrictions',
+        descId: 'Laju aliran udara melalui pembatas aliran',
+    },
 ];

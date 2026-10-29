@@ -1,20 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import nextDynamic from 'next/dynamic';
 import { getAllUnifiedArticles } from '@/services/articles';
-import { Zap, ArrowRight, HeartPulse } from 'lucide-react';
+import NewsHubClient from './NewsHubClient';
 
-const NewsGrid = nextDynamic(() => import('../../components/news/NewsGrid'), {
-    loading: () => (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-label="Loading articles">
-            {Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className="h-72 rounded-3xl bg-white border border-slate-200 animate-pulse" />
-            ))}
-        </div>
-    ),
-});
-
-export const revalidate = 604800; // Incremental Static Regeneration: 7 days (On-Demand revalidation via Admin)
+export const revalidate = 604800; // Incremental Static Regeneration: 7 days
 
 export const metadata: Metadata = {
     title: 'Insights Hub | Engineering Articles & Industry Updates | PT Dimensi Quantum Wahyudi',
@@ -72,82 +60,19 @@ export default async function NewsPage() {
             { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://dimensiwahyudi.com/news' },
         ],
     };
-    const copy = {
-        badge: 'Knowledge Base & Updates',
-        subtitle:
-            'Practical insights on vacuum technology, engineering precision, and measurable industrial improvement.',
-        emptyTitle: 'No Articles Yet',
-        emptyDesc: 'New technical insights are being prepared. Please check back soon.',
-    };
 
     return (
         <main className="min-h-screen bg-slate-50 text-slate-800 font-sans overflow-hidden selection:bg-blue-100 selection:text-blue-900">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-            {/* Background Decor - Clean Lab Style */}
             <div className="fixed inset-0 z-0 pointer-events-none">
                 <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[120px]"></div>
                 <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-sky-100/40 rounded-full blur-[100px]"></div>
-                {/* Subtle Grid */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
             </div>
 
-            <div className="relative z-10 pt-28 md:pt-32 pb-20 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                {/* Header Section - Static, rendered on server */}
-                <div className="text-center mb-16 md:mb-20">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-blue-600 font-bold text-xs tracking-widest uppercase mb-6 shadow-sm hover:shadow-md transition-shadow cursor-default">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        {copy.badge}
-                    </div>
-
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 text-slate-900 drop-shadow-sm">
-                        INSIGHTS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">HUB</span>
-                    </h1>
-                    <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
-                        {copy.subtitle}
-                    </p>
-                </div>
-
-                <div className="mb-10 md:mb-12 bg-white rounded-[2rem] border border-slate-200 p-7 md:p-10 shadow-sm">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                        <div>
-                            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-rose-600 mb-3">
-                                <HeartPulse size={14} /> Featured Topic Cluster
-                            </p>
-                            <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2">Industrial Ergonomics Hub</h2>
-                            <p className="text-slate-600 max-w-2xl">
-                                Explore practical guidance on health risks, productivity, and safety standards for industrial handling operations.
-                            </p>
-                        </div>
-                        <Link
-                            href="/news/ergonomics"
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-colors"
-                        >
-                            Open Ergonomics Hub <ArrowRight size={16} />
-                        </Link>
-                    </div>
-                </div>
-
-                {/* NewsGrid: Client Component untuk filter interaktif + rendering grid */}
-                {posts.length > 0 ? (
-                    <NewsGrid posts={posts} />
-                ) : (
-                    <div className="text-center py-24 bg-white rounded-[3rem] border border-dashed border-slate-200 shadow-sm">
-                        <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
-                            <Zap size={32} />
-                        </div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{copy.emptyTitle}</h3>
-                        <p className="text-slate-500 max-w-md mx-auto">
-                            {copy.emptyDesc}
-                        </p>
-                    </div>
-                )}
-            </div>
+            <NewsHubClient posts={posts} />
         </main>
     );
 }

@@ -12,17 +12,17 @@ import { useHoseCalc } from './useHoseCalc';
 export const useVacuumCalculator = () => {
     const [currentView, setCurrentView] = useState('dashboard');
 
-    // Sub-hook 1 — Force, area, cup & diameter calculations
+    // Sub-hook 1: Force, area, cup & diameter calculations
     const force = useForceCalculations();
 
-    // Sub-hook 2 — Evacuation time & suction capacity (needs vacuum from force hook)
+    // Sub-hook 2: Evacuation time & suction capacity (needs vacuum from force hook)
     const evac = useEvacuationCalc(
         force.getSI,
         force.state.vacuum,
         force.state.vacuumUnit,
     );
 
-    // Sub-hook 3 — Hose sizing, altitude, resistor (needs pump capacity from evac hook)
+    // Sub-hook 3: Hose sizing, altitude, resistor (needs pump capacity from evac hook)
     const hose = useHoseCalc(
         force.getSI,
         evac.state.pumpCapacity,

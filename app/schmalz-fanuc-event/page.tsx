@@ -2,22 +2,22 @@ import { Metadata } from 'next';
 import EventPageClient from './EventPageClient';
 
 export const metadata: Metadata = {
-  title: 'Pendaftaran Seminar Manufaktur Schmalz x Fanuc | PT Dimensi Quantum Wahyudi',
-  description: 'Formulir pendaftaran umum Seminar Otomasi Manufaktur Schmalz x Fanuc Cikarang.',
+  title: 'Schmalz x Fanuc Manufacturing Seminar Registration | PT Dimensi Quantum Wahyudi',
+  description: 'Registration portal for the Schmalz x Fanuc Automation Seminar in Cikarang.',
   openGraph: {
-    title: 'Daftar Seminar Otomasi Manufaktur Schmalz x Fanuc',
-    description: 'Formulir pendaftaran umum Seminar Otomasi Manufaktur Schmalz x Fanuc Cikarang.',
+    title: 'Schmalz x Fanuc Automation Seminar',
+    description: 'Registration portal for the Schmalz x Fanuc Automation Seminar in Cikarang.',
     url: 'https://www.dimensiwahyudi.com/schmalz-fanuc-event',
     siteName: 'PT Dimensi Quantum Wahyudi',
     images: [
       {
-        url: 'https://i.imgur.com/zvwgCiy.png',
+        url: 'https://dimensiwahyudi.com/images/schmalz-fanuc-event-banner.webp',
         width: 1200,
         height: 630,
-        alt: 'Seminar Otomasi Schmalz x Fanuc',
+        alt: 'Schmalz x Fanuc Automation Seminar',
       },
     ],
-    locale: 'id_ID',
+    locale: 'en_ID',
     type: 'website',
   },
   alternates: {
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Daftar Seminar Otomasi Manufaktur Schmalz x Fanuc',
-    description: 'Formulir pendaftaran umum Seminar Otomasi Manufaktur Schmalz x Fanuc Cikarang.',
-    images: ['https://i.imgur.com/zvwgCiy.png'],
+    title: 'Schmalz x Fanuc Automation Seminar',
+    description: 'Registration portal for the Schmalz x Fanuc Automation Seminar in Cikarang.',
+    images: ['https://dimensiwahyudi.com/images/schmalz-fanuc-event-banner.webp'],
   },
 };
 
@@ -36,7 +36,7 @@ export default function Page() {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: 'Schmalz X Fanuc Event: Improving Precision, Efficiency, and Productivity in Modern Manufacturing',
-    description: 'Seminar kolaborasi otomasi vakum dan robotik industri oleh Schmalz dan Fanuc di Cikarang.',
+    description: 'Joint seminar on industrial vacuum automation and robotics hosted by Schmalz and Fanuc in Cikarang.',
     startDate: '2026-03-12T09:00:00+07:00',
     endDate: '2026-03-12T16:00:00+07:00',
     eventStatus: 'https://schema.org/EventCancelled',
@@ -52,7 +52,7 @@ export default function Page() {
         addressCountry: 'ID',
       },
     },
-    image: ['https://i.imgur.com/zvwgCiy.png'],
+    image: ['https://dimensiwahyudi.com/images/schmalz-fanuc-event-banner.webp'],
     organizer: {
       '@type': 'Organization',
       name: 'PT Dimensi Quantum Wahyudi',

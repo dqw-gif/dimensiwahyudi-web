@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const wpPosts = await getAllPosts({ revalidate: 0 });
 
     if (!Array.isArray(wpPosts) || wpPosts.length === 0) {
-      return NextResponse.json({ success: false, error: 'Tidak ada artikel yang dapat ditarik dari WordPress' }, { status: 400 });
+      return NextResponse.json({ success: false, error: 'No articles found to sync from WordPress' }, { status: 400 });
     }
 
     let syncedCount = 0;
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       const categoryName = post.categories?.nodes?.[0]?.name || 'News';
       const featuredImage = post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image';
       const rawPost = post as Record<string, any>;
-      const authorName = rawPost.author?.node?.name || 'Tim Teknis PT Dimensi Quantum Wahyudi';
+      const authorName = rawPost.author?.node?.name || 'DQW Technical Editorial';
       const publishedAt = post.date ? new Date(post.date).toISOString() : nowIso;
 
       const articleData = {
@@ -58,15 +58,15 @@ export async function POST(request: NextRequest) {
     revalidatePath('/news');
     revalidatePath('/news/[slug]', 'page');
 
-    console.log(`[SYNC] Berhasil sinkronisasi ${syncedCount} artikel ke Firebase.`);
+    console.log(`[SYNC] Successfully synced ${syncedCount} articles to Firebase.`);
     return NextResponse.json({
       success: true,
       syncedCount,
-      message: `Berhasil menyinkronkan ${syncedCount} artikel dari WordPress ke Firebase!`,
+      message: `Successfully synced ${syncedCount} articles from WordPress to Firebase.`,
     });
   } catch (error) {
     const err = error instanceof Error ? error.message : String(error);
-    console.error('[SYNC] Gagal sinkronisasi WordPress:', err);
-    return NextResponse.json({ success: false, error: `Gagal sinkronisasi: ${err}` }, { status: 500 });
+    console.error('[SYNC] WordPress sync error:', err);
+    return NextResponse.json({ success: false, error: `Sync failed: ${err}` }, { status: 500 });
   }
 }

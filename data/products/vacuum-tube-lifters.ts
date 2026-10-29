@@ -48,7 +48,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'AGR-certified ergonomics for operator back protection',
         ],
         applications: ['Manufacturing and assembly', 'Packaging and palletizing', 'E-commerce and logistics', 'Automotive production'],
-        imageUrl: 'https://i.imgur.com/AHRYrMQ.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumboflex.webp',
     },
     {
         slug: 'jumboflex-gen1',
@@ -75,7 +75,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Straightforward maintenance and service access',
         ],
         applications: ['Mixed-operator production lines', 'Packing operations', 'Component assembly', 'Distribution and logistics'],
-        imageUrl: 'https://i.imgur.com/YAQ3YEi.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumboflex-generation-1.webp',
     },
     {
         slug: 'jumboergo',
@@ -102,7 +102,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Modular architecture with flexible configuration options',
         ],
         applications: ['Glass and glazing industry', 'Sheet metal and panel handling', 'Construction and prefab operations', 'Furniture production'],
-        imageUrl: 'https://i.imgur.com/gGx7tKR.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumboergo.webp',
     },
     {
         slug: 'jumbosprint',
@@ -129,7 +129,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'AGR-certified ergonomic operation',
         ],
         applications: ['Stone and marble industry', 'Block and concrete handling', 'Drum and cylinder handling', 'Heavy machine components'],
-        imageUrl: 'https://i.imgur.com/Sbqq8YO.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumbosprint.webp',
     },
     {
         slug: 'jumbosprint-ex',
@@ -157,7 +157,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Handling performance comparable to standard JumboSprint',
         ],
         applications: ['Petrochemical and oil industry', 'Explosives manufacturing', 'Grain and flour processing', 'Pharmaceutical production'],
-        imageUrl: 'https://i.imgur.com/zL3rswg.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumbosprint-ex.webp',
     },
     {
         slug: 'palvac-sprint-hygienic',
@@ -185,7 +185,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Compatible with ISO 7 and stricter clean-room workflows',
         ],
         applications: ['Pharmaceutical manufacturing', 'Medical device assembly', 'Semiconductor and electronics', 'Food packaging clean rooms'],
-        imageUrl: 'https://i.imgur.com/mmOtS8Y.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-palvac-sprint-hygienic.webp',
     },
     {
         slug: 'palvac-sprint',
@@ -213,7 +213,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Configurable for multiple food-handling gripper options',
         ],
         applications: ['Food processing and FMCG', 'Beverage production', 'Dairy and meat processing', 'Wet manufacturing environments'],
-        imageUrl: 'https://i.imgur.com/a1PkmGC.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-palvac-sprint.webp',
     },
     {
         slug: 'jumboflex-high-stack',
@@ -240,7 +240,7 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Improves usable storage volume in vertical layouts',
         ],
         applications: ['High-bay warehouse and pallet racking', 'Distribution centers and fulfillment', 'Container stuffing and unstuffing', 'Automotive parts storage'],
-        imageUrl: 'https://i.imgur.com/08h0Mcp.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumboflex-high-stack.webp',
     },
     {
         slug: 'jumbo-low-stack',
@@ -267,6 +267,6 @@ export const vacuumTubeLifterVariants: VTLVariant[] = [
             'Compact layout for narrow work areas',
         ],
         applications: ['Automotive parts bin picking', 'Deep shipping container unloading', 'Ergonomic order picking', 'Low-position assembly operations'],
-        imageUrl: 'https://i.imgur.com/F9jx4jL.jpeg',
+        imageUrl: '/images/products/schmalz/schmalz-jumbo-low-stack.webp',
     },
 ];

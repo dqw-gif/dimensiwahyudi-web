@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { KeyRound, ShieldAlert, ArrowRight, Loader2, Sparkles, ArrowLeft, ShieldCheck } from 'lucide-react';
+import { KeyRound, ShieldAlert, ArrowRight, Loader2, ArrowLeft, ShieldCheck } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 relative overflow-hidden selection:bg-cyan-500 selection:text-white">
+    <main className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 relative overflow-hidden selection:bg-[#005596] selection:text-white">
       {/* Decorative Background Grid */}
       <div
         className="absolute inset-0 z-0 opacity-40 pointer-events-none"
@@ -55,7 +55,7 @@ export default function AdminLoginPage() {
           backgroundSize: '36px 36px',
         }}
       />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#005596]/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Brand Header & Logo */}
@@ -81,8 +81,8 @@ export default function AdminLoginPage() {
         {/* Login Card */}
         <div className="bg-white/90 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-8 shadow-2xl shadow-slate-300/40">
           <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-50 border border-cyan-200/80 text-cyan-700 text-xs font-bold">
-              <Sparkles size={14} className="text-cyan-600" />
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-[#005596] text-xs font-bold">
+              <ShieldCheck size={14} className="text-[#005596]" />
               <span>Firebase Direct Publisher</span>
             </div>
             <div className="flex items-center gap-1 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">

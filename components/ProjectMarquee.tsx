@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useAnimationFrame } from 'framer-motion';
+import { useAnimationFrame } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
-// Using the same type as in BentoGallery
 type Project = {
     id: string;
     client: string;
@@ -18,7 +18,6 @@ type Project = {
 };
 
 export default function ProjectMarquee({ projects }: { projects: Project[] }) {
-    const containerRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
 
     // Mouse drag states
@@ -27,30 +26,19 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
     const [scrollLeft, setScrollLeft] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
-
-    // Parallax effect for the background text "OUR PROJECTS"
-    const bgTextX = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
-
-    // Ambil 10 proyek unggulan terkurasi dan duplikasi sekali (total 20 item) agar DOM sangat ringan dan smooth
+    // Take 10 featured projects and duplicate for continuous marquee looping
     const curatedProjects = projects.slice(0, 10);
     const duplicatedProjects = [...curatedProjects, ...curatedProjects];
 
-    // Gunakan ref untuk melacak posisi presisi floating-point
     const exactScrollX = useRef(0);
 
-    // Animasi infinite scroll menggunakan Framer Motion (Lebih Lambat)
-    useAnimationFrame((time, delta) => {
+    // Animasi infinite scroll menggunakan Framer Motion
+    useAnimationFrame(() => {
         if (!trackRef.current || isHovered || isDragging) return;
 
-        // Speed adjustment: lebih lambat
-        exactScrollX.current += 1;
+        exactScrollX.current += 0.8;
         trackRef.current.scrollLeft = Math.floor(exactScrollX.current);
 
-        // Cek jika sudah scroll sejauh 1 set original projects, reset ke awal untuk efek infinite looping
         const container = trackRef.current;
         const oneSetWidth = container.scrollWidth / 2;
 
@@ -60,7 +48,6 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
         }
     });
 
-    // Event handlers untuk Drag (Geser Mouse)
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
         setStartX(e.pageX - (trackRef.current?.offsetLeft || 0));
@@ -83,24 +70,11 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
         if (!isDragging || !trackRef.current) return;
         e.preventDefault();
         const x = e.pageX - (trackRef.current.offsetLeft || 0);
-        const walk = (x - startX) * 1.5; // Scroll fastness multiplier
+        const walk = (x - startX) * 1.5;
         trackRef.current.scrollLeft = scrollLeft - walk;
         exactScrollX.current = trackRef.current.scrollLeft;
-
-        // Handle boundary saat di-drag secara paksa ke ujung
-        const container = trackRef.current;
-        const oneSetWidth = container.scrollWidth / 2;
-
-        if (container.scrollLeft >= oneSetWidth) {
-            container.scrollLeft -= oneSetWidth;
-            exactScrollX.current -= oneSetWidth;
-        } else if (container.scrollLeft <= 0) {
-            container.scrollLeft += oneSetWidth;
-            exactScrollX.current += oneSetWidth;
-        }
     };
 
-    // Mencegah link tertrigger saat mouse di-drag
     const handleDragClick = (e: React.MouseEvent) => {
         if (Math.abs((trackRef.current?.scrollLeft || 0) - scrollLeft) > 10) {
             e.preventDefault();
@@ -108,56 +82,35 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
     };
 
     return (
-        <section
-            ref={containerRef}
-            className="py-24 relative overflow-hidden bg-slate-950 border-t border-slate-900 border-b"
-        >
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
-
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-cyan-900/20 blur-[120px] rounded-full pointer-events-none"></div>
-
-            {/* Parallax Background Text */}
-            <motion.div
-                style={{ x: bgTextX }}
-                className="absolute top-1/2 -translate-y-1/2 left-0 text-[12vw] font-black text-slate-900/50 whitespace-nowrap pointer-events-none z-0 selection:bg-transparent"
-            >
-                TRUSTED BY 50+ MULTINATIONAL MANUFACTURERS
-            </motion.div>
-
-            <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row items-center justify-between gap-6 relative">
-                <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-950/40 border border-cyan-800/50 rounded-full text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                        Clients & Manufacturing Portfolio
-                    </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-                        Proven Outcomes from <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Industrial Automation Projects</span>.
+        <section className="py-20 lg:py-24 bg-slate-50 border-b border-slate-200/80 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 relative z-10">
+                <div className="max-w-2xl">
+                    <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#005596] block mb-2">
+                        Installation Documentation Gallery
+                    </span>
+                    <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Live Deployments Across National Manufacturing Facilities
                     </h2>
+                    <p className="mt-3 text-base text-slate-600 leading-relaxed font-normal">
+                        Field proof of Schmalz vacuum lifters and aluminum crane runway systems operating in automotive, tire, chemical, and logistics plants across Indonesia.
+                    </p>
                 </div>
 
                 <Link
                     href="/our-projects"
-                    className="group relative px-6 py-3 bg-slate-900 text-white font-semibold rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all overflow-hidden flex-shrink-0"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold rounded-lg border border-slate-300 shadow-2xs hover:border-slate-400 transition-all shrink-0"
                 >
-                    <span className="relative z-10 flex items-center gap-2">
-                        View All Projects
-                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+                    <span>Explore Project Portfolio</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
             </div>
 
             {/* Marquee Track Container with Drag & Drop */}
-            <div className="relative w-full group py-4">
+            <div className="relative w-full group py-2">
+                {/* Clean Edge Gradient Masks matching slate-50 */}
+                <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-slate-50 to-transparent z-20 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-slate-50 to-transparent z-20 pointer-events-none"></div>
 
-                {/* Gradient Masks for smooth fade out on edges */}
-                <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none"></div>
-                <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none"></div>
-
-                {/* Draggable Track Container */}
                 <div
                     ref={trackRef}
                     className="flex overflow-x-auto w-full [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing"
@@ -171,56 +124,48 @@ export default function ProjectMarquee({ projects }: { projects: Project[] }) {
                     <div className="flex w-max px-4">
                         {duplicatedProjects.map((p, idx) => (
                             <Link
-                                href={`/our-projects`}
+                                href="/our-projects"
                                 key={`${p.id}-${idx}`}
                                 onClick={handleDragClick}
                                 draggable={false}
-                                className="relative select-none w-[300px] md:w-[400px] h-[220px] md:h-[280px] mx-3 md:mx-4 rounded-2xl overflow-hidden group/card block shrink-0 border border-slate-800/60 bg-slate-900 transform transition-transform duration-500 hover:scale-[1.02] hover:z-30 hover:border-cyan-500/50 shadow-lg"
+                                className="relative select-none w-[280px] md:w-[360px] h-[220px] md:h-[260px] mx-3 rounded-2xl overflow-hidden group/card block shrink-0 border border-slate-200 bg-white hover:border-[#005596] shadow-xs hover:shadow-md transition-all duration-300"
                             >
-                                {/* Image */}
                                 <Image
                                     src={p.image}
                                     alt={p.client}
                                     fill
                                     loading="lazy"
-                                    className="object-cover opacity-50 grayscale group-hover/card:grayscale-0 group-hover/card:opacity-80 transition-all duration-700 group-hover/card:scale-110"
-                                    sizes="(max-width: 768px) 300px, 400px"
+                                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                                    sizes="(max-width: 768px) 280px, 360px"
                                 />
 
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                                {/* Subtle Technical Bottom Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent"></div>
 
-                                {/* Content */}
-                                <div className="absolute inset-x-0 bottom-0 p-5 flex flex-col justify-end z-20 h-full">
-                                    <div className="translate-y-4 group-hover/card:translate-y-0 transition-transform duration-500">
-                                        <span className="inline-block px-2 py-1 mb-2 text-[10px] font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/80 border border-cyan-800 rounded backdrop-blur-sm">
-                                            {p.industry}
-                                        </span>
-                                        <h3 className="text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
-                                            {p.client}
-                                        </h3>
-
-                                        {/* Hover Reveal Line */}
-                                        <div className="h-0.5 w-0 bg-cyan-500 mt-3 group-hover/card:w-full transition-all duration-700 ease-out"></div>
-                                    </div>
+                                {/* Content Details */}
+                                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 flex flex-col justify-end z-20">
+                                    <span className="inline-block self-start px-2 py-0.5 mb-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-200 bg-slate-900/80 rounded border border-white/10">
+                                        {p.industry}
+                                    </span>
+                                    <h3 className="text-base sm:text-lg font-bold text-white leading-snug drop-shadow-xs">
+                                        {p.client}
+                                    </h3>
                                 </div>
 
-                                {/* Logo Factory Slot - Solid White Background & Auto Width for Landscape Logos */}
-                                <div className="absolute top-4 right-4 h-12 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[180px]">
-                                    {p.logo ? (
+                                {/* Clean Client Badge Top-Right */}
+                                {p.logo && (
+                                    <div className="absolute top-3 right-3 h-8 bg-white/95 backdrop-blur-xs rounded-md flex items-center justify-center border border-slate-200 px-2.5 shadow-2xs pointer-events-none">
                                         <Image
                                             src={p.logo}
                                             alt={`${p.client} Logo`}
-                                            width={140}
-                                            height={44}
+                                            width={90}
+                                            height={28}
                                             loading="lazy"
                                             className="h-full w-auto object-contain"
                                             unoptimized
                                         />
-                                    ) : (
-                                        <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase px-1">Logo</span>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </Link>
                         ))}
                     </div>

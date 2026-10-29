@@ -46,7 +46,7 @@ export const ropeBalancerVariants: RopeBalancerVariant[] = [
             'Near zero-gravity feel for operators',
         ],
         applications: ['Small to mid-sized workshops', 'Areas without overhead power supply', 'Light-parts picking', 'Maintenance and service workstations'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktfamilienbilder/0_/061/06109/435df26cd954_PF_PGE-06109.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-neo-30.webp',
     },
     {
         slug: 'quick-lift-arm-qla',
@@ -74,14 +74,14 @@ export const ropeBalancerVariants: RopeBalancerVariant[] = [
             'Integrates with crane and rail systems',
         ],
         applications: ['Precision assembly lines', 'Automotive body assembly', 'Aerospace component handling', 'Ergonomic workstations'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Artikelbilder/18/1805/180501/18050100015/f3d7075ed069_18.05.01.00015_00.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-quick-lift-arm-qla.webp',
     },
     {
         slug: 'quick-lift-rail-qlr',
         name: 'Quick-Lift Rail QLR',
         seriesCode: 'Binar QLR',
         tagline: 'Rail-mounted intelligent lift up to 600 kg for new or existing rail systems',
-        description: 'Binar Handling Quick-Lift Rail QLR is an intelligent lifting solution designed for rail-mounted operation. With capacity up to 600 kg and seamless integration with new or existing rail systems, QLR is optimized for long production lines with heavy lifting requirements.',
+        description: 'Binar Handling Quick-Lift Rail QLR is an intelligent lifting solution designed for rail-mounted operation. With capacity up to 600 kg and direct compatibility with new or existing overhead rail runways, QLR is optimized for long production lines with repetitive lifting requirements.',
         capacity: 'up to 600 kg',
         highlight: 'Rail-mounted performance up to 600 kg with retrofit compatibility',
         heroColor: 'from-orange-600 to-red-700',
@@ -102,7 +102,7 @@ export const ropeBalancerVariants: RopeBalancerVariant[] = [
             'Customizable rail configuration',
         ],
         applications: ['Long production lines', 'Heavy assembly operations', 'Engine and transmission handling', 'Bridge crane replacement'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Artikelbilder/18/1805/180502/18050200001/88660d7abfda_18.05.02.00001_00.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-quick-lift-rail-qlr.webp',
     },
     {
         slug: 'ergo-glass',
@@ -131,6 +131,6 @@ export const ropeBalancerVariants: RopeBalancerVariant[] = [
             'Compatible with Binar crane and rail systems',
         ],
         applications: ['Glass processing and fabrication', 'Curtain wall and glazing', 'Solar panel handling', 'Mirror and flat panel installation'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Artikelbilder/18/1805/180512/18051200002/7f8a3e902583_18.05.12.00002_00.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-ergo-glass.webp',
     },
 ];

@@ -3,155 +3,109 @@ import Image from 'next/image';
 import {
   AboutHero,
   AboutStoryImage,
+  AboutStoryContent,
+  AboutPhilosophyHeader,
   AboutCoreValues,
-  AboutProcess,
-  AboutProcessImage,
+  AboutClientsHeader,
   AboutClientLogos,
 } from '../../components/about/AboutAnimations';
-import { getServerLang } from '../../lib/i18n';
 import { spacingTokens } from '../../constants/spacingTokens';
+import PreFooterCTA from '../../components/PreFooterCTA';
 
 export const metadata: Metadata = {
-  title: 'About Us | PT Dimensi Quantum Wahyudi — Engineering Excellence Since 2009',
-  description: 'Established in 2009, PT Dimensi Quantum Wahyudi is a trusted partner for vacuum lifting and ergonomic handling solutions in Indonesia, and a proud member of Nabel Sakha Group.',
+  title: 'About Us | PT Dimensi Quantum Wahyudi, Ergonomic Handling Since 2009',
+  description:
+    'Established in 2009 and a member of Nabel Sakha Group, PT Dimensi Quantum Wahyudi is the authorized distributor for Schmalz Germany and Binar Sweden in Indonesia.',
   keywords: [
     'PT Dimensi Quantum Wahyudi',
     'Nabel Sakha Group',
-    'vacuum lifting indonesia',
-    'ergonomic handling system indonesia',
-    'Schmalz distributor Indonesia',
-    'Binar distributor Indonesia',
-    'material handling Indonesia',
-    'about PT Dimensi',
+    'Schmalz Indonesia distributor',
+    'Binar Handling Indonesia',
+    'industrial vacuum lifter Indonesia',
+    'ergonomic handling systems Indonesia',
+    'factory automation equipment Indonesia',
+    'material handling engineering Indonesia',
   ],
   openGraph: {
-    title: 'About PT Dimensi Quantum Wahyudi | Trusted Vacuum Handling Partner in Indonesia',
-    description: 'Part of Nabel Sakha Group and established in 2009, PT Dimensi Quantum Wahyudi supports Indonesian industry with premium vacuum automation and ergonomic handling systems.',
+    title: 'About PT Dimensi Quantum Wahyudi | Official Ergonomic Handling Partner',
+    description:
+      'Founded in 2009, we deliver certified vacuum lifting equipment from Schmalz Germany and electric manipulator arms from Binar Sweden to manufacturing plants across Indonesia.',
     url: 'https://dimensiwahyudi.com/about',
     siteName: 'PT Dimensi Quantum Wahyudi',
-    locale: 'en_ID',
+    locale: 'en_US',
     type: 'website',
   },
   alternates: { canonical: 'https://dimensiwahyudi.com/about' },
 };
 
-export default async function AboutPage() {
-  await getServerLang();
-  const copy = {
-    title: 'Pioneering Ergonomics & Vacuum Automation',
-    p1: 'Established in 2009 in Bekasi, PT Dimensi Quantum Wahyudi, part of the Nabel Sakha Group, has grown into a trusted partner for vacuum components and industrial handling systems across Indonesia.',
-    p2: 'With a dedicated focus on vacuum handling technologies, we deliver globally proven products backed by practical engineering support for local production realities.',
-    p3: 'As a trusted technical partner, we connect world-class European innovation with measurable results on Indonesian factory floors.',
-    projects: 'Project Portfolio',
-    clients: 'Multinational Clients',
-    philosophy: 'Our Philosophy',
-    philosophyTitle: 'Building Excellence Together',
-    process: 'Operational Methodology',
-    processTitleA: 'A Standardized',
-    processTitleB: 'Execution Framework',
-    trusted: 'Trusted by',
-    trustedTitle: 'The Preferred Choice of Global Industry Leaders',
-  };
+export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
-
-      {/* BACKGROUND GRID ACCENT */}
+    <main className="min-h-screen bg-white text-slate-900 selection:bg-[#005596] selection:text-white relative overflow-hidden">
+      {/* Ambient Blue Glow Accents */}
       <div
-        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        className="absolute top-20 left-1/4 w-[600px] h-[380px] bg-[#005596]/5 rounded-full blur-[150px] pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-[800px] right-1/4 w-[500px] h-[340px] bg-[#005596]/4 rounded-full blur-[140px] pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-[1600px] left-1/3 w-[550px] h-[360px] bg-[#005596]/5 rounded-full blur-[150px] pointer-events-none -z-0"
+        aria-hidden="true"
+      />
+
+      {/* Background Technical Grid Accent */}
+      <div
+        className="absolute inset-0 z-0 opacity-[0.025] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(#005596 1px, transparent 1px), linear-gradient(90deg, #005596 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
 
       {/* 1. HERO SECTION */}
-      <section className={`relative h-[60vh] flex items-center justify-center overflow-hidden ${spacingTokens.hero.standard}`}>
-        <div className="absolute inset-0">
+      <section className={`relative min-h-[55vh] flex items-center justify-center overflow-hidden ${spacingTokens.hero.standard} border-b border-slate-100`}>
+        <div className="absolute inset-0 pointer-events-none">
           <Image
-            src="https://i.imgur.com/RMjGMRg.jpeg"
-            alt="PT Dimensi Quantum Wahyudi Warehouse Solutions"
+            src="/warehouse-bg.webp"
+            alt="Intralogistics Engineering Facility of PT Dimensi Quantum Wahyudi"
             fill
             priority
-            className="object-cover opacity-10"
+            className="object-cover opacity-[0.06]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white" />
         </div>
+
         <AboutHero />
       </section>
 
-      {/* 2. OUR STORY */}
+      {/* 2. TRACK RECORD & CREDENTIALS (OUR STORY) */}
       <section className={`${spacingTokens.section.spacious} relative z-10`}>
-        <div className={`${spacingTokens.page.container} grid lg:grid-cols-2 gap-16 items-center`}>
+        <div className={`${spacingTokens.page.container} grid lg:grid-cols-2 gap-12 lg:gap-16 items-center`}>
           <AboutStoryImage />
-          <div className="space-y-8">
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
-              {copy.title.split('&')[0].trim()} &{' '}
-              <span className="text-cyan-600 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
-                {copy.title.split('&')[1]?.trim() || ''}
-              </span>
-            </h2>
-            <div className="space-y-6 text-slate-600 leading-relaxed text-lg text-justify">
-              <p>
-                {copy.p1}
-              </p>
-              <p>
-                {copy.p2}
-              </p>
-              <p className="font-medium text-slate-800 border-l-4 border-cyan-500 pl-4">
-                {copy.p3}
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-12 pt-4">
-              <div className="group">
-                <h4 className="text-4xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">500+</h4>
-                <p className="text-slate-500 text-sm font-medium uppercase tracking-wide mt-1">{copy.projects}</p>
-              </div>
-              <div className="group">
-                <h4 className="text-4xl font-black text-slate-900 group-hover:text-cyan-600 transition-colors">50+</h4>
-                <p className="text-slate-500 text-sm font-medium uppercase tracking-wide mt-1">{copy.clients}</p>
-              </div>
-            </div>
-          </div>
+          <AboutStoryContent />
         </div>
       </section>
 
-      {/* 3. CORE VALUES */}
-      <section className={`${spacingTokens.section.spacious} bg-slate-50 border-y border-slate-200 relative z-10`}>
+      {/* 3. CORE VALUES & PHILOSOPHY (VISION & MISSION) */}
+      <section className={`${spacingTokens.section.spacious} bg-slate-50/70 border-y border-slate-200/80 relative z-10`}>
         <div className={spacingTokens.page.container}>
-          <div className="text-center mb-16">
-            <span className="text-blue-600 font-bold tracking-widest text-sm uppercase">{copy.philosophy}</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-2">{copy.philosophyTitle}</h2>
-          </div>
+          <AboutPhilosophyHeader />
           <AboutCoreValues />
         </div>
       </section>
 
-      {/* 4. TECHNICAL PROCESS */}
-      <section className={`${spacingTokens.section.spacious} relative z-10 overflow-hidden bg-white`}>
-        <div className={spacingTokens.page.container}>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-cyan-600 font-bold tracking-widest text-sm uppercase">{copy.process}</span>
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-2 mb-8">
-                {copy.processTitleA} <span className="text-blue-600">{copy.processTitleB}</span>
-              </h2>
-              <AboutProcess />
-            </div>
-            <AboutProcessImage />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CLIENTS SECTION */}
-      <section className={`${spacingTokens.section.spacious} relative z-10 bg-slate-50 border-t border-slate-200`}>
+      {/* 4. MULTINATIONAL CLIENTS SHOWCASE */}
+      <section className={`${spacingTokens.section.spacious} relative z-10 bg-white`}>
         <div className={`${spacingTokens.page.container} text-center`}>
-          <span className="text-blue-600 font-bold tracking-widest text-xs uppercase">{copy.trusted}</span>
-          <h2 className="text-2xl font-bold text-slate-900 mt-2 mb-16">
-            {copy.trustedTitle}
-          </h2>
+          <AboutClientsHeader />
           <AboutClientLogos />
         </div>
       </section>
+
+      {/* 5. PRE-FOOTER CTA SECTION */}
+      <PreFooterCTA />
     </main>
   );
 }

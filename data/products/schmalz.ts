@@ -48,7 +48,7 @@ export const schmalzProducts: Product[] = [
             'Packaging and palletizing',
             'Automotive production',
         ],
-        imageUrl: 'https://media.schmalz.cn/MAM_Library/Products/Produktgruppenbilder/dc087940a162_PG_PGE_00160_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-vacuum-tube-lifter.webp',
     },
     {
         slug: 'vacumaster',
@@ -80,7 +80,7 @@ export const schmalzProducts: Product[] = [
             'Steel plate and precast concrete handling',
             'Paper and print industries',
         ],
-        imageUrl: 'https://media.schmalz.cn/MAM_Library/Products/Produktgruppenbilder/44f16805bafb_PG_PGE-00163_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster.webp',
     },
     {
         slug: 'mobile-lifting-device',
@@ -112,7 +112,7 @@ export const schmalzProducts: Product[] = [
             'Frequently changing work areas',
             'Mid-scale production facilities',
         ],
-        imageUrl: 'https://media.schmalz.cn/MAM_Library/Products/Produktgruppenbilder/0_/063/06394/b73d102d5159_PUG_PGE-06394.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-mobile-lifting-device.webp',
     },
     {
         slug: 'vacuum-generator',
@@ -144,7 +144,7 @@ export const schmalzProducts: Product[] = [
             'Smart factory and Industry 4.0 systems',
             'AGV and mobile handling platforms',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/ec6bdf60f00a_PG_PGE-00169_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-vacuum-generators.webp',
     },
     {
         slug: 'crane-system',
@@ -176,7 +176,7 @@ export const schmalzProducts: Product[] = [
             'Loading and unloading stations',
             'All industries using vacuum lifter technology',
         ],
-        imageUrl: 'https://media.schmalz.cn/MAM_Library/Products/Produktgruppenbilder/c2d1167fab91_PG_PGE-00161_001.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-crane-system-jib-crane.webp',
     },
     {
         slug: 'vacuum-suction-cups',
@@ -208,6 +208,6 @@ export const schmalzProducts: Product[] = [
             'Food packaging operations',
             'Electronics and semiconductor handling',
         ],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktgruppenbilder/ae921bfe87bc_PG_PGE-00171_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-vacuum-suction-cups.webp',
     },
 ];

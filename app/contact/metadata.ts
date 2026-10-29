@@ -1,4 +1,4 @@
-// Contact page metadata — server component companion
+// Contact page metadata: server component companion
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -2,31 +2,24 @@
 
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
+import PdfFlipbookViewer from '@/components/brosur/PdfFlipbookViewer';
 import {
-  FileText,
   Download,
   Share2,
-  ExternalLink,
   Search,
   CheckCircle,
-  Sparkles,
   PhoneCall,
   ShieldCheck,
   Building2,
   ArrowRight,
-  Layers,
-  Cpu,
-  Boxes,
-  HelpCircle,
   Eye,
   Check,
-  Send,
   Loader2,
   X,
   SlidersHorizontal,
-  BookmarkCheck,
 } from 'lucide-react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export interface BrochureItem {
   id: string;
@@ -34,6 +27,7 @@ export interface BrochureItem {
   subtitle: string;
   category: 'ergonomics' | 'overview' | 'grippers' | 'automation';
   categoryLabel: string;
+  categoryLabelId?: string;
   badge: string;
   badgeColor: string;
   description: string;
@@ -50,20 +44,21 @@ const BROCHURES: BrochureItem[] = [
   {
     id: 'ergonomic-vacuum-lifters',
     title: 'Ergonomic Vacuum Lifters & Crane Systems',
-    subtitle: 'Solusi JumboFlex, JumboErgo & VacuMaster',
+    subtitle: 'JumboFlex, JumboErgo & VacuMaster Engineering Dossier',
     category: 'ergonomics',
-    categoryLabel: 'Alat Angkat Ergonomis',
-    badge: 'Katalog Lengkap · 56 Hal',
+    categoryLabel: 'Ergonomic Lifting Systems',
+    categoryLabelId: 'Sistem Lifter Ergonomis',
+    badge: 'Complete Catalog · 56 Pages',
     badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     description:
-      'Panduan terlengkap penanganan manual handling bebas cedera pinggang untuk mengangkat karung, karton kemasan, drum, ember, lembaran logam, dan panel kayu.',
+      'Engineering reference for manual handling without spinal strain, covering sacks, packaging cartons, drums, pails, metal sheets, and timber panels.',
     specs: [
-      'Kapasitas angkat hingga 300 kg (Jumbo) & multi-ton (VacuMaster)',
-      'Sertifikasi Ergonomi AGR (Aktion Gesunder Rücken) Jerman',
-      'Kontrol satu tangan super cepat (JumboFlex) & dual-hand (JumboErgo)',
-      'Kompatibel dengan Sistem Crane Aluminium & Jib Crane modular',
+      'Lifting capacity up to 300 kg (Jumbo) and multi-ton sheets (VacuMaster)',
+      'German AGR (Aktion Gesunder Rücken) Medical Ergonomic Certification',
+      'Single-handed high-cycle control (JumboFlex) and dual-hand guidance (JumboErgo)',
+      'Compatible with modular aluminum crane runway and articulated jib systems',
     ],
-    applications: ['Gudang & Logistik', 'Pabrik Makanan & Minuman', 'Farmasi & Kimia', 'Manufaktur Logam & Kayu'],
+    applications: ['Warehouse & Logistics', 'Food & Beverage Processing', 'Pharma & Chemicals', 'Metal & Woodworking Fabrication'],
     pdfUrl: '/brochures/ergonomic-vacuum-lifters.pdf',
     coverImage: '/brochures/ergonomic-vacuum-lifters-cover.jpg',
     fileSize: '4.6 MB',
@@ -73,20 +68,21 @@ const BROCHURES: BrochureItem[] = [
   {
     id: 'product-overview',
     title: 'Schmalz Industrial Handling Product Overview',
-    subtitle: 'Rangkuman Seluruh Ekosistem Penanganan Vakum',
+    subtitle: 'Vacuum Handling Ecosystem Summary',
     category: 'overview',
-    categoryLabel: 'Katalog Ringkasan',
-    badge: 'Quick Guide · 6 Hal',
+    categoryLabel: 'Summary Catalog',
+    categoryLabelId: 'Katalog Ringkasan',
+    badge: 'Quick Guide · 6 Pages',
     badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
     description:
-      'Ringkasan eksekutif seluruh lini produk penanganan vakum Schmalz Germany & Binar Handling Sweden. Ideal untuk referensi cepat para manajer pabrik, teknisi, dan bagian procurement.',
+      'Executive summary covering Schmalz Germany and Binar Handling Sweden vacuum systems. Ideal quick reference for plant managers, project engineers, and procurement teams.',
     specs: [
-      'Visual overview lengkap Vacuum Lifters, Crane, dan Binar Quick-Lift',
-      'Matriks panduan pemilihan alat angkat manual vs sistem robotik',
-      'Tabel ringkas beban maksimum dan fleksibilitas instalasi',
-      'Kompilasi studi kasus implementasi industri terkemuka',
+      'Visual overview of Vacuum Lifters, Crane Systems, and Binar Quick-Lift',
+      'Decision matrix comparing manual lift assist vs robotic automation',
+      'Working load limits table and runway layout options',
+      'Compiled case studies from leading industrial manufacturing plants',
     ],
-    applications: ['Semua Sektor Industri', 'Manajemen Pabrik', 'Tim Pengadaan / Procurement', 'Konsultan Ergonomi'],
+    applications: ['All Manufacturing Sectors', 'Plant Management', 'Procurement & Sourcing', 'EHS & Ergonomics Engineering'],
     pdfUrl: '/brochures/product-overview.pdf',
     coverImage: '/brochures/product-overview-cover.jpg',
     fileSize: '1.1 MB',
@@ -96,20 +92,21 @@ const BROCHURES: BrochureItem[] = [
   {
     id: 'area-gripping',
     title: 'Large-Area Vacuum Gripping Systems',
-    subtitle: 'Sistem Gripper Vakum untuk Robotika & Otomasi Paletisasi',
+    subtitle: 'Vacuum Grippers for Robotics & Palletizing Automation',
     category: 'grippers',
-    categoryLabel: 'Robotika & Gripper EOAT',
-    badge: 'Robotika & EOAT · 8 Hal',
+    categoryLabel: 'Robotics & EOAT Grippers',
+    categoryLabelId: 'Robotika & EOAT Gripper',
+    badge: 'Robotics & EOAT · 8 Pages',
     badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
     description:
-      'Solusi vacuum gripper permukaan luas (End-of-Arm Tooling) untuk lengan robot industri dan gantry otomatis dalam menangani karton berbagai ukuran, paletisasi, dan material berpori.',
+      'Large-area vacuum gripper solutions (End-of-Arm Tooling) for articulated robot arms and gantry axes handling cartons, mixed-case palletizing, and porous panels.',
     specs: [
-      'Seri FMP, FXP, SBX, dan SVE berteknologi katup pintar terintegrasi',
-      'Daya cengkeram tetap 100% aman meski 50% permukaan gripper tidak tertutup',
-      'Siap diintegrasikan ke robot FANUC, KUKA, ABB, Yaskawa, dan Cobot',
-      'Bantalan busa khusus yang tahan lama dan mudah diganti di lini produksi',
+      'FMP, FXP, SBX, and SVE series with integrated intelligent valve technology',
+      '100% secure grip retention even when up to 50% of gripper surface is uncovered',
+      'Ready for integration with FANUC, KUKA, ABB, Yaskawa, and collaborative robots',
+      'Durable sealing foam pads replaceable on-line in minutes',
     ],
-    applications: ['Robot Palletizing & Depalletizing', 'Industri Kayu & Furniture', 'Otomotif & Baterai EV', 'Packaging Otomatis'],
+    applications: ['Robot Palletizing & Depalletizing', 'Timber & Furniture Lines', 'Automotive & EV Battery Assembly', 'High-Speed Packaging Lines'],
     pdfUrl: '/brochures/area-gripping.pdf',
     coverImage: '/brochures/area-gripping-cover.jpg',
     fileSize: '2.5 MB',
@@ -118,20 +115,21 @@ const BROCHURES: BrochureItem[] = [
   {
     id: 'vacuum-automation',
     title: 'Vacuum Automation Components',
-    subtitle: 'Suction Cups, Ejector Hemat Energi & Sensor Cerdas',
+    subtitle: 'Suction Cups, Energy-Saving Ejectors & Smart Sensors',
     category: 'automation',
-    categoryLabel: 'Komponen Otomasi Pabrik',
-    badge: 'Komponen Otomasi · 6 Hal',
-    badgeColor: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+    categoryLabel: 'Automation Components',
+    categoryLabelId: 'Komponen Otomasi Vakum',
+    badge: 'Automation Components · 6 Pages',
+    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
     description:
-      'Katalog komponen vakum presisi tinggi untuk mesin pick-and-place, mesin packaging berkecepatan tinggi, dan otomatisasi pabrik modern berstandar Industri 4.0.',
+      'Precision vacuum components for high-speed pick-and-place, carton erecting, packaging equipment, and Industry 4.0 production cells.',
     specs: [
-      'Ratusan varian Suction Cup (NBR, Silikon Food-Grade FDA, Elastodur)',
-      'Compact Ejector cerdas SCPS/SCPSi dengan komunikasi digital IO-Link',
-      'Sistem hemat energi otomatis (Air Saving Function) hingga 80%',
-      'Spring plunger, filter vakum, dan sensor switch berpresisi tinggi',
+      'Extensive suction cup range (NBR, FDA food-grade silicone, Elastodur)',
+      'Compact intelligent ejectors SCPS/SCPSi with IO-Link digital telemetry',
+      'Automatic air-saving regulation reducing compressed air usage up to 80%',
+      'Spring plungers, in-line vacuum filters, and digital pressure switches',
     ],
-    applications: ['Mesin Packaging Otomatis', 'Industri Elektronik & Semikonduktor', 'Makanan & Minuman Steril', 'Lini Perakitan Cepat'],
+    applications: ['Automated Packaging Machinery', 'Electronics & Semiconductor Assembly', 'Sterile Food & Beverage Packaging', 'High-Cycle Transfer Feeders'],
     pdfUrl: '/brochures/vacuum-automation.pdf',
     coverImage: '/brochures/vacuum-automation-cover.jpg',
     fileSize: '762 KB',
@@ -139,29 +137,40 @@ const BROCHURES: BrochureItem[] = [
   },
 ];
 
-const CATEGORIES = [
-  { id: 'all', label: 'Semua Brosur (4)' },
-  { id: 'ergonomics', label: 'Alat Angkat Ergonomis' },
-  { id: 'overview', label: 'Katalog Ringkasan' },
-  { id: 'grippers', label: 'Robotika & Gripper Vakum' },
-  { id: 'automation', label: 'Komponen Otomasi' },
-];
-
 export default function BrochuresClient() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeModalBrochure, setActiveModalBrochure] = useState<BrochureItem | null>(null);
+  const [flipbookBrochure, setFlipbookBrochure] = useState<BrochureItem | null>(null);
 
   // Form State
   const [formData, setFormData] = useState({
     name: '',
     company: '',
     phoneOrEmail: '',
-    interest: 'Umum / Semua Brosur',
+    interest: 'All Product Lines',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  const CATEGORIES = isId
+    ? [
+        { id: 'all', label: 'Semua Katalog (4)' },
+        { id: 'ergonomics', label: 'Ergonomic Lifters' },
+        { id: 'overview', label: 'Panduan Ringkas' },
+        { id: 'grippers', label: 'Robotika & Grippers' },
+        { id: 'automation', label: 'Komponen Otomasi' },
+      ]
+    : [
+        { id: 'all', label: 'All Catalogs (4)' },
+        { id: 'ergonomics', label: 'Ergonomic Lifters' },
+        { id: 'overview', label: 'Summary Guides' },
+        { id: 'grippers', label: 'Robotics & Grippers' },
+        { id: 'automation', label: 'Automation Components' },
+      ];
 
   // Filtered brochures
   const filteredBrochures = useMemo(() => {
@@ -183,13 +192,13 @@ export default function BrochuresClient() {
   // WhatsApp share link generator
   const getWhatsAppShareUrl = (brochure: BrochureItem) => {
     const fullUrl = `https://www.dimensiwahyudi.com${brochure.pdfUrl}`;
-    const text = `Halo Tim PT Dimensi Quantum Wahyudi, saya sedang melihat brosur "${brochure.title}" (${fullUrl}). Saya ingin konsultasi teknis & informasi harga untuk kebutuhan pabrik kami.`;
+    const text = `Hello DQW Engineering Team, I am reviewing the "${brochure.title}" brochure (${fullUrl}). I would like to request technical specifications and pricing details for our manufacturing plant.`;
     return `https://wa.me/6281119168752?text=${encodeURIComponent(text)}`;
   };
 
   const getGeneralWhatsAppUrl = () => {
     const text =
-      'Halo Tim PT Dimensi Quantum Wahyudi, saya sedang berada di booth pameran Anda / melihat halaman brosur digital. Saya ingin bertanya langsung dengan sales engineering Anda.';
+      'Hello DQW Engineering Team, I am browsing your digital brochure catalog. I would like to speak directly with an application engineer.';
     return `https://wa.me/6281119168752?text=${encodeURIComponent(text)}`;
   };
 
@@ -197,7 +206,11 @@ export default function BrochuresClient() {
   const handleSubmitLead = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.phoneOrEmail.trim()) {
-      setSubmitError('Nama dan Nomor WhatsApp/Email wajib diisi.');
+      setSubmitError(
+        isId
+          ? 'Nama lengkap dan nomor WhatsApp atau email perusahaan wajib diisi.'
+          : 'Name and WhatsApp number or corporate email are required.'
+      );
       return;
     }
 
@@ -207,9 +220,9 @@ export default function BrochuresClient() {
     try {
       const payload = {
         name: formData.name.trim(),
-        company: formData.company.trim() || 'Pameran / QR Visitor',
-        email: formData.phoneOrEmail.includes('@') ? formData.phoneOrEmail.trim() : 'pameran@dimensiwahyudi.com',
-        message: `Permintaan Penawaran & Konsultasi Brosur Digital Pameran. Kontak WhatsApp/HP: ${formData.phoneOrEmail}. Produk yang diminati: ${formData.interest}`,
+        company: formData.company.trim() || 'Digital Catalog Visitor',
+        email: formData.phoneOrEmail.includes('@') ? formData.phoneOrEmail.trim() : 'visitor@dimensiwahyudi.com',
+        message: `Catalog Consultation Request. Contact Info: ${formData.phoneOrEmail}. System Interest: ${formData.interest}`,
       };
 
       const res = await fetch('/api/contact', {
@@ -220,28 +233,44 @@ export default function BrochuresClient() {
 
       if (res.ok) {
         setSubmitSuccess(true);
-        setFormData({ name: '', company: '', phoneOrEmail: '', interest: 'Umum / Semua Brosur' });
+        setFormData({ name: '', company: '', phoneOrEmail: '', interest: 'All Product Lines' });
       } else {
-        setSubmitError('Terjadi kendala saat mengirim. Silakan hubungi kami via WhatsApp.');
+        setSubmitError(
+          isId
+            ? 'Terjadi kendala saat pengiriman. Silakan hubungi kami melalui WhatsApp.'
+            : 'An issue occurred during submission. Please reach us via WhatsApp.'
+        );
       }
     } catch {
-      setSubmitError('Terjadi kendala koneksi. Silakan hubungi kami via WhatsApp.');
+      setSubmitError(
+        isId
+          ? 'Kendala koneksi jaringan. Silakan hubungi kami melalui WhatsApp.'
+          : 'Network connection issue. Please contact us via WhatsApp.'
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-cyan-500 selection:text-white pb-24">
-      {/* Top Exhibition Welcome Alert Banner */}
+    <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-[#005596] selection:text-white pb-24">
+      {/* Top Welcome Alert Banner */}
       <section className="bg-gradient-to-r from-blue-950 via-slate-900 to-blue-900 text-white border-b border-blue-800/40 py-3 px-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-2 text-center sm:text-left">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-cyan-500 text-slate-950 font-black text-[10px]">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#005596] text-white font-black text-[10px]">
               ★
             </span>
             <span className="font-semibold text-slate-200">
-              Selamat Datang di Portal Brosur Digital Resmi <strong className="text-white">PT Dimensi Quantum Wahyudi</strong>
+              {isId ? (
+                <>
+                  Selamat Datang di Portal Brosur Teknis Resmi <strong className="text-white">PT Dimensi Quantum Wahyudi</strong>
+                </>
+              ) : (
+                <>
+                  Welcome to the Official Technical Brochure Portal of <strong className="text-white">PT Dimensi Quantum Wahyudi</strong>
+                </>
+              )}
             </span>
           </div>
           <a
@@ -251,14 +280,13 @@ export default function BrochuresClient() {
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[11px] transition-all shrink-0 shadow-xs"
           >
             <PhoneCall size={12} />
-            <span>Sedang di Booth? Panggil Sales Kami</span>
+            <span>{isId ? 'Chat Tim Sales Engineering' : 'Chat with Sales Engineering'}</span>
           </a>
         </div>
       </section>
 
       {/* Main Hero Header */}
       <header className="relative pt-12 pb-16 md:py-20 bg-white border-b border-slate-200 overflow-hidden">
-        {/* Decorative Grid & Glow */}
         <div
           className="absolute inset-0 z-0 opacity-40 pointer-events-none"
           style={{
@@ -267,43 +295,44 @@ export default function BrochuresClient() {
             backgroundSize: '36px 36px',
           }}
         />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#005596]/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
           {/* Brand Partner Badges */}
           <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold">
-            <span className="text-cyan-700">Official Distributor</span>
+            <span className="text-[#005596]">{isId ? 'Distributor Resmi' : 'Official Distributor'}</span>
             <span>·</span>
-            <span>🇩🇪 Schmalz Germany</span>
+            <span>Schmalz Germany</span>
             <span>·</span>
-            <span>🇸🇪 Binar Handling Sweden</span>
+            <span>Binar Handling Sweden</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-            E-Katalog & Brosur Digital <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-600">
-              Solusi Penanganan Industri
+            {isId ? 'Katalog Teknis & Brosur Digital' : 'Technical Catalogs & Digital Brochures'} <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#005596] to-[#1d4ed8]">
+              {isId ? 'Solusi Material Handling Industri' : 'Industrial Handling Solutions'}
             </span>
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-            Akses langsung spesifikasi teknis, kapasitas angkat beban, dan panduan integrasi sistem penanganan vakum
-            dan crane ergonomis langsung di smartphone atau komputer Anda tanpa harus membawa brosur kertas.
+            {isId
+              ? 'Akses langsung spesifikasi teknis, kapasitas angkat (SWL), dan gambar integrasi sistem melalui smartphone maupun desktop Anda.'
+              : 'Direct access to engineering specifications, lifting capacities, and system integration drawings directly on your smartphone or desktop without carrying paper brochures.'}
           </p>
 
           {/* Quick Stats Banner */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-600">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck size={16} className="text-emerald-600" />
-              <span>Sertifikasi Ergonomi AGR Jerman</span>
+              <ShieldCheck size={16} className="text-[#005596]" />
+              <span>{isId ? 'Sertifikasi Medis AGR Jerman' : 'German AGR Medical Certification'}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <CheckCircle size={16} className="text-blue-600" />
-              <span>Uji Beban & Garansi Resmi</span>
+              <CheckCircle size={16} className="text-[#005596]" />
+              <span>{isId ? 'Teruji Beban Pabrik & Bergaransi Resmi' : 'Factory Load Tested & Warranty'}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Sparkles size={16} className="text-cyan-600" />
-              <span>Free Engineering Survey</span>
+              <Building2 size={16} className="text-[#005596]" />
+              <span>{isId ? 'Survei Engineering Lini Gratis' : 'Complimentary Engineering Survey'}</span>
             </div>
           </div>
         </div>
@@ -321,272 +350,296 @@ export default function BrochuresClient() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari brosur: karung, karton, gripper, robot, suction..."
-                className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-500/20 transition-all"
+                placeholder={
+                  isId
+                    ? 'Cari katalog: JumboFlex, VacuMaster, grippers, suction cup...'
+                    : 'Search catalogs: sacks, cartons, grippers, robotics, suction cups...'
+                }
+                className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-[#005596] focus:ring-1 focus:ring-[#005596]/20 transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
                 >
                   <X size={14} />
                 </button>
               )}
             </div>
 
-            {/* Quick Share All / Download Info */}
+            {/* Total Count */}
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 w-full md:w-auto justify-end">
-              <span>Menampilkan {filteredBrochures.length} brosur PDF resmi</span>
+              <span>
+                {isId
+                  ? `Menampilkan ${filteredBrochures.length} katalog PDF resmi`
+                  : `Displaying ${filteredBrochures.length} official PDF catalogs`}
+              </span>
             </div>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-1">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1">
+          <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-1 scrollbar-none">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1 mr-1">
               <SlidersHorizontal size={12} /> Filter:
             </span>
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+            <div className="flex items-center gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/80 w-max">
+              {CATEGORIES.map((cat) => {
+                const isActive = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className={`relative px-4 py-2 rounded-xl text-xs font-bold transition-colors whitespace-nowrap cursor-pointer ${
+                      isActive
+                        ? 'text-white'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeBrochureCategory"
+                        className="absolute inset-0 bg-gradient-to-r from-[#005596] to-[#0077c8] rounded-xl shadow-[0_4px_12px_rgba(0,85,150,0.3)] ring-1 ring-inset ring-white/20"
+                        transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                      />
+                    )}
+                    <span className="relative z-10">{cat.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Brochure Cards Grid */}
-        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch">
           {filteredBrochures.map((brochure) => (
             <article
               key={brochure.id}
-              className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+              className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#005596]/30 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
             >
-              {/* Card Header & Content */}
               <div>
-                {/* Top Image Preview with Badge */}
-                <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden border-b border-slate-100">
+                <div
+                  onClick={() => setFlipbookBrochure(brochure)}
+                  className="relative aspect-[1/1.38] bg-slate-100 overflow-hidden cursor-pointer"
+                >
                   <Image
                     src={brochure.coverImage}
                     alt={brochure.title}
                     fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 600px"
+                    className="object-cover object-top group-hover:scale-103 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-black/20 via-black/5 to-transparent pointer-events-none" />
 
-                  {/* Badges on Image */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-extrabold border backdrop-blur-md shadow-xs ${brochure.badgeColor}`}
-                    >
-                      {brochure.badge}
+                  {/* Hover Quick Read Cue */}
+                  <div className="absolute inset-0 bg-[#005596]/0 group-hover:bg-[#005596]/15 transition-colors flex items-center justify-center pointer-events-none">
+                    <span className="opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-200 px-3 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1.5 shadow-lg">
+                      <Eye size={13} className="text-[#0077c8]" />
+                      <span>{isId ? 'Buka Flipbook' : 'Open Flipbook'}</span>
                     </span>
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white/95 text-slate-800 shadow-xs backdrop-blur-md">
-                      {brochure.fileSize}
-                    </span>
-                  </div>
-
-                  {/* Title overlay on bottom */}
-                  <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <span className="text-[11px] font-bold text-cyan-300 uppercase tracking-wider block">
-                      {brochure.categoryLabel}
-                    </span>
-                    <h2 className="text-lg sm:text-xl font-black tracking-tight leading-snug line-clamp-1 drop-shadow-sm">
-                      {brochure.title}
-                    </h2>
                   </div>
                 </div>
 
-                {/* Card Body */}
-                <div className="p-6 space-y-4">
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {brochure.description}
-                  </p>
-
-                  {/* Key Highlights */}
-                  <div className="space-y-2 pt-2 border-t border-slate-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
-                      Spesifikasi & Keunggulan Utama:
-                    </span>
-                    <ul className="space-y-1.5 text-xs text-slate-700">
-                      {brochure.specs.map((spec, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <Check size={14} className="text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Suitable Applications Tag Cloud */}
-                  <div className="pt-2 flex flex-wrap gap-1.5">
-                    {brochure.applications.map((app, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-600 text-[11px] font-semibold"
-                      >
-                        {app}
-                      </span>
-                    ))}
-                  </div>
+                {/* Title & Category Info */}
+                <div className="p-4 sm:p-5 pb-2">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#005596] block mb-1">
+                    {isId ? brochure.categoryLabelId || brochure.categoryLabel : brochure.categoryLabel}
+                  </span>
+                  <h2 className="text-sm sm:text-base font-black text-slate-900 tracking-tight leading-snug line-clamp-2 group-hover:text-[#005596] transition-colors">
+                    {brochure.title}
+                  </h2>
                 </div>
               </div>
 
               {/* Action Buttons Bar */}
-              <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center gap-2">
-                {/* 1. Baca Langsung */}
-                <a
-                  href={brochure.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 min-w-[120px] py-2.5 px-3 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs border border-slate-200 transition-all flex items-center justify-center gap-1.5 shadow-2xs"
-                  title="Baca langsung di browser"
-                >
-                  <Eye size={14} className="text-cyan-600" />
-                  <span>Baca Online</span>
-                </a>
+              <div className="p-4 sm:p-5 pt-0 flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  {/* 1. Open Flipbook */}
+                  <button
+                    type="button"
+                    onClick={() => setFlipbookBrochure(brochure)}
+                    className="flex-1 py-2.5 px-2 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-800 font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                    title={isId ? 'Buka brosur digital interaktif' : 'Open interactive digital brochure'}
+                  >
+                    <Eye size={14} className="text-[#005596]" />
+                    <span>{isId ? 'Baca' : 'Read'}</span>
+                  </button>
 
-                {/* 2. Download PDF */}
-                <a
-                  href={brochure.pdfUrl}
-                  download
-                  className="flex-1 min-w-[130px] py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-md shadow-cyan-600/20"
-                  title="Simpan file PDF ke HP / Laptop"
-                >
-                  <Download size={14} />
-                  <span>Download PDF</span>
-                </a>
+                  {/* 2. Direct Download */}
+                  <a
+                    href={brochure.pdfUrl}
+                    download
+                    className="flex-1 py-2.5 px-2 rounded-xl bg-[#005596] hover:bg-[#00447a] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+                    title="Direct PDF download"
+                  >
+                    <Download size={14} />
+                    <span>Download ({brochure.fileSize})</span>
+                  </a>
 
-                {/* 3. Kirim ke WhatsApp */}
-                <a
-                  href={getWhatsAppShareUrl(brochure)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors shrink-0"
-                  title="Kirim link brosur ini ke WhatsApp saya / minta penawaran"
-                >
-                  <Share2 size={16} className="text-emerald-600" />
-                </a>
+                  {/* 3. Share Button */}
+                  <a
+                    href={getWhatsAppShareUrl(brochure)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-500 border border-slate-200/80 transition-colors shrink-0 cursor-pointer"
+                    title="Share via WhatsApp"
+                    aria-label={`Share ${brochure.title}`}
+                  >
+                    <Share2 size={15} />
+                  </a>
+                </div>
               </div>
             </article>
           ))}
         </section>
 
-        {/* Lead Capture Box for Exhibition Attendees */}
-        <section className="mt-16 bg-white rounded-3xl border border-slate-200 p-8 md:p-12 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Consultation & Workpiece Sampling Request Card */}
+        <section className="mt-20 relative rounded-3xl bg-white/85 backdrop-blur-2xl border border-white/95 ring-1 ring-[#005596]/12 shadow-[0_16px_40px_-10px_rgba(0,85,150,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)] p-8 md:p-12 lg:p-14 overflow-hidden">
+          <div
+            className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[450px] h-[320px] bg-[#005596]/5 rounded-full blur-[140px] pointer-events-none"
+            aria-hidden="true"
+          />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            {/* Left Description */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-bold">
-                <Sparkles size={14} className="text-cyan-600" />
-                <span>Layanan Engineering & Survei Gratis</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            {/* Left Column: Heading & Engineering Value */}
+            <div className="lg:col-span-6 space-y-5">
+              <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-[0_2px_10px_rgba(0,85,150,0.06)]">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+                  {isId ? 'Konsultasi Teknik & Uji Sampel Workpiece' : 'Engineering Advisory & Workpiece Testing'}
+                </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Butuh Penawaran Harga Spesial Pameran atau Uji Coba Benda Kerja?
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                {isId ? 'Butuh Proposal Teknis atau ' : 'Need a Custom Proposal or '}
+                <span className="bg-gradient-to-r from-[#005596] to-[#1d4ed8] bg-clip-text text-transparent">
+                  {isId ? 'Trial Angkat Workpiece?' : 'Workpiece Lifting Trial?'}
+                </span>
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Tinggalkan kontak Anda di bawah ini. Tim engineering PT Dimensi Quantum Wahyudi akan mengirimkan
-                katalog spesifikasi lengkap, estimasi ROI investasi, dan penawaran harga khusus pameran.
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                {isId
+                  ? 'Kirimkan spesifikasi workpiece Anda atau jadwalkan trial onsite (karung, karton, plat besi, drum) bersama tim engineer aplikasi PT Dimensi Quantum Wahyudi. Kami siap menyusun simulasi cycle time dan kalkulasi ROI.'
+                  : 'Submit your workpiece specifications or schedule an on-site vacuum suction trial (sacks, cartons, sheet metal, drums) with PT Dimensi Quantum Wahyudi application engineers. We provide cycle simulations and ROI calculations.'}
               </p>
-              <div className="space-y-2 text-xs text-slate-700 pt-2">
-                <div className="flex items-center gap-2">
-                  <CheckCircle size={15} className="text-emerald-600" />
-                  <span>Gratis survei lokasi pabrik & analisa ergonomi beban</span>
+
+              <div className="space-y-3 pt-2 text-xs sm:text-sm text-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#005596]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check size={13} className="text-[#005596] stroke-[2.5]" />
+                  </div>
+                  <span className="font-medium">
+                    {isId
+                      ? 'Survei area pabrik dan evaluasi ergonomi stasiun kerja tanpa biaya'
+                      : 'Complimentary plant floor survey and ergonomic task evaluation'}
+                  </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle size={15} className="text-emerald-600" />
-                  <span>Kirimkan sampel benda kerja (karung/drum/karton) untuk uji hisap di workshop kami</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#005596]/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check size={13} className="text-[#005596] stroke-[2.5]" />
+                  </div>
+                  <span className="font-medium">
+                    {isId
+                      ? 'Uji angkat langsung (trial) menggunakan material asli Anda di workshop kami atau di pabrik Anda'
+                      : 'Live workpiece lifting trials at our workshop or on your production floor'}
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Right Quick Form */}
-            <div className="lg:col-span-6 bg-slate-50 border border-slate-200/90 rounded-2xl p-6 shadow-xs">
+            {/* Right Column: Lead Capture Form */}
+            <div className="lg:col-span-6 bg-slate-50/80 backdrop-blur-xl border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-xs">
               {submitSuccess ? (
-                <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-200 text-center space-y-3">
+                <div className="p-8 bg-emerald-50/90 rounded-2xl border border-emerald-200 text-center space-y-3">
                   <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
-                    <Check size={24} />
+                    <Check size={22} className="stroke-[2.5]" />
                   </div>
-                  <h3 className="text-lg font-bold text-emerald-950">Terima Kasih!</h3>
-                  <p className="text-xs text-emerald-800 leading-relaxed">
-                    Data Anda telah kami terima. Tim engineering kami akan segera menghubungi Anda melalui WhatsApp
-                    untuk memberikan katalog lengkap dan penawaran khusus pameran.
+                  <h3 className="text-lg font-bold text-emerald-950">
+                    {isId ? 'Permintaan Diterima' : 'Request Received'}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-emerald-800 leading-relaxed">
+                    {isId
+                      ? 'Tim engineer aplikasi kami akan segera menghubungi Anda untuk meninjau spesifikasi beban dan menjadwalkan sesi trial.'
+                      : 'Our application engineering team will contact you promptly to review your lifting specifications and arrange trial testing.'}
                   </p>
                   <button
                     onClick={() => setSubmitSuccess(false)}
-                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-all"
+                    className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-full transition-all cursor-pointer"
                   >
-                    Kirim Permintaan Lain
+                    {isId ? 'Kirim Permintaan Lainnya' : 'Submit Another Request'}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmitLead} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Nama Lengkap *
+                    <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                      {isId ? 'Nama Lengkap *' : 'Full Name *'}
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Contoh: Budi Santoso"
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-500/20 transition-all"
+                      placeholder={isId ? 'Contoh: Budi Santoso' : 'e.g. John Doe'}
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200/90 rounded-xl text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Nama Perusahaan / Pabrik
+                    <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                      {isId ? 'Nama Perusahaan / Pabrik' : 'Company / Plant Name'}
                     </label>
                     <input
                       type="text"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="Contoh: PT Manufaktur Logam Utama"
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-500/20 transition-all"
+                      placeholder={isId ? 'Contoh: PT Manufaktur Indonesia' : 'e.g. PT Manufacturing Industries'}
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200/90 rounded-xl text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Nomor WhatsApp atau Email *
+                    <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                      {isId ? 'Email Perusahaan atau WhatsApp *' : 'Corporate Email or WhatsApp *'}
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.phoneOrEmail}
                       onChange={(e) => setFormData({ ...formData, phoneOrEmail: e.target.value })}
-                      placeholder="Contoh: 081234567890 atau budi@perusahaan.com"
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-500/20 transition-all"
+                      placeholder={isId ? 'nama@perusahaan.com atau +62 812...' : 'e.g. name@company.com or +62 812 3456 7890'}
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200/90 rounded-xl text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Kebutuhan Solusi
+                    <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                      {isId ? 'Fokus Sistem yang Diminati' : 'Selected Solution Focus'}
                     </label>
                     <select
                       value={formData.interest}
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:border-cyan-600 transition-all"
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-200/90 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 transition-all cursor-pointer"
                     >
-                      <option value="Umum / Semua Brosur">Semua Lini Produk</option>
-                      <option value="Vacuum Lifter JumboFlex (Karton/Kotak)">Vacuum Lifter JumboFlex (Karton/Kotak)</option>
-                      <option value="Vacuum Lifter JumboErgo (Karung/Drum/Beban Berat)">Vacuum Lifter JumboErgo (Karung/Drum/Beban Berat)</option>
-                      <option value="VacuMaster (Plat Logam / Lembaran Kaca / Kayu)">VacuMaster (Plat Logam / Lembaran Kaca / Kayu)</option>
-                      <option value="Area Gripping Robot (Palletizing)">Area Gripping Robot (Palletizing)</option>
-                      <option value="Komponen Vakum (Suction Cup & Ejector)">Komponen Vakum (Suction Cup & Ejector)</option>
-                      <option value="Sistem Crane Aluminium & Jib Crane">Sistem Crane Aluminium & Jib Crane</option>
+                      <option value="All Product Lines">{isId ? 'Semua Lini Produk' : 'All Product Lines'}</option>
+                      <option value="Vacuum Lifter JumboFlex (Boxes & Cartons)">
+                        Vacuum Lifter JumboFlex (Boxes &amp; Cartons)
+                      </option>
+                      <option value="Vacuum Lifter JumboErgo (Sacks, Drums & Heavy Loads)">
+                        Vacuum Lifter JumboErgo (Sacks, Drums &amp; Heavy Loads)
+                      </option>
+                      <option value="VacuMaster (Sheet Metal, Glass & Timber)">
+                        VacuMaster (Sheet Metal, Glass &amp; Timber)
+                      </option>
+                      <option value="Robotic Area Gripping (Palletizing)">
+                        Robotic Area Gripping (Palletizing)
+                      </option>
+                      <option value="Vacuum Components (Suction Cups & Ejectors)">
+                        Vacuum Components (Suction Cups &amp; Ejectors)
+                      </option>
+                      <option value="Aluminum Crane & Jib Crane Systems">
+                        Aluminum Crane &amp; Jib Crane Systems
+                      </option>
                     </select>
                   </div>
 
@@ -599,16 +652,16 @@ export default function BrochuresClient() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-md shadow-cyan-600/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                    className="w-full py-3.5 px-6 rounded-full bg-[#005596] hover:bg-[#004276] active:scale-[0.99] text-white font-bold text-sm shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_8px_24px_rgba(0,85,150,0.35)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
                         <Loader2 size={16} className="animate-spin" />
-                        <span>Mengirim Permintaan...</span>
+                        <span>{isId ? 'Mengirim Permintaan...' : 'Submitting Request...'}</span>
                       </>
                     ) : (
                       <>
-                        <span>Kirim Permintaan Penawaran Pameran</span>
+                        <span>{isId ? 'Jadwalkan Konsultasi Teknis' : 'Request Technical Consultation'}</span>
                         <ArrowRight size={16} />
                       </>
                     )}
@@ -618,38 +671,36 @@ export default function BrochuresClient() {
             </div>
           </div>
         </section>
-
-        {/* Corporate Trust & Physical Address Section */}
-        <section className="mt-16 text-center space-y-4 max-w-3xl mx-auto">
-          <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full mx-auto" />
-          <h3 className="text-lg font-bold text-slate-900">
-            PT Dimensi Quantum Wahyudi
-          </h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            Pergudangan Prima Sejahtera No. 1, Teluknaga, Tangerang, Banten 15510, Indonesia <br />
-            Telp: +62 21 5596 6124 | WhatsApp Resmi: +62 811-1916-8752 | Email: sales@dimensiwahyudi.com
-          </p>
-        </section>
       </main>
 
       {/* Floating Bottom Action Bar for Mobile Visitors */}
-      <aside aria-label="Aksi Cepat Booth" className="fixed bottom-4 left-4 right-4 z-40 md:hidden animate-in slide-in-from-bottom-5">
+      <aside aria-label="Quick Contact Action" className="fixed bottom-4 left-4 right-4 z-40 md:hidden animate-in slide-in-from-bottom-5">
         <div className="bg-slate-950/95 text-white backdrop-blur-md p-3 rounded-2xl border border-slate-800 shadow-2xl flex items-center justify-between gap-3">
           <div className="pl-1">
-            <span className="text-[11px] font-bold text-cyan-400 block">Butuh bantuan di Booth?</span>
-            <span className="text-[10px] text-slate-400 block">Hubungi tim sales kami</span>
+            <span className="text-[11px] font-bold text-blue-300 block">
+              {isId ? 'Butuh panduan teknis?' : 'Need engineering guidance?'}
+            </span>
+            <span className="text-[10px] text-slate-400 block">
+              {isId ? 'Hubungi tim sales engineering kami' : 'Contact our technical sales team'}
+            </span>
           </div>
           <a
             href={getGeneralWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-1.5 shadow-md shrink-0"
+            className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-1.5 shadow-md shrink-0 cursor-pointer"
           >
             <PhoneCall size={14} />
-            <span>Chat Sales Booth</span>
+            <span>Chat Sales</span>
           </a>
         </div>
       </aside>
+
+      {/* Interactive 3D PDF Flipbook Viewer Modal */}
+      <PdfFlipbookViewer
+        brochure={flipbookBrochure}
+        onClose={() => setFlipbookBrochure(null)}
+      />
     </div>
   );
 }

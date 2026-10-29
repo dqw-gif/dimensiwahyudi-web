@@ -18,7 +18,7 @@ const securityHeaders = [
   { key: 'X-XSS-Protection', value: '1; mode=block' },
   // DNS prefetch control
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
-  // HSTS — paksa HTTPS selama 1 tahun, termasuk subdomain
+  // HSTS - paksa HTTPS selama 1 tahun, termasuk subdomain
   { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
   // Content Security Policy
   {
@@ -38,7 +38,18 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ['isomorphic-dompurify', 'jsdom'],
+  async rewrites() {
+    return [
+      {
+        source: '/wp-content/:path*',
+        destination: 'https://wp.dimensiwahyudi.com/wp-content/:path*',
+      },
+      {
+        source: '/wp-includes/:path*',
+        destination: 'https://wp.dimensiwahyudi.com/wp-includes/:path*',
+      },
+    ];
+  },
   async headers() {
     return [
       {
@@ -108,8 +119,8 @@ const nextConfig: NextConfig = {
     ],
     formats: ['image/webp'],
     minimumCacheTTL: 31536000,
-    deviceSizes: [384, 512, 640, 750, 828, 1080, 1200],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 828, 1200],
+    imageSizes: [48, 96, 256, 384],
   },
 };
 

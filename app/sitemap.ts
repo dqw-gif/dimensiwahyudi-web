@@ -164,27 +164,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Schmalz products (top level)
         ...['vacumaster', 'mobile-lifting-device', 'vacuum-generator', 'crane-system']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
-        // Vacuum Tube Lifter — category + 9 variants
+        // Vacuum Tube Lifter - category + 9 variants
         { url: `${BASE_URL}/products/schmalz/vacuum-tube-lifter`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
         ...['jumboflex', 'jumboflex-gen1', 'jumboergo', 'jumbosprint', 'jumbosprint-ex', 'palvac-sprint-hygienic', 'palvac-sprint', 'jumboflex-high-stack', 'jumbo-low-stack']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/vacuum-tube-lifter/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
-        // VacuMaster — category + 11 variants
+        // VacuMaster - category + 11 variants
         { url: `${BASE_URL}/products/schmalz/vacumaster`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
         ...['basic', 'comfort', 'vario', 'eco', 'window', 'wood', 'coil', 'light', 'multi', 'glass', 'panel']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/vacumaster/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
-        // Mobile Lifting Devices — category + 2 variants
+        // Mobile Lifting Devices - category + 2 variants
         { url: `${BASE_URL}/products/schmalz/mobile-lifting-device`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
         ...['jumboflex-mobile', 'jumboflex-picker']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/mobile-lifting-device/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
-        // Vacuum Generators — category + 6 variants
+        // Vacuum Generators - category + 6 variants
         { url: `${BASE_URL}/products/schmalz/vacuum-generator`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
         ...['scps-compact-ejector', 'sbp-basic-ejector', 'sbpl-high-flow-ejector', 'sxpi-x-pump', 'ecbpm-electric-pump', 'sbg-vacuum-blower']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/vacuum-generator/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
-        // Crane Systems — category + 4 variants
+        // Crane Systems - category + 4 variants
         { url: `${BASE_URL}/products/schmalz/crane-system`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
         ...['jib-cranes', 'aluminum-bridge-cranes', 'kbg-steel-construction', 'chain-hoists']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/crane-system/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
-        // Vacuum Suction Cups — category + 12 variants
+        // Vacuum Suction Cups - category + 12 variants
         { url: `${BASE_URL}/products/schmalz/vacuum-suction-cups`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.85 },
         ...['flat-round', 'bellows-round', 'flat-oval', 'bellows-oval', 'sheet-metal', 'packaging', 'electronics', 'bag-handling', 'plastic-film-paper', 'wood', 'glass', 'high-temperature']
             .map(slug => ({ url: `${BASE_URL}/products/schmalz/vacuum-suction-cups/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
@@ -193,7 +193,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             .map(slug => ({ url: `${BASE_URL}/products/binar/${slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 })),
     ];
 
-    // Dynamic post pages — fetch all articles from Firebase/unified source
+    // Dynamic post pages - fetch all articles from Firebase/unified source
     let postEntries: MetadataRoute.Sitemap = [];
     try {
         const posts = await getAllUnifiedArticles();

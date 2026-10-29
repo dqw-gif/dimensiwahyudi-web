@@ -22,7 +22,9 @@ import {
   Italic,
   Strikethrough,
   Code,
-  Sparkles,
+  Loader2,
+  History as HistoryIcon,
+  Wand2,
   CheckCircle,
   AlertCircle,
   ExternalLink,
@@ -58,7 +60,7 @@ import {
 } from 'lucide-react';
 import type { ArticleItem } from '@/app/api/admin/articles/route';
 
-const CATEGORIES = ['Produk', 'Tips', 'Ergonomi', 'News', 'Blog'];
+const CATEGORIES = ['Products', 'Tips', 'Ergonomics', 'News', 'Blog'];
 
 const INTERNAL_PRODUCTS = [
   { name: 'Overhead Crane System', url: '/products/overhead-crane' },
@@ -77,11 +79,11 @@ export default function EditorClient() {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [isSlugManual, setIsSlugManual] = useState(false);
-  const [category, setCategory] = useState('Produk');
+  const [category, setCategory] = useState('Products');
   const [featuredImage, setFeaturedImage] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('Tim Teknis PT Dimensi Quantum Wahyudi');
+  const [author, setAuthor] = useState('DQW Technical Editorial');
   const [isFeatured, setIsFeatured] = useState(false);
 
   // UI Modes & Layout
@@ -150,11 +152,11 @@ export default function EditorClient() {
               setTitle(target.title);
               setSlug(target.slug);
               setIsSlugManual(true);
-              setCategory(target.category || 'Produk');
+              setCategory(target.category || 'Products');
               setFeaturedImage(target.featuredImage || '');
               setExcerpt(target.excerpt || '');
               setContent(target.content || '');
-              setAuthor(target.author || 'Tim Teknis PT Dimensi Quantum Wahyudi');
+              setAuthor(target.author || 'DQW Technical Editorial');
               setIsFeatured(Boolean(target.featured));
               setHistory([target.content || '']);
               setHistoryIndex(0);
@@ -302,7 +304,7 @@ export default function EditorClient() {
         if (parsed.content) setContent(parsed.content);
         if (parsed.author) setAuthor(parsed.author);
         setHasRecoverableDraft(false);
-        setNotification({ type: 'success', message: 'Draf lokal berhasil dipulihkan!' });
+        setNotification({ type: 'success', message: 'Local draft restored successfully.' });
       } catch {}
     }
   };
@@ -386,12 +388,12 @@ export default function EditorClient() {
   // WhatsApp Sales CTA Box
   const insertWhatsAppCTA = () => {
     const ctaSnippet = `\n<div class="my-8 p-6 bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 rounded-2xl text-slate-800 shadow-sm">
-  <h3 class="text-xl font-extrabold text-slate-900 mb-2">Konsultasi Teknis & Penawaran Sistem Handling</h3>
+  <h3 class="text-xl font-extrabold text-slate-900 mb-2">Technical Consultation & Systems Quotation</h3>
   <p class="text-sm text-slate-600 mb-4 leading-relaxed">
-    Tingkatkan efisiensi dan keamanan lini produksi pabrik Anda bersama tim engineering PT Dimensi Quantum Wahyudi.
+    Optimize cycle times and operator ergonomics with PT Dimensi Quantum Wahyudi application engineering.
   </p>
   <a href="https://wa.me/6281234567890?text=Halo%20Dimensi%20Wahyudi,%20saya%20ingin%20konsultasi%20sistem%20handling" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition-all">
-    Chat WhatsApp Engineering Resmi
+    Official WhatsApp Engineering
   </a>
 </div>\n`;
     insertSnippet(ctaSnippet, '');
@@ -400,17 +402,17 @@ export default function EditorClient() {
   // FAQ Accordion Generator
   const insertFaqAccordion = () => {
     const faqSnippet = `\n<div class="my-8 space-y-3">
-  <h3 class="text-lg font-bold text-slate-900 mb-3">Pertanyaan Sering Diajukan (FAQ)</h3>
+  <h3 class="text-lg font-bold text-slate-900 mb-3">Frequently Asked Questions (FAQ)</h3>
   <details class="p-4 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer group">
-    <summary class="font-bold text-slate-800 group-hover:text-cyan-700">Berapa kapasitas beban maksimal yang dapat ditangani?</summary>
+    <summary class="font-bold text-slate-800 group-hover:text-cyan-700">What is the maximum working load limit (WLL) supported?</summary>
     <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-      Sistem ini dapat dikustomisasi mulai dari beban ringan 50 kg hingga beban berat 20 ton sesuai spesifikasi material di pabrik Anda.
+      Configurations scale from 50 kg quick carton transfers up to 20-ton structural plates according to your facility specifications.
     </p>
   </details>
   <details class="p-4 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer group">
-    <summary class="font-bold text-slate-800 group-hover:text-cyan-700">Apakah PT Dimensi Quantum Wahyudi menyediakan instalasi dan sertifikasi?</summary>
+    <summary class="font-bold text-slate-800 group-hover:text-cyan-700">Does PT Dimensi Quantum Wahyudi deliver on-site installation and testing?</summary>
     <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-      Ya, kami menyediakan layanan menyeluruh mulai dari survei lapangan, fabrikasi, instalasi oleh teknisi bersertifikat, hingga uji beban (load test).
+      Yes. We provide complete turnkey execution: plant survey, structural design, certified installation, and static proof load tests.
     </p>
   </details>
 </div>\n`;
@@ -419,17 +421,17 @@ export default function EditorClient() {
 
   // YouTube Video Embedder
   const insertYouTubeVideo = () => {
-    const url = prompt('Masukkan URL Video YouTube (contoh: https://www.youtube.com/watch?v=dQw4w9WgXcQ):');
+    const url = prompt('Enter YouTube Video URL (e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ):');
     if (!url) return;
     const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
     const videoId = match ? match[1] : '';
     if (videoId) {
       const snippet = `\n<div class="my-6 aspect-video rounded-2xl overflow-hidden shadow-md border border-slate-200">
-  <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/${videoId}" title="Video Demonstrasi Produk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/${videoId}" title="Product Demonstration Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>\n`;
       insertSnippet(snippet, '');
     } else {
-      alert('URL YouTube tidak valid.');
+      alert('Invalid YouTube URL.');
     }
   };
 
@@ -437,14 +439,14 @@ export default function EditorClient() {
   const insertLeadMagnet = () => {
     const snippet = `\n<div class="my-6 p-5 bg-slate-100 border border-slate-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
   <div class="flex items-center gap-3.5">
-    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg">📄</div>
+    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xs uppercase tracking-wider">PDF</div>
     <div>
-      <div class="font-bold text-slate-900 text-sm">Unduh Brosur & Spesifikasi Teknis (PDF)</div>
-      <div class="text-xs text-slate-500">Katalog resmi PT Dimensi Quantum Wahyudi</div>
+      <div class="font-bold text-slate-900 text-sm">Download Technical Specifications (PDF)</div>
+      <div class="text-xs text-slate-500">Official PT Dimensi Quantum Wahyudi catalog</div>
     </div>
   </div>
   <a href="/contact" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs transition-all whitespace-nowrap">
-    Minta Katalog PDF
+    Request PDF Catalog
   </a>
 </div>\n`;
     insertSnippet(snippet, '');
@@ -453,7 +455,7 @@ export default function EditorClient() {
   // WebP Image Compressor
   const handleImageFileSelect = async (file: File) => {
     if (!file.type.startsWith('image/')) {
-      alert('Mohon pilih file gambar (JPG, PNG, atau WebP).');
+      alert('Please select an image file (JPG, PNG, or WebP).');
       return;
     }
 
@@ -486,7 +488,7 @@ export default function EditorClient() {
             setFeaturedImage(webpDataUrl);
             setNotification({
               type: 'success',
-              message: `✓ Gambar berhasil dikompresi ke WebP (${Math.round(webpDataUrl.length / 1024)} KB)!`,
+              message: `Gambar berhasil dikompresi ke WebP (${Math.round(webpDataUrl.length / 1024)} KB)!`,
             });
           }
         };
@@ -508,7 +510,7 @@ export default function EditorClient() {
 
     if (cleanText) {
       setExcerpt(cleanText.slice(0, 155));
-      setNotification({ type: 'success', message: 'Ringkasan SEO berhasil dibuat otomatis dari isi artikel!' });
+      setNotification({ type: 'success', message: 'SEO excerpt automatically generated from article body!' });
     }
   };
 
@@ -571,11 +573,11 @@ export default function EditorClient() {
   // Save handler
   const handleSave = async (status: 'published' | 'draft') => {
     if (!title.trim()) {
-      setNotification({ type: 'error', message: 'Judul artikel wajib diisi!' });
+      setNotification({ type: 'error', message: 'Article title is required.' });
       return;
     }
     if (!content.trim()) {
-      setNotification({ type: 'error', message: 'Konten artikel belum diisi!' });
+      setNotification({ type: 'error', message: 'Article body cannot be empty.' });
       return;
     }
 
@@ -615,8 +617,8 @@ export default function EditorClient() {
           type: 'success',
           message:
             status === 'published'
-              ? '🎉 Artikel berhasil diterbitkan dan langsung tayang!'
-              : '✓ Draf artikel tersimpan rapi!',
+              ? 'Article published successfully and is live.'
+              : 'Article draft saved successfully.',
           slug: publishedSlug,
         });
 
@@ -628,10 +630,10 @@ export default function EditorClient() {
           }, 1800);
         }
       } else {
-        setNotification({ type: 'error', message: data.error || 'Gagal menyimpan artikel' });
+        setNotification({ type: 'error', message: data.error || 'Failed to save article' });
       }
     } catch {
-      setNotification({ type: 'error', message: 'Terjadi kendala jaringan saat menyimpan artikel.' });
+      setNotification({ type: 'error', message: 'Network error occurred while saving article.' });
     } finally {
       setLoading(false);
     }
@@ -639,7 +641,7 @@ export default function EditorClient() {
 
   // Export raw Markdown or HTML
   const downloadSourceFile = (format: 'md' | 'html') => {
-    const filename = `${slug || 'artikel'}.${format}`;
+    const filename = `${slug || 'article'}.${format}`;
     const fileContent =
       format === 'md'
         ? `# ${title}\n\n${content}`
@@ -665,8 +667,8 @@ export default function EditorClient() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center text-slate-500">
         <div className="flex items-center gap-3 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <Sparkles className="animate-spin text-cyan-600" size={20} />
-          <span className="font-semibold text-sm">Memuat editor artikel...</span>
+          <Loader2 className="animate-spin text-cyan-600" size={20} />
+          <span className="font-semibold text-sm">Loading article editor...</span>
         </div>
       </div>
     );
@@ -687,13 +689,13 @@ export default function EditorClient() {
               <Link
                 href="/admin"
                 className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors shrink-0"
-                title="Kembali ke Dashboard"
+                title="Return to Dashboard"
               >
                 <ArrowLeft size={16} />
               </Link>
               <div className="truncate">
                 <span className="font-extrabold text-slate-900 text-sm sm:text-base block truncate">
-                  {title || (editId ? 'Edit Artikel' : 'Tulis Artikel Baru')}
+                  {title || (editId ? 'Edit Article' : 'Write New Article')}
                 </span>
                 <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400">
                   <span>{lastAutoSaved ? `Auto-save ${lastAutoSaved}` : 'Auto-save siap'}</span>
@@ -766,7 +768,7 @@ export default function EditorClient() {
                 className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
               >
                 <Save size={14} />
-                <span className="hidden sm:inline">Simpan Draft</span>
+                <span className="hidden sm:inline">Save Draft</span>
               </button>
 
               {/* Publish Button */}
@@ -800,15 +802,15 @@ export default function EditorClient() {
         {hasRecoverableDraft && (
           <div className="mb-4 p-4 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900 flex items-center justify-between gap-4 text-xs font-semibold animate-in fade-in">
             <div className="flex items-center gap-2">
-              <Sparkles size={16} className="text-cyan-600" />
-              <span>Ditemukan naskah draf otomatis yang belum sempat Anda simpan ke server.</span>
+              <HistoryIcon size={16} className="text-cyan-600" />
+              <span>An unsaved automatic draft was found in local storage.</span>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={restoreDraft}
                 className="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold hover:bg-cyan-700 transition-all cursor-pointer"
               >
-                Pulihkan Draf
+                Restore Draft
               </button>
               <button
                 onClick={() => setHasRecoverableDraft(false)}
@@ -851,7 +853,7 @@ export default function EditorClient() {
         <div className="flex items-start gap-6">
           {/* Main Writing Canvas (Full Remaining Width) */}
           <div className="flex-1 min-w-0 space-y-4">
-            {/* Title & Document Header Card (Seamless Canvas Style) */}
+            {/* Title & Document Header Card (Clean Canvas Style) */}
             <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-3">
               <input
                 type="text"
@@ -860,7 +862,7 @@ export default function EditorClient() {
                   setTitle(e.target.value);
                   setIsDirty(true);
                 }}
-                placeholder="Ketik Judul Artikel di Sini..."
+                placeholder="Type Article Title Here..."
                 className="w-full bg-transparent text-slate-900 text-xl sm:text-2xl lg:text-3xl font-extrabold placeholder-slate-300 focus:outline-none tracking-tight leading-snug"
               />
 
@@ -883,12 +885,12 @@ export default function EditorClient() {
                     }`}
                   />
                   {isSlugConflict && (
-                    <span className="text-red-600 font-bold ml-1">⚠️ Sudah dipakai</span>
+                    <span className="text-red-600 font-bold ml-1">(Sudah dipakai)</span>
                   )}
                 </div>
 
                 <div className="flex items-center gap-3 text-[11px] text-slate-400">
-                  <span>Kategori: <strong className="text-slate-700 font-bold">{category}</strong></span>
+                  <span>Category: <strong className="text-slate-700 font-bold">{category}</strong></span>
                   <span>·</span>
                   <span>Penulis: <strong className="text-slate-700 font-bold">{author}</strong></span>
                 </div>
@@ -1009,7 +1011,7 @@ export default function EditorClient() {
                     type="button"
                     onClick={() => setIsImageModalOpen(true)}
                     className="p-1.5 rounded-lg hover:bg-slate-200 text-cyan-700 cursor-pointer"
-                    title="Sisipkan Gambar dalam Konten"
+                    title="Insert Image into Body"
                   >
                     <ImageIcon size={15} />
                   </button>
@@ -1068,7 +1070,7 @@ export default function EditorClient() {
 
                 {/* Word Stats */}
                 <div className="text-[11px] font-semibold text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shrink-0">
-                  ⏱️ {stats.readingTime} mnt baca · {stats.words} kata
+                  ⏱️ {stats.readingTime} min read · {stats.words} words
                 </div>
               </div>
 
@@ -1088,7 +1090,7 @@ export default function EditorClient() {
                         updateContentWithHistory(e.target.value);
                       }}
                       rows={26}
-                      placeholder="Mulai tulis naskah artikel Anda di sini... (Gunakan tombol toolbar di atas atau ketik langsung format Markdown / HTML)"
+                      placeholder="Start drafting your article here... (Use toolbar buttons above or write directly in Markdown / HTML)"
                       className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-base font-sans leading-relaxed focus:outline-none resize-y min-h-[540px]"
                     />
                   </div>
@@ -1150,16 +1152,16 @@ export default function EditorClient() {
                       )}
 
                       <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">
-                        {title || 'Judul Artikel'}
+                        {title || 'Article Title'}
                       </h1>
 
                       <div className="flex items-center gap-3 text-xs text-slate-500 mb-6 border-b border-slate-100 pb-4">
                         <span className="px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 font-bold uppercase tracking-wider">
                           {category}
                         </span>
-                        <span>Oleh: {author}</span>
+                        <span>By: {author}</span>
                         <span>·</span>
-                        <span>{stats.readingTime} mnt baca</span>
+                        <span>{stats.readingTime} min read</span>
                       </div>
 
                       <div
@@ -1185,7 +1187,7 @@ export default function EditorClient() {
             {/* Quick Product Links (Bottom Helper) */}
             <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs flex flex-wrap items-center gap-2">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400 mr-2">
-                🔗 Tautan Cepat Produk:
+                Quick Product Links:
               </span>
               {INTERNAL_PRODUCTS.map((prod) => (
                 <button
@@ -1244,7 +1246,7 @@ export default function EditorClient() {
                   <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
                     <div className="flex items-center justify-between">
                       <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                        Kategori
+                        Category
                       </label>
                       <button
                         type="button"
@@ -1284,7 +1286,7 @@ export default function EditorClient() {
                   {/* Featured Image */}
                   <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
-                      Cover Image Artikel
+                      Article Cover Image
                     </label>
 
                     <label className="block p-3.5 rounded-2xl border-2 border-dashed border-slate-200 hover:border-cyan-500 bg-slate-50 hover:bg-cyan-50/50 transition-all text-center cursor-pointer">
@@ -1359,7 +1361,7 @@ export default function EditorClient() {
                         onClick={generateAutoExcerpt}
                         className="text-[11px] font-bold text-cyan-600 hover:text-cyan-700 flex items-center gap-1 cursor-pointer"
                       >
-                        <Sparkles size={12} />
+                        <Wand2 size={12} />
                         <span>Auto</span>
                       </button>
                     </div>
@@ -1371,7 +1373,7 @@ export default function EditorClient() {
                         setIsDirty(true);
                       }}
                       rows={3}
-                      placeholder="Deskripsi singkat untuk cuplikan Google..."
+                      placeholder="Concise summary for search engine snippets..."
                       className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-cyan-600"
                     />
                     <div className="flex justify-between text-[11px] text-slate-400">
@@ -1385,13 +1387,13 @@ export default function EditorClient() {
                     <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-1">
                       <div className="flex items-center gap-1 text-[10px] text-slate-500">
                         <span className="font-semibold text-slate-700">dimensiwahyudi.com</span>
-                        <span>› news › {slug || 'artikel'}</span>
+                        <span>› news › {slug || 'article'}</span>
                       </div>
                       <div className="text-xs font-bold text-blue-800 line-clamp-1">
-                        {title || 'Judul Artikel'} | Dimensi Wahyudi
+                        {title || 'Article Title'} | Dimensi Wahyudi
                       </div>
                       <div className="text-[11px] text-slate-600 line-clamp-2">
-                        {excerpt || 'Cuplikan ringkasan artikel Anda di Google Search.'}
+                        {excerpt || 'Snippet preview of your article on search engines.'}
                       </div>
                     </div>
                   </div>
@@ -1423,7 +1425,7 @@ export default function EditorClient() {
                           <AlertCircle size={14} className="text-slate-300 shrink-0" />
                         )}
                         <span className={seoAudit.hasGoodTitle ? 'text-slate-700' : 'text-slate-400'}>
-                          Panjang judul ideal (35-70 kark.)
+                          Optimal title length (35-70 chars)
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
@@ -1463,7 +1465,7 @@ export default function EditorClient() {
                           <AlertCircle size={14} className="text-slate-300 shrink-0" />
                         )}
                         <span className={seoAudit.hasWordCount ? 'text-slate-700' : 'text-slate-400'}>
-                          Panjang konten (&gt; 250 kata)
+                          Content length (&gt; 250 words)
                         </span>
                       </div>
                     </div>
@@ -1566,7 +1568,7 @@ export default function EditorClient() {
                 onClick={() => setIsLinkModalOpen(false)}
                 className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold cursor-pointer"
               >
-                Batal
+                Cancel
               </button>
               <button
                 type="button"
@@ -1586,7 +1588,7 @@ export default function EditorClient() {
           <div className="bg-white rounded-3xl p-6 max-w-md w-full border border-slate-200 shadow-2xl space-y-4">
             <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <ImageIcon size={18} className="text-cyan-600" />
-              <span>Sisipkan Gambar dalam Artikel</span>
+              <span>Insert Image into Article</span>
             </h3>
             <div className="space-y-3">
               <div>
@@ -1616,7 +1618,7 @@ export default function EditorClient() {
                 onClick={() => setIsImageModalOpen(false)}
                 className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold cursor-pointer"
               >
-                Batal
+                Cancel
               </button>
               <button
                 type="button"

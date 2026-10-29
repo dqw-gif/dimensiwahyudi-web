@@ -1,11 +1,9 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { Metadata } from 'next';
-import { ArrowLeft, ArrowRight, ChevronRight, Layers } from 'lucide-react';
 import { vacuumGeneratorVariants } from '../../../../data/products/vacuum-generators';
+import { SchmalzSubcategoryIndexView, SubcategoryConfig } from '../../../../components/products/SchmalzSubcategoryViews';
 
 export const metadata: Metadata = {
-    title: 'Vacuum Generators — Ejector & Pump Schmalz | PT Dimensi Quantum Wahyudi',
+    title: 'Vacuum Generators | Ejector & Pump Schmalz | PT Dimensi Quantum Wahyudi',
     description: 'Schmalz vacuum generator components: Compact Ejector SCPS, Basic Ejector SBP, Multi-stage SBPL, X-Pump SXPi IO-Link, Regulated Pump ECBPM, and Vacuum Blower SBG. Official distributor in Indonesia.',
     keywords: [
         'vacuum generator indonesia',
@@ -19,103 +17,44 @@ export const metadata: Metadata = {
         canonical: 'https://dimensiwahyudi.com/products/schmalz/vacuum-generator',
     },
     openGraph: {
-        title: 'Vacuum Generators — Ejector & Pump Schmalz',
+        title: 'Vacuum Generators | Ejector & Pump Schmalz',
         description: 'Discover Schmalz ejectors, pumps, and blowers for compact automation, porous materials, and Industry 4.0-ready systems.',
         url: 'https://dimensiwahyudi.com/products/schmalz/vacuum-generator',
         type: 'website',
     },
 };
 
-const badgeColors: Record<string, string> = {
-    'High Flow': 'bg-teal-600 text-white',
-    'Smart': 'bg-violet-600 text-white',
-    'Electric': 'bg-amber-500 text-white',
+const config: SubcategoryConfig = {
+    basePath: '/products/schmalz/vacuum-generator',
+    breadcrumbLabel: 'Vacuum Generators',
+    heroImage: '/images/products/schmalz/schmalz-vacuum-generators.webp',
+    heroBadgeEn: `${vacuumGeneratorVariants.length} Product Types | Vacuum Components`,
+    heroBadgeId: `${vacuumGeneratorVariants.length} Tipe Produk | Komponen Vacuum Generator`,
+    titleLine1: 'VACUUM',
+    titleLine2: 'GENERATORS',
+    descEn: 'Explore Schmalz ejectors, pumps, and blowers, from compact pick-and-place ejectors to high-flow blowers for porous materials and Industry 4.0-ready smart pumps with IO-Link.',
+    descId: 'Jelajahi rangkaian ejektor pneumatik, pompa elektrik, dan blower vakum Schmalz, mulai dari Compact Ejector untuk aplikasi pick-and-place cepat hingga Smart Ejector berteknologi IO-Link.',
+    primaryCtaEn: 'Ejector Component Consultation',
+    primaryCtaId: 'Konsultasi Komponen Ejektor',
+    secondaryCtaEn: 'Selection Assistant',
+    secondaryCtaId: 'Asisten Pemilihan Unit',
+    secondaryCtaHref: '/digital-assistant/selection-aids',
+    stats: [
+        { labelEn: 'Types', labelId: 'Tipe Generator', value: String(vacuumGeneratorVariants.length) },
+        { labelEn: 'Max Flow Rate', labelId: 'Laju Aliran Maks', value: '2,800 m³/h' },
+        { labelEn: 'Smart Tech', labelId: 'Teknologi Cerdas', value: 'IO-Link 4.0' },
+    ],
+    gridHeaderEn: 'Choose the generator type for your application',
+    gridHeaderId: 'Pilih tipe Vacuum Generator yang sesuai dengan sistem otomasi Anda',
+    columns: 3,
+    bottomCtaEn: 'Vacuum Component Consultation',
+    bottomCtaId: 'Konsultasi Komponen Vakum',
 };
 
 export default function VacuumGeneratorIndexPage() {
     return (
         <main className="min-h-screen bg-white">
-
-            <section className="relative pt-28 pb-16 bg-slate-950 overflow-hidden">
-                <div className="absolute inset-0 opacity-10"
-                    style={{ backgroundImage: 'linear-gradient(rgba(37,99,235,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.4) 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-                <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,0.2) 0%, transparent 70%)' }} />
-
-                <div className="relative max-w-7xl mx-auto px-6">
-                    <nav className="flex items-center gap-2 text-slate-500 text-xs mb-8 flex-wrap">
-                        <Link href="/products" className="hover:text-blue-400 transition-colors">Products</Link>
-                        <ChevronRight size={12} />
-                        <Link href="/products/schmalz" className="hover:text-blue-400 transition-colors">Schmalz</Link>
-                        <ChevronRight size={12} />
-                        <span className="text-slate-300">Vacuum Generators</span>
-                    </nav>
-
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
-                        <Layers size={11} /> {vacuumGeneratorVariants.length} Product Types — Vacuum Components
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter mb-4">
-                        VACUUM
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">GENERATORS</span>
-                    </h1>
-                    <div className="h-1.5 w-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-6" />
-                    <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                        Explore Schmalz ejectors, pumps, and blowers, from compact pick-and-place ejectors to high-flow blowers for porous materials and Industry 4.0-ready smart pumps with IO-Link.
-                    </p>
-                </div>
-            </section>
-
-            <section className="py-16 bg-slate-50">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {vacuumGeneratorVariants.map((variant) => (
-                            <Link
-                                key={variant.slug}
-                                href={`/products/schmalz/vacuum-generator/${variant.slug}`}
-                                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-0.5"
-                            >
-                                <div className={`h-44 bg-gradient-to-br ${variant.heroColor} relative overflow-hidden`}>
-                                    {variant.imageUrl ? (
-                                        <Image src={variant.imageUrl} alt={variant.name} fill sizes="(max-width: 1024px) 100vw, 33vw" className="absolute inset-0 w-full h-full object-cover" />
-                                    ) : (
-                                        <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
-                                    )}
-                                    <div className="absolute top-3 left-3 bg-black/30 backdrop-blur-sm rounded-md px-2 py-1 text-white/90 text-[10px] font-mono font-bold border border-white/10">
-                                        {variant.seriesCode}
-                                    </div>
-                                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 text-blue-600 text-xs font-mono font-bold border border-white/20 shadow-sm">
-                                        {variant.capacity}
-                                    </div>
-                                    {variant.badge && (
-                                        <div className={`absolute bottom-3 right-3 flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-wider ${badgeColors[variant.badge] || 'bg-white/20 text-white'}`}>
-                                            {variant.badge}
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="p-6">
-                                    <h3 className="text-xl font-black text-slate-900 mb-1 group-hover:text-blue-700 transition-colors">{variant.name}</h3>
-                                    <p className="text-blue-600 text-xs font-bold uppercase tracking-wider mb-3">{variant.highlight}</p>
-                                    <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-5">{variant.tagline}</p>
-                                    <div className="flex items-center text-blue-600 font-bold text-sm group-hover:gap-3 gap-2 transition-all">
-                                        View Details <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-12 bg-white border-t border-slate-100">
-                <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <Link href="/products/schmalz" className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-medium text-sm transition-colors">
-                        <ArrowLeft size={16} /> Back to All Schmalz Products
-                    </Link>
-                    <a href="https://wa.me/6281119168752" target="_blank" rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-green-600/20">
-                        Consultation <ArrowRight size={14} />
-                    </a>
-                </div>
-            </section>
+            <SchmalzSubcategoryIndexView config={config} variants={vacuumGeneratorVariants} />
         </main>
     );
 }

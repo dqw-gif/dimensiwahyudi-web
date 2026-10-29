@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 // --- CUSTOM VACUUM ENGINEERING ICONS ---
@@ -32,7 +31,7 @@ export const CustomIcons = {
 };
 
 export const VacuumIcons = {
-  // 1. Num Cups: Menampilkan benda yang diangkat oleh 3 cup
+  // 1. Num Cups: Workpiece lifted by 3 suction cups
   NumCups: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <rect x="2" y="15" width="20" height="4" rx="1" />
@@ -44,7 +43,7 @@ export const VacuumIcons = {
       <path d="M13 7V3" />
     </svg>
   ),
-  // 2. Diameter: Profil cup dengan garis dimensi
+  // 2. Diameter: Suction cup profile with dimension lines
   CupDiameter: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M6 14c0-3 3-5 6-5s6 2 6 5" />
@@ -57,7 +56,7 @@ export const VacuumIcons = {
       <path d="M18 21l-2-2" /><path d="M18 21l-2 2" />
     </svg>
   ),
-  // 3. Suction Force: Cup mengangkat beban (panah ke atas)
+  // 3. Suction Force: Cup lifting load (upward arrow)
   SuctionForce: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M7 14c0-3 2-4 5-4s5 1 5 4" />
@@ -67,7 +66,7 @@ export const VacuumIcons = {
       <path d="M9 6l3-3 3 3" strokeWidth="2" />
     </svg>
   ),
-  // 4. Holding Force: Jangkar teknis / Beban aman
+  // 4. Holding Force: Load rating anchor
   HoldingForce: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <rect x="6" y="4" width="12" height="12" rx="2" />
@@ -77,7 +76,7 @@ export const VacuumIcons = {
       <path d="M9 19l3 3 3-3" strokeWidth="2" />
     </svg>
   ),
-  // 5. Hose Dist: Manifold (Satu jalur jadi banyak)
+  // 5. Hose Dist: Manifold distribution line
   HoseDist: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M12 2v6" strokeWidth="2" />
@@ -86,7 +85,7 @@ export const VacuumIcons = {
       <path d="M4 18h4" strokeOpacity="0.2" /><path d="M10 18h4" strokeOpacity="0.2" /><path d="M16 18h4" strokeOpacity="0.2" />
     </svg>
   ),
-  // 6. Evac Time: Tangki dengan Jam
+  // 6. Evac Time: Tank with cycle timer
   EvacTime: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M5 7h14v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7z" />
@@ -95,7 +94,7 @@ export const VacuumIcons = {
       <path d="M16 17v-2" /><path d="M16 17l1 1" />
     </svg>
   ),
-  // 7. Capacity: Simbol Pompa Vakum (Segitiga dalam lingkaran)
+  // 7. Capacity: Vacuum pump symbol
   SuctionCap: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <circle cx="12" cy="12" r="9" />
@@ -104,7 +103,7 @@ export const VacuumIcons = {
       <path d="M3 12h3" />
     </svg>
   ),
-  // 8. Hose Diameter: Potongan melintang selang
+  // 8. Hose Diameter: Cross-section hose profile
   HoseDia: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <circle cx="12" cy="12" r="8" strokeWidth="2" />
@@ -114,7 +113,7 @@ export const VacuumIcons = {
       <path d="M17 17l-1-1" />
     </svg>
   ),
-  // 9. Ambient: Gunung & Gauge
+  // 9. Ambient: Altitude elevation and pressure gauge
   AmbientPressure: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M2 20h20" />
@@ -123,7 +122,7 @@ export const VacuumIcons = {
       <path d="M18 6v-1" />
     </svg>
   ),
-  // 10. Air Flow: Aliran udara melewati celah
+  // 10. Air Flow: Flow passing through restriction orifice
   AirFlow: (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="M3 12h18" strokeDasharray="4 2" />

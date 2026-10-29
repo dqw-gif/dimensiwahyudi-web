@@ -45,7 +45,7 @@ export const craneSystemVariants: CraneVariant[] = [
             'Available with or without end stop and brake',
         ],
         applications: ['Individual workstation', 'Assembly cell', 'CNC machining area', 'Welding and fabrication station'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Produktuntergruppenbilder/0_/052/05232/5ec14e22bb7b_PUG_PGE-03791_000.jpg?size=m',
+        imageUrl: '/images/products/schmalz/schmalz-jib-cranes.webp',
     },
     {
         slug: 'aluminum-bridge-cranes',
@@ -73,7 +73,7 @@ export const craneSystemVariants: CraneVariant[] = [
             'Scalable and expandable as operations grow',
         ],
         applications: ['Large manufacturing floors', 'Multi-station assembly halls', 'Warehouse picking areas', 'Full production-line coverage'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Anwendungsbilder/Handling%20Systems/Applications/Others/08f38e043444_Picture_HS_SRA_JumboFlex_2017.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-aluminum-bridge-cranes.webp',
     },
     {
         slug: 'kbg-steel-construction',
@@ -102,7 +102,7 @@ export const craneSystemVariants: CraneVariant[] = [
             'Ideal for outdoor and semi-outdoor production operations',
         ],
         applications: ['Large-format production plants', 'Shipyards and offshore yards', 'Large prefab construction', 'Outdoor and semi-outdoor heavy manufacturing'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Anwendungsbilder/Handling%20Systems/Applications/Plastics/e3b0cd9e2ab1_Picture_HS_KBG_2022_01.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-kbg-modular-steel.webp',
     },
     {
         slug: 'chain-hoists',
@@ -131,6 +131,6 @@ export const craneSystemVariants: CraneVariant[] = [
             'Compatible with all Schmalz crane systems',
         ],
         applications: ['Heavy lifting on bridge and jib cranes', 'Steel mills and foundries', 'International projects (U.S./Canada markets)', 'Heavy industrial applications'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Anwendungsbilder/Handling%20Systems/Applications/Logistics/54960822a760_Picture_HS_SRA_VacuMaster%20Basic_Institut%20F%C3%B6rster_2014.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-chain-hoists.webp',
     },
 ];

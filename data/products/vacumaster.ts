@@ -1,4 +1,4 @@
-﻿// Sub-variants of the Schmalz VacuMaster Vacuum Lifting Device
+// Sub-variants of the Schmalz VacuMaster Vacuum Lifting Device
 // URL: /products/schmalz/vacumaster/[variant]
 
 export interface VacuMasterSpec {
@@ -30,7 +30,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
         tagline: 'Simple and reliable manual sliding valve control up to 750 kg',
         description: 'VacuMaster Basic is a dependable vacuum lifter for general industrial handling. Its proven manual sliding valve and clamp-safe catch lever provide stable control and reliable safety in daily operation.',
         capacity: 'up to 750 kg',
-        highlight: 'Proven manual valve concept for robust day-to-day operation',
+        highlight: 'Proven manual valve concept for heavy-duty daily operation',
         heroColor: 'from-blue-500 to-blue-700',
         specs: [
             { label: 'Capacity', value: 'Up to 750 kg' },
@@ -48,7 +48,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Service-friendly spare-part ecosystem',
         ],
         applications: ['General heavy industry', 'Sheet and plate handling', 'Precast concrete handling', 'Logistics and warehouse'],
-        imageUrl: 'https://i.imgur.com/1Whf0JL.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-basic.webp',
     },
     {
         slug: 'comfort',
@@ -75,7 +75,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Built-in vacuum monitoring',
         ],
         applications: ['High-rate assembly lines', 'Steel service centers', 'Heavy manufacturing', 'Automotive panel handling'],
-        imageUrl: 'https://i.imgur.com/s3iK2qH.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-comfort.webp',
     },
     {
         slug: 'vario',
@@ -102,7 +102,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Built for heavy industrial production environments',
         ],
         applications: ['Wind energy', 'Shipbuilding and offshore', 'Heavy steel fabrication', 'Mining equipment manufacturing'],
-        imageUrl: 'https://i.imgur.com/CkyRM6W.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-vario.webp',
     },
     {
         slug: 'eco',
@@ -130,7 +130,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Practical solution for infrastructure-constrained projects',
         ],
         applications: ['Remote construction sites', 'Utility-limited areas', 'Steel plate handling', 'Outdoor heavy lifting'],
-        imageUrl: 'https://i.imgur.com/LXn2VmE.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-eco.webp',
     },
     {
         slug: 'window',
@@ -158,7 +158,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Compatible with crane-based installation setups',
         ],
         applications: ['Facade installation', 'Window manufacturing', 'Glass processing', 'Building construction'],
-        imageUrl: 'https://i.imgur.com/JgpNABf.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-window-200-300.webp',
     },
     {
         slug: 'wood',
@@ -186,7 +186,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Lower energy demand versus conventional generators',
         ],
         applications: ['Wood and furniture industry', 'MDF and panel manufacturing', 'Prefab timber construction', 'Wood logistics'],
-        imageUrl: 'https://i.imgur.com/JzipeGR.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-wood.webp',
     },
     {
         slug: 'coil',
@@ -214,7 +214,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Integrates into stamping and roll-forming lines',
         ],
         applications: ['Metal stamping lines', 'Roll-forming operations', 'Steel service centers', 'Automotive press shops'],
-        imageUrl: 'https://i.imgur.com/4yWyaTk.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-coil.webp',
     },
     {
         slug: 'light',
@@ -241,7 +241,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Lower entry investment compared to larger models',
         ],
         applications: ['Light manufacturing', 'Airtight component handling', 'Small assembly workshops', 'Maintenance areas'],
-        imageUrl: 'https://i.imgur.com/hI166az.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-light.webp',
     },
     {
         slug: 'multi',
@@ -265,10 +265,10 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Well-suited for structural wood components',
             'Swivel version supports orientation changes',
             'Regulated vacuum support for porous surfaces',
-            'Robust frame for demanding wood handling conditions',
+            'Reinforced chassis engineered for rough timber surfaces',
         ],
         applications: ['Prefab timber construction', 'Structural timber handling', 'Sawmill and lumber operations', 'Large furniture production'],
-        imageUrl: 'https://i.imgur.com/eT3nJzg.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-multi.webp',
     },
     {
         slug: 'glass',
@@ -296,7 +296,7 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Designed for facade engineering operations',
         ],
         applications: ['High-rise facade installation', 'Curtain-wall projects', 'Glass manufacturing plants', 'Construction glazing operations'],
-        imageUrl: 'https://i.imgur.com/CO4xl3z.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-glass.webp',
     },
     {
         slug: 'panel',
@@ -323,6 +323,6 @@ export const vacuMasterVariants: VacuMasterVariant[] = [
             'Balanced load distribution across long elements',
         ],
         applications: ['Facade and GRC panels', 'Prefab concrete panels', 'Sandwich panel handling', 'Long aluminum extrusion handling'],
-        imageUrl: 'https://i.imgur.com/s3IyCz8.png',
+        imageUrl: '/images/products/schmalz/schmalz-vacumaster-panel.webp',
     },
 ];

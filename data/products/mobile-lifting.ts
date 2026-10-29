@@ -46,7 +46,7 @@ export const mobileLiftingVariants: MobileVariant[] = [
             'Ideal for multi-area workshops and flexible production sites',
         ],
         applications: ['Workshops with multiple workstations', 'Maintenance and service areas', 'Small to mid-scale production', 'Areas without permanent overhead cranes'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Anwendungsbilder/Handling%20Systems/Applications/Logistics/01f071828115_Picture_Anwendungsbilder_HS_JumboFlex%20Mobile_2024_03.jpg?size=l',
+        imageUrl: '/images/products/schmalz/schmalz-jumboflex-mobile.webp',
     },
     {
         slug: 'jumboflex-picker',
@@ -75,6 +75,6 @@ export const mobileLiftingVariants: MobileVariant[] = [
             'Reduces operator back strain during picking tasks',
         ],
         applications: ['Warehouse and distribution centers', 'Order picking from pallets', 'E-commerce fulfillment', 'Loading dock pallet handling'],
-        imageUrl: 'https://media.schmalz.com/MAM_Library/Products/Anwendungsbilder/Handling%20Systems/Applications/Logistics/313ecaa42a10_Picture_JumboFlex-Picker_003.jpg',
+        imageUrl: '/images/products/schmalz/schmalz-jumboflex-picker.webp',
     },
 ];

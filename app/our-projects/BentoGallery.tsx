@@ -4,8 +4,24 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { 
+    Search, 
+    X,
+    ArrowRight, 
+    Building2, 
+    Weight, 
+    Cpu, 
+    CheckCircle2, 
+    ShieldCheck, 
+    MessageSquare,
+    Eye,
+    ChevronLeft,
+    ChevronRight
+} from 'lucide-react';
+import { useLanguage } from '../../components/LanguageProvider';
+import { getProjectDesc, getProjectIndustry } from '../../data/projects';
 
-type Project = {
+export type Project = {
     id: string;
     client: string;
     industry: string;
@@ -16,13 +32,159 @@ type Project = {
     logo?: string;
 };
 
+export function OurProjectsHero() {
+    const { lang } = useLanguage();
+    const isId = lang === 'id';
+
+    return (
+        <section className="pt-28 sm:pt-36 pb-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-4xl mx-auto">
+                {/* Monospace Technical Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-xl border border-slate-200/80 shadow-xs mb-6">
+                    <span className="w-2 h-2 rounded-full bg-[#005596]" />
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#005596]">
+                        {isId ? 'REKAM JEJAK IMPLEMENTASI SISTEM HANDLING' : 'LIFTING SYSTEM IMPLEMENTATION RECORD'}
+                    </span>
+                </div>
+
+                {/* Monumental Headline */}
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] mb-6">
+                    {isId ? (
+                        <>
+                            Solusi Material Handling Presisi <br className="hidden sm:inline" />
+                            di <span className="text-[#005596]">50+ Pabrik Manufaktur</span> Indonesia
+                        </>
+                    ) : (
+                        <>
+                            Precision Material Handling Solutions <br className="hidden sm:inline" />
+                            Across <span className="text-[#005596]">50+ Manufacturing Plants</span> in Indonesia
+                        </>
+                    )}
+                </h1>
+
+                <p className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+                    {isId
+                        ? 'Dokumentasi instalasi aktual sistem Vacuum Handling Schmalz (Jerman) dan Binar Quick-Lift (Swedia), teruji mempercepat cycle time lini produksi sekaligus menghilangkan beban angkat manual berulang.'
+                        : 'Real-world installation documentation of Schmalz (Germany) vacuum handling and Binar Quick-Lift (Sweden) systems, verified to increase cycle speeds and eliminate repetitive manual lifting strain.'}
+                </p>
+
+                {/* HUD Engineering Metrics Strip */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+                    <div className="bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
+                        <div className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">52+</div>
+                        <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">
+                            {isId ? 'Lini Pabrik Aktif' : 'Active Plant Lines'}
+                        </div>
+                    </div>
+                    <div className="bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
+                        <div className="text-2xl sm:text-3xl font-black text-[#005596] font-mono">
+                            {isId ? '8 Sektor' : '8 Sectors'}
+                        </div>
+                        <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">
+                            {isId ? 'Industri Utama' : 'Core Industries'}
+                        </div>
+                    </div>
+                    <div className="bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
+                        <div className="text-2xl sm:text-3xl font-black text-emerald-600 font-mono">100%</div>
+                        <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">
+                            {isId ? 'Standar Medis AGR' : 'AGR Medical Standard'}
+                        </div>
+                    </div>
+                    <div className="bg-white/85 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 text-center shadow-xs">
+                        <div className="text-2xl sm:text-3xl font-black text-blue-600 font-mono">
+                            {isId ? '0 Kasus' : '0 Cases'}
+                        </div>
+                        <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">
+                            {isId ? 'Cedera Pinggang (Zero HNP)' : 'Spinal Strain (Zero HNP)'}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+const FEATURED_SLUG_ORDER = [
+    'fmcg-mayora',
+    'fmcg-meiji',
+    'auto-sugity',
+    'auto-gt',
+    'konstruksi-ykk',
+    'elektronik-rinnai',
+    'kaca-asahimas',
+    'kimia-hempel',
+];
+
+function ClientLogo({ src, alt, clientName }: { src?: string; alt: string; clientName: string }) {
+    const [hasError, setHasError] = useState(false);
+
+    if (!src || hasError) {
+        return (
+            <span className="text-xs font-black text-slate-700 uppercase tracking-wider font-mono truncate max-w-[130px]">
+                {clientName}
+            </span>
+        );
+    }
+
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            width={120}
+            height={40}
+            className="max-h-8 w-auto object-contain"
+            onError={() => setHasError(true)}
+            unoptimized
+        />
+    );
+}
+
+function parseProjectMeta(desc: string) {
+    let machine = 'Schmalz Vacuum Lifter';
+    if (/jumbo\s*flex\s*\d*/i.test(desc)) {
+        const m = desc.match(/jumbo\s*flex\s*\d*/i);
+        machine = m ? `Schmalz ${m[0]}` : 'Schmalz JumboFlex';
+    } else if (/jumbo\s*sprint\s*\d*/i.test(desc)) {
+        const m = desc.match(/jumbo\s*sprint\s*\d*/i);
+        machine = m ? `Schmalz ${m[0]}` : 'Schmalz JumboSprint';
+    } else if (/jumbo\s*ergo\s*\d*/i.test(desc)) {
+        const m = desc.match(/jumbo\s*ergo\s*\d*/i);
+        machine = m ? `Schmalz ${m[0]}` : 'Schmalz JumboErgo';
+    } else if (/vacumaster/i.test(desc)) {
+        machine = 'Schmalz VacuMaster System';
+    } else if (/quick[\s-]lift|binar|qla|qlr/i.test(desc)) {
+        machine = 'Binar Quick-Lift Servo Arm';
+    }
+
+    let payload = '';
+    const payloadMatch = desc.match(/(\d+\s*(?:kg|ton))/i);
+    if (payloadMatch) {
+        payload = `Up to ${payloadMatch[1]}`;
+    }
+
+    return { machine, payload };
+}
+
 export default function BentoGallery({ projects }: { projects: Project[] }) {
+    const { lang } = useLanguage();
+    const isId = lang === 'id';
     const [filter, setFilter] = useState('All');
     const [query, setQuery] = useState('');
     const [visibleCount, setVisibleCount] = useState(12);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const [showStickyCta, setShowStickyCta] = useState(false);
     const modalRef = useRef<HTMLDivElement | null>(null);
+
+    // Dynamic rotation state for Featured Spotlight
+    const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0);
+    const [isFeaturedPaused, setIsFeaturedPaused] = useState(false);
+    const [featuredDirection, setFeaturedDirection] = useState<1 | -1>(1);
+
+    const featuredProjects = useMemo(() => {
+        const mapped = FEATURED_SLUG_ORDER
+            .map((id) => projects.find((p) => p.id === id))
+            .filter((p): p is Project => Boolean(p));
+        return mapped.length > 0 ? mapped : [projects[0]];
+    }, [projects]);
 
     const industries = useMemo(() => ['All', ...Array.from(new Set(projects.map((p) => p.industry)))], [projects]);
     const normalizedQuery = query.trim().toLowerCase();
@@ -49,35 +211,54 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
         return byIndustry.filter((project) => {
             const client = project.client.toLowerCase();
             const industry = project.industry.toLowerCase();
+            const industryId = getProjectIndustry(project.industry, 'id').toLowerCase();
             const description = project.desc.toLowerCase();
-            return client.includes(normalizedQuery) || industry.includes(normalizedQuery) || description.includes(normalizedQuery);
+            const descriptionId = getProjectDesc(project, 'id').toLowerCase();
+            return (
+                client.includes(normalizedQuery) ||
+                industry.includes(normalizedQuery) ||
+                industryId.includes(normalizedQuery) ||
+                description.includes(normalizedQuery) ||
+                descriptionId.includes(normalizedQuery)
+            );
         });
     }, [filter, normalizedQuery, projects]);
 
     const visibleProjects = filteredProjects.slice(0, visibleCount);
     const hasMoreProjects = visibleCount < filteredProjects.length;
 
+    // Auto-advance featured project every 5.5s with pause on hover/modal
     useEffect(() => {
-        const onScroll = () => {
-            const maxScrollable = document.documentElement.scrollHeight - window.innerHeight;
-            if (maxScrollable <= 0) {
-                setShowStickyCta(false);
-                return;
-            }
+        if (isFeaturedPaused || selectedProject || normalizedQuery || filter !== 'All') return;
+        const timer = setInterval(() => {
+            setFeaturedDirection(1);
+            setActiveFeaturedIndex((prev) => (prev + 1) % featuredProjects.length);
+        }, 5500);
+        return () => clearInterval(timer);
+    }, [isFeaturedPaused, selectedProject, normalizedQuery, filter, featuredProjects.length]);
 
-            const progress = window.scrollY / maxScrollable;
-            setShowStickyCta(progress >= 0.5);
-        };
+    const currentFeatured = featuredProjects[activeFeaturedIndex] || featuredProjects[0];
 
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+    const handlePrevFeatured = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        setFeaturedDirection(-1);
+        setActiveFeaturedIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
+    };
 
+    const handleNextFeatured = (e?: React.MouseEvent) => {
+        e?.stopPropagation();
+        setFeaturedDirection(1);
+        setActiveFeaturedIndex((prev) => (prev + 1) % featuredProjects.length);
+    };
+
+    const handleSelectFeatured = (idx: number) => {
+        setFeaturedDirection(idx > activeFeaturedIndex ? 1 : -1);
+        setActiveFeaturedIndex(idx);
+    };
+
+    // Handle ESC and Modal Focus
     useEffect(() => {
-        if (!selectedProject) {
-            return;
-        }
+        if (!selectedProject) return;
 
         const previousOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
@@ -96,9 +277,7 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
             );
 
-            if (focusableElements.length === 0) {
-                return;
-            }
+            if (focusableElements.length === 0) return;
 
             const first = focusableElements[0];
             const last = focusableElements[focusableElements.length - 1];
@@ -117,54 +296,228 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
         };
 
         window.addEventListener('keydown', onKeyDown);
-        const firstFocusable = modalRef.current?.querySelector<HTMLElement>('button, a[href]');
-        firstFocusable?.focus();
-
         return () => {
             document.body.style.overflow = previousOverflow;
             window.removeEventListener('keydown', onKeyDown);
         };
     }, [selectedProject]);
 
-    // Color maps for industry badges
-    const getBadgeStyle = (color: string) => {
-        const styles: Record<string, string> = {
-            blue: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-            red: 'bg-red-500/20 text-red-300 border-red-500/30',
-            sky: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-            slate: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
-            emerald: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-            indigo: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
-            amber: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-            teal: 'bg-teal-500/20 text-teal-300 border-teal-500/30',
-        };
-        return styles[color] || styles.blue;
-    };
-
     return (
-        <section className="py-6 md:py-8 bg-transparent relative z-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <section className="py-6 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {/* 1. DYNAMIC AUTO-ROTATING FEATURED SPOTLIGHT */}
+            {currentFeatured && !normalizedQuery && filter === 'All' && (
+                <div 
+                    onMouseEnter={() => setIsFeaturedPaused(true)}
+                    onMouseLeave={() => setIsFeaturedPaused(false)}
+                    className="relative mb-14 bg-white rounded-3xl border border-slate-200/90 shadow-[0_12px_45px_-15px_rgba(0,85,150,0.1)] overflow-hidden"
+                >
+                    {/* Auto-cycling Top Indicator Progress Line */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-slate-100 z-30 overflow-hidden">
+                        {!isFeaturedPaused && (
+                            <motion.div
+                                key={`timer-${currentFeatured.id}-${activeFeaturedIndex}`}
+                                initial={{ width: '0%' }}
+                                animate={{ width: '100%' }}
+                                transition={{ duration: 5.5, ease: 'linear' }}
+                                className="h-full bg-gradient-to-r from-[#005596] via-blue-500 to-sky-400"
+                            />
+                        )}
+                    </div>
 
-                <div className="mb-6 md:mb-8 flex flex-col gap-3 md:gap-4 md:flex-row md:items-center md:justify-between">
-                    <label className="relative block w-full md:max-w-md">
-                        <span className="sr-only">Search projects</span>
+                    <div className="grid lg:grid-cols-12 items-stretch min-h-[420px]">
+                        {/* Left Image Section (Col 7) */}
+                        <div className="lg:col-span-7 relative min-h-[340px] sm:min-h-[420px] bg-slate-900 overflow-hidden">
+                            <AnimatePresence initial={false} mode="wait">
+                                <motion.div
+                                    key={currentFeatured.id}
+                                    initial={{ opacity: 0, scale: 1.05 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.98 }}
+                                    transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                                    className="absolute inset-0"
+                                >
+                                    <Image
+                                        src={currentFeatured.image}
+                                        alt={currentFeatured.client}
+                                        fill
+                                        className="object-cover transition-transform duration-700 ease-out"
+                                        priority
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                                </motion.div>
+                            </AnimatePresence>
+
+                            {/* Location Badge */}
+                            <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-xl bg-slate-900/80 backdrop-blur-md border border-white/10 text-white text-xs font-mono flex items-center gap-2 shadow-md">
+                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                <span>{isId ? 'Dokumentasi Instalasi Pabrik Aktual' : 'Actual Plant Installation Documentation'}</span>
+                            </div>
+
+                            {/* Industry Tag */}
+                            <div className="absolute bottom-5 left-5 z-20 hidden sm:block">
+                                <span className="px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide bg-white/95 backdrop-blur-md text-slate-800 shadow-sm border border-slate-200/60">
+                                    {getProjectIndustry(currentFeatured.industry, lang)}
+                                </span>
+                            </div>
+
+                            {/* Floating Navigation Chevrons */}
+                            <div className="absolute bottom-5 right-5 z-20 flex items-center gap-2">
+                                <button
+                                    type="button"
+                                    onClick={handlePrevFeatured}
+                                    aria-label="Previous featured case study"
+                                    className="w-10 h-10 rounded-full bg-slate-900/70 hover:bg-[#005596] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                                >
+                                    <ChevronLeft size={18} />
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={handleNextFeatured}
+                                    aria-label="Next featured case study"
+                                    className="w-10 h-10 rounded-full bg-slate-900/70 hover:bg-[#005596] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                                >
+                                    <ChevronRight size={18} />
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Right Content Section (Col 5) */}
+                        <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
+                            <AnimatePresence initial={false} mode="wait">
+                                <motion.div
+                                    key={currentFeatured.id}
+                                    initial={{ opacity: 0, x: featuredDirection === 1 ? 20 : -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: featuredDirection === 1 ? -20 : 20 }}
+                                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    className="flex-1 flex flex-col justify-between"
+                                >
+                                    <div>
+                                        {/* Header Bar: Featured Tag + Logo */}
+                                        <div className="flex items-center justify-between gap-4 mb-4">
+                                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-[#005596] text-[11px] font-mono font-bold uppercase tracking-wider">
+                                                <ShieldCheck size={13} />
+                                                <span>{isId ? 'STUDI KASUS UTAMA' : 'FEATURED CASE STUDY'}</span>
+                                                <span className="text-slate-400 font-normal">
+                                                    {String(activeFeaturedIndex + 1).padStart(2, '0')}/{String(featuredProjects.length).padStart(2, '0')}
+                                                </span>
+                                            </div>
+
+                                            <div className="h-9 w-28 relative flex items-center justify-end">
+                                                <ClientLogo
+                                                    src={currentFeatured.logo}
+                                                    alt={currentFeatured.client}
+                                                    clientName={currentFeatured.client}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-snug mb-3">
+                                            {currentFeatured.client}
+                                        </h2>
+
+                                        <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                                            {getProjectDesc(currentFeatured, lang)}
+                                        </p>
+
+                                        {/* Technical Specifications Highlights */}
+                                        <div className="space-y-2.5 mb-8">
+                                            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                                                <CheckCircle2 size={16} className="text-[#005596] shrink-0" />
+                                                <span>{isId ? 'Sistem:' : 'System:'} <strong>{parseProjectMeta(currentFeatured.desc).machine}</strong></span>
+                                            </div>
+                                            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                                                <CheckCircle2 size={16} className="text-[#005596] shrink-0" />
+                                                <span>{isId ? 'Kapasitas Payload:' : 'Lifting Capacity:'} <strong>{parseProjectMeta(currentFeatured.desc).payload || (isId ? 'Disesuaikan Lini Produksi' : 'Customized to Production Line')}</strong></span>
+                                            </div>
+                                            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                                                <CheckCircle2 size={16} className="text-[#005596] shrink-0" />
+                                                <span>{isId ? 'Standar Ergonomi:' : 'Ergonomic Standard:'} <strong>German AGR (Aktion Gesunder Rücken)</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Action Buttons & Quick Pill Navigation */}
+                                    <div className="space-y-4 pt-4 border-t border-slate-200/80">
+                                        <div className="flex flex-wrap items-center gap-3">
+                                            <Link
+                                                href={`/our-projects/${currentFeatured.id}`}
+                                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#005596] hover:bg-[#00447a] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all group"
+                                            >
+                                                <span>{isId ? 'Baca Studi Kasus Lengkap' : 'Read Full Case Study'}</span>
+                                                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                                            </Link>
+
+                                            <button
+                                                type="button"
+                                                onClick={() => setSelectedProject(currentFeatured)}
+                                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 text-xs font-bold transition-colors cursor-pointer"
+                                            >
+                                                <Eye size={14} />
+                                                <span>{isId ? 'Ringkasan Cepat' : 'Quick Preview'}</span>
+                                            </button>
+                                        </div>
+
+                                        {/* Client Switcher Navigation Pills */}
+                                        <div className="flex items-center gap-1.5 pt-1">
+                                            {featuredProjects.map((p, idx) => {
+                                                const isActive = idx === activeFeaturedIndex;
+                                                return (
+                                                    <button
+                                                        key={p.id}
+                                                        type="button"
+                                                        onClick={() => handleSelectFeatured(idx)}
+                                                        aria-label={`Switch to ${p.client}`}
+                                                        title={p.client}
+                                                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                                                            isActive
+                                                                ? 'w-8 bg-[#005596]'
+                                                                : 'w-2 bg-slate-300 hover:bg-slate-400'
+                                                        }`}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* 2. FILTER & SEARCH CONTROL DOCK */}
+            <div className="mb-10 space-y-4">
+                {/* Search Bar + Result Count */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                    <div className="relative flex-1 max-w-md">
+                        <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                         <input
                             type="search"
                             value={query}
-                            onChange={(event) => {
-                                setQuery(event.target.value);
-                                setVisibleCount(window.innerWidth < 768 ? 6 : 12);
+                            onChange={(e) => {
+                                setQuery(e.target.value);
+                                setVisibleCount(12);
                             }}
-                            placeholder="Search by client, industry, or keyword"
-                            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                            placeholder={isId ? "Cari nama perusahaan, model mesin, atau industri..." : "Search by client name, machine model, or industry..."}
+                            className="w-full pl-11 pr-10 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:border-[#005596] focus:ring-2 focus:ring-[#005596]/15 transition-all shadow-2xs"
                         />
-                    </label>
+                        {query && (
+                            <button
+                                type="button"
+                                onClick={() => setQuery('')}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 transition-colors"
+                                aria-label="Clear search"
+                            >
+                                <X size={14} />
+                            </button>
+                        )}
+                    </div>
 
-                    <div className="flex items-center gap-2 text-sm overflow-x-auto pb-1 md:pb-0 md:overflow-visible">
-                        <span className="rounded-full border border-slate-200 bg-white px-3 py-1.5 font-semibold text-slate-600">
-                            {filteredProjects.length} projects
-                        </span>
-                        {(filter !== 'All' || normalizedQuery) ? (
+                    <div className="flex items-center gap-2 text-xs font-mono text-slate-500 self-end sm:self-center">
+                        <span className="font-bold text-slate-900">{filteredProjects.length}</span> {isId ? 'Proyek Terdokumentasi' : 'Projects Documented'}
+                        {(filter !== 'All' || normalizedQuery) && (
                             <button
                                 type="button"
                                 onClick={() => {
@@ -172,162 +525,196 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                                     setQuery('');
                                     setVisibleCount(12);
                                 }}
-                                className="rounded-full border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 transition hover:bg-slate-50"
+                                className="ml-2 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-sans font-semibold transition-colors cursor-pointer"
                             >
-                                Reset filters
+                                {isId ? 'Reset filter' : 'Reset filters'}
                             </button>
-                        ) : null}
+                        )}
                     </div>
                 </div>
 
-                {/* LIGHT MODE FILTER CHIPS */}
-                <div className="flex flex-wrap justify-start md:justify-center gap-2 md:gap-3 mb-10 md:mb-16 overflow-x-auto pb-2 md:pb-0">
-                    {industries.map(ind => (
-                        <button
-                            key={ind}
-                            onClick={() => {
-                                setFilter(ind);
-                                setVisibleCount(12);
-                            }}
-                            className={`px-4 md:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 border backdrop-blur-md relative overflow-hidden group whitespace-nowrap
-                                ${filter === ind
-                                    ? 'bg-blue-600 border-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]'
-                                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900 hover:bg-slate-50 shadow-sm'
-                                }`}
-                        >
-                            <span className="relative z-10">{ind} ({industryCounts.get(ind) ?? 0})</span>
-                            {filter === ind && (
-                                <span className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0 translate-x-[-100%] animate-[shimmer_2s_infinite]"></span>
-                            )}
-                        </button>
-                    ))}
-                </div>
+                {/* Horizontal Scroll Spring Capsule Dock */}
+                <div className="relative overflow-x-auto pb-2 scrollbar-none">
+                    <div className="flex items-center gap-2 p-1.5 bg-slate-200/60 backdrop-blur-md rounded-2xl border border-slate-200/80 w-max">
+                        {industries.map((ind) => {
+                            const isActive = filter === ind;
+                            const count = industryCounts.get(ind) ?? 0;
+                            const label = ind === 'All' ? (isId ? 'Semua Industri' : 'All Industries') : getProjectIndustry(ind, lang);
 
-                {/* BENTO GRID */}
-                {filteredProjects.length === 0 ? (
-                    <div className="rounded-3xl border border-slate-200 bg-white px-6 py-14 text-center shadow-sm">
-                        <h3 className="text-xl font-black text-slate-900">No projects found</h3>
-                        <p className="mt-2 text-sm text-slate-600">Try another keyword or reset filters to view all portfolio items.</p>
-                    </div>
-                ) : (
-                    <>
-                        <motion.div
-                            layout
-                            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[220px] sm:auto-rows-[240px] md:auto-rows-[280px] grid-flow-row-dense"
-                        >
-                            <AnimatePresence mode="popLayout">
-                                {visibleProjects.map((p, idx) => {
-                                    let spanClass = 'col-span-1 row-span-1';
-                                    if (p.size === 'large') spanClass = 'col-span-1 md:col-span-2 row-span-1';
-                                    if (p.size === 'tall') spanClass = 'col-span-1 row-span-2';
-
-                                    return (
-                                        <motion.div
-                                            layout
-                                            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                                            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
-                                            transition={{ duration: 0.4, type: 'spring', stiffness: 100, damping: 14 }}
-                                            key={p.id}
-                                            className={`relative rounded-3xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-xl ${spanClass}`}
-                                        >
-                                            <Link
-                                                href={`/our-projects/${p.id}`}
-                                                className="absolute inset-0 z-20"
-                                                aria-label={`Open ${p.client} case study`}
-                                            >
-                                                <span className="sr-only">View full case study for {p.client}</span>
-                                            </Link>
-
-                                            <div className="absolute inset-0 w-full h-full">
-                                                <Image
-                                                    src={p.image}
-                                                    alt={p.client}
-                                                    fill
-                                                    className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out grayscale group-hover:grayscale-0"
-                                                    sizes={p.size === 'large' ? '(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw' : '(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw'}
-                                                    loading={idx < 4 ? 'eager' : 'lazy'}
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
-                                            </div>
-
-                                            <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 md:p-6 flex flex-col justify-end h-full z-20">
-                                                <div className="flex flex-col gap-2 transform transition-all duration-500">
-                                                    <div>
-                                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-2 sm:mb-3 ${getBadgeStyle(p.color)}`}>
-                                                            {p.industry}
-                                                        </span>
-                                                        <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight drop-shadow-md">
-                                                            {p.client}
-                                                        </h3>
-                                                    </div>
-
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
-                                                            View Project
-                                                        </span>
-                                                        <button
-                                                            type="button"
-                                                            onClick={(event) => {
-                                                                event.preventDefault();
-                                                                event.stopPropagation();
-                                                                setSelectedProject(p);
-                                                            }}
-                                                            className="z-30 rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-white/25"
-                                                        >
-                                                            Quick Preview
-                                                        </button>
-                                                    </div>
-
-                                                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
-                                                        <div className="overflow-hidden">
-                                                            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light drop-shadow-lg pt-2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                                                                {p.desc}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="absolute top-4 right-4 h-11 md:h-11 bg-white rounded-xl flex items-center justify-center border border-slate-200 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-30 shadow-[0_8px_30px_rgb(0,0,0,0.4)] pointer-events-none px-3 py-2 max-w-[160px] sm:max-w-[180px]">
-                                                {p.logo ? (
-                                                    <Image
-                                                        src={p.logo}
-                                                        alt={`${p.client} logo`}
-                                                        width={140}
-                                                        height={44}
-                                                        className="h-full w-auto object-contain"
-                                                        unoptimized
-                                                    />
-                                                ) : (
-                                                    <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase px-1">Logo</span>
-                                                )}
-                                            </div>
-
-                                            <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 rounded-3xl transition-colors duration-500 pointer-events-none z-10" />
-                                        </motion.div>
-                                    );
-                                })}
-                    </AnimatePresence>
-                </motion.div>
-
-                        {hasMoreProjects ? (
-                            <div className="mt-8 md:mt-10 flex justify-center">
+                            return (
                                 <button
+                                    key={ind}
                                     type="button"
-                                    onClick={() => setVisibleCount((prev) => prev + (window.innerWidth < 768 ? 6 : 12))}
-                                    className="rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+                                    onClick={() => {
+                                        setFilter(ind);
+                                        setVisibleCount(12);
+                                    }}
+                                    className={`relative px-4 py-2 rounded-xl text-xs font-bold transition-colors whitespace-nowrap cursor-pointer ${
+                                        isActive
+                                            ? 'text-white'
+                                            : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                                    }`}
                                 >
-                                    Load more projects
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeIndustryFilter"
+                                            className="absolute inset-0 bg-gradient-to-r from-[#005596] to-[#0077c8] rounded-xl shadow-[0_4px_12px_rgba(0,85,150,0.3)] ring-1 ring-inset ring-white/20"
+                                            transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10 flex items-center gap-1.5">
+                                        <span>{label}</span>
+                                        <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+                                            isActive ? 'bg-white/20 text-white' : 'bg-slate-300/60 text-slate-600'
+                                        }`}>
+                                            {count}
+                                        </span>
+                                    </span>
                                 </button>
-                            </div>
-                        ) : null}
-                    </>
-                )}
-
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
 
-            {/* LIGHTBOX MODAL */}
+            {/* 3. SYMMETRICAL 3-COLUMN ENTERPRISE GRID */}
+            {filteredProjects.length === 0 ? (
+                <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs">
+                    <Building2 size={36} className="mx-auto text-slate-300 mb-3" />
+                    <h3 className="text-lg font-black text-slate-900">{isId ? 'Proyek tidak ditemukan' : 'No projects found'}</h3>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">
+                        {isId
+                            ? 'Coba gunakan kata kunci lain atau klik reset untuk menampilkan seluruh portofolio.'
+                            : 'Try searching with another keyword or click reset to view the entire portfolio.'}
+                    </p>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setFilter('All');
+                            setQuery('');
+                            setVisibleCount(12);
+                        }}
+                        className="mt-4 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 transition-colors cursor-pointer"
+                    >
+                        {isId ? 'Reset Filter & Pencarian' : 'Reset Filter & Search'}
+                    </button>
+                </div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+                        {visibleProjects.map((p, idx) => {
+                            const meta = parseProjectMeta(p.desc);
+
+                            return (
+                                <motion.div
+                                    key={p.id}
+                                    initial={{ opacity: 0, y: 16 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.35, delay: Math.min(idx * 0.05, 0.4) }}
+                                    className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#005596]/30 transition-all duration-300 flex flex-col overflow-hidden group"
+                                >
+                                    {/* Top: Client Identity Header */}
+                                    <div className="p-4 sm:p-5 flex items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/50">
+                                        <div className="h-9 w-28 relative flex items-center">
+                                            <ClientLogo
+                                                src={p.logo}
+                                                alt={`${p.client} logo`}
+                                                clientName={p.client}
+                                            />
+                                        </div>
+
+                                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600 shrink-0">
+                                            {getProjectIndustry(p.industry, lang)}
+                                        </span>
+                                    </div>
+
+                                    {/* Middle: Full Color Machinery Photo (No Grayscale!) */}
+                                    <div className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+                                        <Image
+                                            src={p.image}
+                                            alt={`${p.client} factory installation`}
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            loading={idx < 6 ? 'eager' : 'lazy'}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-80" />
+
+                                        {/* Technical Spec Badges Floating over Photo Base */}
+                                        <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center gap-1.5 z-10">
+                                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md border border-white/15 text-white text-[10px] font-mono font-semibold">
+                                                <Cpu size={11} className="text-[#0077c8]" />
+                                                <span>{meta.machine}</span>
+                                            </span>
+                                            {meta.payload && (
+                                                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md border border-white/15 text-emerald-300 text-[10px] font-mono font-semibold">
+                                                    <Weight size={11} />
+                                                    <span>{meta.payload}</span>
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* Content Body */}
+                                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#005596] transition-colors leading-snug mb-2">
+                                                {p.client}
+                                            </h3>
+                                            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                                                {getProjectDesc(p, lang)}
+                                            </p>
+                                        </div>
+
+                                        {/* Card Bottom CTA Links */}
+                                        <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                                            <Link
+                                                href={`/our-projects/${p.id}`}
+                                                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#005596] hover:text-[#00447a] transition-colors group-hover:translate-x-0.5 duration-200"
+                                            >
+                                                <span>{isId ? 'Lihat Studi Kasus' : 'View Case Study'}</span>
+                                                <ArrowRight size={13} />
+                                            </Link>
+
+                                            <button
+                                                type="button"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    setSelectedProject(p);
+                                                }}
+                                                className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-slate-700 px-2 py-1 rounded-md hover:bg-slate-100 transition-colors cursor-pointer"
+                                                title={isId ? "Ringkasan cepat" : "Quick preview summary"}
+                                            >
+                                                <Eye size={12} />
+                                                <span>{isId ? 'Ringkasan' : 'Quick Preview'}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Load More Button */}
+                    {hasMoreProjects && (
+                        <div className="mt-12 text-center">
+                            <button
+                                type="button"
+                                onClick={() => setVisibleCount((prev) => prev + 12)}
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#005596]/40 text-xs sm:text-sm font-bold text-slate-800 hover:text-[#005596] shadow-xs hover:shadow-md transition-all cursor-pointer"
+                            >
+                                <span>{isId ? 'Tampilkan Studi Kasus Lainnya' : 'Load More Case Studies'}</span>
+                                <span className="font-mono text-xs text-slate-400">
+                                    ({visibleProjects.length} {isId ? 'dari' : 'of'} {filteredProjects.length})
+                                </span>
+                            </button>
+                        </div>
+                    )}
+                </>
+            )}
+
+            {/* 4. TECHNICAL PREVIEW MODAL LIGHTBOX */}
             <AnimatePresence>
                 {selectedProject && (
                     <motion.div
@@ -335,104 +722,104 @@ export default function BentoGallery({ projects }: { projects: Project[] }) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedProject(null)}
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-sm cursor-zoom-out"
-                        role="presentation"
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md"
+                        role="dialog"
+                        aria-modal="true"
                     >
                         <motion.div
-                            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                            initial={{ scale: 0.95, opacity: 0, y: 15 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                            exit={{ scale: 0.95, opacity: 0, y: 15 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="relative w-full max-w-6xl max-h-[90vh] rounded-3xl overflow-hidden cursor-default flex flex-col bg-white border border-slate-200 shadow-2xl"
+                            className="relative w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-2xl flex flex-col"
                             onClick={(e) => e.stopPropagation()}
-                            role="dialog"
-                            aria-modal="true"
-                            aria-labelledby="project-preview-title"
-                            aria-describedby="project-preview-description"
                             ref={modalRef}
                         >
-                            {/* Image Container */}
-                            <div className="relative w-full h-[50vh] md:h-[70vh] bg-slate-100">
-                                <Image
-                                    src={selectedProject.image}
-                                    alt={selectedProject.client}
-                                    fill
-                                    className="object-contain"
-                                    sizes="100vw"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-100"></div>
-                            </div>
+                            {/* Modal Close Button */}
+                            <button
+                                type="button"
+                                onClick={() => setSelectedProject(null)}
+                                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition-colors cursor-pointer"
+                                aria-label="Close preview modal"
+                            >
+                                <X size={18} />
+                            </button>
 
-                            {/* Info Container */}
-                            <div className="p-6 md:p-8 flex flex-col gap-4">
-                                <div className="flex flex-wrap items-start justify-between gap-4">
-                                    <div>
-                                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border w-max mb-3 ${getBadgeStyle(selectedProject.color)}`}>
-                                            {selectedProject.industry}
+                            {/* Modal Content Scrollable */}
+                            <div className="overflow-y-auto">
+                                <div className="relative aspect-[16/9] w-full bg-slate-900">
+                                    <Image
+                                        src={selectedProject.image}
+                                        alt={selectedProject.client}
+                                        fill
+                                        className="object-cover"
+                                        sizes="100vw"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                                    
+                                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 mb-2 inline-block">
+                                            {getProjectIndustry(selectedProject.industry, lang)}
                                         </span>
-                                        <h3 id="project-preview-title" className="text-2xl md:text-4xl font-black text-slate-900 leading-tight">
+                                        <h3 className="text-2xl sm:text-3xl font-black leading-tight">
                                             {selectedProject.client}
                                         </h3>
                                     </div>
                                 </div>
-                                <p id="project-preview-description" className="text-slate-600 leading-relaxed font-light text-sm md:text-base max-w-4xl">
-                                    {selectedProject.desc}
-                                </p>
 
-                                <div className="mt-5 flex flex-wrap gap-2">
-                                    <Link
-                                        href={`/our-projects/${selectedProject.id}`}
-                                        className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700"
-                                    >
-                                        View Full Project Detail
-                                    </Link>
-                                    <Link
-                                        href="/contact"
-                                        className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-100"
-                                    >
-                                        Discuss Similar Project
-                                    </Link>
+                                <div className="p-6 sm:p-8 space-y-6">
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200/60 text-[#005596] text-xs font-mono font-bold">
+                                            <Cpu size={13} />
+                                            <span>{parseProjectMeta(selectedProject.desc).machine}</span>
+                                        </span>
+                                        {parseProjectMeta(selectedProject.desc).payload && (
+                                            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-xs font-mono font-bold">
+                                                <Weight size={13} />
+                                                <span>{parseProjectMeta(selectedProject.desc).payload}</span>
+                                            </span>
+                                        )}
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-mono font-bold">
+                                            <ShieldCheck size={13} />
+                                            <span>{isId ? 'Tersertifikasi Ergonomi Medis AGR Jerman' : 'German AGR Medical Ergonomics Certified'}</span>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                            {isId ? 'LINGKUP OPERASIONAL & IMPLEMENTASI' : 'OPERATIONAL SCOPE & IMPLEMENTATION'}
+                                        </h4>
+                                        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+                                            {getProjectDesc(selectedProject, lang)}
+                                        </p>
+                                    </div>
+
+                                    <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                                        <div className="flex items-center gap-3">
+                                            <Link
+                                                href={`/our-projects/${selectedProject.id}`}
+                                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#005596] hover:bg-[#00447a] text-white text-xs font-bold shadow-md transition-all"
+                                            >
+                                                <span>{isId ? 'Buka Halaman Studi Kasus Lengkap' : 'View Full Case Study Page'}</span>
+                                                <ArrowRight size={14} />
+                                            </Link>
+                                        </div>
+
+                                        <a
+                                            href={`https://wa.me/6281119168752?text=Hello%20DQW,%20I%20am%20interested%20in%20the%20${encodeURIComponent(selectedProject.client)}%20project%20and%20would%20like%20to%20consult%20on%20a%20similar%20lifting%20solution.`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs"
+                                        >
+                                            <MessageSquare size={14} />
+                                            <span>{isId ? 'Konsultasikan Solusi Serupa via WhatsApp' : 'Consult Similar Solution on WhatsApp'}</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            {/* Close Button */}
-                            <button
-                                type="button"
-                                onClick={() => setSelectedProject(null)}
-                                className="absolute top-4 right-4 w-12 h-12 bg-white/50 hover:bg-white/90 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 backdrop-blur-md transition-all border border-slate-200 shadow-sm"
-                                aria-label="Close preview"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                            </button>
-
-                            <div className="border-t border-slate-200 bg-slate-50 px-6 py-3 text-xs font-semibold text-slate-500">
-                                Tip: press Esc to close this preview.
                             </div>
                         </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-                {showStickyCta ? (
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 16 }}
-                        className="fixed bottom-4 left-4 right-4 z-[90] md:left-auto md:right-6 md:w-[340px]"
-                    >
-                        <div className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-xl backdrop-blur">
-                            <p className="text-sm font-bold text-slate-900">Need similar results for your production line?</p>
-                            <p className="mt-1 text-xs text-slate-600">Talk with our engineering team and get a tailored handling proposal.</p>
-                            <Link
-                                href="/contact"
-                                className="mt-3 inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700"
-                            >
-                                Discuss Your Project
-                            </Link>
-                        </div>
-                    </motion.div>
-                ) : null}
             </AnimatePresence>
         </section>
     );

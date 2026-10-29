@@ -1,4 +1,4 @@
-﻿export interface ProductSpec {
+export interface ProductSpec {
     label: string;
     value: string;
 }
@@ -48,7 +48,7 @@ export const binarProducts: BinarProduct[] = [
             'iLab platform for advanced setup and monitoring',
         ],
         applications: ['Precision assembly and packing', 'Space-constrained workstations', 'High-frequency production (60+ lifts/hour)', 'Electronics and small component handling'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLA50i_OM_utsnitt2_Gen3.png',
+        imageUrl: '/images/products/binar/binar-quick-lift-arm-50i-overhead-mounted.webp',
     },
     {
         slug: 'qla-100i-om',
@@ -78,7 +78,7 @@ export const binarProducts: BinarProduct[] = [
             'Low footprint energy profile',
         ],
         applications: ['Automotive component manufacturing', 'Metal and sheet handling', 'Cross-industry assembly lines', 'Production-floor material handling'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLA_100_v2_Gen3.png',
+        imageUrl: '/images/products/binar/binar-quick-lift-arm-100i-overhead-mounted.webp',
     },
     {
         slug: 'qla-200i-om',
@@ -107,7 +107,7 @@ export const binarProducts: BinarProduct[] = [
             'High-capacity handling with efficient power use',
         ],
         applications: ['Heavy manufacturing and assembly', 'Steel and metal fabrication', 'Industrial machine production', 'Large automotive component handling'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLA_200_v2_Gen3.png',
+        imageUrl: '/images/products/binar/binar-quick-lift-arm-200i-overhead-mounted.webp',
     },
     {
         slug: 'qld-300i',
@@ -135,7 +135,7 @@ export const binarProducts: BinarProduct[] = [
             'AGR-recognized ergonomic benefits',
         ],
         applications: ['Heavy industrial manufacturing', 'Large machine component handling', 'Large-structure fabrication and assembly', 'Heavy-duty industrial logistics'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLA_300_v2_Gen3.png',
+        imageUrl: '/images/products/binar/binar-quick-lift-driven-300i.webp',
     },
     {
         slug: 'qlat-350s',
@@ -163,7 +163,7 @@ export const binarProducts: BinarProduct[] = [
             'Integrated anti-tangle swivel design',
         ],
         applications: ['Heavy industrial manufacturing', 'Steel and heavy fabrication', 'Shipbuilding and heavy construction', 'Mining equipment handling'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/02/QLRt350s_v2_Gen3.png',
+        imageUrl: '/images/products/binar/binar-quick-lift-arm-torque-350s.webp',
     },
     {
         slug: 'vacuum-end-effector',
@@ -191,14 +191,14 @@ export const binarProducts: BinarProduct[] = [
             'Food-grade silicone options available',
         ],
         applications: ['Sheet metal and glass handling', 'Packaging and palletizing', 'Multi-shape component assembly', 'Food-industry handling with silicone options'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/03/Vacuum_Versatile_end_effector_II.jpg',
+        imageUrl: '/images/products/binar/binar-versatile-vacuum-end-effector.webp',
     },
     {
         slug: 'magnetic-gripper-110',
         name: 'Magnetic Gripper 110 kg',
         modelCode: 'MAG-110',
         tagline: 'Reliable electro-permanent magnetic gripping for ferrous parts',
-        description: 'Binar Magnetic Gripper 110 kg provides robust and reliable handling for ferrous materials. It eliminates vacuum and compressed-air dependencies and uses electro-permanent magnetic force for dependable gripping.',
+        description: 'Binar Magnetic Gripper 110 kg provides firm, fail-safe handling for ferrous materials. It eliminates compressed-air dependencies and uses electro-permanent magnetic clamping for dependable holding during transfer.',
         capacity: '110 kg',
         category: 'Gripper',
         heroColor: 'from-purple-600 to-indigo-700',
@@ -219,7 +219,7 @@ export const binarProducts: BinarProduct[] = [
             'Low-maintenance architecture without wear seals',
         ],
         applications: ['Steel sheet and plate handling', 'Ferrous machine components', 'Fabrication and stamping operations', 'Wet or oily environments'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2020/12/Fixed-Magnetic-End-Effector-110-kg.jpg',
+        imageUrl: '/images/products/binar/binar-magnetic-gripper-110-kg.webp',
     },
     {
         slug: 'magnetic-gripper-275',
@@ -247,7 +247,7 @@ export const binarProducts: BinarProduct[] = [
             'Durable against dust and metal particle exposure',
         ],
         applications: ['Heavy steel fabrication', 'Billet and bloom handling', 'Mold and die handling', 'Heavy construction and mining equipment'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2017/06/magnetgripdon_275kg.png',
+        imageUrl: '/images/products/binar/binar-magnetic-gripper-275-kg.webp',
     },
     {
         slug: 'vacuum-tilt-gripper',
@@ -275,6 +275,6 @@ export const binarProducts: BinarProduct[] = [
             'Available with NBR, silicone, or Viton cup materials',
         ],
         applications: ['Panel placement with orientation changes', 'Glass and transparent material handling', 'Assembly tasks requiring load rotation', 'Furniture and plywood manufacturing'],
-        imageUrl: 'https://www.binarhandling.com/wp-content/uploads/2017/06/Produkter-med-bakgrund-for-hemsida-2022.jpg',
+        imageUrl: '/images/products/binar/binar-vacuum-gripper-with-tilt-lock.webp',
     },
 ];

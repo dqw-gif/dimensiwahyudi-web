@@ -1,100 +1,126 @@
 'use client';
 
-import { motion } from 'framer-motion';
-// Kita pakai icon warna biru tua biar kontras
-import { ShieldCheck, Settings, Zap, Activity, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { ArrowRight, Box, Shield, Cpu, Anchor } from 'lucide-react';
 
-const features = [
+const solutions = [
   {
-    title: 'Safety-First Ergonomics',
-    desc: 'European-standard vacuum lifting systems designed to reduce strain injuries and improve daily operator safety.',
-    icon: ShieldCheck,
+    category: 'High-Speed Manual Handling',
+    title: 'Vacuum Tube Lifters (JumboFlex & Jumbo Series)',
+    desc: 'Built for high-cycle transfer with single-handed intuitive control. Transfers load weight away from operator shoulders and lumbar joints to a reinforced pneumatic lift tube.',
+    icon: Box,
+    payload: '20 to 300 kg',
+    applications: 'Cartons, Cement Sacks, Flour Bags, Small Drums',
+    link: '/products/schmalz',
   },
   {
-    title: 'On-Site Technical Audit',
-    desc: 'Certified engineers assess your production flow and recommend a lifting setup that fits your operation with precision.',
-    icon: Settings,
+    category: 'Heavy Material Handling',
+    title: 'VacuMaster Lifting Systems',
+    desc: 'Engineered for dense sheet metal, architectural glass, and structural timber panels. Includes 90° motorized tilting and 180° rotation for CNC laser cutting, press brake, and router infeed.',
+    icon: Anchor,
+    payload: '100 to 2,000 kg',
+    applications: 'Steel Plates, Stainless Sheets, Architectural Glass, MDF Boards',
+    link: '/products/schmalz',
   },
   {
-    title: 'Live Product Trial',
-    desc: 'Test handling units directly on your line before you commit, with measurable performance and ergonomics feedback.',
-    icon: Zap,
+    category: 'Modular Runway Systems',
+    title: 'Aluminum Light Crane & Jib Cranes',
+    desc: 'Cold-extruded aluminum rails with low friction coefficients. Provides smooth lateral gliding with minimal starting resistance across operator work areas.',
+    icon: Shield,
+    payload: 'Up to 12 m span',
+    applications: 'Independent Workstations, Assembly Line Bridge Cranes',
+    link: '/products/binar',
   },
   {
-    title: 'After-Sales Service & Support',
-    desc: 'Responsive technical support, genuine spare part availability, and scheduled maintenance for long-term reliability.',
-    icon: Activity,
+    category: 'End-of-Arm Tooling (EOAT)',
+    title: 'Vacuum Grippers & Robotic Automation',
+    desc: 'Vacuum end effectors configured for collaborative robots (Cobots) and articulated industrial arms. Tailored for pick-and-place tasks with variable packaging surfaces.',
+    icon: Cpu,
+    payload: 'Cobot & Robot Integration',
+    applications: 'Cobot Palletizing, Packaging Automation, Conveyor Sorting',
+    link: '/products/schmalz',
   },
 ];
 
 export default function BenefitsSection() {
   return (
-    // BG diganti jadi bg-white (Putih)
-    <section className="py-24 bg-white relative overflow-hidden">
-
-      {/* Background Pattern Halus (Abu-abu tipis) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-
-        {/* BAGIAN KIRI: Teks Utama */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="space-y-6"
-        >
-          <span className="text-blue-600 font-bold tracking-widest text-sm uppercase bg-blue-50 px-3 py-1 rounded-full">
-            Certified Engineering Expertise
-          </span>
-          {/* Judul jadi hitam (slate-900) */}
-          <h2 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">
-            Your Trusted Partner in <br />
-            <span className="text-blue-600">
-              European-Grade Lifting Systems
+    <section className="py-20 lg:py-24 bg-slate-50 border-b border-slate-200/80 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
+          <div className="max-w-2xl">
+            <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#005596] block mb-2">
+              Material Handling Engineering Capabilities
             </span>
-          </h2>
-          {/* Teks jadi abu-abu tua (slate-600) */}
-          <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
-            As the official Schmalz and Binar Handling partner in Indonesia, we do more than supply lifting equipment. We design practical, high-performance <em>vacuum handling</em> systems that improve productivity, protect operators, and deliver strong long-term <em>ROI</em> for manufacturers.
-          </p>
-
-          <div className="pt-4">
-            {/* Link jadi biru */}
-            <Link href="/about" className="group inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-700 transition-all">
-              Learn More About Our Company
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Four Core Pillars in Vacuum Handling &amp; Industrial Ergonomics
+            </h2>
+            <p className="mt-3 text-base text-slate-600 leading-relaxed font-normal">
+              From high-frequency carton transfer to 2,000 kg steel plate manipulation, we supply engineered systems built to European safety standards.
+            </p>
           </div>
-        </motion.div>
 
-        {/* BAGIAN KANAN: Grid 2x2 (Kartu Putih) */}
-        <div className="grid sm:grid-cols-2 gap-6">
-          {features.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              // Kartu background putih dengan shadow halus dan border abu
-              className="bg-white border border-slate-200 p-8 rounded-2xl hover:border-blue-300 hover:shadow-xl hover:shadow-blue-100/50 transition-all group"
-            >
-              {/* Icon background biru muda */}
-              <div className="w-14 h-14 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                <item.icon size={26} />
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#005596] hover:text-[#003b6d] transition-colors shrink-0"
+          >
+            <span>Explore Complete Product Line</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* 4 Solution Cards Grid */}
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+          {solutions.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all duration-200"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">
+                      {item.category}
+                    </span>
+                    <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 border border-slate-200/80">
+                      <Icon className="w-4 h-4 text-[#005596]" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 leading-snug">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 space-y-2">
+                  <div className="flex items-baseline justify-between text-xs">
+                    <span className="font-semibold text-slate-700">Capacity:</span>
+                    <span className="font-mono font-bold text-slate-900">{item.payload}</span>
+                  </div>
+                  <div className="flex items-baseline justify-between text-xs">
+                    <span className="font-semibold text-slate-700">Typical Workpieces:</span>
+                    <span className="text-slate-500 text-right">{item.applications}</span>
+                  </div>
+
+                  <div className="pt-3">
+                    <Link
+                      href={item.link}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#005596] hover:text-[#003b6d] transition-colors"
+                    >
+                      <span>View Series Specifications</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
               </div>
-              {/* Judul kartu hitam */}
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-                {item.title}
-              </h3>
-              {/* Deskripsi kartu abu tua */}
-              <p className="text-slate-600 text-sm leading-relaxed">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

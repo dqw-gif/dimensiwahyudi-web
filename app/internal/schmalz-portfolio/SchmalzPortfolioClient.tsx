@@ -301,7 +301,7 @@ export default function SchmalzPortfolioClient() {
         />
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-cyan-400/20 blur-3xl"
+          className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#005596]/30 blur-3xl"
           animate={
             prefersReducedMotion
               ? undefined
@@ -327,7 +327,7 @@ export default function SchmalzPortfolioClient() {
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 8 }}
             animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.08 }}
-            className="mt-2 text-center text-xs font-bold tracking-wide text-emerald-300"
+            className="mt-2 text-center text-xs font-bold tracking-wide text-blue-200"
           >
             {statusText}
           </motion.p>
@@ -369,7 +369,7 @@ export default function SchmalzPortfolioClient() {
       <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-800">
-            Menampilkan <span className="font-bold text-blue-600">{paginatedProjects.length}</span> dari <span className="font-bold text-blue-600">{filteredProjects.length}</span> data
+            Showing <span className="font-bold text-blue-600">{paginatedProjects.length}</span> of <span className="font-bold text-blue-600">{filteredProjects.length}</span> projects
           </h2>
           <button
             onClick={() => fetchDataFromSheet(true)}
@@ -464,11 +464,11 @@ export default function SchmalzPortfolioClient() {
               className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
               whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             >
-              Sebelumnya
+              Previous
             </motion.button>
 
             <span className="px-2 text-sm font-medium text-gray-600">
-              Halaman {currentPage} / {totalPages}
+              Page {currentPage} of {totalPages}
             </span>
 
             <motion.button
@@ -477,7 +477,7 @@ export default function SchmalzPortfolioClient() {
               className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
               whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             >
-              Berikutnya
+              Next
             </motion.button>
           </div>
         ) : null}
@@ -507,7 +507,7 @@ export default function SchmalzPortfolioClient() {
             >
             <div className="flex shrink-0 items-center justify-between border-b border-gray-100 bg-slate-50 px-6 py-4">
               <h3 className="flex items-center gap-2 text-lg font-bold text-gray-800">
-                <Edit3 className="h-5 w-5 text-blue-600" /> Kelola Proyek
+                <Edit3 className="h-5 w-5 text-blue-600" /> Manage Project
               </h3>
               <button onClick={closeModal} className="text-gray-400 transition-colors hover:text-gray-600" aria-label="Close modal">
                 <X className="h-5 w-5" />
@@ -517,7 +517,7 @@ export default function SchmalzPortfolioClient() {
             <div className="space-y-5 overflow-y-auto p-6">
               <div className="grid grid-cols-1 gap-4 rounded-xl border border-gray-100 bg-gray-50 p-3 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1 block text-xs font-bold tracking-wide text-gray-500">NAMA PERUSAHAAN</label>
+                  <label className="mb-1 block text-xs font-bold tracking-wide text-gray-500">COMPANY NAME</label>
                   <input
                     value={formProject.company}
                     readOnly
@@ -525,7 +525,7 @@ export default function SchmalzPortfolioClient() {
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-bold tracking-wide text-gray-500">SEKTOR INDUSTRI</label>
+                  <label className="mb-1 block text-xs font-bold tracking-wide text-gray-500">INDUSTRY SECTOR</label>
                   <input
                     value={formProject.industry}
                     readOnly
@@ -536,7 +536,7 @@ export default function SchmalzPortfolioClient() {
 
               {formProject.project_image ? (
                 <div>
-                  <label className="mb-2 block text-sm font-bold uppercase tracking-wide text-gray-700">Visual Proyek</label>
+                  <label className="mb-2 block text-sm font-bold uppercase tracking-wide text-gray-700">Project Visual</label>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={formProject.project_image}
@@ -547,10 +547,10 @@ export default function SchmalzPortfolioClient() {
               ) : null}
 
               <div className="border-t border-gray-100 pt-4">
-                <h4 className="mb-3 text-sm font-bold text-gray-800">Detail Deskripsi (Format Seragam)</h4>
+                <h4 className="mb-3 text-sm font-bold text-gray-800">Description Details (Standard Format)</h4>
                 <div className="space-y-3">
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">1. Kondisi Sebelum (Before)</label>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">1. Before Condition</label>
                     <textarea
                       rows={2}
                       value={descFields.Before}
@@ -561,7 +561,7 @@ export default function SchmalzPortfolioClient() {
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-gray-600">2. Beban Kerja</label>
+                      <label className="mb-1 block text-xs font-medium text-gray-600">2. Working Load</label>
                       <input
                         value={descFields.Beban}
                         onChange={(e) => setDescFields((prev) => ({ ...prev, Beban: e.target.value }))}
@@ -569,7 +569,7 @@ export default function SchmalzPortfolioClient() {
                       />
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-gray-600">3. Produk Schmalz</label>
+                      <label className="mb-1 block text-xs font-medium text-gray-600">3. Schmalz Product</label>
                       <input
                         value={descFields.Produk}
                         onChange={(e) => setDescFields((prev) => ({ ...prev, Produk: e.target.value }))}
@@ -579,7 +579,7 @@ export default function SchmalzPortfolioClient() {
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">4. Kondisi Sesudah (After)</label>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">4. After Condition</label>
                     <textarea
                       rows={2}
                       value={descFields.After}
@@ -589,7 +589,7 @@ export default function SchmalzPortfolioClient() {
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-gray-600">5. Plant (Opsional)</label>
+                    <label className="mb-1 block text-xs font-medium text-gray-600">5. Plant Location (Optional)</label>
                     <input
                       value={descFields.Plant}
                       onChange={(e) => setDescFields((prev) => ({ ...prev, Plant: e.target.value }))}
@@ -605,14 +605,14 @@ export default function SchmalzPortfolioClient() {
                 onClick={closeModal}
                 className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
               >
-                Batal
+                Cancel
               </button>
               <button
                 onClick={saveData}
                 disabled={isSaving}
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Simpan Data
+                {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save Changes
               </button>
             </div>
             </motion.div>

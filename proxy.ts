@@ -1,5 +1,14 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import postsBackup from '@/data/wordpress-posts.json';
+
+// Precompute valid legacy WordPress article slugs so bot scanners (/wp-login, /xmlrpc, /env, etc.)
+// are never 301-redirected into /news/[slug] Serverless SSR + Firestore queries.
+const LEGACY_WORDPRESS_SLUGS = new Set<string>(
+    (postsBackup as Array<{ slug?: string }>)
+        .map((p) => (p.slug || '').toLowerCase())
+        .filter(Boolean)
+);
 
 export default function proxy(request: NextRequest) {
     const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
@@ -36,40 +45,17 @@ export default function proxy(request: NextRequest) {
     }
 
     // 3. SEO Legacy URL Redirection:
-    // If a request is for a single-level slug (e.g. /overhead-crane), and it's not a static route or file,
-    // permanently redirect (301) to /news/[slug] to maintain search engine ranking and prevent 404s.
-    const staticPaths = [
-        '/',
-        '/admin',
-        '/about',
-        '/contact',
-        '/career',
-        '/industries',
-        '/our-projects',
-        '/products',
-        '/faq',
-        '/privacy-policy',
-        '/terms-of-service',
-        '/site-directory',
-        '/maintenance',
-        '/digital-assistant',
-        '/internal',
-        '/news',
-        '/services',
-        '/schmalz-fanuc-event',
-        '/events',
-        '/nsg-login',
-        '/brosur',
-        '/katalog',
-    ];
-
-    // Match single-level paths like /gantry-crane, but not /news/gantry-crane, /_next/..., files with extension, or api routes
+    // Only 301-redirect single-level slugs that actually belong to known legacy WordPress articles
+    // (e.g. /overhead-crane -> /news/overhead-crane), preventing bot scanners from triggering /news/[slug] SSR.
     const isSingleSlug = /^\/[a-zA-Z0-9_-]+$/.test(pathname);
 
-    if (isSingleSlug && !staticPaths.includes(pathname.toLowerCase())) {
-        const url = request.nextUrl.clone();
-        url.pathname = `/news${pathname}`;
-        return NextResponse.redirect(url, 301); // 301 Permanent Redirect
+    if (isSingleSlug) {
+        const cleanSlug = pathname.slice(1).toLowerCase();
+        if (LEGACY_WORDPRESS_SLUGS.has(cleanSlug)) {
+            const url = request.nextUrl.clone();
+            url.pathname = `/news/${cleanSlug}`;
+            return NextResponse.redirect(url, 301); // 301 Permanent Redirect
+        }
     }
 
     return NextResponse.next();
@@ -77,6 +63,6 @@ export default function proxy(request: NextRequest) {
 
 export const config = {
     matcher: [
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+        '/((?!api|_next/static|_next/image|images|brochures|favicon\\.ico|robots\\.txt|sitemap\\.xml|opengraph-image|icon|apple-icon|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|pdf|woff2?|ttf|css|js|map|mp4|webm|json|xml|txt)$).*)',
     ],
 };

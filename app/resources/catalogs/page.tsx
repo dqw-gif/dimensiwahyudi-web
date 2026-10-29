@@ -4,8 +4,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Download, CheckCircle, ShieldCheck, Mail, Briefcase, Building2, User, Lock, KeyRound } from 'lucide-react';
 import Image from 'next/image';
+import { useLanguage } from '../../../components/LanguageProvider';
 
 export default function CatalogsGatePage() {
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -15,7 +18,7 @@ export default function CatalogsGatePage() {
     email: ''
   });
 
-    const CATALOG_PDF_URL = '/Ergonomic%20Vacuum%20Lifters.pdf';
+  const CATALOG_PDF_URL = '/Ergonomic%20Vacuum%20Lifters.pdf';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,13 +52,15 @@ export default function CatalogsGatePage() {
         
         <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-                <FileText size={14} /> Official E-Katalog 2026
+                <FileText size={14} /> {isId ? 'E-Katalog Resmi 2026' : 'Official E-Katalog 2026'}
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-4">
-                The Complete Vacuum Automation Catalog
+                {isId ? 'Katalog Lengkap Otomasi Vakum & Ergonomi' : 'The Complete Vacuum Automation Catalog'}
             </h1>
             <p className="text-slate-600 text-lg">
-                Technical specifications, load capacities, and integration guides for the entire Schmalz and Binar Handling industrial lineup.
+                {isId
+                  ? 'Spesifikasi teknis, tabel kapasitas angkat (SWL), dan panduan integrasi untuk seluruh lini produk industri Schmalz dan Binar Handling.'
+                  : 'Technical specifications, load capacities, and integration guides for the entire Schmalz and Binar Handling industrial lineup.'}
             </p>
         </div>
 
@@ -64,7 +69,7 @@ export default function CatalogsGatePage() {
             {/* Left: Premium Catalog Preview */}
             <div className="relative group perspective-[1000px]">
                 {/* Decorative background glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#005596] to-blue-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
                 
                 <motion.div 
                    className="relative bg-white p-2 rounded-3xl border border-slate-200 shadow-2xl transform-style-3d group-hover:-rotate-y-12 group-hover:rotate-x-6 transition-transform duration-700"
@@ -99,14 +104,20 @@ export default function CatalogsGatePage() {
                                     <Lock size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-black text-slate-900 leading-none">Unlock Document</h3>
-                                    <p className="text-sm text-slate-500 mt-1">Free digital download for Engineering Professionals.</p>
+                                    <h3 className="text-2xl font-black text-slate-900 leading-none">
+                                      {isId ? 'Akses Dokumen Teknis' : 'Unlock Document'}
+                                    </h3>
+                                    <p className="text-sm text-slate-500 mt-1">
+                                      {isId ? 'Download gratis untuk praktisi Engineering & Procurement.' : 'Free digital download for Engineering Professionals.'}
+                                    </p>
                                 </div>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="space-y-1.5 flex-1 w-full">
-                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Full Name</label>
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">
+                                      {isId ? 'Nama Lengkap' : 'Full Name'}
+                                    </label>
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                             <User size={16} />
@@ -118,7 +129,9 @@ export default function CatalogsGatePage() {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-1.5 flex-1 w-full">
-                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Company</label>
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">
+                                          {isId ? 'Perusahaan' : 'Company'}
+                                        </label>
                                         <div className="relative">
                                             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                                 <Building2 size={16} />
@@ -129,7 +142,9 @@ export default function CatalogsGatePage() {
                                     </div>
 
                                     <div className="space-y-1.5 flex-1 w-full">
-                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Job Title</label>
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">
+                                          {isId ? 'Jabatan' : 'Job Title'}
+                                        </label>
                                         <div className="relative">
                                             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                                 <Briefcase size={16} />
@@ -141,7 +156,9 @@ export default function CatalogsGatePage() {
                                 </div>
 
                                 <div className="space-y-1.5 flex-1 w-full">
-                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Corporate Email</label>
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">
+                                      {isId ? 'Email Korporat' : 'Corporate Email'}
+                                    </label>
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                                             <Mail size={16} />
@@ -157,14 +174,14 @@ export default function CatalogsGatePage() {
                                     className="w-full bg-slate-900 hover:bg-black text-white px-6 py-4 rounded-xl font-bold transition-all mt-4 flex items-center justify-center gap-2 group disabled:opacity-70"
                                 >
                                     {isSubmitting ? (
-                                        <span className="flex items-center gap-2">Authenticating <span className="animate-pulse">...</span></span>
+                                        <span className="flex items-center gap-2">{isId ? 'Memverifikasi' : 'Authenticating'} <span className="animate-pulse">...</span></span>
                                     ) : (
-                                        <><KeyRound size={18} className="group-hover:rotate-12 transition-transform" /> Unlock Catalog</>
+                                        <><KeyRound size={18} className="group-hover:rotate-12 transition-transform" /> {isId ? 'Buka Akses Katalog' : 'Unlock Catalog'}</>
                                     )}
                                 </button>
 
                                 <div className="flex items-center justify-center gap-2 mt-4 text-[11px] text-slate-400 font-medium">
-                                    <ShieldCheck size={14} className="text-emerald-500" /> We respect your privacy. No spam guaranteed.
+                                    <ShieldCheck size={14} className="text-emerald-500" /> {isId ? 'Kami menjaga privasi data bisnis Anda. Bebas spam.' : 'We respect your privacy. No spam guaranteed.'}
                                 </div>
                             </form>
                         </motion.div>
@@ -183,12 +200,16 @@ export default function CatalogsGatePage() {
                             </div>
                             
                             <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 rounded-full text-slate-500 text-xs font-black uppercase tracking-widest mb-4">
-                                Document Unlocked
+                                {isId ? 'Dokumen Terbuka' : 'Document Unlocked'}
                             </div>
                             
-                            <h3 className="text-3xl font-black text-slate-900 mb-4">Success, {formData.name.split(' ')[0]}!</h3>
+                            <h3 className="text-3xl font-black text-slate-900 mb-4">
+                              {isId ? `Terima kasih, ${formData.name.split(' ')[0]}!` : `Success, ${formData.name.split(' ')[0]}!`}
+                            </h3>
                             <p className="text-slate-600 mb-8 max-w-sm mx-auto">
-                                The 2026 Schmalz Technical Catalog is ready to download.
+                                {isId
+                                  ? 'Katalog Teknis Schmalz 2026 siap diunduh ke perangkat Anda.'
+                                  : 'The 2026 Schmalz Technical Catalog is ready to download.'}
                             </p>
                             
                             <a 
@@ -199,7 +220,7 @@ export default function CatalogsGatePage() {
                                 className="w-full max-w-sm bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-4 rounded-xl transition-all shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 group"
                             >
                                 <Download size={20} className="group-hover:-translate-y-1 transition-transform" />
-                                Download PDF File Now
+                                {isId ? 'Download Katalog PDF Sekarang' : 'Download PDF File Now'}
                             </a>
                         </motion.div>
 

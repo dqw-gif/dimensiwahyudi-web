@@ -1,7 +1,8 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ServiceHero, ServiceList } from '../../components/services/ServiceAnimations';
 import { spacingTokens } from '../../constants/spacingTokens';
+import PreFooterCTA from '../../components/PreFooterCTA';
 
 export const metadata: Metadata = {
   title: 'Technical Services | Installation, Maintenance & Training | PT Dimensi Quantum Wahyudi',
@@ -66,7 +67,7 @@ export default async function ServicesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white text-slate-900 selection:bg-cyan-500 selection:text-white relative">
+    <main className="min-h-screen bg-white text-slate-900 selection:bg-[#005596] selection:text-white relative overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqSchema) }} />
 
       {/* BACKGROUND GRID ACCENT */}
@@ -77,6 +78,11 @@ export default async function ServicesPage() {
           backgroundSize: '40px 40px',
         }}
       />
+
+      
+      {/* ─── AMBIENT BLUE GLOW ACCENTS (Fully Contained) ─── */}
+      <div className="absolute top-20 left-1/4 w-[600px] h-[380px] bg-[#005596]/5 rounded-full blur-[150px] pointer-events-none -z-0" aria-hidden="true" />
+      <div className="absolute top-[800px] right-1/4 w-[500px] h-[340px] bg-[#005596]/4 rounded-full blur-[140px] pointer-events-none -z-0" aria-hidden="true" />
 
       {/* 1. HERO SECTION */}
       <section className={`${spacingTokens.hero.tall} relative overflow-hidden`}>
@@ -93,39 +99,8 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* 3. CTA BOX */}
-      <section className={`${spacingTokens.section.spacious} relative z-10`}>
-        <div className={`${spacingTokens.page.containerMedium} bg-slate-900 rounded-[2.5rem] p-12 md:p-16 text-center border border-slate-800 relative overflow-hidden shadow-2xl`}>
-          <div
-            className="absolute inset-0 opacity-10 pointer-events-none"
-            style={{ backgroundImage: `radial-gradient(#fff 0.5px, transparent 0.5px)`, backgroundSize: '24px 24px' }}
-          />
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              {copy.title}
-            </h2>
-            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto font-medium">
-              {copy.desc}
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-5">
-              <Link
-                href="/contact"
-                className="px-10 py-4 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 flex items-center justify-center gap-2"
-              >
-                {copy.btn1}
-              </Link>
-              <a
-                href="https://wa.me/6281119168752"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-10 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold rounded-full hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center gap-2"
-              >
-                {copy.btn2}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 3. PRE-FOOTER CTA */}
+      <PreFooterCTA />
     </main>
   );
 }

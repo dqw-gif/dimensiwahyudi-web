@@ -20,7 +20,7 @@ export interface Author {
     };
 }
 
-/** Full post — used in detail page (includes content & author) */
+/** Full post - used in detail page (includes content & author) */
 export interface Post {
     id: string;
     slug: string;
@@ -35,7 +35,7 @@ export interface Post {
     };
 }
 
-/** Lightweight post — used in listing/grid/related posts (no content) */
+/** Lightweight post - used in listing/grid/related posts (no content) */
 export interface PostSummary {
     id: string;
     slug: string;

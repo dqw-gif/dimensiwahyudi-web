@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --animate-marquee: marquee 40s linear infinite;
 
   @keyframes marquee {
@@ -22,9 +22,40 @@
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
 }
 
 html[data-cookie-consent] .cookie-consent-banner {
   display: none;
+}
+
+/* Continuous Infinite Marquee Rows */
+@keyframes marqueeScrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-row-1 {
+  animation: marqueeScrollLeft 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-row-2 {
+  animation: marqueeScrollLeft 46s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-row-3 {
+  animation: marqueeScrollLeft 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-row-1:hover,
+.animate-marquee-row-2:hover,
+.animate-marquee-row-3:hover {
+  animation-play-state: paused;
 }

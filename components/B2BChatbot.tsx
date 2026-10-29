@@ -5,14 +5,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, ChevronRight, Calculator, LifeBuoy, Send, Bot, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from './LanguageProvider';
 
 export default function B2BChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+  const { lang } = useLanguage();
+  const isId = lang === 'id';
 
   // Constants
   const WHATSAPP_NUMBER = '6281119168752';
-  const WA_QUOTATION_TEXT = encodeURIComponent('Hello DQW, I am interested in requesting a product quotation. Please assist me.');
+  const WA_QUOTATION_TEXT = encodeURIComponent(
+    isId
+      ? 'Halo DQW, saya ingin meminta penawaran harga dan konsultasi teknis untuk kebutuhan pabrik kami.'
+      : 'Hello DQW, I am interested in requesting a product quotation. Please assist me.'
+  );
 
   const toggleChat = () => {
     const nextOpen = !isOpen;
@@ -30,7 +37,7 @@ export default function B2BChatbot() {
         event_label: actionLabel,
       });
     }
-    setIsOpen(false); // Close bot after navigation
+    setIsOpen(false);
   };
 
   return (
@@ -52,13 +59,16 @@ export default function B2BChatbot() {
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 outline outline-2 outline-slate-900 bg-emerald-400 rounded-full"></span>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-sm tracking-wide">Virtual Engineer</h3>
+                  <h3 className="text-white font-bold text-sm tracking-wide">
+                    {isId ? 'Asisten Teknis DQW' : 'Virtual Engineer'}
+                  </h3>
                   <p className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider">Online</p>
                 </div>
               </div>
               <button 
                 onClick={toggleChat}
                 className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-white/20 hover:text-white transition-colors"
+                aria-label="Close chat"
               >
                 <X size={16} />
               </button>
@@ -73,14 +83,23 @@ export default function B2BChatbot() {
                   <Image src="/favicon.ico" alt="DQW" width={16} height={16} className="opacity-70" />
                 </div>
                 <div className="bg-white border border-slate-200 text-slate-700 text-sm p-4 rounded-2xl rounded-tl-none leading-relaxed shadow-sm">
-                  Hello! Welcome to <strong>PT Dimensi Quantum Wahyudi</strong>. <br/><br/>
-                  How can we help optimize your warehouse & production productivity today?
+                  {isId ? (
+                    <>
+                      Halo! Selamat datang di <strong>PT Dimensi Quantum Wahyudi</strong>. <br/><br/>
+                      Ada kebutuhan penanganan beban atau optimasi ergonomi di lini produksi Anda hari ini?
+                    </>
+                  ) : (
+                    <>
+                      Hello! Welcome to <strong>PT Dimensi Quantum Wahyudi</strong>. <br/><br/>
+                      How can we help optimize your warehouse &amp; production productivity today?
+                    </>
+                  )}
                 </div>
               </div>
 
               {/* Timestamp */}
               <div className="text-[10px] text-slate-400 font-medium text-center uppercase tracking-widest mt-1 mb-2">
-                Select an option below
+                {isId ? 'Pilih menu layanan di bawah' : 'Select an option below'}
               </div>
 
               {/* Quick Replies */}
@@ -89,17 +108,18 @@ export default function B2BChatbot() {
                 <Link 
                   href="/events"
                   onClick={() => trackAction('View Events Page')}
-                  className="w-full bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 hover:border-cyan-500 hover:shadow-md hover:shadow-cyan-500/10 text-slate-800 p-3 rounded-xl text-sm font-bold flex items-center justify-between transition-all group"
+                  className="w-full bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-200 hover:border-[#005596] hover:shadow-md hover:shadow-blue-500/10 text-slate-800 p-3 rounded-xl text-sm font-bold flex items-center justify-between transition-all group"
                 >
                   <span className="flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                    <span className="w-8 h-8 rounded-lg bg-[#005596] flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                       <Calendar size={14} />
                     </span>
-                    <span className="text-cyan-800 font-extrabold">Exhibitions &amp; Events 2026</span>
+                    <span className="text-blue-900 font-extrabold">
+                      {isId ? 'Pameran & Seminar 2026' : 'Exhibitions & Events 2026'}
+                    </span>
                   </span>
-                  <ChevronRight size={16} className="text-cyan-400 group-hover:text-cyan-600 group-hover:translate-x-1 transition-all" />
+                  <ChevronRight size={16} className="text-blue-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
                 </Link>
-
 
                 {/* 1. Request Quote -> WhatsApp */}
                 <a 
@@ -113,7 +133,7 @@ export default function B2BChatbot() {
                     <span className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
                       <Send size={14} className="-ml-0.5" />
                     </span>
-                    I need a Product Quotation
+                    {isId ? 'Minta Penawaran Harga' : 'I need a Product Quotation'}
                   </span>
                   <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
                 </a>
@@ -128,7 +148,7 @@ export default function B2BChatbot() {
                     <span className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
                       <Calculator size={14} />
                     </span>
-                    Calculate Ergonomic ROI
+                    {isId ? 'Hitung Estimasi ROI Pabrik' : 'Calculate Ergonomic ROI'}
                   </span>
                   <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
                 </Link>
@@ -143,7 +163,7 @@ export default function B2BChatbot() {
                     <span className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600 group-hover:scale-110 transition-transform">
                       <LifeBuoy size={14} />
                     </span>
-                    Technical Help / Spareparts
+                    {isId ? 'Bantuan Teknis & Sparepart' : 'Technical Help / Spareparts'}
                   </span>
                   <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
                 </Link>
@@ -161,14 +181,15 @@ export default function B2BChatbot() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.4, type: "spring", stiffness: 100 }}
           onClick={toggleChat}
-          className="fixed bottom-[96px] right-6 z-50 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white text-xs font-bold px-4 py-3 rounded-2xl rounded-br-none shadow-[0_10px_30px_rgba(239,68,68,0.4)] border border-amber-400/30 cursor-pointer hover:scale-105 active:scale-95 transition-all select-none max-w-[250px]"
+          className="fixed bottom-[96px] right-6 z-50 bg-slate-900 text-white text-xs font-medium px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-slate-700/80 cursor-pointer hover:bg-slate-800 transition-all select-none max-w-[260px]"
         >
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+          <div className="flex items-center gap-2.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+            <span className="text-slate-200 leading-snug font-sans">
+              {isId
+                ? 'Butuh konsultasi teknis sistem vacuum handling industri?'
+                : 'Need technical guidance on industrial vacuum handling?'}
             </span>
-            <span>📍 Pameran Batam (29 Sep): Manufacturing Indonesia 2026. Info lengkap di sini!</span>
           </div>
         </motion.div>
       )}
