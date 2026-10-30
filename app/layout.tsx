@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -199,18 +198,13 @@ const seoStructuredData = {
   ],
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const langCookie = cookieStore.get("site-lang")?.value;
-  const initialLang = (langCookie === "id" ? "id" : "en") as "en" | "id";
-  const htmlLang = initialLang === "id" ? "id-ID" : "en-ID";
-
   return (
-    <html lang={htmlLang} className={`scroll-smooth ${plusJakartaSans.className} ${plusJakartaSans.variable}`}>
+    <html lang="en-ID" className={`scroll-smooth ${plusJakartaSans.className} ${plusJakartaSans.variable}`}>
       <head>
         <link rel="preload" as="image" href="/hero-poster-mobile.webp" media="(max-width: 767px)" fetchPriority="high" type="image/webp" />
         <link rel="preload" as="image" href="/hero-poster.webp" media="(min-width: 768px)" fetchPriority="high" type="image/webp" />
@@ -222,7 +216,7 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(seoStructuredData) }}
         />
-        <LanguageProvider initialLang={initialLang}>
+        <LanguageProvider initialLang="en">
           <LayoutChrome>{children}</LayoutChrome>
           <CookieConsentBanner />
           <AnalyticsGate gaId={process.env.NEXT_PUBLIC_GA_ID} />

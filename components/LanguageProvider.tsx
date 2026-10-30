@@ -253,13 +253,25 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({
-  initialLang,
+  initialLang = 'en',
   children,
 }: {
-  initialLang: Lang;
+  initialLang?: Lang;
   children: React.ReactNode;
 }) {
-  const [lang, setLangState] = useState<Lang>(initialLang || 'en');
+  const [lang, setLangState] = useState<Lang>(initialLang);
+
+  React.useEffect(() => {
+    try {
+      const saved = (localStorage.getItem('site-lang') || (document.cookie.match(/site-lang=(id|en)/)?.[1])) as Lang | null;
+      if (saved && (saved === 'en' || saved === 'id') && saved !== lang) {
+        setLangState(saved);
+        document.documentElement.lang = saved === 'id' ? 'id-ID' : 'en-ID';
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   const setLang = (nextLang: Lang) => {
     setLangState(nextLang);
