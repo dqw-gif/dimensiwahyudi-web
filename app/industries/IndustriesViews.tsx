@@ -218,10 +218,10 @@ export function IndustryDetailClient({
             </h2>
             <p className="text-slate-600 text-base md:text-lg leading-relaxed">{displayDesc}</p>
 
-            <div className="pt-2">
+            <div className="pt-2 flex justify-center sm:justify-start">
               <a
                 href="#solutions"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#005596] to-[#1d4ed8] hover:from-[#00447a] hover:to-[#1e40af] text-white font-bold rounded-xl transition-all shadow-[0_6px_20px_-3px_rgba(0,85,150,0.35)] hover:shadow-[0_10px_25px_-3px_rgba(0,85,150,0.45)] hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#005596] to-[#1d4ed8] hover:from-[#00447a] hover:to-[#1e40af] text-white font-bold rounded-xl transition-all shadow-[0_6px_20px_-3px_rgba(0,85,150,0.35)] hover:shadow-[0_10px_25px_-3px_rgba(0,85,150,0.45)] hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base text-center"
               >
                 {isId ? 'Lihat Rekomendasi Alat' : 'See Recommended Equipment'} <ArrowRight size={18} />
               </a>

@@ -24,18 +24,31 @@ const LEGACY_POSTS_BY_SLUG = new Map<string, Post>(
   LEGACY_POSTS_LIST.map((post) => [post.slug, post])
 );
 
-// In-memory TTL cache (5 minutes) to prevent redundant Firestore reads across SSR/ISR/Metadata calls
+// Global in-memory TTL cache (5 minutes) persisting across Next.js Fast Refresh / Turbopack reloads
 const CACHE_TTL_MS = 5 * 60 * 1000;
-let cachedFirestoreArticles: Post[] | null = null;
-let cachedFirestoreBySlug: Map<string, Post> | null = null;
-let cacheTimestamp = 0;
-let inflightFirestorePromise: Promise<Post[]> | null = null;
+
+interface GlobalArticlesCache {
+  articles: Post[] | null;
+  bySlug: Map<string, Post> | null;
+  timestamp: number;
+  inflight: Promise<Post[]> | null;
+}
+
+const globalCache: GlobalArticlesCache =
+  (globalThis as unknown as { __articlesCache?: GlobalArticlesCache }).__articlesCache || {
+    articles: null,
+    bySlug: null,
+    timestamp: 0,
+    inflight: null,
+  };
+
+(globalThis as unknown as { __articlesCache?: GlobalArticlesCache }).__articlesCache = globalCache;
 
 export function invalidateArticlesCache(): void {
-  cachedFirestoreArticles = null;
-  cachedFirestoreBySlug = null;
-  cacheTimestamp = 0;
-  inflightFirestorePromise = null;
+  globalCache.articles = null;
+  globalCache.bySlug = null;
+  globalCache.timestamp = 0;
+  globalCache.inflight = null;
 }
 
 // Helper to format Firestore ArticleItem into standard Post type
@@ -94,19 +107,26 @@ function formatFirestoreArticle(data: Record<string, unknown>, docId: string): P
  */
 export async function getFirestoreArticles(): Promise<Post[]> {
   const now = Date.now();
-  if (cachedFirestoreArticles && now - cacheTimestamp < CACHE_TTL_MS) {
-    return cachedFirestoreArticles;
+  if (globalCache.articles && now - globalCache.timestamp < CACHE_TTL_MS) {
+    return globalCache.articles;
   }
 
-  if (inflightFirestorePromise) {
-    return inflightFirestorePromise;
+  if (globalCache.inflight) {
+    return globalCache.inflight;
   }
 
-  inflightFirestorePromise = (async () => {
+  globalCache.inflight = (async () => {
     try {
       const articlesCol = collection(db, 'articles');
       const q = query(articlesCol, where('status', '==', 'published'));
-      const snapshot = await getDocs(q);
+      
+      // 3.5s timeout safeguard against Firestore network hangs
+      const fetchPromise = getDocs(q);
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Firestore fetch timeout (3.5s)')), 3500)
+      );
+
+      const snapshot = await Promise.race([fetchPromise, timeoutPromise]);
 
       const articles: Post[] = [];
       const slugMap = new Map<string, Post>();
@@ -116,19 +136,19 @@ export async function getFirestoreArticles(): Promise<Post[]> {
         slugMap.set(formatted.slug, formatted);
       });
 
-      cachedFirestoreArticles = articles;
-      cachedFirestoreBySlug = slugMap;
-      cacheTimestamp = Date.now();
+      globalCache.articles = articles;
+      globalCache.bySlug = slugMap;
+      globalCache.timestamp = Date.now();
       return articles;
     } catch (error) {
       console.warn('Failed to fetch articles from Firestore:', error);
-      return cachedFirestoreArticles || [];
+      return globalCache.articles || [];
     } finally {
-      inflightFirestorePromise = null;
+      globalCache.inflight = null;
     }
   })();
 
-  return inflightFirestorePromise;
+  return globalCache.inflight;
 }
 
 /**
@@ -136,11 +156,11 @@ export async function getFirestoreArticles(): Promise<Post[]> {
  */
 export async function getFirestoreArticleBySlug(slug: string): Promise<Post | null> {
   // Use warm in-memory map when available to avoid per-slug Firestore network roundtrips
-  if (!cachedFirestoreBySlug || Date.now() - cacheTimestamp >= CACHE_TTL_MS) {
+  if (!globalCache.bySlug || Date.now() - globalCache.timestamp >= CACHE_TTL_MS) {
     await getFirestoreArticles();
   }
-  if (cachedFirestoreBySlug) {
-    return cachedFirestoreBySlug.get(slug) || null;
+  if (globalCache.bySlug) {
+    return globalCache.bySlug.get(slug) || null;
   }
 
   try {

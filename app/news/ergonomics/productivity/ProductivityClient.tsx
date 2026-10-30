@@ -14,6 +14,7 @@ import {
 } from '../../../../components/icons/ErgonomicsSolidIcons';
 import { spacingTokens } from '../../../../constants/spacingTokens';
 import { useLanguage } from '../../../../components/LanguageProvider';
+import { MobileSnapCarousel } from '../../../../components/ui/MobileSnapCarousel';
 
 const kpiCards = [
   {
@@ -190,13 +191,13 @@ export default function ProductivityClient() {
             </div>
           </div>
 
-          <div className="relative lg:col-span-7 lg:min-h-[420px] mt-2 md:mt-0">
+          <div className="relative lg:col-span-7 lg:min-h-[420px] -mb-12 md:-mb-16 lg:mb-0 z-20 flex justify-center lg:block mt-2 md:mt-0">
             <Image
               src="/diva1.webp"
               alt="Industrial productivity ergonomics visual"
-              width={1600}
-              height={900}
-              className="h-auto w-full max-w-[420px] sm:max-w-[560px] md:max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3 drop-shadow-xl"
+              width={1280}
+              height={1280}
+              className="h-auto w-full max-w-[420px] sm:max-w-[560px] md:max-w-[680px] object-contain object-bottom lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3 drop-shadow-xl"
               priority
             />
           </div>
@@ -226,11 +227,18 @@ export default function ProductivityClient() {
             </div>
           </div>
 
-          <div className="grid gap-3.5 md:grid-cols-2">
+          <MobileSnapCarousel
+            breakpoint="md"
+            desktopGridClassName="grid-cols-2 gap-3.5"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat dampak performa lainnya"
+            swipeLabelEn="Swipe to view more performance impacts"
+            isId={isId}
+          >
             {impactPoints.map((item) => (
               <div
                 key={item.title}
-                className="group rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-md p-3.5 shadow-xs hover:border-[#005596]/30 hover:shadow-md transition-all duration-300"
+                className="group rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-md p-3.5 shadow-xs hover:border-[#005596]/30 hover:shadow-md transition-all duration-300 h-full flex flex-col justify-center"
               >
                 <div className="flex items-start gap-3.5">
                   <div className="relative h-16 w-16 sm:h-20 sm:w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100 border border-slate-200/60">
@@ -252,7 +260,7 @@ export default function ProductivityClient() {
                 </div>
               </div>
             ))}
-          </div>
+          </MobileSnapCarousel>
         </motion.section>
 
         {/* 3. INFOGRAPHIC DASHBOARD : Glass Card Container */}
@@ -279,7 +287,14 @@ export default function ProductivityClient() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-stretch gap-0">
+          <MobileSnapCarousel
+            breakpoint="lg"
+            desktopGridClassName="flex flex-row items-stretch gap-0 w-full"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat indikator performa"
+            swipeLabelEn="Swipe to view performance indicators"
+            isId={isId}
+          >
             {kpiCards.map((item, index) => {
               const gainPct = index === 0 ? 72 : index === 1 ? 60 : 80;
               const gainColor = index === 0 ? 'text-[#005596]' : index === 1 ? 'text-emerald-600' : 'text-blue-700';
@@ -292,7 +307,7 @@ export default function ProductivityClient() {
               const Icon = item.icon;
 
               return (
-                <div key={item.title} className="flex lg:flex-1 flex-col lg:flex-row items-stretch">
+                <div key={item.title} className="flex lg:flex-1 flex-col lg:flex-row items-stretch h-full">
                   <div className="flex-1 group rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-6 hover:border-[#005596]/40 hover:shadow-lg transition-all duration-300 flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full border-2 text-sm font-mono font-black ${stageRingColor}`}>
@@ -342,7 +357,7 @@ export default function ProductivityClient() {
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
 
           {/* Bottom summary bar */}
           <div className="mt-6 grid grid-cols-3 divide-x divide-slate-200/80 rounded-2xl border border-slate-200/80 bg-slate-50/80 backdrop-blur-md overflow-hidden">
@@ -446,13 +461,20 @@ export default function ProductivityClient() {
             {isId ? 'Cara mengukur dampak ergonomi di pabrik Anda' : 'How to quantify ergonomics impact in your plant'}
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-3.5">
+          <MobileSnapCarousel
+            breakpoint="md"
+            desktopGridClassName="grid-cols-2 gap-3.5"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat metrik evaluasi lainnya"
+            swipeLabelEn="Swipe to view more evaluation metrics"
+            isId={isId}
+          >
             {evaluationMetrics.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.metric}
-                  className="group flex items-start gap-4 rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-4.5 hover:border-[#005596]/40 hover:shadow-md transition-all duration-300 border-l-4 border-l-[#005596]"
+                  className="group flex items-start gap-4 rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-4.5 hover:border-[#005596]/40 hover:shadow-md transition-all duration-300 border-l-4 border-l-[#005596] h-full"
                 >
                   <div className="shrink-0 w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#005596] transition-colors group-hover:bg-[#005596] group-hover:text-white">
                     <Icon className="w-5 h-5" strokeWidth={1.75} />
@@ -468,7 +490,7 @@ export default function ProductivityClient() {
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
           <p className="text-xs text-slate-400 mt-5 leading-relaxed font-mono">
             {isId
               ? 'Tip engineering: catat perbandingan cycle time sebelum dan sesudah trial unit untuk menyusun proposal investasi CAPEX yang akurat.'
@@ -508,14 +530,14 @@ export default function ProductivityClient() {
               <div className="flex flex-col sm:flex-row gap-3.5">
                 <Link
                   href="/digital-assistant/roi-calculator"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-blue-50 text-[#005596] text-sm font-bold rounded-full shadow-[0_10px_28px_-6px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-blue-50 text-[#005596] text-sm font-bold rounded-full shadow-[0_10px_28px_-6px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer text-center"
                 >
                   <SolidCalculatorIcon className="w-4.5 h-4.5" />
                   <span>{isId ? 'Mulai Kalkulasi ROI' : 'Start Calculation'}</span>
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-xl text-white text-sm font-bold shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-xl text-white text-sm font-bold shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer text-center"
                 >
                   <span>{isId ? 'Minta Evaluasi Produktivitas Lini' : 'Request Productivity Assessment'}</span>
                 </Link>

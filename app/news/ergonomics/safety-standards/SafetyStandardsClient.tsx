@@ -9,6 +9,7 @@ import ErgonomicsCaseStudies from '../../../../components/news/ErgonomicsCaseStu
 import { SolidSafetyIcon, SolidWarningIcon } from '../../../../components/icons/ErgonomicsSolidIcons';
 import { spacingTokens } from '../../../../constants/spacingTokens';
 import { useLanguage } from '../../../../components/LanguageProvider';
+import { MobileSnapCarousel } from '../../../../components/ui/MobileSnapCarousel';
 
 const standardsMap = [
   {
@@ -185,13 +186,13 @@ export default function SafetyStandardsClient() {
             </div>
           </div>
 
-          <div className="relative lg:col-span-7 lg:min-h-[420px] mt-2 md:mt-0">
+          <div className="relative lg:col-span-7 lg:min-h-[420px] -mb-12 md:-mb-16 lg:mb-0 z-20 flex justify-center lg:block mt-2 md:mt-0">
             <Image
               src="/divadian.webp"
               alt="Occupational safety ergonomics visual"
-              width={1600}
-              height={900}
-              className="h-auto w-full max-w-[420px] sm:max-w-[560px] md:max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3 drop-shadow-xl"
+              width={1280}
+              height={1280}
+              className="h-auto w-full max-w-[420px] sm:max-w-[560px] md:max-w-[680px] object-contain object-bottom lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3 drop-shadow-xl"
               priority
             />
           </div>
@@ -221,11 +222,18 @@ export default function SafetyStandardsClient() {
             </div>
           </div>
 
-          <ul className="grid md:grid-cols-2 gap-4">
+          <MobileSnapCarousel
+            breakpoint="md"
+            desktopGridClassName="grid-cols-2 gap-4"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat prinsip keselamatan lainnya"
+            swipeLabelEn="Swipe to view more safety principles"
+            isId={isId}
+          >
             {principles.map((item) => (
-              <li
+              <div
                 key={item.text}
-                className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-5 rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-4 sm:p-5 hover:border-[#005596]/40 hover:shadow-md transition-all duration-300 border-l-4 border-l-[#005596]"
+                className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-5 rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-4 sm:p-5 hover:border-[#005596]/40 hover:shadow-md transition-all duration-300 border-l-4 border-l-[#005596] h-full"
               >
                 <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 mx-auto sm:mx-0">
                   <Image src={item.iconSrc} alt={isId ? item.textId : item.text} fill className="object-contain" />
@@ -233,9 +241,9 @@ export default function SafetyStandardsClient() {
                 <p className="text-slate-700 leading-relaxed text-[13px] sm:text-[15px] font-medium pt-1">
                   {isId ? item.textId : item.text}
                 </p>
-              </li>
+              </div>
             ))}
-          </ul>
+          </MobileSnapCarousel>
         </motion.section>
 
         {/* Standards and compliance matrix : Glass Card Container */}
@@ -262,9 +270,16 @@ export default function SafetyStandardsClient() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-stretch gap-0 mt-6">
+          <MobileSnapCarousel
+            breakpoint="lg"
+            desktopGridClassName="flex flex-row items-stretch gap-0 mt-6 w-full"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat matriks regulasi lainnya"
+            swipeLabelEn="Swipe to view more regulatory matrices"
+            isId={isId}
+          >
             {standardsMap.map((item, index) => (
-              <div key={item.title} className="flex lg:flex-1 flex-col lg:flex-row items-stretch">
+              <div key={item.title} className="flex lg:flex-1 flex-col lg:flex-row items-stretch h-full">
                 <div className="flex-1 group rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-md p-6 hover:border-[#005596]/40 hover:shadow-lg transition-all duration-300 flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full border-2 text-sm font-mono font-black ${item.ring}`}>
@@ -303,16 +318,9 @@ export default function SafetyStandardsClient() {
                     </div>
                   </div>
                 )}
-                {index < standardsMap.length - 1 && (
-                  <div className="flex lg:hidden h-8 items-center justify-center z-10 -my-4">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 shadow-sm text-slate-400 rotate-90">
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
-          </div>
+          </MobileSnapCarousel>
           <p className="text-xs text-slate-400 mt-5 font-mono">
             {isId
               ? 'Selaraskan matriks ini dengan dokumen audit SMK3 dan standar EHS internal perusahaan Anda.'
@@ -468,14 +476,14 @@ export default function SafetyStandardsClient() {
               <div className="flex flex-col sm:flex-row gap-3.5">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-blue-50 text-[#005596] text-sm font-bold rounded-full shadow-[0_10px_28px_-6px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-blue-50 text-[#005596] text-sm font-bold rounded-full shadow-[0_10px_28px_-6px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer text-center"
                 >
                   <span>{isId ? 'Minta Survei Keselamatan Angkat' : 'Request Safety-Focused Assessment'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/products/schmalz"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-xl text-white text-sm font-bold shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-xl text-white text-sm font-bold shadow-xs hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer text-center"
                 >
                   <span>{isId ? 'Lihat Solusi Alat Angkat' : 'Explore Handling Solutions'}</span>
                 </Link>

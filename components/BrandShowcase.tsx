@@ -509,10 +509,10 @@ export default function BrandShowcase() {
                 })}
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 flex justify-center lg:justify-start">
                 <Link
                   href="/products/schmalz"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#005596] to-[#1d4ed8] hover:from-[#00447a] hover:to-[#1e40af] text-white text-xs sm:text-sm font-bold shadow-[0_6px_20px_-3px_rgba(29,78,216,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)] transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#005596] to-[#1d4ed8] hover:from-[#00447a] hover:to-[#1e40af] text-white text-xs sm:text-sm font-bold shadow-[0_6px_20px_-3px_rgba(29,78,216,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)] transition-all text-center"
                 >
                   <span>{isId ? 'Lihat Seluruh Lini Produk Schmalz' : 'Explore Complete Schmalz Portfolio'}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -726,10 +726,10 @@ export default function BrandShowcase() {
                 })}
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 flex justify-center lg:justify-start">
                 <Link
                   href="/products/binar"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 text-white text-xs sm:text-sm font-bold shadow-[0_6px_20px_-3px_rgba(220,38,38,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)] transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 text-white text-xs sm:text-sm font-bold shadow-[0_6px_20px_-3px_rgba(220,38,38,0.35),inset_0_1px_0_0_rgba(255,255,255,0.25)] transition-all text-center"
                 >
                   <span>{isId ? 'Lihat Seluruh Lini Produk Binar' : 'Explore Complete Binar Portfolio'}</span>
                   <ArrowRight className="w-4 h-4" />

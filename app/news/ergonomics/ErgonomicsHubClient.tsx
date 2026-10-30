@@ -13,6 +13,7 @@ import {
 } from '../../../components/icons/ErgonomicsSolidIcons';
 import { spacingTokens } from '../../../constants/spacingTokens';
 import { useLanguage } from '../../../components/LanguageProvider';
+import { MobileSnapCarousel } from '../../../components/ui/MobileSnapCarousel';
 
 const benchmarkCards = [
   {
@@ -194,13 +195,13 @@ export default function ErgonomicsHubClient() {
             </div>
           </div>
 
-          <div className="relative lg:col-span-7 lg:min-h-[420px]">
+          <div className="relative lg:col-span-7 lg:min-h-[420px] -mb-12 md:-mb-16 lg:mb-0 z-20 flex justify-center lg:block">
             <Image
               src="/divdin.webp"
               alt="Industrial ergonomics implementation visual"
-              width={1600}
-              height={900}
-              className="h-auto w-full max-w-[680px] object-contain object-center lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3 drop-shadow-xl"
+              width={1280}
+              height={1280}
+              className="h-auto w-full max-w-[420px] sm:max-w-[520px] lg:max-w-[680px] object-contain object-bottom lg:absolute lg:bottom-[-4rem] lg:right-0 lg:z-20 lg:translate-x-3 drop-shadow-xl"
               priority
             />
           </div>
@@ -240,13 +241,20 @@ export default function ErgonomicsHubClient() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-12 gap-4 md:gap-5 auto-rows-fr">
+          <MobileSnapCarousel
+            breakpoint="md"
+            desktopGridClassName="grid-cols-12 gap-4 md:gap-5 auto-rows-fr"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center min-h-[300px]"
+            swipeLabelId="Geser untuk memilih skenario ergonomi"
+            swipeLabelEn="Swipe to explore ergonomics scenarios"
+            isId={isId}
+          >
             {visualNavigationTiles.map((tile, idx) => (
               tile.disabled ? (
                 <article
                   key={tile.title}
                   aria-current="page"
-                  className={`relative overflow-hidden rounded-3xl border border-slate-200/90 shadow-sm ${tile.className}`}
+                  className={`relative overflow-hidden rounded-3xl border border-slate-200/90 shadow-sm min-h-[300px] h-full ${tile.className}`}
                 >
                   <Image
                     src={tile.image}
@@ -277,7 +285,7 @@ export default function ErgonomicsHubClient() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className={tile.className}
+                  className={`min-h-[300px] h-full ${tile.className}`}
                 >
                   <Link
                     href={tile.href}
@@ -309,7 +317,7 @@ export default function ErgonomicsHubClient() {
                 </motion.div>
               )
             ))}
-          </div>
+          </MobileSnapCarousel>
           <p className="text-xs text-slate-400 mt-4 font-mono">
             {isId
               ? 'Visual menggunakan dokumentasi proyek industri asli dari arsip portofolio PT Dimensi Quantum Wahyudi.'
@@ -337,13 +345,20 @@ export default function ErgonomicsHubClient() {
               </h2>
             </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <MobileSnapCarousel
+            breakpoint="md"
+            desktopGridClassName="grid-cols-3 gap-4"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat dampak metrik lainnya"
+            swipeLabelEn="Swipe to view more impact metrics"
+            isId={isId}
+          >
             {benchmarkCards.map((card) => {
               const Icon = card.icon;
               return (
                 <div
                   key={card.title}
-                  className="rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-md p-5 shadow-xs hover:border-[#005596]/30 hover:shadow-md transition-all duration-300"
+                  className="rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-md p-5 shadow-xs hover:border-[#005596]/30 hover:shadow-md transition-all duration-300 h-full flex flex-col"
                 >
                   <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${card.color}`}>
                     <Icon className="w-5 h-5" />
@@ -354,13 +369,13 @@ export default function ErgonomicsHubClient() {
                   <p className="text-3xl font-black text-slate-900 mb-2 tracking-tight">
                     {isId ? card.valueId : card.value}
                   </p>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-relaxed mt-auto">
                     {isId ? card.noteId : card.note}
                   </p>
                 </div>
               );
             })}
-          </div>
+          </MobileSnapCarousel>
           <p className="text-xs text-slate-400 mt-4 font-mono">
             {isId
               ? 'Angka patokan indikatif untuk diskusi perencanaan engineering. Gunakan data aktual pabrik Anda pada Kalkulator ROI untuk perhitungan presisi.'
@@ -384,11 +399,18 @@ export default function ErgonomicsHubClient() {
           <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-4 sm:mb-6">
             {isId ? 'Dari pemetaan risiko hingga instalasi sistem' : 'From risk mapping to ergonomic deployment'}
           </h2>
-          <div className="grid md:grid-cols-3 gap-4">
+          <MobileSnapCarousel
+            breakpoint="md"
+            desktopGridClassName="grid-cols-3 gap-4"
+            cardWidthClass="w-[85vw] max-w-[320px] shrink-0 snap-center"
+            swipeLabelId="Geser untuk melihat tahap implementasi"
+            swipeLabelEn="Swipe to view implementation steps"
+            isId={isId}
+          >
             {implementationSteps.map((item) => (
               <div
                 key={item.step}
-                className="relative rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-md p-5 shadow-xs hover:border-[#005596]/30 hover:shadow-md transition-all duration-300"
+                className="relative rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-md p-5 shadow-xs hover:border-[#005596]/30 hover:shadow-md transition-all duration-300 h-full flex flex-col"
               >
                 <p className="text-xs font-mono font-black text-[#005596] tracking-[0.2em] mb-3">
                   {isId ? `TAHAP ${item.step}` : `STEP ${item.step}`}
@@ -396,20 +418,17 @@ export default function ErgonomicsHubClient() {
                 <h3 className="text-lg font-black text-slate-900 mb-2 tracking-tight">
                   {isId ? item.titleId : item.title}
                 </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="text-slate-600 text-sm leading-relaxed mt-auto">
                   {isId ? item.descId : item.desc}
                 </p>
               </div>
             ))}
-          </div>
+          </MobileSnapCarousel>
         </motion.section>
 
         {/* Next Action Section (Dark Engineering Card) */}
         <section className="relative overflow-visible">
-          <div
-            className="bg-gradient-to-br from-[#002244] via-[#003b6d] to-[#005596] text-white rounded-[2rem] border border-white/20 relative overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,85,150,0.4),inset_0_1px_0_0_rgba(255,255,255,0.25)]"
-            style={{ paddingRight: 'clamp(0px, 42%, 520px)' }}
-          >
+          <div className="bg-gradient-to-br from-[#002244] via-[#003b6d] to-[#005596] text-white rounded-[2rem] border border-white/20 relative overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,85,150,0.4),inset_0_1px_0_0_rgba(255,255,255,0.25)] lg:[padding-right:clamp(0px,42%,520px)]">
             {/* Ambient specular glows */}
             <div className="absolute -top-24 -right-24 w-80 h-80 bg-blue-400/20 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-sky-300/15 rounded-full blur-[100px] pointer-events-none" />
@@ -424,19 +443,19 @@ export default function ErgonomicsHubClient() {
               }}
             />
 
-            <div className="relative z-10 p-6 sm:p-7 md:p-12">
+            <div className="relative z-10 p-6 sm:p-8 md:p-12 flex flex-col items-center lg:items-start text-center lg:text-left">
               <span className="inline-block text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 bg-white/12 backdrop-blur-xl rounded-full border border-white/25 text-blue-100 shadow-xs mb-3">
                 {isId ? 'Langkah Selanjutnya' : 'Next Action'}
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 tracking-tight leading-tight max-w-xl lg:max-w-none">
                 {isId ? 'Hitung nilai ekonomis investasi ergonomi Anda' : 'Measure the economics of ergonomic investment'}
               </h2>
-              <p className="text-blue-100/90 text-sm sm:text-base leading-relaxed mb-6 sm:mb-7 font-normal">
+              <p className="text-blue-100/90 text-sm sm:text-base leading-relaxed mb-6 sm:mb-7 font-normal max-w-lg lg:max-w-none">
                 {isId
                   ? 'Gunakan Kalkulator ROI untuk mengestimasi potensi peningkatan throughput dan penghematan biaya operasional sesuai parameter angkat di pabrik Anda.'
                   : 'Use the ROI calculator to estimate potential productivity gains and operational savings for your handling scenario.'}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3.5">
+              <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto justify-center lg:justify-start">
                 <Link
                   href="/digital-assistant/roi-calculator"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-blue-50 text-[#005596] text-sm font-bold rounded-full shadow-[0_10px_28px_-6px_rgba(0,0,0,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"

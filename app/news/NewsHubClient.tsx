@@ -99,7 +99,7 @@ export default function NewsHubClient({ posts }: { posts: PostSummary[] }) {
                         </div>
                         <Link
                             href="/news/ergonomics"
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#005596] hover:bg-[#004276] text-white text-sm font-bold rounded-full shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_8px_24px_rgba(0,85,150,0.35)] hover:-translate-y-0.5 transition-all shrink-0"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#005596] hover:bg-[#004276] text-white text-sm font-bold rounded-full shadow-[0_4px_16px_rgba(0,85,150,0.25)] hover:shadow-[0_8px_24px_rgba(0,85,150,0.35)] hover:-translate-y-0.5 transition-all shrink-0 w-full sm:w-auto text-center"
                         >
                             <span>{copy.clusterBtn}</span>
                             <ArrowRight size={16} />

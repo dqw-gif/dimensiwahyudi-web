@@ -1,17 +1,26 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
+    const disallowRules = [
+        '/admin/',
+        '/api/',
+        '/internal/',
+        '/maintenance/',
+        '/nsg-login/',
+        '/private/',
+    ];
+
     return {
         rules: [
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/private/'],
+                disallow: disallowRules,
             },
             {
                 userAgent: 'Googlebot',
                 allow: '/',
-                disallow: ['/private/'],
+                disallow: disallowRules,
             },
         ],
         host: 'https://dimensiwahyudi.com',
