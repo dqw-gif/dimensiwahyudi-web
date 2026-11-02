@@ -75,7 +75,7 @@ const BROCHURES: BrochureItem[] = [
     badge: 'Quick Guide · 6 Pages',
     badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
     description:
-      'Executive summary covering Schmalz Germany and Binar Handling Sweden vacuum systems. Ideal quick reference for plant managers, project engineers, and procurement teams.',
+      'Executive summary covering Schmalz and Binar Handling vacuum systems. Ideal quick reference for plant managers, project engineers, and procurement teams.',
     specs: [
       'Visual overview of Vacuum Lifters, Crane Systems, and Binar Quick-Lift',
       'Decision matrix comparing manual lift assist vs robotic automation',
@@ -254,39 +254,8 @@ export default function BrochuresClient() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-[#005596] selection:text-white pb-24">
-      {/* Top Welcome Alert Banner */}
-      <section className="bg-gradient-to-r from-blue-950 via-slate-900 to-blue-900 text-white border-b border-blue-800/40 py-3 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-          <div className="flex items-center gap-2 text-center sm:text-left">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#005596] text-white font-black text-[10px]">
-              ★
-            </span>
-            <span className="font-semibold text-slate-200">
-              {isId ? (
-                <>
-                  Selamat Datang di Portal Brosur Teknis Resmi <strong className="text-white">PT Dimensi Quantum Wahyudi</strong>
-                </>
-              ) : (
-                <>
-                  Welcome to the Official Technical Brochure Portal of <strong className="text-white">PT Dimensi Quantum Wahyudi</strong>
-                </>
-              )}
-            </span>
-          </div>
-          <a
-            href={getGeneralWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[11px] transition-all shrink-0 shadow-xs"
-          >
-            <PhoneCall size={12} />
-            <span>{isId ? 'Chat Tim Sales Engineering' : 'Chat with Sales Engineering'}</span>
-          </a>
-        </div>
-      </section>
-
       {/* Main Hero Header */}
-      <header className="relative pt-12 pb-16 md:py-20 bg-white border-b border-slate-200 overflow-hidden">
+      <header className="relative pt-28 sm:pt-36 pb-16 md:pb-20 bg-white border-b border-slate-200 overflow-hidden">
         <div
           className="absolute inset-0 z-0 opacity-40 pointer-events-none"
           style={{
@@ -299,12 +268,12 @@ export default function BrochuresClient() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
           {/* Brand Partner Badges */}
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold">
-            <span className="text-[#005596]">{isId ? 'Distributor Resmi' : 'Official Distributor'}</span>
-            <span>·</span>
-            <span>Schmalz Germany</span>
-            <span>·</span>
-            <span>Binar Handling Sweden</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-xl border border-white/90 ring-1 ring-[#005596]/15 shadow-[0_2px_10px_rgba(0,85,150,0.06)] text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
+            <span className="text-[#005596]">{isId ? 'Kemitraan Resmi Eropa' : 'Official European Partner'}</span>
+            <span className="text-slate-300">·</span>
+            <span>Schmalz</span>
+            <span className="text-slate-300">·</span>
+            <span>Binar Handling</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">

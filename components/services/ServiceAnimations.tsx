@@ -42,8 +42,8 @@ const services: ServiceItem[] = [
     {
         title: 'Genuine Spare Parts',
         titleId: 'Suku Cadang OEM Asli (Genuine Sparepart)',
-        desc: 'We secure original components directly from Schmalz Germany and Binar Sweden. With responsive supply management, we help keep your production cycle moving without technical delays.',
-        descId: 'Kami menyediakan komponen dan suction cup asli langsung dari Schmalz Jerman dan Binar Swedia. Dengan stok lokal yang siap kirim, kami menjaga kelancaran cycle time produksi Anda tanpa hambatan teknis.',
+        desc: 'We secure original components directly from Schmalz and Binar. With responsive supply management, we help keep your production cycle moving without technical delays.',
+        descId: 'Kami menyediakan komponen dan suction cup asli langsung dari Schmalz dan Binar. Dengan stok lokal yang siap kirim, kami menjaga kelancaran cycle time produksi Anda tanpa hambatan teknis.',
         icon: Truck,
         image: 'https://i.imgur.com/leBwKaE.jpeg',
     },

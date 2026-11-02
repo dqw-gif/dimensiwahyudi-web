@@ -4,7 +4,7 @@ import BrochuresClient from './BrochuresClient';
 export const metadata: Metadata = {
   title: 'Official Technical Catalogs & Product Brochures | PT Dimensi Quantum Wahyudi',
   description:
-    'Download official technical catalogs and engineering brochures for Vacuum Lifters (JumboFlex, JumboErgo, VacuMaster), Crane Systems, Robotic Area Grippers, and Automation Components from Schmalz Germany and Binar Handling Sweden.',
+    'Download official technical catalogs and engineering brochures for Vacuum Lifters (JumboFlex, JumboErgo, VacuMaster), Crane Systems, Robotic Area Grippers, and Automation Components from Schmalz and Binar Handling.',
   keywords: [
     'Schmalz Catalog Indonesia',
     'Vacuum Lifter Brochure',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Official Technical Catalogs & Product Brochures | PT Dimensi Quantum Wahyudi',
     description:
-      'Direct access to engineering specifications, lifting capacities, and CAD integration guidelines for Schmalz Germany and Binar Handling Sweden.',
+      'Direct access to engineering specifications, lifting capacities, and CAD integration guidelines for Schmalz and Binar Handling solutions.',
     url: 'https://dimensiwahyudi.com/brosur',
     siteName: 'PT Dimensi Quantum Wahyudi',
     images: [
@@ -43,7 +43,7 @@ export default function BrosurPage() {
     '@type': 'CollectionPage',
     name: 'Official Technical Catalogs & Digital Brochures: PT Dimensi Quantum Wahyudi',
     description:
-      'Official technical digital brochures for ergonomic vacuum handling systems, robotic area gripping, and automation components from Schmalz Germany and Binar Handling Sweden in Indonesia.',
+      'Official technical digital brochures for ergonomic vacuum handling systems, robotic area gripping, and automation components from Schmalz and Binar Handling in Indonesia.',
     url: 'https://dimensiwahyudi.com/brosur',
     publisher: {
       '@type': 'Organization',

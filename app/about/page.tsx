@@ -15,7 +15,7 @@ import PreFooterCTA from '../../components/PreFooterCTA';
 export const metadata: Metadata = {
   title: 'About Us | PT Dimensi Quantum Wahyudi, Ergonomic Handling Since 2009',
   description:
-    'Established in 2009 and a member of Nabel Sakha Group, PT Dimensi Quantum Wahyudi is the authorized distributor for Schmalz Germany and Binar Sweden in Indonesia.',
+    'Established in 2009 and a member of Nabel Sakha Group, PT Dimensi Quantum Wahyudi is the authorized distributor for Schmalz and Binar Handling in Indonesia.',
   keywords: [
     'PT Dimensi Quantum Wahyudi',
     'Nabel Sakha Group',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About PT Dimensi Quantum Wahyudi | Official Ergonomic Handling Partner',
     description:
-      'Founded in 2009, we deliver certified vacuum lifting equipment from Schmalz Germany and electric manipulator arms from Binar Sweden to manufacturing plants across Indonesia.',
+      'Founded in 2009, we deliver certified vacuum lifting equipment from Schmalz and electric manipulator arms from Binar Handling to manufacturing plants across Indonesia.',
     url: 'https://dimensiwahyudi.com/about',
     siteName: 'PT Dimensi Quantum Wahyudi',
     locale: 'en_US',

@@ -102,3 +102,5 @@ export function MobileSnapCarousel({
     </div>
   );
 }
+
+export default MobileSnapCarousel;

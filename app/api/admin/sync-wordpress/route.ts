@@ -30,16 +30,18 @@ export async function POST(request: NextRequest) {
       const slug = post.slug;
       const categoryName = post.categories?.nodes?.[0]?.name || 'News';
       const featuredImage = post.featuredImage?.node?.sourceUrl || 'https://dimensiwahyudi.com/opengraph-image';
-      const rawPost = post as Record<string, any>;
-      const authorName = rawPost.author?.node?.name || 'DQW Technical Editorial';
+      const rawPost = post as Record<string, unknown>;
+      const authorNode = rawPost.author as { node?: { name?: string } } | undefined;
+      const authorName = authorNode?.node?.name || 'DQW Technical Editorial';
       const publishedAt = post.date ? new Date(post.date).toISOString() : nowIso;
 
+      const rawContent = typeof rawPost.content === 'string' ? rawPost.content : '';
       const articleData = {
         id: slug,
         slug: slug,
         title: post.title || 'Untitled',
         excerpt: (post.excerpt || post.title || '').replace(/<[^>]+>/g, '').trim().slice(0, 250),
-        content: rawPost.content || post.excerpt || '',
+        content: rawContent || post.excerpt || '',
         category: categoryName,
         featuredImage: featuredImage,
         author: authorName,

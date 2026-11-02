@@ -9,6 +9,7 @@ const eslintConfig = defineConfig([
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@next/next/no-img-element': 'warn',
       'react-hooks/set-state-in-effect': 'warn',
     },
@@ -21,6 +22,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "scripts/**",
+    "public/**",
   ]),
 ]);
 

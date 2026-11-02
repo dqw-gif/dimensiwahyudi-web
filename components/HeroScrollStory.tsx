@@ -115,7 +115,7 @@ export default function HeroScrollStory() {
                 {/* Subline */}
                 <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl font-normal">
                   {isId
-                    ? 'Sistem Vacuum Handling Schmalz Jerman dan Binar Handling Swedia yang dirancang untuk menghilangkan beban angkat manual dan mempercepat cycle time produksi.'
+                    ? 'Sistem Vacuum Handling Schmalz dan Quick-Lift Binar yang dirancang untuk menghilangkan beban angkat manual dan mempercepat cycle time produksi.'
                     : 'German vacuum handling systems by Schmalz engineered to eliminate operator strain and accelerate factory throughput.'}
                 </p>
               </motion.div>

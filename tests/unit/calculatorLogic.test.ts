@@ -20,15 +20,15 @@ describe('calculatorLogic', () => {
   });
 
   it('returns recommendation by payload band', () => {
-    expect(getRecommendation(20).productUrl).toBe('/products/schmalz/vacuum-tube-lifter');
+    expect(getRecommendation(20).productUrl).toBe('/products/schmalz/vacuum-tube-lifter/jumboflex');
     expect(getRecommendation(60).label).toContain('JumboErgo');
     expect(getRecommendation(120).productUrl).toBe('/products/schmalz/vacumaster');
-    expect(getRecommendation(160).productUrl).toBe('/products/binar/qla-50i-om');
+    expect(getRecommendation(260).productUrl).toBe('/products/binar/qla-50i-om');
   });
 
   it('returns safety message based on weight and danger', () => {
-    expect(getSafetyMessage(false, 30)).toContain('manual lifting limit');
-    expect(getSafetyMessage(true, 20)).toContain('high risk');
-    expect(getSafetyMessage(false, 20)).toContain('within factory ergonomic standards');
+    expect(getSafetyMessage(false, 30)).toContain('manual lifting threshold');
+    expect(getSafetyMessage(true, 20)).toContain('cumulative daily tonnage');
+    expect(getSafetyMessage(false, 20)).toContain('standard ergonomic thresholds');
   });
 });

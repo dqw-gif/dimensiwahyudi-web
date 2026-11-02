@@ -9,9 +9,13 @@
     "locationCity": "Cikarang, West Java",
     "description": "Improving Precision, Efficiency, and Productivity in Modern Manufacturing with advanced vacuum handling and robotic systems.",
     "status": "closed",
-    "statusLabel": "Registration Closed",
+    "statusLabel": "Event Recap",
     "link": "/schmalz-fanuc-event",
-    "image": "/brands/schmalz.webp"
+    "image": "/videos/events/schmalz-fanuc-poster.jpg",
+    "videoLoop": "/videos/events/schmalz-fanuc-loop.mp4",
+    "videoFull": "/videos/events/schmalz-fanuc-full.mp4",
+    "videoPoster": "/videos/events/schmalz-fanuc-poster.jpg",
+    "instagramUrl": "https://www.instagram.com/nabelsakha/reel/DbaYGhTzYGL/"
   },
   {
     "id": "manufacturing-batam",
@@ -23,9 +27,13 @@
     "locationCity": "Batam, Riau Islands",
     "description": "The premier manufacturing exhibition in the region. Visit our booth to consult on pneumatic suction systems and crane lifts.",
     "status": "closed",
-    "statusLabel": "Event Ended",
+    "statusLabel": "Event Recap",
     "link": "/contact?ref=manufacturing-batam",
-    "image": "https://i.imgur.com/92OhlM4.png"
+    "image": "/videos/events/manufacturing-batam-poster.jpg",
+    "videoLoop": "/videos/events/manufacturing-batam-loop.mp4",
+    "videoFull": "/videos/events/manufacturing-batam-full.mp4",
+    "videoPoster": "/videos/events/manufacturing-batam-poster.jpg",
+    "instagramUrl": "https://www.instagram.com/nabelsakha/reel/Ded3HPWtIIF/"
   },
   {
     "id": "allpack-jakarta",
@@ -36,9 +44,13 @@
     "location": "Jakarta International Expo (JIExpo) Kemayoran",
     "locationCity": "Jakarta",
     "description": "Indonesian packaging, processing, automation, and handling exhibition. Discover ergonomic bag lifters and vacuum components.",
-    "status": "upcoming",
-    "statusLabel": "Upcoming",
+    "status": "closed",
+    "statusLabel": "Event Recap",
     "link": "/contact?ref=allpack-jakarta",
-    "image": "https://i.imgur.com/XK8WqKv.jpeg"
+    "image": "/videos/events/allpack-jakarta-poster.jpg",
+    "videoLoop": "/videos/events/allpack-jakarta-loop.mp4",
+    "videoFull": "/videos/events/allpack-jakarta-full.mp4",
+    "videoPoster": "/videos/events/allpack-jakarta-poster.jpg",
+    "instagramUrl": "https://www.instagram.com/nabelsakha/reel/DfEetvLznRl/"
   }
 ]

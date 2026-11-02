@@ -39,24 +39,24 @@ function getSourceByVideoId(id: string): SourceLabel {
     return BINAR_VIDEO_IDS.has(id) ? 'Binar' : 'Schmalz';
 }
 
-function getIndustryIcon(industry: string) {
+function IndustryIcon({ industry, size, className }: { industry: string; size: number; className?: string }) {
     switch (industry) {
         case 'Automotive & Manufacturing':
-            return Car;
+            return <Car size={size} className={className} />;
         case 'Glass & Window':
-            return AppWindow;
+            return <AppWindow size={size} className={className} />;
         case 'Logistics & Packaging':
-            return Boxes;
+            return <Boxes size={size} className={className} />;
         case 'Metal & Steel':
-            return Hammer;
+            return <Hammer size={size} className={className} />;
         case 'Wood & Furniture':
-            return Trees;
+            return <Trees size={size} className={className} />;
         case 'Chemical & Pharma':
-            return FlaskConical;
+            return <FlaskConical size={size} className={className} />;
         case 'Electronics & Automation':
-            return Cpu;
+            return <Cpu size={size} className={className} />;
         default:
-            return Factory;
+            return <Factory size={size} className={className} />;
     }
 }
 
@@ -72,7 +72,6 @@ function VideoCard({
     onClick: () => void;
 }) {
     const isBinar = source === 'Binar';
-    const IndustryIcon = getIndustryIcon(v.industry);
 
     return (
         <div
@@ -102,7 +101,7 @@ function VideoCard({
                 </div>
                 <div className="absolute top-3 left-3">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide bg-white/90 backdrop-blur-md text-slate-800 shadow-sm ring-1 ring-white/50">
-                        <IndustryIcon size={12} className={isBinar ? 'text-red-600' : 'text-[#005596]'} />
+                        <IndustryIcon industry={v.industry} size={12} className={isBinar ? 'text-red-600' : 'text-[#005596]'} />
                         <span>{v.category}</span>
                     </span>
                 </div>
@@ -126,7 +125,7 @@ function VideoCard({
                         }`}
                         title={v.industry}
                     >
-                        <IndustryIcon size={14} />
+                        <IndustryIcon industry={v.industry} size={14} />
                     </div>
                     <span
                         className={`text-[11px] font-mono font-bold uppercase tracking-wider truncate ${
@@ -481,7 +480,7 @@ export default function VideoLibraryPage() {
                                         activeBrand === 'Schmalz' ? 'bg-sky-300' : 'bg-[#005596]'
                                     }`}
                                 />
-                                <span>Schmalz Germany</span>
+                                <span>Schmalz</span>
                                 <span
                                     className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
                                         activeBrand === 'Schmalz'
@@ -506,7 +505,7 @@ export default function VideoLibraryPage() {
                                         activeBrand === 'Binar' ? 'bg-red-200' : 'bg-red-600'
                                     }`}
                                 />
-                                <span>Binar Sweden</span>
+                                <span>Binar Handling</span>
                                 <span
                                     className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
                                         activeBrand === 'Binar'
@@ -603,7 +602,7 @@ export default function VideoLibraryPage() {
                                     <div className="space-y-1.5">
                                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-[#005596] text-xs font-mono font-bold tracking-wider">
                                             <span className="w-2 h-2 rounded-full bg-[#005596]" />
-                                            SCHMALZ GERMANY
+                                            SCHMALZ VACUUM SYSTEMS
                                         </div>
                                         <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                                             {copy.schmalzTitle}
@@ -642,7 +641,7 @@ export default function VideoLibraryPage() {
                                     <div className="space-y-1.5">
                                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200/80 text-red-600 text-xs font-mono font-bold tracking-wider">
                                             <span className="w-2 h-2 rounded-full bg-red-600" />
-                                            BINAR HANDLING SWEDEN
+                                            BINAR QUICK-LIFT SYSTEMS
                                         </div>
                                         <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                                             {copy.binarTitle}

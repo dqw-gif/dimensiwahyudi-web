@@ -51,8 +51,8 @@ export function AboutHero() {
         className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8"
       >
         {isId
-          ? 'PT Dimensi Quantum Wahyudi (DQW), bagian dari Nabel Sakha Group, menghadirkan sistem Vacuum Handling bersertifikat dari Schmalz Jerman dan manipulator lengan elektrik dari Binar Swedia langsung ke pabrik manufaktur di seluruh Indonesia.'
-          : 'PT Dimensi Quantum Wahyudi (DQW), a member of Nabel Sakha Group, delivers certified vacuum handling equipment from Schmalz Germany and electric manipulator arms from Binar Sweden directly to manufacturing facilities across Indonesia.'}
+          ? 'PT Dimensi Quantum Wahyudi (DQW), bagian dari Nabel Sakha Group, menghadirkan sistem Vacuum Handling dan manipulator lengan elektrik presisi langsung ke pabrik manufaktur di seluruh Indonesia.'
+          : 'PT Dimensi Quantum Wahyudi (DQW), a member of Nabel Sakha Group, delivers certified vacuum handling equipment and precision electric manipulator arms directly to manufacturing facilities across Indonesia.'}
       </motion.p>
 
       {/* Quick Action Pill Buttons */}
@@ -110,7 +110,7 @@ export function AboutStoryImage() {
           <div className="h-8 flex items-center">
             <Image
               src="/brands/schmalz.webp"
-              alt="Schmalz Germany"
+              alt="Schmalz"
               width={105}
               height={32}
               className="object-contain"
@@ -120,7 +120,7 @@ export function AboutStoryImage() {
           <div className="h-8 flex items-center">
             <Image
               src="/brands/binar.webp"
-              alt="Binar Sweden"
+              alt="Binar Handling"
               width={85}
               height={32}
               className="object-contain"

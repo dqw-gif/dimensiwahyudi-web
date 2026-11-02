@@ -139,7 +139,7 @@ const messages: Record<Lang, Dictionary> = {
       downloadCatalogs: 'Download Product Catalogs',
       techConsultation: 'Technical Consultation',
       tagline:
-        'Official Indonesian partner for industrial lifting and ergonomic handling systems. We deliver certified vacuum lifters from Schmalz Germany and electric manipulator arms from Binar Sweden to protect operators and keep factory lines moving.',
+        'Official Indonesian partner for industrial lifting and ergonomic handling systems. We deliver certified vacuum lifters from Schmalz and electric manipulator arms from Binar to protect operators and keep factory lines moving.',
       rightsReserved: 'All rights reserved.',
       sitemap: 'Sitemap',
       faq: 'FAQ',
@@ -218,7 +218,7 @@ const messages: Record<Lang, Dictionary> = {
       downloadCatalogs: 'Download Brosur Teknis',
       techConsultation: 'Konsultasi Teknis',
       tagline:
-        'Mitra resmi sistem pengangkat industri dan material handling ergonomis di Indonesia. Menghadirkan Vacuum Lifter bersertifikat dari Schmalz Jerman dan lengan manipulator elektrik dari Binar Swedia untuk melindungi operator serta menjaga kelancaran lini produksi.',
+        'Mitra resmi sistem pengangkat industri dan material handling ergonomis di Indonesia. Menghadirkan Vacuum Lifter bersertifikat dari Schmalz dan lengan manipulator elektrik dari Binar untuk melindungi operator serta menjaga kelancaran lini produksi.',
       rightsReserved: 'Seluruh hak cipta dilindungi.',
       sitemap: 'Peta Situs',
       faq: 'FAQ',

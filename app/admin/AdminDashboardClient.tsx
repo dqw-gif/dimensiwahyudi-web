@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
@@ -903,7 +903,7 @@ export default function AdminDashboardClient({ initialLegacyCount }: Props) {
             <div>
               <h3 className="text-lg font-bold text-slate-900">Delete This Article?</h3>
               <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                Article <span className="font-semibold text-slate-800">"{deleteTarget.title}"</span> will be permanently deleted from Firestore database.
+                Article <span className="font-semibold text-slate-800">&ldquo;{deleteTarget.title}&rdquo;</span> will be permanently deleted from Firestore database.
               </p>
             </div>
             <div className="flex items-center justify-end gap-2 pt-2">

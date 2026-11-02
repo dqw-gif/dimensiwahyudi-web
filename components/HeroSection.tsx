@@ -49,12 +49,12 @@ export default function HeroSection() {
             >
               <div className="inline-flex items-center gap-1.5">
                 <Image src="/images/flags/germany.svg" alt="Germany" width={16} height={10} className="w-4 h-2.5 rounded-[1px] object-cover border border-slate-300/80 shrink-0" />
-                <span>Schmalz Germany</span>
+                <span>Schmalz</span>
               </div>
               <span className="text-slate-300">&bull;</span>
               <div className="inline-flex items-center gap-1.5">
                 <Image src="/images/flags/sweden.svg" alt="Sweden" width={16} height={10} className="w-4 h-2.5 rounded-[1px] object-cover border border-slate-300/80 shrink-0" />
-                <span>Binar Sweden</span>
+                <span>Binar Handling</span>
               </div>
               <span className="text-slate-300">|</span>
               <span className="text-slate-500 font-medium normal-case font-sans tracking-normal">Official Distributor in Indonesia</span>

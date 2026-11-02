@@ -27,7 +27,7 @@ const performanceMetrics: MetricItem[] = [
     title: 'Industrial Engineering Record',
     titleId: 'Rekam Jejak Engineering Industri',
     desc: 'Official partner of Schmalz and Binar Handling in Indonesia since 2009.',
-    descId: 'Partner resmi Schmalz Jerman dan Binar Handling Swedia di Indonesia sejak 2009.',
+    descId: 'Partner resmi Schmalz dan Binar Handling di Indonesia sejak 2009.',
   },
   {
     target: 500,
