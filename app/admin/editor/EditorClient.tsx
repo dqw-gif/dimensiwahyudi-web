@@ -171,6 +171,31 @@ export default function EditorClient() {
     };
 
     loadInitialData();
+
+    // Check if coming from AI Writer Wizard
+    if (!editId && typeof window !== 'undefined') {
+      const aiDraft = sessionStorage.getItem('dqw_ai_article_draft');
+      if (aiDraft) {
+        try {
+          const parsed = JSON.parse(aiDraft);
+          if (parsed.title) setTitle(parsed.title);
+          if (parsed.slug) {
+            setSlug(parsed.slug);
+            setIsSlugManual(true);
+          }
+          if (parsed.category) setCategory(parsed.category);
+          if (parsed.excerpt || parsed.metaDescription) setExcerpt(parsed.excerpt || parsed.metaDescription);
+          if (parsed.content) {
+            setContent(parsed.content);
+            setHistory([parsed.content]);
+            setHistoryIndex(0);
+          }
+          sessionStorage.removeItem('dqw_ai_article_draft');
+        } catch (e) {
+          console.error('Failed to parse AI draft from sessionStorage:', e);
+        }
+      }
+    }
   }, [editId]);
 
   // Check LocalStorage for draft recovery
@@ -617,8 +642,8 @@ export default function EditorClient() {
           type: 'success',
           message:
             status === 'published'
-              ? 'Article published successfully and is live.'
-              : 'Article draft saved successfully.',
+              ? 'Artikel berhasil diterbitkan dan live! Notifikasi push index (Google Sitemap & IndexNow) otomatis dikirimkan ke mesin pencari.'
+              : 'Draft artikel berhasil disimpan.',
           slug: publishedSlug,
         });
 

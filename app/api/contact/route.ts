@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { db } from '@/lib/firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 const DISPOSABLE_DOMAINS = new Set([
   'mailinator.com',
@@ -75,6 +77,23 @@ export async function POST(request: Request) {
     if (!res.ok) {
       const errorText = await res.text().catch(() => 'Unknown network error');
       throw new Error(`Upstream submission failed: ${res.status} ${errorText}`);
+    }
+
+    // Also record lead to Firestore for internal Admin CMS
+    try {
+      const leadId = `lead-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+      await setDoc(doc(db, 'leads', leadId), {
+        id: leadId,
+        name,
+        company,
+        email,
+        message,
+        lead_type: 'Contact Form',
+        status: 'new',
+        createdAt: new Date().toISOString(),
+      });
+    } catch (dbErr) {
+      console.warn('Firestore lead logging non-fatal error:', dbErr);
     }
 
     return NextResponse.json({ ok: true });

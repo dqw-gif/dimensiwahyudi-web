@@ -10,6 +10,7 @@ import { useLanguage } from './LanguageProvider';
 export default function B2BChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+  const [isBubbleDismissed, setIsBubbleDismissed] = useState(false);
   const { lang } = useLanguage();
   const isId = lang === 'id';
 
@@ -49,7 +50,7 @@ export default function B2BChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 w-[340px] z-50 bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] border border-slate-200 overflow-hidden flex flex-col"
+            className="fixed bottom-20 right-4 left-4 sm:left-auto sm:right-6 sm:bottom-24 sm:w-[350px] max-w-[calc(100vw-2rem)] z-50 bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] border border-slate-200 overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-slate-900 to-blue-900 px-5 py-4 flex items-center justify-between">
@@ -174,30 +175,45 @@ export default function B2BChatbot() {
         )}
       </AnimatePresence>
 
-      {/* Floating Teaser speech bubble next to the chat button */}
-      {!isOpen && !hasOpened && (
+      {/* Floating Teaser speech bubble next to the chat button (Hidden on Mobile, Visible on Desktop) */}
+      {!isOpen && !hasOpened && !isBubbleDismissed && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.4, type: "spring", stiffness: 100 }}
-          onClick={toggleChat}
-          className="fixed bottom-[96px] right-6 z-50 bg-slate-900 text-white text-xs font-medium px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-slate-700/80 cursor-pointer hover:bg-slate-800 transition-all select-none max-w-[260px]"
+          transition={{ delay: 2, duration: 0.4, type: 'spring', stiffness: 100 }}
+          className="hidden md:flex fixed bottom-[96px] right-6 z-50 bg-slate-900/95 backdrop-blur-md text-white text-xs font-medium pl-4 pr-2.5 py-3 rounded-2xl rounded-br-none shadow-xl border border-slate-700/80 transition-all select-none max-w-[270px] items-center justify-between gap-2.5 group"
         >
-          <div className="flex items-center gap-2.5">
+          <div
+            onClick={toggleChat}
+            className="flex items-center gap-2.5 cursor-pointer flex-1"
+          >
             <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
-            <span className="text-slate-200 leading-snug font-sans">
+            <span className="text-slate-200 leading-snug font-sans group-hover:text-white transition-colors">
               {isId
                 ? 'Butuh konsultasi teknis sistem vacuum handling industri?'
                 : 'Need technical guidance on industrial vacuum handling?'}
             </span>
           </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsBubbleDismissed(true);
+            }}
+            className="w-5 h-5 rounded-full hover:bg-white/20 text-slate-400 hover:text-white flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+            aria-label="Tutup pesan"
+          >
+            <X size={12} />
+          </button>
         </motion.div>
       )}
 
       {/* Floating Toggle Button */}
       <button
         onClick={toggleChat}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-br from-blue-600 to-slate-900 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 border-4 border-white/20 ${isOpen ? 'rotate-90 bg-slate-800' : 'hover:shadow-blue-600/50'}`}
+        className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 w-13 h-13 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-slate-900 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 border-[3px] sm:border-4 border-white/20 cursor-pointer ${
+          isOpen ? 'rotate-90 bg-slate-800' : 'hover:shadow-blue-600/50'
+        }`}
         aria-label="Toggle Virtual Assistant"
       >
         <AnimatePresence mode="wait">
@@ -209,7 +225,7 @@ export default function B2BChatbot() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <X size={28} />
+              <X className="w-5 h-5 sm:w-7 sm:h-7" />
             </motion.div>
           ) : (
             <motion.div
@@ -220,10 +236,10 @@ export default function B2BChatbot() {
               transition={{ duration: 0.15 }}
               className="relative"
             >
-              <MessageSquare size={26} className="fill-current -mt-1 ml-0.5" />
+              <MessageSquare className="w-5 h-5 sm:w-6.5 sm:h-6.5 fill-current -mt-0.5 ml-0.5" />
               {/* Notification Dot */}
               {!hasOpened && (
-                <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-slate-900 rounded-full animate-pulse z-10"></span>
+                <span className="absolute -top-0.5 -right-0.5 sm:top-0 sm:right-0 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-red-500 border-2 border-slate-900 rounded-full animate-pulse z-10"></span>
               )}
             </motion.div>
           )}

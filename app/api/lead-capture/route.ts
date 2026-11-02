@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { db } from '@/lib/firebase';
+import { doc, setDoc } from 'firebase/firestore';
 
 const MIN_SUBMIT_MS = 2500;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
@@ -169,6 +171,23 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       return NextResponse.json({ ok: false, error: 'Upstream lead endpoint failed' }, { status: 502 });
+    }
+
+    // Record lead to Firestore for internal Admin CMS
+    try {
+      const leadId = `lead-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+      await setDoc(doc(db, 'leads', leadId), {
+        id: leadId,
+        name: submissionPayload.name,
+        company: submissionPayload.company,
+        email: submissionPayload.email,
+        message: submissionPayload.message,
+        lead_type: submissionPayload.lead_type,
+        status: 'new',
+        createdAt: new Date().toISOString(),
+      });
+    } catch (dbErr) {
+      console.warn('Firestore lead logging non-fatal error:', dbErr);
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });

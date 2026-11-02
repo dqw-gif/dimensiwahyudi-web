@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import { ADMIN_COOKIE_NAME, verifyAdminToken } from '@/lib/admin-auth';
 import { db } from '@/lib/firebase';
 import { invalidateArticlesCache } from '@/services/articles';
+import { pushIndexToSearchEngines } from '@/lib/seo/indexing';
 import {
   collection,
   getDocs,
@@ -111,7 +112,13 @@ export async function POST(request: NextRequest) {
     revalidatePath('/');
     revalidatePath('/sitemap.xml');
 
-    return NextResponse.json({ success: true, article: articleData });
+    // Auto-Push Indexing to Google & IndexNow (Bing/Yandex)
+    let indexPushResult = null;
+    if (articleData.status === 'published') {
+      indexPushResult = await pushIndexToSearchEngines(cleanSlug);
+    }
+
+    return NextResponse.json({ success: true, article: articleData, indexPushResult });
   } catch (error) {
     const err = error instanceof Error ? error.message : String(error);
     return NextResponse.json({ success: false, error: err }, { status: 500 });
@@ -182,7 +189,13 @@ export async function PUT(request: NextRequest) {
     revalidatePath('/');
     revalidatePath('/sitemap.xml');
 
-    return NextResponse.json({ success: true, article: updatedData });
+    // Auto-Push Indexing if published
+    let indexPushResult = null;
+    if (updatedData.status === 'published') {
+      indexPushResult = await pushIndexToSearchEngines(updatedData.slug);
+    }
+
+    return NextResponse.json({ success: true, article: updatedData, indexPushResult });
   } catch (error) {
     const err = error instanceof Error ? error.message : String(error);
     return NextResponse.json({ success: false, error: err }, { status: 500 });

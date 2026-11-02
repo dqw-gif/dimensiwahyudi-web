@@ -9,7 +9,11 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function AdminPage() {
+interface Props {
+  searchParams?: Promise<{ tab?: string }>;
+}
+
+export default async function AdminPage({ searchParams }: Props) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ADMIN_COOKIE_NAME)?.value;
   const isAuth = await verifyAdminToken(token);
@@ -19,6 +23,8 @@ export default async function AdminPage() {
   }
 
   const legacyCount = Array.isArray(postsBackup) ? postsBackup.length : 88;
+  const resolvedParams = searchParams ? await searchParams : {};
+  const requestedTab = resolvedParams.tab === 'projects' || resolvedParams.tab === 'leads' ? resolvedParams.tab : 'articles';
 
-  return <AdminDashboardClient initialLegacyCount={legacyCount} />;
+  return <AdminDashboardClient initialLegacyCount={legacyCount} initialTab={requestedTab} />;
 }
