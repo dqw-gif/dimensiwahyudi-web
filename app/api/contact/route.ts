@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 const DISPOSABLE_DOMAINS = new Set([
   'mailinator.com',
@@ -56,6 +57,17 @@ export async function POST(request: Request) {
 
     if (!message || message.length < 10) {
       return NextResponse.json({ ok: false, error: 'Message description is too short' }, { status: 400 });
+    }
+
+    // Cloudflare Turnstile Anti-Bot Verification
+    const turnstileToken = body.turnstileToken || body.token;
+    const clientIp = getClientIp(request);
+    const turnstileCheck = await verifyTurnstileToken(turnstileToken, clientIp);
+    if (!turnstileCheck.success) {
+      return NextResponse.json(
+        { ok: false, error: 'Anti-bot verification failed. Please refresh and try again.' },
+        { status: 403 }
+      );
     }
 
     // Direct Google Sheets Web App URL (100% Full Google Sheets)

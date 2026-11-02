@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle, ExternalLink, AlertCircle } from 'lucide-react';
 import Script from 'next/script';
+import Turnstile from '@/components/Turnstile';
 import { trackEvent } from '@/lib/gtag';
 import { useLanguage } from '@/components/LanguageProvider';
 
@@ -77,6 +78,7 @@ export default function ContactPage() {
   const isId = lang === 'id';
 
   const [formData, setFormData] = useState({ name: '', company: '', email: '', message: '' });
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const CONTACT_API_URL = '/api/contact';
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -149,7 +151,10 @@ export default function ContactPage() {
     setFormStatus('submitting');
 
     try {
-      const res = await postWithRetry(CONTACT_API_URL, formData);
+      const res = await postWithRetry(CONTACT_API_URL, {
+        ...formData,
+        turnstileToken,
+      });
       if (res.ok) {
         trackEvent('generate_lead', {
           event_category: 'Contact',
@@ -548,6 +553,13 @@ export default function ContactPage() {
                       {formData.message.length}/20 {copy.minText}
                     </span>
                   </div>
+                </div>
+
+                <div className="flex justify-center pt-2">
+                  <Turnstile
+                    onSuccess={(token) => setTurnstileToken(token)}
+                    onExpire={() => setTurnstileToken('')}
+                  />
                 </div>
 
                 <button

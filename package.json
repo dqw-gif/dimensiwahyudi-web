@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "tunnel": "cloudflared tunnel --url http://localhost:3000",
     "build": "next build",
     "sync:wp": "node scripts/fetch-wp-posts.js",
     "start": "next start",
