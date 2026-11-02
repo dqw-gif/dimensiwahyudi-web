@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { verifyTurnstileToken } from '@/lib/turnstile';
 
 const DISPOSABLE_DOMAINS = new Set([
   'mailinator.com',
@@ -23,14 +22,6 @@ function isValidEmail(email: string) {
 function isDisposableEmail(email: string) {
   const domain = email.split('@')[1]?.toLowerCase() ?? '';
   return DISPOSABLE_DOMAINS.has(domain);
-}
-
-function getClientIp(request: Request) {
-  const forwarded = request.headers.get('x-forwarded-for') ?? '';
-  const firstIp = forwarded.split(',')[0]?.trim();
-  if (firstIp) return firstIp;
-  const fallback = request.headers.get('x-real-ip') ?? '';
-  return fallback.trim() || 'unknown';
 }
 
 export async function POST(request: Request) {
@@ -57,17 +48,6 @@ export async function POST(request: Request) {
 
     if (!message || message.length < 10) {
       return NextResponse.json({ ok: false, error: 'Message description is too short' }, { status: 400 });
-    }
-
-    // Cloudflare Turnstile Anti-Bot Verification
-    const turnstileToken = body.turnstileToken || body.token;
-    const clientIp = getClientIp(request);
-    const turnstileCheck = await verifyTurnstileToken(turnstileToken, clientIp);
-    if (!turnstileCheck.success) {
-      return NextResponse.json(
-        { ok: false, error: 'Anti-bot verification failed. Please refresh and try again.' },
-        { status: 403 }
-      );
     }
 
     // Direct Google Sheets Web App URL (100% Full Google Sheets)

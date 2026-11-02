@@ -24,8 +24,20 @@ export default function CatalogsGatePage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API delay / Webhook trigger
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          company: formData.jobTitle ? `${formData.company.trim()} (${formData.jobTitle.trim()})` : formData.company.trim(),
+          email: formData.email.trim(),
+          message: `Download E-Katalog 2026. Jabatan: ${formData.jobTitle || '-'}. Perusahaan: ${formData.company}.`,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to submit catalog lead:', err);
+    }
     
     setIsUnlocked(true);
     setIsSubmitting(false);
