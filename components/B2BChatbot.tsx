@@ -262,10 +262,24 @@ export default function B2BChatbot() {
         setMessages(finalMsgs);
         saveToSessionStorage(sessionId, clientName, clientCompany, 0, finalMsgs);
       } else {
-        alert(data.error || 'Gagal mengirim pesan.');
+        const errMsg: ChatMessage = {
+          id: `msg-err-${Date.now()}`,
+          sender: 'assistant',
+          text: `Mohon maaf, sistem AI mengalami kendala teknis konfigurasi (${data.error || 'API Key not ready'}). Silakan hubungi tim kami via WhatsApp untuk respon langsung.`,
+          timestamp: new Date().toISOString(),
+          isCommercial: true,
+        };
+        setMessages([...newMessages, errMsg]);
       }
     } catch {
-      alert('Kendala jaringan saat menghubungi AI.');
+      const netErrMsg: ChatMessage = {
+        id: `msg-net-err-${Date.now()}`,
+        sender: 'assistant',
+        text: 'Kendala koneksi jaringan saat menghubungi server. Silakan hubungi tim kami via WhatsApp atau coba beberapa saat lagi.',
+        timestamp: new Date().toISOString(),
+        isCommercial: true,
+      };
+      setMessages([...newMessages, netErrMsg]);
     } finally {
       setIsSendingMessage(false);
     }
