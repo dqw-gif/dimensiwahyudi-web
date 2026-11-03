@@ -34,6 +34,7 @@ import {
   Mail,
   Phone,
   MessageSquare,
+  Bot,
   ArrowRight,
   ArrowUpRight,
   Eye,
@@ -832,6 +833,22 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
       return matchesSearch && matchesType;
     });
   }, [leads, leadSearch, leadTypeFilter]);
+
+  // Chatbot Monitoring Stats
+  const chatbotStats = useMemo(() => {
+    const chatbotLeads = leads.filter(
+      (l) => l.lead_type === 'AI Chatbot Consultation' || (l.messages && l.messages.length > 0)
+    );
+    const commercialCount = chatbotLeads.filter((l) =>
+      l.messages?.some((m) => m.isCommercial)
+    ).length;
+    const totalMessages = chatbotLeads.reduce((acc, l) => acc + (l.messages?.length || 0), 0);
+    return {
+      totalSessions: chatbotLeads.length,
+      commercialCount,
+      totalMessages,
+    };
+  }, [leads]);
 
   // Metrics
   const publishedCount = firestoreArticles.filter((a) => a.status === 'published').length;
@@ -1659,6 +1676,42 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
         {/* ========================================================================= */}
         {activeTab === 'leads' && (
           <div className="space-y-6 animate-in fade-in duration-300">
+            {/* Chatbot Monitoring Insight Card */}
+            <div className="bg-gradient-to-r from-slate-950 via-[#005596] to-slate-900 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-[0_16px_40px_-10px_rgba(0,85,150,0.25)] border border-blue-900/40 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                  <Bot size={24} className="text-sky-300" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-extrabold text-base sm:text-lg text-white">Monitoring AI Virtual Engineer</h3>
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-mono text-emerald-300 uppercase tracking-widest font-bold">Aktif & Real-time</span>
+                  </div>
+                  <p className="text-xs text-blue-100/80 mt-1 max-w-xl">
+                    Pantau interaksi teknis calon klien, identifikasi prospek yang siap penawaran (harga/PO), dan periksa transkrip konsultasi.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-5 sm:gap-8 self-stretch lg:self-auto justify-between lg:justify-end border-t lg:border-t-0 border-white/15 pt-3.5 lg:pt-0">
+                <div className="text-left lg:text-right">
+                  <span className="text-[10px] font-mono text-blue-200 uppercase tracking-wider block">Total Sesi Chat</span>
+                  <span className="text-xl sm:text-2xl font-black text-white">{chatbotStats.totalSessions} Sesi</span>
+                </div>
+                <div className="w-px h-8 bg-white/15" />
+                <div className="text-left lg:text-right">
+                  <span className="text-[10px] font-mono text-amber-300 uppercase tracking-wider block">Tanya Harga / PO</span>
+                  <span className="text-xl sm:text-2xl font-black text-amber-300">{chatbotStats.commercialCount} Prospek</span>
+                </div>
+                <div className="w-px h-8 bg-white/15" />
+                <div className="text-left lg:text-right">
+                  <span className="text-[10px] font-mono text-blue-200 uppercase tracking-wider block">Total Pesan</span>
+                  <span className="text-xl sm:text-2xl font-black text-white">{chatbotStats.totalMessages} Tanya-Jawab</span>
+                </div>
+              </div>
+            </div>
+
             {/* Filter & Search Bar */}
             <section className="bg-white/85 backdrop-blur-2xl border border-white/95 ring-1 ring-[#005596]/12 shadow-[0_16px_40px_-10px_rgba(0,85,150,0.08),inset_0_1px_0_0_rgba(255,255,255,0.95)] rounded-2xl sm:rounded-3xl p-5 space-y-4">
               <div className="flex flex-col md:flex-row items-center justify-between gap-3">
