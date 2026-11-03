@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from './LanguageProvider';
+import { ChatMarkdown } from '@/lib/ai/chat-markdown';
 
 interface ChatMessage {
   id: string;
@@ -270,39 +271,9 @@ export default function B2BChatbot() {
     }
   };
 
-  // Helper to render markdown links cleanly
+  // Helper to render markdown (bold, italic, links, lists) cleanly
   const renderMessageContent = (content: string) => {
-    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-    const parts: React.ReactNode[] = [];
-    let lastIdx = 0;
-    let match;
-
-    while ((match = linkRegex.exec(content)) !== null) {
-      if (match.index > lastIdx) {
-        parts.push(content.substring(lastIdx, match.index));
-      }
-      const label = match[1];
-      const url = match[2];
-      parts.push(
-        <a
-          key={match.index}
-          href={url}
-          className="text-[#005596] font-bold underline hover:text-[#004276] transition-colors"
-        >
-          {label}
-        </a>
-      );
-      lastIdx = linkRegex.lastIndex;
-    }
-    if (lastIdx < content.length) {
-      parts.push(content.substring(lastIdx));
-    }
-
-    return (
-      <div className="whitespace-pre-wrap leading-relaxed font-sans text-xs sm:text-sm">
-        {parts}
-      </div>
-    );
+    return <ChatMarkdown content={content} />;
   };
 
   return (
@@ -546,7 +517,7 @@ export default function B2BChatbot() {
                             )}
                           </div>
                         ) : (
-                          <div className="whitespace-pre-wrap leading-relaxed">{msg.text}</div>
+                          <ChatMarkdown content={msg.text} isUserMessage={true} />
                         )}
                       </div>
                       <span className="text-[9px] text-slate-400 font-mono mt-1 px-1">

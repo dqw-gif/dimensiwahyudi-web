@@ -48,6 +48,7 @@ import {
 import type { ArticleItem } from '@/app/api/admin/articles/route';
 import type { LeadItem } from '@/app/api/admin/leads/route';
 import { projects as defaultProjects, type Project } from '@/data/projects';
+import { ChatMarkdown } from '@/lib/ai/chat-markdown';
 
 interface Props {
   initialLegacyCount: number;
@@ -3042,7 +3043,11 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
                           : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none'
                       }`}
                     >
-                      <p className="whitespace-pre-wrap">{msg.text}</p>
+                      <ChatMarkdown
+                        content={msg.text}
+                        isUserMessage={msg.sender === 'user'}
+                        className="text-xs"
+                      />
                       {msg.isCommercial && (
                         <div className="mt-2 pt-2 border-t border-amber-200 text-[10px] font-bold text-amber-700 flex items-center gap-1">
                           <AlertTriangle size={11} /> Terdeteksi Menanyakan Harga / Stok / PO
