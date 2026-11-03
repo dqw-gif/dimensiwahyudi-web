@@ -7,7 +7,7 @@ import Script from 'next/script';
 import { trackEvent } from '@/lib/gtag';
 import { useLanguage } from '@/components/LanguageProvider';
 
-type FieldErrors = { name?: string; email?: string; message?: string };
+type FieldErrors = { name?: string; company?: string; phone?: string; email?: string; message?: string };
 
 const FORM_REQUEST_TIMEOUT_MS = 8000;
 const FORM_RETRY_ATTEMPTS = 2;
@@ -51,11 +51,15 @@ function validateField(name: string, value: string, isId: boolean): string {
   const text = isId
     ? {
         nameMin: 'Nama minimal harus terdiri dari 2 karakter',
+        companyMin: 'Nama perusahaan / pabrik wajib diisi',
+        phoneMin: 'Nomor WhatsApp / telepon minimal 8 digit angka',
         emailInvalid: 'Format email tidak valid',
         messageMin: 'Spesifikasi proyek minimal harus 20 karakter',
       }
     : {
         nameMin: 'Name must be at least 2 characters',
+        companyMin: 'Company name is required',
+        phoneMin: 'Phone / WhatsApp must be at least 8 digits',
         emailInvalid: 'Invalid email format',
         messageMin: 'Description must be at least 20 characters',
       };
@@ -63,6 +67,10 @@ function validateField(name: string, value: string, isId: boolean): string {
   switch (name) {
     case 'name':
       return value.trim().length < 2 ? text.nameMin : '';
+    case 'company':
+      return value.trim().length < 2 ? text.companyMin : '';
+    case 'phone':
+      return value.trim().replace(/\D/g, '').length < 8 ? text.phoneMin : '';
     case 'email':
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : text.emailInvalid;
     case 'message':
@@ -76,7 +84,7 @@ export default function ContactPage() {
   const { lang } = useLanguage();
   const isId = lang === 'id';
 
-  const [formData, setFormData] = useState({ name: '', company: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', company: '', phone: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const CONTACT_API_URL = '/api/contact';
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -132,13 +140,13 @@ export default function ContactPage() {
 
   function validateAll(): boolean {
     const newErrors: FieldErrors = {};
-    const required = ['name', 'email', 'message'] as const;
+    const required = ['name', 'company', 'phone', 'email', 'message'] as const;
     required.forEach((field) => {
       const error = validateField(field, formData[field], isId);
       if (error) newErrors[field] = error;
     });
     setErrors(newErrors);
-    setTouched({ name: true, email: true, message: true });
+    setTouched({ name: true, company: true, phone: true, email: true, message: true });
     return Object.keys(newErrors).length === 0;
   }
 
@@ -206,14 +214,17 @@ export default function ContactPage() {
         retry: 'Coba lagi',
         personName: 'Nama Lengkap (PIC)',
         companyName: 'Nama Perusahaan / Pabrik',
+        phoneNumber: 'Nomor WhatsApp / Telepon',
         corporateEmail: 'Email Perusahaan',
         projectSpec: 'Spesifikasi Kebutuhan Proyek',
         namePlaceholder: 'Contoh: Budi Santoso',
         companyPlaceholder: 'Contoh: PT Manufaktur Nusantara',
+        phonePlaceholder: 'Contoh: 081234567890',
         emailPlaceholder: 'email@nama-perusahaan.com',
         messagePlaceholder:
           'Sebutkan berat workpiece (kg), jenis material (karton/karung/plat besi/kaca), dan frekuensi angkat per jam...',
         looksGood: 'Sudah sesuai!',
+        phoneValid: 'Nomor valid',
         emailValid: 'Email valid',
         processing: 'Memproses...',
         getQuote: 'Minta Penawaran Harga',
@@ -248,14 +259,17 @@ export default function ContactPage() {
         retry: 'Try again',
         personName: 'Person in Charge Name',
         companyName: 'Company Name',
+        phoneNumber: 'WhatsApp / Phone Number',
         corporateEmail: 'Corporate Email',
         projectSpec: 'Project Specification',
         namePlaceholder: 'Example: John Smith',
         companyPlaceholder: 'Example: PT Manufacturing Indonesia',
+        phonePlaceholder: 'Example: +62 812-3456-7890',
         emailPlaceholder: 'email@company-name.com',
         messagePlaceholder:
           'Mention material weight (kg), object type (box/sheet), and lifting frequency per hour...',
         looksGood: 'Looks good!',
+        phoneValid: 'Valid phone',
         emailValid: 'Valid email',
         processing: 'Processing...',
         getQuote: 'Get Price Quotation',
@@ -416,7 +430,7 @@ export default function ContactPage() {
                 <button
                   onClick={() => {
                     setFormStatus('idle');
-                    setFormData({ name: '', company: '', email: '', message: '' });
+                    setFormData({ name: '', company: '', phone: '', email: '', message: '' });
                     setErrors({});
                     setTouched({});
                   }}
@@ -473,10 +487,11 @@ export default function ContactPage() {
                       </p>
                     )}
                   </div>
+
                   {/* Company */}
                   <div className="space-y-2">
                     <label htmlFor="company" className="text-sm font-bold text-slate-700 uppercase tracking-tight">
-                      {copy.companyName}
+                      {copy.companyName} <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="company"
@@ -484,37 +499,77 @@ export default function ContactPage() {
                       type="text"
                       value={formData.company}
                       onChange={handleChange}
-                      className={`${inputBase} ${inputOk}`}
+                      onBlur={handleBlur}
+                      className={fieldClass('company')}
                       placeholder={copy.companyPlaceholder}
                     />
+                    {touched.company && errors.company && (
+                      <p className="flex items-center gap-1.5 text-xs text-red-600 font-medium">
+                        <AlertCircle size={12} /> {errors.company}
+                      </p>
+                    )}
+                    {touched.company && !errors.company && formData.company && (
+                      <p className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
+                        <CheckCircle size={12} /> {copy.looksGood}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                {/* Email */}
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-bold text-slate-700 uppercase tracking-tight">
-                    {copy.corporateEmail} <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={fieldClass('email')}
-                    placeholder={copy.emailPlaceholder}
-                  />
-                  {touched.email && errors.email && (
-                    <p className="flex items-center gap-1.5 text-xs text-red-600 font-medium">
-                      <AlertCircle size={12} /> {errors.email}
-                    </p>
-                  )}
-                  {touched.email && !errors.email && formData.email && (
-                    <p className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
-                      <CheckCircle size={12} /> {copy.emailValid}
-                    </p>
-                  )}
+                <div className="grid md:grid-cols-2 gap-7">
+                  {/* Phone / WhatsApp */}
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-bold text-slate-700 uppercase tracking-tight">
+                      {copy.phoneNumber} <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={fieldClass('phone')}
+                      placeholder={copy.phonePlaceholder}
+                    />
+                    {touched.phone && errors.phone && (
+                      <p className="flex items-center gap-1.5 text-xs text-red-600 font-medium">
+                        <AlertCircle size={12} /> {errors.phone}
+                      </p>
+                    )}
+                    {touched.phone && !errors.phone && formData.phone && (
+                      <p className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
+                        <CheckCircle size={12} /> {copy.phoneValid}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-bold text-slate-700 uppercase tracking-tight">
+                      {copy.corporateEmail} <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={fieldClass('email')}
+                      placeholder={copy.emailPlaceholder}
+                    />
+                    {touched.email && errors.email && (
+                      <p className="flex items-center gap-1.5 text-xs text-red-600 font-medium">
+                        <AlertCircle size={12} /> {errors.email}
+                      </p>
+                    )}
+                    {touched.email && !errors.email && formData.email && (
+                      <p className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
+                        <CheckCircle size={12} /> {copy.emailValid}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 {/* Message */}

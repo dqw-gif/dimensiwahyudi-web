@@ -32,12 +32,21 @@ export async function POST(request: Request) {
     
     const name = (body.name ?? '').trim();
     const company = (body.company ?? '').trim();
+    const phone = (body.phone ?? '').trim();
     const email = (body.email ?? '').trim().toLowerCase();
     const message = (body.message ?? '').trim();
 
     // Basic Validation
     if (!name || name.length < 2) {
       return NextResponse.json({ ok: false, error: 'Name is too short' }, { status: 400 });
+    }
+
+    if (!company || company.length < 2) {
+      return NextResponse.json({ ok: false, error: 'Company name is required' }, { status: 400 });
+    }
+
+    if (!phone || phone.replace(/\D/g, '').length < 8) {
+      return NextResponse.json({ ok: false, error: 'Valid phone or WhatsApp number is required' }, { status: 400 });
     }
 
     if (!email || !isValidEmail(email)) {
@@ -58,6 +67,7 @@ export async function POST(request: Request) {
     const payload = {
       name,
       company,
+      phone,
       email,
       message,
       lead_type: 'Contact Form',
@@ -86,6 +96,7 @@ export async function POST(request: Request) {
         id: leadId,
         name,
         company,
+        phone,
         email,
         message,
         lead_type: 'Contact Form',

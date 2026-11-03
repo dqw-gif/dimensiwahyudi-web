@@ -1777,12 +1777,33 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
                       </select>
                     </div>
 
-                    {/* Email info */}
-                    <div className="flex items-center gap-2 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                      <Mail size={14} className="text-[#005596] shrink-0" />
-                      <a href={`mailto:${lead.email}`} className="font-bold hover:underline text-[#005596]">
-                        {lead.email}
-                      </a>
+                    {/* Contact info: Email & Phone */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                      <div className="flex items-center gap-2 text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <Mail size={14} className="text-[#005596] shrink-0" />
+                        <a href={`mailto:${lead.email}`} className="font-bold hover:underline text-[#005596] truncate">
+                          {lead.email}
+                        </a>
+                      </div>
+
+                      {lead.phone ? (
+                        <div className="flex items-center gap-2 text-slate-600 bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100">
+                          <Phone size={14} className="text-emerald-600 shrink-0" />
+                          <a
+                            href={`https://wa.me/${lead.phone.replace(/\D/g, '').replace(/^0/, '62')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold hover:underline text-emerald-700 truncate"
+                          >
+                            {lead.phone}
+                          </a>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 text-slate-400 bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px]">
+                          <Phone size={14} className="text-slate-300 shrink-0" />
+                          <span>Tanpa nomor telepon</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* Message Box */}
@@ -1800,26 +1821,32 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
                           href={`mailto:${lead.email}?subject=Re: Inquiry PT Dimensi Quantum Wahyudi`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#005596] hover:bg-[#004276] text-white text-xs font-bold transition-all shadow-xs"
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#005596] hover:bg-[#004276] text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
                         >
                           <Send size={12} />
                           <span>Balas Email</span>
                         </a>
 
                         <a
-                          href="https://wa.me/6281119168752"
+                          href={
+                            lead.phone
+                              ? `https://wa.me/${lead.phone.replace(/\D/g, '').replace(/^0/, '62')}?text=Halo%20${encodeURIComponent(
+                                  lead.name
+                                )},%20terima%20kasih%20telah%20menghubungi%20PT%20Dimensi%20Quantum%20Wahyudi`
+                              : 'https://wa.me/6281119168752'
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-xs"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
                         >
                           <Phone size={12} />
-                          <span>WhatsApp</span>
+                          <span>Chat WA Lead</span>
                         </a>
                       </div>
 
                       <button
                         onClick={() => handleDeleteLead(lead.id)}
-                        className="p-2 rounded-full text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                        className="p-2 rounded-full text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
                         title="Hapus lead"
                       >
                         <Trash2 size={14} />
