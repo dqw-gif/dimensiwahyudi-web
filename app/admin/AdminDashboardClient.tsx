@@ -121,6 +121,7 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
   const [loadingLeads, setLoadingLeads] = useState(false);
   const [leadSearch, setLeadSearch] = useState('');
   const [leadTypeFilter, setLeadTypeFilter] = useState('All');
+  const [selectedLeadForTranscript, setSelectedLeadForTranscript] = useState<LeadItem | null>(null);
 
   // AI Writer Wizard State
   const [isWriteMenuOpen, setIsWriteMenuOpen] = useState(false);
@@ -1696,7 +1697,7 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
                 <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-widest shrink-0 flex items-center gap-1">
                   <Filter size={12} /> Tipe Form:
                 </span>
-                {['All', 'Contact Form', 'ROI Calculator', 'Lead Registered'].map((type) => (
+                {['All', 'Contact Form', 'AI Chatbot Consultation', 'ROI Calculator', 'Lead Registered'].map((type) => (
                   <button
                     key={type}
                     onClick={() => setLeadTypeFilter(type)}
@@ -1842,6 +1843,17 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
                           <Phone size={12} />
                           <span>Chat WA Lead</span>
                         </a>
+
+                        {lead.messages && lead.messages.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => setSelectedLeadForTranscript(lead)}
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold border border-indigo-200 transition-all cursor-pointer shadow-xs"
+                          >
+                            <MessageSquare size={12} />
+                            <span>Lihat Chat ({lead.messages.length})</span>
+                          </button>
+                        )}
                       </div>
 
                       <button
@@ -2961,6 +2973,123 @@ export default function AdminDashboardClient({ initialLegacyCount, initialTab = 
                     <span className="text-[10px] text-slate-400 shrink-0 font-mono">/news/{a.slug}</span>
                   </button>
                 ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* ========================================================================= */}
+      {/* MODAL TRANSKRIP SESI AI CHATBOT */}
+      {/* ========================================================================= */}
+      {selectedLeadForTranscript && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in">
+          <div className="bg-white rounded-3xl max-w-2xl w-full border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+            {/* Modal Header */}
+            <div className="px-6 py-4 bg-gradient-to-r from-slate-900 to-[#005596] text-white flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest bg-white/20 text-white px-2 py-0.5 rounded-full font-bold">
+                    Transkrip Sesi Chatbot
+                  </span>
+                  <span className="text-xs text-blue-200">
+                    {selectedLeadForTranscript.messages?.length || 0} Pesan
+                  </span>
+                </div>
+                <h3 className="text-base font-extrabold text-white mt-1">
+                  {selectedLeadForTranscript.name} &bull; {selectedLeadForTranscript.company}
+                </h3>
+                <p className="text-xs text-blue-100 flex items-center gap-3 mt-0.5">
+                  <span>{selectedLeadForTranscript.email}</span>
+                  {selectedLeadForTranscript.phone && (
+                    <span>&bull; {selectedLeadForTranscript.phone}</span>
+                  )}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedLeadForTranscript(null)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Chat Messages Body */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/50">
+              {(!selectedLeadForTranscript.messages || selectedLeadForTranscript.messages.length === 0) ? (
+                <div className="text-center py-12 text-slate-400 text-xs">
+                  Belum ada riwayat percakapan untuk prospek ini.
+                </div>
+              ) : (
+                selectedLeadForTranscript.messages.map((msg, idx) => (
+                  <div
+                    key={idx}
+                    className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
+                  >
+                    <div className="flex items-center gap-1.5 mb-1 px-1">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                        {msg.sender === 'user' ? selectedLeadForTranscript.name : 'AI Virtual Engineer'}
+                      </span>
+                      {msg.timestamp && (
+                        <span className="text-[9px] text-slate-400">
+                          {new Date(msg.timestamp).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                      )}
+                    </div>
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs leading-relaxed shadow-xs ${
+                        msg.sender === 'user'
+                          ? 'bg-[#005596] text-white rounded-tr-none'
+                          : 'bg-white border border-slate-200 text-slate-800 rounded-tl-none'
+                      }`}
+                    >
+                      <p className="whitespace-pre-wrap">{msg.text}</p>
+                      {msg.isCommercial && (
+                        <div className="mt-2 pt-2 border-t border-amber-200 text-[10px] font-bold text-amber-700 flex items-center gap-1">
+                          <AlertTriangle size={11} /> Terdeteksi Menanyakan Harga / Stok / PO
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-3.5 bg-white border-t border-slate-100 flex items-center justify-between gap-3">
+              <div className="text-[11px] text-slate-400">
+                Waktu Submit: {new Date(selectedLeadForTranscript.createdAt).toLocaleString('id-ID')}
+              </div>
+              <div className="flex items-center gap-2">
+                {selectedLeadForTranscript.phone && (
+                  <a
+                    href={`https://wa.me/${selectedLeadForTranscript.phone.replace(/\D/g, '').replace(/^0/, '62')}?text=Halo%20${encodeURIComponent(
+                      selectedLeadForTranscript.name
+                    )},%20kami%20telah%20melihat%20diskusi%20Anda%20dengan%20tim%20teknis%20di%20website%20DQW.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-xs"
+                  >
+                    <Phone size={11} />
+                    <span>Chat WhatsApp</span>
+                  </a>
+                )}
+                <a
+                  href={`mailto:${selectedLeadForTranscript.email}?subject=Follow Up Konsultasi: PT Dimensi Quantum Wahyudi`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#005596] hover:bg-[#004276] text-white text-xs font-bold transition-all shadow-xs"
+                >
+                  <Mail size={11} />
+                  <span>Kirim Email</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setSelectedLeadForTranscript(null)}
+                  className="px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold transition-colors cursor-pointer"
+                >
+                  Tutup
+                </button>
+              </div>
             </div>
           </div>
         </div>

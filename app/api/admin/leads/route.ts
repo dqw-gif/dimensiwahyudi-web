@@ -23,6 +23,13 @@ export type LeadItem = {
   status: 'new' | 'contacted' | 'proposal_sent' | 'closed';
   notes?: string;
   createdAt: string;
+  chatCount?: number;
+  messages?: Array<{
+    sender: 'user' | 'assistant';
+    text: string;
+    timestamp: string;
+    isCommercial?: boolean;
+  }>;
 };
 
 async function checkAuth(request: NextRequest): Promise<boolean> {
@@ -56,6 +63,8 @@ export async function GET(request: NextRequest) {
         status: data.status || 'new',
         notes: data.notes || '',
         createdAt: data.createdAt || new Date().toISOString(),
+        chatCount: data.chatCount,
+        messages: Array.isArray(data.messages) ? data.messages : undefined,
       });
     });
 
