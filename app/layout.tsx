@@ -14,7 +14,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const BASE_URL = "https://dimensiwahyudi.com";
+const BASE_URL = "https://www.dimensiwahyudi.com";
 
 const consentModeBootstrap = `
 (function () {
@@ -180,7 +180,7 @@ const seoStructuredData = {
         closes: "17:00",
       },
       sameAs: [
-        "https://dimensiwahyudi.com",
+        "https://www.dimensiwahyudi.com",
         "https://www.linkedin.com/company/dimensiwahyudi",
         "https://www.instagram.com/nabelsakha/",
       ],
@@ -208,7 +208,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" as="image" href="/hero-poster-mobile.webp" media="(max-width: 767px)" fetchPriority="high" type="image/webp" />
         <link rel="preload" as="image" href="/hero-poster.webp" media="(min-width: 768px)" fetchPriority="high" type="image/webp" />
-        <link rel="dns-prefetch" href="https://dimensiwahyudi.com" />
+        <link rel="dns-prefetch" href="https://www.dimensiwahyudi.com" />
       </head>
       <body className={`${plusJakartaSans.className} font-sans antialiased`}>
         <Script id="consent-mode-bootstrap" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: consentModeBootstrap }} />

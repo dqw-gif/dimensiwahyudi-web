@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Technical Services | Installation, Maintenance & Training',
     description: 'Reliable installation, preventive maintenance, operator training, and genuine parts support for industrial lifting systems.',
-    url: 'https://dimensiwahyudi.com/services',
+    url: 'https://www.dimensiwahyudi.com/services',
     siteName: 'PT Dimensi Quantum Wahyudi',
     locale: 'en_ID',
     type: 'website',
   },
-  alternates: { canonical: 'https://dimensiwahyudi.com/services' },
+  alternates: { canonical: 'https://www.dimensiwahyudi.com/services' },
 };
 
 export default async function ServicesPage() {

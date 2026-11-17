@@ -8,16 +8,16 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Technical Consultation | PT Dimensi Quantum Wahyudi',
         description: 'Our engineering team is ready to design a precise lifting solution for your facility.',
-        url: 'https://dimensiwahyudi.com/contact',
+        url: 'https://www.dimensiwahyudi.com/contact',
         locale: 'en_ID',
         type: 'website',
     },
     alternates: {
-        canonical: 'https://dimensiwahyudi.com/contact',
+        canonical: 'https://www.dimensiwahyudi.com/contact',
         languages: {
-            'en-ID': 'https://dimensiwahyudi.com/contact',
-            'id-ID': 'https://dimensiwahyudi.com/contact',
-            'x-default': 'https://dimensiwahyudi.com/contact',
+            'en-ID': 'https://www.dimensiwahyudi.com/contact',
+            'id-ID': 'https://www.dimensiwahyudi.com/contact',
+            'x-default': 'https://www.dimensiwahyudi.com/contact',
         },
     },
 };

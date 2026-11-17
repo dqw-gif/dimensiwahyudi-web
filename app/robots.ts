@@ -23,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: disallowRules,
             },
         ],
-        host: 'https://dimensiwahyudi.com',
-        sitemap: 'https://dimensiwahyudi.com/sitemap.xml',
+        host: 'https://www.dimensiwahyudi.com',
+        sitemap: 'https://www.dimensiwahyudi.com/sitemap.xml',
     };
 }

@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     title: 'About PT Dimensi Quantum Wahyudi | Official Ergonomic Handling Partner',
     description:
       'Founded in 2009, we deliver certified vacuum lifting equipment from Schmalz and electric manipulator arms from Binar Handling to manufacturing plants across Indonesia.',
-    url: 'https://dimensiwahyudi.com/about',
+    url: 'https://www.dimensiwahyudi.com/about',
     siteName: 'PT Dimensi Quantum Wahyudi',
     locale: 'en_US',
     type: 'website',
   },
-  alternates: { canonical: 'https://dimensiwahyudi.com/about' },
+  alternates: { canonical: 'https://www.dimensiwahyudi.com/about' },
 };
 
 export default function AboutPage() {

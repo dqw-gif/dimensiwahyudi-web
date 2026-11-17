@@ -4,7 +4,7 @@ import { projects } from '../data/projects';
 
 export const revalidate = 86400; // 24 hours
 
-const BASE_URL = 'https://dimensiwahyudi.com';
+const BASE_URL = 'https://www.dimensiwahyudi.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Static pages

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Insights Hub | PT Dimensi Quantum Wahyudi',
         description: 'Engineering articles, field updates, and case-based insights on vacuum lifting and industrial material handling for the Indonesian market.',
-        url: 'https://dimensiwahyudi.com/news',
+        url: 'https://www.dimensiwahyudi.com/news',
         siteName: 'PT Dimensi Quantum Wahyudi',
         locale: 'en_ID',
         type: 'website',
@@ -28,11 +28,11 @@ export const metadata: Metadata = {
         description: 'Technical insights on vacuum lifting and ergonomic handling for Indonesian industry.',
     },
     alternates: {
-        canonical: 'https://dimensiwahyudi.com/news',
+        canonical: 'https://www.dimensiwahyudi.com/news',
         languages: {
-            'en-ID': 'https://dimensiwahyudi.com/news',
-            'id-ID': 'https://dimensiwahyudi.com/news',
-            'x-default': 'https://dimensiwahyudi.com/news',
+            'en-ID': 'https://www.dimensiwahyudi.com/news',
+            'id-ID': 'https://www.dimensiwahyudi.com/news',
+            'x-default': 'https://www.dimensiwahyudi.com/news',
         },
     },
 };

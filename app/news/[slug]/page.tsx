@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     const excerpt = post.excerpt?.replace(/<[^>]+>/g, '').slice(0, 160) || `Read more about ${post.title}`;
-    const canonicalUrl = `https://dimensiwahyudi.com/news/${slug}`;
-    const featuredImage = getFeaturedImageUrl(post) || 'https://dimensiwahyudi.com/opengraph-image';
+    const canonicalUrl = `https://www.dimensiwahyudi.com/news/${slug}`;
+    const featuredImage = getFeaturedImageUrl(post) || 'https://www.dimensiwahyudi.com/opengraph-image';
     const categoryNames = post.categories?.nodes?.map((category) => category.name) || [];
 
     return {
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             'material handling best practice',
             'ergonomic handling Indonesia',
         ],
-        authors: [{ name: 'DQW Technical Editorial', url: 'https://dimensiwahyudi.com/about' }],
+        authors: [{ name: 'DQW Technical Editorial', url: 'https://www.dimensiwahyudi.com/about' }],
         alternates: {
             canonical: canonicalUrl,
             languages: {

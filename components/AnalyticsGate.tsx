@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
 import { CONSENT_CHANGE_EVENT, hasAnalyticsConsent, type ConsentChoice } from '@/lib/consent';
+import GoogleAnalyticsTracker from './GoogleAnalyticsTracker';
 
 type AnalyticsGateProps = {
   gaId?: string;
@@ -11,13 +12,10 @@ type AnalyticsGateProps = {
 
 export default function AnalyticsGate({ gaId }: AnalyticsGateProps) {
   const [enabled, setEnabled] = useState(() => hasAnalyticsConsent());
-  const [isReady, setIsReady] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Defer analytics to after initial paint and critical resource loading
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 2500);
+    setIsMounted(true);
 
     const onConsentChanged = (event: Event) => {
       const customEvent = event as CustomEvent<ConsentChoice>;
@@ -26,20 +24,27 @@ export default function AnalyticsGate({ gaId }: AnalyticsGateProps) {
 
     window.addEventListener(CONSENT_CHANGE_EVENT, onConsentChanged);
     return () => {
-      clearTimeout(timer);
       window.removeEventListener(CONSENT_CHANGE_EVENT, onConsentChanged);
     };
   }, []);
 
-  if (!isReady || (!gaId && !enabled)) {
+  if (!isMounted || (!gaId && !enabled)) {
     return null;
   }
 
-  const isProduction = process.env.NODE_ENV === 'production' && typeof window !== 'undefined' && !window.location.hostname.includes('localhost');
+  const isProduction =
+    process.env.NODE_ENV === 'production' &&
+    typeof window !== 'undefined' &&
+    !window.location.hostname.includes('localhost');
 
   return (
     <>
-      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+      {gaId ? (
+        <>
+          <GoogleAnalytics gaId={gaId} />
+          <GoogleAnalyticsTracker gaId={gaId} />
+        </>
+      ) : null}
       {enabled && isProduction ? <Analytics /> : null}
     </>
   );
