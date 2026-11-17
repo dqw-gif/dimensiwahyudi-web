@@ -226,6 +226,12 @@ export default function B2BChatbot() {
         body: JSON.stringify({
           sessionId,
           message: text,
+          clientName,
+          clientCompany,
+          history: messages.slice(-6).map((m) => ({
+            sender: m.sender,
+            text: m.text,
+          })),
         }),
       });
 

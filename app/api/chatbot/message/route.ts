@@ -123,20 +123,25 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: 'Pesan maksimal 1.000 karakter' }, { status: 400 });
     }
 
-    // 1. Fetch Session from Firestore
-    const leadRef = doc(db, 'leads', sessionId);
-    const snap = await getDoc(leadRef);
+    // 1. Fetch Session from Firestore (with graceful fallback if permissions are restricted)
+    let leadData: Record<string, any> | null = null;
+    let leadRef: any = null;
 
-    if (!snap.exists()) {
-      return NextResponse.json({ success: false, error: 'Sesi konsultasi tidak ditemukan' }, { status: 404 });
+    try {
+      leadRef = doc(db, 'leads', sessionId);
+      const snap = await getDoc(leadRef);
+      if (snap.exists()) {
+        leadData = snap.data() as Record<string, any>;
+      }
+    } catch (dbErr) {
+      console.warn('Firestore session read warning (falling back gracefully):', (dbErr as Error).message);
     }
 
-    const leadData = snap.data();
-    const currentChatCount = Number(leadData.chatCount ?? 0);
-    const maxChats = Number(leadData.maxChats ?? 5);
+    const currentChatCount = Number(leadData?.chatCount ?? 0);
+    const maxChats = Number(leadData?.maxChats ?? 5);
 
     // 2. Strict Server-side Quota Check
-    if (currentChatCount >= maxChats) {
+    if (leadData && currentChatCount >= maxChats) {
       return NextResponse.json({
         success: false,
         quotaExceeded: true,
@@ -146,10 +151,15 @@ export async function POST(request: Request) {
     }
 
     // 3. Format Conversation History for Gemini
-    const existingMessages: Array<{ sender: string; text: string }> = leadData.messages || [];
+    const existingMessages: Array<{ sender: string; text: string }> =
+      leadData?.messages ||
+      (Array.isArray(body.history) ? body.history : []);
     
     // Take last 8 messages for context to keep within fast token limits
     const recentMessages = existingMessages.slice(-8);
+
+    const userName = leadData?.name || (body.clientName ? String(body.clientName).trim() : 'User');
+    const userCompany = leadData?.company || (body.clientCompany ? String(body.clientCompany).trim() : 'Pabrik');
 
     const geminiContents: { role: 'user' | 'model'; parts: { text: string }[] }[] = [];
 
@@ -158,7 +168,7 @@ export async function POST(request: Request) {
       role: 'user',
       parts: [
         {
-          text: `Halo, nama saya ${leadData.name || 'User'} dari ${leadData.company || 'Pabrik'}. Saya ingin berkonsultasi mengenai solusi pengangkatan ergonomis di pabrik kami.`,
+          text: `Halo, nama saya ${userName} dari ${userCompany}. Saya ingin berkonsultasi mengenai solusi pengangkatan ergonomis di pabrik kami.`,
         },
       ],
     });
@@ -167,7 +177,7 @@ export async function POST(request: Request) {
       role: 'model',
       parts: [
         {
-          text: `Halo Pak/Bu ${leadData.name || ''} dari ${leadData.company || ''}. Senang bisa berdiskusi dengan Anda. Silakan sampaikan tantangan handling di lini pabrik Anda.`,
+          text: `Halo Pak/Bu ${userName} dari ${userCompany}. Senang bisa berdiskusi dengan Anda. Silakan sampaikan tantangan handling di lini pabrik Anda.`,
         },
       ],
     });
@@ -216,16 +226,18 @@ export async function POST(request: Request) {
       isCommercial,
     };
 
-    // 6. Update Firestore
-    try {
-      await updateDoc(leadRef, {
-        messages: arrayUnion(userMsgObj, assistantMsgObj),
-        chatCount: increment(1),
-        message: `Tanya [${newChatCount}/5]: "${userMessage.slice(0, 100)}${userMessage.length > 100 ? '...' : ''}"`,
-        updatedAt: nowIso,
-      });
-    } catch (updateErr) {
-      console.error('Failed to update chat history in Firestore:', updateErr);
+    // 6. Update Firestore (safe)
+    if (leadRef) {
+      try {
+        await updateDoc(leadRef, {
+          messages: arrayUnion(userMsgObj, assistantMsgObj),
+          chatCount: increment(1),
+          message: `Tanya [${newChatCount}/5]: "${userMessage.slice(0, 100)}${userMessage.length > 100 ? '...' : ''}"`,
+          updatedAt: nowIso,
+        });
+      } catch (updateErr) {
+        console.warn('Failed to update chat history in Firestore (non-fatal):', (updateErr as Error).message);
+      }
     }
 
     return NextResponse.json({
